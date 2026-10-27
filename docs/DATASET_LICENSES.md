@@ -43,3 +43,16 @@ validation_status: pending
 ```
 
 Completar valores reales, checksum y límites espaciales/temporales antes de usar; la plantilla no es un dataset autorizado.
+
+## Incorporaciones GIS/ML, 27-10-2026
+
+| Recurso | Procedencia, licencia y procesamiento | Validación y límites |
+| --- | --- | --- |
+| data/public/taxonomy-gbif-2026-10-27.json y campos taxonomy del catálogo | GBIF Secretariat, Backbone Taxonomy, DOI 10.15468/39omei; API v1, snapshot 2026-10-27; CC BY 4.0; redistribución con atribución y aviso de cambios. Consultas match exact y synonyms, sin fotos ni ocurrencias. | Contraste automatizado fuente_checked; Giuseppe responsable de revisión humana pendiente. Ocho nombres aceptados; rasgos, nombres comunes, natividad y conservación pendientes. Hash en reporte y test. |
+| data/public/chmv2-window-2026-10-27.json | CHMv2 v2 ml3 Meta/WRI, mirror Taylor Geospatial / Source Cooperative; CC BY 4.0. Atribución Meta/WRI/Vantor del registro AWS y repackaging Taylor Geospatial; citas Tolan 2024 y Brandt 2026 en SOURCES. Estadísticas de ventana 64x64, sin imágenes fuente. | CRS, codificación, escala y nodata observados; periodo del tile y exactitud local pendientes. Ventana GeoTIFF fuera de Git; hash y transformación en evidencia. No hay crecimiento anual. |
+| Raster sintético temporal de tests | Generado con valores explícitos por el código del proyecto, fixture-1, 2026-10-27, LicenseRef-ProGarLabs-Pending. No se redistribuye archivo GeoTIFF. | Transformación, nodata y estadísticas de software; no mediciones reales. |
+| Dibujo de prueba Meta | Generado en memoria por el agente durante la sesión autorizada, 128x128, sin material de terceros; LicenseRef-ProGarLabs-Pending. Solo hash y resultados sanitizados publicados. | Una prueba negativa sintética; no dataset científico. |
+
+La consulta de fuentes no equivale a revisión botánica humana. No se otorga nueva licencia
+a fotografías privadas; autorización local del usuario registrada en la sesión, sin publicación
+ni envío a terceros. No se incorporó ningún contenido Hepta al repositorio.

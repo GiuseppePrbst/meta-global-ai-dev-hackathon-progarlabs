@@ -4,7 +4,13 @@ Base de una plataforma de inteligencia botánica y forestal para explorar, compr
 
 ## Estado del bootstrap
 
-Frontend Next.js, API FastAPI y contratos botánicos/geoespaciales en desarrollo inicial. Los ocho taxones son candidatos pendientes de validación; ninguna ficha demuestra presencia de un individuo en el piloto. El identificador de desarrollo es un **mock que se abstiene**: no ejecuta modelos Meta ni ofrece precisión inventada. CHMv2 está preparado como contrato y pipeline pendiente, sin raster descargado.
+Frontend Next.js y API FastAPI sobre el bootstrap existente. La fundación GIS/ML añade
+taxonomía GBIF trazable para ocho especies, Muse estructurado y SAM opcional, evaluación
+reproducible y estadísticas CHMv2 con raster sintético y una ventana real pequeña. El mock
+sigue disponible sin claves y se abstiene. Las pruebas reales Meta usan un dibujo sintético;
+no hay precisión botánica medida. Rasgos y validación humana siguen pendientes.
+
+Estado vigente: [reporte GIS/ML](docs/GIS_ML_REPORT.md), [contratos para José](docs/API_INTEGRATION.md).
 
 El alcance implementado, las pruebas realmente ejecutadas y los bloqueos se registran en [el reporte de bootstrap](docs/BOOTSTRAP_REPORT.md). El uso real de herramientas Meta y la admisión del equipo deben verificarse antes de la entrega competitiva.
 

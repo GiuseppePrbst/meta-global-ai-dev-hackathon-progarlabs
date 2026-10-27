@@ -69,3 +69,16 @@ parte del entorno base ni se presentan como instaladas o probadas.
 Fuentes de implementación: [FastAPI Docker](https://fastapi.tiangolo.com/deployment/docker/),
 [settings](https://fastapi.tiangolo.com/advanced/settings/),
 [Psycopg parámetros SQL](https://www.psycopg.org/psycopg3/docs/basic/params.html).
+
+## Fundación GIS/ML
+
+El pipeline Meta ya está integrado; las referencias anteriores a 501 con clave son el
+estado histórico del bootstrap. Activación local explícita y contratos aditivos en
+[API_INTEGRATION](../../docs/API_INTEGRATION.md). AI_PROVIDER=mock sigue siendo el valor inicial.
+Meta exige META_ENABLED, MODEL_API_KEY, META_ACCESS_TOKEN y derechos de imagen. SAM_ENABLED
+activa segmentación opcional. No colocar tokens en NEXT_PUBLIC_. No persistir fotos.
+
+FOREST_MANIFEST apunta a un manifiesto revisado externo. Para soporte raster:
+`uv sync --project services/api --extra dev --extra raster --frozen`. Sin extra/manifiesto
+forestal, la identificación y el catálogo siguen funcionando. El contenedor base no incluye
+GIS pesado; habilitar el extra en una imagen controlada antes de configurar raster en Docker.

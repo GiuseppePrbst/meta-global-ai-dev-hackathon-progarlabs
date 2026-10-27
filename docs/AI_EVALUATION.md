@@ -31,3 +31,19 @@ No mostrar porcentajes de confianza como probabilidades sin un experimento de ca
 5. Una persona revisa resultados antes de usarlos en UI, video o afirmaciones de precisión.
 
 Formato y ejecución se desarrollan en `evaluations/`; [BV-08](BACKLOG.md) es el trabajo pendiente. Un resultado de demo aislado no reemplaza este protocolo.
+
+## Implementación del 27-10-2026
+
+Runner A/B y métricas implementados; [comandos y manifiesto](../evaluations/README.md).
+Sin dataset etiquetado permitido: cero casos evaluables, Top-1/Top-3 no disponibles.
+[Prueba real](../evaluations/meta-access-2026-10-27.json): Muse abstuvo ante dibujo sintético;
+SAM decodificó una máscara. Es verificación de integración, no precisión. No se ejecutó
+comparación científica A/B. La segmentación fallida conserva original y su estado en B;
+analizar ese subgrupo por separado. No confundir fallback con máscara válida.
+
+Manifiesto exige individual_id, partición, revisor, SHA-256, especie, fuente/licencia y
+autorización. external_processing_authorized es falso por defecto: permiso local para Hepta
+no autoriza Meta. El runner rechaza transferencias sin autorización por caso y bandera explícita.
+Mocks nunca producen tasas de precisión. Reporta número ejecutado/evaluable, errores, abstención,
+latencias totales y por etapa. Desglose de etapas excluye preprocesamiento del tiempo de modelo;
+el preprocesamiento ocurre antes de la corrida cronometrada. No atribuirlo a latencia extremo a extremo.
