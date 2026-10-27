@@ -1,0 +1,50 @@
+name: Tarea del proyecto
+description: Trabajo verificable con alcance, dependencias y responsable funcional.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema y objetivo
+      description: Explica qué necesidad resuelve y el resultado observable.
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: Responsable funcional propuesto
+      description: Nombre/área; no implica asignación ni permisos Git. Revisar elegibilidad competitiva.
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridad
+      options: [P0, P1, P2, P3]
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencias
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Criterios de aceptación y entregables
+      description: Lista verificaciones concretas, pruebas y documentación necesarias.
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Riesgos y límites
+    validations:
+      required: true
+  - type: dropdown
+    id: effort
+    attributes:
+      label: Esfuerzo relativo
+      options: ["1 — pequeño", "2 — medio", "3 — grande", "5 — investigación"]
+    validations:
+      required: true

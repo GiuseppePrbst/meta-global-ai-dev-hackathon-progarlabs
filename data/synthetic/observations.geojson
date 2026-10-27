@@ -1,0 +1,23 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "synthetic-001",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0,
+          0.0
+        ]
+      },
+      "properties": {
+        "synthetic": true,
+        "label": "Fixture sintético en el océano; no corresponde a un árbol observado",
+        "species_id": null,
+        "source": "ProGarLabs bootstrap",
+        "license": "LicenseRef-ProGarLabs-Pending"
+      }
+    }
+  ]
+}

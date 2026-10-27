@@ -1,0 +1,146 @@
+[
+  {
+    "id": "nothofagus-dombeyi",
+    "scientific_name": "Nothofagus dombeyi",
+    "common_name": "Coigüe",
+    "taxonomic_status": "provisional",
+    "provenance": {
+      "source_name": "ProGarLabs, lista candidata del prompt de inicialización",
+      "source_url": "https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs",
+      "accessed_at": "2026-10-27",
+      "version": "bootstrap-1",
+      "license": "LicenseRef-ProGarLabs-Pending",
+      "attribution": "ProGarLabs SpA, catálogo candidato 2026",
+      "redistribution": "Publicación del bootstrap autorizada por encargo; licencia de reutilización pendiente de decisión de ProGarLabs. Sin imágenes ni registros externos.",
+      "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
+      "validation_owner": "Giuseppe Proboste (validación pendiente)",
+      "status": "pending_validation"
+    }
+  },
+  {
+    "id": "eucryphia-cordifolia",
+    "scientific_name": "Eucryphia cordifolia",
+    "common_name": "Ulmo",
+    "taxonomic_status": "provisional",
+    "provenance": {
+      "source_name": "ProGarLabs, lista candidata del prompt de inicialización",
+      "source_url": "https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs",
+      "accessed_at": "2026-10-27",
+      "version": "bootstrap-1",
+      "license": "LicenseRef-ProGarLabs-Pending",
+      "attribution": "ProGarLabs SpA, catálogo candidato 2026",
+      "redistribution": "Publicación del bootstrap autorizada por encargo; licencia de reutilización pendiente de decisión de ProGarLabs. Sin imágenes ni registros externos.",
+      "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
+      "validation_owner": "Giuseppe Proboste (validación pendiente)",
+      "status": "pending_validation"
+    }
+  },
+  {
+    "id": "aextoxicon-punctatum",
+    "scientific_name": "Aextoxicon punctatum",
+    "common_name": "Olivillo",
+    "taxonomic_status": "provisional",
+    "provenance": {
+      "source_name": "ProGarLabs, lista candidata del prompt de inicialización",
+      "source_url": "https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs",
+      "accessed_at": "2026-10-27",
+      "version": "bootstrap-1",
+      "license": "LicenseRef-ProGarLabs-Pending",
+      "attribution": "ProGarLabs SpA, catálogo candidato 2026",
+      "redistribution": "Publicación del bootstrap autorizada por encargo; licencia de reutilización pendiente de decisión de ProGarLabs. Sin imágenes ni registros externos.",
+      "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
+      "validation_owner": "Giuseppe Proboste (validación pendiente)",
+      "status": "pending_validation"
+    }
+  },
+  {
+    "id": "weinmannia-trichosperma",
+    "scientific_name": "Weinmannia trichosperma",
+    "common_name": "Tineo",
+    "taxonomic_status": "provisional",
+    "provenance": {
+      "source_name": "ProGarLabs, lista candidata del prompt de inicialización",
+      "source_url": "https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs",
+      "accessed_at": "2026-10-27",
+      "version": "bootstrap-1",
+      "license": "LicenseRef-ProGarLabs-Pending",
+      "attribution": "ProGarLabs SpA, catálogo candidato 2026",
+      "redistribution": "Publicación del bootstrap autorizada por encargo; licencia de reutilización pendiente de decisión de ProGarLabs. Sin imágenes ni registros externos.",
+      "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
+      "validation_owner": "Giuseppe Proboste (validación pendiente)",
+      "status": "pending_validation"
+    }
+  },
+  {
+    "id": "laureliopsis-philippiana",
+    "scientific_name": "Laureliopsis philippiana",
+    "common_name": "Tepa",
+    "taxonomic_status": "provisional",
+    "provenance": {
+      "source_name": "ProGarLabs, lista candidata del prompt de inicialización",
+      "source_url": "https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs",
+      "accessed_at": "2026-10-27",
+      "version": "bootstrap-1",
+      "license": "LicenseRef-ProGarLabs-Pending",
+      "attribution": "ProGarLabs SpA, catálogo candidato 2026",
+      "redistribution": "Publicación del bootstrap autorizada por encargo; licencia de reutilización pendiente de decisión de ProGarLabs. Sin imágenes ni registros externos.",
+      "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
+      "validation_owner": "Giuseppe Proboste (validación pendiente)",
+      "status": "pending_validation"
+    }
+  },
+  {
+    "id": "podocarpus-nubigenus",
+    "scientific_name": "Podocarpus nubigenus",
+    "common_name": "Mañío",
+    "taxonomic_status": "provisional",
+    "provenance": {
+      "source_name": "ProGarLabs, lista candidata del prompt de inicialización",
+      "source_url": "https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs",
+      "accessed_at": "2026-10-27",
+      "version": "bootstrap-1",
+      "license": "LicenseRef-ProGarLabs-Pending",
+      "attribution": "ProGarLabs SpA, catálogo candidato 2026",
+      "redistribution": "Publicación del bootstrap autorizada por encargo; licencia de reutilización pendiente de decisión de ProGarLabs. Sin imágenes ni registros externos.",
+      "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
+      "validation_owner": "Giuseppe Proboste (validación pendiente)",
+      "status": "pending_validation"
+    }
+  },
+  {
+    "id": "nothofagus-betuloides",
+    "scientific_name": "Nothofagus betuloides",
+    "common_name": "Coigüe de Magallanes",
+    "taxonomic_status": "provisional",
+    "provenance": {
+      "source_name": "ProGarLabs, lista candidata del prompt de inicialización",
+      "source_url": "https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs",
+      "accessed_at": "2026-10-27",
+      "version": "bootstrap-1",
+      "license": "LicenseRef-ProGarLabs-Pending",
+      "attribution": "ProGarLabs SpA, catálogo candidato 2026",
+      "redistribution": "Publicación del bootstrap autorizada por encargo; licencia de reutilización pendiente de decisión de ProGarLabs. Sin imágenes ni registros externos.",
+      "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
+      "validation_owner": "Giuseppe Proboste (validación pendiente)",
+      "status": "pending_validation"
+    }
+  },
+  {
+    "id": "nothofagus-pumilio",
+    "scientific_name": "Nothofagus pumilio",
+    "common_name": "Lenga",
+    "taxonomic_status": "provisional",
+    "provenance": {
+      "source_name": "ProGarLabs, lista candidata del prompt de inicialización",
+      "source_url": "https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs",
+      "accessed_at": "2026-10-27",
+      "version": "bootstrap-1",
+      "license": "LicenseRef-ProGarLabs-Pending",
+      "attribution": "ProGarLabs SpA, catálogo candidato 2026",
+      "redistribution": "Publicación del bootstrap autorizada por encargo; licencia de reutilización pendiente de decisión de ProGarLabs. Sin imágenes ni registros externos.",
+      "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
+      "validation_owner": "Giuseppe Proboste (validación pendiente)",
+      "status": "pending_validation"
+    }
+  }
+]

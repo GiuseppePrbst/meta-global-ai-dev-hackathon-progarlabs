@@ -10,7 +10,7 @@ El alcance implementado, las pruebas realmente ejecutadas y los bloqueos se regi
 
 ## Requisitos
 
-- Node.js 24 LTS y npm 11, Python 3.12 y [uv](https://docs.astral.sh/uv/).
+- Node.js 24 LTS y npm 10 o superior, Python 3.12 y [uv](https://docs.astral.sh/uv/).
 - Docker con Compose v2 para PostgreSQL/PostGIS y el stack completo. Sin Docker se pueden ejecutar web y API; las observaciones requieren una base configurada.
 - No hacen falta claves de Meta para las pruebas ni para el modo mock.
 
@@ -21,21 +21,21 @@ Desde la raíz del repositorio:
 ```powershell
 Copy-Item .env.example .env
 npm ci
-uv venv --python 3.12 .venv
-uv pip install --python .venv/Scripts/python.exe -r requirements-dev.lock
+uv sync --project services/api --extra dev --frozen
 ```
 
-En Linux/macOS cambia `.venv/Scripts/python.exe` por `.venv/bin/python`. El archivo lock incluye los tres paquetes locales; ejecuta los comandos desde la raíz.
+En una shell Linux/macOS usa `cp .env.example .env` en lugar de `Copy-Item`; los comandos npm/uv son iguales. `services/api/uv.lock` fija los tres paquetes locales y sus dependencias; ejecuta los comandos desde la raíz.
 
 ```powershell
 # Terminal 1: API, sin DB ni llamadas externas de IA
-$env:AI_PROVIDER = 'mock'
-.venv/Scripts/python.exe -m uvicorn bosque_api.main:app --reload --port 8000
+uv run --project services/api --extra dev --frozen uvicorn bosque_api.main:app --reload --port 8000
 # Terminal 2: aplicación web
 npm run dev
 ```
 
 Abre [la aplicación](http://localhost:3000), [OpenAPI](http://localhost:8000/docs) y [health](http://localhost:8000/health). Para guardar observaciones, inicia PostgreSQL/PostGIS y proporciona `DATABASE_URL` como se explica en [despliegue](docs/DEPLOYMENT.md).
+
+La web usa `http://localhost:8000` por defecto. Para otra URL en desarrollo crea `apps/web/.env.local` con `NEXT_PUBLIC_API_URL=...` y reinicia Next. La `.env` raíz configura API/Compose; Next no la lee desde el workspace. Las variables `NEXT_PUBLIC_*` son públicas y se fijan durante el build.
 
 Con Docker instalado:
 
@@ -56,15 +56,15 @@ npm run test:e2e
 ```
 
 ```powershell
-.venv/Scripts/python.exe -m ruff check services
-.venv/Scripts/python.exe -m ruff format --check services
-.venv/Scripts/python.exe -m pytest services -q
+uv run --project services/api --extra dev --frozen ruff check services
+uv run --project services/api --extra dev --frozen ruff format --check services
+uv run --project services/api --extra dev --frozen pytest -c services/api/pyproject.toml services -q
 python scripts/check_repository.py
 python -m unittest discover -s scripts/tests
 docker compose config --quiet
 ```
 
-Playwright necesita Chromium (`npx playwright install chromium`). La CI ejecuta estas comprobaciones, un escaneo Gitleaks y pruebas de persistencia con PostGIS. El reporte distingue las comprobaciones locales de las de CI.
+Playwright necesita Chromium (`npx playwright install chromium`) y el build previo: prueba el servidor de producción. La CI ejecuta estas comprobaciones, un escaneo Gitleaks y pruebas de persistencia con PostGIS. El reporte distingue las comprobaciones locales de las de CI.
 
 ## Organización
 
