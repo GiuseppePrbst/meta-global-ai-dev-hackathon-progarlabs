@@ -201,7 +201,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             raise HTTPException(503, "Contexto no configurado: requiere PostGIS y migración 002")
         return ContextStore(config.database_url.get_secret_value())
 
-    @app.get("/layers", response_model=list[ContextLayer])
+    @app.get(
+        "/layers",
+        response_model=list[ContextLayer],
+        responses={503: {"description": "PostGIS, migración o metadatos no disponibles"}},
+    )
     def context_layers():
         try:
             return context_store().layers()
@@ -237,11 +241,19 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         except psycopg.Error:
             raise HTTPException(503, "Capas de contexto no disponibles") from None
 
-    @app.post("/context/point", response_model=ContextResponse)
+    @app.post(
+        "/context/point",
+        response_model=ContextResponse,
+        responses={503: {"description": "Capas no configuradas o fuente inválida"}},
+    )
     def point_context(request: ContextPointRequest):
         return landscape_context(request)
 
-    @app.post("/context/area", response_model=ContextResponse)
+    @app.post(
+        "/context/area",
+        response_model=ContextResponse,
+        responses={503: {"description": "Capas no configuradas o fuente inválida"}},
+    )
     def area_context(request: ContextAreaRequest):
         return landscape_context(request)
 
@@ -258,7 +270,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         except (RuntimeError, OSError):
             raise HTTPException(503, "Análisis raster ocupado o no disponible") from None
 
-    @app.post("/forest/analyze/weighted", response_model=WeightedStatistics)
+    @app.post(
+        "/forest/analyze/weighted",
+        response_model=WeightedStatistics,
+        responses={
+            501: {"description": "Raster no configurado"},
+            503: {"description": "Raster no disponible o análisis ocupado"},
+        },
+    )
     def forest_weighted(request: WeightedForestRequest):
         if not config.forest_manifest:
             raise HTTPException(501, "Raster no configurado para estadísticas ponderadas")

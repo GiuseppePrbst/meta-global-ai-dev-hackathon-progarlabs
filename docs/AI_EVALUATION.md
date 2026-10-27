@@ -47,3 +47,19 @@ no autoriza Meta. El runner rechaza transferencias sin autorización por caso y 
 Mocks nunca producen tasas de precisión. Reporta número ejecutado/evaluable, errores, abstención,
 latencias totales y por etapa. Desglose de etapas excluye preprocesamiento del tiempo de modelo;
 el preprocesamiento ocurre antes de la corrida cronometrada. No atribuirlo a latencia extremo a extremo.
+
+## Contexto y experimento acotado, 27-10-2026
+
+El usuario confirmó que no hay conjunto con etiquetas humanas: n=0. No se ejecutaron
+A/B/C/D/E ni se declaró mejora de contexto. [Protocolo](../evaluations/forest-context-protocol.json)
+fijado antes de medir: mismos individuos, campañas/bloques separados, hashes exactos y
+revisión perceptual de casi duplicados; negativos fuera del catálogo y métricas separadas
+por terreno/dron. A/B mantienen Muse/SAM existentes; C queda condicionado a datos/recursos;
+D usa el mejor baseline medido y contexto real suave; E permuta contexto con semilla fija.
+Sin etiquetas/modelos/IoU humanos no hay precisión científica. Cero llamadas pagadas nuevas.
+
+Los tests prueban contexto y taxonomía de polígonos, no botánica de fotografías. El runner
+anterior no implementa todas las validaciones de campaña/bloque/perceptual del protocolo
+nuevo: deben completarse al admitir el dataset antes de ejecutar ese experimento.
+No generar miles de labels mediante spatial join, ni usar la salida del modelo como verdad.
+Los libros/PPTX son referencias protegidas; libro y extracto duplicado son la misma fuente.

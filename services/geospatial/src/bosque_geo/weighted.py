@@ -21,6 +21,7 @@ def weighted_statistics(
     query = projected(check_query(request))
     spec = provider.spec
     started = monotonic()
+    # shortcut: I/O is not cancellable; isolate a worker before public serving.
     if not READS.acquire(blocking=False):
         raise RuntimeError("Análisis raster ocupado")
     values, weights = [], []

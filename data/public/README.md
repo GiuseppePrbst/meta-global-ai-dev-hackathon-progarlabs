@@ -28,3 +28,11 @@ permanecer fuera del repositorio y worktrees, incluso si una herramienta los ign
 
 Procesamiento, hashes, límites y responsable de revisión: docs/DATASET_LICENSES.md y
 docs/GIS_ML_REPORT.md. La revisión humana botánica y científica sigue pendiente.
+
+## Evidencia de contexto y ponderación, 27-10-2026
+
+forest-context-qa-2026-10-27.json publica metadatos, conteos, hashes y discrepancias, no
+los SHP ni geometrías del catastro. Sus dominios completos y recortes quedan locales;
+redistribución CONAF pendiente. BCN usa sus propios términos de atribución.
+chmv2-weighted-2026-10-27.json añade fechas por tile y estadística de huellas, CC BY 4.0
+con atribución Meta/WRI/Vantor/Taylor Geospatial. La evidencia histórica permanece intacta.

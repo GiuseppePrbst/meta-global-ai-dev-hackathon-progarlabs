@@ -1,0 +1,388 @@
+{
+  "accessed_at": "2026-10-27",
+  "receipts": [
+    {
+      "url": "https://ide.minagri.gob.cl/wp-content/uploads/DESCARGAS/CAPAS/PLANIFICACION_CATASTRAL/CATASTRO_CONAF/cbn_10reg_2018.rar",
+      "http_status": 200,
+      "declared_bytes": 944670461,
+      "status": "blocked_by_byte_limit"
+    },
+    {
+      "url": "https://www.bcn.cl/obtienearchivo?id=repositorio%2F10221%2F10404%2F2%2FSnaspe.zip",
+      "final_url": "https://obtienearchivo.bcn.cl:443/obtienearchivo?id=repositorio%2F10221%2F10404%2F2%2FSnaspe.zip",
+      "http_status": 200,
+      "bytes": 15100372,
+      "sha256": "f3fa0c6f96d98bd4ab5039aaaa34b98486c309568d1b9891964cbed2b98f9d64",
+      "status": "downloaded"
+    }
+  ],
+  "bcn_components": [
+    {
+      "name": "snaspe.CPG",
+      "bytes": 5,
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+    },
+    {
+      "name": "snaspe.dbf",
+      "bytes": 28206,
+      "sha256": "3e57198e6c30950cb595cdca66c6bcd9f91276357762cb9c920522bbab3e5976"
+    },
+    {
+      "name": "snaspe.prj",
+      "bytes": 425,
+      "sha256": "f2e7fb14d55bdd8d6a3bc2c272a48729d8f9d0ad72936e20eae6a9a81c2fccd0"
+    },
+    {
+      "name": "snaspe.sbn",
+      "bytes": 1444,
+      "sha256": "16f24e427f0afa7ca13762fdc99c610ce3a34f1cc2ea3bf3424024849e01b42d"
+    },
+    {
+      "name": "snaspe.sbx",
+      "bytes": 180,
+      "sha256": "82a134c038e4357634334fa3697a8470b30a7a2948c9fa754665ebd3357e7239"
+    },
+    {
+      "name": "snaspe.shp",
+      "bytes": 25129384,
+      "sha256": "bea2fa21ab360873834d21863ed24d79ef764748a1768fc0a30bbd80aebeb0bf"
+    },
+    {
+      "name": "snaspe.shp.xml",
+      "bytes": 15954,
+      "sha256": "8592f318ebbd11d7b1bae492fa9ae09d7f3fcd8dbee844b977675185395a33c5"
+    },
+    {
+      "name": "snaspe.shx",
+      "bytes": 1196,
+      "sha256": "b6f0dad90cabc69be336788deeaf3f7d7059346b1771a01a791891a349c0f66f"
+    }
+  ],
+  "bcn_encoding": "CPG UTF-8; lectura explícita UTF-8",
+  "bcn_crs": "EPSG:3857",
+  "minagri_shp_crs": null,
+  "minagri_shp_encoding": null,
+  "minagri_shp_reason": "RAR excede límite; servicio oficial es un formato distinto",
+  "service_crs": {
+    "wkid": 102100,
+    "latestWkid": 3857,
+    "xyTolerance": 0.001,
+    "zTolerance": 0.001,
+    "mTolerance": 0.001,
+    "falseX": -20037700,
+    "falseY": -30241100,
+    "xyUnits": 10000,
+    "falseZ": -100000,
+    "zUnits": 10000,
+    "falseM": -100000,
+    "mUnits": 10000
+  },
+  "raw_pilot_sha256": "3a1c0e2d2a8505ef9c0d997074f5a42013bfb8de20974f34e51123f655841130",
+  "profiles": [
+    {
+      "source_crs": "EPSG:4326",
+      "analysis_crs": "EPSG:32718",
+      "schema": {
+        "objectid": "esriFieldTypeOID",
+        "id": "esriFieldTypeInteger",
+        "uso_tierra": "esriFieldTypeString",
+        "uso": "esriFieldTypeString",
+        "subuso": "esriFieldTypeString",
+        "estructura": "esriFieldTypeString",
+        "cobertura": "esriFieldTypeString",
+        "altura": "esriFieldTypeString",
+        "tipo_fores": "esriFieldTypeString",
+        "subtipofor": "esriFieldTypeString",
+        "especi1_ci": "esriFieldTypeString",
+        "especi2_ci": "esriFieldTypeString",
+        "especi3_ci": "esriFieldTypeString",
+        "especi4_ci": "esriFieldTypeString",
+        "especi5_ci": "esriFieldTypeString",
+        "especi6_ci": "esriFieldTypeString",
+        "especi1_co": "esriFieldTypeString",
+        "especi2_co": "esriFieldTypeString",
+        "especi3_co": "esriFieldTypeString",
+        "especi4_co": "esriFieldTypeString",
+        "especi5_co": "esriFieldTypeString",
+        "especi6_co": "esriFieldTypeString",
+        "esp_c1": "esriFieldTypeString",
+        "esp_c2": "esriFieldTypeString",
+        "tc": "esriFieldTypeString",
+        "tipo_poli": "esriFieldTypeString",
+        "nom_snaspe": "esriFieldTypeString",
+        "tipo_snasp": "esriFieldTypeString",
+        "nom_reg": "esriFieldTypeString",
+        "nom_prov": "esriFieldTypeString",
+        "nom_com": "esriFieldTypeString",
+        "superf_ha": "esriFieldTypeDouble"
+      },
+      "scanned_features": 3,
+      "source_invalid": [],
+      "pilot_count": 3,
+      "quarantined_pilot": [],
+      "duplicate_geometries": 0,
+      "duplicate_ids": 0,
+      "geometry_types": {
+        "Polygon": 3
+      },
+      "holes": 0,
+      "null_counts": {
+        "objectid": 0,
+        "id": 0,
+        "uso_tierra": 0,
+        "uso": 0,
+        "subuso": 0,
+        "estructura": 0,
+        "cobertura": 0,
+        "altura": 0,
+        "tipo_fores": 0,
+        "subtipofor": 0,
+        "especi1_ci": 0,
+        "especi2_ci": 0,
+        "especi3_ci": 0,
+        "especi4_ci": 0,
+        "especi5_ci": 0,
+        "especi6_ci": 0,
+        "especi1_co": 0,
+        "especi2_co": 0,
+        "especi3_co": 0,
+        "especi4_co": 0,
+        "especi5_co": 0,
+        "especi6_co": 0,
+        "esp_c1": 0,
+        "esp_c2": 0,
+        "tc": 0,
+        "tipo_poli": 0,
+        "nom_snaspe": 0,
+        "tipo_snasp": 0,
+        "nom_reg": 0,
+        "nom_prov": 0,
+        "nom_com": 0,
+        "superf_ha": 0
+      },
+      "blank_counts": {
+        "objectid": 0,
+        "id": 0,
+        "uso_tierra": 0,
+        "uso": 0,
+        "subuso": 0,
+        "estructura": 0,
+        "cobertura": 0,
+        "altura": 0,
+        "tipo_fores": 0,
+        "subtipofor": 0,
+        "especi1_ci": 0,
+        "especi2_ci": 0,
+        "especi3_ci": 1,
+        "especi4_ci": 1,
+        "especi5_ci": 2,
+        "especi6_ci": 2,
+        "especi1_co": 0,
+        "especi2_co": 0,
+        "especi3_co": 1,
+        "especi4_co": 1,
+        "especi5_co": 2,
+        "especi6_co": 2,
+        "esp_c1": 3,
+        "esp_c2": 3,
+        "tc": 0,
+        "tipo_poli": 0,
+        "nom_snaspe": 0,
+        "tipo_snasp": 0,
+        "nom_reg": 0,
+        "nom_prov": 0,
+        "nom_com": 0,
+        "superf_ha": 0
+      },
+      "aoi_area_m2": 250000.00000034925,
+      "union_area_m2": 250000.00000034925,
+      "overlap_excess_m2": 0,
+      "id": "conaf_2018_pilot",
+      "domains_kept_locally": true,
+      "missing_code_fields": [
+        "id_uso",
+        "id_tifo"
+      ]
+    },
+    {
+      "source_crs": "EPSG:3857",
+      "analysis_crs": "EPSG:32718",
+      "schema": {
+        "objectid": "int:10",
+        "st_area_sh": "float:19.11",
+        "st_length_": "float:19.11",
+        "Nombre": "str:50",
+        "Tipo_Snasp": "str:50",
+        "Region": "str:50",
+        "Cod_Region": "int32:5"
+      },
+      "scanned_features": 137,
+      "source_invalid": [
+        {
+          "id": "5005",
+          "reason": "Ring Self-intersection[-8414104.72 -6300354.3749]",
+          "geometry_type": "MultiPolygon"
+        },
+        {
+          "id": "5003",
+          "reason": "Ring Self-intersection[-8201476.4863 -6039617.2559]",
+          "geometry_type": "MultiPolygon"
+        },
+        {
+          "id": "4972",
+          "reason": "Ring Self-intersection[-8323936.1158 -5904489.2813]",
+          "geometry_type": "MultiPolygon"
+        },
+        {
+          "id": "4937",
+          "reason": "Ring Self-intersection[-8235540.7864 -5783051.9657]",
+          "geometry_type": "MultiPolygon"
+        },
+        {
+          "id": "9325",
+          "reason": "Ring Self-intersection[-8025270.1038 -7248495.8707]",
+          "geometry_type": "MultiPolygon"
+        },
+        {
+          "id": "11492",
+          "reason": "Ring Self-intersection[-7870849.1888 -7237183.8821]",
+          "geometry_type": "MultiPolygon"
+        },
+        {
+          "id": "12469",
+          "reason": "Ring Self-intersection[-8042694.485 -5235226.0357]",
+          "geometry_type": "MultiPolygon"
+        },
+        {
+          "id": "12471",
+          "reason": "Ring Self-intersection[-12177088.5362 -3130864.7639]",
+          "geometry_type": "Polygon"
+        }
+      ],
+      "pilot_count": 1,
+      "quarantined_pilot": [],
+      "duplicate_geometries": 0,
+      "duplicate_ids": 0,
+      "geometry_types": {
+        "Polygon": 1
+      },
+      "holes": 0,
+      "null_counts": {
+        "objectid": 0,
+        "st_area_sh": 0,
+        "st_length_": 0,
+        "Nombre": 0,
+        "Tipo_Snasp": 0,
+        "Region": 0,
+        "Cod_Region": 0
+      },
+      "blank_counts": {
+        "objectid": 0,
+        "st_area_sh": 0,
+        "st_length_": 0,
+        "Nombre": 0,
+        "Tipo_Snasp": 0,
+        "Region": 0,
+        "Cod_Region": 0
+      },
+      "aoi_area_m2": 250000.00000034925,
+      "union_area_m2": 250000.00000034925,
+      "overlap_excess_m2": 0,
+      "id": "bcn_snaspe_pilot",
+      "domains_kept_locally": true,
+      "missing_code_fields": [
+        "id_uso",
+        "id_tifo"
+      ]
+    }
+  ],
+  "execution_mode": "real_sources_offline_context_engine",
+  "postgis_real_data_run": "pending_no_local_database",
+  "research_pack_sha256": "8a76c75c39edc78ffcb2d2c1b749c385b244372b10ac1774e0fb1a7788e95f4b",
+  "minagri_rights": "local reference; formal redistribution pending",
+  "bcn_rights": "source terms checked, custom attribution, referential",
+  "taxonomy_version": "GBIF Backbone Taxonomy, DOI 10.15468/39omei; API snapshot 2026-10-27",
+  "context_summary": {
+    "point": {
+      "status": "matched",
+      "forest_ids": [
+        "23486"
+      ],
+      "protected_ids": [
+        "2826"
+      ],
+      "predominant_species": [
+        {
+          "scientific_name_raw": "Nothofagus dombeyi",
+          "accepted_taxon_id": "nothofagus-dombeyi",
+          "resolution": "catalog_match"
+        },
+        {
+          "scientific_name_raw": "Eucryphia cordifolia",
+          "accepted_taxon_id": "eucryphia-cordifolia",
+          "resolution": "catalog_match"
+        },
+        {
+          "scientific_name_raw": "Laurelia philippiana",
+          "accepted_taxon_id": "laureliopsis-philippiana",
+          "resolution": "catalog_match"
+        },
+        {
+          "scientific_name_raw": "Gevuina avellana",
+          "accepted_taxon_id": null,
+          "resolution": "unresolved"
+        },
+        {
+          "scientific_name_raw": "Aextoxicon punctatum",
+          "accepted_taxon_id": "aextoxicon-punctatum",
+          "resolution": "catalog_match"
+        },
+        {
+          "scientific_name_raw": "Saxegothaea conspicua",
+          "accepted_taxon_id": null,
+          "resolution": "unresolved"
+        }
+      ]
+    },
+    "area": {
+      "status": "matched",
+      "query_area_m2": 250000.00000034925,
+      "coverage": [
+        {
+          "source_id": "conaf_2018_pilot",
+          "union_area_m2": 249999.99999997646,
+          "fraction": 0.9999999999985089,
+          "overlap_excess_m2": 2.9103830456733704e-11
+        },
+        {
+          "source_id": "bcn_snaspe_pilot",
+          "union_area_m2": 250000.00000034925,
+          "fraction": 1.0,
+          "overlap_excess_m2": 0.0
+        }
+      ]
+    }
+  },
+  "local_artifacts": [
+    {
+      "name": "profiles.json",
+      "sha256": "f5c2102d25b1ce1e4ef3fff91aa1d83db9e65a68f9d4e9adf674f4cd29991542"
+    },
+    {
+      "name": "bundle.json",
+      "sha256": "c1384927d87d4108da2f7d23c9baed9fa9c949ca71390c6926fdaa5baf27900a"
+    },
+    {
+      "name": "conaf_2018_pilot.geojson",
+      "sha256": "89e991b0dd00aa40653c9965e9298b126034d3f4e94f0b71ffae1204e4c98f36"
+    },
+    {
+      "name": "bcn_snaspe_pilot.geojson",
+      "sha256": "44dfa8b84b707d7301b93dcb5b69fc79d2bf003a2909bede8cad7302a850d7ea"
+    }
+  ],
+  "attribution": [
+    "Corporación Nacional Forestal (CONAF); distribución CIREN/IDE MINAGRI",
+    "Biblioteca del Congreso Nacional de Chile"
+  ]
+}
