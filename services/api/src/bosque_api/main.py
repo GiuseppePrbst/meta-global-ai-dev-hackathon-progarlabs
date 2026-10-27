@@ -8,17 +8,30 @@ import psycopg
 from bosque_ai.contracts import Identification, MockIdentifier
 from bosque_ai.meta import MetaAPIError, MetaResponsesClient, MuseSparkAdapter, SAMAdapter
 from bosque_ai.segmentation import SegmentationRequest
+from bosque_geo.context import (
+    ContextAreaRequest,
+    ContextLayer,
+    ContextPointRequest,
+    ContextResponse,
+    WeightedForestRequest,
+    check_query,
+    context_result,
+    taxon_aliases,
+)
 from bosque_geo.contracts import (
     CHMV2_SOURCE,
     CanopyStatistics,
     ForestSource,
     UnconfiguredCanopyProvider,
+    WeightedStatistics,
 )
 from fastapi import FastAPI, File, Form, Header, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import ValidationError
 
 from bosque_api.catalog import get_species
 from bosque_api.config import Settings
+from bosque_api.context_store import ContextStore
 from bosque_api.database import ObservationStore
 from bosque_api.images import IMAGE_TYPES, MAX_IMAGE_BYTES, prepare_image, segment_image
 from bosque_api.models import ForestRequest, Observation, ObservationCreate, Species
@@ -183,6 +196,55 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             ]
         return [CHMV2_SOURCE]
 
+    def context_store():
+        if not config.database_url.get_secret_value():
+            raise HTTPException(503, "Contexto no configurado: requiere PostGIS y migración 002")
+        return ContextStore(config.database_url.get_secret_value())
+
+    @app.get("/layers", response_model=list[ContextLayer])
+    def context_layers():
+        try:
+            return context_store().layers()
+        except (psycopg.Error, ValidationError):
+            raise HTTPException(503, "Capas de contexto no disponibles") from None
+
+    def landscape_context(request):
+        try:
+            from shapely.geometry import mapping
+
+            query = check_query(request)
+            repository = context_store()
+            layers = repository.layers()
+            return context_result(
+                request,
+                layers,
+                repository.features(mapping(query)),
+                taxon_aliases([s.model_dump() for s in get_species()]),
+                taxonomy_version="; ".join(
+                    sorted(
+                        {s.taxonomy.source_version for s in get_species() if s.taxonomy is not None}
+                    )
+                ),
+            )
+        except ValidationError:
+            raise HTTPException(
+                503, "Metadatos de contexto inválidos; requieren revisión"
+            ) from None
+        except (ValueError, ImportError) as exc:
+            if isinstance(exc, ImportError):
+                raise HTTPException(503, "Contexto requiere extra raster/pyproj") from None
+            raise HTTPException(422, str(exc)) from None
+        except psycopg.Error:
+            raise HTTPException(503, "Capas de contexto no disponibles") from None
+
+    @app.post("/context/point", response_model=ContextResponse)
+    def point_context(request: ContextPointRequest):
+        return landscape_context(request)
+
+    @app.post("/context/area", response_model=ContextResponse)
+    def area_context(request: ContextAreaRequest):
+        return landscape_context(request)
+
     @app.post("/forest/analyze", response_model=CanopyStatistics)
     def forest_analyze(request: ForestRequest):
         try:
@@ -195,6 +257,21 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             raise HTTPException(422, str(exc)) from None
         except (RuntimeError, OSError):
             raise HTTPException(503, "Análisis raster ocupado o no disponible") from None
+
+    @app.post("/forest/analyze/weighted", response_model=WeightedStatistics)
+    def forest_weighted(request: WeightedForestRequest):
+        if not config.forest_manifest:
+            raise HTTPException(501, "Raster no configurado para estadísticas ponderadas")
+        if forest_error:
+            raise HTTPException(503, "Raster o manifiesto no disponible o no validado")
+        try:
+            from bosque_geo.weighted import weighted_statistics
+
+            return weighted_statistics(canopy, request)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from None
+        except (ImportError, OSError, RuntimeError):
+            raise HTTPException(503, "Análisis raster ponderado no disponible") from None
 
     return app
 
