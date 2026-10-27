@@ -30,23 +30,25 @@ Los comandos se ejecutan desde la raíz. `uv run` usa `--project services/api --
 | `uv lock --project services/api --check` | Lock consistente, resolución de 37 paquetes | GIS pesado no instalado. |
 | `uv run … ruff check services`; `uv run … ruff format --check services` | Pasan | No sustituyen pruebas de modelos. |
 | `uv run … python -c "import bosque_api.main, bosque_ai.meta, bosque_geo.contracts"`; `uv pip check --python services/api/.venv/Scripts/python.exe` | Imports y dependencias compatibles | Runtime Python 3.12.13; en Linux el intérprete está en `.venv/bin/python`. |
-| `uv run … pytest -c services/api/pyproject.toml services -q` | **50 pasan, una omitida** (PostGIS sin `TEST_DATABASE_URL`), un aviso upstream de Starlette/httpx TestClient | No prueba inferencia ni raster. |
+| `uv run … pytest -c services/api/pyproject.toml services -q` | Local: **50 pasan, una omitida** (PostGIS sin `TEST_DATABASE_URL`). CI Linux: **51 pasan**, incluida persistencia real PostGIS. Un aviso upstream de Starlette/httpx TestClient | No prueba inferencia ni raster. |
 | API real con Uvicorn + cliente HTTP y PNG sintético generado en memoria | `/health` 200, `/species` ocho provisionales, `/identify` 200 `insufficient_evidence`/mock sin candidatos, `/observations` 503 sinDB, `/forest/analyze` 501 sin raster, `/openapi.json` 200 | No es una prueba Meta ni una evaluación botánica. |
 | `npm run lint`; `npm run typecheck`; `npm test`; `npm run build` | Lint/typecheck/build pasan; **tres pruebas unitarias** pasan; `npm install` auditó sin vulnerabilidades reportadas | Node 24.19.0, npm 10.2.4. |
-| `npm run test:e2e` | **Seis recorridos pasan**, tres por escritorio/móvil, incluida recuperación del borrador tras recargar | Chromium; no prueba Safari, dispositivos físicos ni Meta real. |
+| `npm run test:e2e` | **Seis recorridos pasan**, local y CI, tres por escritorio/móvil, incluida recuperación del borrador tras recargar; recurso `/icon.svg` responde 200 | Chromium con API/tiles controlados en pruebas; no prueba Safari, dispositivos físicos ni Meta real. |
 | `python -m unittest discover -s scripts/tests` | Pasa prueba de límites de publicación con subcasos permitidos/prohibidos | No detecta todas las formas posibles de datos privados. |
 | `python scripts/check_repository.py` | Pasan estructura (**34 archivos requeridos**), enlaces Markdown y rutas publicables | No valida por sí solo licencias externas. |
 | `gitleaks git --pre-commit --staged --redact --no-banner` | Sin secretos detectados en los commits preparados; CLI 8.30.1 con SHA-256 contrastado contra checksums del release oficial | El escáner no constituye una garantía absoluta. |
-| `docker compose config --quiet`; build/runtime Compose | No ejecutados localmente: Docker ausente | La CI prepara configuración, build de imágenes y prueba PostGIS. |
+| `docker compose config --quiet`; `docker compose build` | **Pasan en CI Linux**, imágenes API y web construidas. No ejecutados localmente: Docker ausente | No se arrancó el stack completo mediante Compose; web/API se ejecutaron por separado y PostGIS en el job API. |
 
-La CI `.github/workflows/ci.yml` ejecuta web (incluido Playwright desktop/móvil), API con PostGIS, imports y health HTTP, estructura/enlaces, Compose y Gitleaks. Su estado remoto se documentará cuando exista el PR; no se atribuye éxito a un workflow aún no ejecutado.
+La CI `.github/workflows/ci.yml` **pasó sus tres jobs** (`web`, `api`, `repository`) en [la ejecución 40518184989](https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs/actions/runs/40518184989), sobre el commit de implementación `ef28921`. Se verificaron estados de cada job y logs: 51 pruebas Python, health HTTP 200, web con Playwright, Compose/build de imágenes y Gitleaks. Los commits posteriores de documentación vuelven a activar checks en el PR; su estado vigente está en la pestaña Checks.
+
+Revisión visual local: capturas de escritorio (1440 px) y móvil (390 px), sin desbordamiento horizontal. La ilustración es conceptual/original; no representa una fotografía ni un límite oficial de Puyehue.
 
 ## D. Git y GitHub
 
 - `main` real publicada: commit raíz `a140f04` (`chore: establish Bosque Vivo project governance`), autor/committer personal `GiuseppePrbst` con correo verificado. El SHA remoto se comprobó después del push.
 - Rama de desarrollo: `chore/project-bootstrap`, creada después del commit raíz.
-- API/GIS/IA y datos iniciales: `a3f0915` (`feat: bootstrap botanical API and GIS AI contracts`). Los siguientes commits de web, documentación e infraestructura se consultan con `git log main..HEAD --oneline`.
-- Publicación de la rama y PR: en preparación al redactar esta versión; se actualizará con URL y verificaciones efectivas antes de la entrega.
+- Commits de implementación: `a3f0915` API/GIS/IA y datos; `845c704` documentación de producto/entrega; `f1b8cf7` infraestructura/CI; `ef28921` web y recorridos. El historial completo se consulta con `git log main..HEAD --oneline`.
+- Rama publicada y SHA remoto comprobado: `ef28921b0f72b0be74205e7c621b4d8657d426b2`. [PR #12](https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs/pull/12) abierto hacia `main`, no draft, autor personal `GiuseppePrbst`, sin merge. Los commits posteriores de evidencia se consultan en ese mismo PR.
 - No merge automático, force push ni cambios destructivos. Los pushes usan el helper de credenciales de la sesión personal de `gh`, sin una herramienta autenticada como otra persona.
 - Se crearon y comprobaron **11 issues** E01–E11 con todos los campos de aceptación del backlog, sin asignar cuentas no verificadas y revisando duplicados antes de crear. Enlaces en [BACKLOG.md](BACKLOG.md).
 
@@ -75,7 +77,7 @@ La integración Meta real, las máscaras SAM interpretadas, la taxonomía acepta
 
 - Bootstrap ejecutable no equivale a entrega competitiva terminada: faltan uso real elegible de Meta, evaluación botánica, despliegue público, video y envío oficial.
 - Las API de observaciones son de desarrollo, sin autenticación/retención/borrado de producción. Mantener puertos en loopback; no exponerlas directamente a internet.
-- No se dispone de Docker local ni se ha realizado inferencia real. El Node predeterminado del equipo requiere actualización a la versión documentada para usar los comandos habituales sin seleccionar el runtime explícito.
+- No se dispone de Docker local; configuración/build y PostGIS se comprobaron en CI. No se ha realizado inferencia real ni análisis raster. El Node predeterminado del equipo requiere actualización a la versión documentada para usar los comandos habituales sin seleccionar el runtime explícito.
 - Taxonomía, cobertura/error local CHMv2 y licencia de recursos aún no incorporados requieren validación. La licencia de código y datos originales queda pendiente de decisión de ProGarLabs; no se otorgó CC0 sin autorización.
 - Hepta y derivados permanecen RESTRICTED y fuera del repositorio/worktrees; sin autorización para descarga, API externa, entrenamiento o publicación.
 - Fabiana no tiene admisión confirmada; tampoco se deduce la de otros integrantes por tener acceso Git. Revisar reglas vigentes y el formulario autenticado antes del cierre oficial, 4 de noviembre 21:00 ET (23:00 Santiago).
