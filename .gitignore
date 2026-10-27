@@ -1,0 +1,45 @@
+# Secrets and private material stay outside the repository and worktrees.
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.key
+data/restricted/
+data/private/
+*.las
+*.laz
+*.tif
+*.tiff
+*.gpkg
+
+# Python and local environments
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node, builds, and test artifacts
+node_modules/
+.next/
+dist/
+build/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# Local tools, editors and operating systems
+.tools/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+*.db
+*.sqlite*
