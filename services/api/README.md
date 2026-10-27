@@ -1,7 +1,7 @@
 # API local
 
 FastAPI/Pydantic para contratos botánicos, abstención mock y observaciones en PostGIS.
-Los paquetes `bosque-ai` y `bosque-geo` son bibliotecas internas, no servicios adicionales.
+`botanical-ai` y `geospatial` son bibliotecas internas (imports `bosque_ai` y `bosque_geo`), no servicios adicionales.
 
 Desde la raíz del repositorio, con Python 3.12 y uv 0.12.3:
 
