@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling==1.32.4"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bosque-api"
+version = "0.1.0"
+requires-python = ">=3.12,<3.15"
+dependencies = [
+  "bosque-botanical-ai==0.1.0",
+  "bosque-geospatial==0.1.0",
+  "fastapi==0.162.0",
+  "pydantic-settings==2.16.1",
+  "psycopg[binary]==3.3.6",
+  "python-multipart==0.0.32",
+  "uvicorn==0.54.0",
+  "pillow==13.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1", "pytest-asyncio==1.4.1", "ruff==0.17.3"]
+
+[tool.uv.sources]
+bosque-botanical-ai = { path = "../botanical-ai", editable = true }
+bosque-geospatial = { path = "../geospatial", editable = true }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bosque_api"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+markers = ["integration: requiere PostgreSQL con PostGIS y TEST_DATABASE_URL"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
