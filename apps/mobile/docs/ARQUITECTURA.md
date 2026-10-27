@@ -25,27 +25,51 @@ No se usa telemetría ni crash reporting de terceros en el MVP. Los logs existen
 
 ```text
 apps/mobile/
-├── app/                      # rutas expo-router
-│   ├── (tabs)/
-│   │   ├── identificar.tsx
-│   │   ├── especies/index.tsx
-│   │   ├── atlas.tsx
-│   │   └── registro.tsx
-│   ├── especies/[id].tsx     # ficha
-│   ├── acerca.tsx
-│   └── ajustes.tsx
 ├── src/
+│   ├── app/                  # rutas expo-router (nombres en inglés)
+│   │   ├── _layout.tsx
+│   │   ├── (tabs)/
+│   │   │   ├── _layout.tsx
+│   │   │   ├── identify.tsx
+│   │   │   ├── species/index.tsx
+│   │   │   ├── atlas.tsx
+│   │   │   └── observations.tsx
+│   │   ├── species/[id].tsx  # ficha de especie
+│   │   ├── about.tsx
+│   │   └── settings.tsx
 │   ├── api/                  # cliente HTTP, schema.gen.ts, mapeo a dominio, errores
-│   ├── domain/               # tipos del glosario: Especie, Identificación, Observación…
-│   ├── features/             # identificacion, catalogo, registro, atlas
+│   ├── domain/               # tipos del glosario: Species, Identification, Observation…
+│   ├── features/             # identification, catalog, observations, atlas
 │   ├── storage/              # SQLite de borradores y preferencias
 │   ├── map/                  # DOM component MapLibre GL JS y su puente de props
 │   ├── ui/                   # tokens provisionales y primitivas accesibles
 │   └── i18n/es-CL.ts
+├── assets/
 ├── docs/
-├── app.config.ts
+├── app.json                  # pasa a app.config.ts si se necesita configuración dinámica
 └── eas.json
 ```
+
+## Convenciones de nombres
+
+**Todo nombre en el código va en inglés; todo texto visible para la persona va en español (`es-CL`).**
+
+- **Rutas** (archivos y carpetas de `src/app/`) en inglés y `kebab-case`: `identify.tsx`, `species/[id].tsx`, `settings.tsx`. Las URLs y deep links (`bosquevivo://species/...`) heredan esos nombres. Los parámetros dinámicos también van en inglés (`[id]`, no `[especie]`).
+- **Componentes y vistas** en inglés y `PascalCase`: `SpeciesDetailScreen`, `IdentifyScreen`, `StatusBanner`. Los archivos de componentes, hooks y utilidades fuera de `src/app/` van en `kebab-case` (`status-banner.tsx`, `use-species.ts`).
+- **Carpetas, tipos, funciones, variables, hooks, claves de i18n, tablas y columnas de SQLite** en inglés.
+- **Textos de la interfaz** (títulos de pestañas, encabezados, botones, mensajes, etiquetas de accesibilidad) en español, siempre desde el catálogo `src/i18n/es-CL.ts`; nunca se derivan del nombre de la ruta o del componente.
+- La documentación y los mensajes de commit siguen en español; los identificadores citados en ella se escriben tal como están en el código.
+- La traducción de cada término del dominio está en el [glosario](GLOSSARY.md) (línea _En código_). Si un término nuevo no está, se agrega ahí antes de usarlo en el código.
+
+| Concepto (glosario) | En código |
+| --- | --- |
+| Especie / Catálogo | `Species` / `catalog` |
+| Ficha de especie | `SpeciesDetailScreen`, ruta `species/[id]` |
+| Identificación / Candidato / Abstención | `Identification` / `Candidate` / `Abstention` |
+| Borrador de observación / Observación | `ObservationDraft` / `Observation` |
+| Elevación del terreno / Altura de copa | `TerrainElevation` / `CanopyHeight` |
+| Confirmación de mayoría de edad / de derechos | `AgeConfirmation` / `RightsConfirmation` |
+| Acerca de / Ajustes | ruta `about` / ruta `settings` |
 
 `apps/mobile` se agrega a los workspaces npm de la raíz con scripts propios (`lint`, `typecheck`, `test`). No se crea un paquete compartido con la web: OpenAPI sigue siendo el contrato.
 
@@ -54,7 +78,7 @@ apps/mobile/
 ## Capas y reglas
 
 1. **`src/api/`** es el único lugar que conoce el JSON de la API. Expone funciones que devuelven tipos de `src/domain/` o un error tipado. La UI nunca importa `schema.gen.ts`.
-2. **`src/domain/`** usa el lenguaje del [glosario](GLOSSARY.md). Un Candidato nunca se convierte por sí solo en la especie de una Observación: la persona la elige.
+2. **`src/domain/`** usa el lenguaje del [glosario](GLOSSARY.md), con los nombres en inglés de su línea _En código_. Un Candidato nunca se convierte por sí solo en la especie de una Observación: la persona la elige.
 3. **`src/map/`** recibe datos ya resueltos como props serializables y devuelve eventos (p. ej. observación seleccionada). No hace peticiones HTTP propias, para evitar CORS dentro del WebView y no duplicar el cliente.
 4. **Credenciales**: la capa `api/` reserva un punto para inyectar credenciales cuando BV-09 defina la autenticación. Ninguna clave de Meta ni de proveedor privado existe en la app; las variables `EXPO_PUBLIC_*` son públicas.
 
