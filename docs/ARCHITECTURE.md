@@ -4,7 +4,8 @@
 
 | Área | Responsabilidad | Límite |
 | --- | --- | --- |
-| `apps/web/` | Next.js + TypeScript + Tailwind; navegación, fichas, captura local y MapLibre. | Sin claves Meta; fixtures identificados; no decide verdad taxonómica. |
+| `apps/web/` | Next.js + TypeScript + Tailwind; navegación, fichas, captura local y MapLibre. Desde el 27-10-2026 queda congelada como banco de pruebas. | Sin claves Meta; fixtures identificados; no decide verdad taxonómica. |
+| `apps/mobile/` | Expo/React Native + TypeScript; cliente de la demo: identificación, catálogo, registro y atlas 2D/3D. Plan en `apps/mobile/docs/`. | Sin claves Meta; foto sin EXIF y nunca persistida en servidor; ubicación opcional. |
 | `services/api/` | FastAPI + Pydantic: HTTP, configuración, validación, catálogo y persistencia. | Valida toda entrada y expone OpenAPI. |
 | `services/botanical-ai/` | Contratos, adaptador mock y cliente Meta desacoplado con timeout/errores. | La disponibilidad documental de modelos no prueba calidad ni acceso real. |
 | `services/geospatial/` | GeoJSON, geometrías y contrato/pipeline CHMv2. | Dependencias GIS pesadas separadas del runtime mínimo. |
@@ -30,6 +31,8 @@ La web consume la API por HTTP. La API coordina catálogo, observaciones y adapt
 4. **PostGIS en Compose:** prepara geometrías y persistencia sin añadir un servicio de mapas propio. El entorno local no se expone a internet.
 5. **Sin raster masivo ni pesos:** el pipeline seleccionará ventanas y recursos versionados tras validar derechos y cobertura.
 6. **Licencia del código pendiente de decisión de ProGarLabs:** repositorio público no equivale a licencia permisiva. Las licencias de dependencias/datos conservan sus obligaciones.
+7. **App móvil como cliente de la demo (27-10-2026):** el uso en terreno con cámara y conectividad irregular es el recorrido central; una app Expo reemplaza a la web como interfaz de la entrega y revierte la restricción «no app nativa» de la priorización. Reconsiderar si el 31-10 el recorrido de descubrimiento no funciona en un Android físico. Ver [ADR 0001](../apps/mobile/docs/adr/0001-app-movil-como-cliente-de-la-demo.md).
+8. **Atlas móvil con MapLibre GL JS en un Expo DOM component (27-10-2026):** MapLibre Native no soporta terreno 3D; el mismo motor da 2D garantizado y 3D opcional. Reconsiderar si el spike 3D falla y el 3D se abandona. Ver [ADR 0002](../apps/mobile/docs/adr/0002-atlas-con-maplibre-gl-js-en-dom-component.md).
 
 Las versiones exactas están en los lockfiles; el frontend inicial usa Next.js 16.4.3, React 19.3.1, Tailwind 4.3.3 y MapLibre 6.16.0. El entorno de referencia usa Node 24 LTS/Python 3.12. PostgreSQL 18/PostGIS 3.6 sigue la [imagen oficial recomendada](https://github.com/postgis/docker-postgis) consultada el 27-10-2026; la [dependencia por healthcheck](https://docs.docker.com/compose/how-tos/startup-order/) evita iniciar API antes de la base lista.
 
