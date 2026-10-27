@@ -1,0 +1,17 @@
+import Link from "next/link";
+import { Icon } from "@/components/icon";
+
+export default function Home() {
+  return <>
+    <section className="hero"><div className="hero-copy"><p className="eyebrow"><span className="live-dot" /> NATURALEZA + CONOCIMIENTO + TERRITORIO</p><h1>El bosque tiene<br />mucho que <em>contarte.</em></h1><p>Descubre los árboles que te rodean y conecta cada observación con el paisaje del sur de Chile.</p><div className="button-row"><Link href="/atlas" className="button">Explorar el atlas <Icon name="arrow" /></Link><Link href="/identificar" className="button button-secondary"><Icon name="camera" />Observar un árbol</Link></div><div className="hero-note"><span className="mini-line" /><span>Primera expedición digital<br /><strong>Parque Nacional Puyehue y su entorno</strong></span></div></div>
+      <div className="hero-visual" aria-label="Ilustración conceptual de un bosque, no fotografía del parque" role="img"><div className="forest-sun" /><div className="forest-ridge ridge-back" /><div className="forest-ridge ridge-front" /><div className="tree-trunks" /><div className="forest-floor" /><div className="visual-caption"><span className="tag">PILOTO EN CONSTRUCCIÓN</span><span>40° S <span className="caption-line" /> Bosques templados</span></div><div className="floating-specimen"><Icon name="leaf" /><div>Una nueva forma de mirar<span>Conectar · comprender · conservar</span></div></div></div>
+    </section>
+    <div className="mission-strip"><span>TECNOLOGÍA CON RAÍCES EN EL TERRITORIO</span><p>Un árbol. Un bosque. Un mundo por comprender.</p><Icon name="leaf" /></div>
+    <section className="content-section"><div className="section-heading"><div><p className="eyebrow">EMPIEZA A EXPLORAR</p><h2>Tres miradas, un bosque vivo.</h2></div><p>De la curiosidad de una fotografía<br />al contexto de todo un ecosistema.</p></div><div className="feature-grid">
+      <Link href="/identificar" className="feature-card"><span className="section-icon"><Icon name="camera" /></span><span className="feature-number">01 / DESCUBRIR</span><h3>Observa de cerca</h3><p>Prepara una fotografía y descubre cómo será el recorrido de identificación botánica.</p><span className="card-link">Probar el recorrido <Icon name="arrow" /></span></Link>
+      <Link href="/especies" className="feature-card"><span className="section-icon"><Icon name="leaf" /></span><span className="feature-number">02 / CONOCER</span><h3>Cada especie, una historia</h3><p>Ocho especies candidatas para empezar un catálogo con trazabilidad científica.</p><span className="card-link">Ver catálogo inicial <Icon name="arrow" /></span></Link>
+      <Link href="/atlas" className="feature-card"><span className="section-icon"><Icon name="layers" /></span><span className="feature-number">03 / COMPRENDER</span><h3>Lee el paisaje</h3><p>Explora un mapa de referencia y las bases de nuestra futura capa de altura de copa.</p><span className="card-link">Abrir el atlas <Icon name="arrow" /></span></Link>
+    </div></section>
+    <section className="project-callout"><div><p className="eyebrow">CIENCIA ABIERTA, EXPECTATIVAS CLARAS</p><h2>La confianza también se cultiva.</h2><p>Esta es una base de desarrollo. El catálogo es provisional y los modelos Meta aún no están conectados. Cada dato y cada resultado tendrán una fuente y una limitación explícitas.</p></div><Link className="button button-secondary" href="/proyecto">Conoce el proyecto <Icon name="arrow" /></Link></section>
+  </>;
+}

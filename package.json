@@ -1,0 +1,16 @@
+{
+  "name": "bosque-vivo-chile",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["apps/web"],
+  "engines": { "node": ">=24.0.0" },
+  "scripts": {
+    "dev": "npm run dev --workspace @bosque-vivo/web",
+    "build": "npm run build --workspace @bosque-vivo/web",
+    "start": "npm run start --workspace @bosque-vivo/web",
+    "lint": "npm run lint --workspace @bosque-vivo/web",
+    "typecheck": "npm run typecheck --workspace @bosque-vivo/web",
+    "test": "npm run test --workspace @bosque-vivo/web",
+    "test:e2e": "npm run test:e2e --workspace @bosque-vivo/web"
+  }
+}
