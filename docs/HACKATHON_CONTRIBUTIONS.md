@@ -27,3 +27,19 @@ Fabiana mantiene su rol empresarial de Product Designer, pero **no se le atribuy
 En cada PR indicar fecha, autor real, tarea, archivos, pruebas ejecutadas, trabajo nuevo frente a reutilizado, fuentes/licencias y permisos. Para IA añadir modelo/versión, modo real/mock, prompt versionado, métricas y evidencia sin secretos. Para dataset añadir manifiesto y validación. Si se reutiliza código anterior al evento, identificar origen/commit y explicar qué se añadió durante la hackatón.
 
 Antes de enviar, el representante admitido revisa historial, derechos, integrantes, formulario y video. El cumplimiento final de la competencia sigue pendiente; ver [SOURCES.md](SOURCES.md).
+
+## Fundación GIS/ML — 27 de octubre de 2026
+
+Trabajo nuevo asistido por agente, dirigido por el usuario: taxonomía GBIF trazable,
+validación de imágenes, Muse estructurado integrado con controles de desarrollo, parser
+SAM oficial y segmentación opcional, evaluación A/B reproducible y proveedor raster local
+con tests sintéticos y ventana CHMv2 real pequeña. Rama feat/gis-ml-foundation derivada
+del bootstrap; cuenta humana verificada GiuseppePrbst. No se atribuye autoría a José ni
+contribuciones competitivas a Fabiana. [Evidencia y límites](GIS_ML_REPORT.md).
+
+Reutilizado: todo el bootstrap d15d1aa, clientes HTTP, contratos GeoJSON, PostGIS, frontend;
+GBIF Backbone y CHMv2 son productos preexistentes de terceros, no datos recolectados aquí.
+Meta muse-spark-1.3/sam-3.1 y meta-sam-parser 0.1.0 son productos/dependencias preexistentes.
+Se ejecutaron llamadas reales sobre dibujo sintético y una ventana raster abierta; no se
+entrenó modelo ni descargaron pesos. Cero fotos botánicas etiquetadas evaluadas.
+El historial técnico no acredita por sí solo admisión ni elegibilidad competitiva.

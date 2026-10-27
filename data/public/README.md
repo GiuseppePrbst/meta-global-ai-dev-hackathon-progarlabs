@@ -18,3 +18,13 @@ raster, imagen, peso de modelo ni muestra espacial oficial descargada.
 
 No agregar material RESTRICTED, originales, máscaras o derivados de Hepta. Deben
 permanecer fuera del repositorio y worktrees, incluso si una herramienta los ignora.
+
+## Incorporaciones 27-10-2026
+
+- taxonomy-gbif-2026-10-27.json: respuestas match/synonyms de ocho taxones, GBIF Backbone
+  API v1 snapshot, CC BY 4.0, GBIF Secretariat, DOI 10.15468/39omei. Sin ocurrencias/fotos.
+- chmv2-window-2026-10-27.json: metadatos y estadísticas de ventana CHMv2 abierta, CC BY 4.0,
+  atribución Meta/WRI/Vantor y Taylor Geospatial. Sin archivo raster ni imagen fuente.
+
+Procesamiento, hashes, límites y responsable de revisión: docs/DATASET_LICENSES.md y
+docs/GIS_ML_REPORT.md. La revisión humana botánica y científica sigue pendiente.

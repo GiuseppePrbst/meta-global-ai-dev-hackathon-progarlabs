@@ -6,7 +6,11 @@ build-backend = "hatchling.build"
 name = "bosque-botanical-ai"
 version = "0.1.0"
 requires-python = ">=3.12,<3.15"
-dependencies = ["httpx==0.28.1", "pydantic==2.14.1"]
+dependencies = [
+    "httpx==0.28.1",
+    "meta-sam-parser==0.1.0",
+    "pydantic==2.14.1",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/bosque_ai"]

@@ -34,3 +34,14 @@ imágenes fuente Vantor ni reemplaza la licencia de pesos de DINOv3.
 La única geometría de fixture está en `data/synthetic/observations.geojson`, en `[0,0]`,
 identificada como sintética y sin atribuir árboles reales a ese lugar. No hay rutas
 turísticas ni límites del Parque Nacional Puyehue incorporados.
+
+## Implementación GIS/ML
+
+LocalCanopyProvider en raster.py analiza una ventana local validada por manifiesto/hash;
+Rasterio y PyProj son opcionales, sin GeoPandas ni modelos. No admite URLs suministradas por
+el usuario. Límites y reproducción: [reporte](../../docs/GIS_ML_REPORT.md).
+
+Tests generan GeoTIFF sintético en tmp_path; nunca versionan el raster. Se probó una ventana
+real 64x64 CHMv2 mediante HTTP Range, sin tile completo. Ceros ambiguos se excluyen para
+CHMv2; no se equiparan a ausencia de árboles. Fuente, metros, CRS, nodata, cobertura y límites
+se exponen en contrato. Las fechas específicas del tile y exactitud local siguen pendientes.

@@ -100,3 +100,18 @@ Estado base: 27-10-2026. Los IDs son estables y las 11 issues iniciales fueron c
 3. Validar taxonomía y un conjunto pequeño de fotos permitidas (BV-04).
 4. José completa UX/carga/errores sobre el contrato; Giuseppe prueba acceso real y pipeline IA (BV-03/BV-05), en paralelo.
 5. Giuseppe valida PostGIS/primer recurso GIS; José conecta atlas y ficha sin cambiar el contrato unilateralmente (BV-06).
+
+## Avance GIS/ML — 27-10-2026
+
+- BV-04: ocho nombres y sinónimos contrastados con GBIF, snapshot/licencia/tests. Pendiente
+  validación botánica humana de rasgos, nombres comunes, natividad y conservación.
+- BV-05: Muse integrado y SAM opcional tipado con parser oficial; llamadas reales sobre
+  sintético verificadas. Pendiente calidad sobre fotos autorizadas y controles de producción.
+- BV-06: contratos aditivos y ejemplos para José; persistencia existente preservada.
+  Integración UI, autenticación y visibilidad privada siguen pendientes.
+- BV-07: pipeline sintético y ventana CHMv2 real de 4096 píxeles; API 200 verificada.
+  Pendiente periodo por tile, exactitud local y aislamiento para plazos estrictos.
+- BV-08: runner A/B, métricas y control de fuga/derechos; cero casos científicos.
+  Pendiente dataset con etiquetas humanas y autorización externa; no precisión atribuible al mock.
+
+Las issues no se cierran por tener código parcial. Evidencia: [reporte GIS/ML](GIS_ML_REPORT.md).
