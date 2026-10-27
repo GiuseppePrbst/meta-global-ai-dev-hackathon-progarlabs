@@ -74,7 +74,7 @@ def test_catalog_snapshot_is_traceable_and_taxa_unique():
     assert all(s.taxonomy.verification_status == "source_checked" for s in species)
     snapshot = Path(__file__).parents[3] / "data/public/taxonomy-gbif-2026-10-27.json"
     assert hashlib.sha256(snapshot.read_bytes()).hexdigest() == (
-        "a1b3793e3f061078a16d90ae6fc9ce70c6a51c18b820809e72a97cd92e1009b5"
+        "408dcfea9f72b4f67e976b1b29900b3d5811e95bd132c02a4aa77e1217b9ab99"
     )
     records = json.loads(snapshot.read_text("utf-8"))
     for item, record in zip(species, records, strict=True):

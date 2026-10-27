@@ -29,7 +29,7 @@ sinónimos, familia, género y taxonomía con fuente, versión/fecha, licencia y
 | Nothofagus pumilio | 2874907 |
 
 [Snapshot de consultas y sinónimos](../data/public/taxonomy-gbif-2026-10-27.json),
-SHA-256 `a1b3793e3f061078a16d90ae6fc9ce70c6a51c18b820809e72a97cd92e1009b5`.
+SHA-256 `408dcfea9f72b4f67e976b1b29900b3d5811e95bd132c02a4aa77e1217b9ab99`.
 Fuente: GBIF Secretariat, Backbone Taxonomy, DOI 10.15468/39omei, CC BY 4.0.
 Snapshot API del 27-10-2026; no se afirma que sea una nueva edición del Backbone.
 
@@ -174,3 +174,8 @@ Durante la sesión el usuario autorizó uso local de fotos restringidas, sin pub
 Se confirmó lectura de esquema por OneLake con sesión Azure existente. No se descargaron
 fotografías ni se enviaron a Meta; metadatos privados permanecen fuera de Git. El permiso
 local no se extiende a publicación, entrenamiento ni procesamiento por terceros.
+
+CI inicial detectó un checksum calculado sobre CRLF local mientras Git conserva LF.
+Se normalizó el snapshot a bytes LF y se corrigió el hash al del blob publicado;
+los registros taxonómicos no cambiaron. Esa primera corrida pasó las otras 77 pruebas,
+incluida PostGIS; el PR registra la corrida final del arreglo.
