@@ -1,0 +1,44 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "apps/mobile/.impeccable/mocks/decision/assigned.html"
+        ],
+        "createdAt": "2026-10-27T18:03:17.693Z",
+        "reason": "Claude: first-round decision sketch the user rejected via re-roll; spent hand, not a shipping surface"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "apps/mobile/.impeccable/mocks/decision/model-pick.html"
+        ],
+        "createdAt": "2026-10-27T18:03:17.697Z",
+        "reason": "Claude: first-round decision sketch the user rejected via re-roll; spent hand, not a shipping surface"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "apps/mobile/.impeccable/mocks/decision/challenger-monochrome.html"
+        ],
+        "createdAt": "2026-10-27T18:03:17.702Z",
+        "reason": "Claude: first-round decision sketch the user rejected via re-roll; spent hand, not a shipping surface"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "apps/mobile/.impeccable/mocks/decision/canon.html"
+        ],
+        "createdAt": "2026-10-27T18:03:17.706Z",
+        "reason": "Claude: first-round decision sketch the user rejected via re-roll; spent hand, not a shipping surface"
+      }
+    ]
+  }
+}
