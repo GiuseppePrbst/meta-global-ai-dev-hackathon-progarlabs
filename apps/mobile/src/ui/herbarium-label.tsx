@@ -4,21 +4,18 @@ import { space, type, useTheme } from '@/ui/theme';
 
 type HerbariumLabelProps = {
   heading: string;
-  /** Nombre principal del pliego; en cursiva cuando es un nombre científico. */
+  /** Sello al pie: de qué parte del cuaderno es la etiqueta. */
   name: string;
   italic?: boolean;
   rows: [string, string][];
 };
 
-/** Etiqueta de herbario: la procedencia vive junto al dato, no en una página legal. */
+/** Etiqueta de procedencia pegada con cinta al cuaderno: la fuente vive junto al dato, no en una página legal. */
 export function HerbariumLabel({ heading, name, italic = true, rows }: HerbariumLabelProps) {
   const { color } = useTheme();
   return (
-    <View style={[styles.label, { backgroundColor: color.surface, borderColor: color.outline }]}>
-      <View style={[styles.inner, { borderColor: color.outlineVariant }]}>
-        <Text style={[type.labelMedium, styles.heading, { color: color.onSurfaceVariant, borderColor: color.outlineVariant }]}>
-          {heading}
-        </Text>
+    <View style={styles.wrap}>
+      <View style={[styles.label, { backgroundColor: color.surface, borderColor: color.leafInk }]}>
         <Text style={[italic ? type.scientificLarge : type.titleMedium, { color: color.onSurface }]}>{name}</Text>
         {rows.map(([label, value]) => (
           <View key={label} style={styles.row}>
@@ -26,21 +23,26 @@ export function HerbariumLabel({ heading, name, italic = true, rows }: Herbarium
             <Text style={[type.bodyMedium, styles.value, { color: color.onSurface }]}>{value}</Text>
           </View>
         ))}
+        <Text style={[type.handBold, styles.stamp, { color: color.onSurfaceVariant, borderColor: color.outlineVariant }]}>
+          {heading}
+        </Text>
       </View>
+      <View style={[styles.tape, styles.tapeLeft, { backgroundColor: color.lime }]} />
+      <View style={[styles.tape, styles.tapeRight, { backgroundColor: color.lime }]} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  label: { borderWidth: 1, borderRadius: 2, padding: 3 },
-  inner: { borderWidth: StyleSheet.hairlineWidth, padding: space.lg, gap: space.sm },
-  heading: {
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-    paddingBottom: space.sm,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
+  wrap: { paddingTop: 8 },
+  label: { borderWidth: 1.5, borderRadius: 4, padding: space.lg, gap: space.sm },
+  // Sello del cuaderno al pie de la etiqueta.
+  stamp: { marginTop: space.xs, paddingTop: space.sm, borderTopWidth: 1, borderStyle: 'dashed', textAlign: 'right' },
   row: { flexDirection: 'row', gap: space.md },
   key: { width: 92, paddingTop: 2 },
   value: { flex: 1 },
+  // Dos trozos de cinta translúcida sujetan las esquinas superiores.
+  tape: { position: 'absolute', top: 0, width: 56, height: 18, opacity: 0.85, borderRadius: 1 },
+  tapeLeft: { left: -6, transform: [{ rotate: '-24deg' }] },
+  tapeRight: { right: -6, transform: [{ rotate: '22deg' }] },
 });

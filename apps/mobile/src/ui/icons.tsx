@@ -126,3 +126,20 @@ export function ListIcon(props: IconProps) {
     </Icon>
   );
 }
+
+export function LeafIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <Path d="M5 19C5 11 11 5 19 5c0 8-6 14-14 14zM5 19l8-8" />
+    </Icon>
+  );
+}
+
+export function PhotoIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <Path d="M5 5h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM4 16l5-5 4 4 2-2 5 5" />
+      <Circle cx={15.5} cy={9.5} r={1.5} />
+    </Icon>
+  );
+}

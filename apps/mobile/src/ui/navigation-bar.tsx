@@ -10,8 +10,10 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Svg from 'react-native-svg';
 
 import { space, type, useTheme } from '@/ui/theme';
+import { seedOf, Wash } from '@/ui/watercolor';
 
 /** Barra de navegación Material 3: contenedor de las pestañas principales, respeta el borde inferior. */
 export function NavigationBar({ style, ...props }: ViewProps) {
@@ -34,7 +36,10 @@ type NavIcon = (props: { color: string; fill?: string }) => React.ReactNode;
 
 type NavigationItemProps = Omit<TabTriggerSlotProps, 'ref'> & { label: string; icon: NavIcon };
 
-/** Destino de la barra. El indicador se abre desde el centro al activarse, como en Material 3. */
+/**
+ * Destino de la barra. El indicador de Material 3 es aquí una mancha de acuarela lima, distinta en
+ * cada destino; se abre desde el centro al activarse.
+ */
 export function NavigationItem({ label, icon: Icon, isFocused = false, ...props }: NavigationItemProps) {
   const { color } = useTheme();
   const reducedMotion = useReducedMotion();
@@ -48,7 +53,7 @@ export function NavigationItem({ label, icon: Icon, isFocused = false, ...props 
 
   const indicatorStyle = useAnimatedStyle(() => ({
     opacity: active.get(),
-    transform: [{ scaleX: interpolate(active.get(), [0, 1], [0.4, 1]) }],
+    transform: [{ scaleX: interpolate(active.get(), [0, 1], [0.4, 1]) }, { scaleY: interpolate(active.get(), [0, 1], [0.7, 1]) }],
   }));
 
   const iconColor = isFocused ? color.onNavIndicator : color.onSurfaceVariant;
@@ -62,7 +67,12 @@ export function NavigationItem({ label, icon: Icon, isFocused = false, ...props 
       android_ripple={{ color: color.ripple, borderless: true, radius: 40 }}
       style={styles.item}>
       <View style={styles.iconSlot}>
-        <Animated.View style={[styles.indicator, { backgroundColor: color.navIndicator }, indicatorStyle]} />
+        <Animated.View style={[styles.indicator, indicatorStyle]}>
+          <Svg width={INDICATOR.width} height={INDICATOR.height} accessible={false}>
+            <Wash seed={seedOf(label)} cx={INDICATOR.width / 2} cy={INDICATOR.height / 2} rx={INDICATOR.width / 2 - 3}
+              ry={INDICATOR.height / 2 - 3} color={color.navIndicator} opacity={0.95} wobble={0.16} />
+          </Svg>
+        </Animated.View>
         {/* Envuelto para que en web el ícono quede sobre el indicador absoluto. */}
         <View>
           <Icon color={iconColor} fill={isFocused ? color.navIconFill : undefined} />
@@ -81,6 +91,8 @@ export function NavigationItem({ label, icon: Icon, isFocused = false, ...props 
   );
 }
 
+const INDICATOR = { width: 72, height: 40 };
+
 const styles = StyleSheet.create({
   bar: {
     flexDirection: 'row',
@@ -96,6 +108,12 @@ const styles = StyleSheet.create({
     paddingBottom: space.md,
   },
   iconSlot: { width: 64, height: 32, alignItems: 'center', justifyContent: 'center' },
-  indicator: { ...StyleSheet.absoluteFill, borderRadius: 16 },
-  labelActive: { fontWeight: '700' },
+  indicator: {
+    position: 'absolute',
+    left: (64 - INDICATOR.width) / 2,
+    top: (32 - INDICATOR.height) / 2,
+    width: INDICATOR.width,
+    height: INDICATOR.height,
+  },
+  labelActive: { fontWeight: '800' },
 });

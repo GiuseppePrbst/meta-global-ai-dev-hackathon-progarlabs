@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     gap: space.md,
     paddingHorizontal: space.lg,
     paddingVertical: space.md,
-    borderRadius: radius.md,
+    borderRadius: radius.lg,
   },
-  text: { flex: 1 },
+  text: { flex: 1, fontWeight: '500' },
 });

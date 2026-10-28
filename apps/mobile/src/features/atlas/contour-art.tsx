@@ -1,11 +1,22 @@
 import { useEffect } from 'react';
-import { useReducedMotion, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
+import Animated, {
+  cancelAnimation,
+  Easing,
+  type SharedValue,
+  useAnimatedProps,
+  useReducedMotion,
+  useSharedValue,
+  withDelay,
+  withRepeat,
+  withTiming,
+} from 'react-native-reanimated';
 import Svg, { Circle, G, Path, Rect } from 'react-native-svg';
 
-import { easeOutExpo, InkPath } from '@/ui/ink';
+import { FadeGroup, InkPath, useInk } from '@/ui/ink';
+import { Wash } from '@/ui/watercolor';
 
-// Curvas de nivel dibujadas en código. Son un motivo gráfico: no representan el relieve de
-// Puyehue ni de ningún lugar real.
+// Lomas pintadas con curvas de nivel entintadas encima, dibujadas en código. Son un motivo gráfico:
+// no representan el relieve de Puyehue ni de ningún lugar real.
 
 type Ring = { d: string; perimeter: number };
 
@@ -35,32 +46,24 @@ function hill(cx: number, cy: number, radii: number[], phase: number, drift: [nu
 
 const coverHills = hill(150, 62, [74, 60, 47, 35, 24, 13], 0.6, [-2.2, -1.6]);
 
-const DRAW_MS = 1400;
+type ArtProps = { ink: string; wash: string };
 
-function useInk(draw: boolean, delay: number) {
-  const reducedMotion = useReducedMotion();
-  const animate = draw && !reducedMotion;
-  const progress = useSharedValue(animate ? 0 : 1);
-  useEffect(() => {
-    if (animate) progress.set(withDelay(delay, withTiming(1, { duration: DRAW_MS, easing: easeOutExpo })));
-  }, [animate, delay, progress]);
-  return animate ? progress : null;
-}
-
-type ArtProps = { ink: string; fill: string };
-
-/** Portada del Atlas: curvas que se entintan desde la base hacia la cima, en la tinta de la barra. */
-export function ContourCover({ ink, fill }: ArtProps) {
+/** Portada del Atlas: una loma de aguada lima y curvas que se entintan desde la base hacia la cima. */
+export function ContourCover({ ink, wash }: ArtProps) {
   const progress = useInk(true, 120);
   const count = coverHills.length;
   return (
-    <Svg width={240} height={130} viewBox="0 0 240 130" style={{ position: 'absolute', right: -40, top: -10, opacity: 0.5 }}
+    <Svg width={240} height={130} viewBox="0 0 240 130" style={{ position: 'absolute', right: -64, top: -34, opacity: 0.85 }}
       accessible={false}>
+      <FadeGroup progress={progress} from={0} to={0.4}>
+        <Wash seed={41} cx={146} cy={62} rx={80} ry={56} color={wash} opacity={0.4} wobble={0.12} grain={10} />
+        <Wash seed={57} cx={136} cy={52} rx={40} ry={30} color={wash} opacity={0.45} wobble={0.16} />
+      </FadeGroup>
       {coverHills.map((ring, i) => {
         const from = (0.55 * i) / count;
         return (
           <InkPath key={i} progress={progress} from={from} to={Math.min(from + 0.5, 1)} length={ring.perimeter} d={ring.d}
-            stroke={ink} strokeWidth={1} fill={i === 5 ? fill : 'none'} />
+            stroke={ink} strokeWidth={1.2} fill="none" />
         );
       })}
     </Svg>
@@ -69,19 +72,56 @@ export function ContourCover({ ink, fill }: ArtProps) {
 
 const curtainHill = hill(80, 64, [58, 46, 35, 25, 15, 6], 1.2, [-1.6, -1.2]);
 
-/** Mientras carga el mapa base: una loma que se entinta sobre el papel. */
-export function SurveyHill({ ink, fill }: ArtProps) {
+const AnimatedPath = Animated.createAnimatedComponent(Path);
+// La loma termina de entintarse antes de que empiece el pulso; cada subida dura WAVE_MS.
+const WAVE_DELAY_MS = 1100;
+const WAVE_MS = 1800;
+
+/** Avance del pulso de 0 a 1, repetido mientras el componente siga montado. */
+function useSurveyWave(): SharedValue<number> | null {
+  const reducedMotion = useReducedMotion();
+  const wave = useSharedValue(0);
+  useEffect(() => {
+    if (reducedMotion) return;
+    wave.set(withDelay(WAVE_DELAY_MS, withRepeat(withTiming(1, { duration: WAVE_MS, easing: Easing.linear }), -1)));
+    return () => cancelAnimation(wave);
+  }, [reducedMotion, wave]);
+  return reducedMotion ? null : wave;
+}
+
+/** Curva que se marca más gruesa cuando el pulso pasa por su altura, de la base hacia la cima. */
+function WaveRing({ wave, index, count, d, stroke }: {
+  wave: SharedValue<number>; index: number; count: number; d: string; stroke: string;
+}) {
+  const animatedProps = useAnimatedProps(() => {
+    // El pulso parte bajo la base y se apaga sobre la cima, así cada vuelta empieza y termina en blanco.
+    const position = wave.get() * (count + 2) - 1;
+    return { strokeOpacity: Math.max(0, 1 - Math.abs(position - index) / 1.2) };
+  });
+  return <AnimatedPath d={d} stroke={stroke} strokeWidth={2.6} fill="none" strokeLinecap="round"
+    strokeLinejoin="round" strokeOpacity={0} animatedProps={animatedProps} />;
+}
+
+/** Mientras carga el mapa base: una loma que se pinta y se entinta, y luego un pulso que la sube sin parar. */
+export function SurveyHill({ ink, wash }: ArtProps) {
   const progress = useInk(true, 0);
+  const wave = useSurveyWave();
   const count = curtainHill.length;
   return (
     <Svg width={160} height={128} viewBox="0 0 160 128" accessible={false}>
+      <FadeGroup progress={progress} from={0} to={0.5}>
+        <Wash seed={73} cx={78} cy={64} rx={70} ry={52} color={wash} opacity={0.35} wobble={0.14} grain={12} />
+      </FadeGroup>
       {curtainHill.map((ring, i) => {
         const from = (0.6 * i) / count;
         return (
           <InkPath key={i} progress={progress} from={from} to={Math.min(from + 0.45, 1)} length={ring.perimeter} d={ring.d}
-            stroke={ink} strokeWidth={1.2} fill={i === count - 1 ? fill : 'none'} />
+            stroke={ink} strokeWidth={1.4} fill="none" />
         );
       })}
+      {wave ? curtainHill.map((ring, i) => (
+        <WaveRing key={i} wave={wave} index={i} count={count} d={ring.d} stroke={ink} />
+      )) : null}
     </Svg>
   );
 }

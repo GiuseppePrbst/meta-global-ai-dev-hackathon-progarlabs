@@ -14,11 +14,11 @@ export default function TabsLayout() {
           <TabTrigger name="identify" href="/identify" asChild>
             <NavigationItem label={t.tabs.identify} icon={IdentifyIcon} />
           </TabTrigger>
-          <TabTrigger name="species" href="/species" asChild>
-            <NavigationItem label={t.tabs.species} icon={SpeciesIcon} />
-          </TabTrigger>
           <TabTrigger name="atlas" href="/atlas" asChild>
             <NavigationItem label={t.tabs.atlas} icon={AtlasIcon} />
+          </TabTrigger>
+          <TabTrigger name="species" href="/species" asChild>
+            <NavigationItem label={t.tabs.species} icon={SpeciesIcon} />
           </TabTrigger>
           <TabTrigger name="observations" href="/observations" asChild>
             <NavigationItem label={t.tabs.observations} icon={ObservationsIcon} />

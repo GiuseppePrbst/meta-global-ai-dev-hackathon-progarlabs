@@ -9,18 +9,20 @@ related_targets: ["src/app/species/[id].tsx"]
 
 Modo: Operate. Pestaña Especies (catálogo) y ficha `species/[id]`. Datos mock locales; sin backend todavía.
 
-Audiencia: turista adulto en terreno y adulto que aprende botánica. Tarea: recorrer el catálogo, distinguir especies por rasgos y abrir la ficha con estado y procedencia. Restricciones: todo es provisional; los rasgos son texto de demostración rotulado; la lámina es ilustración conceptual rotulada; sin fotos, métricas ni coordenadas. Referencia visual dada por la persona: branch-forest.vercel.app (gramática de lámina científica, solo referencia).
+Audiencia: turista adulto en terreno y adulto que aprende botánica. Tarea: recorrer el catálogo, distinguir especies por rasgos y abrir la ficha con estado y procedencia. Restricciones: todo es provisional; los rasgos son texto de demostración rotulado; la lámina es ilustración conceptual rotulada; sin fotos, métricas ni coordenadas.
+
+Rediseño 28-10-2026 pedido por la persona: más lúdico, más contraste, elementos de acuarela; alcance toda la app; cuaderno de campo en vez de herbario serio; paleta de verdes intensos con un solo acento cálido.
 
 ## Direction contract
 
-THESIS: El catálogo como herbario de terreno: cada especie es un pliego con su lámina y su etiqueta de procedencia. Rechaza la grilla de tarjetas con foto y la etiqueta de especie aislada.
+THESIS: El catálogo como cuaderno de campo de acuarela: cada especie es una página pintada en terreno, tinta suelta sobre una aguada verde que no calza del todo. Rechaza el herbario gris-verde de filetes finos y la grilla de tarjetas con foto.
 
-OWN-WORLD: Suelo liquen verde-gris (claro) o sotobosque (oscuro), papel de pliego, tinta verde bosque. Literata para nombres (científico en cursiva, convención botánica), Roboto para la UI. Filetes de 1 px, láminas de hoja de trazo fino, estado provisional en ámbar tierra con texto.
+OWN-WORLD: Papel de acuarela blanco frío, bandas de aguada verde bosque profundo con borde mojado irregular, verdes intensos (musgo, hoja, lima) y un solo acento cálido copihue. Bricolage Grotesque ExtraBold para títulos, Literata cursiva para nombres científicos, Kalam para anotaciones a mano cortas, Roboto para la UI. Etiquetas como cinta adhesiva.
 
-STORY: La persona ve ocho especies, todas provisionales, las distingue por forma de hoja, abre una ficha, lee rasgos rotulados como borrador y encuentra la fuente junto al dato.
+STORY: La persona ve ocho especies pintadas, todas con cinta «Provisional», las distingue por forma de hoja y mancha, abre una ficha, lee notas de terreno rotuladas como borrador y encuentra la etiqueta de procedencia pegada con cinta.
 
-FIRST VIEWPORT: Lista: barra superior verde bosque con «Especies» y conteo, aviso de datos de demostración, búsqueda, filas de 88 dp con lámina 56 dp, nombre común, científico en cursiva, etiqueta Provisional, número de pliego. Ficha: lámina grande sobre papel con rótulo, nombre, estado, rasgos, etiqueta de herbario.
+FIRST VIEWPORT: Lista: banda de aguada verde con borde mojado, «Especies» en blanco 36 sp, hojas pintadas a la derecha, búsqueda blanca; aviso de demostración; filas de 96 dp con mancha de color y hoja entintada 64 dp, nombre, científico en cursiva, cinta Provisional, número a mano. Ficha: lámina grande con aguada desfasada, nombre, estado, notas, etiqueta con cinta.
 
-FORM: Herbario / lámina naturalista, fijado por la referencia de la persona; firma: la etiqueta de herbario como bloque de procedencia. seed: none (direction pinned by user reference)
+FORM: Cuaderno de campo de acuarela, fijado por la persona. Firma: tinta y aguada fuera de registro en cada lámina. seed: none (direction pinned by user)
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

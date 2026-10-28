@@ -4,24 +4,45 @@ import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-na
 import Animated, {
   FadeIn,
   FadeOut,
+  Keyframe,
   useAnimatedStyle,
   useReducedMotion,
   withTiming,
 } from 'react-native-reanimated';
+import Svg from 'react-native-svg';
 
 import type { Observation } from '@/domain/observation';
 import { ContourCover, EmptyAtlasSheet, SurveyHill } from '@/features/atlas/contour-art';
 import { mockObservations } from '@/features/atlas/mock-observations';
+import { LeafPlate, speciesWash } from '@/features/catalog/leaf-plate';
 import { getMockSpecies } from '@/features/catalog/mock-species';
 import { formatDate, t } from '@/i18n/es-CL';
 import AtlasMap, { type AtlasMapHandle, type AtlasMapPoint, type AtlasMapStatus } from '@/map/atlas-map';
 import { HerbariumLabel } from '@/ui/herbarium-label';
 import { AtlasIcon, ChevronIcon, CloseIcon, FrameIcon, ListIcon, MinusIcon, PlusIcon } from '@/ui/icons';
+import { Paper } from '@/ui/paper';
 import { ScreenHeader } from '@/ui/screen-header';
+import { easeOutExpo } from '@/ui/ink';
 import { StatusBanner } from '@/ui/status-banner';
+import { SyntheticTag } from '@/ui/status-tag';
 import { radius, space, type, useTheme } from '@/ui/theme';
+import { BAND_EDGE, seedOf, Wash } from '@/ui/watercolor';
 
 type AtlasView = 'map' | 'list';
+
+// La papeleta se deja sobre el mapa: sube girada y se asienta; al cerrarla se retira rápido.
+const slipIn = new Keyframe({
+  0: { opacity: 0, transform: [{ translateY: 40 }, { rotate: '-4deg' }, { scale: 0.96 }] },
+  100: { opacity: 1, transform: [{ translateY: 0 }, { rotate: '0deg' }, { scale: 1 }], easing: easeOutExpo },
+}).duration(420);
+const slipOut = new Keyframe({
+  0: { opacity: 1, transform: [{ translateY: 0 }] },
+  100: { opacity: 0, transform: [{ translateY: 20 }] },
+}).duration(160);
+const CARD_THUMB = 64;
+// Renglón de la papeleta y distancia de la línea por sobre el pie del renglón (bajo la línea base).
+const RULE = 24;
+const RULE_DROP = 3;
 
 const OSM_COPYRIGHT = 'https://www.openstreetmap.org/copyright';
 // Fecha de consulta del registro de OpenStreetMap en docs/DATASET_LICENSES.md.
@@ -61,7 +82,7 @@ export default function AtlasScreen() {
   return (
     <View style={[styles.screen, { backgroundColor: color.background }]}>
       <ScreenHeader title={t.atlas.title} subtitle={t.atlas.subtitle}
-        cover={<ContourCover ink={color.onTopBar} fill={color.topBarLeafFill} />}>
+        cover={<ContourCover ink={color.onTopBar} wash={color.lime} />}>
         <ViewSwitch value={view} onChange={setView} />
       </ScreenHeader>
 
@@ -73,7 +94,7 @@ export default function AtlasScreen() {
             <AtlasMap
               ref={map}
               scheme={scheme}
-              colors={{ background: color.background, ink: color.leafInk, surface: color.surface, outline: color.outline }}
+              colors={{ background: color.background, ink: color.leafInk, surface: color.surface, outline: color.outline, leaf: color.leafInk, tint: color.topBarGlaze }}
               reducedMotion={reducedMotion}
               points={mapPoints}
               selectedId={selectedId}
@@ -91,7 +112,7 @@ export default function AtlasScreen() {
               <Animated.View entering={FadeIn.delay(600).duration(320)} style={styles.topOverlay} pointerEvents="box-none">
                 <View style={[styles.chip, { backgroundColor: color.surface, borderColor: color.outlineVariant, shadowColor: color.scrim }]}
                   accessible accessibilityLabel={t.atlas.syntheticCountA11y(mapPoints.length)}>
-                  <View style={[styles.chipMark, { borderColor: color.leafInk }]} />
+                  <View style={[styles.chipMark, { borderColor: color.accent }]} />
                   <Text style={[type.labelLarge, { color: color.onSurface }]}>{t.atlas.syntheticCount(mapPoints.length)}</Text>
                 </View>
                 {tileError ? (
@@ -112,7 +133,7 @@ export default function AtlasScreen() {
                 </View>
                 <View style={[styles.controlGroup, { backgroundColor: color.surface, borderColor: color.outlineVariant, shadowColor: color.scrim }]}>
                   <MapButton label={t.atlas.recenter} onPress={() => map.current?.recenter()}>
-                    <FrameIcon color={color.leafInk} />
+                    <FrameIcon color={color.primary} />
                   </MapButton>
                 </View>
               </Animated.View>
@@ -125,7 +146,8 @@ export default function AtlasScreen() {
                 <Text style={[type.labelSmall, { color: color.onSurfaceVariant }]}>{t.atlas.attribution}</Text>
               </Pressable>
               {selected ? (
-                <Animated.View key={selected.id} entering={FadeIn.duration(200)} exiting={FadeOut.duration(160)}
+                <Animated.View key={selected.id} entering={reducedMotion ? FadeIn.duration(160) : slipIn}
+                  exiting={reducedMotion ? FadeOut.duration(120) : slipOut}
                   style={styles.cardSlot} accessibilityLiveRegion="polite">
                   <ObservationCard observation={selected} onClose={() => setSelectedId(null)} />
                 </Animated.View>
@@ -136,7 +158,7 @@ export default function AtlasScreen() {
           {status === 'loading' ? (
             <Animated.View exiting={FadeOut.duration(520)} style={[styles.curtain, { backgroundColor: color.background }]}
               accessibilityLiveRegion="polite">
-              <SurveyHill ink={color.leafInk} fill={color.leafFill} />
+              <SurveyHill ink={color.leafInk} wash={color.lime} />
               <Text style={[type.bodyMedium, { color: color.onSurfaceVariant }]}>{t.atlas.loading}</Text>
             </Animated.View>
           ) : null}
@@ -152,8 +174,10 @@ export default function AtlasScreen() {
 
         {showingList ? (
           <Animated.View entering={FadeIn.duration(220)} exiting={FadeOut.duration(160)}
-            style={[StyleSheet.absoluteFill, { backgroundColor: color.background }]}>
-            <AtlasList onShowOnMap={showOnMap} />
+            style={StyleSheet.absoluteFill}>
+            <Paper style={StyleSheet.absoluteFill}>
+              <AtlasList onShowOnMap={showOnMap} />
+            </Paper>
           </Animated.View>
         ) : null}
       </View>
@@ -217,7 +241,7 @@ function speciesNames(observation: Observation) {
 /** Marca de «sin verificar»: círculo abierto, igual que el punto del mapa. */
 function UnverifiedMark() {
   const { color } = useTheme();
-  return <View style={[styles.chipMark, { borderColor: color.leafInk }]} />;
+  return <View style={[styles.chipMark, { borderColor: color.accent }]} />;
 }
 
 function ObservationRow({ observation, onPress }: { observation: Observation; onPress: (observation: Observation) => void }) {
@@ -258,38 +282,71 @@ function ObservationRow({ observation, onPress }: { observation: Observation; on
   );
 }
 
-/** Tarjeta de la observación tocada en el mapa. */
+/** Papeleta de la observación tocada en el mapa: una hoja de libreta de campo dejada sobre la carta. */
 function ObservationCard({ observation, onClose }: { observation: Observation; onClose: () => void }) {
   const { color } = useTheme();
   const { common, scientific } = speciesNames(observation);
   const speciesId = observation.speciesId;
 
   return (
-    <View style={[styles.card, { backgroundColor: color.surface, borderColor: color.outlineVariant, shadowColor: color.scrim }]}>
-      <View style={styles.cardHeader}>
-        <View style={styles.rowText}>
-          <Text style={[type.titleMedium, { color: color.onSurface }]}>{common}</Text>
-          {scientific ? <Text style={[type.scientific, { color: color.onSurfaceVariant }]}>{scientific}</Text> : null}
+    <View style={styles.slip}>
+      <Paper style={[styles.card, { backgroundColor: color.surface, borderColor: color.outlineVariant, shadowColor: color.scrim }]}>
+        <View style={styles.cardHeader}>
+          <View style={styles.cardThumb}>
+            <Svg width={CARD_THUMB} height={CARD_THUMB} style={StyleSheet.absoluteFill} accessible={false}>
+              <Wash seed={seedOf(observation.id)} cx={CARD_THUMB / 2} cy={CARD_THUMB / 2} rx={CARD_THUMB / 2 - 4}
+                ry={CARD_THUMB / 2 - 6} color={speciesId ? speciesWash(speciesId) : color.accent}
+                opacity={speciesId ? 0.24 : 0.16} wobble={0.22} grain={5} />
+            </Svg>
+            {/* La lámina se entinta al abrir la papeleta; sin especie elegida queda el círculo abierto. */}
+            {speciesId ? <LeafPlate speciesId={speciesId} size={52} draw delay={120} /> : <UnverifiedMark />}
+          </View>
+          <View style={styles.rowText}>
+            <Text style={[type.titleMedium, { color: color.onSurface }]}>{common}</Text>
+            {scientific ? <Text style={[type.scientific, { color: color.onSurfaceVariant }]}>{scientific}</Text> : null}
+          </View>
+          <Pressable onPress={onClose} accessibilityRole="button" accessibilityLabel={t.atlas.closeCard}
+            android_ripple={{ color: color.ripple, borderless: true, radius: 24 }} style={styles.cardClose}>
+            <CloseIcon color={color.onSurfaceVariant} />
+          </Pressable>
         </View>
-        <Pressable onPress={onClose} accessibilityRole="button" accessibilityLabel={t.atlas.closeCard}
-          hitSlop={8} style={styles.cardClose}>
-          <CloseIcon color={color.onSurfaceVariant} />
-        </Pressable>
+        {/* Línea de cabecera de la libreta: separa el encabezado de los renglones. */}
+        <View style={[styles.cardHeadRule, { backgroundColor: color.accent }]} />
+        <Ruled>
+          <View style={styles.cardMeta}>
+            <View style={styles.onRuleBox}>
+              <SyntheticTag />
+            </View>
+            <Text style={[type.handBold, styles.onRule, { color: color.onSurfaceVariant }]}>{formatDate(observation.createdAt)}</Text>
+          </View>
+          <Text style={[type.bodyMedium, styles.onRule, { color: color.onSurface }]}>{observation.notes}</Text>
+          {speciesId ? (
+            <Pressable onPress={() => router.push({ pathname: '/species/[id]', params: { id: speciesId } })}
+              accessibilityRole="link" android_ripple={{ color: color.ripple }} style={styles.cardAction}>
+              <Text style={[type.labelLarge, styles.onRule, { color: color.primary }]}>{t.atlas.openSpecies}</Text>
+              <ChevronIcon color={color.primary} />
+            </Pressable>
+          ) : null}
+        </Ruled>
+      </Paper>
+      {/* Cinta que la sujeta al mapa. */}
+      <View style={[styles.slipTape, { backgroundColor: color.lime }]} />
+    </View>
+  );
+}
+
+/** Renglones de la libreta: una línea fina bajo cada renglón de `RULE` dp; el texto de dentro escribe sobre ellas. */
+function Ruled({ children }: { children: React.ReactNode }) {
+  const { color } = useTheme();
+  const [height, setHeight] = useState(0);
+  return (
+    <View onLayout={(event) => setHeight(event.nativeEvent.layout.height)}>
+      <View style={StyleSheet.absoluteFill} pointerEvents="none" accessible={false}>
+        {Array.from({ length: Math.floor(height / RULE) }, (_, i) => (
+          <View key={i} style={[styles.rule, { top: (i + 1) * RULE - RULE_DROP, backgroundColor: color.outlineVariant }]} />
+        ))}
       </View>
-      <View style={styles.cardMeta}>
-        <UnverifiedMark />
-        <Text style={[type.labelMedium, { color: color.onSurfaceVariant }]}>
-          {`${t.atlas.syntheticTag} · ${t.atlas.unverified} · ${formatDate(observation.createdAt)}`}
-        </Text>
-      </View>
-      <Text style={[type.bodyMedium, { color: color.onSurfaceVariant }]}>{observation.notes}</Text>
-      {speciesId ? (
-        <Pressable onPress={() => router.push({ pathname: '/species/[id]', params: { id: speciesId } })}
-          accessibilityRole="link" android_ripple={{ color: color.ripple }} style={styles.cardAction}>
-          <Text style={[type.labelLarge, { color: color.leafInk }]}>{t.atlas.openSpecies}</Text>
-          <ChevronIcon color={color.leafInk} />
-        </Pressable>
-      ) : null}
+      {children}
     </View>
   );
 }
@@ -344,7 +401,7 @@ const styles = StyleSheet.create({
   switch: {
     marginTop: space.md,
     flexDirection: 'row',
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderRadius: radius.full,
     overflow: 'hidden',
   },
@@ -357,15 +414,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: space.sm,
   },
-  segmentSelected: { fontWeight: '700' },
-  topOverlay: { position: 'absolute', top: space.md, left: space.md, right: 76, gap: space.sm, alignItems: 'flex-start' },
+  segmentSelected: { fontWeight: '800' },
+  topOverlay: { position: 'absolute', top: BAND_EDGE + space.md, left: space.md, right: 76, gap: space.sm, alignItems: 'flex-start' },
   chip: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: space.sm,
     minHeight: 36,
     paddingHorizontal: space.md,
-    borderRadius: radius.sm,
+    borderRadius: radius.full,
     borderWidth: StyleSheet.hairlineWidth,
     elevation: 2,
     shadowOffset: { width: 0, height: 1 },
@@ -373,10 +430,10 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   // Círculo abierto: observación sin verificar, igual que el punto del mapa.
-  chipMark: { width: 10, height: 10, borderRadius: 5, borderWidth: 1.5 },
+  chipMark: { width: 12, height: 12, borderRadius: 6, borderWidth: 2.5 },
   controls: { position: 'absolute', right: space.md, bottom: 56, gap: space.md },
   controlGroup: {
-    borderRadius: radius.md,
+    borderRadius: radius.lg,
     borderWidth: StyleSheet.hairlineWidth,
     overflow: 'hidden',
     elevation: 2,
@@ -403,7 +460,7 @@ const styles = StyleSheet.create({
     padding: space.xl,
   },
   centered: { textAlign: 'center' },
-  list: { padding: space.lg, paddingBottom: space.xxl, gap: space.sm },
+  list: { padding: space.lg, paddingTop: BAND_EDGE + space.lg, paddingBottom: space.xxl, gap: space.sm },
   section: { paddingTop: space.xl, gap: space.md },
   empty: { flexDirection: 'row', gap: space.lg, alignItems: 'flex-start' },
   rows: { borderTopWidth: StyleSheet.hairlineWidth },
@@ -418,19 +475,30 @@ const styles = StyleSheet.create({
   rowText: { flex: 1, gap: 2 },
   // Sobre la escala (abajo a la izquierda) y a la izquierda de los controles del mapa.
   cardSlot: { position: 'absolute', left: space.md, right: 76, bottom: 44 },
+  // Papeleta: hoja de libreta con filo fino y esquinas casi rectas; la sombra es la de lo que flota sobre el mapa.
+  slip: { paddingTop: 9 },
   card: {
-    padding: space.lg,
-    gap: space.sm,
-    borderRadius: radius.md,
+    paddingHorizontal: space.lg,
+    paddingTop: space.md,
+    paddingBottom: space.sm,
+    borderRadius: 2,
     borderWidth: StyleSheet.hairlineWidth,
     elevation: 3,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 1,
     shadowRadius: 6,
   },
-  cardHeader: { flexDirection: 'row', alignItems: 'flex-start', gap: space.sm },
-  cardClose: { width: 32, height: 32, alignItems: 'center', justifyContent: 'center', marginTop: -4, marginRight: -8 },
-  cardMeta: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
-  cardAction: { flexDirection: 'row', alignItems: 'center', gap: space.xs, minHeight: 48, alignSelf: 'flex-start' },
+  slipTape: { position: 'absolute', top: 0, left: 28, width: 64, height: 18, opacity: 0.85, borderRadius: 1, transform: [{ rotate: '-5deg' }] },
+  cardHeader: { flexDirection: 'row', alignItems: 'center', gap: space.md, paddingBottom: space.sm },
+  cardThumb: { width: CARD_THUMB, height: CARD_THUMB, alignItems: 'center', justifyContent: 'center', marginLeft: -space.xs },
+  cardClose: { width: 48, height: 48, alignItems: 'center', justifyContent: 'center', alignSelf: 'flex-start', marginRight: -space.md, marginTop: -space.xs },
+  cardHeadRule: { height: 1, marginHorizontal: -space.lg, opacity: 0.45 },
+  rule: { position: 'absolute', left: -space.lg, right: -space.lg, height: StyleSheet.hairlineWidth },
+  // Todo lo que va sobre los renglones ocupa renglones enteros, para que el texto calce con las líneas.
+  onRule: { lineHeight: RULE },
+  onRuleBox: { height: RULE, justifyContent: 'center' },
+  cardMeta: { flexDirection: 'row', alignItems: 'center', columnGap: space.md, flexWrap: 'wrap' },
+  // Un renglón en blanco antes de la acción; el área de toque sigue siendo de 48 dp.
+  cardAction: { flexDirection: 'row', alignItems: 'center', gap: space.xs, minHeight: 2 * RULE, paddingTop: RULE, alignSelf: 'flex-start' },
   emptyText: { flex: 1, gap: space.xs },
 });

@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { t } from '@/i18n/es-CL';
-import { radius, type, useTheme } from '@/ui/theme';
+import { type, useTheme } from '@/ui/theme';
 
-/** Etiqueta de estado taxonómico. Siempre con texto, nunca solo color. */
+/** Etiqueta de estado taxonómico, como un trozo de cinta. Siempre con texto, nunca solo color. */
 export function ProvisionalTag() {
   const { color } = useTheme();
   return (
-    <View style={[styles.tag, { backgroundColor: color.provisional, borderColor: color.provisionalOutline }]}>
+    <View style={[styles.tape, styles.tiltLeft, { backgroundColor: color.provisional }]}>
       <View style={[styles.mark, { borderColor: color.onProvisional }]} />
-      <Text style={[type.labelMedium, { color: color.onProvisional }]}>{t.status.provisional}</Text>
+      <Text style={[type.labelMedium, styles.text, { color: color.onProvisional }]}>{t.status.provisional}</Text>
     </View>
   );
 }
@@ -18,26 +18,42 @@ export function ProvisionalTag() {
 export function NotImplementedTag() {
   const { color } = useTheme();
   return (
-    <View style={[styles.tag, { backgroundColor: color.demo, borderColor: color.onDemo }]}>
+    <View style={[styles.tape, styles.tiltRight, { backgroundColor: color.demo }]}>
       <View style={[styles.dash, { backgroundColor: color.onDemo }]} />
-      <Text style={[type.labelMedium, { color: color.onDemo }]}>{t.pending.tag}</Text>
+      <Text style={[type.labelMedium, styles.text, { color: color.onDemo }]}>{t.pending.tag}</Text>
+    </View>
+  );
+}
+
+/** Observación sintética de demostración, sin verificar: círculo abierto copihue, como su gota en el mapa. */
+export function SyntheticTag() {
+  const { color } = useTheme();
+  return (
+    <View style={[styles.tape, styles.tiltLeft, { backgroundColor: color.demo }]}>
+      <View style={[styles.mark, { borderColor: color.accent }]} />
+      <Text style={[type.labelMedium, styles.text, { color: color.onDemo }]}>
+        {`${t.atlas.syntheticTag} · ${t.atlas.unverified}`}
+      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  tag: {
+  // Cinta: esquinas casi rectas y una leve inclinación, como pegada a mano.
+  tape: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
     gap: 6,
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: radius.sm,
-    borderWidth: StyleSheet.hairlineWidth,
+    paddingHorizontal: 10,
+    paddingVertical: 3,
+    borderRadius: 2,
   },
+  tiltLeft: { transform: [{ rotate: '-2deg' }] },
+  tiltRight: { transform: [{ rotate: '1.5deg' }] },
+  text: { fontWeight: '800' },
   // Círculo abierto: «aún sin validar», distinto de un punto relleno.
-  mark: { width: 8, height: 8, borderRadius: 4, borderWidth: 1.5 },
+  mark: { width: 9, height: 9, borderRadius: 5, borderWidth: 2 },
   // Guion: «todavía no», distinto del círculo de provisional.
-  dash: { width: 8, height: 1.5, borderRadius: 1 },
+  dash: { width: 9, height: 2, borderRadius: 1 },
 });

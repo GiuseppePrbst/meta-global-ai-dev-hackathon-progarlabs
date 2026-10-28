@@ -2,28 +2,33 @@ import { useState } from 'react';
 import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import { GestureDetector, usePanGesture } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
+import { scheduleOnRN } from 'react-native-worklets';
 
 import { LeafPlate } from '@/features/catalog/leaf-plate';
+import { easePen } from '@/ui/ink';
 import { useTheme } from '@/ui/theme';
 
 export const LENS_ZOOM = 2.6;
 const LENS_SIZE = 132;
 // La lupa flota sobre el dedo para que el pulgar no tape lo que se mira.
 const LENS_LIFT = 88;
+// La lámina grande de la ficha se entinta despacio, a ritmo de pluma, para poder seguir el trazo.
+export const PLATE_DRAW = { delay: 180, duration: 1000 };
 
 type PlateLensProps = {
   speciesId: string;
   ink: string;
-  fill: string;
   ring: string;
   ground: string;
 };
 
 /** Lámina con lupa de terreno: mantener presionado y deslizar amplía el borde de la hoja. */
-export function PlateLens({ speciesId, ink, fill, ring, ground }: PlateLensProps) {
+export function PlateLens({ speciesId, ink, ring, ground }: PlateLensProps) {
   const { color } = useTheme();
   const reducedMotion = useReducedMotion();
   const [plateSize, setPlateSize] = useState(0);
+  // La lámina ampliada se monta al primer uso: en Android su SVG es un bitmap de varios MB.
+  const [lensUsed, setLensUsed] = useState(false);
   const focusX = useSharedValue(0);
   const focusY = useSharedValue(0);
   const shown = useSharedValue(0);
@@ -34,6 +39,7 @@ export function PlateLens({ speciesId, ink, fill, ring, ground }: PlateLensProps
       'worklet';
       focusX.set(event.x);
       focusY.set(event.y);
+      scheduleOnRN(setLensUsed, true);
       shown.set(withTiming(1, { duration: 160 }));
     },
     onUpdate: (event) => {
@@ -68,13 +74,13 @@ export function PlateLens({ speciesId, ink, fill, ring, ground }: PlateLensProps
   return (
     <GestureDetector gesture={pan}>
       <View style={styles.plate} onLayout={onLayout}>
-        <LeafPlate speciesId={speciesId} ink={ink} fill={fill} draw delay={180} />
-        {plateSize > 0 ? (
+        <LeafPlate speciesId={speciesId} ink={ink} draw delay={PLATE_DRAW.delay} duration={PLATE_DRAW.duration} easing={easePen} />
+        {plateSize > 0 && lensUsed ? (
           <Animated.View
             pointerEvents="none"
             style={[styles.lens, { borderColor: ring, backgroundColor: ground, shadowColor: color.onSurface }, lensStyle]}>
             <Animated.View style={magnifiedStyle}>
-              <LeafPlate speciesId={speciesId} ink={ink} fill={fill} size={plateSize * LENS_ZOOM} />
+              <LeafPlate speciesId={speciesId} ink={ink} size={plateSize * LENS_ZOOM} />
             </Animated.View>
           </Animated.View>
         ) : null}
@@ -92,7 +98,7 @@ const styles = StyleSheet.create({
     width: LENS_SIZE,
     height: LENS_SIZE,
     borderRadius: LENS_SIZE / 2,
-    borderWidth: 2,
+    borderWidth: 3,
     overflow: 'hidden',
     elevation: 8,
     shadowOffset: { width: 0, height: 6 },
