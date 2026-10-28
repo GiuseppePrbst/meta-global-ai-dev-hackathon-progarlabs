@@ -2,7 +2,6 @@ import { router } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Path, Rect } from 'react-native-svg';
 
 import type { Species } from '@/domain/species';
@@ -11,12 +10,12 @@ import { filterSpecies, mockSpecies, sheetNumber } from '@/features/catalog/mock
 import { formatDate, t } from '@/i18n/es-CL';
 import { ChevronIcon, CloseIcon, SearchIcon } from '@/ui/icons';
 import { StatusBanner } from '@/ui/status-banner';
+import { ScreenHeader } from '@/ui/screen-header';
 import { ProvisionalTag } from '@/ui/status-tag';
 import { radius, space, type, useTheme } from '@/ui/theme';
 
 export default function SpeciesListScreen() {
   const { color } = useTheme();
-  const insets = useSafeAreaInsets();
   const [query, setQuery] = useState('');
   const results = useMemo(() => filterSpecies(mockSpecies, query), [query]);
   // Las filas entran escalonadas solo al abrir el catálogo, no en cada búsqueda.
@@ -28,12 +27,8 @@ export default function SpeciesListScreen() {
 
   return (
     <View style={[styles.screen, { backgroundColor: color.background }]}>
-      <View style={[styles.topBar, { backgroundColor: color.topBar, paddingTop: insets.top + space.lg }]}>
-        <CatalogCover ink={color.onTopBar} fill={color.topBarLeafFill} top={insets.top} />
-        <Text style={[type.headlineLarge, { color: color.onTopBar }]} accessibilityRole="header">
-          {t.species.title}
-        </Text>
-        <Text style={[type.bodyMedium, { color: color.onTopBarVariant }]}>{t.species.count(mockSpecies.length)}</Text>
+      <ScreenHeader title={t.species.title} subtitle={t.species.count(mockSpecies.length)}
+        cover={<CatalogCover ink={color.onTopBar} fill={color.topBarLeafFill} />}>
         <View style={[styles.search, { backgroundColor: color.searchField }]}>
           <SearchIcon color={color.onSurfaceVariant} />
           <TextInput
@@ -60,13 +55,13 @@ export default function SpeciesListScreen() {
             </Pressable>
           ) : null}
         </View>
-      </View>
+      </ScreenHeader>
 
       <FlatList
         data={results}
         keyExtractor={(item) => item.id}
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{ paddingBottom: insets.bottom + space.xl }}
+        contentContainerStyle={{ paddingBottom: space.xl }}
         ListHeaderComponent={
           <View style={styles.bannerWrap}>
             <StatusBanner message={t.species.demoBanner} />
@@ -140,18 +135,13 @@ const coverLeaves = [
 ];
 
 /** Portada del catálogo: tres láminas que se entintan al abrir, en la tinta de la barra. */
-function CatalogCover({ ink, fill, top }: { ink: string; fill: string; top: number }) {
-  return (
-    <View style={[StyleSheet.absoluteFill, { top }]} pointerEvents="none" accessible={false}
-      importantForAccessibility="no-hide-descendants">
-      {coverLeaves.map((leaf) => (
-        <View key={leaf.id}
-          style={[styles.coverLeaf, { right: leaf.right, top: leaf.top, transform: [{ rotate: leaf.rotate }] }]}>
-          <LeafPlate speciesId={leaf.id} size={112} ink={ink} fill={fill} draw delay={leaf.delay} />
-        </View>
-      ))}
+function CatalogCover({ ink, fill }: { ink: string; fill: string }) {
+  return coverLeaves.map((leaf) => (
+    <View key={leaf.id}
+      style={[styles.coverLeaf, { right: leaf.right, top: leaf.top, transform: [{ rotate: leaf.rotate }] }]}>
+      <LeafPlate speciesId={leaf.id} size={112} ink={ink} fill={fill} draw delay={leaf.delay} />
     </View>
-  );
+  ));
 }
 
 /** Pliego vacío: el contorno punteado de una hoja que no está. */
@@ -167,12 +157,6 @@ function EmptySheet({ ink }: { ink: string }) {
 
 const styles = StyleSheet.create({
   screen: { flex: 1 },
-  topBar: {
-    overflow: 'hidden',
-    paddingHorizontal: space.lg,
-    paddingBottom: space.lg,
-    gap: space.xs,
-  },
   search: {
     marginTop: space.md,
     minHeight: 56,

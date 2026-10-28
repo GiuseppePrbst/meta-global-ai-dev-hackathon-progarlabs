@@ -1,17 +1,8 @@
 import { useEffect } from 'react';
-import Animated, {
-  Easing,
-  Extrapolation,
-  interpolate,
-  type SharedValue,
-  useAnimatedProps,
-  useReducedMotion,
-  useSharedValue,
-  withDelay,
-  withTiming,
-} from 'react-native-reanimated';
-import Svg, { Circle, G, Path } from 'react-native-svg';
+import { useReducedMotion, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
+import Svg, { Circle, G } from 'react-native-svg';
 
+import { easeOutExpo, FadeGroup, InkPath } from '@/ui/ink';
 import { useTheme } from '@/ui/theme';
 
 // Ilustración conceptual de la hoja de cada especie, dibujada en código.
@@ -127,6 +118,20 @@ const plates: Record<string, Plate> = {
   },
 };
 
+/**
+ * Centro de una hoja de la lámina, en unidades del viewBox (0–100), para la línea guía de la ficha.
+ * Prefiere la hoja más inclinada a la izquierda: la guía baja a la esquina inferior izquierda sin
+ * cruzar el dibujo.
+ */
+export function leafAnchor(speciesId: string): { x: number; y: number } | null {
+  const leaves = plates[speciesId]?.leaves;
+  if (!leaves?.length) return null;
+  const leaf = leaves.reduce((left, candidate) => (candidate.rotate < left.rotate ? candidate : left));
+  const angle = (leaf.rotate * Math.PI) / 180;
+  const half = leaf.shape.length / 2;
+  return { x: leaf.x + Math.sin(angle) * half, y: leaf.y - Math.cos(angle) * half };
+}
+
 /** `size` en dp; sin `size` la lámina ocupa el ancho de su contenedor (cuadrada). */
 type LeafPlateProps = {
   speciesId: string;
@@ -141,7 +146,6 @@ type LeafPlateProps = {
 
 const DRAW_MS = 900;
 const STEM_LENGTH = 120;
-const easeOutExpo = Easing.bezier(0.16, 1, 0.3, 1);
 
 export function LeafPlate({ speciesId, size, ink: inkColor, fill, draw = false, delay = 0 }: LeafPlateProps) {
   const { color } = useTheme();
@@ -190,54 +194,5 @@ export function LeafPlate({ speciesId, size, ink: inkColor, fill, draw = false, 
         );
       })}
     </Svg>
-  );
-}
-
-const AnimatedPath = Animated.createAnimatedComponent(Path);
-const AnimatedG = Animated.createAnimatedComponent(G);
-
-type Window = { progress: SharedValue<number> | null; from: number; to: number };
-type AnimatedWindow = Window & { progress: SharedValue<number> };
-
-function FadeGroup({ progress, from, to, children }: Window & { children: React.ReactNode }) {
-  if (!progress) return <G>{children}</G>;
-  return <AnimatedFadeGroup progress={progress} from={from} to={to}>{children}</AnimatedFadeGroup>;
-}
-
-function AnimatedFadeGroup({ progress, from, to, children }: AnimatedWindow & { children: React.ReactNode }) {
-  const animatedProps = useAnimatedProps(() => ({
-    opacity: interpolate(progress.get(), [from, to], [0, 1], Extrapolation.CLAMP),
-  }));
-  return <AnimatedG animatedProps={animatedProps}>{children}</AnimatedG>;
-}
-
-type InkPathProps = Window & {
-  length: number;
-  d: string;
-  stroke: string;
-  strokeWidth: number;
-  fill: string;
-};
-
-function InkPath({ progress, ...props }: InkPathProps) {
-  if (!progress) {
-    const { d, stroke, strokeWidth, fill } = props;
-    return <Path d={d} stroke={stroke} strokeWidth={strokeWidth} fill={fill} strokeLinecap="round" strokeLinejoin="round" />;
-  }
-  return <AnimatedInkPath progress={progress} {...props} />;
-}
-
-/** Trazo que se entinta entre `from` y `to` del progreso; el relleno llega al cerrar el contorno. */
-function AnimatedInkPath({ progress, from, to, length, d, stroke, strokeWidth, fill }: InkPathProps & AnimatedWindow) {
-  const animatedProps = useAnimatedProps(() => {
-    const local = interpolate(progress.get(), [from, to], [0, 1], Extrapolation.CLAMP);
-    return {
-      strokeDashoffset: length * (1 - local),
-      fillOpacity: interpolate(local, [0.6, 1], [0, 1], Extrapolation.CLAMP),
-    };
-  });
-  return (
-    <AnimatedPath d={d} stroke={stroke} strokeWidth={strokeWidth} fill={fill} strokeLinecap="round"
-      strokeLinejoin="round" strokeDasharray={[length, length]} animatedProps={animatedProps} />
   );
 }

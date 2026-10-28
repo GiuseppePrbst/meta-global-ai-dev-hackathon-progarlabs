@@ -28,6 +28,13 @@ const light = {
   provisionalOutline: '#D8B878',
   demo: '#DCE6EE',
   onDemo: '#22425A',
+  navBar: '#E1E7DC',
+  navIndicator: '#C3DCC8',
+  onNavIndicator: '#123222',
+  navIconFill: 'rgba(18, 50, 34, 0.16)',
+  segmentSelected: '#F1F6EE',
+  onSegmentSelected: '#17231C',
+  scrim: 'rgba(23, 35, 28, 0.18)',
 };
 
 type Palette = typeof light;
@@ -54,6 +61,13 @@ const dark: Palette = {
   provisionalOutline: '#6E5520',
   demo: '#1A2B38',
   onDemo: '#B9D3E6',
+  navBar: '#1D2922',
+  navIndicator: '#2F4C3C',
+  onNavIndicator: '#CDE8D4',
+  navIconFill: 'rgba(205, 232, 212, 0.2)',
+  segmentSelected: '#2F4C3C',
+  onSegmentSelected: '#E2EAE1',
+  scrim: 'rgba(0, 0, 0, 0.4)',
 };
 
 export type Theme = { scheme: 'light' | 'dark'; color: Palette };
