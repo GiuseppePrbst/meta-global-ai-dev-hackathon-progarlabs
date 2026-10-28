@@ -120,23 +120,3 @@ export const mockSpecies: Species[] = entries.map(([id, scientificName, commonNa
   provenance: bootstrapProvenance,
   traits,
 }));
-
-export function getMockSpecies(id: string): Species | undefined {
-  return mockSpecies.find((species) => species.id === id);
-}
-
-/** Número de pliego: posición estable en el catálogo, solo para orientarse. */
-export function sheetNumber(id: string): string {
-  const index = mockSpecies.findIndex((species) => species.id === id);
-  return String(index + 1).padStart(2, '0');
-}
-
-function fold(text: string): string {
-  return text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLocaleLowerCase('es-CL');
-}
-
-export function filterSpecies(species: Species[], query: string): Species[] {
-  const term = fold(query.trim());
-  if (!term) return species;
-  return species.filter((item) => fold(`${item.commonName} ${item.scientificName}`).includes(term));
-}

@@ -5,7 +5,7 @@ import {
 } from '@expo-google-fonts/bricolage-grotesque';
 import { Kalam_400Regular, Kalam_700Bold } from '@expo-google-fonts/kalam';
 import { Literata_400Regular_Italic } from '@expo-google-fonts/literata';
-import type { TextStyle } from 'react-native';
+import type { TextStyle, ViewStyle } from 'react-native';
 
 // Cuaderno de campo de acuarela: papel blanco frío, aguadas de verdes intensos y un solo acento
 // cálido (copihue). Roles al estilo Material 3; ver DESIGN.md.
@@ -30,6 +30,8 @@ const light = {
   onSearchField: '#0F2418',
   onSearchFieldVariant: '#3A5244',
   ripple: 'rgba(11, 90, 51, 0.14)',
+  // Ripple sobre la banda verde de las barras superiores.
+  onTopBarRipple: 'rgba(255, 255, 255, 0.2)',
   leafInk: '#0E3F25',
   lime: '#B9E24C',
   // Aguada grande de fondo detrás de las ilustraciones.
@@ -53,7 +55,9 @@ const light = {
   washOpacity: 0.5,
 };
 
-type Palette = typeof light;
+export type Palette = typeof light;
+/** Nombre de un color de la paleta (excluye las opacidades numéricas). */
+export type ColorToken = { [K in keyof Palette]: Palette[K] extends string ? K : never }[keyof Palette];
 export type Theme = { scheme: 'light' | 'dark'; color: Palette };
 
 // La app es siempre clara: el cuaderno de campo se lee sobre papel, sin importar el tema del sistema.
@@ -87,7 +91,19 @@ export const type = {
   labelLarge: { fontSize: 14, lineHeight: 20, fontWeight: '600', letterSpacing: 0.1 },
   labelMedium: { fontSize: 12, lineHeight: 16, fontWeight: '600', letterSpacing: 0.4 },
   labelSmall: { fontSize: 11, lineHeight: 16, fontWeight: '500', letterSpacing: 0.4 },
+  // Versalitas de guía impresa: rótulos cortos en mayúsculas espaciadas.
+  overline: { fontSize: 12, lineHeight: 16, fontWeight: '600', letterSpacing: 1.2, textTransform: 'uppercase' },
 } satisfies Record<string, TextStyle>;
 
 export const space = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 };
 export const radius = { sm: 8, md: 12, lg: 20, full: 999 };
+
+// Sombras de lo que flota sobre el papel o el mapa; el color va aparte (`shadowColor: color.scrim`).
+export const elevation = {
+  /** Chips y controles sobre el mapa. */
+  raised: { elevation: 2, shadowOffset: { width: 0, height: 1 }, shadowOpacity: 1, shadowRadius: 3 },
+  /** Papeleta dejada sobre el mapa. */
+  floating: { elevation: 3, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 1, shadowRadius: 6 },
+  /** Lupa sobre la lámina. */
+  lens: { elevation: 8, shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.25, shadowRadius: 12 },
+} satisfies Record<string, ViewStyle>;

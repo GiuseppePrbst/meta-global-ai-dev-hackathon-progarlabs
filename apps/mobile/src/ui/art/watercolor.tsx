@@ -1,8 +1,8 @@
 import { Circle, ClipPath, Defs, G, Path, RadialGradient, Stop } from 'react-native-svg';
 
-import { blobPath, seeded } from '@/ui/brush';
+import { blobPath, seeded } from '@/ui/art/brush';
 
-export { blobPath, seeded, seedOf } from '@/ui/brush';
+export { blobPath, seeded, seedOf } from '@/ui/art/brush';
 
 // Acuarela dibujada en código: manchas irregulares por capas translúcidas. Donde dos veladuras se
 // cruzan el color se oscurece, y el borde de cada mancha se marca como el pigmento que se seca en

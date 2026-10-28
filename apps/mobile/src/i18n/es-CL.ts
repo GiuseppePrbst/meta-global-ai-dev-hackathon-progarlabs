@@ -34,6 +34,8 @@ export const t = {
     syntheticTag: 'Sintética',
     unverified: 'Sin verificar',
     noSpecies: 'Especie sin elegir',
+    speciesLoading: 'Cargando especie…',
+    speciesUnavailable: 'Especie no disponible',
     noLocation: 'sin ubicación, no aparece en el mapa',
     rowA11y: (common: string, date: string, located: boolean) =>
       `${common}, observación sintética del ${formatDate(date)}. ${located ? 'Mostrar en el mapa.' : 'Sin ubicación.'}`,
@@ -48,6 +50,10 @@ export const t = {
     attribution: '© colaboradores de OpenStreetMap',
     attributionA11y: 'Datos del mapa © colaboradores de OpenStreetMap. Abrir la página de derechos de autor.',
     listHeading: 'Observaciones',
+    observationsLoading: 'Cargando observaciones…',
+    observationsErrorTitle: 'No se pudieron cargar las observaciones.',
+    observationsErrorBody: 'Revisa tu conexión e inténtalo de nuevo. El mapa base sigue disponible.',
+    observationsErrorBanner: 'No se pudieron cargar las observaciones. Revisa tu conexión; la vista Lista permite reintentar.',
     emptyTitle: 'Todavía no hay observaciones en el Atlas.',
     emptyBody:
       'Un mapa vacío no significa que falte biodiversidad: significa que nadie ha registrado una observación aquí todavía.',
@@ -71,6 +77,10 @@ export const t = {
   species: {
     title: 'Especies',
     count: (n: number) => `${n} ${n === 1 ? 'especie' : 'especies'} · piloto Puyehue`,
+    subtitle: 'Catálogo · piloto Puyehue',
+    loading: 'Cargando catálogo…',
+    errorTitle: 'No se pudo cargar el catálogo.',
+    errorBody: 'Revisa tu conexión e inténtalo de nuevo.',
     searchPlaceholder: 'Buscar por nombre común o científico',
     searchLabel: 'Buscar especie',
     clearSearch: 'Borrar búsqueda',
@@ -80,6 +90,9 @@ export const t = {
     rowA11y: (common: string, scientific: string) => `${common}, ${scientific}, provisional. Abrir ficha.`,
     sheet: (n: string) => `N.º ${n}`,
     sourceFooter: (version: string, date: string) => `Catálogo ${version} · consultado ${date}`,
+  },
+  common: {
+    retry: 'Reintentar',
   },
   status: {
     provisional: 'Provisional',
@@ -118,6 +131,8 @@ export const t = {
     pendingValidation: 'Pendiente',
     notFoundTitle: 'Esta especie no está en el catálogo.',
     notFoundAction: 'Ver todas las especies',
+    errorTitle: 'No se pudo cargar esta ficha.',
+    errorBody: 'Revisa tu conexión e inténtalo de nuevo.',
   },
 };
 

@@ -1,8 +1,7 @@
 import { TabList, TabSlot, TabTrigger, Tabs } from 'expo-router/ui';
 
 import { t } from '@/i18n/es-CL';
-import { AtlasIcon, IdentifyIcon, ObservationsIcon, SpeciesIcon } from '@/ui/icons';
-import { NavigationBar, NavigationItem } from '@/ui/navigation-bar';
+import { AtlasIcon, IdentifyIcon, NavigationBar, NavigationItem, ObservationsIcon, SpeciesIcon } from '@/ui';
 
 // Las pestañas inactivas conservan su estado: el mapa no se recarga al volver al Atlas.
 export default function TabsLayout() {

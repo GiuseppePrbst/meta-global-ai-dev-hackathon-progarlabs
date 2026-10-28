@@ -12,8 +12,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Svg, { Circle, G, Path, Rect } from 'react-native-svg';
 
-import { FadeGroup, InkPath, useInk } from '@/ui/ink';
-import { Wash } from '@/ui/watercolor';
+import { FadeGroup, InkPath, useInk, Wash } from '@/ui';
 
 // Lomas pintadas con curvas de nivel entintadas encima, dibujadas en código. Son un motivo gráfico:
 // no representan el relieve de Puyehue ni de ningún lugar real.

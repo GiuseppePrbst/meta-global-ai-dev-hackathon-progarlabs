@@ -1,6 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { space, type, useTheme } from '@/ui/theme';
+import { Tape } from '@/ui/components/tape';
+import { Text } from '@/ui/components/text';
+import { space, useTheme } from '@/ui/tokens/theme';
 
 type HerbariumLabelProps = {
   heading: string;
@@ -16,19 +18,19 @@ export function HerbariumLabel({ heading, name, italic = true, rows }: Herbarium
   return (
     <View style={styles.wrap}>
       <View style={[styles.label, { backgroundColor: color.surface, borderColor: color.leafInk }]}>
-        <Text style={[italic ? type.scientificLarge : type.titleMedium, { color: color.onSurface }]}>{name}</Text>
+        <Text variant={italic ? 'scientificLarge' : 'titleMedium'}>{name}</Text>
         {rows.map(([label, value]) => (
           <View key={label} style={styles.row}>
-            <Text style={[type.labelMedium, styles.key, { color: color.onSurfaceVariant }]}>{label}</Text>
-            <Text style={[type.bodyMedium, styles.value, { color: color.onSurface }]}>{value}</Text>
+            <Text variant="labelMedium" tone="onSurfaceVariant" style={styles.key}>{label}</Text>
+            <Text variant="bodyMedium" style={styles.value}>{value}</Text>
           </View>
         ))}
-        <Text style={[type.handBold, styles.stamp, { color: color.onSurfaceVariant, borderColor: color.outlineVariant }]}>
+        <Text variant="handBold" tone="onSurfaceVariant" style={[styles.stamp, { borderColor: color.outlineVariant }]}>
           {heading}
         </Text>
       </View>
-      <View style={[styles.tape, styles.tapeLeft, { backgroundColor: color.lime }]} />
-      <View style={[styles.tape, styles.tapeRight, { backgroundColor: color.lime }]} />
+      <Tape style={styles.tapeLeft} />
+      <Tape style={styles.tapeRight} />
     </View>
   );
 }
@@ -42,7 +44,6 @@ const styles = StyleSheet.create({
   key: { width: 92, paddingTop: 2 },
   value: { flex: 1 },
   // Dos trozos de cinta translúcida sujetan las esquinas superiores.
-  tape: { position: 'absolute', top: 0, width: 56, height: 18, opacity: 0.85, borderRadius: 1 },
-  tapeLeft: { left: -6, transform: [{ rotate: '-24deg' }] },
-  tapeRight: { right: -6, transform: [{ rotate: '22deg' }] },
+  tapeLeft: { top: 0, left: -6, transform: [{ rotate: '-24deg' }] },
+  tapeRight: { top: 0, right: -6, transform: [{ rotate: '22deg' }] },
 });

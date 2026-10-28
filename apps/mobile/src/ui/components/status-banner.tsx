@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { InfoIcon } from '@/ui/icons';
-import { radius, space, type, useTheme } from '@/ui/theme';
+import { InfoIcon } from '@/ui/components/icons';
+import { Text } from '@/ui/components/text';
+import { radius, space, useTheme } from '@/ui/tokens/theme';
 
 /** Aviso de estado no bloqueante (p. ej. modo demostración). */
 export function StatusBanner({ message }: { message: string }) {
@@ -9,7 +10,7 @@ export function StatusBanner({ message }: { message: string }) {
   return (
     <View style={[styles.banner, { backgroundColor: color.demo }]} accessibilityRole="summary">
       <InfoIcon color={color.onDemo} size={20} />
-      <Text style={[type.bodyMedium, styles.text, { color: color.onDemo }]}>{message}</Text>
+      <Text variant="bodyMedium" tone="onDemo" style={styles.text}>{message}</Text>
     </View>
   );
 }

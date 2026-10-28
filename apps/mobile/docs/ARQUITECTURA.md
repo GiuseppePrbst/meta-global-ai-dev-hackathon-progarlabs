@@ -39,10 +39,10 @@ apps/mobile/
 │   │   └── settings.tsx
 │   ├── api/                  # cliente HTTP, schema.gen.ts, mapeo a dominio, errores
 │   ├── domain/               # tipos del glosario: Species, Identification, Observation…
-│   ├── features/             # identification, catalog, observations, atlas
+│   ├── features/             # identification, catalog, observations, atlas; species-art compartido
 │   ├── storage/              # SQLite de borradores y preferencias
 │   ├── map/                  # DOM component MapLibre GL JS y su puente de props
-│   ├── ui/                   # tokens provisionales y primitivas accesibles
+│   ├── ui/                   # librería de diseño: tokens/, art/, components/, hooks/ e index.ts
 │   └── i18n/es-CL.ts
 ├── assets/
 ├── docs/
@@ -77,12 +77,20 @@ apps/mobile/
 
 **Estado (27-10-2026, Atlas 2D y navegación):**
 
-- Navegación de cuatro pestañas con las pestañas sin estilo de `expo-router/ui` (`Tabs`, `TabList`, `TabTrigger`) y una barra Material 3 propia (`src/ui/navigation-bar.tsx`). Las rutas viven en `src/app/(tabs)/` (`identify`, `species`, `atlas`, `observations`); la ficha `species/[id]` queda fuera del grupo para cubrir la barra. Identificar y Registro muestran el estado «No implementado» hasta que existan.
+- Navegación de cuatro pestañas con las pestañas sin estilo de `expo-router/ui` (`Tabs`, `TabList`, `TabTrigger`) y una barra Material 3 propia (`src/ui/components/navigation-bar.tsx`). Las rutas viven en `src/app/(tabs)/` (`identify`, `species`, `atlas`, `observations`); la ficha `species/[id]` queda fuera del grupo para cubrir la barra. Identificar y Registro muestran el estado «No implementado» hasta que existan.
 - Atlas 2D en `src/map/atlas-map.tsx` (DOM component con `@expo/dom-webview`, ver ADR 0002). **MapLibre GL JS 5.24.0**, no la 6.x que usa la web: la 6.x solo publica ESM y carga su worker como archivo aparte (`maplibre-gl-worker.mjs`, resuelto con `import.meta.url`), que Metro no empaqueta ni sirve dentro del WebView; la 5.x trae el worker embebido en su build UMD. Revisar al subir de versión.
 - Mapa base: teselas raster del servicio estándar de OpenStreetMap, el mismo que la web, solo para la demo; la política de teselas de la OSMF no admite uso intensivo y el proveedor de producción sigue pendiente ([DATASET_LICENSES.md](../../../docs/DATASET_LICENSES.md)). La atribución es visible sobre el mapa y enlaza a la página de copyright. Las teselas se tiñen con propiedades `raster-*` de MapLibre (solo render).
 - El encuadre inicial es el mismo rango de coordenadas CONAF que usa la web ([SOURCES.md](../../../docs/SOURCES.md)); no se dibuja como límite.
 - Observaciones **sintéticas** de demostración (`src/features/atlas/mock-observations.ts`) hasta conectar `GET /observations`: coordenadas elegidas a mano dentro del encuadre CONAF, no son registros de terreno ni indican presencia de especies. El chip del mapa, cada fila de la lista, la tarjeta de la observación y el banner las rotulan «sintética»; los puntos son círculos abiertos (sin verificar). Una observación sin ubicación aparece solo en la lista. El DOM component recibe los puntos y la selección como props y devuelve el punto tocado (`onSelect`). Los puntos son marcadores HTML de MapLibre y no una fuente GeoJSON: con una fuente GeoJSON el mapa no llegaba a `load` en el WebView de Android, probablemente porque esa fuente depende del Web Worker de MapLibre (hipótesis no confirmada). Revisar antes de dibujar muchas observaciones o capas vectoriales.
 - En web con `output: "server"`, el DOM component se monta solo en el cliente (necesita `window`).
+
+**Estado (28-10-2026, librería de diseño y estados de datos):**
+
+- `src/ui/` es la librería de diseño de la app, sin paquete aparte: `tokens/` (color, tipografía, espaciado, elevación, movimiento), `art/` (acuarela y tinta generadas en código), `components/` (primitivas accesibles) y `hooks/`. Pantallas y features importan desde `@/ui`; dentro de `ui/` se importa por ruta directa. `ui/` no importa `features/` ni `i18n`: los textos llegan por props. El DOM component del mapa importa solo `@/ui/art/brush`, porque el índice carga React Native.
+- Los patrones repetidos en las features pasaron a `ui/components/`: `ListItem`, `TextButton`, `Divider`, `Chip`, `SearchField` y `LoadingState`, más la variante tipográfica `overline` (versalitas).
+- `LeafPlate` y `speciesWash` viven en `src/features/species-art/` porque los usan el catálogo, el Atlas e Identificar; ninguna feature importa el interior de otra. Los hooks de datos de una feature (p. ej. `useSpecies` de `catalog/`) sí se usan desde otras: son su interfaz pública hasta que pasen a `src/api/`.
+- `QueryResult` incluye `refetch`, igual que TanStack Query. Las pantallas distinguen la carga y el error de una lista vacía: el catálogo, la lista del Atlas y la ficha muestran «Cargando…» o un error con «Reintentar»; el mapa no dice «0 observaciones» mientras cargan o si fallaron. Con los mocks actuales esos estados no se ven; quedan listos para la API.
+- ESLint (`eslint-config-expo`, `eslint.config.js`) y Jest (`jest-expo`) instalados con `expo install`; los resultados están en [pruebas](PRUEBAS.md).
 
 ## Capas y reglas
 

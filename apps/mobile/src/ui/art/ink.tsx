@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import Animated, {
-  Easing,
   Extrapolation,
   interpolate,
   type SharedValue,
@@ -12,13 +11,10 @@ import Animated, {
 } from 'react-native-reanimated';
 import { G, Path } from 'react-native-svg';
 
+import { easeOutExpo } from '@/ui/tokens/motion';
+
 // Primitivas de entintado: un trazo SVG que se dibuja según una ventana de un progreso compartido.
 // Con `progress` nulo se dibujan trazos estáticos y no se depende del motor de animación.
-
-export const easeOutExpo = Easing.bezier(0.16, 1, 0.3, 1);
-// Ritmo de pluma para el entintado lento: arranca y se posa suave, y entre medio avanza parejo,
-// así cada trazo se ve dibujarse en vez de aparecer de golpe.
-export const easePen = Easing.bezier(0.45, 0, 0.25, 1);
 
 // Tope de espera para empezar a entintar si el hilo JS no queda libre antes.
 const IDLE_TIMEOUT_MS = 500;

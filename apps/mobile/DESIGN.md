@@ -178,7 +178,7 @@ components:
 
 **Creative North Star: "Cuaderno de campo de acuarela"**
 
-La app se lee como un cuaderno pintado en terreno: papel de acuarela blanco frío con grano, bandas de aguada verde bosque cuyo filo mojado cae sobre el contenido, hojas entintadas a pulso con una aguada que no calza del todo con la tinta, y etiquetas pegadas con cinta. Este mundo reemplaza al herbario gris-verde de filetes finos que lo precedió; lo fijó la persona responsable el 28-10-2026 y el código actual lo materializa en `src/ui/theme.ts`, `src/ui/watercolor.tsx`, `src/ui/paper.tsx` y `src/features/catalog/leaf-plate.tsx`.
+La app se lee como un cuaderno pintado en terreno: papel de acuarela blanco frío con grano, bandas de aguada verde bosque cuyo filo mojado cae sobre el contenido, hojas entintadas a pulso con una aguada que no calza del todo con la tinta, y etiquetas pegadas con cinta. Este mundo reemplaza al herbario gris-verde de filetes finos que lo precedió; lo fijó la persona responsable el 28-10-2026 y el código actual lo materializa en `src/ui/tokens/theme.ts`, `src/ui/art/watercolor.tsx`, `src/ui/art/paper.tsx` y `src/features/species-art/leaf-plate.tsx`. Los componentes reutilizables están en `src/ui/components/` y se importan desde `@/ui`.
 
 La pintura es generada en código, no rasterizada: cada mancha (`Wash`) y cada banda (`PaintedBand`) es SVG determinista a partir de una semilla (`seedOf(id)` o `seedOf(title)`), así que la misma especie o pestaña muestra siempre la misma mancha. El único ráster es la tesela de grano de 192 px (`assets/images/paper-grain.png`, generada por `scripts/paper-grain.py`, semilla fija), que la app tiñe según el tema. Bajo la acuarela se conserva la estructura de Material 3: barra de navegación de 80 dp con indicador, botones en píldora de 48 dp, escala tipográfica headline/title/body/label y roles `on*`.
 
@@ -192,14 +192,14 @@ Límite honesto: este sistema se verificó solo en Expo web (capturas a 412x892 
 - Tinta y aguada fuera de registro como firma de cada lámina de especie.
 - Un solo acento cálido (copihue) para marcas puntuales.
 - Estados con texto y forma (cinta, círculo abierto, guion, ícono), nunca solo color.
-- Estructura Material 3 intacta bajo la piel de acuarela; tema claro y oscuro.
+- Estructura Material 3 intacta bajo la piel de acuarela; solo tema claro.
 
 ## Colors
 
-Verdes intensos de bosque, musgo y lima sobre papel blanco frío, con un solo rojo copihue. Los valores del frontmatter son el tema claro; el tema oscuro vive en `theme.ts` (`dark`) y en el sidecar `.impeccable/design.json`.
+Verdes intensos de bosque, musgo y lima sobre papel blanco frío, con un solo rojo copihue. Los valores del frontmatter son el tema claro, el único que usa la app: `useTheme` (`src/ui/tokens/theme.ts`) siempre lo devuelve, porque el cuaderno se lee sobre papel sin importar el tema del sistema. El sidecar `.impeccable/design.json` conserva valores de un tema oscuro que el código no aplica.
 
 ### Primary
-- **Verde bosque de aguada** (`topBar` / `primary`): base de las bandas superiores pintadas y relleno de los botones principales. En oscuro, `primary` pasa a lima para mantener contraste sobre fondo nocturno, mientras la banda conserva un verde profundo.
+- **Verde bosque de aguada** (`topBar` / `primary`): base de las bandas superiores pintadas y relleno de los botones principales.
 - **Veladura de hoja** (`topBarGlaze`): veladuras más claras dentro de la banda; también tiñe el mapa.
 - **Filo seco** (`topBarEdge`): pigmento acumulado en el borde mojado de la banda (trazos de 9 px al 28 % y 3 px al 45 %).
 - **Lima brote** (`onTopBarVariant`): subtítulos y borde del interruptor segmentado sobre la banda.
@@ -212,7 +212,7 @@ Verdes intensos de bosque, musgo y lima sobre papel blanco frío, con un solo ro
 - **Copihue** (`accent`): el único acento cálido. Número de lámina a mano («N.º 01»), insignia numerada de rasgo en la ficha, anillo de la lupa, puntos de observación sin verificar en el mapa y el visor ilustrado de Identificar.
 
 ### Neutral
-- **Papel frío** (`background`): suelo de todas las pantallas, siempre bajo el grano (`grain` al 35 % en claro, 22 % en oscuro).
+- **Papel frío** (`background`): suelo de todas las pantallas, siempre bajo el grano (`grain` al 35 %).
 - **Hoja blanca** (`surface`): etiqueta de procedencia, campo de búsqueda, barra de navegación, tarjetas y controles flotantes sobre el mapa.
 - **Tinta de hoja** (`leafInk`): trazo de las láminas, borde de la etiqueta de procedencia y cursor del campo de búsqueda.
 - **Texto** (`onSurface`, `onSurfaceVariant`): texto principal y secundario.
@@ -290,11 +290,11 @@ Dos familias. La pintada es orgánica: manchas de contorno irregular (elipse def
 Píldora llena y directa: una acción clara por paso.
 - **Shape:** píldora (`full`), alto mínimo de 48 dp, 24 dp de padding horizontal.
 - **Primary:** `primary` con texto `onPrimary` en `labelLarge`; ripple con `ripple`.
-- **Text action:** `labelLarge` en `primary` con chevron, alto mínimo 48 dp (tarjeta del mapa).
+- **Text action** (`TextButton`): `labelLarge` en `primary`, chevron opcional, alto mínimo 48 dp (tarjeta del mapa, fuente de la foto de referencia).
 - **Icon button:** 48x48, ripple sin borde de radio 24.
 
 ### Chips
-- **Recuento sobre mapa:** superficie blanca en píldora de 36 dp, borde fino `outlineVariant`, círculo abierto copihue de 12 px y `labelLarge`.
+- **Recuento sobre mapa** (`Chip`): superficie blanca en píldora de 36 dp, borde fino `outlineVariant`, círculo abierto copihue de 12 px y `labelLarge`.
 
 ### Status tags (cinta)
 Trozos de cinta adhesiva pegados a mano.
@@ -305,7 +305,7 @@ Trozos de cinta adhesiva pegados a mano.
 - Aviso no bloqueante en `demo`, radio 20 dp, padding 12/16, ícono de información de 20 px y `bodyMedium` 500.
 
 ### Inputs / Fields
-- **Búsqueda:** píldora blanca de 56 dp dentro de la banda; ícono de lupa, `bodyLarge`, cursor y selección en `leafInk`; botón de borrar de 48 dp cuando hay texto.
+- **Búsqueda** (`SearchField`): píldora blanca de 56 dp dentro de la banda; ícono de lupa, `bodyLarge`, cursor y selección en `leafInk`; botón de borrar de 48 dp cuando hay texto.
 
 ### Navigation
 - **Barra:** Material 3, `navBar` con borde superior fino, cuatro destinos de 80 dp, rótulos `labelMedium`.
@@ -329,7 +329,7 @@ Hoja blanca con borde de tinta, nombre en `scientificLarge`, filas clave/valor (
 ### Mapa
 MapLibre con estilo teñido. Escala con borde de tinta de 2 px y cifras tabulares.
 
-**Hoja de observación (signature):** SVG de 48 px (área de toque completa) generado en `leafSvg` con la geometría de `leafPath` en `src/ui/brush.ts`, sembrado por el id (forma, asimetría e inclinación de ±40°): papel bajo tres veladuras verde oscuro (`leafInk`) al 20 % con filo seco, y encima la hoja entintada en `leafInk` al 88 % con contorno de 2,6 px, pecíolo y nervio central y nervaduras en papel claro. Es un signo del cuaderno, no la hoja de la especie observada. Al cargar el mapa las hojas caen de oeste a este cuando la cámara se posa (900 ms + 110 ms por hoja): bajan meciéndose (820 ms), la aguada florece en 760 ms, el contorno se entinta encima y luego el nervio. Seleccionada, la aguada se abre al 130 %, un segundo contorno se dibuja alrededor (480 ms) y sale una onda de agua (900 ms); al pulsar, la hoja se encoge al 88 %. Con movimiento reducido no hay animaciones: los estados se aplican al instante.
+**Hoja de observación (signature):** SVG de 48 px (área de toque completa) generado en `leafSvg` con la geometría de `leafPath` en `src/ui/art/brush.ts`, sembrado por el id (forma, asimetría e inclinación de ±40°): papel bajo tres veladuras verde oscuro (`leafInk`) al 20 % con filo seco, y encima la hoja entintada en `leafInk` al 88 % con contorno de 2,6 px, pecíolo y nervio central y nervaduras en papel claro. Es un signo del cuaderno, no la hoja de la especie observada. Al cargar el mapa las hojas caen de oeste a este cuando la cámara se posa (900 ms + 110 ms por hoja): bajan meciéndose (820 ms), la aguada florece en 760 ms, el contorno se entinta encima y luego el nervio. Seleccionada, la aguada se abre al 130 %, un segundo contorno se dibuja alrededor (480 ms) y sale una onda de agua (900 ms); al pulsar, la hoja se encoge al 88 %. Con movimiento reducido no hay animaciones: los estados se aplican al instante.
 
 **Papeleta de observación:** hoja de libreta de campo dejada sobre el mapa: papel blanco con grano (`Paper` sobre `surface`), filo fino `outlineVariant`, radio de 2 dp, sombra de tarjeta sobre mapa y un trozo de cinta lima a -5°. Arriba, la lámina de la especie (52 dp) entintándose sobre su aguada (o el círculo abierto si no hay especie elegida), nombre común y científico; bajo ellos, la línea de cabecera de la libreta (1 px copihue al 45 %, de canto a canto). Debajo, renglones de 24 dp en `outlineVariant`: la cinta `SyntheticTag` y la fecha a mano (Kalam), la nota y, tras un renglón en blanco, la acción a la ficha, todo con alto de línea de 24 para escribir sobre las líneas. Entra subiendo 40 dp girada -4° hasta asentarse (420 ms, ease-out exponencial) y sale bajando 20 dp en 160 ms; con movimiento reducido, solo fundido. Si la hoja elegida queda bajo la papeleta, el mapa se desplaza para mostrarla.
 

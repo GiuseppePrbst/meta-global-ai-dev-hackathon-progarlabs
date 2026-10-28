@@ -2,10 +2,8 @@ import { useMemo } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, Keyframe, useReducedMotion } from 'react-native-reanimated';
 
-import type { ReferencePhoto } from '@/features/catalog/reference-photos';
-import { easeOutExpo } from '@/ui/ink';
-import { useTheme } from '@/ui/theme';
-import { seeded } from '@/ui/watercolor';
+import type { ReferencePhoto } from '@/features/catalog/art/reference-photos';
+import { duration, easeOutExpo, seeded, Tape, useTheme } from '@/ui';
 
 // Lado mayor de la foto respecto del cuadrado de la lámina: deja aire para el borde y la cinta.
 const FILL = 0.82;
@@ -48,15 +46,13 @@ export function TapedPhoto({ photo, seed, accessibilityLabel }: TapedPhotoProps)
 
   return (
     <View style={styles.page} accessible accessibilityRole="image" accessibilityLabel={accessibilityLabel}>
-      <Animated.View entering={reducedMotion ? FadeIn.duration(160) : drop}
+      <Animated.View entering={reducedMotion ? FadeIn.duration(duration.reducedIn) : drop}
         style={[styles.print, { width, backgroundColor: color.surface, borderColor: color.outlineVariant, transform: [{ rotate: tilt }] }]}>
         <View style={[styles.window, { aspectRatio: photo.aspect, backgroundColor: color.surfaceContainer }]}>
           <Image source={photo.source} style={StyleSheet.absoluteFill} resizeMode="cover" accessible={false} />
         </View>
-        <Animated.View entering={reducedMotion ? undefined : tapeOn(TAPE_TOP).delay(380)}
-          style={[styles.tape, styles.tapeTop, { backgroundColor: color.lime }]} />
-        <Animated.View entering={reducedMotion ? undefined : tapeOn(TAPE_BOTTOM).delay(480)}
-          style={[styles.tape, styles.tapeBottom, { backgroundColor: color.lime }]} />
+        <Tape entering={reducedMotion ? undefined : tapeOn(TAPE_TOP).delay(380)} style={[styles.tape, styles.tapeTop]} />
+        <Tape entering={reducedMotion ? undefined : tapeOn(TAPE_BOTTOM).delay(480)} style={[styles.tape, styles.tapeBottom]} />
       </Animated.View>
     </View>
   );
@@ -68,7 +64,7 @@ const styles = StyleSheet.create({
   print: { padding: 7, paddingBottom: 14, borderWidth: StyleSheet.hairlineWidth, borderRadius: 1 },
   window: { width: '100%', overflow: 'hidden' },
   // Dos trozos de cinta en esquinas opuestas, como se pega una foto en una libreta.
-  tape: { position: 'absolute', width: 64, height: 20, opacity: 0.85, borderRadius: 1 },
+  tape: { width: 64, height: 20 },
   tapeTop: { top: -8, left: -20, transform: [{ rotate: TAPE_TOP }] },
   tapeBottom: { bottom: -6, right: -20, transform: [{ rotate: TAPE_BOTTOM }] },
 });

@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { GestureDetector, usePanGesture } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 
-import { LeafPlate } from '@/features/catalog/leaf-plate';
-import { easePen } from '@/ui/ink';
-import { useTheme } from '@/ui/theme';
+import { LeafPlate } from '@/features/species-art/leaf-plate';
+import { easePen, elevation, useLayoutSize, useTheme } from '@/ui';
 
 export const LENS_ZOOM = 2.6;
 const LENS_SIZE = 132;
@@ -26,7 +25,7 @@ type PlateLensProps = {
 export function PlateLens({ speciesId, ink, ring, ground }: PlateLensProps) {
   const { color } = useTheme();
   const reducedMotion = useReducedMotion();
-  const [plateSize, setPlateSize] = useState(0);
+  const { width: plateSize, onLayout } = useLayoutSize();
   // La lámina ampliada se monta al primer uso: en Android su SVG es un bitmap de varios MB.
   const [lensUsed, setLensUsed] = useState(false);
   const focusX = useSharedValue(0);
@@ -69,8 +68,6 @@ export function PlateLens({ speciesId, ink, ring, ground }: PlateLensProps) {
     ],
   }));
 
-  const onLayout = (event: LayoutChangeEvent) => setPlateSize(event.nativeEvent.layout.width);
-
   return (
     <GestureDetector gesture={pan}>
       <View style={styles.plate} onLayout={onLayout}>
@@ -78,7 +75,7 @@ export function PlateLens({ speciesId, ink, ring, ground }: PlateLensProps) {
         {plateSize > 0 && lensUsed ? (
           <Animated.View
             pointerEvents="none"
-            style={[styles.lens, { borderColor: ring, backgroundColor: ground, shadowColor: color.onSurface }, lensStyle]}>
+            style={[styles.lens, elevation.lens, { borderColor: ring, backgroundColor: ground, shadowColor: color.onSurface }, lensStyle]}>
             <Animated.View style={magnifiedStyle}>
               <LeafPlate speciesId={speciesId} ink={ink} size={plateSize * LENS_ZOOM} />
             </Animated.View>
@@ -100,9 +97,5 @@ const styles = StyleSheet.create({
     borderRadius: LENS_SIZE / 2,
     borderWidth: 3,
     overflow: 'hidden',
-    elevation: 8,
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.25,
-    shadowRadius: 12,
   },
 });

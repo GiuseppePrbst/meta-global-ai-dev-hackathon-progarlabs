@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { type EasingFunctionFactory, useReducedMotion, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import Svg, { Circle, G, Path } from 'react-native-svg';
 
-import { easeOutExpo, FadeGroup, InkPath, whenIdle } from '@/ui/ink';
-import { useTheme } from '@/ui/theme';
-import { seedOf, seeded } from '@/ui/watercolor';
+import { easeOutExpo, FadeGroup, InkPath, seedOf, seeded, useTheme, whenIdle } from '@/ui';
 
 // Ilustración conceptual de la hoja de cada especie, dibujada en código como una página de
 // cuaderno de campo: una aguada de color y, encima, la tinta fuera de registro.
 // Es un esquema de la forma, no una representación fiel ni una fotografía.
+// Vive fuera de `catalog/` porque la usan el catálogo, el Atlas e Identificar: ninguna feature
+// depende del interior de otra.
 
 type Margin = 'entire' | 'serrate' | 'crenate' | 'double-crenate';
 

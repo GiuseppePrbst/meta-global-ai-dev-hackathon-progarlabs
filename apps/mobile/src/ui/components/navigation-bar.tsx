@@ -1,6 +1,6 @@
 import type { TabTriggerSlotProps } from 'expo-router/ui';
 import { useEffect } from 'react';
-import { Pressable, StyleSheet, Text, View, type ViewProps } from 'react-native';
+import { Pressable, StyleSheet, View, type ViewProps } from 'react-native';
 import Animated, {
   Easing,
   interpolate,
@@ -12,8 +12,9 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg from 'react-native-svg';
 
-import { space, type, useTheme } from '@/ui/theme';
-import { seedOf, Wash } from '@/ui/watercolor';
+import { seedOf, Wash } from '@/ui/art/watercolor';
+import { Text } from '@/ui/components/text';
+import { space, useTheme } from '@/ui/tokens/theme';
 
 /** Barra de navegación Material 3: contenedor de las pestañas principales, respeta el borde inferior. */
 export function NavigationBar({ style, ...props }: ViewProps) {
@@ -78,13 +79,8 @@ export function NavigationItem({ label, icon: Icon, isFocused = false, ...props 
           <Icon color={iconColor} fill={isFocused ? color.navIconFill : undefined} />
         </View>
       </View>
-      <Text
-        numberOfLines={1}
-        style={[
-          type.labelMedium,
-          { color: isFocused ? color.onSurface : color.onSurfaceVariant },
-          isFocused && styles.labelActive,
-        ]}>
+      <Text variant="labelMedium" tone={isFocused ? 'onSurface' : 'onSurfaceVariant'} numberOfLines={1}
+        style={isFocused && styles.labelActive}>
         {label}
       </Text>
     </Pressable>

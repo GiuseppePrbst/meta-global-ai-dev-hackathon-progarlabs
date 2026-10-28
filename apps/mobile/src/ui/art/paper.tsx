@@ -1,16 +1,16 @@
-import { useState } from 'react';
 import { Image, StyleSheet, View, type ViewProps } from 'react-native';
 
-import { useTheme } from '@/ui/theme';
+import { useLayoutSize } from '@/ui/hooks/use-layout-size';
+import { useTheme } from '@/ui/tokens/theme';
 
 // Tesela generada por scripts/paper-grain.py.
-const grain = require('../../assets/images/paper-grain.png');
+const grain = require('../../../assets/images/paper-grain.png');
 const TILE = 192;
 
 /** Fondo de papel de acuarela: el color del suelo y, encima, el grano teselado y teñido según el tema. */
 export function Paper({ style, children, onLayout, ...props }: ViewProps) {
   const { color } = useTheme();
-  const [size, setSize] = useState({ width: 0, height: 0 });
+  const size = useLayoutSize();
   // Teselas explícitas: `resizeMode="repeat"` no se comporta igual en todas las plataformas.
   const columns = Math.ceil(size.width / TILE);
   const rows = Math.ceil(size.height / TILE);
@@ -19,7 +19,7 @@ export function Paper({ style, children, onLayout, ...props }: ViewProps) {
     <View
       style={[{ backgroundColor: color.background }, style]}
       onLayout={(event) => {
-        setSize({ width: event.nativeEvent.layout.width, height: event.nativeEvent.layout.height });
+        size.onLayout(event);
         onLayout?.(event);
       }}
       {...props}>

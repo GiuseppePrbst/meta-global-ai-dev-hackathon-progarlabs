@@ -6,7 +6,7 @@ import { type DOMImperativeFactory, type DOMProps, useDOMImperativeHandle } from
 import type { Map as MapLibreMap, Marker, RasterLayerSpecification, StyleSpecification } from 'maplibre-gl';
 import { useEffect, useRef } from 'react';
 
-import { leafPath, seeded, seedOf } from '@/ui/brush';
+import { leafPath, seeded, seedOf } from '@/ui/art/brush';
 
 // MapLibre GL JS dentro de un Expo DOM component (ADR 0002). Recibe datos ya resueltos como props
 // y no hace peticiones a la API; solo pide teselas del mapa base.
