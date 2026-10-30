@@ -128,3 +128,12 @@ Las issues no se cierran por tener código parcial. Evidencia: [reporte GIS/ML](
   pendientes, BioCLIP condicionado. No cerrar issues por pruebas del software.
 
 Próximos pasos y trazabilidad en [informe de contexto](FOREST_CONTEXT_REPORT.md).
+# Estado posterior a consolidación, 29-10-2026
+
+BV-04/05/06/07/08 conservan su seguimiento existente, sin cierre automático.
+Implementado: #15/#16 integrados; contexto real PostGIS/HTTP; reservas compartidas y credenciales
+individuales de demo; privacidad/eliminación de observaciones; worker raster interrumpible;
+smoke sintético SAM+Muse. Pendientes: dataset humano externo autorizado (n=0), rasgos/revisión
+científica, derechos territoriales definitivos, identidad productiva/TLS/proxy y operación de purga.
+Móvil: typecheck local bloqueado por dependencias ausentes; tarea para su responsable.
+Próximos pasos y evidencia en [reporte](BACKEND_META_CONSOLIDATION_REPORT.md).

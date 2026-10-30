@@ -58,3 +58,14 @@ Se preparó PR de reconciliación #15 porque el merge de #13 a bootstrap no hab�
 a main. Sin merge automático ni cambios a PR ajenos. Informe, fuentes, comandos y límites
 en [FOREST_CONTEXT_REPORT](FOREST_CONTEXT_REPORT.md). Autor/committer humano verificado
 GiuseppePrbst; no se atribuye implementación a José ni contribución competitiva a Fabiana.
+# Incremento del 29-10-2026
+
+GiuseppePrbst autorizado/verificado, asistencia de Codex: consolidación explícitamente
+autorizada #15/#16 con merge commits y CI combinado, ingesta PostGIS real sobre recorte
+preexistente, controles de demo/presupuesto/privacidad y aislamiento raster; no frontend/móvil.
+Código nuevo y dependencias/datasets preexistentes diferenciados en
+[reporte de consolidación](BACKEND_META_CONSOLIDATION_REPORT.md).
+PostgreSQL/PostGIS de prueba instalado en WSL con autorización específica del usuario.
+Dos llamadas nuevas autorizadas a Meta sobre dibujo generado; ninguna foto privada transferida.
+No hay conjunto botánico evaluable ni métricas de calidad; Fabiana mantiene rol empresarial
+sin atribución de participación competitiva no confirmada. Git/CI no acreditan elegibilidad.

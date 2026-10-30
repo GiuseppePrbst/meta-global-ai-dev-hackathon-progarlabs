@@ -63,3 +63,11 @@ anterior no implementa todas las validaciones de campaña/bloque/perceptual del 
 nuevo: deben completarse al admitir el dataset antes de ejecutar ese experimento.
 No generar miles de labels mediante spatial join, ni usar la salida del modelo como verdad.
 Los libros/PPTX son referencias protegidas; libro y extracto duplicado son la misma fuente.
+# Evidencia del 29-10-2026
+
+[Recibo de consolidación](../evaluations/backend-validation-2026-10-29.json): SAM+Muse reales
+por HTTP con dibujo sintético autorizado, abstención sin candidatos; esto no evalúa botánica.
+Runner vacío devuelve not_evaluated, n=0 y métricas nulas. Casos reales requieren campaña,
+bloque y grupo perceptual/revisión humana; validación de particiones incluye esas claves.
+No mezcla tipos de fotografía. No se ejecutaron C/D/E ni se midió mejora por contexto.
+Los contadores de uso y estimaciones por tarifa no son cargos observados.
