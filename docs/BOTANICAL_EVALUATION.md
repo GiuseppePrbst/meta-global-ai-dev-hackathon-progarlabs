@@ -133,3 +133,17 @@ visual del agente y sin especialista: los valores son concordancia, no precisió
 E y F (contexto GIS posterior y permutado) siguen pendientes. Casos, licencias y
 candidatos en [`muse-campaign-2026-10-30.json`](../evaluations/botanical/muse-campaign-2026-10-30.json).
 Análisis completo en [META_VALIDATION_CAMPAIGN_REPORT.md](META_VALIDATION_CAMPAIGN_REPORT.md).
+
+## Conjunto abierto — resultados del 30-10-2026
+
+Exploración con etiquetas débiles (plataforma + revisión del agente). Detalle en
+[OPEN_SET_IDENTIFICATION_REPORT.md](OPEN_SET_IDENTIFICATION_REPORT.md).
+
+- **Desarrollo:** el baseline acepta 11/12 negativos; `verify-v2` acepta 3/12 con 14/35
+  correctos aceptados y riesgo selectivo 0/14.
+- **Evaluación independiente congelada (56 casos):** negativos aceptados 25/37 → **3/37**;
+  correctos aceptados en positivos 10/19 → 8/19; riesgo selectivo 2/12 → 0/8. Pareada:
+  23 casos mejoran y 3 empeoran (McNemar exacto p ≈ 8,8·10⁻⁵).
+- **Multivista:** 2 vistas ayudan (1/5 → 3/5); con `verify-v2`, 3 vistas abstienen (0/4).
+  n=5, sin conclusión estadística.
+- Las podocarpáceas siguen siendo la confusión residual.

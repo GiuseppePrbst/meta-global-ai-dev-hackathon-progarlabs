@@ -13,6 +13,9 @@ class Settings(BaseSettings):
     meta_timeout_seconds: float = Field(default=30, gt=0, le=120)
     meta_enabled: bool = False
     meta_model: str = Field(default="muse-spark-1.3", min_length=1, max_length=100)
+    # Open-set strategy for /identify. "verify" (v2) chosen on the development set and
+    # confirmed on the frozen independent set (30-10-2026); "baseline" restores the old prompt.
+    identify_strategy: Literal["baseline", "abstain", "comparators", "verify"] = "verify"
     sam_enabled: bool = False
     sam_model: str = Field(default="sam-3.1", min_length=1, max_length=100)
     meta_access_token: SecretStr = SecretStr("")
@@ -28,6 +31,9 @@ class Settings(BaseSettings):
     voice_reservation_units: int = Field(default=0, ge=0)
     guide_reservation_units: int = Field(default=0, ge=0)
     budget_concurrency: int = Field(default=1, ge=1, le=8)
+    # Only an explicit research campaign may disable the daily request counter;
+    # monetary, lifetime, identity-cap and concurrency limits always apply.
+    budget_daily_requests_enabled: bool = True
     observation_retention_days: int = Field(default=30, ge=1, le=365)
     raster_timeout_seconds: float = Field(default=15, gt=0, le=60)
     cors_origins: list[str] = ["http://localhost:3000"]

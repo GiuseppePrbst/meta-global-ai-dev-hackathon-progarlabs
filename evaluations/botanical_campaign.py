@@ -156,40 +156,82 @@ def load(path: Path) -> list[dict]:
     return json.loads(path.read_text(encoding="utf-8"))["records"]
 
 
-async def run_cases(cases, experiment: str, cfg: Path, images: Path, output: Path):
-    """One Muse identification per case (B: SAM concept crop first). Private output."""
+async def with_backoff(call, attempts=4, base=1.0, sleep=asyncio.sleep):
+    """Retry only provider 429/500/503, honoring Retry-After plus jittered doubling."""
+    import random
+
+    from bosque_ai.meta import MetaRetryableError
+
+    for attempt in range(attempts):
+        try:
+            return await call()
+        except MetaRetryableError as exc:
+            if attempt == attempts - 1:
+                raise
+            delay = max(exc.retry_after or 0, base * 2**attempt) + random.uniform(0, 1)
+            await sleep(delay)
+
+
+async def run_cases(
+    cases,
+    experiment: str,
+    cfg: Path,
+    images: Path,
+    output: Path,
+    *,
+    strategy: str = "baseline",
+    phase: str = "C",
+    stage1: dict[str, dict] | None = None,
+    log=print,
+):
+    """One identification per case, resumable, bounded concurrency. Private output.
+
+    Cases already present in the output file (any status) are never sent again.
+    For the verify strategy, a stage-1 result with the same prompt version and
+    model is reused from stage1: only the verification call is paid.
+    """
+    from bosque_ai.contracts import Identification
     from bosque_ai.meta import (
         MetaAPIError,
         MetaResponsesClient,
         MuseSparkAdapter,
         SAMAdapter,
     )
+    from bosque_ai.open_set import PROMPT_VERSIONS
     from bosque_ai.segmentation import SegmentationRequest
-    from bosque_api.catalog import get_species
+    from bosque_api.catalog import get_comparators, get_species
     from bosque_api.execution import ExecutionStore
     from bosque_api.images import prepare_image, segment_image
     from PIL import Image
 
     from tools.meta_sam_api_lab.lab import (
-        admit_phase,
         campaign_from_private,
         config_from_private,
+        phase_admission,
     )
 
     config, campaign = config_from_private(cfg), campaign_from_private(cfg)
     species = get_species()
     catalog = {s.id: s.scientific_name for s in species}
     knowledge = knowledge_from_catalog(species) if experiment == "D" else None
+    comparators = [c.model_dump() for c in get_comparators()]
+    traits = {
+        s.id: s.morphology for s in species if s.trait_validation_status != "pending"
+    }
     ledger = ExecutionStore(config)
-    client = MetaResponsesClient(config.model_api_key, config.meta_timeout_seconds)
-    adapter = MuseSparkAdapter(client)
-    results = []
-    for case in cases:
-        owner = await asyncio.to_thread(
-            admit_phase, config, "C", campaign.phase_caps_usd["C"]
+    done = json.loads(output.read_text(encoding="utf-8")) if output.is_file() else []
+    seen = {r["image_id"] for r in done}
+    pending = [c for c in cases if c["image_id"] not in seen]
+    lock = asyncio.Lock()
+    gate = asyncio.Semaphore(config.budget_concurrency)
+
+    async def one(case):
+        client = MetaResponsesClient(config.model_api_key, config.meta_timeout_seconds)
+        adapter = MuseSparkAdapter(client)  # per case: usage never mixes across tasks
+        owner, cap = phase_admission(phase, campaign.phase_caps_usd[phase])
+        reservation = await asyncio.to_thread(
+            ledger.reserve, owner, "identify", *(() if cap is None else (cap,))
         )
-        reservation = await asyncio.to_thread(ledger.reserve, owner, "identify")
-        client.usage.clear()
         status, row = "provider_error", {}
         started = perf_counter()
         try:
@@ -209,21 +251,59 @@ async def run_cases(cases, experiment: str, cfg: Path, images: Path, output: Pat
                     image = segment_image(image, seg)
                 except (ValueError, OSError):
                     row["segmentation_status"] = "error"
-            ident = await adapter.identify(
-                image,
-                "image/jpeg",
-                catalog,
-                knowledge=knowledge,
-                additional_images=extra or None,
-                views=case.get("views"),
-            )
+            cached = (stage1 or {}).get(case["image_id"])
+            if (
+                strategy == "verify"
+                and cached
+                and cached.get("prompt_version") == PROMPT_VERSIONS["abstain"]
+                and cached.get("model") == adapter.model
+            ):
+                row["stage1_reused"] = True
+                ident = await with_backoff(
+                    lambda: adapter.verify_candidate(
+                        Identification.model_validate(cached),
+                        image,
+                        "image/jpeg",
+                        extra or None,
+                        comparators,
+                        traits,
+                    )
+                )
+            else:
+                ident = await with_backoff(
+                    lambda: adapter.identify(
+                        image,
+                        "image/jpeg",
+                        catalog,
+                        knowledge=knowledge,
+                        additional_images=extra or None,
+                        views=case.get("views"),
+                        strategy=strategy,
+                        comparators=comparators,
+                        traits=traits,
+                    )
+                )
             status = "completed"
+            proposed = [
+                c.species_id for c in [*ident.candidates, *ident.exploratory_candidates]
+            ]
             row.update(
                 candidates=[c.species_id for c in ident.candidates],
+                proposed=proposed,
+                # Baseline has no acceptance policy: its first candidate is presented.
+                accepted=ident.accepted_species_id
+                if strategy != "baseline"
+                else (proposed[0] if proposed else None),
+                catalog_assessment=ident.catalog_assessment,
+                recommended_next_photo=ident.recommended_next_photo,
+                similar_out_of_catalog=ident.similar_out_of_catalog,
+                stage_usage=ident.stage_usage,
                 identification=ident.model_dump(mode="json"),
             )
-        except MetaAPIError:
-            row["candidates"] = []
+        except MetaAPIError as exc:
+            row.update(
+                candidates=[], proposed=[], accepted=None, error=type(exc).__name__
+            )
         finally:
             usage = client.usage.copy()
             model = "sam-3.1+muse-spark-1.3" if experiment == "B" else "muse-spark-1.3"
@@ -231,23 +311,38 @@ async def run_cases(cases, experiment: str, cfg: Path, images: Path, output: Pat
                 ledger.finish,
                 reservation,
                 status,
-                {"model": model, "usage": usage, "experiment": experiment},
+                {
+                    "model": model,
+                    "usage": usage,
+                    "experiment": experiment,
+                    "strategy": strategy,
+                },
             )
-        results.append(
-            {
-                "image_id": case["image_id"],
-                "label": case["species_id"],
-                "negative": bool(case.get("negative")),
-                "organ": case["organ"],
-                "experiment": experiment,
-                "status": status,
-                "latency_ms": round((perf_counter() - started) * 1000),
-                "usage": usage,
-                **row,
-            }
-        )
-        output.write_text(
-            json.dumps(results, indent=1, ensure_ascii=False), encoding="utf-8"
-        )
-        await asyncio.sleep(1)
-    return results
+        result = {
+            "image_id": case["image_id"],
+            "label": case["species_id"],
+            "negative": bool(case.get("negative")),
+            "organ": case["organ"],
+            "experiment": experiment,
+            "strategy": strategy,
+            "status": status,
+            "latency_ms": round((perf_counter() - started) * 1000),
+            "usage": usage,
+            **row,
+        }
+        async with lock:  # atomic checkpoint after every case
+            done.append(result)
+            temporary = output.with_suffix(".tmp")
+            temporary.write_text(
+                json.dumps(done, indent=1, ensure_ascii=False), encoding="utf-8"
+            )
+            temporary.replace(output)
+            log(f"{len(done)}/{len(seen) + len(pending)} {case['image_id']} {status}")
+
+    async def guarded(case):
+        async with gate:
+            await one(case)
+
+    await asyncio.gather(*(guarded(c) for c in pending))
+    order = {c["image_id"]: i for i, c in enumerate(cases)}
+    return sorted(done, key=lambda r: order.get(r["image_id"], len(order)))

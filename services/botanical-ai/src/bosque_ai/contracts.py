@@ -11,6 +11,15 @@ PhotoRecommendation = Literal[
 ]
 
 
+CatalogAssessment = Literal[
+    "supported_candidate",
+    "insufficient_evidence",
+    "out_of_catalog_suspected",
+    "non_diagnostic_photo",
+    "not_assessed",
+]
+
+
 class Candidate(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -46,6 +55,13 @@ class Identification(BaseModel):
         "candidates", "insufficient_evidence", "additional_photo_requested"
     ] = "insufficient_evidence"
     sources: list[str] = Field(default_factory=list)
+    # Open-set fields (2026-10-30). Defaults keep earlier responses valid.
+    catalog_assessment: CatalogAssessment = "not_assessed"
+    acceptance: Literal["accepted", "not_accepted", "not_applicable"] = "not_applicable"
+    accepted_species_id: str | None = None
+    exploratory_candidates: list[Candidate] = Field(default_factory=list, max_length=3)
+    similar_out_of_catalog: list[str] = Field(default_factory=list, max_length=3)
+    strategy: str | None = None
 
     @model_validator(mode="after")
     def consistent_result(self):
@@ -66,6 +82,20 @@ class Identification(BaseModel):
             raise ValueError("Meta requiere modelo y ejecución completa")
         if len({c.species_id for c in self.candidates}) != len(self.candidates):
             raise ValueError("Candidatos duplicados")
+        # Accepted means presentable, never verified; it must be the first candidate.
+        if (self.acceptance == "accepted") != (
+            self.accepted_species_id is not None
+        ) or (
+            self.acceptance == "accepted"
+            and (
+                not self.candidates
+                or self.candidates[0].species_id != self.accepted_species_id
+                or self.catalog_assessment != "supported_candidate"
+            )
+        ):
+            raise ValueError("Aceptación incoherente con candidatos y evaluación")
+        if self.acceptance == "not_accepted" and self.candidates:
+            raise ValueError("Candidatos no aceptados van en exploratory_candidates")
         return self
 
 

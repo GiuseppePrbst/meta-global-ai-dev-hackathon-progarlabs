@@ -124,6 +124,7 @@ def test_enabled_meta_api_requires_auth_limits_cost_and_sanitizes(monkeypatch):
                 meta_enabled=True,
                 model_api_key="test-placeholder",
                 meta_access_token="local-test",
+                identify_strategy="baseline",  # pins the legacy schema this mock returns
             )
         )
     )
@@ -210,3 +211,66 @@ def test_smoke_generator_is_synthetic_and_has_no_metadata():
     generate = runpy.run_path(str(root / "evaluations/meta_smoke.py"))["synthetic_image"]
     with Image.open(BytesIO(generate())) as image:
         assert image.size == (128, 128) and not image.getexif()
+
+
+def test_identify_defaults_to_verify_and_never_presents_a_rejected_candidate(monkeypatch):
+    """End to end: stage 1 accepts lenga, verification contradicts it (look-alike)."""
+    replies = [
+        {
+            "candidates": [{"species_id": "nothofagus-pumilio", "evidence": "hoja caduca"}],
+            "limitations": [],
+            "message": "Candidato",
+            "observed_traits": ["hoja pequeña"],
+            "missing_traits": [],
+            "recommended_next_photo": None,
+            "catalog_assessment": "supported_candidate",
+            "similar_out_of_catalog": [],
+        },
+        {
+            "verdict": "contradicted",
+            "supporting_traits": [],
+            "contradicting_traits": ["margen irregularmente dentado"],
+            "more_likely_comparator": "Nothofagus antarctica",
+        },
+    ]
+    prompts = []
+
+    def handle(request):
+        prompts.append(json.loads(request.content)["messages"][0]["content"][0]["text"])
+        return httpx.Response(
+            200,
+            json={
+                "choices": [
+                    {"finish_reason": "stop", "message": {"content": json.dumps(replies.pop(0))}}
+                ]
+            },
+        )
+
+    original = MetaResponsesClient.__init__
+
+    def init(self, key, timeout):
+        original(self, key, timeout, transport=httpx.MockTransport(handle))
+
+    monkeypatch.setattr(MetaResponsesClient, "__init__", init)
+    config = Settings(
+        _env_file=None,
+        ai_provider="meta",
+        meta_enabled=True,
+        model_api_key="test-placeholder",
+        meta_access_token="local-test",
+    )
+    assert config.identify_strategy == "verify"
+    response = TestClient(create_app(config)).post(
+        "/identify",
+        files={"file": ("image.png", photo(), "image/png")},
+        data={"adult_confirmed": True, "rights_confirmed": True},
+        headers={"Authorization": "Bearer local-test"},
+    )
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert body["status"] == "insufficient_evidence" and body["candidates"] == []
+    assert body["catalog_assessment"] == "out_of_catalog_suspected"
+    assert body["similar_out_of_catalog"] == ["Nothofagus antarctica"]
+    assert body["exploratory_candidates"][0]["species_id"] == "nothofagus-pumilio"
+    assert body["prompt_version"] == "open-set-verify-v2" and len(prompts) == 2
+    assert "Nothofagus antarctica" in prompts[1] and "Saxegothaea" not in prompts[1]
