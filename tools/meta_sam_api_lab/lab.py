@@ -444,7 +444,7 @@ async def cleanup_remote(client, manifest):
 
 LEGACY_CAP_USD = 1
 RESEARCH_CAP_USD = 50  # user authorization 2026-10-30; cumulative, history included
-PHASES = ("A", "B", "C", "D", "E")
+PHASES = ("A", "B", "C", "D", "E", "F")  # F: open-set sprint, 2026-10-30
 
 
 class Campaign(BaseModel):
@@ -453,7 +453,7 @@ class Campaign(BaseModel):
     model_config = ConfigDict(extra="forbid")
     authorized_usd: float = Field(gt=0, le=RESEARCH_CAP_USD)
     authorization_date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
-    phase_caps_usd: dict[Literal["A", "B", "C", "D", "E"], float]
+    phase_caps_usd: dict[Literal["A", "B", "C", "D", "E", "F"], float]
     daily_requests: int = Field(ge=1, le=200)
     reservation_usd: float = Field(ge=0.01, le=0.12)
     historical_reserved_usd: float = Field(ge=0)  # kept, never refunded

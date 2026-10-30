@@ -42,7 +42,7 @@ class RunRequest(BaseModel):
     include_confidence: bool = False
     parent_experiment_id: str | None = Field(default=None, max_length=64)
     correction_reason: str | None = Field(default=None, max_length=300)
-    phase: Literal["A", "B", "C", "D", "E"] | None = None
+    phase: Literal["A", "B", "C", "D", "E", "F"] | None = None
     experiment_note: str | None = Field(default=None, max_length=1000)
 
 
