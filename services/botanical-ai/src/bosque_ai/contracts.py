@@ -2,12 +2,21 @@ from typing import Literal, Protocol
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+PhotoRecommendation = Literal[
+    "leaf_underside",
+    "bark",
+    "complete_leaf",
+    "flowers_or_fruit_if_present",
+    "closer_view",
+]
+
 
 class Candidate(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     species_id: str = Field(min_length=1, max_length=80)
     evidence: str = Field(min_length=1, max_length=1000)
+    contradictory_evidence: list[str] = Field(default_factory=list, max_length=10)
 
 
 class Identification(BaseModel):
@@ -29,9 +38,24 @@ class Identification(BaseModel):
     prompt_version: str | None = None
     usage: dict[str, int] = Field(default_factory=dict)
     stage_usage: dict[str, dict[str, int]] = Field(default_factory=dict)
+    identification_id: str | None = None
+    observed_traits: list[str] = Field(default_factory=list, max_length=10)
+    missing_traits: list[str] = Field(default_factory=list, max_length=10)
+    recommended_next_photo: PhotoRecommendation | None = None
+    evidence_status: Literal[
+        "candidates", "insufficient_evidence", "additional_photo_requested"
+    ] = "insufficient_evidence"
+    sources: list[str] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def consistent_result(self):
+        self.evidence_status = (
+            "additional_photo_requested"
+            if self.recommended_next_photo
+            else "candidates"
+            if self.candidates
+            else "insufficient_evidence"
+        )
         if (self.status == "candidates") != bool(self.candidates):
             raise ValueError("El estado debe coincidir con la presencia de candidatos")
         if self.provider == "mock" and (self.candidates or self.model is not None):

@@ -21,7 +21,7 @@ class ObservationStore:
         self, limit: int, owner: str | None = None, retention_days: int = 30
     ) -> list[Observation]:
         with psycopg.connect(self.database_url, row_factory=dict_row, connect_timeout=3) as conn:
-            condition = ""
+            condition = " WHERE to_jsonb(observations)->>'owner_id' IS NULL"
             params = (limit,)
             if owner is not None:
                 condition = " WHERE owner_id=%s AND created_at > now() - %s * interval '1 day'"
@@ -49,12 +49,16 @@ class ObservationStore:
 
     def delete(self, identifier, owner: str) -> bool:
         with psycopg.connect(self.database_url, connect_timeout=3) as conn:
-            return (
+            row = conn.execute(
+                "DELETE FROM observations WHERE id=%s AND owner_id=%s "
+                "RETURNING to_jsonb(observations)->>'identification_id'",
+                (identifier, owner),
+            ).fetchone()
+            if row and row[0]:
                 conn.execute(
-                    "DELETE FROM observations WHERE id=%s AND owner_id=%s", (identifier, owner)
-                ).rowcount
-                == 1
-            )
+                    "DELETE FROM identifications WHERE id=%s AND owner_id=%s", (row[0], owner)
+                )
+            return row is not None
 
     def purge_expired(self, retention_days: int) -> int:
         with psycopg.connect(self.database_url, connect_timeout=3) as conn:

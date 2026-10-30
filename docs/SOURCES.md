@@ -91,3 +91,16 @@ Tarifas consultadas para estimar el smoke sintético; no son factura ni saldo ob
 No se activó Contributor mode. No se añadieron fuentes botánicas como verificadas sin consulta.
 Manifiestos originales conservados; recibos de uso/ingesta real en
 [backend-validation](../evaluations/backend-validation-2026-10-29.json).
+
+# Fuentes del incremento Expediciones, 29-10-2026
+
+Consultadas en esta misión: [Meta STT](https://dev.meta.ai/docs/speech-to-text),
+[fundamentos de voz](https://dev.meta.ai/docs/cookbook/voice-api-fundamentals),
+[tool/function calling](https://dev.meta.ai/docs/cookbook/tool-function-calling),
+[Chat Completions](https://dev.meta.ai/docs/cookbook/quickstart-chat-completions).
+ASR `muse-voice-transcribe-1.0`: archivos WAV mono PCM 16 bits 16/24 kHz, endpoint
+multipart `/v1/asr/transcribe`; nuestro contrato reduce a 60 s/3 MiB. Muse `muse-spark-1.3`:
+definiciones `tools.function`, argumentos JSON y retorno con `tool_call_id`.
+Documentación consultada no demuestra acceso o créditos en esta sesión. No se realizaron
+llamadas nuevas ni se asumió TTS. Referencias por especie en
+[DATASET_LICENSES](DATASET_LICENSES.md); no se afirma validación humana de los rasgos.

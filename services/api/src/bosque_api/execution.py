@@ -27,8 +27,13 @@ class ExecutionStore:
         config = self.config
         if not config.database_url.get_secret_value():
             raise HTTPException(503, "Control global de consumo no configurado")
-        units = config.meta_reservation_units if operation == "identify" else 0
-        if operation == "identify" and (not units or not config.budget_units):
+        units = {
+            "identify": config.meta_reservation_units,
+            "transcribe": config.voice_reservation_units,
+            "guide": config.guide_reservation_units,
+            "raster": 0,
+        }[operation]
+        if operation != "raster" and (not units or not config.budget_units):
             raise HTTPException(503, "Presupuesto Meta no configurado")
         identifier = uuid4()
         try:

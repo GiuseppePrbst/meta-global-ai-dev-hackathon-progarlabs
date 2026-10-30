@@ -47,7 +47,9 @@ class Species(BaseModel):
     taxonomy: Taxonomy | None = None
     native_status: Literal["pending"] = "pending"
     morphology: list[str] = Field(default_factory=list)
-    trait_validation_status: Literal["pending"] = "pending"
+    trait_validation_status: Literal["pending", "source_checked"] = "pending"
+    trait_sources: list[str] = Field(default_factory=list)
+    trait_source_accessed_at: str | None = None
     conservation_status: str | None = None
 
 

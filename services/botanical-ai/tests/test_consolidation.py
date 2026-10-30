@@ -53,7 +53,7 @@ async def test_typed_analysis_records_only_usage_and_controlled_knowledge():
         "completion_tokens": 20,
         "total_tokens": 60,
     }
-    assert result.prompt_version == "botanical-visible-v2"
+    assert result.prompt_version == "botanical-multiview-v3"
 
 
 @pytest.mark.parametrize("group", ["campaign_id", "spatial_block", "perceptual_group"])
