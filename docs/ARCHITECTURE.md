@@ -41,3 +41,28 @@ Las versiones exactas están en los lockfiles; el frontend inicial usa Next.js 1
 Antes de IA real: confirmar modelo/endpoint habilitado, condiciones Standard/Contributor, consentimiento, retirada de EXIF y límites de tamaño; ejecutar pruebas de contrato con mocks y una prueba autorizada. Antes de datos reales: [gobernanza](DATA_GOVERNANCE.md), taxonomía y licencia. Antes de exposición pública: autenticación, retención/borrado, límites de petición, migraciones y backups. No se incluyen predicciones de crecimiento, invasoras ni riesgo eléctrico en la ruta crítica.
 
 Registrar aquí fecha, problema, opción elegida, motivo y criterio para reconsiderar cualquier decisión transversal nueva; una decisión reversible pequeña puede documentarse en el PR.
+
+## Fundación GIS/ML, 27-10-2026
+
+Estado vigente sobre el bootstrap: [reporte GIS/ML](GIS_ML_REPORT.md) y
+[contratos para José](API_INTEGRATION.md). Las descripciones 501 de Meta del bootstrap
+son históricas: ahora el proveedor habilitado ejecuta Muse con JSON Schema por Chat
+Completions, validación Pydantic contra catálogo y SAM opcional por Responses.
+Se reutiliza el cliente; no se añadió SDK ML/GPU. Parser oficial meta-sam-parser 0.1.0.
+
+Taxonomía: campos aditivos aceptados por GBIF, separados de procedencia/estado provisional
+histórico y rasgos pendientes. Snapshot reproducible CC BY 4.0; no se valida presencia.
+
+Privacidad: imágenes verificadas/orientadas/re-encodeadas sin metadata en memoria.
+Meta exige clave, habilitación, bearer de desarrollo y separación entre derechos locales
+y permiso de transferencia externa. Una identificación cada 60 s por proceso; sin reintentos.
+Mock y GIS funcionan independientemente de Meta. Autenticación por usuario, límite global
+y política de observaciones siguen siendo requisitos para publicación.
+
+Raster: extra opcional rasterio/pyproj, sin GeoPandas ni pesos. Solo ventanas locales
+revisadas por manifiesto/hash en API, nunca URLs de usuario. La adquisición remota está
+en un script con un único COG fijo permitido. Plazo cooperativo 10 s, 1 km², 100000 píxeles,
+una lectura por proceso, archivos 64 MiB. El plazo no interrumpe I/O bloqueada.
+Se excluyen ceros ambiguos CHMv2 y se declara sesgo potencial; fixture mantiene cero válido.
+Periodo global no sustituye fecha de adquisición del tile. Revisar aislamiento de proceso
+y nodata antes de ampliar proveedores. OpenAPI añade CanopyStatistics y campos de trazabilidad.

@@ -58,6 +58,13 @@ class CanopyStatistics(BaseModel):
     min_height_m: float = Field(ge=0, allow_inf_nan=False)
     max_height_m: float = Field(ge=0, allow_inf_nan=False)
     estimated: Literal[True] = True
+    source_version: str = "v2"
+    queried_area_m2: float = Field(gt=0)
+    coverage_area_m2: float = Field(gt=0)
+    unit: Literal["m"] = "m"
+    source_crs: str
+    period: str
+    limitations: list[str]
 
 
 class CanopyProvider(Protocol):

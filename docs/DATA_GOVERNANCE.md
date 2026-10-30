@@ -41,3 +41,13 @@ CHMv2 estima altura de copa; no es una medición directa ni una tasa anual de cr
 Revisar archivos staged antes de **cada** commit/push: nombres, contenido, diffs, secretos y datos restringidos. Los controles automáticos reducen errores pero no reemplazan la revisión. Nunca incluir `.env`, claves ni resultados privados en logs de CI. Si se encuentra material restringido, detener la publicación, limitar el acceso y avisar al titular; no reescribir historia pública sin coordinar respuesta al incidente.
 
 Fuentes y estado de licencias: [DATASET_LICENSES.md](DATASET_LICENSES.md). Política operativa: [SECURITY.md](SECURITY.md). Ningún manifiesto equivale a una autorización nueva.
+
+## Excepción limitada comunicada el 27-10-2026
+
+El usuario autorizó durante la sesión procesamiento local de fotografías Hepta, sin
+publicación. El permiso no cambia la clasificación RESTRICTED, no autoriza transferencia
+a Meta/otros proveedores, entrenamiento ni redistribución de fotos/metadatos/derivados.
+Cualquier copia permitida debe permanecer fuera del repositorio y de sus worktrees.
+Se comprobó acceso de lectura a esquema con Azure/OneLake; no se descargaron fotos.
+Antes de ampliar uso se requiere autorización específica del titular. La declaración
+del usuario queda como evidencia de sesión, no como una licencia pública del dataset.

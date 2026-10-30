@@ -19,6 +19,9 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest==9.1.1", "pytest-asyncio==1.4.1", "ruff==0.17.3"]
+raster = [
+    "bosque-geospatial[raster]==0.1.0",
+]
 
 [tool.uv.sources]
 bosque-botanical-ai = { path = "../botanical-ai", editable = true }

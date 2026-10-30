@@ -27,3 +27,12 @@ errores y latencia en un conjunto permitido. El texto del proveedor es entrada n
 
 No se incluyen DINOv3, pesos ni dependencias GPU. Investigación opcional y licencias
 de los pesos deben revisarse por separado. Hepta y sus derivados quedan excluidos.
+
+## Implementación GIS/ML
+
+MuseSparkAdapter.identify usa JSON Schema por Chat Completions, valida Pydantic y restringe
+IDs al catálogo suministrado. Responses permanece para describe y SAM. segment_typed aplica
+el parser oficial meta-sam-parser 0.1.0, valida máscaras y devuelve estados sin simular datos.
+El endpoint integra SAM opcional y conserva la imagen preparada cuando falla.
+Se probaron Muse/SAM reales sobre dibujo sintético, con evidencia sanitizada y consumo
+Muse; no demuestra precisión botánica. Ver [reporte](../../docs/GIS_ML_REPORT.md).

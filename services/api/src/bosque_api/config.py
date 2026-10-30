@@ -11,4 +11,11 @@ class Settings(BaseSettings):
     ai_provider: Literal["mock", "meta"] = "mock"
     model_api_key: SecretStr = SecretStr("")
     meta_timeout_seconds: float = Field(default=30, gt=0, le=120)
+    meta_enabled: bool = False
+    meta_model: str = Field(default="muse-spark-1.3", min_length=1, max_length=100)
+    sam_enabled: bool = False
+    sam_model: str = Field(default="sam-3.1", min_length=1, max_length=100)
+    meta_access_token: SecretStr = SecretStr("")
+    meta_min_interval_seconds: float = Field(default=60, ge=1, le=3600)
+    forest_manifest: str = ""
     cors_origins: list[str] = ["http://localhost:3000"]

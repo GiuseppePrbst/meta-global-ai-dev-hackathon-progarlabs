@@ -15,6 +15,24 @@
       "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
       "validation_owner": "Giuseppe Proboste (validación pendiente)",
       "status": "pending_validation"
+    },
+    "accepted_name": "Nothofagus dombeyi",
+    "family": "Nothofagaceae",
+    "genus": "Nothofagus",
+    "synonyms": [
+      "Fagus dombeyi Mirb.",
+      "Fagus dombeyi var. microphylla Phil.",
+      "Nothofagus dombeyi (Mirb.) Blume"
+    ],
+    "taxonomy": {
+      "source_url": "https://api.gbif.org/v1/species/2874895",
+      "source_version": "GBIF Backbone Taxonomy, DOI 10.15468/39omei; API snapshot 2026-10-27",
+      "accessed_at": "2026-10-27",
+      "gbif_id": 2874895,
+      "status": "ACCEPTED",
+      "verification_status": "source_checked",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
     }
   },
   {
@@ -33,6 +51,24 @@
       "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
       "validation_owner": "Giuseppe Proboste (validación pendiente)",
       "status": "pending_validation"
+    },
+    "accepted_name": "Eucryphia cordifolia",
+    "family": "Cunoniaceae",
+    "genus": "Eucryphia",
+    "synonyms": [
+      "Eucryphia patagonica Speg.",
+      "Pellinia chilensis Molina",
+      "Pellinia cordifolia (Cav.) Molina"
+    ],
+    "taxonomy": {
+      "source_url": "https://api.gbif.org/v1/species/3920287",
+      "source_version": "GBIF Backbone Taxonomy, DOI 10.15468/39omei; API snapshot 2026-10-27",
+      "accessed_at": "2026-10-27",
+      "gbif_id": 3920287,
+      "status": "ACCEPTED",
+      "verification_status": "source_checked",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
     }
   },
   {
@@ -51,6 +87,20 @@
       "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
       "validation_owner": "Giuseppe Proboste (validación pendiente)",
       "status": "pending_validation"
+    },
+    "accepted_name": "Aextoxicon punctatum",
+    "family": "Aextoxicaceae",
+    "genus": "Aextoxicon",
+    "synonyms": [],
+    "taxonomy": {
+      "source_url": "https://api.gbif.org/v1/species/4195638",
+      "source_version": "GBIF Backbone Taxonomy, DOI 10.15468/39omei; API snapshot 2026-10-27",
+      "accessed_at": "2026-10-27",
+      "gbif_id": 4195638,
+      "status": "ACCEPTED",
+      "verification_status": "source_checked",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
     }
   },
   {
@@ -69,6 +119,28 @@
       "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
       "validation_owner": "Giuseppe Proboste (validación pendiente)",
       "status": "pending_validation"
+    },
+    "accepted_name": "Weinmannia trichosperma",
+    "family": "Cunoniaceae",
+    "genus": "Weinmannia",
+    "synonyms": [
+      "Weinmannia corymbosa Ruiz & Pav.",
+      "Weinmannia dentata Ruiz & Pav.",
+      "Weinmannia producta Moric.",
+      "Weinmannia producta Moric. ex Ser.",
+      "Weinmannia sessiliflora Pav.",
+      "Weinmannia sessiliflora Pav. ex Ser.",
+      "Windmannia trichosperma (Cav.) Kuntze"
+    ],
+    "taxonomy": {
+      "source_url": "https://api.gbif.org/v1/species/3613680",
+      "source_version": "GBIF Backbone Taxonomy, DOI 10.15468/39omei; API snapshot 2026-10-27",
+      "accessed_at": "2026-10-27",
+      "gbif_id": 3613680,
+      "status": "ACCEPTED",
+      "verification_status": "source_checked",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
     }
   },
   {
@@ -87,6 +159,23 @@
       "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
       "validation_owner": "Giuseppe Proboste (validación pendiente)",
       "status": "pending_validation"
+    },
+    "accepted_name": "Laureliopsis philippiana",
+    "family": "Atherospermataceae",
+    "genus": "Laureliopsis",
+    "synonyms": [
+      "Laurelia philippiana Looser",
+      "Laurelia serrata Phil."
+    ],
+    "taxonomy": {
+      "source_url": "https://api.gbif.org/v1/species/3783047",
+      "source_version": "GBIF Backbone Taxonomy, DOI 10.15468/39omei; API snapshot 2026-10-27",
+      "accessed_at": "2026-10-27",
+      "gbif_id": 3783047,
+      "status": "ACCEPTED",
+      "verification_status": "source_checked",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
     }
   },
   {
@@ -105,6 +194,24 @@
       "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
       "validation_owner": "Giuseppe Proboste (validación pendiente)",
       "status": "pending_validation"
+    },
+    "accepted_name": "Podocarpus nubigenus",
+    "family": "Podocarpaceae",
+    "genus": "Podocarpus",
+    "synonyms": [
+      "Nageia nubigena (Lindl.) F.Muell.",
+      "Saxegothaea gracilis Godr.",
+      "Saxegothaea gracilis Gordon & Glend."
+    ],
+    "taxonomy": {
+      "source_url": "https://api.gbif.org/v1/species/5285976",
+      "source_version": "GBIF Backbone Taxonomy, DOI 10.15468/39omei; API snapshot 2026-10-27",
+      "accessed_at": "2026-10-27",
+      "gbif_id": 5285976,
+      "status": "ACCEPTED",
+      "verification_status": "source_checked",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
     }
   },
   {
@@ -123,6 +230,33 @@
       "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
       "validation_owner": "Giuseppe Proboste (validación pendiente)",
       "status": "pending_validation"
+    },
+    "accepted_name": "Nothofagus betuloides",
+    "family": "Nothofagaceae",
+    "genus": "Nothofagus",
+    "synonyms": [
+      "Betula antarctica G.Forst.",
+      "Betula antarctica G.Forst. ex Willd.",
+      "Calusparassus betuloides (Mirb.) Hombr. & Jacquinot",
+      "Calusparassus betuloides (Mirb.) Hombr. & Jacquinot ex Decne.",
+      "Calusparassus forsteri (Hook.) Hombr. & Jacquinot ex Decne.",
+      "Fagus betuloides Mirb.",
+      "Fagus dubia Mirb.",
+      "Fagus forsteri Hook.",
+      "Nothofagus dubia (Mirb.) Blume",
+      "Nothofagus dubia (Mirb.) Oerst.",
+      "Nothofagus forsteri (Hook.) Krasser",
+      "Nothofagus patagonica Gand."
+    ],
+    "taxonomy": {
+      "source_url": "https://api.gbif.org/v1/species/2874949",
+      "source_version": "GBIF Backbone Taxonomy, DOI 10.15468/39omei; API snapshot 2026-10-27",
+      "accessed_at": "2026-10-27",
+      "gbif_id": 2874949,
+      "status": "ACCEPTED",
+      "verification_status": "source_checked",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
     }
   },
   {
@@ -141,6 +275,27 @@
       "processing": "Transcripción de ocho nombres suministrados; validación de sintaxis binomial, sin validación taxonómica externa.",
       "validation_owner": "Giuseppe Proboste (validación pendiente)",
       "status": "pending_validation"
+    },
+    "accepted_name": "Nothofagus pumilio",
+    "family": "Nothofagaceae",
+    "genus": "Nothofagus",
+    "synonyms": [
+      "Calusparassus pumilio (Poepp. & Endl.) Hombr. & Jacquinot ex Decne.",
+      "Fagus antarctica var. bicrenata A.DC.",
+      "Fagus antarctica var. pumilio (Poepp. & Endl.) Kuntze",
+      "Fagus pumilio Poepp. & Endl.",
+      "Fagus pumilo Poepp. & Endl.",
+      "Nothofagus pumilio (Poepp. & Endl.) Reiche"
+    ],
+    "taxonomy": {
+      "source_url": "https://api.gbif.org/v1/species/2874907",
+      "source_version": "GBIF Backbone Taxonomy, DOI 10.15468/39omei; API snapshot 2026-10-27",
+      "accessed_at": "2026-10-27",
+      "gbif_id": 2874907,
+      "status": "ACCEPTED",
+      "verification_status": "source_checked",
+      "license": "CC-BY-4.0",
+      "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
     }
   }
 ]

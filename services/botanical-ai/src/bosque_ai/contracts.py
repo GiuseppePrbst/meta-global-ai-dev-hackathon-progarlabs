@@ -18,6 +18,13 @@ class Identification(BaseModel):
     model: str | None = None
     candidates: list[Candidate] = Field(default_factory=list, max_length=3)
     message: str
+    limitations: list[str] = Field(default_factory=list, max_length=10)
+    latency_ms: float | None = Field(default=None, ge=0, allow_inf_nan=False)
+    execution_status: Literal["mock", "completed"] = "mock"
+    segmentation_status: Literal["disabled", "completed", "no_matches", "error"] = (
+        "disabled"
+    )
+    stage_latency_ms: dict[str, float] = Field(default_factory=dict)
 
     @model_validator(mode="after")
     def consistent_result(self):
@@ -25,6 +32,12 @@ class Identification(BaseModel):
             raise ValueError("El estado debe coincidir con la presencia de candidatos")
         if self.provider == "mock" and (self.candidates or self.model is not None):
             raise ValueError("El mock no produce candidatos ni atribuye un modelo real")
+        if self.provider == "meta" and (
+            not self.model or self.execution_status != "completed"
+        ):
+            raise ValueError("Meta requiere modelo y ejecución completa")
+        if len({c.species_id for c in self.candidates}) != len(self.candidates):
+            raise ValueError("Candidatos duplicados")
         return self
 
 

@@ -19,6 +19,19 @@ class Provenance(BaseModel):
     status: Literal["pending_validation"]
 
 
+class Taxonomy(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    source_url: str
+    source_version: str
+    accessed_at: str
+    gbif_id: int = Field(gt=0)
+    status: Literal["ACCEPTED", "SYNONYM"]
+    verification_status: Literal["source_checked"]
+    license: Literal["CC-BY-4.0"]
+    attribution: str
+
+
 class Species(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -27,6 +40,15 @@ class Species(BaseModel):
     common_name: str = Field(min_length=1)
     taxonomic_status: Literal["provisional"]
     provenance: Provenance
+    accepted_name: str | None = None
+    synonyms: list[str] = Field(default_factory=list)
+    family: str | None = None
+    genus: str | None = None
+    taxonomy: Taxonomy | None = None
+    native_status: Literal["pending"] = "pending"
+    morphology: list[str] = Field(default_factory=list)
+    trait_validation_status: Literal["pending"] = "pending"
+    conservation_status: str | None = None
 
 
 class ObservationCreate(BaseModel):

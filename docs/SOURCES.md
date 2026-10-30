@@ -38,3 +38,27 @@ Copernicus y NASA Earthdata son fuentes candidatas, todavía sin un recurso sele
 - [Docker PostGIS oficial](https://github.com/postgis/docker-postgis): recomienda `18-3.6` para instalaciones nuevas y documenta el volumen `/var/lib/postgresql` en PostgreSQL 18+. No se migró una base existente.
 - [Docker Compose: orden de inicio](https://docs.docker.com/compose/how-tos/startup-order/): `service_healthy` espera el healthcheck de dependencias, usado para base/API.
 - [Gitleaks CLI](https://github.com/gitleaks/gitleaks) y [acción oficial](https://github.com/gitleaks/gitleaks-action): controles de secretos; los resultados realmente ejecutados, versiones y límites se registran en el informe. Un escaneo no acredita ausencia absoluta de datos sensibles.
+
+## Fuentes consultadas para GIS/ML, 27-10-2026
+
+- [GBIF Species API v1](https://techdocs.gbif.org/en/openapi/v1/species),
+  [Backbone CC BY 4.0](https://www.gbif.org/dataset/d7dddbf4-2cf0-4f39-9b2a-bb099caae36c),
+  [DOI](https://doi.org/10.15468/39omei). Se consultaron match y synonyms por los ocho IDs
+  del snapshot; no se consultó una ficha WFO/MMA para validar rasgos.
+- Meta [quickstart](https://dev.meta.ai/docs/quickstart), [modelos](https://dev.meta.ai/docs/models),
+  [structured output](https://dev.meta.ai/docs/structured-output),
+  [Responses](https://dev.meta.ai/docs/protocols/responses),
+  [media segmentation](https://dev.meta.ai/docs/media-segmentation),
+  [gramática SAM](https://dev.meta.ai/docs/sam/reading-segmentation),
+  [parser oficial](https://dev.meta.ai/docs/sam/client-libraries). Schema por Chat Completions;
+  SAM por Responses, nombres muse-spark-1.3/sam-3.1 verificados con llamadas reales.
+- [AWS CHMv2](https://registry.opendata.aws/dataforgood-fb-forestsv2/),
+  [repackaging cloud-native](https://source.coop/tge-labs/meta-chm-v2),
+  [STAC collection](https://data.source.coop/tge-labs/meta-chm-v2/stac/collection.json),
+  [COG utilizado](https://data.source.coop/tge-labs/meta-chm-v2/chm/2102332230.tif).
+  CC BY 4.0, atribución Meta/WRI/Vantor y Taylor Geospatial;
+  [Tolan et al.](https://arxiv.org/abs/2304.07213), [Brandt et al. CHMv2](https://arxiv.org/abs/2603.06382).
+  CRS/escala/nodata observados por Rasterio; la fecha de modificación no prueba adquisición.
+- [Fabric list tables](https://learn.microsoft.com/en-us/rest/api/fabric/lakehouse/tables/list-tables),
+  [OneLake access](https://learn.microsoft.com/en-us/fabric/onelake/onelake-access-api).
+  Se verificó sesión Azure y acceso local a esquema; no se publican IDs, URLs ni registros privados.
