@@ -17,7 +17,9 @@ PROMPT_VERSIONS = {
     "baseline": "botanical-multiview-v3",
     "abstain": "open-set-abstain-v1",
     "comparators": "open-set-comparators-v1",
-    "verify": "open-set-verify-v1",
+    # v2 (2026-10-30, chosen on the development set): only a contradiction rejects;
+    # an "insufficient" verdict keeps the accepted candidate with a limitation.
+    "verify": "open-set-verify-v2",
 }
 
 OPEN_SET_RULES = (
@@ -121,6 +123,15 @@ def apply_verification(
     """Second-stage verdict from the same model: a check, not independent validation."""
     if identification.acceptance != "accepted" or result.verdict == "consistent":
         return identification
+    if result.verdict == "insufficient":
+        return identification.model_copy(
+            update={
+                "limitations": [
+                    *identification.limitations[:9],
+                    "La verificación posterior no encontró rasgos suficientes para confirmar.",
+                ]
+            }
+        )
     data = identification.model_dump()
     data.update(
         acceptance="not_accepted",

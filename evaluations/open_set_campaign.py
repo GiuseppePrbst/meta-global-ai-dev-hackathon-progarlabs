@@ -63,6 +63,13 @@ def stage1_rows(verify_rows):
     return rows
 
 
+def smoke_stage1():
+    """Abstain smoke results (same prompt version/model) reusable as verify stage 1."""
+    path = DATA / "open-set-smoke-B.json"
+    rows = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else []
+    return {r["image_id"]: r["identification"] for r in rows if r.get("identification")}
+
+
 async def step(name, cases, strategy, experiment="open-set"):
     out = DATA / f"open-set-{name}.json"
     if out.is_file() and len(json.loads(out.read_text(encoding="utf-8"))) == len(cases):
@@ -75,6 +82,7 @@ async def step(name, cases, strategy, experiment="open-set"):
         out,
         strategy=strategy,
         phase="F",
+        stage1=smoke_stage1() if strategy == "verify" else None,
     )
 
 
@@ -105,6 +113,10 @@ async def main(steps: list[str], chosen: str):
         "multiview": (
             multiview_cases(load("botanical-campaign-multiview.json")),
             chosen,
+        ),
+        "multiview-baseline": (
+            multiview_cases(load("botanical-campaign-multiview.json")),
+            "baseline",
         ),
         "eval-baseline": (evaluation, "baseline"),
         f"eval-{chosen}": (evaluation, chosen),

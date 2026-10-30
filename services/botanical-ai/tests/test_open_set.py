@@ -285,6 +285,32 @@ def test_contract_rejects_incoherent_acceptance():
         )
 
 
+def test_insufficient_verification_keeps_acceptance_contradiction_rejects():
+    accepted = open_set.apply_policy(
+        Identification(
+            provider="meta",
+            model="m",
+            execution_status="completed",
+            message="x",
+            status="candidates",
+            candidates=[{"species_id": "nothofagus-pumilio", "evidence": "e"}],
+            observed_traits=["t"],
+            catalog_assessment="supported_candidate",
+        ),
+        "verify",
+    )
+    insufficient = open_set.Verification(
+        verdict="insufficient", supporting_traits=[], contradicting_traits=[]
+    )
+    kept = open_set.apply_verification(accepted, insufficient)
+    assert kept.acceptance == "accepted" and "verificación" in kept.limitations[-1]
+    contradicted = insufficient.model_copy(update={"verdict": "contradicted"})
+    assert (
+        open_set.apply_verification(accepted, contradicted).acceptance == "not_accepted"
+    )
+    assert open_set.PROMPT_VERSIONS["verify"] == "open-set-verify-v2"
+
+
 def test_comparator_retrieval_is_selective():
     assert "Saxegothaea" not in open_set.comparator_block(
         COMPARATORS, {"nothofagus-pumilio"}
