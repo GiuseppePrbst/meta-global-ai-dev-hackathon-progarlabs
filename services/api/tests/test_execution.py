@@ -276,6 +276,18 @@ def test_global_budget_concurrent_workers_ownership_and_recovery():
             )
         assert store.list(10, "alice", 30) == []
         assert store.purge_expired(30) == 1
+        # Moving to a new UTC day must not refund a cumulative research budget.
+        with psycopg.connect(scoped) as conn:
+            conn.execute(
+                "UPDATE execution_reservations SET window_date=CURRENT_DATE-1, status='completed'"
+            )
+        lifetime = config.model_copy(update={"budget_lifetime_units": 200})
+        with pytest.raises(HTTPException) as exhausted:
+            ExecutionStore(lifetime).reserve("alice", "identify")
+        assert exhausted.value.status_code == 429
+        # Existing daily-only callers retain their admission behavior.
+        daily = ExecutionStore(config).reserve("alice", "identify")
+        ExecutionStore(config).finish(daily, "completed", {})
         with psycopg.connect(scoped) as conn:
             conn.execute((scripts / "003_execution.down.sql").read_text())
             assert conn.execute("SELECT count(*) FROM observations").fetchone()[0] == 0

@@ -91,8 +91,12 @@ No hay un paquete `shared` vacío: OpenAPI es el contrato entre Python y la web.
 
 José Schwerter lidera Frontend/UI/UX; Giuseppe Proboste lidera GIS/ML. Fabiana García es cofundadora y responsable empresarial de diseño de producto; **su admisión competitiva no está confirmada**, y cualquier aporte a la entrega requiere revisión de elegibilidad. Los cargos no otorgan ni restringen autoría o permisos Git. [Gobernanza completa](docs/TEAM_AND_GOVERNANCE.md).
 
-Los datos de Hepta Insights y sus derivados son **RESTRICTED**: deben permanecer fuera del repositorio y los worktrees y no se pueden enviar a Meta. Las claves solo viven en backend. [Política de datos](docs/DATA_GOVERNANCE.md), [licencias de fuentes](docs/DATASET_LICENSES.md) y [seguridad](docs/SECURITY.md).
+Los datos de Hepta Insights y sus derivados son **RESTRICTED**: deben permanecer fuera del repositorio y los worktrees. La misión privada del 30-10-2026 tiene autorización específica para procesar fotos/videos seleccionados mediante Meta Standard Mode, sin publicación; no amplía otros usos. Las claves solo viven en backend. [Política de datos](docs/DATA_GOVERNANCE.md), [licencias de fuentes](docs/DATASET_LICENSES.md) y [seguridad](docs/SECURITY.md).
 
 Repositorio público no equivale a licencia abierta de todos sus contenidos. No se concede una licencia de código hasta que ProGarLabs la decida explícitamente; cada dataset conserva sus términos. No se incluyen fotografías ajenas ni datasets restringidos.
 
 Incremento de contexto: [QA forestal real, PostGIS y ponderación temporal CHMv2](docs/FOREST_CONTEXT_REPORT.md).
+
+Investigación privada: [SAM 3.1 mediante Meta API](docs/META_SAM_API_RESEARCH.md),
+[ejecución del laboratorio](tools/meta_sam_api_lab/README.md). Una máscara real de imagen;
+dos solicitudes de video sin coincidencias, sin tracking positivo demostrado.

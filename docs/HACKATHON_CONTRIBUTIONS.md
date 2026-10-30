@@ -87,3 +87,20 @@ externa, video, peso o dato Hepta se incorporó. No se hizo una nueva llamada pa
 Evaluación botánica n=0 y métricas nulas; mocks no se presentan como calidad científica.
 Ventana declarada del evento 26-10–04-11-2026; Git no determina elegibilidad.
 [Informe y validaciones](META_EXPEDITIONS_REPORT.md).
+
+## SAM API Visual Lab — 30-10-2026
+
+Trabajo nuevo dirigido por Giuseppe con asistencia de Codex: laboratorio hosted-only,
+preparación segura ZIP/FFmpeg, Files/SSE/parser, renderizador y visor independiente,
+límite acumulado optativo, tests sintéticos y documentación. Se ejecutaron seis
+solicitudes SAM completadas y tres intentos Muse, más un ensayo espacial abortado
+localmente antes de Responses. Una máscara real de fotografía; cero tracks reales.
+Sin modificaciones web/móvil ni atribuciones a José o Fabiana.
+
+Preexistentes: rama #18, cliente Meta/ledger/PostGIS, parser 0.1.0, Pillow/FastAPI y
+modelos alojados de Meta; fotos/video de terceros con permiso privado específico,
+no datos creados para el hackathon ni autorizados para publicación. FFmpeg es herramienta
+de preparación. No entrenamiento/calibración ni nuevas dependencias ML. Preparación
+local SAM 2 de la misión anterior fue cancelada y sus pesos/torch retirados al cambiar
+el mandato; nunca hubo inferencia local. Ventana declarada 26-10–04-11-2026; fuentes,
+permisos y elegibilidad requieren revisión humana. Git no acredita admisión competitiva.

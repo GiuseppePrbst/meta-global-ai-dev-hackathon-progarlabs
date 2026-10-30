@@ -16,3 +16,11 @@ class PublicationBoundaryTest(unittest.TestCase):
         for path in (".env.example", "apps/web/.env.example", "data/synthetic/area.geojson", "docs/DATA_GOVERNANCE.md"):
             with self.subTest(path=path):
                 self.assertFalse(repository.forbidden(path))
+
+    def test_lab_media_and_weights_cannot_enter_staging(self):
+        for path in ("outputs/video.mp4", "source/flight.LRF", "clip.srt", "model.pt",
+                     "model.safetensors", "archive.zip", "restricted-data/manifest.json",
+                     "samples/hepta/photo.jpg", "meta-api-lab/result.json"):
+            with self.subTest(path=path):
+                self.assertTrue(repository.forbidden(path))
+        self.assertFalse(repository.forbidden("tools/meta_sam_api_lab/viewer.js"))

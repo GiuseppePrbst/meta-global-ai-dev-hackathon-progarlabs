@@ -11,9 +11,17 @@ Estado: 27 de octubre de 2026. Se aplica al código, fixtures, fotografías, coo
 | PENDING | Especies candidatas, fotos o recursos sin validación completa | No redistribuir contenido de terceros ni usar como verdad de evaluación. Conservar referencias y estado pendiente. |
 | RESTRICTED | Imágenes georreferenciadas, LiDAR, infraestructura y derivados de proyectos Hepta Insights | Fuera del repositorio **y de todos los worktrees**. No descargar, transferir, procesar externamente ni publicar sin autorización específica. |
 
-No se han autorizado datos Hepta para este bootstrap. Queda prohibido subirlos a GitHub, enviarlos a Meta Model API, incluirlos en datasets públicos o capturas, exponer coordenadas de infraestructura, crear máscaras/derivados publicables, entrenar con ellos o publicar pesos derivados. Una autorización de lectura no equivale a autorización de entrenamiento, redistribución o envío a terceros. Estas restricciones incluyen datos de terceros y secretos comerciales.
+La regla inicial del bootstrap no autorizaba datos Hepta. La excepción específica del
+30-10-2026, descrita abajo, permite fotos/videos seleccionados en Meta Standard Mode.
+Sigue prohibido subirlos a GitHub, incluirlos en datasets públicos o capturas, exponer
+coordenadas de infraestructura, crear derivados publicables o publicar pesos derivados.
+Una autorización de lectura no equivale a entrenamiento, redistribución o envío a terceros;
+la excepción no amplía otros recursos ni proveedores.
 
 ## Admisión de un recurso
+
+Para material RESTRICTED autorizado, conservar manifiestos, hashes, URLs y evidencia de
+sesión **solo en almacenamiento privado**: no seguir la opción de manifiesto versionado.
 
 Antes de descargar o integrar, registrar en `docs/DATASET_LICENSES.md` o en un manifiesto versionado junto al dataset:
 
@@ -89,3 +97,18 @@ contexto permitido resumido; no recibe geometrías, coordenadas ni atributos cru
 personal se resume a conteos. Fuentes de rutas/observaciones públicas ausentes no se inventan.
 Los resúmenes morfológicos son hechos breves con referencias, sin fotos ni textos extensos
 de terceros; `source_checked` no acredita revisión de campo. [Derechos](DATASET_LICENSES.md).
+
+## Excepción específica — SAM API Visual Lab, 30-10-2026
+
+El usuario autorizó expresamente descargar, preparar y enviar las fotos/videos
+seleccionados a Meta Model API en Standard Mode, y almacenar resultados privados.
+Actualiza la restricción anterior solo para esta misión. No autoriza publicación,
+entrenamiento, LiDAR ni proveedores adicionales. Medios, máscaras, hashes vinculables,
+URLs, file_id, atributos, logs y reportes detallados quedan fuera de Git/worktrees/CI.
+El consentimiento de sesión no crea licencia pública ni sustituye contratos del titular.
+
+Nuevo presupuesto máximo USD 1 confirmado en sesión; ledger acumulado persistente,
+sin reembolsos ni nuevas llamadas después de agotar reservas. Files con TTL de una hora
+más DELETE en finally: tres uploads, tres acuses de eliminación. Standard no equivale a
+ZDR; no se garantiza un plazo universal de retención operativa. Informe publicable solo
+agregado y código genérico: [SAM API research](META_SAM_API_RESEARCH.md).

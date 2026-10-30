@@ -43,3 +43,16 @@ Thumbs.db
 *.log
 *.db
 *.sqlite*
+
+# Research media and weights belong outside Git, including forced staging checks.
+restricted-data/
+**/hepta/
+meta-api-lab/
+*.mp4
+*.mov
+*.lrf
+*.srt
+*.pt
+*.pth
+*.safetensors
+*.zip

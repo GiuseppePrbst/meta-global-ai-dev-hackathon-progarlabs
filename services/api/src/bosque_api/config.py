@@ -23,6 +23,7 @@ class Settings(BaseSettings):
     budget_requests: int = Field(default=20, ge=1, le=10000)
     budget_requests_per_identity: int = Field(default=5, ge=1, le=1000)
     budget_units: int = Field(default=0, ge=0)
+    budget_lifetime_units: int = Field(default=0, ge=0)
     meta_reservation_units: int = Field(default=0, ge=0)
     voice_reservation_units: int = Field(default=0, ge=0)
     guide_reservation_units: int = Field(default=0, ge=0)

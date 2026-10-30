@@ -104,3 +104,31 @@ definiciones `tools.function`, argumentos JSON y retorno con `tool_call_id`.
 Documentación consultada no demuestra acceso o créditos en esta sesión. No se realizaron
 llamadas nuevas ni se asumió TTS. Referencias por especie en
 [DATASET_LICENSES](DATASET_LICENSES.md); no se afirma validación humana de los rasgos.
+
+## SAM API Visual Lab — consultado 30-10-2026
+
+- [Ficha SAM 3.1](https://dev.meta.ai/models/sam-3-1),
+  [overview](https://dev.meta.ai/docs/sam/overview) y
+  [media segmentation](https://dev.meta.ai/docs/media-segmentation): modelo alojado.
+- [Prompts](https://dev.meta.ai/docs/sam/segmenting): un concepto o modo espacial,
+  Responses/SSE, file_id de video, máscara one_bit y cajas enteras del constructor.
+- [Parser oficial](https://dev.meta.ai/docs/sam/client-libraries) y
+  [cookbook](https://dev.meta.ai/docs/cookbook/sam-api-basics): parser imagen/video
+  acumulativo; dependencia existente meta-sam-parser 0.1.0. No gramática manual.
+- [Files](https://dev.meta.ai/docs/file-handling): purpose user_data, máximo proveedor
+  1 GiB; expires_after created_at, 3600 a 2592000 s, y DELETE. El lab reduce a 20 MiB.
+- [Precios](https://dev.meta.ai/docs/pricing-rate-limits): Standard SAM imagen
+  USD 2,50/1000; video USD 0,20/1000 frames con mínimo 50 por solicitud; Muse 1.3
+  USD 1,25/4,25 por millón de tokens entrada/salida. Consulta no equivale a factura.
+- [Razonamiento](https://dev.meta.ai/docs/reasoning): minimal admitido, none no soportado;
+  [Chat Completions](https://dev.meta.ai/docs/protocols/chat-completions). El ensayo none
+  falló HTTP 400; se priorizó referencia sobre ejemplo abreviado. Tope de salida incluye
+  razonamiento; primer intento de 1200 tokens incompleto.
+- [Términos Meta](https://dev.meta.ai/legal/terms-of-service), actualización 09-10-2026,
+  y [ZDR](https://dev.meta.ai/help/policies-and-privacy/zero-data-retention): Standard
+  sin entrenamiento no implica retención cero; ZDR se habilita aparte y restringe Files.
+- [Artículo SAM 3, actualizado a 3.1 el 27-03-2026](https://ai.meta.com/blog/segment-anything-model-3/):
+  investigación preexistente del proveedor, no modelo entrenado en este proyecto.
+
+Detalles privados de adquisición y respuestas no se publican en SOURCES. Derechos y
+límites en DATASET_LICENSES/DATA_GOVERNANCE; resultados agregados en META_SAM_API_RESEARCH.
