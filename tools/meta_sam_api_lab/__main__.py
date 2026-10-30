@@ -7,6 +7,7 @@ from bosque_ai.meta import MetaResponsesClient
 
 from tools.meta_sam_api_lab.lab import (
     ObjectSpec,
+    campaign_from_private,
     cleanup_remote,
     config_from_private,
     run_experiment,
@@ -33,6 +34,7 @@ def main():
             "video",
             "serve",
             "cleanup",
+            "costs",
         ],
     )
     parser.add_argument("--source", type=Path)
@@ -45,6 +47,10 @@ def main():
     parser.add_argument("--direction", choices=["both", "forward", "backward"])
     parser.add_argument("--confidence", action="store_true")
     parser.add_argument("--width", type=int, default=640)
+    parser.add_argument("--phase", choices=["A", "B", "C", "D", "E"])
+    parser.add_argument(
+        "--experiment-note", help="Hypothesis/decision, stored privately"
+    )
     parser.add_argument(
         "--box", type=float, nargs=4, metavar=("LEFT", "TOP", "RIGHT", "BOTTOM")
     )
@@ -74,6 +80,17 @@ def main():
             manifest["cleanup"] = asyncio.run(cleanup_remote(client, manifest))
             write_json(manifest_path, manifest)
             print(json.dumps({"cleanup": manifest["cleanup"]}))
+        elif args.action == "costs":
+            from tools.meta_sam_api_lab.costs import cost_report
+
+            campaign = campaign_from_private(args.config)
+            report = cost_report(
+                config_from_private(args.config),
+                campaign.authorized_usd if campaign else 1,
+                private_path(args.output),
+            )
+            write_json(private_path(args.output) / "cost-report.json", report)
+            print(json.dumps(report, indent=2, default=str))
         elif args.action == "matrix":
             # Local FFmpeg only: same interval/FPS/duration at 640, 960 and 1280 px.
             matrix = prepare_resolution_matrix(
@@ -119,6 +136,13 @@ def main():
                     objects=objects,
                     direction=args.direction,
                     include_confidence=args.confidence,
+                    phase=args.phase,
+                    phase_cap_usd=(
+                        campaign_from_private(args.config).phase_caps_usd[args.phase]
+                        if args.phase
+                        else None
+                    ),
+                    experiment_note=args.experiment_note,
                 )
             )
             print(

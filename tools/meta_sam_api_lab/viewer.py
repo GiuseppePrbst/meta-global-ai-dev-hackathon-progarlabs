@@ -17,6 +17,7 @@ from tools.meta_sam_api_lab.lab import (
     CONCEPTS,
     SAFE_ID,
     ObjectSpec,
+    campaign_from_private,
     config_from_private,
     describe_media,
     ledger_status,
@@ -41,6 +42,8 @@ class RunRequest(BaseModel):
     include_confidence: bool = False
     parent_experiment_id: str | None = Field(default=None, max_length=64)
     correction_reason: str | None = Field(default=None, max_length=300)
+    phase: Literal["A", "B", "C", "D", "E"] | None = None
+    experiment_note: str | None = Field(default=None, max_length=1000)
 
 
 class Reference(BaseModel):
@@ -88,6 +91,8 @@ RESULT_FIELDS = {
     "correction_reason",
     "created_at",
     "source_ref",
+    "campaign_phase",
+    "experiment_note",
 }
 
 
@@ -235,6 +240,21 @@ def create_viewer(root: Path, config_file: Path, port: int = 8876):
             "budget": budget,
         }
 
+    @app.get("/api/costs")
+    def costs():
+        """Authorization, reservations, reported usage and estimate; no billing API."""
+        from tools.meta_sam_api_lab.costs import cost_report
+
+        try:
+            campaign = campaign_from_private(config_file)
+            return cost_report(
+                config_from_private(config_file),
+                campaign.authorized_usd if campaign else 1,
+                root,
+            )
+        except Exception:  # noqa: BLE001 - private config/DB detail stays server-side
+            raise HTTPException(503, "Cost ledger unavailable") from None
+
     @app.get("/api/review/{identifier}")
     def latest_review(identifier: str):
         reviews = sorted(saved(identifier).glob("review-*.json"))
@@ -328,6 +348,10 @@ def create_viewer(root: Path, config_file: Path, port: int = 8876):
         if item.parent_experiment_id is not None:
             saved(item.parent_experiment_id)
         config = config_from_private(config_file)
+        campaign = campaign_from_private(config_file)
+        if campaign and item.phase is None:
+            raise HTTPException(422, "Research campaign requires a phase")
+        cap = campaign.phase_caps_usd[item.phase] if campaign and item.phase else None
         identifier = uuid4().hex
         output = root / "outputs" / identifier
 
@@ -347,6 +371,9 @@ def create_viewer(root: Path, config_file: Path, port: int = 8876):
                         parent_experiment_id=item.parent_experiment_id,
                         correction_reason=item.correction_reason,
                         source_ref=item.source,
+                        phase=item.phase,
+                        phase_cap_usd=cap,
+                        experiment_note=item.experiment_note,
                     )
                 except Exception as exc:  # noqa: BLE001 - private worker boundary
                     path = output / "result.json"
