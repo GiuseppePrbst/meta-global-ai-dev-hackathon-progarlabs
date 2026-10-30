@@ -171,6 +171,7 @@ def test_sam_failure_is_optional_and_muse_usage_is_typed(monkeypatch):
                 sam_enabled=True,
                 model_api_key="test-only",
                 meta_access_token="local-test",
+                identify_strategy="baseline",  # pins the legacy schema this mock returns
             )
         )
     )

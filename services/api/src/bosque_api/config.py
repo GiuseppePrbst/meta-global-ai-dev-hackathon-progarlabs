@@ -13,8 +13,9 @@ class Settings(BaseSettings):
     meta_timeout_seconds: float = Field(default=30, gt=0, le=120)
     meta_enabled: bool = False
     meta_model: str = Field(default="muse-spark-1.3", min_length=1, max_length=100)
-    # Open-set strategy for /identify; "baseline" keeps the pre-open-set prompt.
-    identify_strategy: Literal["baseline", "abstain", "comparators", "verify"] = "baseline"
+    # Open-set strategy for /identify. "verify" (v2) chosen on the development set and
+    # confirmed on the frozen independent set (30-10-2026); "baseline" restores the old prompt.
+    identify_strategy: Literal["baseline", "abstain", "comparators", "verify"] = "verify"
     sam_enabled: bool = False
     sam_model: str = Field(default="sam-3.1", min_length=1, max_length=100)
     meta_access_token: SecretStr = SecretStr("")
