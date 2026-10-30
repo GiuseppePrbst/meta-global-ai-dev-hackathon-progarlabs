@@ -32,6 +32,18 @@ class Taxonomy(BaseModel):
     attribution: str
 
 
+class SynonymReview(BaseModel):
+    """Auditable decision on a catalog synonym; the name is never silently dropped."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    name: str = Field(min_length=3)
+    decision: Literal["removed_incorrect", "disputed_excluded", "verified"]
+    evidence: list[str] = Field(min_length=1)
+    reviewed_at: str
+    reviewer: str
+
+
 class Species(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -51,6 +63,14 @@ class Species(BaseModel):
     trait_sources: list[str] = Field(default_factory=list)
     trait_source_accessed_at: str | None = None
     conservation_status: str | None = None
+    synonym_review: list[SynonymReview] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def reviewed_names_stay_out(self):
+        excluded = {r.name for r in self.synonym_review if r.decision != "verified"}
+        if excluded & set(self.synonyms):
+            raise ValueError("Sinónimo excluido por revisión sigue en synonyms")
+        return self
 
 
 class ObservationCreate(BaseModel):
