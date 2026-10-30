@@ -108,3 +108,38 @@ sensible. El catálogo conserva estados pendientes y contexto espacial separado 
 Evidencia, contratos y límites operativos en
 [BACKEND_META_CONSOLIDATION_REPORT](BACKEND_META_CONSOLIDATION_REPORT.md).
 Allowlist de demo y presupuesto de unidades no equivalen a identidad/billing productivos.
+
+## Expediciones y voz, 29-10-2026
+
+Se conserva FastAPI/PostGIS y el cliente Meta. `/identify` acepta una primaria y hasta dos
+vistas adicionales del mismo ejemplar; estados previos se conservan y la recomendación
+adaptativa se añade como campo. SAM opcional afecta solo primaria. Sin clasificador nuevo,
+pesos, SDK o dependencias adicionales. Prompt `botanical-multiview-v3`; JSON Schema estricto
+y validación local mantienen el catálogo cerrado. Rasgos breves `source_checked` referencian
+fuentes botánicas propias de cada especie; no equivalen a revisión humana de una observación.
+
+Voz usa WAV efímero, `muse-voice-transcribe-1.0`, multipart ASR oficial, y Muse 1.3 con
+herramientas locales de lectura. Un turno de herramientas (máximo cuatro) y un turno final
+estructurado; sin sesión persistente, SQL del modelo ni TTS obligatorio. Referencias se
+validan contra consultas ejecutadas; su pertinencia científica requiere evaluación humana.
+Identidad obligatoria aun en local para guía/capturas; reservas de voz/guía en ledger
+compartido aun en local Meta. Las nuevas reservas empiezan en cero y fallan cerrado.
+
+Captura es una observación existente ampliada, no otro hallazgo duplicado. Migración 004
+añade evidencia de identificación por propietario, vínculo, idempotencia transaccional y
+metadatos de expedición. ID de captura = ID de observación. Especie seleccionada debe estar
+en candidatos del resultado almacenado; ninguna entrada permite verificar taxonomía.
+Rollback bloqueado si puede perder datos. Evidencia/colecciones privadas, retención y
+borrado propios; rutas locales heredadas ya no exponen observaciones con dueño.
+
+La referencia Puyehue reutiliza BCN 2826/capa y hash auditados; sin referencia coincidente,
+el estado espacial es `not_checked`. No se crea ruta o punto de ejemplar. El guía puede
+consultar contexto de captura propia en backend y enviar solo resultados sin coordenadas
+ni atributos crudos. CHMv2/worker/algoritmos existentes se conservan; las herramientas no
+generan estadísticas raster nuevas. Rutas y observaciones públicas sin fuente revisada
+responden `unavailable`, sin fabricar bases de datos.
+
+Contratos: [API_INTEGRATION](API_INTEGRATION.md), operación: [VOICE_GUIDE](VOICE_GUIDE.md)
+y [CAPTURE_DOMAIN](CAPTURE_DOMAIN.md). Reconsiderar la orquestación solo cuando la evaluación
+muestre que cuatro lecturas o una planificación son insuficientes. No agregar conversación
+continua ni investigación privada a la ruta crítica. [Evidencia y límites](META_EXPEDITIONS_REPORT.md).

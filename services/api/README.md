@@ -108,3 +108,13 @@ Raster usa proceso spawn con RASTER_TIMEOUT_SECONDS; fuentes/configuración fuer
 Mantener servicio en loopback/red controlada. Credenciales demo no son identidad productiva:
 antes de internet faltan operación TLS/proxy/límite de cuerpo y gestión segura de credenciales.
 Detalle y evidencia: [consolidación](../../docs/BACKEND_META_CONSOLIDATION_REPORT.md).
+
+## Expediciones y voz
+
+Aplicar migraciones 001–004 antes de usar evidencia personal/capturas. SQL 004 es aditivo
+y su rollback bloquea pérdida de información. Para voz Meta configurar reservas positivas
+VOICE_RESERVATION_UNITS y GUIDE_RESERVATION_UNITS en el ledger existente; por defecto cero.
+Incluso en local las nuevas rutas privadas necesitan DEMO_TOKENS individuales.
+No hay dependencias nuevas. [Contratos](../../docs/API_INTEGRATION.md),
+[voz](../../docs/VOICE_GUIDE.md), [capturas/purga](../../docs/CAPTURE_DOMAIN.md) y
+[pruebas/límites](../../docs/META_EXPEDITIONS_REPORT.md). Mock no inventa transcripciones.

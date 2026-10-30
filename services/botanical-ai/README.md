@@ -36,3 +36,12 @@ el parser oficial meta-sam-parser 0.1.0, valida máscaras y devuelve estados sin
 El endpoint integra SAM opcional y conserva la imagen preparada cuando falla.
 Se probaron Muse/SAM reales sobre dibujo sintético, con evidencia sanitizada y consumo
 Muse; no demuestra precisión botánica. Ver [reporte](../../docs/GIS_ML_REPORT.md).
+
+## Expediciones
+
+identify admite hasta tres vistas del mismo ejemplar con evidencia y recomendación de
+siguiente foto, sin cambiar los estados anteriores. MetaVoiceAdapter añade ASR WAV efímero;
+query_guide implementa ciclo Muse limitado a cuatro herramientas de lectura y dos llamadas.
+Se reutiliza MetaResponsesClient y httpx; no se añaden SDKs, pesos ni TTS obligatorio.
+Protocolos probados con mocks; las nuevas integraciones no tienen prueba real autorizada.
+[Contratos y operación](../../docs/API_INTEGRATION.md).

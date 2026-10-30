@@ -1,5 +1,7 @@
 # Integración API GIS/ML para José
 
+Estado más reciente: [Expediciones, multivista y voz](#expediciones-multivista-y-voz--29-10-2026).
+
 Fuente de verdad: `/openapi.json` y `/docs` del proceso FastAPI. Evolución aditiva, sin
 migración destructiva ni cambios visuales. API local en loopback; no desplegar observaciones
 privadas ni token compartido sin autenticación por usuario, visibilidad, retención y límites globales.
@@ -226,3 +228,88 @@ Diff de contrato verificado: cero rutas/campos eliminados y cero campos requerid
 en los modelos previos. Los ejemplos son contratos, no mediciones botánicas.
 Los resultados técnicos reales y limitaciones están en
 [el reporte de consolidación](BACKEND_META_CONSOLIDATION_REPORT.md).
+
+## Expediciones, multivista y voz — 29-10-2026
+
+Contratos implementados en OpenAPI runtime. Web/móvil no modificados. Guías operativas:
+[voz](VOICE_GUIDE.md), [capturas/privacidad](CAPTURE_DOMAIN.md), [reporte](META_EXPEDITIONS_REPORT.md).
+[20 ejemplos JSON completos](../evaluations/expeditions-contract-examples.json) son **sintéticos**,
+validados por tests; no resultados reales de identificación/transcripción ni precisión botánica.
+Incluyen los 16 escenarios requeridos, reintento idéntico y errores STT/tool/LLM separados.
+
+### Identificación compatible
+
+POST `/identify` conserva multipart requerido `file`, `adult_confirmed`, `rights_confirmed`.
+Añade `additional_files` repetible (0–2), `views` repetible opcional (uno por imagen en orden)
+y `use_segmentation` opcional. Las imágenes son del mismo ejemplar y producen UNA identificación.
+Tipos de vista: `whole_tree`, `leaf`, `bark`, `flower`, `fruit`, `unspecified`.
+JPEG/PNG/WebP, 10 MiB por imagen y 20 MiB originales por intento; cada una se valida/re-encodea
+sin metadata. SAM procesa solo la foto primaria: prompt corto según vista y parser oficial.
+`use_segmentation: false` desactiva SAM; true exige `SAM_ENABLED`, 422 si falta habilitación.
+La omisión conserva configuración anterior. Máscaras ausentes/error conservan el original;
+no se afirma que B mejore A. Las otras vistas permanecen originales preparadas.
+
+`status` conserva exactamente `candidates | insufficient_evidence`. La nueva información es
+aditiva: `observed_traits`, `missing_traits`, `recommended_next_photo` (enum de OpenAPI o null),
+`evidence_status: candidates | insufficient_evidence | additional_photo_requested`,
+`identification_id` nullable, `sources` y `candidates[].contradictory_evidence`.
+No convertir contradicciones o candidatos en probabilidades. `prompt_version` ahora es
+`botanical-multiview-v3`. HTTP 502 es `provider_error`; 413/415/422 son `validation_error` de
+UI, no nuevos valores incompatibles de `status`. 401/429/503 conservan semántica anterior.
+
+En modo demo, el resultado se guarda con propietario y retención en PostGIS (migración 004).
+Sin DB disponible falla 503, incluso mock autenticado. Local anónimo sigue sin persistir.
+`rights_confirmed` de identificación mantiene el consentimiento existente para la operación
+configurada: obtener permiso de transferencia antes de elegir proveedor Meta y nunca usar Hepta.
+Cada reserva de identificación debe cubrir hasta tres imágenes y SAM opcional.
+
+El catálogo conserva ocho IDs. Añade `trait_sources`, `trait_source_accessed_at` y permite
+`trait_validation_status: source_checked`: referencia bibliográfica comprobada automáticamente,
+sin revisión humana ni presencia de campo. `morphology` contiene resúmenes breves de hechos,
+con fuentes distintas de GBIF. Conservación/natividad no se inventan ni se deducen de estos rasgos.
+
+### Rutas nuevas
+
+En demo se usa Bearer individual para todas estas rutas. En local también es obligatorio
+para `/captures/*`, `/guide/*` y DELETE `/identifications/*`; expediciones son de lectura local.
+La identidad se asigna en servidor, nunca en JSON. Nunca entregar `MODEL_API_KEY` al cliente.
+
+| Ruta | Entrada | Éxito | Errores y límites |
+| --- | --- | --- | --- |
+| GET `/expeditions` | Ninguna | 200 `Expedition[]` | 401 en demo; catálogo de una referencia |
+| GET `/expeditions/{id}` | `puyehue` | 200 `Expedition` | 404 desconocida; no garantiza rutas/acceso |
+| POST `/captures/attempts` | `CaptureAttempt` | 201 `Capture`; 200 reintento idéntico | 401/404/409/410/422/503; sin foto ni llamada Meta |
+| GET `/captures/me` | `limit` 1–100; `offset` 0–100000 | 200 `Collection` | 401/422/503; privada, totales completos y página |
+| GET `/captures/{id}` | UUID | 200 `Capture` | 401/404/422/503; ajena/expirada/ausente indistinguibles |
+| DELETE `/captures/{id}` | UUID, sin body | 204 | 401/404/422/503; elimina observación y evidencia propias |
+| DELETE `/identifications/{id}` | UUID, sin body | 204 | 401/404/422/503; elimina evidencia y captura propia vinculada |
+| POST `/guide/transcribe` | Multipart `file`, `adult_confirmed`, `rights_confirmed`; `external_processing_confirmed` para Meta | 200 `Transcription` | 401/413/415/422/429/502 `stt_error`/503; WAV 3 MiB, 60 s |
+| POST `/guide/query` | `GuideQuery` | 200 `GuideAnswer` | 401/422/429/502 `tool_error` o `llm_error`/503; pregunta hasta 2000 caracteres |
+
+Entrada completa para captura sin ubicación (UUID de ejemplo; usar el devuelto por servidor):
+
+```json
+{"identification_id":"00000000-0000-4000-8000-000000000001","idempotency_key":"example-key-1","expedition_id":"puyehue","species_id":null,"observed_at":"2026-10-29T12:00:00Z","location":null,"location_consent":false,"accuracy_m":null}
+```
+
+Para ubicación agregar Point `[longitud,latitud]` válido y consentimiento; precisión solo con
+Point. Fechas deben tener zona y no ser futuras. `owner_id`, `verified`, visibilidad pública,
+rutas de imagen y campos extra son rechazados. Capturas fuera de referencia o GPS >50 m se
+señalan sin invalidar automáticamente. Progreso educativo cuenta registros, no certifica especies.
+
+Entrada completa de consulta (transcripción revisada o texto escrito):
+
+```json
+{"question":"¿Cómo distingo coigüe de lenga?","adult_confirmed":true,"external_processing_confirmed":true,"capture_id":null}
+```
+
+`capture_id` propio opcional permite consultar contexto en backend. No se envían UUID ni
+coordenadas al modelo. Sin ubicación/cobertura se devuelve evidencia ausente, no ausencia
+ecológica. El guía no calcula alturas ni inventa resultados raster; las rutas forestales
+existentes conservan metadatos temporales y worker. Texto listo para narración, no audio TTS.
+Mostrar `sources`, `limitations`, `insufficient_evidence` y provider/execution_status.
+No reproducir nombres de herramientas como contenido principal de UI.
+
+Errores de proveedor son sanitizados; validar también `detail` lista estándar de FastAPI.
+Permisos y presupuesto son independientes. Configuración/cargos/latencia real requieren una
+prueba posterior autorizada. Ni CI ni transporte mock validan una transcripción española real.

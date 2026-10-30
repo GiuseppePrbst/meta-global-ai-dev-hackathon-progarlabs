@@ -137,3 +137,17 @@ smoke sintético SAM+Muse. Pendientes: dataset humano externo autorizado (n=0), 
 científica, derechos territoriales definitivos, identidad productiva/TLS/proxy y operación de purga.
 Móvil: typecheck local bloqueado por dependencias ausentes; tarea para su responsable.
 Próximos pasos y evidencia en [reporte](BACKEND_META_CONSOLIDATION_REPORT.md).
+
+## Expediciones backend, 29-10-2026
+
+Implementado con tests: multivista compatible, recomendaciones de foto, STT WAV desacoplado,
+guía Muse con herramientas acotadas, capturas/colección privadas, evidencia e idempotencia,
+retención/borrado y contexto territorial sin coordenadas externas. Referencias morfológicas
+contrastadas para ocho taxones; revisión humana sigue pendiente. No se cierran issues por mocks.
+
+P0 pendiente externo: presupuesto nuevo, acceso/créditos y audio/fotos autorizados, etiquetas
+humanas (n=0), revisión científica y prueba real del nuevo STT/tool calling. Integración UI
+corresponde a José usando [contratos](API_INTEGRATION.md), sin cambios visuales aquí.
+Operación pendiente antes de internet: TLS/proxy/cuerpo limitado, identidad productiva,
+purga y reservas monetarias conservadoras. P1 (SAM video, BioCLIP, Hepta local, A/B contextual)
+no ejecutado mientras faltan estas condiciones. [Reporte](META_EXPEDITIONS_REPORT.md).
