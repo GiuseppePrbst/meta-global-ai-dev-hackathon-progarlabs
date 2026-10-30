@@ -19,6 +19,8 @@ Antes de un PR ejecuta lint, formato, tests, typecheck y build descritos en READ
 
 ## Datos y ciencia
 
+Autorización vigente del propietario (30-10-2026), investigación Bosque Vivo: los agentes de desarrollo locales de ProGarLabs pueden abrir, visualizar e inspeccionar directamente (capacidad multimodal, procesamiento Claude/Anthropic) las fotos y videos Hepta autorizados. También pueden descargarlos desde Hepta/Fabric/OneLake, prepararlos, seleccionar objetos por inspección propia, crear anotaciones asistidas indicando quién revisó, y procesarlos con Meta Model API dentro del presupuesto registrado. Muse no es intermediario obligatorio. Siguen prohibidos: publicar o versionar medios, máscaras, frames o derivados Hepta; usarlos en CI; exponer credenciales, URLs firmadas o metadatos sensibles; entrenar modelos. La inspección de un agente no equivale a validación botánica de especialista. Detalle en docs/DATA_GOVERNANCE.md.
+
 Lee docs/DATA_GOVERNANCE.md y docs/DATASET_LICENSES.md. Hepta, LiDAR, imágenes aéreas de terceros, infraestructura y sus derivados son RESTRICTED: no descargar, publicar, procesar externamente, entrenar ni almacenar en el repositorio/worktrees sin autorización específica. No construir fixtures de ellos. Usa datos sintéticos inequívocos o públicos con licencia, fuente, fecha, versión, atribución, redistribución, procesamiento y responsable de validación. No inventar presencia de especies, coordenadas de individuos, rutas oficiales ni métricas. CHMv2 estima altura de copa; no mide crecimiento anual.
 
 ## Git y publicación
