@@ -121,7 +121,6 @@ function leafSvg(id: string, colors: AtlasMapColors) {
   const { leaf, surface } = colors;
   return `
     <svg class="leaf" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
-      <circle class="leaf-ripple" cx="24" cy="24" r="13" fill="none" stroke="${leaf}" stroke-width="1.2" />
       <g transform="rotate(${tilt.toFixed(1)} 24 24)">
         <g class="leaf-wash">
           <path d="${veils[0]}" fill="${surface}" fill-opacity="0.78" />
@@ -225,14 +224,17 @@ export default function AtlasMap({ ref, scheme, colors, reducedMotion, points, s
     if (!instance || !MarkerCtor) return;
     markers.current.forEach((marker) => marker.remove());
     markers.current.clear();
-    // La primera vez las hojas esperan a que la cámara se pose; después, las nuevas caen enseguida.
-    const landing = painted.current ? 0 : LEAF_LANDING_MS;
-    painted.current = true;
+    // Las hojas caen una sola vez, la primera vez que hay puntos que mostrar, cuando la cámara se posa;
+    // los marcadores que se rehacen después aparecen quietos.
+    const settled = painted.current;
+    if (points.length > 0) painted.current = true;
     const westToEast = points.toSorted((a, b) => a.longitude - b.longitude).map(({ id }) => id);
     for (const { id, longitude, latitude } of points) {
       const element = document.createElement('div');
-      element.className = id === selectedId ? 'observation-marker is-selected' : 'observation-marker';
-      element.style.setProperty('--delay', `${landing + westToEast.indexOf(id) * LEAF_STAGGER_MS}ms`);
+      element.className = 'observation-marker';
+      element.classList.toggle('is-selected', id === selectedId);
+      element.classList.toggle('is-settled', settled);
+      element.style.setProperty('--delay', `${LEAF_LANDING_MS + westToEast.indexOf(id) * LEAF_STAGGER_MS}ms`);
       element.innerHTML = leafSvg(id, colors);
       // Lo accesible es la vista Lista: el marcador no entra al árbol de accesibilidad.
       element.setAttribute('aria-hidden', 'true');
@@ -280,20 +282,14 @@ export default function AtlasMap({ ref, scheme, colors, reducedMotion, points, s
         .observation-marker { width: 48px; height: 48px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
         .observation-marker.is-selected { z-index: 2; }
         .leaf { display: block; overflow: visible; }
-        .leaf-wash, .leaf-ripple { transform-box: view-box; transform-origin: 24px 24px; }
+        .leaf-wash { transform-box: view-box; transform-origin: 24px 24px; }
         .leaf-ring, .leaf-rib, .leaf-halo { stroke-dasharray: 1; }
         .leaf-halo { stroke-dashoffset: 1; }
-        .leaf-ripple { opacity: 0; }
-        /* Seleccionada: la aguada se abre y un segundo contorno la rodea. */
+        /* Seleccionada: la aguada se abre y un segundo contorno la rodea, sin animación. */
         .is-selected .leaf-wash { transform: scale(1.3); }
         .is-selected .leaf-halo { stroke-dashoffset: 0; }
         ${animate ? `
-        .leaf { transition: transform 140ms ${EASE_OUT_EXPO}; }
-        .observation-marker:active .leaf { transform: scale(0.88); }
-        .leaf-wash { transition: transform 520ms ${EASE_OUT_EXPO}; }
-        .leaf-halo { transition: stroke-dashoffset 480ms ${EASE_OUT_EXPO}; }
-        .is-selected .leaf-ripple { animation: leaf-ripple 900ms ${EASE_OUT_EXPO}; }
-        /* La hoja cae: se mece al posarse, la aguada florece y el contorno se entinta encima. */
+        /* Solo al mostrarse el mapa la hoja cae: se mece al posarse, la aguada florece y el contorno se entinta encima. */
         .leaf { animation: leaf-fall 820ms ${EASE_OUT_EXPO} var(--delay) backwards; }
         .leaf-wash > * { animation: leaf-bloom 760ms ${EASE_OUT_EXPO} var(--delay) backwards; transform-box: view-box; transform-origin: 24px 24px; }
         .leaf-core, .leaf-stalk { animation: leaf-fade 160ms ease-out var(--delay) backwards; }
@@ -301,11 +297,11 @@ export default function AtlasMap({ ref, scheme, colors, reducedMotion, points, s
         .leaf-rib { animation: leaf-ink 420ms ${EASE_OUT_EXPO} calc(var(--delay) + 360ms) backwards; }
         .leaf-veins { animation: leaf-fade 240ms ease-out calc(var(--delay) + 600ms) backwards; }
         .atlas-map:not(.is-ready) .leaf, .atlas-map:not(.is-ready) .leaf * { animation-play-state: paused; }
+        .is-settled .leaf, .is-settled .leaf * { animation: none; }
         @keyframes leaf-fall { from { transform: translate(-6px, -14px) rotate(-18deg); opacity: 0; } 60% { transform: translate(2px, 1px) rotate(6deg); opacity: 1; } }
         @keyframes leaf-bloom { from { transform: scale(0.15); opacity: 0; } }
         @keyframes leaf-fade { from { opacity: 0; } }
         @keyframes leaf-ink { from { stroke-dashoffset: 1; } }
-        @keyframes leaf-ripple { from { opacity: 0.6; transform: scale(0.7); } to { opacity: 0; transform: scale(2); } }
         ` : ''}
       `}</style>
       {/* Absoluto: llena el WebView en nativo y el contenedor del mapa en web, donde no hay WebView. */}
