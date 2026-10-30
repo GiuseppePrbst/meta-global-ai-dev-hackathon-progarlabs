@@ -104,3 +104,17 @@ de preparación. No entrenamiento/calibración ni nuevas dependencias ML. Prepar
 local SAM 2 de la misión anterior fue cancelada y sus pesos/torch retirados al cambiar
 el mandato; nunca hubo inferencia local. Ventana declarada 26-10–04-11-2026; fuentes,
 permisos y elegibilidad requieren revisión humana. Git no acredita admisión competitiva.
+
+## SAM espacial y registro botánico — 30-10-2026
+
+Trabajo nuevo dirigido por Giuseppe con asistencia de Claude Code (Claude Opus 5.5):
+prompts espaciales (cajas, puntos, multiobjeto, frames y correcciones) con el builder
+oficial, vista previa obligatoria, geometría del visor, parametrización de resolución,
+métricas de máscara y tracking, revisión humana privada, desglose por órgano, registro
+botánico GBIF COL XR/Commons, tests y documentación. **Cero llamadas pagadas**. Clips de
+resolución preparados localmente con FFmpeg sobre el video privado autorizado.
+
+Preexistentes: PR #19 y su pila, parser 0.1.0, Pillow/FastAPI/Playwright, APIs públicas de
+GBIF y Wikimedia, y datos de terceros (metadatos, autores y licencias por archivo). Las
+miniaturas para hashing quedan fuera de Git y no se redistribuyen. Sin cambios en web o
+móvil. Ninguna atribución a José ni a Fabiana.

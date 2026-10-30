@@ -132,3 +132,31 @@ llamadas nuevas ni se asumió TTS. Referencias por especie en
 
 Detalles privados de adquisición y respuestas no se publican en SOURCES. Derechos y
 límites en DATASET_LICENSES/DATA_GOVERNANCE; resultados agregados en META_SAM_API_RESEARCH.
+
+## Prompts espaciales y datasets botánicos — consultado 30-10-2026
+
+- [SAM segmenting](https://dev.meta.ai/docs/sam/segmenting): sintaxis de caja/punto,
+  `-` para negativos, `x2/y2` inclusivos, ≤16 objetos por solicitud y ≤16 seguidos por
+  frame. Prompts en cualquier frame de video, solo frame 0 en imagen, nunca combinados
+  con una frase (HTTP 400). `propagation_direction` both/forward/backward desde el primer
+  frame con prompt; `backward` exige un frame > 0. Resultados posiblemente desordenados:
+  indexar por marcador de frame. `include_confidence` como cadena `"true"`. Los prompts
+  espaciales devuelven `one_bit`. Mínimo de facturación de 50 frames.
+- [Parser 0.1.0](https://dev.meta.ai/docs/sam/client-libraries) instalado: builder con
+  cajas semiabiertas enteras, IDs no negativos, un prompt por objeto y frame.
+- [Precios](https://dev.meta.ai/docs/pricing-rate-limits): sin cambios respecto a la
+  consulta anterior; 3000 solicitudes/minuto por equipo para sam-3.1.
+- [Migración GBIF a COL XR](https://data-blog.gbif.org/post/catalogue-of-life-taxonomic-backbone/),
+  checklist `7ddf754f-d193-4cc9-b351-99906754a03b`. APIs `api.gbif.org/v2/species/match`
+  y `v1/occurrence/search?checklistKey=…`. Backbone histórico `d7dddbf4-2cf0-4f39-9b2a-bb099caae36c`.
+- Pl@ntNet en GBIF: [verificadas](https://doi.org/10.15468/gtebaa)
+  (`7a3679ef-5582-4aaa-81f0-8c2545cafc81`, v1.9) y
+  [automáticas](https://doi.org/10.15468/mma2ec) (`14d5676a-2c54-4f94-9023-1e8dcd822aa0`).
+  El medio declara licencia y órgano propios (`"autor (cc-by-sa)"`, `"…: leaf"`).
+- [Wikimedia Commons API](https://commons.wikimedia.org/w/api.php): `categorymembers` +
+  `imageinfo` (`extmetadata`, `sha1`). Licencia por archivo.
+- iNaturalist Research-grade en GBIF (`50c9509d-…`): licencia del dataset CC BY-NC 4.0;
+  sus registros no se incorporan como candidatas.
+- Benchmarks aéreos: [CanopyRS/Detectree2](https://huggingface.co/datasets/CanopyRS/Detectree2)
+  (CC BY 4.0, polígonos) y [NeonTreeEvaluation](https://github.com/weecology/NeonTreeEvaluation)
+  (CC0, cajas). No descargados.

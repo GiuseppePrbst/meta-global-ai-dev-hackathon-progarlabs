@@ -313,3 +313,38 @@ No reproducir nombres de herramientas como contenido principal de UI.
 Errores de proveedor son sanitizados; validar también `detail` lista estándar de FastAPI.
 Permisos y presupuesto son independientes. Configuración/cargos/latencia real requieren una
 prueba posterior autorizada. Ni CI ni transporte mock validan una transcripción española real.
+
+## Selección asistida de un árbol — propuesta para José, 30-10-2026
+
+**No implementado en el producto ni en OpenAPI**; propuesta basada en el laboratorio
+privado (`tools/meta_sam_api_lab`). No cambia `apps/web`, `apps/mobile` ni las rutas
+actuales. La efectividad de SAM con cajas sobre árboles **no se ha medido** con API real
+([SAM_SPATIAL_RESEARCH.md](SAM_SPATIAL_RESEARCH.md)): se recomienda esperar esa evidencia.
+
+Recorrido sugerido para la captura:
+
+1. **Seleccionar**: la persona dibuja una caja sobre el árbol o toca un punto. Puede
+   añadir un punto negativo para excluir el fondo. La UI convierte puntero → píxeles de
+   la imagen *preparada* con la misma lógica de `geometry.js` (insets, `object-fit`,
+   zoom) y envía floats. El backend aplica `floor/ceil` y el builder oficial.
+2. **Obtener máscara**: una solicitud SAM espacial (nunca concepto + caja). La respuesta
+   puede ser vacía (`no_matches`): mostrar «no se pudo delimitar» y permitir reintentar
+   la selección manualmente, sin reintentos automáticos.
+3. **Confirmar la instancia**: mostrar máscara y contorno. La persona confirma o corrige.
+   Una corrección crea una solicitud nueva vinculada al resultado anterior.
+4. **Identificar**: el recorte confirmado alimenta el experimento B existente; la foto
+   original se conserva. Las vistas adicionales siguen siendo del mismo ejemplar.
+5. **Incertidumbre**: la confianza de SAM, si se solicita (`include_confidence`), es del
+   modelo y no es probabilidad de especie. Mostrar candidatos, evidencia, rasgos
+   faltantes, abstención y la foto recomendada, igual que en la identificación actual.
+
+Forma orientativa de un contrato futuro (a decidir con José; no existe hoy):
+
+```json
+{"selection":{"prepared_size":[1280,720],"objects":[{"id":1,"prompts":[{"frame":0,"box":[412.5,96.0,780.2,690.0],"points":[{"x":500,"y":300,"label":"negative"}]}]}]},
+ "result":{"status":"completed|no_matches|provider_error","masks":1,"confidence":null}}
+```
+
+Coste orientativo: USD 0,0025 por imagen (tarifa Standard consultada) más la reserva del
+ledger. Requiere consentimiento de procesamiento externo y derechos de la imagen,
+como la identificación actual.

@@ -89,3 +89,13 @@ Standard Mode y material permitido; mantener audios y fotos fuera del repositori
 Propuesta mínima: audios españoles con los diez términos de VOICE_GUIDE, transcripción
 humana, WER/nombres exactos y latencia/uso; preguntas con fuentes y revisión humana.
 Es una propuesta, no una evaluación ejecutada. [Informe](META_EXPEDITIONS_REPORT.md).
+
+## SAM espacial y evaluación botánica — 30-10-2026
+
+Implementado y probado solo con datos sintéticos: prompts espaciales, correcciones,
+confianza opcional, métricas de máscara/tracking contra referencias humanas y desglose
+`by_photo_type` en `summarize`. **No se ejecutó ninguna inferencia nueva** y no hay
+casos validados: n = 0. La confianza de SAM no es IoU ni probabilidad; Top-k no se calcula
+con mocks. Protocolo A–F, negativos y benchmarks aéreos en
+[BOTANICAL_EVALUATION.md](BOTANICAL_EVALUATION.md). Diagnóstico y campaña pagada propuesta
+en [SAM_SPATIAL_RESEARCH.md](SAM_SPATIAL_RESEARCH.md).
