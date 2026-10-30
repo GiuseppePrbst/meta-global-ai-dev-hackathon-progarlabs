@@ -12,8 +12,8 @@ from pathlib import Path
 from evaluations import open_set_eval as ose
 from evaluations.botanical_campaign import run_cases
 
-DATA = Path("D:/data/bosque-vivo")
-CONFIG = Path("D:/restricted-data/bosque-vivo/meta-api-lab/private-config.json")
+DATA = Path()  # set from --data: private folder with cases, copies and results
+CONFIG = Path()  # set from --config: private lab configuration
 
 
 def load(name):
@@ -121,5 +121,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("steps", nargs="+")
     parser.add_argument("--chosen", default="comparators")
+    parser.add_argument("--data", type=Path, required=True)
+    parser.add_argument("--config", type=Path, required=True)
     args = parser.parse_args()
+    DATA, CONFIG = args.data, args.config
     asyncio.run(main(args.steps, args.chosen))
