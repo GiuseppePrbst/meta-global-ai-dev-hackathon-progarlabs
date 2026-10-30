@@ -36,4 +36,7 @@ Un cambio de contrato se prueba en ambos extremos: pruebas de la API en `service
 
 | Fecha | Comando / prueba | Resultado | Notas |
 | --- | --- | --- | --- |
-| — | — | No ejecutado | La app aún no existe. |
+| 28-10-2026 | `npm run typecheck` | Pasa | Sin errores. |
+| 28-10-2026 | `npm run lint` | Pasa con avisos | 0 errores, 4 avisos `react-hooks/exhaustive-deps` en `src/map/atlas-map.tsx` (efectos del mapa que corren una sola vez a propósito; pendiente revisarlos). |
+| 28-10-2026 | `npm test` | Pasa | 7 pruebas en `src/features/catalog/catalog.test.ts` (búsqueda sin tildes ni mayúsculas, número de pliego) con especies sintéticas. |
+| — | Componentes, recorridos Maestro, Android físico | No ejecutado | React Native Testing Library aún no está instalado; los estados de carga y error no se han visto en pantalla porque los mocks nunca cargan ni fallan. |

@@ -1,0 +1,699 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T15:51:02+00:00",
+  "title": "Design System: Bosque Vivo Chile",
+  "extensions": {
+    "colorMeta": {
+      "topBar": {
+        "role": "primary",
+        "displayName": "Verde bosque de aguada",
+        "canonical": "#0B5A33",
+        "darkValue": "#0D4A2A",
+        "tonalRamp": [
+          "#123B27",
+          "#196640",
+          "#1D965A",
+          "#1CD87C",
+          "#50E29A",
+          "#8BE4B8",
+          "#C0ECD6",
+          "#ECF8F2"
+        ]
+      },
+      "topBarGlaze": {
+        "role": "primary",
+        "displayName": "Veladura de hoja",
+        "canonical": "#1C8044",
+        "darkValue": "#1A6B3C",
+        "tonalRamp": [
+          "#153723",
+          "#205F39",
+          "#288B4F",
+          "#2DC76B",
+          "#5ED48D",
+          "#93DCB0",
+          "#C4E8D3",
+          "#EDF7F1"
+        ]
+      },
+      "topBarEdge": {
+        "role": "primary",
+        "displayName": "Filo seco",
+        "canonical": "#053B20",
+        "darkValue": "#04291A",
+        "tonalRamp": [
+          "#103C26",
+          "#166940",
+          "#189A59",
+          "#15E07A",
+          "#4BE799",
+          "#87E8B8",
+          "#BEEED6",
+          "#ECF9F2"
+        ]
+      },
+      "onTopBar": {
+        "role": "primary",
+        "displayName": "Blanco sobre banda",
+        "canonical": "#FFFFFF",
+        "darkValue": "#FFFFFF",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#7A7A7A",
+          "#999999",
+          "#B8B8B8",
+          "#D6D6D6",
+          "#F2F2F2"
+        ]
+      },
+      "onTopBarVariant": {
+        "role": "primary",
+        "displayName": "Lima brote",
+        "canonical": "#D2F09E",
+        "darkValue": "#CBEB93",
+        "tonalRamp": [
+          "#2B3913",
+          "#49641C",
+          "#689221",
+          "#92D222",
+          "#ABDD55",
+          "#C3E28E",
+          "#DCEBC1",
+          "#F4F8ED"
+        ]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Verde bosque de botón",
+        "canonical": "#0B5A33",
+        "darkValue": "#B9E24C",
+        "tonalRamp": [
+          "#123B27",
+          "#196640",
+          "#1D965A",
+          "#1CD87C",
+          "#50E29A",
+          "#8BE4B8",
+          "#C0ECD6",
+          "#ECF8F2"
+        ]
+      },
+      "onPrimary": {
+        "role": "primary",
+        "displayName": "Texto sobre botón",
+        "canonical": "#FFFFFF",
+        "darkValue": "#0B2615",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#7A7A7A",
+          "#999999",
+          "#B8B8B8",
+          "#D6D6D6",
+          "#F2F2F2"
+        ]
+      },
+      "lime": {
+        "role": "secondary",
+        "displayName": "Lima de aguada",
+        "canonical": "#B9E24C",
+        "darkValue": "#9CCB3A",
+        "tonalRamp": [
+          "#2F3913",
+          "#50631C",
+          "#729122",
+          "#A2D124",
+          "#B7DC56",
+          "#CAE18E",
+          "#DFEBC2",
+          "#F5F8ED"
+        ]
+      },
+      "navIndicator": {
+        "role": "secondary",
+        "displayName": "Lima indicador",
+        "canonical": "#C3E86A",
+        "darkValue": "#9CCB3A",
+        "tonalRamp": [
+          "#2E3913",
+          "#4F641C",
+          "#719221",
+          "#9FD222",
+          "#B5DD55",
+          "#C9E28E",
+          "#DFEBC1",
+          "#F5F8ED"
+        ]
+      },
+      "onNavIndicator": {
+        "role": "secondary",
+        "displayName": "Tinta sobre indicador",
+        "canonical": "#0F2418",
+        "darkValue": "#0F2418",
+        "tonalRamp": [
+          "#1B3125",
+          "#2B543D",
+          "#397955",
+          "#49AC73",
+          "#73BF94",
+          "#A0CFB4",
+          "#CBE2D5",
+          "#EFF5F2"
+        ]
+      },
+      "accent": {
+        "role": "tertiary",
+        "displayName": "Copihue",
+        "canonical": "#C7361F",
+        "darkValue": "#FF8064",
+        "tonalRamp": [
+          "#391813",
+          "#64261C",
+          "#923021",
+          "#D23B23",
+          "#DD6855",
+          "#E1998E",
+          "#EBC7C2",
+          "#F8EEED"
+        ]
+      },
+      "onAccent": {
+        "role": "tertiary",
+        "displayName": "Texto sobre copihue",
+        "canonical": "#FFFFFF",
+        "darkValue": "#2A0700",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#7A7A7A",
+          "#999999",
+          "#B8B8B8",
+          "#D6D6D6",
+          "#F2F2F2"
+        ]
+      },
+      "provisional": {
+        "role": "status",
+        "displayName": "Cinta provisional",
+        "canonical": "#D6EE8C",
+        "darkValue": "#C9E27A",
+        "tonalRamp": [
+          "#303A13",
+          "#52641B",
+          "#769320",
+          "#A8D421",
+          "#BCDE54",
+          "#CDE28D",
+          "#E1EBC1",
+          "#F5F8ED"
+        ]
+      },
+      "onProvisional": {
+        "role": "status",
+        "displayName": "Texto de cinta provisional",
+        "canonical": "#1F3308",
+        "darkValue": "#18260A",
+        "tonalRamp": [
+          "#283913",
+          "#42641C",
+          "#5D9221",
+          "#81D223",
+          "#9EDD55",
+          "#BBE18E",
+          "#D8EBC2",
+          "#F3F8ED"
+        ]
+      },
+      "demo": {
+        "role": "status",
+        "displayName": "Menta de demostración",
+        "canonical": "#D2EFE3",
+        "darkValue": "#123A2D",
+        "tonalRamp": [
+          "#1A3328",
+          "#285744",
+          "#357E60",
+          "#41B484",
+          "#6DC5A1",
+          "#9CD3BC",
+          "#C9E4D9",
+          "#EFF6F3"
+        ]
+      },
+      "onDemo": {
+        "role": "status",
+        "displayName": "Texto de demostración",
+        "canonical": "#0A4430",
+        "darkValue": "#CBF0DE",
+        "tonalRamp": [
+          "#133A2C",
+          "#1B644B",
+          "#20936B",
+          "#21D496",
+          "#54DEAE",
+          "#8DE2C5",
+          "#C1EBDD",
+          "#EDF8F4"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Papel frío",
+        "canonical": "#EFF5F3",
+        "darkValue": "#0B1710",
+        "tonalRamp": [
+          "#202C28",
+          "#344B44",
+          "#476B5F",
+          "#5F9684",
+          "#84AEA0",
+          "#AAC5BC",
+          "#D0DDD8",
+          "#F0F4F3"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Hoja blanca",
+        "canonical": "#FFFFFF",
+        "darkValue": "#13231A",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#595959",
+          "#7A7A7A",
+          "#999999",
+          "#B8B8B8",
+          "#D6D6D6",
+          "#F2F2F2"
+        ]
+      },
+      "leafInk": {
+        "role": "neutral",
+        "displayName": "Tinta de hoja",
+        "canonical": "#0E3F25",
+        "darkValue": "#DDF5CF",
+        "tonalRamp": [
+          "#163725",
+          "#205F3E",
+          "#288A56",
+          "#2EC776",
+          "#5ED495",
+          "#93DCB5",
+          "#C4E8D5",
+          "#EDF7F2"
+        ]
+      },
+      "onSurface": {
+        "role": "neutral",
+        "displayName": "Texto principal",
+        "canonical": "#0F2418",
+        "darkValue": "#EDF5E8",
+        "tonalRamp": [
+          "#1B3125",
+          "#2B543D",
+          "#397955",
+          "#49AC73",
+          "#73BF94",
+          "#A0CFB4",
+          "#CBE2D5",
+          "#EFF5F2"
+        ]
+      },
+      "onSurfaceVariant": {
+        "role": "neutral",
+        "displayName": "Texto secundario",
+        "canonical": "#3A5244",
+        "darkValue": "#B5CBBA",
+        "tonalRamp": [
+          "#222B26",
+          "#37483E",
+          "#4C6657",
+          "#668F77",
+          "#89A996",
+          "#AEC1B6",
+          "#D1DBD5",
+          "#F1F4F2"
+        ]
+      },
+      "outline": {
+        "role": "neutral",
+        "displayName": "Contorno",
+        "canonical": "#5E7A68",
+        "darkValue": "#7F9A88",
+        "tonalRamp": [
+          "#232A25",
+          "#39463E",
+          "#4F6356",
+          "#6B8A76",
+          "#8DA596",
+          "#B0BFB5",
+          "#D3DAD5",
+          "#F1F3F2"
+        ]
+      },
+      "outlineVariant": {
+        "role": "neutral",
+        "displayName": "Contorno fino",
+        "canonical": "#C9D8C6",
+        "darkValue": "#2C4535",
+        "tonalRamp": [
+          "#232B21",
+          "#3A4936",
+          "#50684B",
+          "#6B9164",
+          "#8DAA88",
+          "#B0C2AD",
+          "#D3DCD1",
+          "#F1F4F1"
+        ]
+      }
+    },
+    "themes": {
+      "source": "src/ui/theme.ts",
+      "lightNonFrontmatter": {
+        "grain": "#0F2418",
+        "grainOpacity": 0.35,
+        "searchField": "#FFFFFF",
+        "onSearchField": "#0F2418",
+        "onSearchFieldVariant": "#3A5244",
+        "ripple": "rgba(11, 90, 51, 0.14)",
+        "backdrop": "#B9E24C",
+        "navBar": "#FFFFFF",
+        "navIconFill": "rgba(11, 90, 51, 0.22)",
+        "segmentSelected": "#FFFFFF",
+        "onSegmentSelected": "#0B5A33",
+        "scrim": "rgba(15, 36, 24, 0.22)",
+        "washOpacity": 0.5
+      },
+      "dark": {
+        "background": "#0B1710",
+        "grain": "#DDF5CF",
+        "grainOpacity": 0.22,
+        "surface": "#13231A",
+        "onSurface": "#EDF5E8",
+        "onSurfaceVariant": "#B5CBBA",
+        "outline": "#7F9A88",
+        "outlineVariant": "#2C4535",
+        "topBar": "#0D4A2A",
+        "topBarGlaze": "#1A6B3C",
+        "topBarEdge": "#04291A",
+        "onTopBar": "#FFFFFF",
+        "onTopBarVariant": "#CBEB93",
+        "searchField": "#EDF5E8",
+        "onSearchField": "#0F2418",
+        "onSearchFieldVariant": "#3A5244",
+        "ripple": "rgba(185, 226, 76, 0.18)",
+        "leafInk": "#DDF5CF",
+        "lime": "#9CCB3A",
+        "backdrop": "#2F8F4E",
+        "accent": "#FF8064",
+        "onAccent": "#2A0700",
+        "provisional": "#C9E27A",
+        "onProvisional": "#18260A",
+        "demo": "#123A2D",
+        "onDemo": "#CBF0DE",
+        "navBar": "#122019",
+        "navIndicator": "#9CCB3A",
+        "onNavIndicator": "#0F2418",
+        "navIconFill": "rgba(243, 255, 230, 0.24)",
+        "segmentSelected": "#EDF5E8",
+        "onSegmentSelected": "#0D4A2A",
+        "primary": "#B9E24C",
+        "onPrimary": "#0B2615",
+        "scrim": "rgba(0, 0, 0, 0.45)",
+        "washOpacity": 0.55
+      }
+    },
+    "speciesWash": {
+      "source": "src/features/catalog/leaf-plate.tsx",
+      "note": "Verde de aguada por especie; no codifica datos botánicos.",
+      "values": {
+        "nothofagus-dombeyi": "#2F9E55",
+        "eucryphia-cordifolia": "#1E8A6A",
+        "aextoxicon-punctatum": "#6DAE2E",
+        "weinmannia-trichosperma": "#3E9B3A",
+        "laureliopsis-philippiana": "#8DBF2F",
+        "podocarpus-nubigenus": "#2A7A4F",
+        "nothofagus-betuloides": "#58B24A",
+        "nothofagus-pumilio": "#A4BF22",
+        "default": "#3E9B3A"
+      }
+    },
+    "typographyMeta": {
+      "headlineLarge": {
+        "displayName": "Título de pestaña",
+        "purpose": "Título de cada pestaña principal sobre la banda pintada.",
+        "fontAsset": "BricolageGrotesque_800ExtraBold"
+      },
+      "headlineMedium": {
+        "displayName": "Nombre en ficha",
+        "purpose": "Nombre común en la ficha de especie.",
+        "fontAsset": "BricolageGrotesque_800ExtraBold"
+      },
+      "titleLarge": {
+        "displayName": "Sección",
+        "purpose": "Encabezados de sección.",
+        "fontAsset": "BricolageGrotesque_700Bold"
+      },
+      "titleMedium": {
+        "displayName": "Nombre en fila",
+        "purpose": "Nombre común en filas, tarjetas y barra de la ficha.",
+        "fontAsset": "BricolageGrotesque_600SemiBold"
+      },
+      "scientific": {
+        "displayName": "Nombre científico",
+        "purpose": "Solo nombres científicos.",
+        "fontAsset": "Literata_400Regular_Italic",
+        "fontStyle": "italic"
+      },
+      "scientificLarge": {
+        "displayName": "Nombre científico grande",
+        "purpose": "Nombre científico en ficha y etiqueta de procedencia.",
+        "fontAsset": "Literata_400Regular_Italic",
+        "fontStyle": "italic"
+      },
+      "handBold": {
+        "displayName": "Anotación a mano",
+        "purpose": "Número de lámina, rótulo de nota y sello; nunca párrafos.",
+        "fontAsset": "Kalam_700Bold"
+      },
+      "bodyLarge": {
+        "displayName": "Cuerpo",
+        "purpose": "Texto corrido."
+      },
+      "bodyMedium": {
+        "displayName": "Cuerpo medio",
+        "purpose": "Avisos, subtítulos, leyendas."
+      },
+      "labelLarge": {
+        "displayName": "Rótulo de acción",
+        "purpose": "Botones y segmentos."
+      },
+      "labelMedium": {
+        "displayName": "Rótulo",
+        "purpose": "Cintas, navegación, claves de etiqueta."
+      },
+      "labelSmall": {
+        "displayName": "Rótulo pequeño",
+        "purpose": "Atribución del mapa y pie de fuente."
+      }
+    },
+    "shadows": [
+      {
+        "name": "map-float-low",
+        "value": "0 1px 3px rgba(15, 36, 24, 0.22)",
+        "purpose": "Chip de recuento y controles flotantes sobre el mapa (elevation 2, color scrim)."
+      },
+      {
+        "name": "map-card",
+        "value": "0 2px 6px rgba(15, 36, 24, 0.22)",
+        "purpose": "Tarjeta de observación seleccionada sobre el mapa (elevation 3, color scrim)."
+      },
+      {
+        "name": "lens",
+        "value": "0 6px 12px rgba(15, 36, 24, 0.25)",
+        "purpose": "Lupa circular sobre la lámina de la ficha (elevation 8, color onSurface)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Entintado de láminas e indicador de navegación."
+      },
+      {
+        "name": "ink-draw",
+        "value": "900ms",
+        "purpose": "Duración del entintado de una lámina al montarse; estática con movimiento reducido."
+      },
+      {
+        "name": "nav-indicator",
+        "value": "260ms",
+        "purpose": "Apertura de la mancha del destino activo; inmediata con movimiento reducido."
+      },
+      {
+        "name": "row-enter",
+        "value": "320ms, retardo 80ms + 45ms por fila",
+        "purpose": "Entrada escalonada de filas solo al abrir el catálogo."
+      }
+    ],
+    "materials": [
+      {
+        "name": "paper-grain",
+        "value": "assets/images/paper-grain.png, tesela 192px, teñida con grain",
+        "purpose": "Grano del papel; generado por scripts/paper-grain.py con semilla fija."
+      },
+      {
+        "name": "band-edge",
+        "value": "18px",
+        "purpose": "Franja de filo mojado bajo cada banda pintada (BAND_EDGE)."
+      }
+    ],
+    "verification": "Verificado solo en Expo web (capturas 412x892 en .impeccable/review/); pendiente en Android físico."
+  },
+  "components": [
+    {
+      "name": "Botón principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Píldora llena de 48 dp: una acción clara por paso.",
+      "html": "<button class=\"ds-btn-primary\">Buscar otra especie</button>",
+      "css": ".ds-btn-primary { background:#0B5A33; color:#FFFFFF; font:600 14px/20px Roboto, system-ui, sans-serif; letter-spacing:0.1px; min-height:48px; padding:0 24px; border:none; border-radius:999px; cursor:pointer; transition:background .2s; } .ds-btn-primary:hover { background:#1C8044; } .ds-btn-primary:active { background:#053B20; } .ds-btn-primary:focus-visible { outline:2px solid #0E3F25; outline-offset:2px; }"
+    },
+    {
+      "name": "Búsqueda en banda",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "Píldora blanca de 56 dp dentro de la banda pintada.",
+      "html": "<div class=\"ds-search-band\"><label class=\"ds-search\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#3A5244\" stroke-width=\"2\" stroke-linecap=\"round\"><circle cx=\"11\" cy=\"11\" r=\"6.5\"/><path d=\"M16 16l4.5 4.5\"/></svg><input placeholder=\"Buscar por nombre común o científico\"></label></div>",
+      "css": ".ds-search-band { background:#0B5A33; padding:16px; } .ds-search { display:flex; align-items:center; gap:12px; min-height:56px; padding:0 4px 0 16px; background:#FFFFFF; border-radius:999px; } .ds-search input { flex:1; border:none; outline:none; background:transparent; color:#0F2418; caret-color:#0E3F25; font:400 16px/24px Roboto, system-ui, sans-serif; } .ds-search input::placeholder { color:#3A5244; } .ds-search:focus-within { box-shadow:0 0 0 2px #D2F09E; }"
+    },
+    {
+      "name": "Cinta provisional",
+      "kind": "chip",
+      "refersTo": "tag-provisional",
+      "description": "Estado taxonómico: cinta lima con círculo abierto y texto, girada -2°.",
+      "html": "<span class=\"ds-tape-provisional\"><i></i>Provisional</span>",
+      "css": ".ds-tape-provisional { display:inline-flex; align-items:center; gap:6px; padding:3px 10px; border-radius:2px; background:#D6EE8C; color:#1F3308; font:800 12px/16px Roboto, system-ui, sans-serif; letter-spacing:0.4px; transform:rotate(-2deg); } .ds-tape-provisional i { width:9px; height:9px; box-sizing:border-box; border:2px solid #1F3308; border-radius:50%; }"
+    },
+    {
+      "name": "Cinta no implementado",
+      "kind": "chip",
+      "refersTo": "tag-not-implemented",
+      "description": "Capacidad que aún no existe: cinta menta con guion y texto, girada 1,5°.",
+      "html": "<span class=\"ds-tape-pending\"><i></i>Todavía no disponible</span>",
+      "css": ".ds-tape-pending { display:inline-flex; align-items:center; gap:6px; padding:3px 10px; border-radius:2px; background:#D2EFE3; color:#0A4430; font:800 12px/16px Roboto, system-ui, sans-serif; letter-spacing:0.4px; transform:rotate(1.5deg); } .ds-tape-pending i { width:9px; height:2px; border-radius:1px; background:#0A4430; }"
+    },
+    {
+      "name": "Aviso de demostración",
+      "kind": "card",
+      "refersTo": "status-banner",
+      "description": "Aviso no bloqueante en menta fría con ícono de información.",
+      "html": "<div class=\"ds-banner\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#0A4430\" stroke-width=\"2\" stroke-linecap=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 11v6M12 7.5v.01\"/></svg><p>Datos de demostración. Catálogo local de ejemplo, todavía sin conexión con la API.</p></div>",
+      "css": ".ds-banner { display:flex; align-items:flex-start; gap:12px; padding:12px 16px; border-radius:20px; background:#D2EFE3; color:#0A4430; } .ds-banner p { margin:0; flex:1; font:500 14px/20px Roboto, system-ui, sans-serif; }"
+    },
+    {
+      "name": "Barra de navegación",
+      "kind": "nav",
+      "refersTo": "navigation-bar",
+      "description": "Material 3 con indicador de mancha de acuarela lima en el destino activo.",
+      "html": "<nav class=\"ds-nav\"><a>Identificar</a><a>Especies</a><a class=\"is-active\" aria-current=\"page\">Atlas</a><a>Registro</a></nav>",
+      "css": ".ds-nav { display:flex; background:#FFFFFF; border-top:1px solid #C9D8C6; } .ds-nav a { flex:1; min-height:80px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:#3A5244; font:600 12px/16px Roboto, system-ui, sans-serif; letter-spacing:0.4px; cursor:pointer; } .ds-nav a::before { content:''; width:64px; height:32px; border-radius:46% 54% 50% 48% / 58% 44% 56% 42%; transform:scale(.4,.7); opacity:0; background:#C3E86A; transition:transform .26s cubic-bezier(.16,1,.3,1), opacity .26s; } .ds-nav a.is-active { color:#0F2418; font-weight:800; } .ds-nav a.is-active::before { opacity:.95; transform:none; } .ds-nav a:hover::before { opacity:.35; transform:none; } .ds-nav a:focus-visible { outline:2px solid #0E3F25; outline-offset:-4px; }"
+    },
+    {
+      "name": "Etiqueta de procedencia",
+      "kind": "custom",
+      "refersTo": "provenance-label",
+      "description": "Hoja blanca con borde de tinta y dos cintas lima: la fuente junto al dato.",
+      "html": "<div class=\"ds-label\"><b class=\"ds-label-name\">Nothofagus pumilio</b><dl><dt>Fuente</dt><dd>Lista candidata</dd><dt>Versión</dt><dd>bootstrap-1</dd><dt>Validación</dt><dd>Pendiente</dd></dl><span class=\"ds-label-stamp\">Bosque Vivo Chile · Catálogo de especies</span></div>",
+      "css": ".ds-label { position:relative; margin-top:8px; padding:16px; display:grid; gap:8px; background:#FFFFFF; border:1.5px solid #0E3F25; border-radius:4px; color:#0F2418; } .ds-label::before, .ds-label::after { content:''; position:absolute; top:-8px; width:56px; height:18px; background:#B9E24C; opacity:.85; border-radius:1px; } .ds-label::before { left:-6px; transform:rotate(-24deg); } .ds-label::after { right:-6px; transform:rotate(22deg); } .ds-label-name { font:italic 400 19px/26px Literata, Georgia, serif; } .ds-label dl { margin:0; display:grid; grid-template-columns:92px 1fr; gap:8px 12px; } .ds-label dt { color:#3A5244; font:600 12px/16px Roboto, system-ui, sans-serif; letter-spacing:.4px; padding-top:2px; } .ds-label dd { margin:0; font:400 14px/20px Roboto, system-ui, sans-serif; } .ds-label-stamp { margin-top:4px; padding-top:8px; border-top:1px dashed #C9D8C6; text-align:right; color:#3A5244; font:700 16px/22px Kalam, cursive; }"
+    },
+    {
+      "name": "Fila de especie",
+      "kind": "custom",
+      "refersTo": "species-row",
+      "description": "Fila de 96 dp: mancha y lámina, nombres, cinta y número de lámina a mano en copihue.",
+      "html": "<button class=\"ds-row\"><span class=\"ds-row-thumb\"><svg width=\"60\" height=\"60\" viewBox=\"0 0 100 100\" fill=\"none\"><path d=\"M47 82 C30 66 30 38 52 16 C70 40 68 66 47 82Z\" fill=\"#2F9E55\" fill-opacity=\".35\" transform=\"translate(3 -2) rotate(4 50 50)\"/><path d=\"M50 84 C32 66 32 38 50 16 C68 38 68 66 50 84Z\" stroke=\"#0E3F25\" stroke-width=\"1.6\"/><path d=\"M50 92 L50 22\" stroke=\"#0E3F25\" stroke-width=\"1.2\" stroke-linecap=\"round\"/></svg></span><span class=\"ds-row-text\"><b>Coigüe</b><i>Nothofagus dombeyi</i></span><span class=\"ds-row-num\">N.º 01</span></button>",
+      "css": ".ds-row { display:flex; align-items:center; gap:16px; width:100%; min-height:96px; padding:12px 16px; border:none; background:#EFF5F3; text-align:left; cursor:pointer; } .ds-row:hover { background:#E3EDE8; } .ds-row:focus-visible { outline:2px solid #0E3F25; outline-offset:-2px; } .ds-row-thumb { width:72px; height:72px; display:grid; place-items:center; border-radius:48% 52% 45% 55%; background:rgba(47,158,85,.18); } .ds-row-text { flex:1; display:grid; gap:2px; } .ds-row-text b { color:#0F2418; font:600 19px/24px 'Bricolage Grotesque', sans-serif; } .ds-row-text i { color:#3A5244; font:italic 400 15px/20px Literata, Georgia, serif; } .ds-row-num { align-self:flex-start; color:#C7361F; font:700 16px/22px Kalam, cursive; font-variant-numeric:tabular-nums; }"
+    },
+    {
+      "name": "Interruptor Mapa/Lista",
+      "kind": "custom",
+      "refersTo": "segmented-switch-selected",
+      "description": "Segmentado en píldora sobre la banda; el pulgar blanco marca el elegido.",
+      "html": "<div class=\"ds-switch\" role=\"radiogroup\"><button class=\"is-on\" role=\"radio\" aria-checked=\"true\">Mapa</button><button role=\"radio\" aria-checked=\"false\">Lista</button></div>",
+      "css": ".ds-switch { display:flex; padding:0; border:1.5px solid #D2F09E; border-radius:999px; overflow:hidden; background:#0B5A33; } .ds-switch button { flex:1; min-height:48px; border:none; border-radius:999px; background:transparent; color:#FFFFFF; font:600 14px/20px Roboto, system-ui, sans-serif; cursor:pointer; transition:background .2s, color .2s; } .ds-switch button.is-on { background:#FFFFFF; color:#0B5A33; font-weight:800; } .ds-switch button:focus-visible { outline:2px solid #D2F09E; outline-offset:-4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Cuaderno de campo de acuarela",
+    "overview": "La app se lee como un cuaderno pintado en terreno: papel de acuarela blanco frío con grano, bandas de aguada verde bosque cuyo filo mojado cae sobre el contenido, hojas entintadas a pulso con una aguada que no calza del todo con la tinta, y etiquetas pegadas con cinta. Este mundo reemplaza al herbario gris-verde de filetes finos que lo precedió; lo fijó la persona responsable el 28-10-2026 y el código actual lo materializa en `src/ui/theme.ts`, `src/ui/watercolor.tsx`, `src/ui/paper.tsx` y `src/features/catalog/leaf-plate.tsx`.\n\nLa pintura es generada en código, no rasterizada: cada mancha (`Wash`) y cada banda (`PaintedBand`) es SVG determinista a partir de una semilla (`seedOf(id)` o `seedOf(title)`), así que la misma especie o pestaña muestra siempre la misma mancha. El único ráster es la tesela de grano de 192 px (`assets/images/paper-grain.png`, generada por `scripts/paper-grain.py`, semilla fija), que la app tiñe según el tema. Bajo la acuarela se conserva la estructura de Material 3: barra de navegación de 80 dp con indicador, botones en píldora de 48 dp, escala tipográfica headline/title/body/label y roles `on*`.\n\nLa densidad es de lectura en exterior: filas de 96 dp, áreas de toque de 48 dp, alto contraste sobre papel claro y verdes intensos con un solo acento cálido. La incertidumbre se muestra como estado con texto, nunca como adorno.\n\nLímite honesto: este sistema se verificó solo en Expo web (capturas a 412x892 en `.impeccable/review/`); todavía no se ha visto en un Android físico, donde el grano teselado, las veladuras SVG y el `android_ripple` deben confirmarse.",
+    "keyCharacteristics": [
+      "Papel de acuarela frío con grano teñido por tema; sin tarjetas con foto.",
+      "Bandas de aguada verde con filo mojado en todas las barras superiores.",
+      "Tinta y aguada fuera de registro como firma de cada lámina de especie.",
+      "Un solo acento cálido (copihue) para marcas puntuales.",
+      "Estados con texto y forma (cinta, círculo abierto, guion, ícono), nunca solo color.",
+      "Estructura Material 3 intacta bajo la piel de acuarela; tema claro y oscuro."
+    ],
+    "rules": [
+      {
+        "name": "The Una Sola Voz Cálida Rule",
+        "body": "El copihue es el único color cálido y marca puntos concretos (número de lámina, marcador, anillo, observación sin verificar). Nunca rellena superficies, bandas ni botones.",
+        "section": "colors"
+      },
+      {
+        "name": "The Texto y Forma Rule",
+        "body": "Cada estado lleva texto y una forma propia: círculo abierto para provisional o sin verificar, guion para no implementado, ícono de información para demostración. El color refuerza; nunca es la única señal.",
+        "section": "colors"
+      },
+      {
+        "name": "The Aguada No Es Dato Rule",
+        "body": "Los verdes por especie y las manchas decorativas no codifican información. Si un color tiene que significar algo, se rotula.",
+        "section": "colors"
+      },
+      {
+        "name": "The Cuatro Voces Rule",
+        "body": "Bricolage solo titula, Literata cursiva solo nombra especies, Kalam solo anota y Roboto hace todo lo demás. Ninguna voz invade el rol de otra.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mano Breve Rule",
+        "body": "Kalam se usa en anotaciones de una o pocas palabras; nunca en párrafos, botones ni datos de procedencia.",
+        "section": "typography"
+      },
+      {
+        "name": "The Filo Mojado Rule",
+        "body": "Todo contenido bajo una banda pintada reserva `BAND_EDGE` (18 dp) arriba; nada importante queda bajo el filo.",
+        "section": "layout"
+      },
+      {
+        "name": "The Papel Plano Rule",
+        "body": "Lo que está pintado o pegado sobre el papel (filas, etiqueta, cintas, avisos) no lleva sombra. La sombra queda reservada a lo que flota sobre un lienzo interactivo.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** abrir cada pestaña principal con `ScreenHeader` y su banda pintada, y dejar `BAND_EDGE` (18 dp) libre bajo ella.",
+      "**Do** poner toda pantalla sobre `Paper` para que el grano y el color de papel sigan el tema.",
+      "**Do** sembrar cada mancha con `seedOf` de un identificador estable para que no cambie entre renders.",
+      "**Do** acompañar cada estado con texto y forma: círculo abierto, guion o ícono, más su rótulo.",
+      "**Do** reservar el copihue (`accent`) para marcas puntuales.",
+      "**Do** respetar el movimiento reducido en el entintado y en el indicador de navegación.",
+      "**Do** mantener la estructura de Material 3: áreas de toque de 48 dp, barra de navegación de 80 dp y botones en píldora."
+    ],
+    "donts": [
+      "**Don't** usar el color como única señal de un estado (provisional, demostración, no implementado, sin verificar).",
+      "**Don't** rellenar superficies o botones con copihue ni añadir un segundo acento cálido.",
+      "**Don't** usar Kalam para párrafos, botones o datos de procedencia, ni Literata cursiva fuera de los nombres científicos.",
+      "**Don't** dar sombra a lo que está pintado o pegado sobre el papel; la sombra queda para lo que flota sobre el mapa y para la lupa.",
+      "**Don't** presentar una lámina o portada pintada como fotografía o como paisaje real de Puyehue.",
+      "**Don't** hacer que el verde de aguada de una especie signifique un dato botánico."
+    ]
+  }
+}
