@@ -100,3 +100,7 @@ Incremento de contexto: [QA forestal real, PostGIS y ponderación temporal CHMv2
 Investigación privada: [SAM 3.1 mediante Meta API](docs/META_SAM_API_RESEARCH.md),
 [ejecución del laboratorio](tools/meta_sam_api_lab/README.md). Una máscara real de imagen;
 dos solicitudes de video sin coincidencias, sin tracking positivo demostrado.
+
+Prompts espaciales, correcciones y resolución: [investigación SAM espacial](docs/SAM_SPATIAL_RESEARCH.md),
+sin inferencias nuevas pagadas. Fuentes botánicas de las ocho especies y crosswalk GBIF/COL XR:
+[datasets](docs/BOTANICAL_DATASETS.md); protocolo y métricas: [evaluación](docs/BOTANICAL_EVALUATION.md).

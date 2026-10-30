@@ -61,7 +61,9 @@ def validate_cases(cases: list[EvaluationCase], species_ids: set[str]) -> None:
         hashes.add(case.sha256)
 
 
-def summarize(cases: list[EvaluationCase], results: list[EvaluationResult]) -> dict:
+def summarize(
+    cases: list[EvaluationCase], results: list[EvaluationResult], by_type: bool = True
+) -> dict:
     if len({r.case_id for r in results}) != len(results):
         raise ValueError("Resultados duplicados; separar experimento/proveedor")
     by_id = {c.case_id: c for c in cases}
@@ -94,7 +96,7 @@ def summarize(cases: list[EvaluationCase], results: list[EvaluationResult]) -> d
         else:
             raise ValueError("Resultado sin identificación ni error")
     count = len(eligible)
-    return {
+    summary = {
         "status": "evaluated" if real and eligible else "not_evaluated",
         "provider": results[0].provider if results else None,
         "experiment": results[0].experiment if results else None,
@@ -126,3 +128,19 @@ def summarize(cases: list[EvaluationCase], results: list[EvaluationResult]) -> d
             "Top-k usa todos los casos etiquetados ejecutados, incluidos errores y abstenciones.",
         ],
     }
+    if by_type:  # per photographed organ; each subset keeps its own denominators
+        summary["by_photo_type"] = {
+            kind: {
+                key: sub[key]
+                for key in ("executed", "evaluable", "top1", "top3", "abstentions")
+            }
+            for kind in sorted({by_id[r.case_id].photo_type for r in results})
+            for sub in [
+                summarize(
+                    [c for c in cases if c.photo_type == kind],
+                    [r for r in results if by_id[r.case_id].photo_type == kind],
+                    by_type=False,
+                )
+            ]
+        }
+    return summary

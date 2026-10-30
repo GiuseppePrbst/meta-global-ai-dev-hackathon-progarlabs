@@ -178,9 +178,16 @@ def probe(path: Path) -> dict:
     }
 
 
-def prepare_clip(source: Path, output: Path, *, start=0.0, seconds=5.0, fps=10) -> dict:
+WIDTHS = (640, 960, 1280)  # 1920 source; larger only once smaller ones justify it
+
+
+def prepare_clip(
+    source: Path, output: Path, *, start=0.0, seconds=5.0, fps=10, width=640
+) -> dict:
     if not 0 <= start or not 0 < seconds <= 10 or not 1 <= fps <= 30:
         raise ValueError("Clip limit: 10 seconds, 1–30 FPS")
+    if width not in WIDTHS:
+        raise ValueError(f"Prepared width must be one of {WIDTHS}")
     output = private_path(output)
     output.mkdir(parents=True, exist_ok=False)
     original = probe(source)
@@ -206,7 +213,7 @@ def prepare_clip(source: Path, output: Path, *, start=0.0, seconds=5.0, fps=10) 
             "-map_metadata",
             "-1",
             "-vf",
-            f"fps={fps},scale=640:-2",
+            f"fps={fps},scale={width}:-2",
             "-c:v",
             "libx264",
             "-crf",
@@ -246,9 +253,60 @@ def prepare_clip(source: Path, output: Path, *, start=0.0, seconds=5.0, fps=10) 
         "start_seconds": start,
         "relative_frame_time": "frame_index / prepared.fps",
         "rotation_applied": "FFmpeg autorotate; original metadata removed",
-        "spatial_transform": "resize to width 640, preserve aspect, no georeferencing",
+        "spatial_transform": f"resize to width {width}, preserve aspect, "
+        "no georeferencing",
+        "scale_from_original": [
+            prepared["width"] / original["width"],
+            prepared["height"] / original["height"],
+        ],
     }
     (output / "preparation.json").write_text(
         json.dumps(manifest, indent=2), encoding="utf-8"
     )
     return manifest
+
+
+def prepare_resolution_matrix(
+    source: Path, output: Path, *, start: float, seconds=5.0, fps=10, widths=WIDTHS
+) -> dict:
+    """Same source, interval, FPS and duration; only the output width changes."""
+    clips = {
+        width: prepare_clip(
+            source,
+            output / f"w{width}",
+            start=start,
+            seconds=seconds,
+            fps=fps,
+            width=width,
+        )
+        for width in widths
+    }
+    frames = {clip["prepared"]["frames"] for clip in clips.values()}
+    if len(frames) != 1:
+        raise ValueError("Resolution clips must share the same frames")
+    matrix = {
+        "classification": "RESTRICTED",
+        "source_sha256": next(iter(clips.values()))["source_sha256"],
+        "start_seconds": start,
+        "seconds": seconds,
+        "fps": fps,
+        "frames": frames.pop(),
+        "controlled_variable": "prepared width",
+        "billing_note": "SAM video bills per processed frame; resolution does not change "
+        "the tariff, only payload, upload and latency",
+        "clips": [
+            {
+                "width": clip["prepared"]["width"],
+                "height": clip["prepared"]["height"],
+                "bytes": clip["prepared"]["bytes"],
+                "clip_sha256": clip["clip_sha256"],
+                "scale_from_original": clip["scale_from_original"],
+                "within_lab_upload_limit": clip["prepared"]["bytes"] <= 20 * 1024**2,
+            }
+            for clip in clips.values()
+        ],
+    }
+    (output / "resolution-matrix.json").write_text(
+        json.dumps(matrix, indent=2), encoding="utf-8"
+    )
+    return matrix

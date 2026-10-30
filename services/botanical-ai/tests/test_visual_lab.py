@@ -216,8 +216,11 @@ async def test_spatial_box_is_integer_and_invalid_box_never_reserves(
 
     def handle(request):
         payload = json.loads(request.content)
-        assert payload["metadata"]["propagation_direction"] == "forward"
-        assert payload["input"][0]["content"][0]["text"] != "vegetation"
+        # Images have no propagation; the official builder text replaces any concept.
+        assert "propagation_direction" not in payload["metadata"]
+        assert payload["input"][0]["content"][0]["text"] == (
+            "<0f>1<|box;x1=1;y1=2;x2=8;y2=7;w=10;h=8|>"
+        )
         return httpx.Response(200, text='data: {"type":"response.completed"}\n\n')
 
     monkeypatch.setattr(lab, "ExecutionStore", Ledger)
@@ -234,7 +237,6 @@ async def test_spatial_box_is_integer_and_invalid_box_never_reserves(
         config,
         source,
         tmp_path / "box",
-        "vegetation",
         authorized=True,
         client=client,
         object_box=[1.2, 2.4, 8.1, 7.1],
@@ -245,10 +247,19 @@ async def test_spatial_box_is_integer_and_invalid_box_never_reserves(
             config,
             source,
             tmp_path / "bad",
-            "vegetation",
             authorized=True,
             client=client,
             object_box=[0, 0, 100, 10],
+        )
+    with pytest.raises(ValueError, match="never both"):
+        await lab.run_experiment(
+            config,
+            source,
+            tmp_path / "mixed",
+            "vegetation",
+            authorized=True,
+            client=client,
+            object_box=[1, 1, 5, 5],
         )
     assert calls == ["reserved"]
 

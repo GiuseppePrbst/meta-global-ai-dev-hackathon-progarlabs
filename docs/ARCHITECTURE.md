@@ -165,3 +165,26 @@ Implementado y probado: una máscara real de imagen, dos solicitudes de video si
 coincidencias, visor y limpieza de tres uploads. No implementado como capacidad validada:
 tracking positivo, métricas humanas, georreferenciación o medición física. Muse explícito
 sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH.md).
+
+## Decisión 2026-10-30 — prompts espaciales y registro botánico
+
+- Una sola ruta de validación (`lab.plan_request`) para vista previa, CLI y envío. Concepto
+  y objetos espaciales son excluyentes. El texto lo genera `build_object_prompt` del parser
+  oficial (0.1.0); los floats se convierten con `floor/ceil` y las coordenadas fuera del
+  medio se rechazan. Imagen sin `propagation_direction`; `include_confidence` como cadena.
+- Las correcciones son experimentos nuevos con `parent_experiment_id`; el directorio de
+  salida debe ser nuevo. Las revisiones humanas se guardan como `review-<UTC>.json`
+  separados y nunca editan `result.json`.
+- La geometría del visor vive en `geometry.js`, puro y probado en Node y Chromium.
+  `getBoundingClientRect` absorbe escalado CSS y zoom; los insets y `object-fit: contain`
+  se descuentan explícitamente.
+- Resolución de video parametrizada (640/960/1280) con el mismo intervalo, FPS y
+  duración. La tarifa SAM es por frame y no depende de la resolución.
+- `evaluations/botanical_registry.py` consulta GBIF con la taxonomía COL XR
+  (`checklistKey 7ddf754f-…`) y Commons. Las claves del Backbone histórico se conservan en
+  `species.json` y se cruzan en `evaluations/botanical/gbif-colxr-crosswalk.json`; no se
+  reemplazan. El estado de etiqueta nunca supera `metadata_checked` sin revisor humano.
+- Métricas Pillow (`metrics.py`), sin dependencias nuevas; `summarize` añade
+  `by_photo_type`. Sin inferencia local ni nuevos SDK.
+[Investigación](SAM_SPATIAL_RESEARCH.md) · [Datasets](BOTANICAL_DATASETS.md) ·
+[Evaluación](BOTANICAL_EVALUATION.md).

@@ -6,10 +6,12 @@ import json
 import math
 import re
 from collections import defaultdict
+from datetime import UTC, datetime
 from io import BytesIO
 from itertools import pairwise
 from pathlib import Path
 from time import perf_counter
+from typing import Literal
 
 from bosque_ai.meta import MetaAPIError, MetaResponsesClient
 from bosque_api.execution import ExecutionStore
@@ -17,6 +19,12 @@ from bosque_api.images import prepare_image
 from fastapi import HTTPException
 from meta_sam_parser import (
     CompletedOutcome,
+    FramePrompt,
+    ObjectPromptError,
+    PromptBox,
+    PromptObject,
+    PromptPoint,
+    build_object_prompt,
     image_segmentation_format,
     video_segmentation_format,
 )
@@ -26,6 +34,212 @@ from pydantic import BaseModel, ConfigDict, Field
 from tools.meta_sam_api_lab.media import command, digest, private_path, probe
 
 CONCEPTS = {"tree", "tree crown", "vegetation", "bush", "branches"}
+DIRECTIONS = {"both", "forward", "backward"}
+MAX_OBJECTS = 16  # dev.meta.ai/docs/sam/segmenting, consulted 2026-10-30
+IMAGE_USD, FRAME_USD, MIN_FRAMES = 0.0025, 0.0002, 50  # Standard tariff, same source
+SAFE_ID = re.compile(r"[A-Za-z0-9_-]{1,64}")
+
+
+class PointSpec(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    x: float = Field(allow_inf_nan=False)
+    y: float = Field(allow_inf_nan=False)
+    label: Literal["positive", "negative"] = "positive"
+
+
+class FrameSpec(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    frame: int = Field(default=0, ge=0)
+    box: list[float] | None = Field(default=None, min_length=4, max_length=4)
+    points: list[PointSpec] = Field(default_factory=list, max_length=32)
+
+
+class ObjectSpec(BaseModel):
+    """Prepared-media pixels; one object keeps its ID across every frame prompt."""
+
+    model_config = ConfigDict(extra="forbid")
+    id: int = Field(ge=1, le=9999)
+    prompts: list[FrameSpec] = Field(min_length=1, max_length=300)
+
+
+def spatial_prompt(
+    objects: list[ObjectSpec], size: tuple[int, int], frames: int, direction: str
+):
+    """Validate, convert float pixels to builder integers and build official text.
+
+    Coordinates outside [0, size] are rejected, never silently clamped. Box edges are
+    widened with floor/ceil to the builder's half-open integers; points use floor and
+    a point exactly on the far edge maps to the last pixel.
+    """
+    width, height = size
+    if not 1 <= len(objects) <= MAX_OBJECTS or direction not in DIRECTIONS:
+        raise ValueError(f"1-{MAX_OBJECTS} objects and a documented direction required")
+    built, normalized = [], []
+    for item in objects:
+        prompts, frames_out = [], []
+        for prompt in item.prompts:
+            if prompt.frame >= frames:
+                raise ValueError("Prompt frame outside prepared media")
+            values = [*(prompt.box or [])] + [
+                v for p in prompt.points for v in (p.x, p.y)
+            ]
+            limits = [width, height] * (len(values) // 2)
+            if any(
+                not 0 <= v <= limit for v, limit in zip(values, limits, strict=True)
+            ):
+                raise ValueError("Prompt coordinates must use prepared media pixels")
+            box = None
+            if prompt.box is not None:
+                left, top, right, bottom = prompt.box
+                box = PromptBox(
+                    math.floor(min(left, right)),
+                    math.floor(min(top, bottom)),
+                    math.ceil(max(left, right)),
+                    math.ceil(max(top, bottom)),
+                )
+            points = [
+                PromptPoint(
+                    min(math.floor(p.x), width - 1),
+                    min(math.floor(p.y), height - 1),
+                    p.label,
+                )
+                for p in prompt.points
+            ]
+            prompts.append(FramePrompt(frame=prompt.frame, box=box, points=points))
+            frames_out.append(
+                {
+                    "frame": prompt.frame,
+                    "box": None
+                    if box is None
+                    else [box.left, box.top, box.right, box.bottom],
+                    "points": [[p.x, p.y, p.label] for p in points],
+                }
+            )
+        built.append(PromptObject(id=item.id, prompts=prompts))
+        normalized.append({"id": item.id, "prompts": frames_out})
+    try:
+        text = build_object_prompt(size=(width, height), objects=built)
+    except ObjectPromptError as exc:
+        raise ValueError(f"Invalid spatial prompt: {exc.code}") from None
+    earliest = min(p.frame for o in objects for p in o.prompts)
+    if direction == "backward" and earliest == 0:
+        raise ValueError("Backward propagation needs its earliest prompt after frame 0")
+    return text, normalized, earliest
+
+
+def frames_processed(frames: int, earliest: int, direction: str | None) -> int:
+    """Upper bound of frames the provider visits from the earliest prompt frame."""
+    if direction == "forward":
+        return frames - earliest
+    if direction == "backward":
+        return earliest + 1
+    return frames
+
+
+def estimate_usd(video: bool, processed: int) -> float:
+    return max(MIN_FRAMES, processed) * FRAME_USD if video else IMAGE_USD
+
+
+def describe_media(source: Path, video: bool) -> dict:
+    """Prepared-media facts every prompt coordinate refers to. No network, no ledger."""
+    if video:
+        info = probe(source)
+        if (
+            info["codec"] != "h264"
+            or info["duration_seconds"] > 10
+            or info["frames"] > 300
+            or source.stat().st_size > 20 * 1024**2
+            or max(info["width"], info["height"]) > 1920
+        ):
+            raise ValueError(
+                "Prepare MP4/H.264 <=10 seconds, 300 frames, 20 MiB, 1920 pixels"
+            )
+        if info.get("rotation", 0):
+            raise ValueError(
+                "Rotated video: prepare it first (autorotate, no metadata)"
+            )
+        return {
+            "media": "video",
+            "width": info["width"],
+            "height": info["height"],
+            "frames": info["frames"],
+            "fps": info["fps"],
+        }
+    if source.stat().st_size > 10 * 1024**2:
+        raise ValueError("Image exceeds 10 MiB")
+    with Image.open(source) as image:
+        mime = Image.MIME.get(image.format)
+    image_bytes = prepare_image(source.read_bytes(), mime)
+    with Image.open(BytesIO(image_bytes)) as clean:
+        width, height = clean.size
+    return {
+        "media": "image",
+        "width": width,
+        "height": height,
+        "frames": 1,
+        "fps": 1,
+        "image_bytes": image_bytes,
+    }
+
+
+def plan_request(
+    info: dict,
+    concept: str | None,
+    objects: list[ObjectSpec] | None,
+    direction: str | None,
+) -> dict:
+    """Single validation path for viewer preview, CLI and run: no reservation."""
+    video = info["media"] == "video"
+    if (concept is None) == (not objects):
+        raise ValueError("Use one allowed concept or spatial objects, never both")
+    if objects:
+        direction = (direction or "both") if video else None
+        prompt, normalized, earliest = spatial_prompt(
+            objects,
+            (info["width"], info["height"]),
+            info["frames"],
+            direction or "both",
+        )
+    else:
+        if concept not in CONCEPTS or direction:
+            raise ValueError("One allowed concept, without propagation direction")
+        prompt, normalized, earliest = concept, None, 0
+    processed = frames_processed(info["frames"], earliest, direction) if video else 1
+    return {
+        "media": info["media"],
+        "prepared_size": [info["width"], info["height"]],
+        "frames": info["frames"],
+        "fps": info["fps"],
+        "prompt_mode": "spatial" if objects else "concept",
+        "concept": concept if not objects else None,
+        "objects": normalized,
+        "prompt": prompt,
+        "prompt_frame": earliest,
+        "prompt_time_seconds": earliest / info["fps"],
+        "direction": direction,
+        "frames_processed_estimate": processed,
+        "preview_estimated_usd": estimate_usd(video, processed),
+    }
+
+
+def ledger_status(config) -> dict:
+    """Read-only view of the cumulative reservations; never reserves or refunds."""
+    import psycopg
+
+    with psycopg.connect(
+        config.database_url.get_secret_value(), connect_timeout=3
+    ) as conn:
+        reserved, count = conn.execute(
+            "SELECT COALESCE(sum(reserved_units),0), count(*) FROM execution_reservations"
+        ).fetchone()
+    remaining = config.budget_lifetime_units - reserved
+    return {
+        "lifetime_usd": config.budget_lifetime_units / 1_000_000,
+        "reserved_usd": reserved / 1_000_000,
+        "reservations": count,
+        "next_reservation_usd": config.meta_reservation_units / 1_000_000,
+        "can_reserve": remaining >= config.meta_reservation_units,
+    }
 
 
 class SceneAdvisory(BaseModel):
@@ -272,7 +486,7 @@ def render_result(result, originals: list[Path], output: Path, fps: float) -> di
             draw = ImageDraw.Draw(overlay)
             draw.rectangle(box, outline=(*color_for(identifier), 255), width=2)
             draw.text((box[0], box[1]), f"ID {identifier}", fill="white")
-            if index == 0:
+            if identifier not in tracks:  # first frame where the object appears
                 image.crop(box).save(output / f"crop-{identifier}.png")
             objects.append(
                 {
@@ -370,34 +584,56 @@ async def run_experiment(
     config,
     source: Path,
     output: Path,
-    concept: str,
+    concept: str | None = None,
     *,
     video=False,
     authorized=False,
     progress=None,
     client=None,
     object_box: list[float] | None = None,
+    objects: list[ObjectSpec] | None = None,
+    direction: str | None = None,
+    include_confidence=False,
+    parent_experiment_id: str | None = None,
+    correction_reason: str | None = None,
+    source_ref: str | None = None,
 ) -> dict:
-    if not authorized or concept not in CONCEPTS:
-        raise ValueError(
-            "Explicit external-processing authorization and one allowed concept required"
-        )
+    if not authorized:
+        raise ValueError("Explicit external-processing authorization required")
     if not config.meta_enabled or not config.budget_lifetime_units:
         raise ValueError("Enable an explicit cumulative research budget")
+    if object_box is not None:  # CLI shorthand: one object, frame 0, forward.
+        if objects:
+            raise ValueError("Use --box or objects, not both")
+        objects = [ObjectSpec(id=1, prompts=[FrameSpec(frame=0, box=object_box)])]
+        direction = direction or "forward"
+    if parent_experiment_id is not None and (
+        not SAFE_ID.fullmatch(parent_experiment_id)
+        or not correction_reason
+        or len(correction_reason) > 300
+    ):
+        raise ValueError("A correction needs a safe parent ID and a short reason")
     output = private_path(output)
     output.mkdir(parents=True, exist_ok=False)
     manifest = {
         "classification": "RESTRICTED",
         "model": "sam-3.1",
+        "model_version": "sam-3.1",
+        "parser": "meta-sam-parser 0.1.0",
         "provider": "meta",
         "mode": "Standard",
-        "concept": concept,
+        "concept": None if objects else concept,
         "media": "video" if video else "image",
         "status": "pending",
         "cleanup": "not_uploaded",
         "file_id": None,
         "usage": {},
-        "prompt_mode": "box" if object_box is not None else "concept",
+        "prompt_mode": "spatial" if objects else "concept",
+        "include_confidence": include_confidence,
+        "parent_experiment_id": parent_experiment_id,
+        "correction_reason": correction_reason,
+        "source_ref": source_ref,
+        "created_at": datetime.now(UTC).isoformat(timespec="seconds"),
         "source_sha256": digest(source),
     }
 
@@ -409,69 +645,26 @@ async def run_experiment(
 
     state("pending")
     try:
-        if video:
-            info = probe(source)
-            if (
-                info["codec"] != "h264"
-                or info["duration_seconds"] > 10
-                or info["frames"] > 300
-                or source.stat().st_size > 20 * 1024**2
-                or max(info["width"], info["height"]) > 1920
-            ):
-                raise ValueError(
-                    "Prepare MP4/H.264 <=10 seconds, 300 frames, 20 MiB, 1920 pixels"
-                )
-            expected_frames = info["frames"]
-            rate = info["fps"]
-            amount = (
-                max(50, expected_frames) * 400
-            )  # microUSD, twice current per-frame tariff.
-            parser = video_segmentation_format().create_parser()
-        else:
-            if source.stat().st_size > 10 * 1024**2:
-                raise ValueError("Image exceeds 10 MiB")
-            with Image.open(source) as image:
-                mime = Image.MIME.get(image.format)
-            image_bytes = prepare_image(source.read_bytes(), mime)
-            with Image.open(BytesIO(image_bytes)) as clean:
-                prepared_size = clean.size
-            expected_frames, rate, amount = 1, 1, 5000
-            parser = image_segmentation_format().create_parser()
+        info = describe_media(source, video)
+        image_bytes = info.pop("image_bytes", None)
+        plan = plan_request(info, concept, objects, direction)
+        expected_frames, rate = info["frames"], info["fps"]
+        # microUSD; video reserves twice the tariff for the whole clip, never less.
+        amount = max(MIN_FRAMES, expected_frames) * 400 if video else 5000
+        parser = (
+            video_segmentation_format() if video else image_segmentation_format()
+        ).create_parser()
         if config.meta_reservation_units < amount:
             raise ValueError("Conservative SAM reservation is too small")
-        prompt = concept
+        prompt = plan["prompt"]
         metadata = {"mask_encoding": "one_bit"}
+        if plan["direction"]:
+            metadata["propagation_direction"] = plan["direction"]
+        if include_confidence:
+            metadata["include_confidence"] = "true"  # documented string, not boolean
+        manifest.update(plan)
         if object_box is not None:
-            from meta_sam_parser import (
-                FramePrompt,
-                PromptBox,
-                PromptObject,
-                build_object_prompt,
-            )
-
-            width, height = (info["width"], info["height"]) if video else prepared_size
-            if len(object_box) != 4 or not (
-                0 <= object_box[0] < object_box[2] <= width
-                and 0 <= object_box[1] < object_box[3] <= height
-            ):
-                raise ValueError("Prompt box must use prepared media pixels")
-            integer_box = [
-                math.floor(object_box[0]),
-                math.floor(object_box[1]),
-                math.ceil(object_box[2]),
-                math.ceil(object_box[3]),
-            ]
-            prompt = build_object_prompt(
-                size=(width, height),
-                objects=[
-                    PromptObject(
-                        id=1,
-                        prompts=[FramePrompt(frame=0, box=PromptBox(*integer_box))],
-                    )
-                ],
-            )
-            metadata["propagation_direction"] = "forward"
-            manifest["initial_box"] = integer_box
+            manifest["initial_box"] = plan["objects"][0]["prompts"][0]["box"]
 
         ledger = ExecutionStore(config)
         reservation = await asyncio.to_thread(ledger.reserve, "sam-api-lab", "identify")
@@ -573,11 +766,13 @@ async def run_experiment(
         if video:
             encode_videos(output, rate, source)
         billed = (
-            client.usage.get("video_frames_processed", max(50, expected_frames))
+            client.usage.get(
+                "video_frames_processed", manifest["frames_processed_estimate"]
+            )
             if video
             else 1
         )
-        manifest["estimated_usd"] = billed * 0.0002 if video else 0.0025
+        manifest["estimated_usd"] = estimate_usd(video, billed)
         manifest["billing_basis"] = (
             "provider frames"
             if "video_frames_processed" in client.usage

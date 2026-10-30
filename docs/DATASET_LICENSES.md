@@ -127,3 +127,29 @@ atribución detallada, permisos, URLs, fechas, hashes y derivados constan única
 manifiestos privados. La excepción actualiza las prohibiciones históricas de transferencia
 para esta misión, no para otros recursos. Las fixtures nuevas son dibujos/raster/bytes
 SYNTHETIC generados por tests, sin reproducir datos Hepta ni observaciones reales.
+
+## Registro botánico de candidatas — 30-10-2026
+
+```yaml
+name: bosque-vivo-botanical-candidates/1
+source: GBIF (Pl@ntNet verificadas, COL XR) y Wikimedia Commons (categorías por especie)
+url: evaluations/botanical/candidate-manifest.json
+accessed_at: 2026-10-30
+version: consulta registrada en queried_at de cada archivo
+license: por medio; ver campo license y record_license de cada registro
+attribution: campo attribution por registro (autor, archivo/observación, plataforma)
+redistribution: solo metadatos y enlaces; no se redistribuyen imágenes
+classification: PUBLIC_VERIFIED (metadatos); imágenes no incorporadas
+processing: miniaturas fuera de Git para SHA-256 y dHash; sin entrenamiento ni envío a Meta
+validator: Giuseppe Proboste (revisión humana pendiente)
+validation_status: pending
+```
+
+Reglas aplicadas: la licencia del registro no se extiende al medio (Pl@ntNet: registro
+CC BY 4.0, foto CC BY-SA). NC, ND, solo-GFDL, licencia ausente o no reconocida → `rejected`.
+iNaturalist no se incorpora (dataset CC BY-NC y términos que prohíben entrenamiento
+comercial de IA). HerbarioDigital UdeC (CC BY-NC-ND), Chileflora y Corteza quedan como
+referencia sin ingesta de imágenes. Consulta, descarga, procesamiento externo, evaluación,
+entrenamiento y redistribución son autorizaciones distintas. Este registro solo cubre
+consulta de metadatos y hashing local de miniaturas. Detalle en
+[BOTANICAL_DATASETS.md](BOTANICAL_DATASETS.md).
