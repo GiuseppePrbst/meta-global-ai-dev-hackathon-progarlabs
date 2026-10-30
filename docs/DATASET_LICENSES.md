@@ -72,3 +72,10 @@ y [evidencia CHMv2 nueva](../data/public/chmv2-weighted-2026-10-27.json). Datos 
 recortes y dominios completos permanecen fuera del checkout; responsable de revisión
 Giuseppe. Fecha de acceso no cambia la edición de catastro a 2026. No se otorgan permisos
 de entrenamiento/publicación sobre libros, fotos privadas ni recursos no comprobados.
+# Evidencia de integración, 29-10-2026
+
+Se reutilizaron los recortes/manifiestos autorizados del 27-10 fuera de Git. Ingesta real
+no cambia sus derechos: CONAF/CIREN redistribución pendiente y BCN bajo sus condiciones
+referenciales/atribución, sin inventar licencia CC. No se publica fuente vectorial/raster.
+El nuevo recibo contiene hashes/conteos/estadísticas; el dibujo sintético de smoke no es
+dataset botánico y sus fotos/máscaras no se incorporan al repositorio.

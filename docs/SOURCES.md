@@ -80,3 +80,14 @@ Copernicus y NASA Earthdata son fuentes candidatas, todavía sin un recurso sele
   [tiles](https://data.source.coop/tge-labs/meta-chm-v2/tiles.parquet): esquemas y hashes
   verificados, quadkey uno a uno, seis adquisiciones 2013-09-16/2018-09-15 para 2102332230.
   Son índices/catálogo estático, no API STAC search.
+# Verificación de protocolo, 29-10-2026
+
+Se consultaron [Chat Completions](https://dev.meta.ai/docs/cookbook/quickstart-chat-completions),
+[JSON estructurado](https://dev.meta.ai/docs/cookbook/structured-output),
+[bibliotecas SAM](https://dev.meta.ai/docs/sam/client-libraries) y
+[precios/modos Meta](https://dev.meta.ai/docs/pricing-rate-limits).
+Muse Spark 1.3 estándar: input USD 1,25/M y output 4,25/M; SAM imagen USD 2,50/1000.
+Tarifas consultadas para estimar el smoke sintético; no son factura ni saldo observado.
+No se activó Contributor mode. No se añadieron fuentes botánicas como verificadas sin consulta.
+Manifiestos originales conservados; recibos de uso/ingesta real en
+[backend-validation](../evaluations/backend-validation-2026-10-29.json).

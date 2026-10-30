@@ -1,0 +1,276 @@
+{
+  "local_date": "2026-10-29",
+  "postgis": {
+    "timestamp_utc": "2026-10-30T01:20:12.147548+00:00",
+    "postgis_version": "3.6.2",
+    "database_superuser": false,
+    "transport": "loopback_http",
+    "bundle_sha256": "c1384927d87d4108da2f7d23c9baed9fa9c949ca71390c6926fdaa5baf27900a",
+    "ingest_first": {
+      "conaf_2018_pilot": 3,
+      "bcn_snaspe_pilot": 1
+    },
+    "ingest_second": {
+      "conaf_2018_pilot": 3,
+      "bcn_snaspe_pilot": 1
+    },
+    "layer_count": 2,
+    "feature_counts_valid_srid": [
+      [
+        "bcn_snaspe_pilot",
+        1,
+        true,
+        4326
+      ],
+      [
+        "conaf_2018_pilot",
+        3,
+        true,
+        4326
+      ]
+    ],
+    "source_hashes": {
+      "conaf_2018_pilot": "89e991b0dd00aa40653c9965e9298b126034d3f4e94f0b71ffae1204e4c98f36",
+      "bcn_snaspe_pilot": "44dfa8b84b707d7301b93dcb5b69fc79d2bf003a2909bede8cad7302a850d7ea"
+    },
+    "responses": {
+      "point_interior": {
+        "status": "matched",
+        "coverage": [],
+        "quality_flags": [],
+        "forest_matches": 1,
+        "protected_matches": 1
+      },
+      "point_exterior": {
+        "status": "no_coverage",
+        "coverage": [],
+        "quality_flags": [],
+        "forest_matches": 0,
+        "protected_matches": 0
+      },
+      "area_pilot": {
+        "status": "matched",
+        "coverage": [
+          {
+            "source_id": "bcn_snaspe_pilot",
+            "union_area_m2": 250000.00000034925,
+            "fraction": 1.0,
+            "overlap_excess_m2": 0.0
+          },
+          {
+            "source_id": "conaf_2018_pilot",
+            "union_area_m2": 249999.99999997646,
+            "fraction": 0.9999999999985089,
+            "overlap_excess_m2": 2.9103830456733704e-11
+          }
+        ],
+        "quality_flags": [
+          "multiple_matches"
+        ],
+        "forest_matches": 3,
+        "protected_matches": 1
+      },
+      "area_hole": {
+        "status": "matched",
+        "coverage": [
+          {
+            "source_id": "bcn_snaspe_pilot",
+            "union_area_m2": 239336.47168908684,
+            "fraction": 1.0,
+            "overlap_excess_m2": 0.0
+          },
+          {
+            "source_id": "conaf_2018_pilot",
+            "union_area_m2": 239336.47168871405,
+            "fraction": 0.9999999999984424,
+            "overlap_excess_m2": 0.0
+          }
+        ],
+        "quality_flags": [
+          "multiple_matches"
+        ],
+        "forest_matches": 3,
+        "protected_matches": 1
+      },
+      "area_multipart": {
+        "status": "matched",
+        "coverage": [
+          {
+            "source_id": "bcn_snaspe_pilot",
+            "union_area_m2": 95018.04804295202,
+            "fraction": 0.8910563674971667,
+            "overlap_excess_m2": 0.0
+          },
+          {
+            "source_id": "conaf_2018_pilot",
+            "union_area_m2": 95018.04804262047,
+            "fraction": 0.8910563674940574,
+            "overlap_excess_m2": 0.0
+          }
+        ],
+        "quality_flags": [
+          "multiple_matches"
+        ],
+        "forest_matches": 3,
+        "protected_matches": 1
+      },
+      "point_boundary": {
+        "status": "matched",
+        "coverage": [],
+        "quality_flags": [
+          "point_on_boundary"
+        ],
+        "forest_matches": 1,
+        "protected_matches": 1
+      }
+    },
+    "limitations": [
+      "Piloto local; no validación ecológica ni redistribución de geometrías."
+    ],
+    "feature_identifiers": {
+      "bcn_snaspe_pilot": [
+        "2826"
+      ],
+      "conaf_2018_pilot": [
+        "23486",
+        "23541",
+        "23631"
+      ]
+    }
+  },
+  "raster": {
+    "source_sha256": "0d71e4505aac9a05ff6e2c78157c356f3dd111724a8d4fa75097606465c7da1f",
+    "historical_artifact_modified": false,
+    "worker": "spawned_process_terminated_after_deadline",
+    "responses": {
+      "/forest/analyze": {
+        "source_id": "chmv2",
+        "valid_pixels": 4096,
+        "mean_height_m": 12.476806640625,
+        "min_height_m": 4.0,
+        "max_height_m": 25.0,
+        "estimated": true,
+        "source_version": "v2-ml3; source.coop 2026-06",
+        "queried_area_m2": 3356.4063605070114,
+        "coverage_area_m2": 3356.4063605070114,
+        "unit": "m",
+        "source_crs": "EPSG:3857",
+        "period": "Collection 2005-03-15/2020-08-31; tile acquisition not verified",
+        "limitations": [
+          "Altura estimada; no crecimiento anual ni validación de campo.",
+          "Selección por centro de píxel; cobertura puede superar el borde.",
+          "Política de ceros: exclude_ambiguous."
+        ]
+      },
+      "/forest/analyze/weighted": {
+        "status": "ok",
+        "source_id": "chmv2",
+        "source_version": "v2-ml3; source.coop 2026-06",
+        "method": "pixel_footprint_area",
+        "analysis_crs": "EPSG:32718",
+        "source_crs": "EPSG:3857",
+        "unit": "m",
+        "estimated": true,
+        "aoi_area_m2": 3358.741896072963,
+        "raster_intersection_area_m2": 3358.7396004187913,
+        "valid_area_m2": 3358.7396004187913,
+        "ambiguous_zero_area_m2": 0.0,
+        "nodata_area_m2": 0.0,
+        "coverage_fraction": 0.9999993165136701,
+        "ambiguous_fraction": 0.0,
+        "ambiguous_fraction_denominator": "raster_intersection_area_m2",
+        "valid_pixels": 4096,
+        "mean_height_m": 12.476807666423621,
+        "min_height_m": 4.0,
+        "max_height_m": 25.0,
+        "source_acquisition_start": "2013-09-16",
+        "source_acquisition_end": "2018-09-15",
+        "acquisition_reason": null,
+        "limitations": [
+          "Media condicionada a píxeles válidos; los ceros ambiguos no son altura cero.",
+          "Altura estimada, no altura dominante del catastro ni crecimiento anual.",
+          "Ponderación con aristas proyectadas; no precisión geodésica ni servicio público."
+        ]
+      }
+    }
+  },
+  "meta": {
+    "timestamp_utc": "2026-10-30T01:24:00.626833+00:00",
+    "http_status": 200,
+    "synthetic_sha256": "1ef32d718a3357d0af4cd6372201f6c91ad5f8eeb258525162d21170f30cfbce",
+    "authorized_budget_usd": 1.0,
+    "total_latency_ms": 10650.189500000124,
+    "model": "muse-spark-1.3",
+    "segmentation_model": "sam-3.1",
+    "billing_balance": "not_checked; paid requests accepted, not a billing receipt",
+    "limitations": [
+      "Technical synthetic integration only; n=0 botanical evaluation.",
+      "Price estimate uses reported tokens; not a billing receipt. No retries."
+    ],
+    "status": "insufficient_evidence",
+    "execution_status": "completed",
+    "segmentation_status": "completed",
+    "stage_latency_ms": {
+      "segmentation": 2255.236499997409,
+      "identification": 7973.394199998438
+    },
+    "stage_usage": {
+      "segmentation": {
+        "total_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "images_processed": 1
+      },
+      "identification": {
+        "prompt_tokens": 1086,
+        "completion_tokens": 946,
+        "total_tokens": 2032
+      }
+    },
+    "prompt_version": "botanical-visible-v2",
+    "correlation_id": "da4c0b04-0d6c-410e-9765-9fb3e49ff072",
+    "estimated_cost_usd": 0.007878,
+    "candidate_count": 0,
+    "preflight_blocked_http_status": 429,
+    "preflight_provider_calls": 0
+  },
+  "openapi_diff": {
+    "removed_paths_or_fields": [],
+    "new_paths": [
+      "/observations/{observation_id}"
+    ],
+    "added_fields": {
+      "Identification": [
+        "correlation_id",
+        "prompt_version",
+        "stage_usage",
+        "usage"
+      ],
+      "Observation": [
+        "accuracy_m"
+      ],
+      "ObservationCreate": [
+        "accuracy_m"
+      ]
+    }
+  },
+  "botanical_evaluation": {
+    "status": "not_evaluated",
+    "n": 0,
+    "top1": null,
+    "top3": null,
+    "false_positives": null
+  },
+  "versions": {
+    "fastapi": "0.162.0",
+    "psycopg": "3.3.6",
+    "meta-sam-parser": "0.1.0",
+    "pydantic": "2.14.1",
+    "rasterio": "1.5.2"
+  },
+  "limitations": [
+    "Real sources remain outside Git; metadata/statistics receipts only.",
+    "BCN and CONAF context are not individual species labels.",
+    "Meta smoke precedes the additive final taxonomy-source prompt metadata; that addition has mock coverage only."
+  ]
+}

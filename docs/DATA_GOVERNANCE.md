@@ -59,3 +59,13 @@ sin publicación ni envío a Meta. Pesos, anotaciones y derivados permanecen pri
 de repositorios/worktrees; no se amplía a otros datos. No se accedió a Fabric/Hepta ni se
 entrenó durante este incremento. No hay conjunto humano etiquetado. Los libros/PPTX no
 se redistribuyen ni se convierten en dataset; imágenes externas requieren permiso específico.
+
+## Demo del 29-10-2026
+
+Observaciones en modo demo privadas por identidad: solo propietario puede leer/borrar;
+heredadas sin dueño no se publican. Se omiten después de 30 días configurables; purga física
+debe operarse explícitamente. Rollback de propiedad bloqueado si queda información privada.
+La precisión es declarada, opcional y no se infiere de EXIF. No hay almacenamiento de fotos.
+Recibos públicos contienen solo hashes/conteos/estadísticas de fuentes autorizadas, no
+geometrías fuente con redistribución pendiente, fotos, credenciales ni atributos de infraestructura.
+Prueba Meta nueva autorizada: solo dibujo sintético, dos llamadas, máximo USD 1.

@@ -161,3 +161,68 @@ El raster sin configurar responde 501; manifiesto/raster inválido 503; límites
 Tarea de José: estados de carga/error/no_coverage, procedencia/antigüedad, matches ambiguos
 y cobertura por fuente. Antes de producción: identidad por usuario, privacidad de observaciones,
 presupuesto global y worker con cancelación efectiva. No colocar tokens compartidos en la app.
+# Consolidación de demo — 29-10-2026
+
+Esta sección actualiza los requisitos de acceso de las rutas descritas abajo; OpenAPI del
+proceso configurado sigue siendo la fuente técnica. SERVICE_MODE=local mantiene desarrollo
+aislado. SERVICE_MODE=demo exige `Authorization: Bearer <credencial individual de demo>`
+para identify, observaciones, layers, context y forest/analyze (ambas variantes).
+health, species y forest/sources conservan acceso de lectura. La clave Meta nunca llega al cliente.
+La allowlist de demo no representa login productivo. No guardar credenciales en NEXT_PUBLIC_*.
+
+| Operación | Autorización / política de datos / errores adicionales |
+| --- | --- |
+| POST /identify | Identidad antes de leer multipart en demo, edad/derechos, presupuesto global antes de decodificar; 401, 429, 503, 502; no persiste foto |
+| GET /observations | En demo devuelve solo propias no vencidas; antiguas sin dueño ocultas; 401/503 |
+| POST /observations | Propietario asignado por servidor, no por JSON; privada por defecto en demo; 401/422/503 |
+| DELETE /observations/{observation_id} | UUID, sin body; solo propietario demo; 204 sin contenido, 401/404/422/503 |
+| GET /layers, POST /context/point, POST /context/area | Identidad demo; no exportan geometrías fuente; atributos pueden tener derechos pendientes |
+| POST /forest/analyze, POST /forest/analyze/weighted | Identidad demo y admisión global; worker aislado; 429/503 al limitar/fallar/agotarse plazo |
+
+Observation/Create conserva todos sus campos y añade `accuracy_m: number | null`, opcional,
+finito, 0–200 m y solo con location. No inferir precisión a partir de una coordenada de dron.
+Ejemplo válido (coordenada sintética para contrato):
+
+```json
+{"species_id":null,"notes":"Ejemplo sintético","location":{"type":"Point","coordinates":[0,0]},"accuracy_m":12}
+```
+
+Para relacionar una observación con contexto, enviar su Point y precisión declarada a
+`/context/point`; conservar en el consumidor source_refs, hashes/versión y quality_flags.
+La respuesta no asigna etiquetas ni modifica la especie de la observación. Con location=null
+no se solicita contexto espacial. Para un AOI, contexto y alturas son consultas independientes.
+
+Identification añade campos opcionales compatibles con consumidores TypeScript existentes:
+
+```typescript
+type ExecutionMetadata = {
+  correlation_id?: string | null;
+  prompt_version?: string | null;
+  usage?: Record<string, number>;
+  stage_usage?: Record<string, Record<string, number>>;
+};
+```
+
+Ejemplo de ampliación de una abstención real técnicamente completada:
+
+```json
+{"status":"insufficient_evidence","provider":"meta","model":"muse-spark-1.3","candidates":[],"message":"Se requiere otra fotografía","limitations":["Rasgos insuficientes"],"execution_status":"completed","segmentation_status":"error","prompt_version":"botanical-visible-v2","usage":{"prompt_tokens":10},"stage_usage":{"identification":{"prompt_tokens":10}}}
+```
+
+SAM puede fallar y Muse completar; mostrar limitación de segmentación. Si Muse falla,
+HTTP 502 `{"detail":"Proveedor Meta no disponible o respuesta inválida"}`; nunca una
+abstención simulada. 401 identidad requerida, 429 límite global/identidad, 503 ledger/DB
+no disponible. El body puede ser `detail` string o lista de validación Pydantic (422).
+Header `X-Correlation-ID` sirve para soporte sin fotos, ubicaciones o texto privado.
+Mock mantiene provider=mock, execution_status=mock y cero candidatos/métricas científicas.
+
+Límites de demo son diarios UTC y compartidos por PostgreSQL, no por pestaña/proceso.
+Una reserva cobrada no se devuelve en error; expiración recupera solo concurrencia.
+No mostrar contadores de tokens como dólares facturados ni puntajes como probabilidades.
+El borrado devuelve el mismo 404 para ID ajeno o inexistente. Retención visible predeterminada:
+30 días; purga física requiere operación de mantenimiento. No hay feed de observaciones públicas.
+
+Diff de contrato verificado: cero rutas/campos eliminados y cero campos requeridos nuevos
+en los modelos previos. Los ejemplos son contratos, no mediciones botánicas.
+Los resultados técnicos reales y limitaciones están en
+[el reporte de consolidación](BACKEND_META_CONSOLIDATION_REPORT.md).

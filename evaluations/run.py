@@ -25,7 +25,9 @@ from bosque_ai.meta import (
 from bosque_ai.segmentation import SegmentationRequest
 from bosque_api.catalog import get_species
 from bosque_api.config import Settings
+from bosque_api.execution import ExecutionStore
 from bosque_api.images import MAX_IMAGE_BYTES, prepare_image, segment_image
+from fastapi import HTTPException
 from PIL import Image
 from pydantic import TypeAdapter
 
@@ -38,17 +40,43 @@ async def run(
     validate_cases(cases, set(catalog))
     if len(cases) > 20:
         raise ValueError("Máximo 20 casos por ejecución controlada")
+    if not cases:
+        return {"summary": summarize([], []), "results": []}
+    if provider == "meta" and any(not c.external_processing_authorized for c in cases):
+        raise ValueError(
+            "Falta autorización de envío externo por caso; permiso local no basta"
+        )
+    if provider == "meta" and any(
+        not c.campaign_id
+        or not c.spatial_block
+        or not c.perceptual_group
+        or not c.perceptual_duplicates_reviewed
+        for c in cases
+    ):
+        raise ValueError(
+            "Evaluación real requiere campaña/bloque y duplicados perceptuales revisados"
+        )
+    if provider == "meta" and len({c.photo_type for c in cases}) != 1:
+        raise ValueError("Separar tipos de fotografía en ejecuciones independientes")
     config = Settings()
     adapter = None
+    ledger = None
+    owner = None
     if provider == "meta":
-        if any(not case.external_processing_authorized for case in cases):
-            raise ValueError(
-                "Falta autorización de envío externo por caso; permiso local no basta"
-            )
         if not authorize_meta or not config.model_api_key.get_secret_value():
             raise ValueError(
                 "Meta requiere clave y --authorize-meta para esta ejecución"
             )
+        if (
+            config.service_mode != "demo"
+            or not config.meta_enabled
+            or not config.demo_tokens
+        ):
+            raise ValueError(
+                "Evaluación Meta requiere modo demo, identidad y ledger global configurado"
+            )
+        ledger = ExecutionStore(config)
+        owner = next(iter(config.demo_tokens))
         adapter = MuseSparkAdapter(
             MetaResponsesClient(config.model_api_key, config.meta_timeout_seconds),
             config.meta_model,
@@ -70,8 +98,21 @@ async def run(
             (case, prepare_image(content, mimetypes.guess_type(path.name)[0]))
         )
     results = []
+    admission_error = None
     for index, (case, image) in enumerate(prepared):
         started = perf_counter()
+        try:
+            reservation = (
+                await asyncio.to_thread(ledger.reserve, owner, "identify")
+                if ledger
+                else None
+            )
+        except HTTPException as exc:
+            admission_error = {"http_status": exc.status_code, "status": "not_executed"}
+            break  # Return earlier results without retrying a rejected case.
+        if adapter:
+            adapter.client.usage.clear()
+        execution_status = "validation_error"
         segmentation_status = "disabled"
         stages = {}
         try:
@@ -84,7 +125,10 @@ async def run(
                     image, "image/jpeg", SegmentationRequest(width=width, height=height)
                 )
                 segmentation_status = segmented.status
-                image = segment_image(image, segmented)
+                try:
+                    image = segment_image(image, segmented)
+                except (ValueError, OSError):
+                    segmentation_status = "error"
                 stages["segmentation"] = (perf_counter() - started) * 1000
             identification = (
                 await adapter.identify(image, "image/jpeg", catalog)
@@ -101,7 +145,9 @@ async def run(
                 stage_latency_ms=stages,
                 total_latency_ms=(perf_counter() - started) * 1000,
             )
+            execution_status = "completed"
         except MetaAPIError:
+            execution_status = "provider_error"
             result = EvaluationResult(
                 case_id=case.case_id,
                 experiment=experiment,
@@ -109,12 +155,25 @@ async def run(
                 error="provider_error",
                 total_latency_ms=(perf_counter() - started) * 1000,
             )
+        finally:
+            if reservation:
+                await asyncio.to_thread(
+                    ledger.finish,
+                    reservation,
+                    execution_status,
+                    {
+                        "model": config.meta_model,
+                        "experiment": experiment,
+                        "usage": adapter.client.usage.copy(),
+                    },
+                )
         results.append(result)
         if adapter and index < len(prepared) - 1:
             await asyncio.sleep(config.meta_min_interval_seconds)
     return {
         "summary": summarize(cases, results),
         "results": [r.model_dump() for r in results],
+        "admission_error": admission_error,
     }
 
 

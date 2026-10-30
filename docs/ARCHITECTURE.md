@@ -87,3 +87,24 @@ Extra data opcional: Fiona/PyArrow para investigar SHP/Parquet; no entran al run
 Versiones exactas en uv.lock. No se agregan modelos ni microservicios. Los límites de tiempo
 raster siguen siendo cooperativos; no se presenta este incremento como despliegue público.
 Reconsiderar worker aislado antes de exponerlo. Contexto es informativo hasta evaluar A/B/D/E.
+# Consolidación backend, 29-10-2026
+
+Sobre main integrado (#15/#16), `SERVICE_MODE=demo` autoriza por credencial individual
+antes de procesar cuerpos privados/costosos. Local conserva mocks y desarrollo en loopback.
+PostgreSQL es la fuente de verdad de reservas diarias UTC: advisory lock transaccional,
+concurrencia global, límites por identidad y reservas no reembolsables con TTL de concurrencia.
+Sin estado disponible falla cerrado. No se agregó Redis ni otro servicio.
+Migración 003 añade ledger/propietario/precisión; rollback protege propietarios privados.
+Observaciones demo se filtran por propietario/retención; eliminación específica autenticada.
+La precisión opcional no determina exactitud de ubicación de objetos visibles.
+
+Raster conserva algoritmos históricos/ponderados dentro de proceso spawn descartable con
+timeout efectivo; admisión PostgreSQL compartida en demo y semáforo padre por proceso.
+Fuente/ruta/hash y límites se validan en el hijo. No se acepta URL/ruta del solicitante.
+Muse mantiene Chat Completions estructurado, SAM Responses y parser oficial; autorización y
+reserva preceden la decodificación. Uso/latencia/modelo/prompt y correlation ID sin contenido
+sensible. El catálogo conserva estados pendientes y contexto espacial separado de evidencia visual.
+
+Evidencia, contratos y límites operativos en
+[BACKEND_META_CONSOLIDATION_REPORT](BACKEND_META_CONSOLIDATION_REPORT.md).
+Allowlist de demo y presupuesto de unidades no equivalen a identidad/billing productivos.

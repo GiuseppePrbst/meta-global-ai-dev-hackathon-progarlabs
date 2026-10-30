@@ -75,10 +75,36 @@ Fuentes de implementación: [FastAPI Docker](https://fastapi.tiangolo.com/deploy
 El pipeline Meta ya está integrado; las referencias anteriores a 501 con clave son el
 estado histórico del bootstrap. Activación local explícita y contratos aditivos en
 [API_INTEGRATION](../../docs/API_INTEGRATION.md). AI_PROVIDER=mock sigue siendo el valor inicial.
-Meta exige META_ENABLED, MODEL_API_KEY, META_ACCESS_TOKEN y derechos de imagen. SAM_ENABLED
+Meta local exige META_ENABLED, MODEL_API_KEY, META_ACCESS_TOKEN y derechos de imagen. SAM_ENABLED
 activa segmentación opcional. No colocar tokens en NEXT_PUBLIC_. No persistir fotos.
 
 FOREST_MANIFEST apunta a un manifiesto revisado externo. Para soporte raster:
 `uv sync --project services/api --extra dev --extra raster --frozen`. Sin extra/manifiesto
 forestal, la identificación y el catálogo siguen funcionando. El contenedor base no incluye
 GIS pesado; habilitar el extra en una imagen controlada antes de configurar raster en Docker.
+
+## Demo restringida y migraciones vigentes
+
+SERVICE_MODE=demo usa DEMO_TOKENS (objeto JSON privado identidad→credencial) antes de
+multipart/decodificación y no usa el token Meta compartido como identidad. Configurar claves
+solo en entorno backend. Aplicar SQL 001/002/003 a una base autorizada; CREATE EXTENSION
+PostGIS requiere un rol de migración, no elevar el rol de aplicación.
+BUDGET_REQUESTS/por identidad son diarios UTC; BUDGET_CONCURRENCY es compartido por PostgreSQL.
+BUDGET_UNITS y META_RESERVATION_UNITS deben fijarse explícitamente; cero bloquea Meta demo.
+La reserva conservadora cubre SAM+Muse, nunca se devuelve y no es una factura automática.
+Revisar precios/modelos/entradas antes de mapear unidades a microUSD. Expiración de diez
+minutos recupera concurrencia, no gasto. DB/ledger ausentes fallan cerrados.
+
+En demo observaciones son privadas por identidad, precisión opcional 0–200 m y retención
+visible configurable de 30 días; DELETE elimina solo las propias. Purga física explícita:
+
+```powershell
+uv run --project services/api --frozen python -c "from bosque_api.config import Settings; from bosque_api.database import ObservationStore; c=Settings(); print(ObservationStore(c.database_url.get_secret_value()).purge_expired(c.observation_retention_days))"
+```
+
+Ejecutar esa tarea en mantenimiento autorizado; no se instala un scheduler. 003.down bloquea
+quitar propiedad con observaciones privadas pendientes; precisión aditiva se conserva.
+Raster usa proceso spawn con RASTER_TIMEOUT_SECONDS; fuentes/configuración fuera de requests.
+Mantener servicio en loopback/red controlada. Credenciales demo no son identidad productiva:
+antes de internet faltan operación TLS/proxy/límite de cuerpo y gestión segura de credenciales.
+Detalle y evidencia: [consolidación](../../docs/BACKEND_META_CONSOLIDATION_REPORT.md).

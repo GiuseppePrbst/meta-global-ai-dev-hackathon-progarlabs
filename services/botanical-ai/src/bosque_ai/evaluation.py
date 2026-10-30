@@ -20,6 +20,10 @@ class EvaluationCase(BaseModel):
     photo_type: str = Field(min_length=1)
     reviewer: str = Field(min_length=1)
     individual_id: str = Field(min_length=1)
+    campaign_id: str | None = None
+    spatial_block: str | None = None
+    perceptual_group: str | None = None
+    perceptual_duplicates_reviewed: bool = False
     partition: Literal["development", "test"]
     validation_status: Literal["validated", "synthetic", "pending"]
 
@@ -42,8 +46,17 @@ def validate_cases(cases: list[EvaluationCase], species_ids: set[str]) -> None:
     for case in cases:
         if case.species_id is not None and case.species_id not in species_ids:
             raise ValueError("Etiqueta fuera del catálogo")
-        previous = partitions.setdefault(case.individual_id, case.partition)
-        if previous != case.partition or case.sha256 in hashes:
+        for kind, value in (
+            ("individual", case.individual_id),
+            ("campaign", case.campaign_id),
+            ("block", case.spatial_block),
+            ("perceptual", case.perceptual_group),
+        ):
+            if value is not None:
+                previous = partitions.setdefault(kind + ":" + value, case.partition)
+                if previous != case.partition:
+                    raise ValueError("Fuga entre particiones o contenido duplicado")
+        if case.sha256 in hashes:
             raise ValueError("Fuga entre particiones o contenido duplicado")
         hashes.add(case.sha256)
 
@@ -82,6 +95,7 @@ def summarize(cases: list[EvaluationCase], results: list[EvaluationResult]) -> d
             raise ValueError("Resultado sin identificación ni error")
     count = len(eligible)
     return {
+        "status": "evaluated" if real and eligible else "not_evaluated",
         "provider": results[0].provider if results else None,
         "experiment": results[0].experiment if results else None,
         "cases": len(cases),
@@ -94,6 +108,18 @@ def summarize(cases: list[EvaluationCase], results: list[EvaluationResult]) -> d
         "top1": top1 / count if real and count else None,
         "top3": top3 / count if real and count else None,
         "classification_error": wrong / count if real and count else None,
+        "n_by_species": {
+            key: sum(c.species_id == key for c in cases)
+            for key in sorted({c.species_id for c in cases if c.species_id is not None})
+        },
+        "false_positives": sum(
+            bool(r.identification and r.identification.candidates)
+            for r in results
+            if by_id[r.case_id].species_id is None
+            and by_id[r.case_id].validation_status == "validated"
+        )
+        if real
+        else None,
         "latency_total_ms": [r.total_latency_ms for r in results],
         "limitations": [
             "Muestra pequeña/no representativa; mock no mide precisión.",

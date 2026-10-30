@@ -3,7 +3,7 @@ from typing import Literal
 from uuid import UUID
 
 from bosque_geo.contracts import Point, Polygon
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class Provenance(BaseModel):
@@ -57,6 +57,13 @@ class ObservationCreate(BaseModel):
     species_id: str | None = Field(default=None, max_length=80)
     notes: str = Field(default="", max_length=2000)
     location: Point | None = None
+    accuracy_m: float | None = Field(default=None, ge=0, le=200, allow_inf_nan=False, strict=True)
+
+    @model_validator(mode="after")
+    def declared_accuracy(self):
+        if self.accuracy_m is not None and self.location is None:
+            raise ValueError("La precisión requiere una ubicación declarada")
+        return self
 
 
 class Observation(ObservationCreate):

@@ -1,8 +1,10 @@
 import asyncio
+import logging
 import secrets
 from pathlib import Path
 from time import monotonic, perf_counter
 from typing import Annotated
+from uuid import UUID, uuid4
 
 import psycopg
 from bosque_ai.contracts import Identification, MockIdentifier
@@ -25,14 +27,16 @@ from bosque_geo.contracts import (
     UnconfiguredCanopyProvider,
     WeightedStatistics,
 )
-from fastapi import FastAPI, File, Form, Header, HTTPException, Query, UploadFile
+from fastapi import FastAPI, File, Form, Header, HTTPException, Query, Request, Response, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 
 from bosque_api.catalog import get_species
 from bosque_api.config import Settings
 from bosque_api.context_store import ContextStore
 from bosque_api.database import ObservationStore
+from bosque_api.execution import ExecutionStore, identity
 from bosque_api.images import IMAGE_TYPES, MAX_IMAGE_BYTES, prepare_image, segment_image
 from bosque_api.models import ForestRequest, Observation, ObservationCreate, Species
 
@@ -55,13 +59,38 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app = FastAPI(
         title="Bosque Vivo Chile API",
         version="0.1.0",
-        description="Bootstrap local. Catálogo provisional; identificación mock explícita.",
+        description="API botánica y forestal con procedencia, incertidumbre y modos local/demo.",
     )
+
+    @app.middleware("http")
+    async def demo_access(request: Request, call_next):
+        correlation = str(uuid4())
+        request.state.identity = None
+        public = {"/health", "/species", "/forest/sources", "/openapi.json", "/docs", "/redoc"}
+        if (
+            config.service_mode == "demo"
+            and request.method != "OPTIONS"
+            and (request.url.path not in public and not request.url.path.startswith("/species/"))
+        ):
+            try:
+                request.state.identity = identity(config, request.headers.get("authorization"))
+            except HTTPException as exc:
+                return JSONResponse(
+                    status_code=exc.status_code,
+                    content={"detail": exc.detail},
+                    headers={"X-Correlation-ID": correlation},
+                )
+        request.state.correlation_id = correlation
+        response = await call_next(request)
+        response.headers["X-Correlation-ID"] = correlation
+        return response
+
     app.add_middleware(
         CORSMiddleware,
         allow_origins=config.cors_origins,
-        allow_methods=["GET", "POST"],
+        allow_methods=["GET", "POST", "DELETE"],
         allow_headers=["Content-Type", "Authorization"],
+        expose_headers=["X-Correlation-ID"],
     )
 
     def store() -> ObservationStore:
@@ -93,11 +122,29 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.post("/identify", response_model=Identification)
     async def identify(
+        request: Request,
         file: Annotated[UploadFile, File(description="JPEG, PNG o WebP, máximo 10 MiB")],
         adult_confirmed: Annotated[bool, Form()],
         rights_confirmed: Annotated[bool, Form()],
         authorization: Annotated[str | None, Header()] = None,
     ):
+        if config.ai_provider == "meta":
+            if not config.model_api_key.get_secret_value():
+                raise HTTPException(503, "Meta no configurado: falta MODEL_API_KEY")
+            if not config.meta_enabled:
+                raise HTTPException(
+                    501, "Meta deshabilitado: requiere habilitación y controles de acceso"
+                )
+            if config.service_mode == "local":
+                token = config.meta_access_token.get_secret_value()
+                if not token:
+                    raise HTTPException(
+                        503, "Meta requiere META_ACCESS_TOKEN para controlar consumo"
+                    )
+                if not secrets.compare_digest(
+                    (authorization or "").encode(), ("Bearer " + token).encode()
+                ):
+                    raise HTTPException(401, "Se requiere autorización para usar Meta")
         if not adult_confirmed or not rights_confirmed:
             raise HTTPException(422, "Se requiere mayoría de edad y derechos de uso de la imagen")
         if file.content_type not in IMAGE_TYPES.values():
@@ -106,32 +153,32 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         await file.close()
         if len(image) > MAX_IMAGE_BYTES:
             raise HTTPException(413, "La imagen supera el límite de 10 MiB")
-        image = await asyncio.to_thread(prepare_image, image, file.content_type)
         if config.ai_provider == "meta":
-            if not config.model_api_key.get_secret_value():
-                raise HTTPException(503, "Meta no configurado: falta MODEL_API_KEY")
-            if not config.meta_enabled:
-                raise HTTPException(
-                    501, "Meta deshabilitado: requiere habilitación y controles de acceso"
-                )
-            token = config.meta_access_token.get_secret_value()
-            if not token:
-                raise HTTPException(503, "Meta requiere META_ACCESS_TOKEN para controlar consumo")
-            if not secrets.compare_digest(
-                (authorization or "").encode("utf-8"), ("Bearer " + token).encode("utf-8")
-            ):
-                raise HTTPException(401, "Se requiere autorización para usar Meta")
             nonlocal next_meta_request
             now = monotonic()
-            if now < next_meta_request:
+            if config.service_mode == "local" and now < next_meta_request:
                 raise HTTPException(429, "Límite de consumo Meta; intenta más tarde")
-            next_meta_request = now + config.meta_min_interval_seconds
+            if config.service_mode == "local":
+                next_meta_request = now + config.meta_min_interval_seconds
+            ledger = ExecutionStore(config)
+            reservation = (
+                await asyncio.to_thread(ledger.reserve, request.state.identity, "identify")
+                if config.service_mode == "demo"
+                else None
+            )
+            try:
+                image = await asyncio.to_thread(prepare_image, image, file.content_type)
+            except HTTPException:
+                if reservation:
+                    await asyncio.to_thread(ledger.finish, reservation, "validation_error", {})
+                raise
             adapter = MuseSparkAdapter(
                 MetaResponsesClient(config.model_api_key, config.meta_timeout_seconds),
                 model=config.meta_model,
             )
             segment_status = "disabled"
             stage_latency = {}
+            stage_usage = {}
             if config.sam_enabled:
                 from io import BytesIO
 
@@ -149,35 +196,104 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 except (ValueError, OSError):
                     segment_status = "error"
                 stage_latency["segmentation"] = (perf_counter() - started) * 1000
+                stage_usage["segmentation"] = adapter.client.usage.copy()
+                adapter.client.usage.clear()
             try:
                 result = await adapter.identify(
-                    image, "image/jpeg", {s.id: s.scientific_name for s in get_species()}
+                    image,
+                    "image/jpeg",
+                    {s.id: s.scientific_name for s in get_species()},
+                    knowledge={
+                        s.id: {
+                            "accepted_name": s.accepted_name,
+                            "synonyms": s.synonyms,
+                            "taxonomy_source": s.taxonomy.model_dump() if s.taxonomy else None,
+                            "verified_morphology": s.morphology
+                            if s.trait_validation_status != "pending"
+                            else [],
+                            "trait_validation_status": s.trait_validation_status,
+                        }
+                        for s in get_species()
+                    },
                 )
                 result.segmentation_status = segment_status
                 stage_latency["identification"] = result.latency_ms
                 result.stage_latency_ms = stage_latency
+                stage_usage["identification"] = result.usage
+                result.stage_usage = stage_usage
+                result.correlation_id = request.state.correlation_id
+                logging.getLogger(__name__).info(
+                    "identify status=completed correlation_id=%s model=%s "
+                    "prompt=%s latency_ms=%.1f",
+                    request.state.correlation_id,
+                    config.meta_model,
+                    result.prompt_version,
+                    sum(stage_latency.values()),
+                )
+                if reservation:
+                    await asyncio.to_thread(
+                        ledger.finish,
+                        reservation,
+                        "completed",
+                        {
+                            "stages": stage_usage,
+                            "model": config.meta_model,
+                            "segmentation_model": config.sam_model if config.sam_enabled else None,
+                            "prompt_version": result.prompt_version,
+                            "correlation_id": request.state.correlation_id,
+                            "stage_latency_ms": stage_latency,
+                        },
+                    )
                 return result
             except MetaAPIError:
+                if reservation:
+                    await asyncio.to_thread(
+                        ledger.finish, reservation, "provider_error", adapter.client.usage
+                    )
+                logging.getLogger(__name__).warning(
+                    "identify status=provider_error correlation_id=%s model=%s",
+                    request.state.correlation_id,
+                    config.meta_model,
+                )
                 raise HTTPException(
                     502, "Proveedor Meta no disponible o respuesta inválida"
                 ) from None
+        image = await asyncio.to_thread(prepare_image, image, file.content_type)
         return await MockIdentifier().identify(image, "image/jpeg")
 
     @app.get("/observations", response_model=list[Observation])
-    def observations(limit: Annotated[int, Query(ge=1, le=100)] = 100):
+    def observations(request: Request, limit: Annotated[int, Query(ge=1, le=100)] = 100):
         try:
+            if config.service_mode == "demo":
+                return store().list(
+                    limit, request.state.identity, config.observation_retention_days
+                )
             return store().list(limit)
         except psycopg.Error:
             raise HTTPException(503, "PostgreSQL/PostGIS no disponible") from None
 
     @app.post("/observations", response_model=Observation, status_code=201)
-    def save_observation(item: ObservationCreate):
+    def save_observation(item: ObservationCreate, request: Request):
         if item.species_id and item.species_id not in {item.id for item in get_species()}:
             raise HTTPException(422, "species_id no pertenece al catálogo")
         try:
+            if config.service_mode == "demo":
+                return store().create(item, request.state.identity)
             return store().create(item)
         except psycopg.Error:
             raise HTTPException(503, "PostgreSQL/PostGIS no disponible") from None
+
+    @app.delete("/observations/{observation_id}", status_code=204)
+    def delete_observation(observation_id: UUID, request: Request):
+        owner = request.state.identity
+        if owner is None:
+            raise HTTPException(401, "Eliminación requiere identidad demo")
+        try:
+            if not store().delete(observation_id, owner):
+                raise HTTPException(404, "Observación no encontrada")
+        except psycopg.Error:
+            raise HTTPException(503, "PostgreSQL/PostGIS no disponible") from None
+        return Response(status_code=204)
 
     @app.get("/forest/sources", response_model=list[ForestSource])
     def forest_sources():
@@ -257,12 +373,37 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     def area_context(request: ContextAreaRequest):
         return landscape_context(request)
 
+    def raster_analysis(request, http_request: Request, weighted: bool):
+        from bosque_geo.worker import analyze_isolated
+
+        ledger = ExecutionStore(config)
+        reservation = (
+            ledger.reserve(http_request.state.identity, "raster")
+            if config.service_mode == "demo"
+            else None
+        )
+        status = "validation_error"
+        try:
+            result = analyze_isolated(
+                canopy.spec,
+                request if weighted else request.area,
+                weighted=weighted,
+                timeout=config.raster_timeout_seconds,
+            )
+            status = "completed"
+            return result
+        finally:
+            if reservation:
+                ledger.finish(reservation, status, {})
+
     @app.post("/forest/analyze", response_model=CanopyStatistics)
-    def forest_analyze(request: ForestRequest):
+    def forest_analyze(request: ForestRequest, http_request: Request):
         try:
             if forest_error:
                 raise HTTPException(503, "Raster o manifiesto no disponible o no validado")
-            return canopy.analyze(request.area)
+            if not config.forest_manifest:
+                return canopy.analyze(request.area)
+            return raster_analysis(request, http_request, False)
         except NotImplementedError as exc:
             raise HTTPException(501, str(exc)) from None
         except ValueError as exc:
@@ -278,20 +419,52 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             503: {"description": "Raster no disponible o análisis ocupado"},
         },
     )
-    def forest_weighted(request: WeightedForestRequest):
+    def forest_weighted(request: WeightedForestRequest, http_request: Request):
         if not config.forest_manifest:
             raise HTTPException(501, "Raster no configurado para estadísticas ponderadas")
         if forest_error:
             raise HTTPException(503, "Raster o manifiesto no disponible o no validado")
         try:
-            from bosque_geo.weighted import weighted_statistics
-
-            return weighted_statistics(canopy, request)
+            return raster_analysis(request, http_request, True)
         except ValueError as exc:
             raise HTTPException(422, str(exc)) from None
         except (ImportError, OSError, RuntimeError):
             raise HTTPException(503, "Análisis raster ponderado no disponible") from None
 
+    original_openapi = app.openapi
+
+    def openapi():
+        schema = original_openapi()
+        schema["components"].setdefault("securitySchemes", {})["DemoBearer"] = {
+            "type": "http",
+            "scheme": "bearer",
+            "description": "Credencial individual revocable de demo; no es login productivo. "
+            "SERVICE_MODE=local permite desarrollo aislado sin esta credencial.",
+        }
+        for path, methods in schema["paths"].items():
+            if path in {
+                "/identify",
+                "/observations",
+                "/observations/{observation_id}",
+                "/layers",
+                "/context/point",
+                "/context/area",
+                "/forest/analyze",
+                "/forest/analyze/weighted",
+            }:
+                for operation in methods.values():
+                    operation["security"] = (
+                        [{"DemoBearer": []}] if config.service_mode == "demo" else []
+                    )
+                    for code, detail in {
+                        401: "Identidad requerida",
+                        429: "Límite de consumo",
+                        503: "Infraestructura no disponible",
+                    }.items():
+                        operation["responses"].setdefault(str(code), {"description": detail})
+        return schema
+
+    app.openapi = openapi
     return app
 
 

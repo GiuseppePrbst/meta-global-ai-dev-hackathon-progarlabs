@@ -25,6 +25,10 @@ class Identification(BaseModel):
         "disabled"
     )
     stage_latency_ms: dict[str, float] = Field(default_factory=dict)
+    correlation_id: str | None = None
+    prompt_version: str | None = None
+    usage: dict[str, int] = Field(default_factory=dict)
+    stage_usage: dict[str, dict[str, int]] = Field(default_factory=dict)
 
     @model_validator(mode="after")
     def consistent_result(self):

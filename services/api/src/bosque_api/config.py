@@ -18,4 +18,13 @@ class Settings(BaseSettings):
     meta_access_token: SecretStr = SecretStr("")
     meta_min_interval_seconds: float = Field(default=60, ge=1, le=3600)
     forest_manifest: str = ""
+    service_mode: Literal["local", "demo"] = "local"
+    demo_tokens: dict[str, SecretStr] = Field(default_factory=dict, repr=False)
+    budget_requests: int = Field(default=20, ge=1, le=10000)
+    budget_requests_per_identity: int = Field(default=5, ge=1, le=1000)
+    budget_units: int = Field(default=0, ge=0)
+    meta_reservation_units: int = Field(default=0, ge=0)
+    budget_concurrency: int = Field(default=1, ge=1, le=8)
+    observation_retention_days: int = Field(default=30, ge=1, le=365)
+    raster_timeout_seconds: float = Field(default=15, gt=0, le=60)
     cors_origins: list[str] = ["http://localhost:3000"]

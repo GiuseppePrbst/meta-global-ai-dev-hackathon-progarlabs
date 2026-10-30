@@ -60,3 +60,14 @@ a extremo de usuario. Sin muestra adecuada no calcular generalizaciones ni calib
 
 Raster: chmv2_window.py realiza únicamente una ventana fija 64x64 por HTTP Range y deja
 el GeoTIFF/manifiesto fuera de Git. Ver docs/GIS_ML_REPORT.md y evidencia pública en data/public.
+
+Consolidación 29-10: `backend_validation.py` reingesta el bundle local verificado y consulta
+HTTP con PostGIS no administrativo/loopback; `meta_backend_smoke.py` valida un solo pipeline
+SAM+Muse sobre dibujo, con autorización presupuestaria específica y evidencia de salida nueva.
+No se ejecutan en CI contra datos/proveedores reales. Recibo publicable, sin fuente binaria:
+[backend-validation-2026-10-29](backend-validation-2026-10-29.json).
+
+El manifiesto vacío retorna not_evaluated sin crear cliente externo. Evaluación real exige
+campaign_id, spatial_block, perceptual_group y perceptual_duplicates_reviewed, además de
+individual_id/hash/etiqueta/derechos. Son grupos y revisión humana, no detección automática
+de casi duplicados. Separar tipos de fotografía en ejecuciones independientes. n=0 sigue vigente.
