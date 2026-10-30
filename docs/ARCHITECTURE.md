@@ -143,3 +143,25 @@ Contratos: [API_INTEGRATION](API_INTEGRATION.md), operación: [VOICE_GUIDE](VOIC
 y [CAPTURE_DOMAIN](CAPTURE_DOMAIN.md). Reconsiderar la orquestación solo cuando la evaluación
 muestre que cuatro lecturas o una planificación son insuficientes. No agregar conversación
 continua ni investigación privada a la ruta crítica. [Evidencia y límites](META_EXPEDITIONS_REPORT.md).
+
+## Decisión 2026-10-30 — laboratorio privado SAM alojado
+
+`tools/meta_sam_api_lab` es independiente de web/móvil y OpenAPI del producto. Reutiliza
+MetaResponsesClient, prepare_image, meta-sam-parser 0.1.0 y ExecutionStore. Amplía el
+transporte existente con input_video, metadata, callback SSE y GET/DELETE Files; mantiene
+los valores por defecto de sus callers. Rechaza rechazo/incompleto antes de interpretar
+vacío como resultado válido. Sin nuevo SDK, dependencia, checkpoint o inferencia local.
+
+Un límite acumulado optativo `budget_lifetime_units` suma todas las reservas bajo el
+lock PostgreSQL existente, incluso días anteriores y errores. Cero por defecto conserva
+el presupuesto diario previo. El laboratorio lo exige y usa un schema privado persistente;
+no una base reiniciable ni devoluciones que eludan el techo autorizado. Datos/resultados
+fuera de Git; visor loopback con Host/Origin y proyección sin secretos. Files expira en
+3600 s y se elimina en finally; CLI cleanup reintenta pendientes sin inferencia.
+Cajas se validan con utilidades oficiales antes de reserva/upload. Renderizado conserva
+revisión más reciente por objeto/frame y usa geometría del medio preparado.
+
+Implementado y probado: una máscara real de imagen, dos solicitudes de video sin
+coincidencias, visor y limpieza de tres uploads. No implementado como capacidad validada:
+tracking positivo, métricas humanas, georreferenciación o medición física. Muse explícito
+sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH.md).

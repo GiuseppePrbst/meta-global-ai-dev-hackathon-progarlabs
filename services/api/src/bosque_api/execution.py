@@ -41,6 +41,12 @@ class ExecutionStore:
                 conn.execute("SET LOCAL statement_timeout = '3000ms'")
                 # Serialize admissions across workers; limits are shared by this database.
                 conn.execute("SELECT pg_advisory_xact_lock(78021931)")
+                if config.budget_lifetime_units:
+                    lifetime = conn.execute(
+                        "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations"
+                    ).fetchone()[0]
+                    if lifetime + units > config.budget_lifetime_units:
+                        raise HTTPException(429, "Límite acumulado de experimentación alcanzado")
                 conn.execute(
                     "UPDATE execution_reservations SET status='expired' "
                     "WHERE status='reserved' AND expires_at <= now()"

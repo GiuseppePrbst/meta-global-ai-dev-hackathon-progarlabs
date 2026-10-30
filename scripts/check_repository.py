@@ -31,6 +31,8 @@ def forbidden(path: str) -> bool:
         and not item.name.endswith(".example")
     ) or item.suffix.lower() in {".pem", ".key", ".las", ".laz", ".tif", ".tiff", ".gpkg"} or (
         len(item.parts) > 1 and item.parts[0] == "data" and item.parts[1] in {"restricted", "private"}
+    ) or any(part.lower() in {"restricted-data", "hepta", "meta-api-lab"} for part in item.parts) or (
+        item.suffix.lower() in {".mp4", ".mov", ".lrf", ".srt", ".pt", ".pth", ".safetensors", ".zip"}
     )
 
 

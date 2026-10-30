@@ -63,6 +63,11 @@ class MetaResponsesClient:
         schema: dict | None = None,
         allow_empty: bool = False,
         additional_images: list[tuple[bytes, str]] | None = None,
+        media: dict | None = None,
+        metadata: dict | None = None,
+        on_event=None,
+        output_limit: int = 2_000_000,
+        reasoning_effort: str | None = None,
     ) -> str:
         data_url = f"data:{content_type};base64,{base64.b64encode(image).decode()}"
         payload = {
@@ -73,7 +78,7 @@ class MetaResponsesClient:
                     "role": "user",
                     "content": [
                         {"type": "input_text", "text": prompt},
-                        {"type": "input_image", "image_url": data_url},
+                        media or {"type": "input_image", "image_url": data_url},
                     ],
                 }
             ],
@@ -81,6 +86,8 @@ class MetaResponsesClient:
             "store": False,
         }
         endpoint = "responses"
+        if metadata:
+            payload["metadata"] = metadata
         if schema is not None:
             endpoint = "chat/completions"
             payload = {
@@ -113,6 +120,8 @@ class MetaResponsesClient:
                         },
                     }
                 )
+            if reasoning_effort is not None:
+                payload["reasoning_effort"] = reasoning_effort
         try:
             async with (
                 asyncio.timeout(self.timeout_seconds),
@@ -140,22 +149,41 @@ class MetaResponsesClient:
                             event = json.loads(line[6:])
                             if not isinstance(event, dict):
                                 raise MetaAPIError("Meta devolvió un evento inválido")
-                            if event.get("type") in ("error", "response.failed"):
+                            if event.get("type") in (
+                                "error",
+                                "response.failed",
+                                "response.incomplete",
+                                "response.refusal.delta",
+                                "response.refusal.done",
+                            ):
                                 raise MetaAPIError(
                                     "Meta no pudo completar la respuesta"
                                 )
+                            if event.get("type") == "response.content_part.done" and (
+                                event.get("part", {}).get("type") == "refusal"
+                            ):
+                                raise MetaAPIError("Meta rechazó el contenido")
                             if event.get("type") == "response.output_text.delta":
                                 chunks.append(event["delta"])
                                 output_size += len(event["delta"])
-                                if output_size > 2_000_000:
+                                if output_size > output_limit:
                                     raise MetaAPIError(
                                         "Salida Meta excede el límite permitido"
                                     )
                             if event.get("type") == "response.completed":
+                                if event.get("response", {}).get("status") not in (
+                                    None,
+                                    "completed",
+                                ):
+                                    raise MetaAPIError(
+                                        "Meta devolvió una respuesta incompleta"
+                                    )
                                 completed = True
                                 self.record_usage(
                                     event.get("response", {}).get("usage")
                                 )
+                            if on_event is not None:
+                                on_event(event)
                     if not completed:
                         raise MetaAPIError("Meta devolvió un stream incompleto")
                     text = "".join(chunks)
@@ -221,7 +249,9 @@ class MetaResponsesClient:
             if type(value) is int and value >= 0:
                 self.usage[key] = self.usage.get(key, 0) + value
 
-    async def request_json(self, endpoint: str, **kwargs) -> dict:
+    async def request_json(
+        self, endpoint: str, *, method: str = "POST", **kwargs
+    ) -> dict:
         """Same bounded transport for ASR and tool-calling requests; no retries."""
         try:
             async with (
@@ -236,7 +266,7 @@ class MetaResponsesClient:
                     follow_redirects=False,
                 ) as client,
             ):
-                response = await client.post(endpoint, **kwargs)
+                response = await client.request(method, endpoint, **kwargs)
                 response.raise_for_status()
                 if len(response.content) > 2_000_000:
                     raise MetaAPIError("Salida Meta excede el límite permitido")

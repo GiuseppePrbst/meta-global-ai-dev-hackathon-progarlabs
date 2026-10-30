@@ -23,7 +23,11 @@ Consulta: 27-10-2026. Registrar una licencia de fuente **no** significa que el d
 
 ## No admitidos
 
-Hepta Insights: **RESTRICTED**, sin autorización para este proyecto. No adquirir, enviar a proveedores, publicar imágenes/LiDAR/coordenadas/derivados/pesos ni utilizar en entrenamiento. Almacenamiento fuera del repositorio y worktrees. Ver [gobernanza](DATA_GOVERNANCE.md).
+Hepta Insights: **RESTRICTED**, sin licencia pública. La autorización específica del
+30-10-2026 al final de este registro permite fotos/videos seleccionados en Meta para
+esta misión. Otros usos siguen excluidos; no publicar imágenes/LiDAR/coordenadas/
+derivados/pesos ni entrenar durante esta misión. Fuera del repositorio y worktrees.
+Ver [gobernanza](DATA_GOVERNANCE.md).
 
 ## Plantilla para una incorporación
 
@@ -106,3 +110,20 @@ Ejemplos en `evaluations/expeditions-contract-examples.json`: SYNTHETIC, creados
 misión, `LicenseRef-ProGarLabs-Pending`; sin datos de campo ni material de terceros.
 Punto [0,0], propietario/UUID y tiempos son ficticios. Los modelos son dependencias de Meta,
 no entrenados aquí. Hepta y sus derivados siguen excluidos, sin nueva autorización.
+
+## Fotos/videos restringidos — autorización de sesión, 30-10-2026
+
+Fuente: Hepta vía Microsoft Fabric/OneLake y ZIP proporcionado por el usuario;
+versión de adquisición 2026-10-30, no fecha inferida de captura. Derechos: permiso
+específico de procesamiento privado comunicado por el usuario, sin licencia pública,
+redistribución ni entrenamiento. No se incorpora ningún medio al repositorio.
+Procesamiento: lectura acotada de metadatos, descarga seleccionada, deduplicación,
+FFmpeg, inferencia Meta Standard y renderizado privado. Responsable de revisión:
+Giuseppe Proboste; anotación humana y calidad botánica pendientes.
+
+Se obtuvieron 12 candidatas positivas y 6 controles únicos, más una copia repetida;
+las etiquetas operativas no son ground truth. Video original, transformaciones,
+atribución detallada, permisos, URLs, fechas, hashes y derivados constan únicamente en
+manifiestos privados. La excepción actualiza las prohibiciones históricas de transferencia
+para esta misión, no para otros recursos. Las fixtures nuevas son dibujos/raster/bytes
+SYNTHETIC generados por tests, sin reproducir datos Hepta ni observaciones reales.
