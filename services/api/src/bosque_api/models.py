@@ -32,6 +32,22 @@ class Taxonomy(BaseModel):
     attribution: str
 
 
+class Comparator(BaseModel):
+    """Out-of-catalog look-alike used to support abstention; never collectible."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    scientific_name: str = Field(pattern=r"^[A-Z][a-z]+ [a-z]+$")
+    common_name: str
+    family: str
+    col_xr_key: str
+    confused_with: list[str] = Field(min_length=1)
+    diagnostic_traits: list[str] = Field(min_length=1, max_length=4)
+    sources: list[str] = Field(min_length=1)
+    accessed_at: str
+    limitations: str
+
+
 class SynonymReview(BaseModel):
     """Auditable decision on a catalog synonym; the name is never silently dropped."""
 

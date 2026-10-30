@@ -36,3 +36,20 @@ def test_reviewed_exclusion_cannot_silently_return():
     ]
     with pytest.raises(ValidationError, match="excluido"):
         Species.model_validate(item)
+
+
+def test_comparators_are_sourced_look_alikes_outside_the_catalog():
+    from bosque_api.catalog import get_comparators
+
+    comparators = get_comparators()
+    catalog = {s.scientific_name for s in get_species()}
+    assert {c.scientific_name for c in comparators} == {
+        "Nothofagus antarctica",
+        "Nothofagus nitida",
+        "Laurelia sempervirens",
+        "Saxegothaea conspicua",
+        "Podocarpus salignus",
+        "Prumnopitys andina",
+    }
+    assert not catalog & {c.scientific_name for c in comparators}
+    assert all(c.sources and c.diagnostic_traits for c in comparators)

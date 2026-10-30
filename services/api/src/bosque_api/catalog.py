@@ -4,7 +4,7 @@ from importlib.resources import files
 
 from pydantic import TypeAdapter
 
-from bosque_api.models import Species
+from bosque_api.models import Comparator, Species
 
 
 @lru_cache
@@ -17,3 +17,15 @@ def get_species() -> tuple[Species, ...]:
     if len(set(names)) != len(names):
         raise ValueError("Catálogo tiene taxones duplicados")
     return tuple(species)
+
+
+def get_comparators() -> tuple[Comparator, ...]:
+    """Sourced look-alikes; must reference catalog IDs and never duplicate them."""
+    content = files("bosque_api").joinpath("resources/comparators.json").read_text(encoding="utf-8")
+    items = TypeAdapter(list[Comparator]).validate_python(json.loads(content))
+    catalog = {s.id: s for s in get_species()}
+    names = {s.accepted_name or s.scientific_name for s in catalog.values()}
+    for item in items:
+        if item.scientific_name in names or not set(item.confused_with) <= set(catalog):
+            raise ValueError("Comparador inválido: duplica el catálogo o referencia IDs ajenos")
+    return tuple(items)

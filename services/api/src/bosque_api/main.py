@@ -33,7 +33,7 @@ from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 
 from bosque_api.capture_store import CaptureStore
-from bosque_api.catalog import get_species
+from bosque_api.catalog import get_comparators, get_species
 from bosque_api.config import Settings
 from bosque_api.context_store import ContextStore
 from bosque_api.database import ObservationStore
@@ -308,6 +308,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     },
                     additional_images=extra_images,
                     views=views,
+                    strategy=config.identify_strategy,
+                    comparators=[c.model_dump() for c in get_comparators()],
+                    traits={
+                        s.id: s.morphology
+                        for s in get_species()
+                        if s.trait_validation_status != "pending"
+                    },
                 )
                 result.sources = sorted(
                     {
