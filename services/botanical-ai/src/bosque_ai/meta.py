@@ -331,6 +331,9 @@ class MuseSparkAdapter:
                 content_type,
                 schema=BotanicalAnalysis.model_json_schema(),
                 additional_images=additional_images,
+                # Reasoning counts toward the 1200-token cap; default effort truncated
+                # real photos (30-10-2026 campaign). "minimal" is documented and tested.
+                reasoning_effort="minimal",
             )
             parsed = BotanicalAnalysis.model_validate_json(text)
             if any(c.species_id not in catalog for c in parsed.candidates):
