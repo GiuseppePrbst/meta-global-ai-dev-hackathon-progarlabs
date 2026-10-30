@@ -69,3 +69,21 @@ PostgreSQL/PostGIS de prueba instalado en WSL con autorización específica del 
 Dos llamadas nuevas autorizadas a Meta sobre dibujo generado; ninguna foto privada transferida.
 No hay conjunto botánico evaluable ni métricas de calidad; Fabiana mantiene rol empresarial
 sin atribución de participación competitiva no confirmada. Git/CI no acreditan elegibilidad.
+
+## Expediciones GIS/ML — 29-10-2026
+
+Trabajo nuevo dirigido por Giuseppe con asistencia de Codex: evolución multivista, adaptación
+STT documentada, herramientas botánicas de lectura con límites y referencias, evidencia
+privada, capturas sobre observations, colección/idempotencia, migración 004, tests y contratos.
+Rama `feat/meta-expeditions-gis-ml` basada en #17 abierto, sin merge. Web/móvil no modificados.
+Sin atribución a José ni entregables competitivos de Fabiana. Identidad humana verificada
+antes de escrituras; no autores de agentes ni coautores ficticios.
+
+Reutilizado: commit `7c9c2cec22eef489c08ca1ef243c229a961a268a`, cliente httpx y parser SAM,
+Pydantic/FastAPI/PostGIS, ledger/observaciones/contexto/worker, catálogo y GBIF previos.
+Hechos morfológicos resumidos desde referencias botánicas preexistentes; fuentes/derechos en
+DATASET_LICENSES. No se crearon datos de campo ni modelos; ningún audio real, fotografía
+externa, video, peso o dato Hepta se incorporó. No se hizo una nueva llamada pagada.
+Evaluación botánica n=0 y métricas nulas; mocks no se presentan como calidad científica.
+Ventana declarada del evento 26-10–04-11-2026; Git no determina elegibilidad.
+[Informe y validaciones](META_EXPEDITIONS_REPORT.md).

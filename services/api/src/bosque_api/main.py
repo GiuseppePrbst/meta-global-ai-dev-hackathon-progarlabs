@@ -32,6 +32,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 
+from bosque_api.capture_store import CaptureStore
 from bosque_api.catalog import get_species
 from bosque_api.config import Settings
 from bosque_api.context_store import ContextStore
@@ -68,7 +69,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         request.state.identity = None
         public = {"/health", "/species", "/forest/sources", "/openapi.json", "/docs", "/redoc"}
         if (
-            config.service_mode == "demo"
+            (
+                config.service_mode == "demo"
+                or request.url.path.startswith(("/captures", "/guide", "/identifications"))
+            )
             and request.method != "OPTIONS"
             and (request.url.path not in public and not request.url.path.startswith("/species/"))
         ):
@@ -80,6 +84,16 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     content={"detail": exc.detail},
                     headers={"X-Correlation-ID": correlation},
                 )
+        elif (
+            request.url.path == "/identify"
+            and config.ai_provider == "mock"
+            and request.headers.get("authorization")
+            and config.demo_tokens
+        ):
+            try:
+                request.state.identity = identity(config, request.headers.get("authorization"))
+            except HTTPException as exc:
+                return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
         request.state.correlation_id = correlation
         response = await call_next(request)
         response.headers["X-Correlation-ID"] = correlation
@@ -97,6 +111,23 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         if not config.database_url.get_secret_value():
             raise HTTPException(503, "Persistencia no configurada: requiere PostgreSQL/PostGIS")
         return ObservationStore(config.database_url.get_secret_value())
+
+    async def keep_identification(request, result):
+        result.correlation_id = request.state.correlation_id
+        if request.state.identity:
+            if not config.database_url.get_secret_value():
+                raise HTTPException(503, "Evidencia privada requiere PostGIS y migración 004")
+            try:
+                return await asyncio.to_thread(
+                    CaptureStore(
+                        config.database_url.get_secret_value(), config.observation_retention_days
+                    ).save_identification,
+                    request.state.identity,
+                    result,
+                )
+            except psycopg.Error:
+                raise HTTPException(503, "No se pudo guardar evidencia privada") from None
+        return result
 
     @app.get("/health")
     def health():
@@ -120,13 +151,33 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             raise HTTPException(404, "Especie no encontrada")
         return item
 
-    @app.post("/identify", response_model=Identification)
+    @app.post(
+        "/identify",
+        response_model=Identification,
+        responses={
+            413: {"description": "Límite de imagen/intento excedido"},
+            415: {"description": "Formato de imagen no admitido"},
+            501: {"description": "Proveedor no habilitado"},
+            502: {"description": "Error de proveedor, nunca abstención simulada"},
+        },
+    )
     async def identify(
         request: Request,
         file: Annotated[UploadFile, File(description="JPEG, PNG o WebP, máximo 10 MiB")],
         adult_confirmed: Annotated[bool, Form()],
         rights_confirmed: Annotated[bool, Form()],
         authorization: Annotated[str | None, Header()] = None,
+        additional_files: Annotated[
+            list[UploadFile] | None,
+            File(
+                description="Hasta dos vistas adicionales del MISMO ejemplar; máximo total 20 MiB"
+            ),
+        ] = None,
+        views: Annotated[
+            list[str] | None,
+            Form(description="Tipos en orden: whole_tree, leaf, bark, flower, fruit, unspecified"),
+        ] = None,
+        use_segmentation: Annotated[bool | None, Form()] = None,
     ):
         if config.ai_provider == "meta":
             if not config.model_api_key.get_secret_value():
@@ -147,12 +198,38 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     raise HTTPException(401, "Se requiere autorización para usar Meta")
         if not adult_confirmed or not rights_confirmed:
             raise HTTPException(422, "Se requiere mayoría de edad y derechos de uso de la imagen")
+        if use_segmentation is True and not config.sam_enabled:
+            raise HTTPException(422, "Segmentación no habilitada por el operador")
+        uploads = [file, *(additional_files or [])]
+        if len(uploads) > 3:
+            raise HTTPException(422, "Máximo tres fotografías del mismo ejemplar")
+        if views is not None and (
+            len(views) != len(uploads)
+            or any(
+                view not in {"whole_tree", "leaf", "bark", "flower", "fruit", "unspecified"}
+                for view in views
+            )
+        ):
+            raise HTTPException(
+                422, "views debe corresponder a cada fotografía y usar tipos válidos"
+            )
         if file.content_type not in IMAGE_TYPES.values():
             raise HTTPException(415, "Formato no admitido: utiliza JPEG, PNG o WebP")
         image = await file.read(MAX_IMAGE_BYTES + 1)
         await file.close()
         if len(image) > MAX_IMAGE_BYTES:
             raise HTTPException(413, "La imagen supera el límite de 10 MiB")
+        extra_images = []
+        total = len(image)
+        for extra in uploads[1:]:
+            if extra.content_type not in IMAGE_TYPES.values():
+                raise HTTPException(415, "Formato no admitido: utiliza JPEG, PNG o WebP")
+            content = await extra.read(MAX_IMAGE_BYTES + 1)
+            await extra.close()
+            total += len(content)
+            if len(content) > MAX_IMAGE_BYTES or total > 20 * 1024 * 1024:
+                raise HTTPException(413, "Límite: 10 MiB por imagen, 20 MiB por intento")
+            extra_images.append((content, extra.content_type))
         if config.ai_provider == "meta":
             nonlocal next_meta_request
             now = monotonic()
@@ -168,6 +245,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             )
             try:
                 image = await asyncio.to_thread(prepare_image, image, file.content_type)
+                extra_images = [
+                    (await asyncio.to_thread(prepare_image, data, mime), "image/jpeg")
+                    for data, mime in extra_images
+                ]
             except HTTPException:
                 if reservation:
                     await asyncio.to_thread(ledger.finish, reservation, "validation_error", {})
@@ -179,7 +260,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             segment_status = "disabled"
             stage_latency = {}
             stage_usage = {}
-            if config.sam_enabled:
+            segmentation_enabled = config.sam_enabled and use_segmentation is not False
+            if segmentation_enabled:
                 from io import BytesIO
 
                 from PIL import Image
@@ -188,7 +270,15 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     width, height = decoded.size
                 started = perf_counter()
                 segmented = await SAMAdapter(adapter.client, config.sam_model).segment_typed(
-                    image, "image/jpeg", SegmentationRequest(width=width, height=height)
+                    image,
+                    "image/jpeg",
+                    SegmentationRequest(
+                        width=width,
+                        height=height,
+                        concept={"leaf": "leaf", "bark": "tree trunk"}.get(
+                            views[0] if views else "", "tree"
+                        ),
+                    ),
                 )
                 segment_status = segmented.status
                 try:
@@ -208,13 +298,26 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                             "accepted_name": s.accepted_name,
                             "synonyms": s.synonyms,
                             "taxonomy_source": s.taxonomy.model_dump() if s.taxonomy else None,
-                            "verified_morphology": s.morphology
+                            "source_checked_morphology": s.morphology
                             if s.trait_validation_status != "pending"
                             else [],
                             "trait_validation_status": s.trait_validation_status,
+                            "trait_sources": s.trait_sources,
                         }
                         for s in get_species()
                     },
+                    additional_images=extra_images,
+                    views=views,
+                )
+                result.sources = sorted(
+                    {
+                        url
+                        for s in get_species()
+                        for url in [
+                            *s.trait_sources,
+                            *([s.taxonomy.source_url] if s.taxonomy else []),
+                        ]
+                    }
                 )
                 result.segmentation_status = segment_status
                 stage_latency["identification"] = result.latency_ms
@@ -238,13 +341,15 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                         {
                             "stages": stage_usage,
                             "model": config.meta_model,
-                            "segmentation_model": config.sam_model if config.sam_enabled else None,
+                            "segmentation_model": config.sam_model
+                            if segmentation_enabled
+                            else None,
                             "prompt_version": result.prompt_version,
                             "correlation_id": request.state.correlation_id,
                             "stage_latency_ms": stage_latency,
                         },
                     )
-                return result
+                return await keep_identification(request, result)
             except MetaAPIError:
                 if reservation:
                     await asyncio.to_thread(
@@ -259,7 +364,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     502, "Proveedor Meta no disponible o respuesta inválida"
                 ) from None
         image = await asyncio.to_thread(prepare_image, image, file.content_type)
-        return await MockIdentifier().identify(image, "image/jpeg")
+        for data, mime in extra_images:
+            await asyncio.to_thread(prepare_image, data, mime)
+        return await keep_identification(
+            request, await MockIdentifier().identify(image, "image/jpeg")
+        )
 
     @app.get("/observations", response_model=list[Observation])
     def observations(request: Request, limit: Annotated[int, Query(ge=1, le=100)] = 100):
@@ -442,7 +551,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             "SERVICE_MODE=local permite desarrollo aislado sin esta credencial.",
         }
         for path, methods in schema["paths"].items():
-            if path in {
+            if path.startswith(("/captures", "/guide", "/identifications")) or path in {
                 "/identify",
                 "/observations",
                 "/observations/{observation_id}",
@@ -454,7 +563,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             }:
                 for operation in methods.values():
                     operation["security"] = (
-                        [{"DemoBearer": []}] if config.service_mode == "demo" else []
+                        [{"DemoBearer": []}]
+                        if config.service_mode == "demo"
+                        or path.startswith(("/captures", "/guide", "/identifications"))
+                        else []
                     )
                     for code, detail in {
                         401: "Identidad requerida",
@@ -465,6 +577,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return schema
 
     app.openapi = openapi
+    from bosque_api.expedition_routes import register_routes
+
+    register_routes(app, config, landscape_context)
     return app
 
 

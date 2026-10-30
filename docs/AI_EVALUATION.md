@@ -71,3 +71,21 @@ Runner vacío devuelve not_evaluated, n=0 y métricas nulas. Casos reales requie
 bloque y grupo perceptual/revisión humana; validación de particiones incluye esas claves.
 No mezcla tipos de fotografía. No se ejecutaron C/D/E ni se midió mejora por contexto.
 Los contadores de uso y estimaciones por tarifa no son cargos observados.
+
+## Expediciones y voz — 29-10-2026
+
+Prompt `botanical-multiview-v3`: hasta tres vistas del mismo individuo; una foto conserva
+contrato. Con SAM, solo primaria segmentada; adicionales originales. El indicador
+`use_segmentation` permite A/B explícito con igual conjunto de fotos. No se ejecutó A/B
+real ni se midió beneficio. El manifiesto de fotos sigue vacío: n=0, precisión no evaluada.
+No se sustituyen etiquetas humanas por rasgos bibliográficos o composición de polígonos.
+
+Tests nuevos usan imágenes/WAV sintéticos y `httpx.MockTransport`. Cubren audio truncado,
+codec/duración, texto español, nombres botánicos, protocolo de tool calling, límite de
+llamadas, argumentos/identidad, referencias no consultadas, falta de fuentes y timeout.
+No miden WER/CER, latencia real, acierto taxonómico, robustez a inyección ni utilidad turística.
+Antes de una prueba real: consentimiento externo, presupuesto NUEVO, acceso/créditos,
+Standard Mode y material permitido; mantener audios y fotos fuera del repositorio.
+Propuesta mínima: audios españoles con los diez términos de VOICE_GUIDE, transcripción
+humana, WER/nombres exactos y latencia/uso; preguntas con fuentes y revisión humana.
+Es una propuesta, no una evaluación ejecutada. [Informe](META_EXPEDITIONS_REPORT.md).

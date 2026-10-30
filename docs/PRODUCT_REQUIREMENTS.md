@@ -21,4 +21,22 @@ Versión inicial, 27-10-2026. Esta tabla distingue la base de desarrollo del MVP
 
 ## Criterios de salida
 
+### Expediciones backend, 29-10-2026
+
+El recorrido autorizado es expedición de referencia → una a tres fotos del mismo ejemplar →
+candidatos/abstención y siguiente foto recomendada → registro personal → colección privada →
+pregunta hablada o escrita y respuesta con fuentes. No se modifica web/móvil en este incremento.
+José integra los [contratos](API_INTEGRATION.md); producto puede revisar esta estrategia sin
+atribuir entregables competitivos a Fabiana mientras no exista autorización del organizador.
+
+No hay navegación a árboles ni senderos verificados. No se incentiva recolectar, manipular,
+salir de senderos habilitados o repetir capturas para obtener puntos. Ubicación opcional,
+sin ranking; completar el objetivo educativo no requiere taxón ni GPS. Una sugerencia IA
+no es identificación verificada y el servicio no dispone todavía de revisión científica.
+Texto accesible acompaña la narración del dispositivo. Audios/transcripciones son efímeros.
+
+La demo funcional con mocks es software comprobado, no precisión botánica ni STT español
+evaluado. Pruebas reales requieren derechos externos, presupuesto nuevo y material permitido.
+La captura pública científica, crecimiento y aplicaciones industriales quedan pendientes.
+
 El bootstrap se revisa con las verificaciones del README y el [informe](BOOTSTRAP_REPORT.md). Para la entrega competitiva agregar evidencia de una llamada real Meta, dataset/licencias, evaluación, demo reproducible, video de tres minutos y revisión del portal oficial. No atribuir trabajo a Fabiana como participante sin autorización registrada.

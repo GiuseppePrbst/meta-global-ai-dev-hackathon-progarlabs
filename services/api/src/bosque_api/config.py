@@ -24,6 +24,8 @@ class Settings(BaseSettings):
     budget_requests_per_identity: int = Field(default=5, ge=1, le=1000)
     budget_units: int = Field(default=0, ge=0)
     meta_reservation_units: int = Field(default=0, ge=0)
+    voice_reservation_units: int = Field(default=0, ge=0)
+    guide_reservation_units: int = Field(default=0, ge=0)
     budget_concurrency: int = Field(default=1, ge=1, le=8)
     observation_retention_days: int = Field(default=30, ge=1, le=365)
     raster_timeout_seconds: float = Field(default=15, gt=0, le=60)

@@ -69,3 +69,23 @@ La precisión es declarada, opcional y no se infiere de EXIF. No hay almacenamie
 Recibos públicos contienen solo hashes/conteos/estadísticas de fuentes autorizadas, no
 geometrías fuente con redistribución pendiente, fotos, credenciales ni atributos de infraestructura.
 Prueba Meta nueva autorizada: solo dibujo sintético, dos llamadas, máximo USD 1.
+
+## Expediciones y voz, 29-10-2026
+
+La autorización histórica de USD 1 no habilita llamadas nuevas. Este incremento no envía
+material real a Meta ni accede a Hepta/Fabric. No se descargan fotografías, video, LiDAR ni
+checkpoints; datos privados y derivados permanecen fuera del checkout/worktrees.
+
+Capturas/evidencia son privadas por identidad. Coordenada opcional con consentimiento,
+ninguna salida pública, incluso para especies cuya conservación esté pendiente. Las fotos
+se re-encodean en memoria sin metadata; el resultado textual se retiene hasta 30 días
+configurables. Audio WAV validado y limpiado es efímero; el framework puede usar spool
+temporal, que se cierra al terminar. No se persiste audio/transcripción/historial del guía.
+DELETE propio elimina captura/observación y evidencia; hay eliminación de evidencia sin
+captura. La purga física exige mantenimiento explícito. [Política exacta](CAPTURE_DOMAIN.md).
+
+El guía requiere permiso explícito de procesamiento externo. Solo transmite la pregunta y
+contexto permitido resumido; no recibe geometrías, coordenadas ni atributos crudos. Progreso
+personal se resume a conteos. Fuentes de rutas/observaciones públicas ausentes no se inventan.
+Los resúmenes morfológicos son hechos breves con referencias, sin fotos ni textos extensos
+de terceros; `source_checked` no acredita revisión de campo. [Derechos](DATASET_LICENSES.md).

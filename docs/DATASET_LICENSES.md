@@ -79,3 +79,30 @@ no cambia sus derechos: CONAF/CIREN redistribución pendiente y BCN bajo sus con
 referenciales/atribución, sin inventar licencia CC. No se publica fuente vectorial/raster.
 El nuevo recibo contiene hashes/conteos/estadísticas; el dibujo sintético de smoke no es
 dataset botánico y sus fotos/máscaras no se incorporan al repositorio.
+
+# Referencias morfológicas de Expediciones, 29-10-2026
+
+Solo se incorporan resúmenes propios muy breves de hechos morfológicos en
+`services/api/src/bosque_api/resources/species.json`, sin imágenes ni copias de descripciones.
+Clasificación: referencia factual contrastada, no observación. No se concede licencia a las
+páginas/fotografías originales: la disponibilidad pública no autoriza redistribuirlas.
+Fuentes de terceros preexistentes, sin descarga de archivos; conservación/natividad no se
+completan con estas consultas. Responsable de revisión humana pendiente: Giuseppe Proboste.
+Procesamiento: lectura y síntesis factual; `trait_validation_status: source_checked`,
+fecha de acceso 2026-10-29. Los resúmenes no prueban presencia ni identifican ejemplares.
+
+| Taxón | Fuente directa / edición de página cuando consta | Atribución y límites |
+| --- | --- | --- |
+| Nothofagus dombeyi | [Flora y Fauna UdeC](https://florayfauna.udec.cl/nothofagus-dombeyi-mirb-oerst/), web sin edición declarada | Universidad de Concepción, Wilson González; hechos resumidos, sin fotos/texto extenso |
+| Nothofagus pumilio | [SIB/APN](https://sib.gob.ar/especies/nothofagus-pumilio), web; referencia Gut 2017 | Administración de Parques Nacionales Argentina; hechos resumidos, no se reutilizan ocurrencias ni cartografía |
+| Eucryphia cordifolia | [Fundación R.A. Philippi](https://fundacionphilippi.cl/catalogo/eucryphia-cordifolia/), 20-04-2018 | Fundación R.A. Philippi, todos los derechos reservados de la página; solo hechos resumidos propios |
+| Aextoxicon punctatum | [Fundación R.A. Philippi](https://fundacionphilippi.cl/catalogo/aextoxicon-punctatum/), 13-06-2017 | Misma política, sin fotos ni textos extensos |
+| Weinmannia trichosperma | [Fundación R.A. Philippi](https://fundacionphilippi.cl/catalogo/weinmannia-trichosperma/), 09-05-2018 | Misma política, sin fotos ni textos extensos |
+| Laureliopsis philippiana | [Fundación R.A. Philippi](https://fundacionphilippi.cl/catalogo/laureliopsis-philippiana/), 30-11-2017 | Misma política, sin fotos ni textos extensos |
+| Podocarpus nubigenus | [Fundación R.A. Philippi](https://fundacionphilippi.cl/catalogo/podocarpus-nubigenus/), 30-10-2014 | Misma política, sin fotos ni textos extensos |
+| Nothofagus betuloides | [Fundación R.A. Philippi](https://fundacionphilippi.cl/catalogo/nothofagus-betuloides/), 28-06-2016 | Misma política, sin fotos ni textos extensos |
+
+Ejemplos en `evaluations/expeditions-contract-examples.json`: SYNTHETIC, creados durante esta
+misión, `LicenseRef-ProGarLabs-Pending`; sin datos de campo ni material de terceros.
+Punto [0,0], propietario/UUID y tiempos son ficticios. Los modelos son dependencias de Meta,
+no entrenados aquí. Hepta y sus derivados siguen excluidos, sin nueva autorización.

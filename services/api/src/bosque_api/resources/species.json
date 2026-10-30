@@ -33,7 +33,16 @@
       "verification_status": "source_checked",
       "license": "CC-BY-4.0",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
-    }
+    },
+    "morphology": [
+      "Hoja simple con disposición alterna, forma romboidal y borde aserrado.",
+      "Follaje persistente; la persistencia no se demuestra con una sola foto."
+    ],
+    "trait_validation_status": "source_checked",
+    "trait_sources": [
+      "https://florayfauna.udec.cl/nothofagus-dombeyi-mirb-oerst/"
+    ],
+    "trait_source_accessed_at": "2026-10-29"
   },
   {
     "id": "eucryphia-cordifolia",
@@ -69,7 +78,16 @@
       "verification_status": "source_checked",
       "license": "CC-BY-4.0",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
-    }
+    },
+    "morphology": [
+      "Hoja opuesta; cara inferior más clara y con pelos.",
+      "Flor blanca con cuatro pétalos cuando está presente."
+    ],
+    "trait_validation_status": "source_checked",
+    "trait_sources": [
+      "https://fundacionphilippi.cl/catalogo/eucryphia-cordifolia/"
+    ],
+    "trait_source_accessed_at": "2026-10-29"
   },
   {
     "id": "aextoxicon-punctatum",
@@ -101,7 +119,16 @@
       "verification_status": "source_checked",
       "license": "CC-BY-4.0",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
-    }
+    },
+    "morphology": [
+      "Cara inferior foliar grisácea con escamas pardas.",
+      "Hoja persistente y de textura coriácea."
+    ],
+    "trait_validation_status": "source_checked",
+    "trait_sources": [
+      "https://fundacionphilippi.cl/catalogo/aextoxicon-punctatum/"
+    ],
+    "trait_source_accessed_at": "2026-10-29"
   },
   {
     "id": "weinmannia-trichosperma",
@@ -141,7 +168,16 @@
       "verification_status": "source_checked",
       "license": "CC-BY-4.0",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
-    }
+    },
+    "morphology": [
+      "Hoja compuesta; folíolos dentados y eje con alas triangulares.",
+      "Brote nuevo rojizo con pelos."
+    ],
+    "trait_validation_status": "source_checked",
+    "trait_sources": [
+      "https://fundacionphilippi.cl/catalogo/weinmannia-trichosperma/"
+    ],
+    "trait_source_accessed_at": "2026-10-29"
   },
   {
     "id": "laureliopsis-philippiana",
@@ -176,7 +212,16 @@
       "verification_status": "source_checked",
       "license": "CC-BY-4.0",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
-    }
+    },
+    "morphology": [
+      "Hoja opuesta con disposición decusada y margen aserrado glandular.",
+      "Corteza lisa y ramas inferiores colgantes como referencias complementarias."
+    ],
+    "trait_validation_status": "source_checked",
+    "trait_sources": [
+      "https://fundacionphilippi.cl/catalogo/laureliopsis-philippiana/"
+    ],
+    "trait_source_accessed_at": "2026-10-29"
   },
   {
     "id": "podocarpus-nubigenus",
@@ -212,7 +257,16 @@
       "verification_status": "source_checked",
       "license": "CC-BY-4.0",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
-    }
+    },
+    "morphology": [
+      "Hoja acicular con extremo punzante; observar sin tocar.",
+      "Corteza con estrías longitudinales."
+    ],
+    "trait_validation_status": "source_checked",
+    "trait_sources": [
+      "https://fundacionphilippi.cl/catalogo/podocarpus-nubigenus/"
+    ],
+    "trait_source_accessed_at": "2026-10-29"
   },
   {
     "id": "nothofagus-betuloides",
@@ -257,7 +311,16 @@
       "verification_status": "source_checked",
       "license": "CC-BY-4.0",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
-    }
+    },
+    "morphology": [
+      "Hoja elíptica pequeña, coriácea y con dentado fino.",
+      "Follaje persistente; no inferir persistencia de una sola foto."
+    ],
+    "trait_validation_status": "source_checked",
+    "trait_sources": [
+      "https://fundacionphilippi.cl/catalogo/nothofagus-betuloides/"
+    ],
+    "trait_source_accessed_at": "2026-10-29"
   },
   {
     "id": "nothofagus-pumilio",
@@ -296,6 +359,16 @@
       "verification_status": "source_checked",
       "license": "CC-BY-4.0",
       "attribution": "GBIF Secretariat, GBIF Backbone Taxonomy, https://doi.org/10.15468/39omei"
-    }
+    },
+    "morphology": [
+      "Hoja simple alterna, ovalada, con margen crenado.",
+      "Entre nervaduras secundarias hay dos lóbulos del borde.",
+      "Follaje caduco, rasgo que exige contexto estacional."
+    ],
+    "trait_validation_status": "source_checked",
+    "trait_sources": [
+      "https://sib.gob.ar/especies/nothofagus-pumilio"
+    ],
+    "trait_source_accessed_at": "2026-10-29"
   }
 ]
