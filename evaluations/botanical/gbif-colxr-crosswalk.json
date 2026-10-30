@@ -1,0 +1,712 @@
+{
+ "queried_at": "2026-10-30T13:41:04+00:00",
+ "taxonomy_checklist": "7ddf754f-d193-4cc9-b351-99906754a03b",
+ "species": [
+  {
+   "species_id": "nothofagus-dombeyi",
+   "scientific_name": "Nothofagus dombeyi",
+   "legacy": {
+    "gbif_backbone_key": 2874895,
+    "checklist": "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c",
+    "scientific_name": "Nothofagus dombeyi (Mirb.) Oerst.",
+    "taxonomic_status": "ACCEPTED",
+    "source": "https://api.gbif.org/v1/species/2874895"
+   },
+   "col_xr": {
+    "query": "Nothofagus dombeyi",
+    "key": "R8FKD",
+    "name": "Nothofagus dombeyi (Mirb.) Blume",
+    "canonical": "Nothofagus dombeyi",
+    "authorship": "(Mirb.) Blume",
+    "status": "ACCEPTED",
+    "match_type": "EXACT",
+    "synonym": false,
+    "accepted_key": "R8FKD",
+    "accepted_name": "Nothofagus dombeyi (Mirb.) Blume",
+    "checklist": "7ddf754f-d193-4cc9-b351-99906754a03b"
+   },
+   "catalog_synonyms_in_col_xr": [
+    {
+     "query": "Fagus dombeyi Mirb.",
+     "key": "3DSHH",
+     "name": "Fagus dombeyi Mirb.",
+     "canonical": "Fagus dombeyi",
+     "authorship": "Mirb.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "R8FKD",
+     "accepted_name": "Nothofagus dombeyi (Mirb.) Blume"
+    },
+    {
+     "query": "Fagus dombeyi var. microphylla Phil.",
+     "key": "5NX66",
+     "name": "Fagus dombeyi var. microphylla Phil.",
+     "canonical": "Fagus dombeyi microphylla",
+     "authorship": "Phil.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "R8FKD",
+     "accepted_name": "Nothofagus dombeyi (Mirb.) Blume"
+    },
+    {
+     "query": "Nothofagus dombeyi (Mirb.) Blume",
+     "key": "R8FKD",
+     "name": "Nothofagus dombeyi (Mirb.) Blume",
+     "canonical": "Nothofagus dombeyi",
+     "authorship": "(Mirb.) Blume",
+     "status": "ACCEPTED",
+     "match_type": "EXACT",
+     "synonym": false,
+     "accepted_key": "R8FKD",
+     "accepted_name": "Nothofagus dombeyi (Mirb.) Blume"
+    }
+   ],
+   "status": "exact_name_authorship_differs",
+   "authorship_differs": true,
+   "synonym_collisions": [],
+   "unresolved_synonyms": [],
+   "queried_at": "2026-10-30T13:41:04+00:00",
+   "resolution_source": "https://api.gbif.org/v2/species/match"
+  },
+  {
+   "species_id": "eucryphia-cordifolia",
+   "scientific_name": "Eucryphia cordifolia",
+   "legacy": {
+    "gbif_backbone_key": 3920287,
+    "checklist": "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c",
+    "scientific_name": "Eucryphia cordifolia Cav.",
+    "taxonomic_status": "ACCEPTED",
+    "source": "https://api.gbif.org/v1/species/3920287"
+   },
+   "col_xr": {
+    "query": "Eucryphia cordifolia",
+    "key": "3BYLN",
+    "name": "Eucryphia cordifolia Cav.",
+    "canonical": "Eucryphia cordifolia",
+    "authorship": "Cav.",
+    "status": "ACCEPTED",
+    "match_type": "EXACT",
+    "synonym": false,
+    "accepted_key": "3BYLN",
+    "accepted_name": "Eucryphia cordifolia Cav.",
+    "checklist": "7ddf754f-d193-4cc9-b351-99906754a03b"
+   },
+   "catalog_synonyms_in_col_xr": [
+    {
+     "query": "Eucryphia patagonica Speg.",
+     "key": "3BYLW",
+     "name": "Eucryphia patagonica Speg.",
+     "canonical": "Eucryphia patagonica",
+     "authorship": "Speg.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "3BYLN",
+     "accepted_name": "Eucryphia cordifolia Cav."
+    },
+    {
+     "query": "Pellinia chilensis Molina",
+     "key": "76BPQ",
+     "name": "Pellinia chilensis Molina",
+     "canonical": "Pellinia chilensis",
+     "authorship": "Molina",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "3BYLN",
+     "accepted_name": "Eucryphia cordifolia Cav."
+    },
+    {
+     "query": "Pellinia cordifolia (Cav.) Molina",
+     "key": "76BQ2",
+     "name": "Pellinia cordifolia (Cav.) Molina",
+     "canonical": "Pellinia cordifolia",
+     "authorship": "(Cav.) Molina",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "3BYLN",
+     "accepted_name": "Eucryphia cordifolia Cav."
+    }
+   ],
+   "status": "exact",
+   "authorship_differs": false,
+   "synonym_collisions": [],
+   "unresolved_synonyms": [],
+   "queried_at": "2026-10-30T13:41:04+00:00",
+   "resolution_source": "https://api.gbif.org/v2/species/match"
+  },
+  {
+   "species_id": "aextoxicon-punctatum",
+   "scientific_name": "Aextoxicon punctatum",
+   "legacy": {
+    "gbif_backbone_key": 4195638,
+    "checklist": "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c",
+    "scientific_name": "Aextoxicon punctatum Ruiz & Pav.",
+    "taxonomic_status": "ACCEPTED",
+    "source": "https://api.gbif.org/v1/species/4195638"
+   },
+   "col_xr": {
+    "query": "Aextoxicon punctatum",
+    "key": "65DRF",
+    "name": "Aextoxicon punctatum Ruiz & Pav.",
+    "canonical": "Aextoxicon punctatum",
+    "authorship": "Ruiz & Pav.",
+    "status": "ACCEPTED",
+    "match_type": "EXACT",
+    "synonym": false,
+    "accepted_key": "65DRF",
+    "accepted_name": "Aextoxicon punctatum Ruiz & Pav.",
+    "checklist": "7ddf754f-d193-4cc9-b351-99906754a03b"
+   },
+   "catalog_synonyms_in_col_xr": [],
+   "status": "exact",
+   "authorship_differs": false,
+   "synonym_collisions": [],
+   "unresolved_synonyms": [],
+   "queried_at": "2026-10-30T13:41:04+00:00",
+   "resolution_source": "https://api.gbif.org/v2/species/match"
+  },
+  {
+   "species_id": "weinmannia-trichosperma",
+   "scientific_name": "Weinmannia trichosperma",
+   "legacy": {
+    "gbif_backbone_key": 3613680,
+    "checklist": "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c",
+    "scientific_name": "Weinmannia trichosperma Cav.",
+    "taxonomic_status": "ACCEPTED",
+    "source": "https://api.gbif.org/v1/species/3613680"
+   },
+   "col_xr": {
+    "query": "Weinmannia trichosperma",
+    "key": "5BWSY",
+    "name": "Weinmannia trichosperma Cav.",
+    "canonical": "Weinmannia trichosperma",
+    "authorship": "Cav.",
+    "status": "ACCEPTED",
+    "match_type": "EXACT",
+    "synonym": false,
+    "accepted_key": "5BWSY",
+    "accepted_name": "Weinmannia trichosperma Cav.",
+    "checklist": "7ddf754f-d193-4cc9-b351-99906754a03b"
+   },
+   "catalog_synonyms_in_col_xr": [
+    {
+     "query": "Weinmannia corymbosa Ruiz & Pav.",
+     "key": "5BWKT",
+     "name": "Weinmannia corymbosa Ruiz & Pav.",
+     "canonical": "Weinmannia corymbosa",
+     "authorship": "Ruiz & Pav.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "PHSZ",
+     "accepted_name": "Caldcluvia paniculata (Cav.) D.Don"
+    },
+    {
+     "query": "Weinmannia dentata Ruiz & Pav.",
+     "key": "5BWL8",
+     "name": "Weinmannia dentata Ruiz & Pav.",
+     "canonical": "Weinmannia dentata",
+     "authorship": "Ruiz & Pav.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "5BWSY",
+     "accepted_name": "Weinmannia trichosperma Cav."
+    },
+    {
+     "query": "Weinmannia producta Moric.",
+     "key": "5BWQW",
+     "name": "Weinmannia producta Moric. ex Ser.",
+     "canonical": "Weinmannia producta",
+     "authorship": "Moric. ex Ser.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "5BWSY",
+     "accepted_name": "Weinmannia trichosperma Cav."
+    },
+    {
+     "query": "Weinmannia producta Moric. ex Ser.",
+     "key": "5BWQW",
+     "name": "Weinmannia producta Moric. ex Ser.",
+     "canonical": "Weinmannia producta",
+     "authorship": "Moric. ex Ser.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "5BWSY",
+     "accepted_name": "Weinmannia trichosperma Cav."
+    },
+    {
+     "query": "Weinmannia sessiliflora Pav.",
+     "key": "5BWRV",
+     "name": "Weinmannia sessiliflora Pav. ex Ser.",
+     "canonical": "Weinmannia sessiliflora",
+     "authorship": "Pav. ex Ser.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "5BWSY",
+     "accepted_name": "Weinmannia trichosperma Cav."
+    },
+    {
+     "query": "Weinmannia sessiliflora Pav. ex Ser.",
+     "key": "5BWRV",
+     "name": "Weinmannia sessiliflora Pav. ex Ser.",
+     "canonical": "Weinmannia sessiliflora",
+     "authorship": "Pav. ex Ser.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "5BWSY",
+     "accepted_name": "Weinmannia trichosperma Cav."
+    },
+    {
+     "query": "Windmannia trichosperma (Cav.) Kuntze",
+     "key": "5BZXR",
+     "name": "Windmannia trichosperma (Cav.) Kuntze",
+     "canonical": "Windmannia trichosperma",
+     "authorship": "(Cav.) Kuntze",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "5BWSY",
+     "accepted_name": "Weinmannia trichosperma Cav."
+    }
+   ],
+   "status": "synonym_collision",
+   "authorship_differs": false,
+   "synonym_collisions": [
+    {
+     "query": "Weinmannia corymbosa Ruiz & Pav.",
+     "col_xr_accepted": "Caldcluvia paniculata (Cav.) D.Don"
+    }
+   ],
+   "unresolved_synonyms": [],
+   "queried_at": "2026-10-30T13:41:04+00:00",
+   "resolution_source": "https://api.gbif.org/v2/species/match"
+  },
+  {
+   "species_id": "laureliopsis-philippiana",
+   "scientific_name": "Laureliopsis philippiana",
+   "legacy": {
+    "gbif_backbone_key": 3783047,
+    "checklist": "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c",
+    "scientific_name": "Laureliopsis philippiana (Looser) Schodde",
+    "taxonomic_status": "ACCEPTED",
+    "source": "https://api.gbif.org/v1/species/3783047"
+   },
+   "col_xr": {
+    "query": "Laureliopsis philippiana",
+    "key": "3SMFT",
+    "name": "Laureliopsis philippiana (Looser) Schodde",
+    "canonical": "Laureliopsis philippiana",
+    "authorship": "(Looser) Schodde",
+    "status": "ACCEPTED",
+    "match_type": "EXACT",
+    "synonym": false,
+    "accepted_key": "3SMFT",
+    "accepted_name": "Laureliopsis philippiana (Looser) Schodde",
+    "checklist": "7ddf754f-d193-4cc9-b351-99906754a03b"
+   },
+   "catalog_synonyms_in_col_xr": [
+    {
+     "query": "Laurelia philippiana Looser",
+     "key": "3SMFP",
+     "name": "Laurelia philippiana Looser",
+     "canonical": "Laurelia philippiana",
+     "authorship": "Looser",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "3SMFT",
+     "accepted_name": "Laureliopsis philippiana (Looser) Schodde"
+    },
+    {
+     "query": "Laurelia serrata Phil.",
+     "key": "3SMFR",
+     "name": "Laurelia serrata Phil.",
+     "canonical": "Laurelia serrata",
+     "authorship": "Phil.",
+     "status": "AMBIGUOUS_SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "3SMFT",
+     "accepted_name": "Laureliopsis philippiana (Looser) Schodde"
+    }
+   ],
+   "status": "exact",
+   "authorship_differs": false,
+   "synonym_collisions": [],
+   "unresolved_synonyms": [],
+   "queried_at": "2026-10-30T13:41:04+00:00",
+   "resolution_source": "https://api.gbif.org/v2/species/match"
+  },
+  {
+   "species_id": "podocarpus-nubigenus",
+   "scientific_name": "Podocarpus nubigenus",
+   "legacy": {
+    "gbif_backbone_key": 5285976,
+    "checklist": "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c",
+    "scientific_name": "Podocarpus nubigenus Lindl.",
+    "taxonomic_status": "ACCEPTED",
+    "source": "https://api.gbif.org/v1/species/5285976"
+   },
+   "col_xr": {
+    "query": "Podocarpus nubigenus",
+    "key": "4KQ5H",
+    "name": "Podocarpus nubigenus Lindl.",
+    "canonical": "Podocarpus nubigenus",
+    "authorship": "Lindl.",
+    "status": "ACCEPTED",
+    "match_type": "EXACT",
+    "synonym": false,
+    "accepted_key": "4KQ5H",
+    "accepted_name": "Podocarpus nubigenus Lindl.",
+    "checklist": "7ddf754f-d193-4cc9-b351-99906754a03b"
+   },
+   "catalog_synonyms_in_col_xr": [
+    {
+     "query": "Nageia nubigena (Lindl.) F.Muell.",
+     "key": "45KFR",
+     "name": "Nageia nubigena (Lindl.) F.Muell.",
+     "canonical": "Nageia nubigena",
+     "authorship": "(Lindl.) F.Muell.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "4KQ5H",
+     "accepted_name": "Podocarpus nubigenus Lindl."
+    },
+    {
+     "query": "Saxegothaea gracilis Godr.",
+     "key": "C86ZZ",
+     "name": "Saxegothaea gracilis Gordon",
+     "canonical": "Saxegothaea gracilis",
+     "authorship": "Gordon",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "4KQ5H",
+     "accepted_name": "Podocarpus nubigenus Lindl."
+    },
+    {
+     "query": "Saxegothaea gracilis Gordon & Glend.",
+     "key": "C86ZZ",
+     "name": "Saxegothaea gracilis Gordon",
+     "canonical": "Saxegothaea gracilis",
+     "authorship": "Gordon",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "4KQ5H",
+     "accepted_name": "Podocarpus nubigenus Lindl."
+    }
+   ],
+   "status": "exact",
+   "authorship_differs": false,
+   "synonym_collisions": [],
+   "unresolved_synonyms": [],
+   "queried_at": "2026-10-30T13:41:04+00:00",
+   "resolution_source": "https://api.gbif.org/v2/species/match"
+  },
+  {
+   "species_id": "nothofagus-betuloides",
+   "scientific_name": "Nothofagus betuloides",
+   "legacy": {
+    "gbif_backbone_key": 2874949,
+    "checklist": "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c",
+    "scientific_name": "Nothofagus betuloides (Mirb.) Oerst.",
+    "taxonomic_status": "ACCEPTED",
+    "source": "https://api.gbif.org/v1/species/2874949"
+   },
+   "col_xr": {
+    "query": "Nothofagus betuloides",
+    "key": "V5FNY",
+    "name": "Nothofagus betuloides (Mirb.) Blume",
+    "canonical": "Nothofagus betuloides",
+    "authorship": "(Mirb.) Blume",
+    "status": "ACCEPTED",
+    "match_type": "EXACT",
+    "synonym": false,
+    "accepted_key": "V5FNY",
+    "accepted_name": "Nothofagus betuloides (Mirb.) Blume",
+    "checklist": "7ddf754f-d193-4cc9-b351-99906754a03b"
+   },
+   "catalog_synonyms_in_col_xr": [
+    {
+     "query": "Betula antarctica G.Forst.",
+     "key": "68JXS",
+     "name": "Betula antarctica G.Forst.",
+     "canonical": "Betula antarctica",
+     "authorship": "G.Forst.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "47SYY",
+     "accepted_name": "Nothofagus antarctica (G.Forst.) Oerst."
+    },
+    {
+     "query": "Betula antarctica G.Forst. ex Willd.",
+     "key": "68JXS",
+     "name": "Betula antarctica G.Forst.",
+     "canonical": "Betula antarctica",
+     "authorship": "G.Forst.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "47SYY",
+     "accepted_name": "Nothofagus antarctica (G.Forst.) Oerst."
+    },
+    {
+     "query": "Calusparassus betuloides (Mirb.) Hombr. & Jacquinot",
+     "key": "6996L",
+     "name": "Calusparassus betuloides Hombr. & Jacquinot ex Decne.",
+     "canonical": "Calusparassus betuloides",
+     "authorship": "Hombr. & Jacquinot ex Decne.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "V5FNY",
+     "accepted_name": "Nothofagus betuloides (Mirb.) Blume"
+    },
+    {
+     "query": "Calusparassus betuloides (Mirb.) Hombr. & Jacquinot ex Decne.",
+     "key": "6996L",
+     "name": "Calusparassus betuloides Hombr. & Jacquinot ex Decne.",
+     "canonical": "Calusparassus betuloides",
+     "authorship": "Hombr. & Jacquinot ex Decne.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "V5FNY",
+     "accepted_name": "Nothofagus betuloides (Mirb.) Blume"
+    },
+    {
+     "query": "Calusparassus forsteri (Hook.) Hombr. & Jacquinot ex Decne.",
+     "key": "5WX85",
+     "name": "Calusparassus forsteri Hombr. & Jacquinot",
+     "canonical": "Calusparassus forsteri",
+     "authorship": "Hombr. & Jacquinot",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "V5FNY",
+     "accepted_name": "Nothofagus betuloides (Mirb.) Blume"
+    },
+    {
+     "query": "Fagus betuloides Mirb.",
+     "key": "3DSH3",
+     "name": "Fagus betuloides Mirb.",
+     "canonical": "Fagus betuloides",
+     "authorship": "Mirb.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "V5FNY",
+     "accepted_name": "Nothofagus betuloides (Mirb.) Blume"
+    },
+    {
+     "query": "Fagus dubia Mirb.",
+     "key": "3DSHJ",
+     "name": "Fagus dubia Mirb.",
+     "canonical": "Fagus dubia",
+     "authorship": "Mirb.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "V5FNY",
+     "accepted_name": "Nothofagus betuloides (Mirb.) Blume"
+    },
+    {
+     "query": "Fagus forsteri Hook.",
+     "key": "3DSHP",
+     "name": "Fagus forsteri Hook.",
+     "canonical": "Fagus forsteri",
+     "authorship": "Hook.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "V5FNY",
+     "accepted_name": "Nothofagus betuloides (Mirb.) Blume"
+    },
+    {
+     "query": "Nothofagus dubia (Mirb.) Blume",
+     "key": "R8FKR",
+     "name": "Nothofagus dubia (Mirb.) Blume",
+     "canonical": "Nothofagus dubia",
+     "authorship": "(Mirb.) Blume",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "V5FNY",
+     "accepted_name": "Nothofagus betuloides (Mirb.) Blume"
+    },
+    {
+     "query": "Nothofagus dubia (Mirb.) Oerst.",
+     "key": "47SZK",
+     "name": "Nothofagus dubia (Mirb.) Oerst.",
+     "canonical": "Nothofagus dubia",
+     "authorship": "(Mirb.) Oerst.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "V5FNY",
+     "accepted_name": "Nothofagus betuloides (Mirb.) Blume"
+    },
+    {
+     "query": "Nothofagus forsteri (Hook.) Krasser",
+     "key": "47SZQ",
+     "name": "Nothofagus forsteri (Hook.) Krasser",
+     "canonical": "Nothofagus forsteri",
+     "authorship": "(Hook.) Krasser",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "V5FNY",
+     "accepted_name": "Nothofagus betuloides (Mirb.) Blume"
+    },
+    {
+     "query": "Nothofagus patagonica Gand.",
+     "key": "47T27",
+     "name": "Nothofagus patagonica Gand.",
+     "canonical": "Nothofagus patagonica",
+     "authorship": "Gand.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "V5FNY",
+     "accepted_name": "Nothofagus betuloides (Mirb.) Blume"
+    }
+   ],
+   "status": "synonym_collision",
+   "authorship_differs": true,
+   "synonym_collisions": [
+    {
+     "query": "Betula antarctica G.Forst.",
+     "col_xr_accepted": "Nothofagus antarctica (G.Forst.) Oerst."
+    },
+    {
+     "query": "Betula antarctica G.Forst. ex Willd.",
+     "col_xr_accepted": "Nothofagus antarctica (G.Forst.) Oerst."
+    }
+   ],
+   "unresolved_synonyms": [],
+   "queried_at": "2026-10-30T13:41:04+00:00",
+   "resolution_source": "https://api.gbif.org/v2/species/match"
+  },
+  {
+   "species_id": "nothofagus-pumilio",
+   "scientific_name": "Nothofagus pumilio",
+   "legacy": {
+    "gbif_backbone_key": 2874907,
+    "checklist": "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c",
+    "scientific_name": "Nothofagus pumilio (Poepp. & Endl.) Krasser",
+    "taxonomic_status": "ACCEPTED",
+    "source": "https://api.gbif.org/v1/species/2874907"
+   },
+   "col_xr": {
+    "query": "Nothofagus pumilio",
+    "key": "47T2C",
+    "name": "Nothofagus pumilio (Poepp. & Endl.) Krasser",
+    "canonical": "Nothofagus pumilio",
+    "authorship": "(Poepp. & Endl.) Krasser",
+    "status": "ACCEPTED",
+    "match_type": "EXACT",
+    "synonym": false,
+    "accepted_key": "47T2C",
+    "accepted_name": "Nothofagus pumilio (Poepp. & Endl.) Krasser",
+    "checklist": "7ddf754f-d193-4cc9-b351-99906754a03b"
+   },
+   "catalog_synonyms_in_col_xr": [
+    {
+     "query": "Calusparassus pumilio (Poepp. & Endl.) Hombr. & Jacquinot ex Decne.",
+     "key": "8VZS2",
+     "name": "Nothofagus Blume",
+     "canonical": "Nothofagus",
+     "authorship": "Blume",
+     "status": "ACCEPTED",
+     "match_type": "HIGHERRANK",
+     "synonym": false,
+     "accepted_key": "8VZS2",
+     "accepted_name": "Nothofagus Blume"
+    },
+    {
+     "query": "Fagus antarctica var. bicrenata A.DC.",
+     "key": "5NX5Q",
+     "name": "Fagus antarctica var. bicrenata A.DC.",
+     "canonical": "Fagus antarctica bicrenata",
+     "authorship": "A.DC.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "47T2C",
+     "accepted_name": "Nothofagus pumilio (Poepp. & Endl.) Krasser"
+    },
+    {
+     "query": "Fagus antarctica var. pumilio (Poepp. & Endl.) Kuntze",
+     "key": "5NX5T",
+     "name": "Fagus antarctica var. pumilio (Poepp. & Endl.) Kunze",
+     "canonical": "Fagus antarctica pumilio",
+     "authorship": "(Poepp. & Endl.) Kunze",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "47T2C",
+     "accepted_name": "Nothofagus pumilio (Poepp. & Endl.) Krasser"
+    },
+    {
+     "query": "Fagus pumilio Poepp. & Endl.",
+     "key": "3DSJV",
+     "name": "Fagus pumilio Poepp. & Endl.",
+     "canonical": "Fagus pumilio",
+     "authorship": "Poepp. & Endl.",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "47T2C",
+     "accepted_name": "Nothofagus pumilio (Poepp. & Endl.) Krasser"
+    },
+    {
+     "query": "Fagus pumilo Poepp. & Endl.",
+     "key": "3DSJV",
+     "name": "Fagus pumilio Poepp. & Endl.",
+     "canonical": "Fagus pumilio",
+     "authorship": "Poepp. & Endl.",
+     "status": "SYNONYM",
+     "match_type": "VARIANT",
+     "synonym": true,
+     "accepted_key": "47T2C",
+     "accepted_name": "Nothofagus pumilio (Poepp. & Endl.) Krasser"
+    },
+    {
+     "query": "Nothofagus pumilio (Poepp. & Endl.) Reiche",
+     "key": "R8G47",
+     "name": "Nothofagus pumilio (Poepp. & Endl.) Reiche",
+     "canonical": "Nothofagus pumilio",
+     "authorship": "(Poepp. & Endl.) Reiche",
+     "status": "SYNONYM",
+     "match_type": "EXACT",
+     "synonym": true,
+     "accepted_key": "47T2C",
+     "accepted_name": "Nothofagus pumilio (Poepp. & Endl.) Krasser"
+    }
+   ],
+   "status": "exact",
+   "authorship_differs": false,
+   "synonym_collisions": [],
+   "unresolved_synonyms": [
+    {
+     "query": "Calusparassus pumilio (Poepp. & Endl.) Hombr. & Jacquinot ex Decne.",
+     "match_type": "HIGHERRANK"
+    }
+   ],
+   "queried_at": "2026-10-30T13:41:04+00:00",
+   "resolution_source": "https://api.gbif.org/v2/species/match"
+  }
+ ]
+}

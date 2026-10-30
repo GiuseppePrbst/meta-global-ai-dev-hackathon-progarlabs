@@ -1,0 +1,538 @@
+{
+ "queried_at": "2026-10-30T13:41:04+00:00",
+ "taxonomy_checklist": "7ddf754f-d193-4cc9-b351-99906754a03b",
+ "species": [
+  {
+   "species_id": "nothofagus-dombeyi",
+   "col_xr_key": "R8FKD",
+   "gbif": {
+    "occurrences": 2641,
+    "with_still_image": 1642,
+    "facets_with_image": {
+     "license": {
+      "CC_BY_NC_4_0": 958,
+      "CC_BY_4_0": 501,
+      "CC0_1_0": 183
+     },
+     "basis_of_record": {
+      "HUMAN_OBSERVATION": 1155,
+      "PRESERVED_SPECIMEN": 480,
+      "LIVING_SPECIMEN": 4,
+      "MATERIAL_SAMPLE": 3
+     },
+     "country": {
+      "CL": 1164,
+      "AR": 345,
+      "ZZ": 11,
+      "NZ": 6,
+      "GB": 3,
+      "CA": 2,
+      "ID": 2,
+      "IE": 2,
+      "PE": 2,
+      "US": 2
+     }
+    },
+    "plantnet_verified_with_image": 18,
+    "plantnet_automatic_with_image": 0,
+    "inaturalist_research_with_image": 1136
+   },
+   "commons_direct_files": 53,
+   "hard_negatives": [
+    {
+     "name": "Nothofagus nitida",
+     "col_xr": {
+      "query": "Nothofagus nitida",
+      "key": "47T24",
+      "name": "Nothofagus nitida (Phil.) Krasser",
+      "canonical": "Nothofagus nitida",
+      "authorship": "(Phil.) Krasser",
+      "status": "ACCEPTED",
+      "match_type": "EXACT",
+      "synonym": false,
+      "accepted_key": "47T24",
+      "accepted_name": "Nothofagus nitida (Phil.) Krasser"
+     }
+    },
+    {
+     "name": "Nothofagus obliqua",
+     "col_xr": {
+      "query": "Nothofagus obliqua",
+      "key": "47T26",
+      "name": "Nothofagus obliqua (Mirb.) Oerst.",
+      "canonical": "Nothofagus obliqua",
+      "authorship": "(Mirb.) Oerst.",
+      "status": "SYNONYM",
+      "match_type": "EXACT",
+      "synonym": true,
+      "accepted_key": "3W4TY",
+      "accepted_name": "Lophozonia obliqua (Mirb.) Heenan & Smissen"
+     }
+    }
+   ],
+   "candidates": {
+    "total": 75,
+    "metadata_checked": 74,
+    "rejected": 1,
+    "human_reviewed": 0,
+    "organs_source_provided": {
+     "bark": 3,
+     "flower": 1,
+     "fruit": 4,
+     "leaf": 13,
+     "unknown": 53,
+     "whole_tree": 1
+    },
+    "rejection_reasons": {
+     "missing:author": 1
+    },
+    "possible_duplicates": 0,
+    "split_groups": 45,
+    "hashed": 75
+   }
+  },
+  {
+   "species_id": "eucryphia-cordifolia",
+   "col_xr_key": "3BYLN",
+   "gbif": {
+    "occurrences": 1356,
+    "with_still_image": 927,
+    "facets_with_image": {
+     "license": {
+      "CC_BY_NC_4_0": 591,
+      "CC_BY_4_0": 242,
+      "CC0_1_0": 94
+     },
+     "basis_of_record": {
+      "HUMAN_OBSERVATION": 703,
+      "PRESERVED_SPECIMEN": 220,
+      "MATERIAL_SAMPLE": 2,
+      "LIVING_SPECIMEN": 1,
+      "MACHINE_OBSERVATION": 1
+     },
+     "country": {
+      "CL": 860,
+      "US": 10,
+      "AR": 2,
+      "GB": 2,
+      "ZZ": 2,
+      "IE": 1,
+      "PE": 1
+     }
+    },
+    "plantnet_verified_with_image": 13,
+    "plantnet_automatic_with_image": 0,
+    "inaturalist_research_with_image": 690
+   },
+   "commons_direct_files": 24,
+   "hard_negatives": [],
+   "candidates": {
+    "total": 42,
+    "metadata_checked": 41,
+    "rejected": 1,
+    "human_reviewed": 0,
+    "organs_source_provided": {
+     "bark": 3,
+     "flower": 1,
+     "fruit": 1,
+     "leaf": 10,
+     "unknown": 26,
+     "whole_tree": 1
+    },
+    "rejection_reasons": {
+     "non_commercial": 1
+    },
+    "possible_duplicates": 0,
+    "split_groups": 29,
+    "hashed": 42
+   }
+  },
+  {
+   "species_id": "aextoxicon-punctatum",
+   "col_xr_key": "65DRF",
+   "gbif": {
+    "occurrences": 1893,
+    "with_still_image": 1180,
+    "facets_with_image": {
+     "license": {
+      "CC_BY_NC_4_0": 765,
+      "CC_BY_4_0": 290,
+      "CC0_1_0": 125
+     },
+     "basis_of_record": {
+      "HUMAN_OBSERVATION": 911,
+      "PRESERVED_SPECIMEN": 266,
+      "MATERIAL_SAMPLE": 2,
+      "MACHINE_OBSERVATION": 1
+     },
+     "country": {
+      "CL": 1111,
+      "AR": 4,
+      "CH": 2,
+      "PE": 2,
+      "ZZ": 2,
+      "DE": 1,
+      "GB": 1,
+      "US": 1
+     }
+    },
+    "plantnet_verified_with_image": 1,
+    "plantnet_automatic_with_image": 0,
+    "inaturalist_research_with_image": 910
+   },
+   "commons_direct_files": 23,
+   "hard_negatives": [],
+   "candidates": {
+    "total": 24,
+    "metadata_checked": 23,
+    "rejected": 1,
+    "human_reviewed": 0,
+    "organs_source_provided": {
+     "leaf": 1,
+     "unknown": 23
+    },
+    "rejection_reasons": {
+     "missing:author": 1
+    },
+    "possible_duplicates": 0,
+    "split_groups": 12,
+    "hashed": 24
+   }
+  },
+  {
+   "species_id": "weinmannia-trichosperma",
+   "col_xr_key": "5BWSY",
+   "gbif": {
+    "occurrences": 1392,
+    "with_still_image": 1020,
+    "facets_with_image": {
+     "license": {
+      "CC_BY_NC_4_0": 578,
+      "CC_BY_4_0": 292,
+      "CC0_1_0": 150
+     },
+     "basis_of_record": {
+      "HUMAN_OBSERVATION": 696,
+      "PRESERVED_SPECIMEN": 321,
+      "LIVING_SPECIMEN": 2,
+      "MATERIAL_SAMPLE": 1
+     },
+     "country": {
+      "CL": 812,
+      "AR": 72,
+      "PE": 46,
+      "ZZ": 20,
+      "BO": 2,
+      "US": 2,
+      "CN": 1,
+      "DE": 1,
+      "EC": 1,
+      "NO": 1
+     }
+    },
+    "plantnet_verified_with_image": 5,
+    "plantnet_automatic_with_image": 0,
+    "inaturalist_research_with_image": 691
+   },
+   "commons_direct_files": 12,
+   "hard_negatives": [],
+   "candidates": {
+    "total": 23,
+    "metadata_checked": 23,
+    "rejected": 0,
+    "human_reviewed": 0,
+    "organs_source_provided": {
+     "bark": 1,
+     "flower": 1,
+     "leaf": 7,
+     "unknown": 12,
+     "whole_tree": 2
+    },
+    "rejection_reasons": {},
+    "possible_duplicates": 0,
+    "split_groups": 11,
+    "hashed": 23
+   }
+  },
+  {
+   "species_id": "laureliopsis-philippiana",
+   "col_xr_key": "3SMFT",
+   "gbif": {
+    "occurrences": 771,
+    "with_still_image": 487,
+    "facets_with_image": {
+     "license": {
+      "CC_BY_NC_4_0": 312,
+      "CC_BY_4_0": 124,
+      "CC0_1_0": 51
+     },
+     "basis_of_record": {
+      "HUMAN_OBSERVATION": 386,
+      "PRESERVED_SPECIMEN": 100,
+      "MATERIAL_SAMPLE": 1
+     },
+     "country": {
+      "CL": 434,
+      "AR": 13,
+      "ZZ": 5,
+      "GB": 3,
+      "US": 3
+     }
+    },
+    "plantnet_verified_with_image": 6,
+    "plantnet_automatic_with_image": 0,
+    "inaturalist_research_with_image": 380
+   },
+   "commons_direct_files": 10,
+   "hard_negatives": [
+    {
+     "name": "Laurelia sempervirens",
+     "col_xr": {
+      "query": "Laurelia sempervirens",
+      "key": "3SMFQ",
+      "name": "Laurelia sempervirens (Ruiz & Pav.) Tul.",
+      "canonical": "Laurelia sempervirens",
+      "authorship": "(Ruiz & Pav.) Tul.",
+      "status": "ACCEPTED",
+      "match_type": "EXACT",
+      "synonym": false,
+      "accepted_key": "3SMFQ",
+      "accepted_name": "Laurelia sempervirens (Ruiz & Pav.) Tul."
+     }
+    }
+   ],
+   "candidates": {
+    "total": 17,
+    "metadata_checked": 17,
+    "rejected": 0,
+    "human_reviewed": 0,
+    "organs_source_provided": {
+     "bark": 1,
+     "fruit": 1,
+     "leaf": 5,
+     "unknown": 10
+    },
+    "rejection_reasons": {},
+    "possible_duplicates": 0,
+    "split_groups": 14,
+    "hashed": 17
+   }
+  },
+  {
+   "species_id": "podocarpus-nubigenus",
+   "col_xr_key": "4KQ5H",
+   "gbif": {
+    "occurrences": 774,
+    "with_still_image": 487,
+    "facets_with_image": {
+     "license": {
+      "CC_BY_NC_4_0": 287,
+      "CC_BY_4_0": 119,
+      "CC0_1_0": 81
+     },
+     "basis_of_record": {
+      "HUMAN_OBSERVATION": 315,
+      "PRESERVED_SPECIMEN": 169,
+      "LIVING_SPECIMEN": 3
+     },
+     "country": {
+      "CL": 411,
+      "ZZ": 9,
+      "AR": 4,
+      "CR": 3,
+      "US": 3,
+      "EC": 1,
+      "GB": 1,
+      "NL": 1
+     }
+    },
+    "plantnet_verified_with_image": 2,
+    "plantnet_automatic_with_image": 0,
+    "inaturalist_research_with_image": 313
+   },
+   "commons_direct_files": 11,
+   "hard_negatives": [
+    {
+     "name": "Saxegothaea conspicua",
+     "col_xr": {
+      "query": "Saxegothaea conspicua",
+      "key": "79QZ2",
+      "name": "Saxegothaea conspicua Lindl.",
+      "canonical": "Saxegothaea conspicua",
+      "authorship": "Lindl.",
+      "status": "ACCEPTED",
+      "match_type": "EXACT",
+      "synonym": false,
+      "accepted_key": "79QZ2",
+      "accepted_name": "Saxegothaea conspicua Lindl."
+     }
+    },
+    {
+     "name": "Podocarpus salignus",
+     "col_xr": {
+      "query": "Podocarpus salignus",
+      "key": "4KQ6P",
+      "name": "Podocarpus salignus D.Don",
+      "canonical": "Podocarpus salignus",
+      "authorship": "D.Don",
+      "status": "ACCEPTED",
+      "match_type": "EXACT",
+      "synonym": false,
+      "accepted_key": "4KQ6P",
+      "accepted_name": "Podocarpus salignus D.Don"
+     }
+    },
+    {
+     "name": "Prumnopitys andina",
+     "col_xr": {
+      "query": "Prumnopitys andina",
+      "key": "4N89W",
+      "name": "Prumnopitys andina (Poepp. ex Endl.) de Laub.",
+      "canonical": "Prumnopitys andina",
+      "authorship": "(Poepp. ex Endl.) de Laub.",
+      "status": "ACCEPTED",
+      "match_type": "EXACT",
+      "synonym": false,
+      "accepted_key": "4N89W",
+      "accepted_name": "Prumnopitys andina (Poepp. ex Endl.) de Laub."
+     }
+    }
+   ],
+   "candidates": {
+    "total": 13,
+    "metadata_checked": 13,
+    "rejected": 0,
+    "human_reviewed": 0,
+    "organs_source_provided": {
+     "leaf": 2,
+     "unknown": 11
+    },
+    "rejection_reasons": {},
+    "possible_duplicates": 0,
+    "split_groups": 8,
+    "hashed": 13
+   }
+  },
+  {
+   "species_id": "nothofagus-betuloides",
+   "col_xr_key": "V5FNY",
+   "gbif": {
+    "occurrences": 1500,
+    "with_still_image": 1113,
+    "facets_with_image": {
+     "license": {
+      "CC_BY_4_0": 503,
+      "CC_BY_NC_4_0": 479,
+      "CC0_1_0": 131
+     },
+     "basis_of_record": {
+      "HUMAN_OBSERVATION": 737,
+      "PRESERVED_SPECIMEN": 373,
+      "MATERIAL_SAMPLE": 2,
+      "LIVING_SPECIMEN": 1
+     },
+     "country": {
+      "CL": 502,
+      "AR": 449,
+      "ZZ": 13,
+      "GB": 3,
+      "DE": 1,
+      "FK": 1
+     }
+    },
+    "plantnet_verified_with_image": 0,
+    "plantnet_automatic_with_image": 0,
+    "inaturalist_research_with_image": 732
+   },
+   "commons_direct_files": 12,
+   "hard_negatives": [],
+   "candidates": {
+    "total": 12,
+    "metadata_checked": 11,
+    "rejected": 1,
+    "human_reviewed": 0,
+    "organs_source_provided": {
+     "unknown": 12
+    },
+    "rejection_reasons": {
+     "missing:author": 1
+    },
+    "possible_duplicates": 0,
+    "split_groups": 10,
+    "hashed": 12
+   }
+  },
+  {
+   "species_id": "nothofagus-pumilio",
+   "col_xr_key": "47T2C",
+   "gbif": {
+    "occurrences": 2502,
+    "with_still_image": 1877,
+    "facets_with_image": {
+     "license": {
+      "CC_BY_NC_4_0": 1119,
+      "CC_BY_4_0": 596,
+      "CC0_1_0": 162
+     },
+     "basis_of_record": {
+      "HUMAN_OBSERVATION": 1515,
+      "PRESERVED_SPECIMEN": 357,
+      "LIVING_SPECIMEN": 4,
+      "MATERIAL_SAMPLE": 1
+     },
+     "country": {
+      "AR": 920,
+      "CL": 828,
+      "ZZ": 7,
+      "DK": 2,
+      "EE": 2,
+      "NZ": 2,
+      "BO": 1,
+      "BR": 1,
+      "CA": 1
+     }
+    },
+    "plantnet_verified_with_image": 8,
+    "plantnet_automatic_with_image": 0,
+    "inaturalist_research_with_image": 1503
+   },
+   "commons_direct_files": 59,
+   "hard_negatives": [
+    {
+     "name": "Nothofagus antarctica",
+     "col_xr": {
+      "query": "Nothofagus antarctica",
+      "key": "47SYY",
+      "name": "Nothofagus antarctica (G.Forst.) Oerst.",
+      "canonical": "Nothofagus antarctica",
+      "authorship": "(G.Forst.) Oerst.",
+      "status": "ACCEPTED",
+      "match_type": "EXACT",
+      "synonym": false,
+      "accepted_key": "47SYY",
+      "accepted_name": "Nothofagus antarctica (G.Forst.) Oerst."
+     }
+    }
+   ],
+   "candidates": {
+    "total": 71,
+    "metadata_checked": 68,
+    "rejected": 3,
+    "human_reviewed": 0,
+    "organs_source_provided": {
+     "bark": 4,
+     "leaf": 7,
+     "unknown": 59,
+     "whole_tree": 1
+    },
+    "rejection_reasons": {
+     "missing:author": 1,
+     "non_commercial": 2
+    },
+    "possible_duplicates": 0,
+    "split_groups": 36,
+    "hashed": 71
+   }
+  }
+ ]
+}

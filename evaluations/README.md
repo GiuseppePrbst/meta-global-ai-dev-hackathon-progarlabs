@@ -71,3 +71,14 @@ El manifiesto vacío retorna not_evaluated sin crear cliente externo. Evaluació
 campaign_id, spatial_block, perceptual_group y perceptual_duplicates_reviewed, además de
 individual_id/hash/etiqueta/derechos. Son grupos y revisión humana, no detección automática
 de casi duplicados. Separar tipos de fotografía en ejecuciones independientes. n=0 sigue vigente.
+
+## Registro botánico (30-10-2026)
+
+```powershell
+uv run --project services/api --frozen python -m evaluations.botanical_registry --species services/api/src/bosque_api/resources/species.json --output evaluations/botanical --cache RUTA_FUERA_DE_GIT
+```
+
+Consulta GBIF (taxonomía COL XR) y Wikimedia Commons; sin `--cache` no descarga nada.
+Con caché guarda miniaturas fuera de Git solo para SHA-256/dHash. Publica metadatos,
+autores y licencias por medio; nunca imágenes. Las candidatas no son `EvaluationCase`:
+falta revisión humana de etiqueta y del original. Ver [datasets](../docs/BOTANICAL_DATASETS.md).
