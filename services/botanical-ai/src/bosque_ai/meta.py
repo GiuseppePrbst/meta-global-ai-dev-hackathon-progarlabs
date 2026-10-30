@@ -34,6 +34,15 @@ class MetaAPIError(RuntimeError):
     """Error público sin incluir claves, imágenes ni respuesta del proveedor."""
 
 
+class MetaRetryableError(MetaAPIError):
+    """429/500/503 per dev.meta.ai/docs/error-handling; callers decide whether to retry."""
+
+    def __init__(self, message: str, status: int, retry_after: float | None):
+        super().__init__(message)
+        self.status = status
+        self.retry_after = retry_after
+
+
 class MetaResponsesClient:
     """Transporte Responses documentado por Meta; no es un identificador validado."""
 
@@ -221,7 +230,16 @@ class MetaResponsesClient:
             logger.warning("meta_request_failed reason=timeout")
             raise MetaAPIError("Meta excedió el tiempo de espera") from None
         except httpx.HTTPStatusError as exc:
-            logger.warning("meta_request_failed status=%s", exc.response.status_code)
+            status = exc.response.status_code
+            logger.warning("meta_request_failed status=%s", status)
+            if status in (429, 500, 503):
+                try:
+                    retry_after = float(exc.response.headers.get("retry-after", ""))
+                except ValueError:
+                    retry_after = None
+                raise MetaRetryableError(
+                    "Meta limitó o no pudo atender la solicitud", status, retry_after
+                ) from None
             raise MetaAPIError("Meta rechazó la solicitud") from None
         except (
             httpx.RequestError,
@@ -294,6 +312,29 @@ class MuseSparkAdapter:
             image,
             content_type,
         )
+
+    async def verify_candidate(
+        self,
+        result: Identification,
+        image: bytes,
+        content_type: str,
+        additional_images=None,
+        comparators: list[dict] | None = None,
+        traits: dict[str, list[str]] | None = None,
+    ) -> Identification:
+        """Stage 2 of `verify` on an existing stage-1 result (same model, not independent)."""
+        try:
+            return await _verify(
+                self,
+                result,
+                image,
+                content_type,
+                additional_images,
+                comparators,
+                traits,
+            )
+        except ValidationError:
+            raise MetaAPIError("Meta devolvió una verificación inválida") from None
 
     async def identify(
         self,
@@ -382,38 +423,53 @@ class MuseSparkAdapter:
                 ),
             )
             result = open_set.apply_policy(result, strategy)
-            if strategy == "verify" and result.acceptance == "accepted":
-                # Second call only for an accepted candidate; abstentions stop here.
-                top = result.candidates[0]
-                block = open_set.comparator_block(comparators or [], {top.species_id})
-                checked = open_set.Verification.model_validate_json(
-                    await self.client.output_text(
-                        self.model,
-                        open_set.verification_prompt(
-                            top, (traits or {}).get(top.species_id, []), block
-                        ),
-                        image,
-                        content_type,
-                        schema=open_set.Verification.model_json_schema(),
-                        additional_images=additional_images,
-                        reasoning_effort="minimal",
-                        max_completion_tokens=800,
-                    )
+            if strategy == "verify":
+                result = await self.verify_candidate(
+                    result, image, content_type, additional_images, comparators, traits
                 )
-                stage_usage["verification"] = {
-                    k: v - stage_usage["identification"].get(k, 0)
-                    for k, v in self.client.usage.items()
-                }
-                result = open_set.apply_verification(result, checked)
             return result.model_copy(
                 update={
                     "usage": self.client.usage.copy(),
-                    "stage_usage": stage_usage,
+                    "stage_usage": {**stage_usage, **result.stage_usage},
                     "latency_ms": (perf_counter() - started) * 1000,
                 }
             )
         except ValidationError:
             raise MetaAPIError("Meta devolvió un análisis botánico inválido") from None
+
+
+async def _verify(
+    adapter, result, image, content_type, additional_images, comparators, traits
+):
+    from bosque_ai import open_set
+
+    if result.acceptance != "accepted":  # abstentions never pay a second call
+        return result
+    top = result.candidates[0]
+    before = adapter.client.usage.copy()
+    block = open_set.comparator_block(comparators or [], {top.species_id})
+    checked = open_set.Verification.model_validate_json(
+        await adapter.client.output_text(
+            adapter.model,
+            open_set.verification_prompt(
+                top, (traits or {}).get(top.species_id, []), block
+            ),
+            image,
+            content_type,
+            schema=open_set.Verification.model_json_schema(),
+            additional_images=additional_images,
+            reasoning_effort="minimal",
+            max_completion_tokens=800,
+        )
+    )
+    verification = {k: v - before.get(k, 0) for k, v in adapter.client.usage.items()}
+    verified = open_set.apply_verification(result, checked)
+    return verified.model_copy(
+        update={
+            "strategy": "verify",
+            "stage_usage": {**result.stage_usage, "verification": verification},
+        }
+    )
 
 
 class BotanicalAnalysis(BaseModel):

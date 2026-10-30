@@ -30,6 +30,9 @@ class Settings(BaseSettings):
     voice_reservation_units: int = Field(default=0, ge=0)
     guide_reservation_units: int = Field(default=0, ge=0)
     budget_concurrency: int = Field(default=1, ge=1, le=8)
+    # Only an explicit research campaign may disable the daily request counter;
+    # monetary, lifetime, identity-cap and concurrency limits always apply.
+    budget_daily_requests_enabled: bool = True
     observation_retention_days: int = Field(default=30, ge=1, le=365)
     raster_timeout_seconds: float = Field(default=15, gt=0, le=60)
     cors_origins: list[str] = ["http://localhost:3000"]
