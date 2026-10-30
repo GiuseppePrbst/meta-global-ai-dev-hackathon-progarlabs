@@ -53,3 +53,22 @@ def test_comparators_are_sourced_look_alikes_outside_the_catalog():
     }
     assert not catalog & {c.scientific_name for c in comparators}
     assert all(c.sources and c.diagnostic_traits for c in comparators)
+
+
+def test_openapi_documents_open_set_fields_without_dropping_old_ones():
+    from bosque_api.main import app
+
+    schema = app.openapi()["components"]["schemas"]["Identification"]["properties"]
+    for field in (
+        "catalog_assessment",
+        "acceptance",
+        "accepted_species_id",
+        "exploratory_candidates",
+        "similar_out_of_catalog",
+        "strategy",
+        "status",
+        "candidates",
+        "recommended_next_photo",
+        "evidence_status",
+    ):
+        assert field in schema

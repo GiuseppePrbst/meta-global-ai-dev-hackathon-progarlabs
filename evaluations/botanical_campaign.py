@@ -156,7 +156,16 @@ def load(path: Path) -> list[dict]:
     return json.loads(path.read_text(encoding="utf-8"))["records"]
 
 
-async def run_cases(cases, experiment: str, cfg: Path, images: Path, output: Path):
+async def run_cases(
+    cases,
+    experiment: str,
+    cfg: Path,
+    images: Path,
+    output: Path,
+    *,
+    strategy: str = "baseline",
+    phase: str = "C",
+):
     """One Muse identification per case (B: SAM concept crop first). Private output."""
     from bosque_ai.meta import (
         MetaAPIError,
@@ -165,7 +174,7 @@ async def run_cases(cases, experiment: str, cfg: Path, images: Path, output: Pat
         SAMAdapter,
     )
     from bosque_ai.segmentation import SegmentationRequest
-    from bosque_api.catalog import get_species
+    from bosque_api.catalog import get_comparators, get_species
     from bosque_api.execution import ExecutionStore
     from bosque_api.images import prepare_image, segment_image
     from PIL import Image
@@ -180,13 +189,17 @@ async def run_cases(cases, experiment: str, cfg: Path, images: Path, output: Pat
     species = get_species()
     catalog = {s.id: s.scientific_name for s in species}
     knowledge = knowledge_from_catalog(species) if experiment == "D" else None
+    comparators = [c.model_dump() for c in get_comparators()]
+    traits = {
+        s.id: s.morphology for s in species if s.trait_validation_status != "pending"
+    }
     ledger = ExecutionStore(config)
     client = MetaResponsesClient(config.model_api_key, config.meta_timeout_seconds)
     adapter = MuseSparkAdapter(client)
     results = []
     for case in cases:
         owner = await asyncio.to_thread(
-            admit_phase, config, "C", campaign.phase_caps_usd["C"]
+            admit_phase, config, phase, campaign.phase_caps_usd[phase]
         )
         reservation = await asyncio.to_thread(ledger.reserve, owner, "identify")
         client.usage.clear()
@@ -216,14 +229,29 @@ async def run_cases(cases, experiment: str, cfg: Path, images: Path, output: Pat
                 knowledge=knowledge,
                 additional_images=extra or None,
                 views=case.get("views"),
+                strategy=strategy,
+                comparators=comparators,
+                traits=traits,
             )
             status = "completed"
+            proposed = [
+                c.species_id for c in [*ident.candidates, *ident.exploratory_candidates]
+            ]
             row.update(
                 candidates=[c.species_id for c in ident.candidates],
+                proposed=proposed,
+                # Baseline has no acceptance policy: its first candidate is presented.
+                accepted=ident.accepted_species_id
+                if strategy != "baseline"
+                else (proposed[0] if proposed else None),
+                catalog_assessment=ident.catalog_assessment,
+                recommended_next_photo=ident.recommended_next_photo,
+                similar_out_of_catalog=ident.similar_out_of_catalog,
+                stage_usage=ident.stage_usage,
                 identification=ident.model_dump(mode="json"),
             )
         except MetaAPIError:
-            row["candidates"] = []
+            row.update(candidates=[], proposed=[], accepted=None)
         finally:
             usage = client.usage.copy()
             model = "sam-3.1+muse-spark-1.3" if experiment == "B" else "muse-spark-1.3"
@@ -240,6 +268,7 @@ async def run_cases(cases, experiment: str, cfg: Path, images: Path, output: Pat
                 "negative": bool(case.get("negative")),
                 "organ": case["organ"],
                 "experiment": experiment,
+                "strategy": strategy,
                 "status": status,
                 "latency_ms": round((perf_counter() - started) * 1000),
                 "usage": usage,

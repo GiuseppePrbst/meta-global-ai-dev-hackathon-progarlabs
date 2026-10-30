@@ -10,7 +10,6 @@ labels plus agent visual review: weakly_labeled_exploration, not accuracy.
 import hashlib
 import json
 import math
-from pathlib import Path
 
 from evaluations import botanical_campaign as campaign
 from evaluations import botanical_registry as registry
@@ -46,7 +45,12 @@ def wilson(successes: int, n: int, z: float = 1.96) -> list[float] | None:
 
 
 def rate(successes: int, n: int) -> dict:
-    return {"k": successes, "n": n, "rate": successes / n if n else None, "ci95": wilson(successes, n)}
+    return {
+        "k": successes,
+        "n": n,
+        "rate": successes / n if n else None,
+        "ci95": wilson(successes, n),
+    }
 
 
 def metrics(rows: list[dict]) -> dict:
@@ -58,20 +62,42 @@ def metrics(rows: list[dict]) -> dict:
     accepted_pos = [r for r in done_pos if r["accepted"]]
     correct_accepted = [r for r in accepted_pos if r["accepted"] == r["label"]]
     return {
-        "top1_proposed": rate(sum(bool(r["proposed"]) and r["proposed"][0] == r["label"] for r in done_pos), len(done_pos)),
-        "top3_proposed": rate(sum(r["label"] in r["proposed"] for r in done_pos), len(done_pos)),
+        "top1_proposed": rate(
+            sum(
+                bool(r["proposed"]) and r["proposed"][0] == r["label"] for r in done_pos
+            ),
+            len(done_pos),
+        ),
+        "top3_proposed": rate(
+            sum(r["label"] in r["proposed"] for r in done_pos), len(done_pos)
+        ),
         "correct_accepted_on_positives": rate(len(correct_accepted), len(done_pos)),
         "coverage_positives": rate(len(accepted_pos), len(done_pos)),
-        "selective_risk": rate(len(accepted_pos) - len(correct_accepted), len(accepted_pos)),
+        "selective_risk": rate(
+            len(accepted_pos) - len(correct_accepted), len(accepted_pos)
+        ),
         "unnecessary_abstention": rate(
-            sum(not r["accepted"] and r["label"] in r["proposed"][:1] for r in done_pos), len(done_pos)
+            sum(
+                not r["accepted"] and r["label"] in r["proposed"][:1] for r in done_pos
+            ),
+            len(done_pos),
         ),
-        "negatives_with_proposal": rate(sum(bool(r["proposed"]) for r in done_neg), len(done_neg)),
-        "negatives_false_acceptance": rate(sum(bool(r["accepted"]) for r in done_neg), len(done_neg)),
+        "negatives_with_proposal": rate(
+            sum(bool(r["proposed"]) for r in done_neg), len(done_neg)
+        ),
+        "negatives_false_acceptance": rate(
+            sum(bool(r["accepted"]) for r in done_neg), len(done_neg)
+        ),
         "negatives_flagged_out_of_catalog": rate(
-            sum(r.get("catalog_assessment") == "out_of_catalog_suspected" for r in done_neg), len(done_neg)
+            sum(
+                r.get("catalog_assessment") == "out_of_catalog_suspected"
+                for r in done_neg
+            ),
+            len(done_neg),
         ),
-        "provider_errors": rate(sum(r["status"] != "completed" for r in rows), len(rows)),
+        "provider_errors": rate(
+            sum(r["status"] != "completed" for r in rows), len(rows)
+        ),
     }
 
 
@@ -95,9 +121,15 @@ def paired(a: list[dict], b: list[dict]) -> dict:
 def exclusions(dev_cases: list[dict]) -> dict:
     return {
         "image_ids": {c["image_id"] for c in dev_cases},
-        "occurrences": {c["occurrence_id"] for c in dev_cases if c.get("occurrence_id")},
-        "groups": {c["individual_group"] for c in dev_cases if c.get("individual_group")},
-        "acquisition": {c["acquisition_group"] for c in dev_cases if c.get("acquisition_group")},
+        "occurrences": {
+            c["occurrence_id"] for c in dev_cases if c.get("occurrence_id")
+        },
+        "groups": {
+            c["individual_group"] for c in dev_cases if c.get("individual_group")
+        },
+        "acquisition": {
+            c["acquisition_group"] for c in dev_cases if c.get("acquisition_group")
+        },
         "phash": [c["perceptual_hash"] for c in dev_cases if c.get("perceptual_hash")],
     }
 
@@ -107,9 +139,13 @@ def leaks(record: dict, excluded: dict) -> bool:
         record["image_id"] in excluded["image_ids"]
         or record.get("occurrence_id") in excluded["occurrences"]
         or record.get("individual_group") in excluded["groups"]
-        or (record.get("acquisition_group") and record["acquisition_group"] in excluded["acquisition"])
+        or (
+            record.get("acquisition_group")
+            and record["acquisition_group"] in excluded["acquisition"]
+        )
         or any(
-            record.get("perceptual_hash") and registry.hamming(record["perceptual_hash"], h) <= 6
+            record.get("perceptual_hash")
+            and registry.hamming(record["perceptual_hash"], h) <= 6
             for h in excluded["phash"]
         )
     )
@@ -125,7 +161,9 @@ def label_of(name: str) -> str:
     return name.lower().replace(" ", "-")
 
 
-def negative_pool(name: str, key: str | None, excluded: dict, per_taxon: int) -> list[dict]:
+def negative_pool(
+    name: str, key: str | None, excluded: dict, per_taxon: int
+) -> list[dict]:
     """Pl@ntNet verified observations first (one photo each), then Commons files."""
     label = label_of(name)
     key = key or registry.resolve(name)["accepted_key"]
@@ -133,17 +171,28 @@ def negative_pool(name: str, key: str | None, excluded: dict, per_taxon: int) ->
     for r in registry.plantnet_records(label, key, 25):
         if len(picked) == per_taxon:
             break
-        if r["external_processing_allowed"] and r["occurrence_id"] not in seen and not leaks(r, excluded):
+        if (
+            r["external_processing_allowed"]
+            and r["occurrence_id"] not in seen
+            and not leaks(r, excluded)
+        ):
             seen.add(r["occurrence_id"])
             picked.append(r)
     if len(picked) < per_taxon:
-        pages = registry.commons_files("https://commons.wikimedia.org/wiki/Category:" + name.replace(" ", "_"))
+        pages = registry.commons_files(
+            "https://commons.wikimedia.org/wiki/Category:" + name.replace(" ", "_")
+        )
         groups = set()
         for r in (registry.commons_record(label, p) for p in pages):
             if len(picked) == per_taxon:
                 break
             group = r["acquisition_group"] or r["image_id"]
-            if r["external_processing_allowed"] and r["author"] and group not in groups and not leaks(r, excluded):
+            if (
+                r["external_processing_allowed"]
+                and r["author"]
+                and group not in groups
+                and not leaks(r, excluded)
+            ):
                 groups.add(group)
                 picked.append(r)
     for r in picked:
@@ -153,5 +202,9 @@ def negative_pool(name: str, key: str | None, excluded: dict, per_taxon: int) ->
 
 
 def positive_pool(manifest: list[dict], excluded: dict, per_species: int) -> list[dict]:
-    remaining = [r for r in manifest if r["human_label_status"] == "metadata_checked" and not leaks(r, excluded)]
+    remaining = [
+        r
+        for r in manifest
+        if r["human_label_status"] == "metadata_checked" and not leaks(r, excluded)
+    ]
     return campaign.select(remaining, per_species)
