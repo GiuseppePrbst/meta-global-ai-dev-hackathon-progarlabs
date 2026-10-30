@@ -118,3 +118,19 @@ Preexistentes: PR #19 y su pila, parser 0.1.0, Pillow/FastAPI/Playwright, APIs p
 GBIF y Wikimedia, y datos de terceros (metadatos, autores y licencias por archivo). Las
 miniaturas para hashing quedan fuera de Git y no se redistribuyen. Sin cambios en web o
 móvil. Ninguna atribución a José ni a Fabiana.
+
+## Campaña de validación Meta — 30-10-2026
+
+Trabajo nuevo dirigido por Giuseppe con asistencia de Claude Code (Claude Opus 5.5).
+Incluye:
+- Techo de investigación de USD 50 por fases, con vista de costos.
+- Corrección del truncamiento de Muse.
+- Revisión taxonómica con COL XR y WFO.
+- Benchmark Detectree2, driver botánico y propuestas Muse de copas.
+- Inferencias reales: 133 solicitudes nuevas, costo estimado USD 0,818.
+
+El agente inspeccionó visualmente medios Hepta y fotos botánicas con autorización del
+propietario; sus anotaciones están etiquetadas como del agente. Preexistentes: datos
+Hepta privados, Detectree2 (CC BY 4.0), fotos Pl@ntNet/Commons con licencia por archivo,
+APIs GBIF/WFO y modelos alojados de Meta. Sin cambios web/móvil ni atribuciones a José o
+Fabiana.

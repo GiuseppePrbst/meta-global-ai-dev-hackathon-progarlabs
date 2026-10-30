@@ -151,7 +151,6 @@
     "family": "Cunoniaceae",
     "genus": "Weinmannia",
     "synonyms": [
-      "Weinmannia corymbosa Ruiz & Pav.",
       "Weinmannia dentata Ruiz & Pav.",
       "Weinmannia producta Moric.",
       "Weinmannia producta Moric. ex Ser.",
@@ -177,7 +176,20 @@
     "trait_sources": [
       "https://fundacionphilippi.cl/catalogo/weinmannia-trichosperma/"
     ],
-    "trait_source_accessed_at": "2026-10-29"
+    "trait_source_accessed_at": "2026-10-29",
+    "synonym_review": [
+      {
+        "name": "Weinmannia corymbosa Ruiz & Pav.",
+        "decision": "removed_incorrect",
+        "evidence": [
+          "COL XR (GBIF v2 species/match checklistKey 7ddf754f-d193-4cc9-b351-99906754a03b): sinónimo de Caldcluvia paniculata (Cav.) D.Don, clave PHSZ",
+          "WFO wfo-1200074108: synonym de Caldcluvia paniculata (Cav.) D.Don, wfo-0000580130",
+          "Dos fuentes coinciden; no corresponde a Tineo"
+        ],
+        "reviewed_at": "2026-10-30",
+        "reviewer": "Giuseppe Proboste (revisión asistida por Claude Code; sin especialista botánico independiente)"
+      }
+    ]
   },
   {
     "id": "laureliopsis-philippiana",
@@ -289,8 +301,6 @@
     "family": "Nothofagaceae",
     "genus": "Nothofagus",
     "synonyms": [
-      "Betula antarctica G.Forst.",
-      "Betula antarctica G.Forst. ex Willd.",
       "Calusparassus betuloides (Mirb.) Hombr. & Jacquinot",
       "Calusparassus betuloides (Mirb.) Hombr. & Jacquinot ex Decne.",
       "Calusparassus forsteri (Hook.) Hombr. & Jacquinot ex Decne.",
@@ -320,7 +330,31 @@
     "trait_sources": [
       "https://fundacionphilippi.cl/catalogo/nothofagus-betuloides/"
     ],
-    "trait_source_accessed_at": "2026-10-29"
+    "trait_source_accessed_at": "2026-10-29",
+    "synonym_review": [
+      {
+        "name": "Betula antarctica G.Forst.",
+        "decision": "disputed_excluded",
+        "evidence": [
+          "COL XR (GBIF v2 species/match checklistKey 7ddf754f-d193-4cc9-b351-99906754a03b): sinónimo de Nothofagus antarctica (G.Forst.) Oerst., clave 47SYY",
+          "WFO wfo-0000331149 (Betula antarctica G.Forst. ex Willd.): synonym de Nothofagus betuloides (Mirb.) Oerst., wfo-0000252110",
+          "Fuentes en conflicto: excluido de alias y de etiquetas hasta revisión de especialista"
+        ],
+        "reviewed_at": "2026-10-30",
+        "reviewer": "Giuseppe Proboste (revisión asistida por Claude Code; sin especialista botánico independiente)"
+      },
+      {
+        "name": "Betula antarctica G.Forst. ex Willd.",
+        "decision": "disputed_excluded",
+        "evidence": [
+          "COL XR (GBIF v2 species/match checklistKey 7ddf754f-d193-4cc9-b351-99906754a03b): sinónimo de Nothofagus antarctica (G.Forst.) Oerst., clave 47SYY",
+          "WFO wfo-0000331149 (Betula antarctica G.Forst. ex Willd.): synonym de Nothofagus betuloides (Mirb.) Oerst., wfo-0000252110",
+          "Fuentes en conflicto: excluido de alias y de etiquetas hasta revisión de especialista"
+        ],
+        "reviewed_at": "2026-10-30",
+        "reviewer": "Giuseppe Proboste (revisión asistida por Claude Code; sin especialista botánico independiente)"
+      }
+    ]
   },
   {
     "id": "nothofagus-pumilio",
@@ -369,6 +403,18 @@
     "trait_sources": [
       "https://sib.gob.ar/especies/nothofagus-pumilio"
     ],
-    "trait_source_accessed_at": "2026-10-29"
+    "trait_source_accessed_at": "2026-10-29",
+    "synonym_review": [
+      {
+        "name": "Calusparassus pumilio (Poepp. & Endl.) Hombr. & Jacquinot ex Decne.",
+        "decision": "verified",
+        "evidence": [
+          "WFO wfo-0000792030: synonym de Nothofagus pumilio (Poepp. & Endl.) Krasser, wfo-0000252158",
+          "COL XR (GBIF v2 species/match checklistKey 7ddf754f-d193-4cc9-b351-99906754a03b): solo coincidencia de género (HIGHERRANK); sin contradicción"
+        ],
+        "reviewed_at": "2026-10-30",
+        "reviewer": "Giuseppe Proboste (revisión asistida por Claude Code; sin especialista botánico independiente)"
+      }
+    ]
   }
 ]

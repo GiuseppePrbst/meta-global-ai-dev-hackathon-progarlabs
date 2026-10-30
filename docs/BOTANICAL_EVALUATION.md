@@ -116,3 +116,20 @@ Comandos ejecutados localmente el 30-10-2026 (sin llamadas a Meta). Node 24.14.0
 | `python scripts/check_repository.py`, `python -m unittest discover -s scripts/tests` | Correctos (34 archivos requeridos) |
 | `npm run test:e2e` | No ejecutado: los recorridos de `apps/web` no cambiaron |
 | `docker compose config/build`, Gitleaks | No disponibles localmente; se ejecutan en CI |
+
+## Resultados de la campaña del 30-10-2026
+
+Primera ejecución real (Muse 1.3, `reasoning_effort=minimal`) sobre fotos con licencia.
+Estado: **`weakly_labeled_exploration`**. Las etiquetas son de plataforma, con inspección
+visual del agente y sin especialista: los valores son concordancia, no precisión validada.
+
+| Exp. | n | Top-1 | Top-3 | Abstención | Negativos con candidato |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| A | 35 | 0,686 | 0,771 | 7 | 11/12 |
+| D | 34 | 0,618 | 0,794 | 7 | 11/12 |
+| B | 8 | 0,625 | 0,625 | 1 | — |
+| C | 5 | 0,8 | 0,8 | 1 | — |
+
+E y F (contexto GIS posterior y permutado) siguen pendientes. Casos, licencias y
+candidatos en [`muse-campaign-2026-10-30.json`](../evaluations/botanical/muse-campaign-2026-10-30.json).
+Análisis completo en [META_VALIDATION_CAMPAIGN_REPORT.md](META_VALIDATION_CAMPAIGN_REPORT.md).

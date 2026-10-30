@@ -1,0 +1,2189 @@
+{
+ "campaign": "2026-10-30",
+ "model": "muse-spark-1.3",
+ "reasoning_effort": "minimal",
+ "label_status": "weakly_labeled_exploration",
+ "warning": "Agreement with platform labels plus agent visual check; NOT validated accuracy. n small; Muse is not deterministic.",
+ "summaries": {
+  "A": {
+   "label_status": "weakly_labeled_exploration",
+   "overall": {
+    "catalog_cases": 35,
+    "completed": 35,
+    "top1_agreement": 0.6857142857142857,
+    "top3_agreement": 0.7714285714285715,
+    "abstentions": 7,
+    "negative_cases": 12,
+    "negatives_with_catalog_candidate": 11,
+    "provider_errors": 0
+   },
+   "by_species": {
+    "aextoxicon-punctatum": {
+     "catalog_cases": 3,
+     "completed": 3,
+     "top1_agreement": 0.6666666666666666,
+     "top3_agreement": 0.6666666666666666,
+     "abstentions": 1,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "eucryphia-cordifolia": {
+     "catalog_cases": 4,
+     "completed": 4,
+     "top1_agreement": 0.75,
+     "top3_agreement": 0.75,
+     "abstentions": 1,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "laurelia-sempervirens": {
+     "catalog_cases": 0,
+     "completed": 0,
+     "top1_agreement": null,
+     "top3_agreement": null,
+     "abstentions": 0,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 2,
+     "provider_errors": 0
+    },
+    "laureliopsis-philippiana": {
+     "catalog_cases": 5,
+     "completed": 5,
+     "top1_agreement": 0.2,
+     "top3_agreement": 0.4,
+     "abstentions": 2,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "nothofagus-antarctica": {
+     "catalog_cases": 0,
+     "completed": 0,
+     "top1_agreement": null,
+     "top3_agreement": null,
+     "abstentions": 0,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 2,
+     "provider_errors": 0
+    },
+    "nothofagus-betuloides": {
+     "catalog_cases": 4,
+     "completed": 4,
+     "top1_agreement": 0.75,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "nothofagus-dombeyi": {
+     "catalog_cases": 5,
+     "completed": 5,
+     "top1_agreement": 0.8,
+     "top3_agreement": 0.8,
+     "abstentions": 1,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "nothofagus-nitida": {
+     "catalog_cases": 0,
+     "completed": 0,
+     "top1_agreement": null,
+     "top3_agreement": null,
+     "abstentions": 0,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 2,
+     "provider_errors": 0
+    },
+    "nothofagus-pumilio": {
+     "catalog_cases": 5,
+     "completed": 5,
+     "top1_agreement": 0.4,
+     "top3_agreement": 0.6,
+     "abstentions": 2,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "podocarpus-nubigenus": {
+     "catalog_cases": 5,
+     "completed": 5,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "podocarpus-salignus": {
+     "catalog_cases": 0,
+     "completed": 0,
+     "top1_agreement": null,
+     "top3_agreement": null,
+     "abstentions": 0,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 2,
+     "provider_errors": 0
+    },
+    "prumnopitys-andina": {
+     "catalog_cases": 0,
+     "completed": 0,
+     "top1_agreement": null,
+     "top3_agreement": null,
+     "abstentions": 0,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 1,
+     "provider_errors": 0
+    },
+    "saxegothaea-conspicua": {
+     "catalog_cases": 0,
+     "completed": 0,
+     "top1_agreement": null,
+     "top3_agreement": null,
+     "abstentions": 0,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 2,
+     "provider_errors": 0
+    },
+    "weinmannia-trichosperma": {
+     "catalog_cases": 4,
+     "completed": 4,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    }
+   },
+   "by_organ": {
+    "bark": {
+     "catalog_cases": 4,
+     "completed": 4,
+     "top1_agreement": 0.25,
+     "top3_agreement": 0.25,
+     "abstentions": 3,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "flower": {
+     "catalog_cases": 3,
+     "completed": 3,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "fruit": {
+     "catalog_cases": 2,
+     "completed": 2,
+     "top1_agreement": 0.5,
+     "top3_agreement": 0.5,
+     "abstentions": 0,
+     "negative_cases": 1,
+     "negatives_with_catalog_candidate": 1,
+     "provider_errors": 0
+    },
+    "leaf": {
+     "catalog_cases": 18,
+     "completed": 18,
+     "top1_agreement": 0.8333333333333334,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 9,
+     "negatives_with_catalog_candidate": 9,
+     "provider_errors": 0
+    },
+    "whole_tree": {
+     "catalog_cases": 8,
+     "completed": 8,
+     "top1_agreement": 0.5,
+     "top3_agreement": 0.5,
+     "abstentions": 4,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 1,
+     "provider_errors": 0
+    }
+   }
+  },
+  "D": {
+   "label_status": "weakly_labeled_exploration",
+   "overall": {
+    "catalog_cases": 35,
+    "completed": 34,
+    "top1_agreement": 0.6176470588235294,
+    "top3_agreement": 0.7941176470588235,
+    "abstentions": 7,
+    "negative_cases": 12,
+    "negatives_with_catalog_candidate": 11,
+    "provider_errors": 1
+   },
+   "by_species": {
+    "aextoxicon-punctatum": {
+     "catalog_cases": 3,
+     "completed": 3,
+     "top1_agreement": 0.6666666666666666,
+     "top3_agreement": 0.6666666666666666,
+     "abstentions": 1,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "eucryphia-cordifolia": {
+     "catalog_cases": 4,
+     "completed": 4,
+     "top1_agreement": 0.25,
+     "top3_agreement": 0.75,
+     "abstentions": 1,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "laurelia-sempervirens": {
+     "catalog_cases": 0,
+     "completed": 0,
+     "top1_agreement": null,
+     "top3_agreement": null,
+     "abstentions": 0,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 2,
+     "provider_errors": 0
+    },
+    "laureliopsis-philippiana": {
+     "catalog_cases": 5,
+     "completed": 4,
+     "top1_agreement": 0.5,
+     "top3_agreement": 0.5,
+     "abstentions": 2,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 1
+    },
+    "nothofagus-antarctica": {
+     "catalog_cases": 0,
+     "completed": 0,
+     "top1_agreement": null,
+     "top3_agreement": null,
+     "abstentions": 0,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 2,
+     "provider_errors": 0
+    },
+    "nothofagus-betuloides": {
+     "catalog_cases": 4,
+     "completed": 4,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "nothofagus-dombeyi": {
+     "catalog_cases": 5,
+     "completed": 5,
+     "top1_agreement": 0.2,
+     "top3_agreement": 0.8,
+     "abstentions": 1,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "nothofagus-nitida": {
+     "catalog_cases": 0,
+     "completed": 0,
+     "top1_agreement": null,
+     "top3_agreement": null,
+     "abstentions": 0,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 2,
+     "provider_errors": 0
+    },
+    "nothofagus-pumilio": {
+     "catalog_cases": 5,
+     "completed": 5,
+     "top1_agreement": 0.4,
+     "top3_agreement": 0.6,
+     "abstentions": 2,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "podocarpus-nubigenus": {
+     "catalog_cases": 5,
+     "completed": 5,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "podocarpus-salignus": {
+     "catalog_cases": 0,
+     "completed": 0,
+     "top1_agreement": null,
+     "top3_agreement": null,
+     "abstentions": 0,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 2,
+     "provider_errors": 0
+    },
+    "prumnopitys-andina": {
+     "catalog_cases": 0,
+     "completed": 0,
+     "top1_agreement": null,
+     "top3_agreement": null,
+     "abstentions": 0,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 1,
+     "provider_errors": 0
+    },
+    "saxegothaea-conspicua": {
+     "catalog_cases": 0,
+     "completed": 0,
+     "top1_agreement": null,
+     "top3_agreement": null,
+     "abstentions": 0,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 2,
+     "provider_errors": 0
+    },
+    "weinmannia-trichosperma": {
+     "catalog_cases": 4,
+     "completed": 4,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    }
+   },
+   "by_organ": {
+    "bark": {
+     "catalog_cases": 4,
+     "completed": 4,
+     "top1_agreement": 0.0,
+     "top3_agreement": 0.25,
+     "abstentions": 3,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "flower": {
+     "catalog_cases": 3,
+     "completed": 3,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "fruit": {
+     "catalog_cases": 2,
+     "completed": 1,
+     "top1_agreement": 0.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 1,
+     "negatives_with_catalog_candidate": 1,
+     "provider_errors": 1
+    },
+    "leaf": {
+     "catalog_cases": 18,
+     "completed": 18,
+     "top1_agreement": 0.8333333333333334,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 9,
+     "negatives_with_catalog_candidate": 9,
+     "provider_errors": 0
+    },
+    "whole_tree": {
+     "catalog_cases": 8,
+     "completed": 8,
+     "top1_agreement": 0.375,
+     "top3_agreement": 0.5,
+     "abstentions": 4,
+     "negative_cases": 2,
+     "negatives_with_catalog_candidate": 1,
+     "provider_errors": 0
+    }
+   }
+  },
+  "B": {
+   "label_status": "weakly_labeled_exploration",
+   "overall": {
+    "catalog_cases": 8,
+    "completed": 8,
+    "top1_agreement": 0.625,
+    "top3_agreement": 0.625,
+    "abstentions": 1,
+    "negative_cases": 0,
+    "negatives_with_catalog_candidate": 0,
+    "provider_errors": 0
+   },
+   "by_species": {
+    "aextoxicon-punctatum": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "eucryphia-cordifolia": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 0.0,
+     "top3_agreement": 0.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "laureliopsis-philippiana": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 0.0,
+     "top3_agreement": 0.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "nothofagus-betuloides": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "nothofagus-dombeyi": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "nothofagus-pumilio": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 0.0,
+     "top3_agreement": 0.0,
+     "abstentions": 1,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "podocarpus-nubigenus": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "weinmannia-trichosperma": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    }
+   },
+   "by_organ": {
+    "bark": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 0.0,
+     "top3_agreement": 0.0,
+     "abstentions": 1,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "flower": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "fruit": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 0.0,
+     "top3_agreement": 0.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "leaf": {
+     "catalog_cases": 5,
+     "completed": 5,
+     "top1_agreement": 0.8,
+     "top3_agreement": 0.8,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    }
+   }
+  },
+  "C": {
+   "label_status": "weakly_labeled_exploration",
+   "overall": {
+    "catalog_cases": 5,
+    "completed": 5,
+    "top1_agreement": 0.8,
+    "top3_agreement": 0.8,
+    "abstentions": 1,
+    "negative_cases": 0,
+    "negatives_with_catalog_candidate": 0,
+    "provider_errors": 0
+   },
+   "by_species": {
+    "eucryphia-cordifolia": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 0.0,
+     "top3_agreement": 0.0,
+     "abstentions": 1,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "laureliopsis-philippiana": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "nothofagus-dombeyi": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "nothofagus-pumilio": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    },
+    "weinmannia-trichosperma": {
+     "catalog_cases": 1,
+     "completed": 1,
+     "top1_agreement": 1.0,
+     "top3_agreement": 1.0,
+     "abstentions": 0,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    }
+   },
+   "by_organ": {
+    "multiview": {
+     "catalog_cases": 5,
+     "completed": 5,
+     "top1_agreement": 0.8,
+     "top3_agreement": 0.8,
+     "abstentions": 1,
+     "negative_cases": 0,
+     "negatives_with_catalog_candidate": 0,
+     "provider_errors": 0
+    }
+   }
+  }
+ },
+ "cases": [
+  {
+   "image_id": "gbif:3997858083:0",
+   "species_id": "aextoxicon-punctatum",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/9087feb48cfcf7b286be895394bdee78106c18bf",
+   "license": "cc-by-sa",
+   "author": "dassori paul",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": true,
+    "reason": "nombre comun impreso en la foto (fuga de etiqueta)"
+   }
+  },
+  {
+   "image_id": "commons:17025203",
+   "species_id": "aextoxicon-punctatum",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Male_Olivillo_(Aextoxicon_punctatum)_-_flowers.jpg",
+   "license": "CC BY-SA 2.0",
+   "author": "Inao Vásquez",
+   "organ": "flower",
+   "organ_provenance": "agent_visual",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "aextoxicon-punctatum"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "aextoxicon-punctatum"
+    ]
+   },
+   "B": {
+    "status": "completed",
+    "candidates": [
+     "aextoxicon-punctatum"
+    ],
+    "segmentation_status": "no_matches"
+   }
+  },
+  {
+   "image_id": "commons:17050389",
+   "species_id": "aextoxicon-punctatum",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Aextoxicon_punctatum_Ruiz_et_Pav._by_Pato_Novoa_08.jpg",
+   "license": "CC BY 2.0",
+   "author": "Pato Novoa",
+   "organ": "whole_tree",
+   "organ_provenance": "agent_visual",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": []
+   },
+   "D": {
+    "status": "completed",
+    "candidates": []
+   }
+  },
+  {
+   "image_id": "gbif:3997811097:0",
+   "species_id": "eucryphia-cordifolia",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/8434698e17187641a3abf26e31b9599621e1565c",
+   "license": "cc-by-sa",
+   "author": "dassori paul",
+   "organ": "fruit",
+   "organ_provenance": "plantnet_media_title:fruit",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": true,
+    "reason": "nombre comun impreso en la foto (fuga de etiqueta)"
+   }
+  },
+  {
+   "image_id": "gbif:5109373249:0",
+   "species_id": "eucryphia-cordifolia",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/c8f04dbf1e0f0ccd5718f0bcb0460e54c7964413",
+   "license": "cc-by-sa",
+   "author": "vivitorres",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "eucryphia-cordifolia",
+     "weinmannia-trichosperma"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "eucryphia-cordifolia",
+     "laureliopsis-philippiana"
+    ]
+   },
+   "B": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-dombeyi",
+     "nothofagus-betuloides"
+    ],
+    "segmentation_status": "no_matches"
+   }
+  },
+  {
+   "image_id": "gbif:5109554812:0",
+   "species_id": "eucryphia-cordifolia",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/37e4dab47219262697a2255aa11adf8baf68b546",
+   "license": "cc-by-sa",
+   "author": "José Manuel Ansola",
+   "organ": "bark",
+   "organ_provenance": "plantnet_media_title:bark",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": []
+   },
+   "D": {
+    "status": "completed",
+    "candidates": []
+   }
+  },
+  {
+   "image_id": "gbif:5109808896:0",
+   "species_id": "eucryphia-cordifolia",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/5163a253382a09037d81289a395fc85225fe9142",
+   "license": "cc-by-sa",
+   "author": "Florian Bemmerlein-Lux",
+   "organ": "flower",
+   "organ_provenance": "plantnet_media_title:flower",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "eucryphia-cordifolia",
+     "weinmannia-trichosperma"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "eucryphia-cordifolia"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5110278229:2",
+   "species_id": "eucryphia-cordifolia",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/c334de2793cd08d2a9145c35d765c98312b30626",
+   "license": "cc-by-sa",
+   "author": "Trap Hers",
+   "organ": "whole_tree",
+   "organ_provenance": "plantnet_media_title:habit",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "eucryphia-cordifolia",
+     "weinmannia-trichosperma"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "weinmannia-trichosperma",
+     "eucryphia-cordifolia"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5109125393:0",
+   "species_id": "laureliopsis-philippiana",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/c90b90a858ec0005a8c1382e6c9e9397b15e4227",
+   "license": "cc-by-sa",
+   "author": "solange saravia",
+   "organ": "fruit",
+   "organ_provenance": "plantnet_media_title:fruit",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "eucryphia-cordifolia",
+     "nothofagus-dombeyi"
+    ]
+   },
+   "D": {
+    "status": "provider_error",
+    "candidates": []
+   },
+   "B": {
+    "status": "completed",
+    "candidates": [
+     "eucryphia-cordifolia"
+    ],
+    "segmentation_status": "no_matches"
+   }
+  },
+  {
+   "image_id": "gbif:5109378289:0",
+   "species_id": "laureliopsis-philippiana",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/2b231b9bd077f7756c30629b8ca8830eb4402a19",
+   "license": "cc-by-sa",
+   "author": "vivitorres",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-dombeyi",
+     "laureliopsis-philippiana"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "laureliopsis-philippiana",
+     "eucryphia-cordifolia",
+     "nothofagus-dombeyi"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5109442823:0",
+   "species_id": "laureliopsis-philippiana",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/c94b5cfd5e8861c05f9cdf0719a159f4af7b4c4a",
+   "license": "cc-by-sa",
+   "author": "zombeni",
+   "organ": "bark",
+   "organ_provenance": "plantnet_media_title:bark",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": []
+   },
+   "D": {
+    "status": "completed",
+    "candidates": []
+   }
+  },
+  {
+   "image_id": "commons:117115452",
+   "species_id": "laureliopsis-philippiana",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Laureliopsis_philippiana_113841562.jpg",
+   "license": "CC BY 4.0",
+   "author": "Nicolás Lavandero",
+   "organ": "whole_tree",
+   "organ_provenance": "agent_visual",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": []
+   },
+   "D": {
+    "status": "completed",
+    "candidates": []
+   }
+  },
+  {
+   "image_id": "gbif:5109453298:0",
+   "species_id": "laureliopsis-philippiana",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/ff0a7c89bf2a6514105affb202df18c0f5e18889",
+   "license": "cc-by-sa",
+   "author": "vivitorres",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "laureliopsis-philippiana",
+     "weinmannia-trichosperma",
+     "eucryphia-cordifolia"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "laureliopsis-philippiana",
+     "eucryphia-cordifolia",
+     "weinmannia-trichosperma"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:150486579",
+   "species_id": "nothofagus-betuloides",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_betuloides210477438.jpeg",
+   "license": "CC BY 4.0",
+   "author": "Regina Silva María Regina Silva",
+   "organ": "leaf",
+   "organ_provenance": "agent_visual",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-dombeyi"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio",
+     "nothofagus-dombeyi"
+    ]
+   },
+   "B": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-dombeyi",
+     "nothofagus-pumilio"
+    ],
+    "segmentation_status": "completed"
+   }
+  },
+  {
+   "image_id": "commons:2263372",
+   "species_id": "nothofagus-betuloides",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:NothofagusBetuloides2.jpg",
+   "license": "Public domain",
+   "author": "Sydney Parkinson",
+   "organ": "unknown",
+   "organ_provenance": "not_provided_by_source",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": true,
+    "reason": "ilustracion botanica, no foto de terreno"
+   }
+  },
+  {
+   "image_id": "gbif:2974630948:0",
+   "species_id": "nothofagus-dombeyi",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/74a2f24047bd6a73f878d8297b1ee8a86720c5ff",
+   "license": "cc-by-sa",
+   "author": "Celis Diego",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-dombeyi",
+     "nothofagus-betuloides",
+     "nothofagus-pumilio"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-pumilio",
+     "nothofagus-dombeyi",
+     "nothofagus-betuloides"
+    ]
+   },
+   "B": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-dombeyi",
+     "nothofagus-pumilio",
+     "nothofagus-betuloides"
+    ],
+    "segmentation_status": "completed"
+   }
+  },
+  {
+   "image_id": "gbif:5109184845:1",
+   "species_id": "nothofagus-dombeyi",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/ec3d648ca526da649143f922d330a8f2880d2683",
+   "license": "cc-by-sa",
+   "author": "ODwyer patricio",
+   "organ": "flower",
+   "organ_provenance": "plantnet_media_title:flower",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-dombeyi",
+     "nothofagus-betuloides"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-dombeyi",
+     "nothofagus-betuloides"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5109425128:0",
+   "species_id": "nothofagus-dombeyi",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/b9b3bbb6b910e65d0e8fd5636b299c2d5af4846c",
+   "license": "cc-by-sa",
+   "author": "Prado Tomas",
+   "organ": "bark",
+   "organ_provenance": "plantnet_media_title:bark",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-dombeyi",
+     "nothofagus-betuloides"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-dombeyi",
+     "nothofagus-pumilio"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5109458468:0",
+   "species_id": "nothofagus-dombeyi",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/21f7356505f93a43b8c0f2a0e4becb72cb2663f7",
+   "license": "cc-by-sa",
+   "author": "vivitorres",
+   "organ": "fruit",
+   "organ_provenance": "plantnet_media_title:fruit",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-dombeyi",
+     "nothofagus-betuloides",
+     "nothofagus-pumilio"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-dombeyi"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5110223858:0",
+   "species_id": "nothofagus-dombeyi",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/ab136161c2334c2bbbbc46ef821dfc5f01a10e06",
+   "license": "cc-by-sa",
+   "author": "kp.rodriguez.d",
+   "organ": "whole_tree",
+   "organ_provenance": "plantnet_media_title:habit",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": []
+   },
+   "D": {
+    "status": "completed",
+    "candidates": []
+   }
+  },
+  {
+   "image_id": "gbif:3997820251:0",
+   "species_id": "nothofagus-pumilio",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/aee189a5afb8742468328e224a0866056de5d7e3",
+   "license": "cc-by-sa",
+   "author": "marck grandpierre",
+   "organ": "bark",
+   "organ_provenance": "plantnet_media_title:bark",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": []
+   },
+   "D": {
+    "status": "completed",
+    "candidates": []
+   },
+   "B": {
+    "status": "completed",
+    "candidates": [],
+    "segmentation_status": "completed"
+   }
+  },
+  {
+   "image_id": "gbif:5109313380:0",
+   "species_id": "nothofagus-pumilio",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/860756ccec9fad5209c6a842818c3139f93c9c6f",
+   "license": "cc-by-sa",
+   "author": "García Alejandro",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-pumilio",
+     "nothofagus-betuloides"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-pumilio",
+     "nothofagus-betuloides"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5110335174:0",
+   "species_id": "nothofagus-pumilio",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/1e295502d033ec9dd2d4c464a5c93e1047aa2fe5",
+   "license": "cc-by-sa",
+   "author": "Trap Hers",
+   "organ": "whole_tree",
+   "organ_provenance": "plantnet_media_title:habit",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": []
+   },
+   "D": {
+    "status": "completed",
+    "candidates": []
+   }
+  },
+  {
+   "image_id": "gbif:5110451947:0",
+   "species_id": "nothofagus-pumilio",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/7fdba635b163f21e6d73f159432743082f17177e",
+   "license": "cc-by-sa",
+   "author": "Florian Bemmerlein-Lux",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio",
+     "nothofagus-dombeyi"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio",
+     "nothofagus-dombeyi"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:3949787020:0",
+   "species_id": "podocarpus-nubigenus",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/307b6323c5f719c0902434dd0ca3578416635a42",
+   "license": "cc-by-sa",
+   "author": "Diego Toro",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   },
+   "B": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ],
+    "segmentation_status": "no_matches"
+   }
+  },
+  {
+   "image_id": "gbif:3949817156:0",
+   "species_id": "podocarpus-nubigenus",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/358f96639f49010b6be06a49a03a385e2bbb2a09",
+   "license": "cc-by-sa",
+   "author": "Sepúlveda Carmen Gloria",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5109444979:0",
+   "species_id": "weinmannia-trichosperma",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/3566f56fd2b063222119a2db3abd0133f164972b",
+   "license": "cc-by-sa",
+   "author": "Trap Hers",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "weinmannia-trichosperma"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "weinmannia-trichosperma"
+    ]
+   },
+   "B": {
+    "status": "completed",
+    "candidates": [
+     "weinmannia-trichosperma"
+    ],
+    "segmentation_status": "no_matches"
+   }
+  },
+  {
+   "image_id": "gbif:5110272204:0",
+   "species_id": "weinmannia-trichosperma",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/27dab6ef7915d80ea8e5efe1d9068b69186076f7",
+   "license": "cc-by-sa",
+   "author": "Trap Hers",
+   "organ": "whole_tree",
+   "organ_provenance": "plantnet_media_title:habit",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "weinmannia-trichosperma"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "weinmannia-trichosperma"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5109459245:0",
+   "species_id": "weinmannia-trichosperma",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/29b2280c79f6c36915bc7d31479b5f16d4a8eb1b",
+   "license": "cc-by-sa",
+   "author": "Nicolás Pizarro",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "weinmannia-trichosperma"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "weinmannia-trichosperma"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5109818337:0",
+   "species_id": "weinmannia-trichosperma",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/f7b2f8708ccf6c584aac61744446de8951e5cf1c",
+   "license": "cc-by-sa",
+   "author": "staiger nicolás",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "weinmannia-trichosperma"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "weinmannia-trichosperma"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5110294899:0",
+   "species_id": "nothofagus-antarctica",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/99fc4fef0640cba8fd4407659f869875f899bdc1",
+   "license": "cc-by-sa",
+   "author": "Freddy cuña",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": true,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-pumilio",
+     "nothofagus-betuloides",
+     "nothofagus-dombeyi"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-pumilio",
+     "nothofagus-betuloides",
+     "nothofagus-dombeyi"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5110382065:0",
+   "species_id": "nothofagus-antarctica",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/d8574778340c2cfffa976abf75ecc76891ad019b",
+   "license": "cc-by-sa",
+   "author": "alvarocastrof",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": true,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio",
+     "nothofagus-dombeyi"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5110278109:0",
+   "species_id": "saxegothaea-conspicua",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/7ebfbc4850b073349df961e3c8297398f82dfe41",
+   "license": "cc-by-sa",
+   "author": "Trap Hers",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": true,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5110278285:0",
+   "species_id": "saxegothaea-conspicua",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/4129355f2eed01d270250da911611019f7a174bf",
+   "license": "cc-by-sa",
+   "author": "Trap Hers",
+   "organ": "whole_tree",
+   "organ_provenance": "plantnet_media_title:habit",
+   "negative": true,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5110497958:0",
+   "species_id": "podocarpus-salignus",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/629f772358cbca4d397d219f4e5027818ede43cb",
+   "license": "cc-by-sa",
+   "author": "Trap Hers",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": true,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   }
+  },
+  {
+   "image_id": "gbif:5109779216:0",
+   "species_id": "podocarpus-salignus",
+   "source_dataset": "plantnet_verified_gbif",
+   "media_url": "https://bs.plantnet.org/image/o/2d08b99a144c55419d89a36cd2b6df1e7fcd8639",
+   "license": "cc-by-sa",
+   "author": "Paula Bastías",
+   "organ": "leaf",
+   "organ_provenance": "plantnet_media_title:leaf",
+   "negative": true,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:19933863",
+   "species_id": "aextoxicon-punctatum",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Bosque_de_olivillo_en_Punta_Curinanco.jpg",
+   "license": "CC BY 2.0",
+   "author": "Joelbua",
+   "organ": "unknown",
+   "organ_provenance": "not_provided_by_source",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": true,
+    "reason": "paisaje costero sin organo diagnostico"
+   }
+  },
+  {
+   "image_id": "commons:21452618",
+   "species_id": "aextoxicon-punctatum",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Aextoxicon_punctatum_-_Palmengarten_Frankfurt_-_DSC01934.JPG",
+   "license": "CC0",
+   "author": "Daderot",
+   "organ": "whole_tree",
+   "organ_provenance": "agent_visual",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "aextoxicon-punctatum"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "aextoxicon-punctatum"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:150486584",
+   "species_id": "nothofagus-betuloides",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_betuloides211149495.jpeg",
+   "license": "CC BY 4.0",
+   "author": "Regina Silva María Regina Silva",
+   "organ": "leaf",
+   "organ_provenance": "agent_visual",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-pumilio",
+     "nothofagus-betuloides"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio",
+     "nothofagus-dombeyi"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:186252105",
+   "species_id": "nothofagus-betuloides",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_betuloides_kz01.jpg",
+   "license": "CC BY 4.0",
+   "author": "Krzysztof Ziarnek, Kenraiz",
+   "organ": "leaf",
+   "organ_provenance": "agent_visual",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio",
+     "nothofagus-dombeyi"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:186252106",
+   "species_id": "nothofagus-betuloides",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_betuloides_kz02.jpg",
+   "license": "CC BY 4.0",
+   "author": "Krzysztof Ziarnek, Kenraiz",
+   "organ": "leaf",
+   "organ_provenance": "agent_visual",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:10385550",
+   "species_id": "nothofagus-pumilio",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_pumilio_001_(Raul_Antonio_1942).jpg",
+   "license": "CC BY 2.0",
+   "author": "Raul Antonio Alvarez from Beccar, Argentina",
+   "organ": "leaf",
+   "organ_provenance": "agent_visual",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-pumilio",
+     "nothofagus-betuloides",
+     "nothofagus-dombeyi"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-pumilio",
+     "nothofagus-betuloides"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:1518439",
+   "species_id": "podocarpus-nubigenus",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Podocarpus_nubigena-flores.JPG",
+   "license": "CC BY-SA 3.0",
+   "author": "Lin linao",
+   "organ": "leaf",
+   "organ_provenance": "agent_visual",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:1518445",
+   "species_id": "podocarpus-nubigenus",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Podocarpus_nubigena-hojas.JPG",
+   "license": "CC BY-SA 3.0",
+   "author": "Lin linao",
+   "organ": "leaf",
+   "organ_provenance": "agent_visual",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:186664518",
+   "species_id": "podocarpus-nubigenus",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Podocarpus_nubigenus_kz03.jpg",
+   "license": "CC BY 4.0",
+   "author": "Krzysztof Ziarnek, Kenraiz",
+   "organ": "whole_tree",
+   "organ_provenance": "agent_visual",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:28316997",
+   "species_id": "weinmannia-trichosperma",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Ten%C3%ADo_nuevo_bajo_canelo.jpg",
+   "license": "CC BY-SA 3.0",
+   "author": "Lin linao",
+   "organ": "unknown",
+   "organ_provenance": "not_provided_by_source",
+   "negative": false,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": true,
+    "reason": "varias especies en el encuadre; dominan hojas de otra planta"
+   }
+  },
+  {
+   "image_id": "commons:41196721",
+   "species_id": "laurelia-sempervirens",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Laurelia_sempervirens_(14289513719).jpg",
+   "license": "CC BY-SA 2.0",
+   "author": "Pato Novoa from Valparaíso, Chile",
+   "organ": "leaf",
+   "organ_provenance": "agent_visual",
+   "negative": true,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-dombeyi",
+     "nothofagus-betuloides"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "eucryphia-cordifolia",
+     "laureliopsis-philippiana"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:41196699",
+   "species_id": "laurelia-sempervirens",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Laurelia_sempervirens_(14453649906).jpg",
+   "license": "CC BY-SA 2.0",
+   "author": "Pato Novoa from Valparaíso, Chile",
+   "organ": "fruit",
+   "organ_provenance": "agent_visual",
+   "negative": true,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "eucryphia-cordifolia",
+     "weinmannia-trichosperma"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "eucryphia-cordifolia"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:186315302",
+   "species_id": "nothofagus-nitida",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_nitida_kz06.jpg",
+   "license": "CC BY 4.0",
+   "author": "Krzysztof Ziarnek, Kenraiz",
+   "organ": "leaf",
+   "organ_provenance": "agent_visual",
+   "negative": true,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio",
+     "nothofagus-dombeyi"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio",
+     "nothofagus-dombeyi"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:186315307",
+   "species_id": "nothofagus-nitida",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_nitida_kz07.jpg",
+   "license": "CC BY 4.0",
+   "author": "Krzysztof Ziarnek, Kenraiz",
+   "organ": "leaf",
+   "organ_provenance": "agent_visual",
+   "negative": true,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "nothofagus-betuloides",
+     "nothofagus-pumilio",
+     "nothofagus-dombeyi"
+    ]
+   }
+  },
+  {
+   "image_id": "commons:120042765",
+   "species_id": "prumnopitys-andina",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Pinetum_Blijdenstein_145_-_Prumnopitys_andina.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Rudolphous",
+   "organ": "whole_tree",
+   "organ_provenance": "agent_visual",
+   "negative": true,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": []
+   },
+   "D": {
+    "status": "completed",
+    "candidates": []
+   }
+  },
+  {
+   "image_id": "commons:120042763",
+   "species_id": "prumnopitys-andina",
+   "source_dataset": "wikimedia_commons_category",
+   "media_url": "https://commons.wikimedia.org/wiki/File:Pinetum_Blijdenstein_146_-_Prumnopitys_andina.jpg",
+   "license": "CC BY-SA 4.0",
+   "author": "Rudolphous",
+   "organ": "leaf",
+   "organ_provenance": "agent_visual",
+   "negative": true,
+   "agent_visual_check": {
+    "reviewer": "claude-opus-5.5 (inspeccion visual del agente; no especialista)",
+    "excluded": false,
+    "reason": null
+   },
+   "A": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   },
+   "D": {
+    "status": "completed",
+    "candidates": [
+     "podocarpus-nubigenus"
+    ]
+   }
+  }
+ ],
+ "multiview": [
+  {
+   "image_id": "gbif:5109800392:1",
+   "species_id": "nothofagus-dombeyi",
+   "views": [
+    "bark",
+    "fruit",
+    "fruit"
+   ],
+   "status": "completed",
+   "candidates": [
+    "nothofagus-dombeyi",
+    "nothofagus-betuloides"
+   ]
+  },
+  {
+   "image_id": "gbif:5110308095:1",
+   "species_id": "eucryphia-cordifolia",
+   "views": [
+    "bark",
+    "leaf",
+    "unknown"
+   ],
+   "status": "completed",
+   "candidates": []
+  },
+  {
+   "image_id": "gbif:5110272204:1",
+   "species_id": "weinmannia-trichosperma",
+   "views": [
+    "flower",
+    "leaf",
+    "whole_tree"
+   ],
+   "status": "completed",
+   "candidates": [
+    "weinmannia-trichosperma"
+   ]
+  },
+  {
+   "image_id": "gbif:5110335174:2",
+   "species_id": "nothofagus-pumilio",
+   "views": [
+    "bark",
+    "leaf",
+    "leaf"
+   ],
+   "status": "completed",
+   "candidates": [
+    "nothofagus-pumilio",
+    "nothofagus-betuloides"
+   ]
+  },
+  {
+   "image_id": "gbif:5109125393:0",
+   "species_id": "laureliopsis-philippiana",
+   "views": [
+    "fruit",
+    "leaf"
+   ],
+   "status": "completed",
+   "candidates": [
+    "laureliopsis-philippiana"
+   ]
+  }
+ ]
+}

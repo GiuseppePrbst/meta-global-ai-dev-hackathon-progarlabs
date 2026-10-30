@@ -418,5 +418,8 @@ $('upload').onchange = async () => {
     await loadSource();
   } catch (e) { showError(e); }
 };
+$('costsButton').onclick = async () => {
+  try { $('costs').textContent = JSON.stringify(await request('/api/costs'), null, 2); } catch (e) { $('costs').textContent = `No disponible: ${e.message}`; }
+};
 refreshObjects(); showControls(); summarizePrompts();
 refresh().then(selectResult).catch(showError); // refresh also loads the first source

@@ -153,3 +153,24 @@ referencia sin ingesta de imágenes. Consulta, descarga, procesamiento externo, 
 entrenamiento y redistribución son autorizaciones distintas. Este registro solo cubre
 consulta de metadatos y hashing local de miniaturas. Detalle en
 [BOTANICAL_DATASETS.md](BOTANICAL_DATASETS.md).
+
+## Campaña de validación Meta — 30-10-2026
+
+```yaml
+name: CanopyRS/Detectree2 (4 teselas test)
+source: Hugging Face datasets-server; original Zenodo 10.5281/zenodo.8136161 v2
+url: https://huggingface.co/datasets/CanopyRS/Detectree2
+accessed_at: 2026-10-30
+version: revisión HF cda2ad37660f422dc5837f697ad4ee41c49441ce
+license: CC-BY-4.0 (verificada en tarjeta HF y registro Zenodo)
+attribution: Ball, Jackson, Hickman & Koay (2023), Crown Data for "Accurate delineation of individual tree crowns in tropical forests from aerial RGB imagery using Mask R-CNN"
+redistribution: solo métricas y nombres de tesela; teselas fuera de Git
+classification: PUBLIC_VERIFIED
+processing: PNG RGB local, envío a Meta SAM 3.1 Standard, decodificación RLE COCO
+validator: Giuseppe Proboste
+validation_status: pending
+```
+
+Las fotos botánicas de la campaña (Pl@ntNet CC BY-SA y Commons CC BY/BY-SA/CC0 por
+archivo) se enviaron a Meta Standard para evaluar, sin entrenamiento ni redistribución.
+Las copias quedan fuera de Git con su atribución en el manifiesto local.

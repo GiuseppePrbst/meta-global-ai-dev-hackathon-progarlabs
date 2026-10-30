@@ -112,3 +112,35 @@ Universidad de Concepción, Fundación R.A. Philippi, SIMBIO/MMA y materiales re
 (Enersis/Huinay, CORMA, Bosque Laurifolio Valdiviano y presentación de reconocimiento)
 sirven para revisar taxonomía y rasgos con cita, no como fuente de fotografías sin permiso.
 HerbarioDigital UdeC es CC BY-NC-ND. Chileflora y Corteza quedan pendientes de licencia.
+
+## Revisión taxonómica y curaduría — 30-10-2026 (campaña USD 50)
+
+Triangulación entre el catálogo, GBIF COL XR y World Flora Online (API de matching y
+GraphQL de WFO Plant List, consultadas el 30-10-2026). Decisiones en `synonym_review` de
+`species.json`, con evidencia. Un validador impide que un nombre excluido vuelva a la lista.
+
+| Nombre | COL XR | WFO | Decisión |
+| --- | --- | --- | --- |
+| *Weinmannia corymbosa* Ruiz & Pav. (en Tineo) | → *Caldcluvia paniculata* | wfo-1200074108 → *Caldcluvia paniculata* | **Eliminado** (`removed_incorrect`): ambas fuentes coinciden |
+| *Betula antarctica* G.Forst. y «ex Willd.» (en Coigüe de Magallanes) | → *N. antarctica* | wfo-0000331149 → *N. betuloides* | **Excluido** (`disputed_excluded`): fuentes en conflicto, sin uso como alias ni etiqueta |
+| *Calusparassus pumilio* (en Lenga) | solo género | wfo-0000792030 → *N. pumilio* | **Verificado** y conservado |
+| *N. obliqua* (negativo) | → *Lophozonia obliqua* | aceptado como *Nothofagus obliqua* | Mismo taxón, distinto concepto genérico; no está en el catálogo |
+
+Efecto: `taxon_aliases` alimenta el contexto forestal y contaba registros de *Weinmannia
+corymbosa* (= *Caldcluvia*) como Tineo. Revisión sin especialista botánico independiente.
+
+**Campaña Muse**: 5 candidatas por especie (40), con Pl@ntNet primero, órganos variados e
+individuos distintos, más 12 negativos (2 por especie). *Laurelia sempervirens*, *N. nitida*
+y *Prumnopitys andina* no tenían fotos Pl@ntNet verificadas en GBIF; se tomaron de sus
+categorías Commons (etiqueta de plataforma). Copias locales fuera de Git: originales
+Pl@ntNet reducidos a ≤ 2048 px y renditions Commons de 1280 px. Los originales de Commons
+devolvieron HTTP de error (rate limit). El SHA-256 corresponde a la copia local.
+
+Inspección visual del agente (no es validación botánica): **5 exclusiones**.
+- Dos fotos llevan **el nombre común impreso** («Olivillo», «Ulmo»): fuga de etiqueta.
+- Una ilustración botánica.
+- Un paisaje costero sin órgano diagnóstico.
+- Un encuadre con varias especies, donde dominan las hojas de otra planta.
+
+El agente clasificó el órgano de 19 imágenes Commons (`organ_provenance=agent_visual`).
+Todas las etiquetas siguen como `weakly_labeled_exploration`; 0 `human_reviewed`.

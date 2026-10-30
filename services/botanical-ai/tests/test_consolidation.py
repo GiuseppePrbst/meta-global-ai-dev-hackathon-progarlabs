@@ -11,6 +11,8 @@ async def test_typed_analysis_records_only_usage_and_controlled_knowledge():
     def handle(request):
         data = json.loads(request.content)
         assert data["max_completion_tokens"] == 1200
+        # Reasoning shares the cap; default effort truncated real photos.
+        assert data["reasoning_effort"] == "minimal"
         assert "pending" in data["messages"][0]["content"][0]["text"]
         return httpx.Response(
             200,

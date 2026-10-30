@@ -112,3 +112,22 @@ sin reembolsos ni nuevas llamadas después de agotar reservas. Files con TTL de 
 más DELETE en finally: tres uploads, tres acuses de eliminación. Standard no equivale a
 ZDR; no se garantiza un plazo universal de retención operativa. Informe publicable solo
 agregado y código genérico: [SAM API research](META_SAM_API_RESEARCH.md).
+
+## Inspección visual directa y campaña Meta USD 50 — 30-10-2026
+
+El propietario del proyecto autorizó expresamente que Claude Opus 5.5 y los demás agentes
+locales de ProGarLabs abran, visualicen e inspeccionen las fotos y videos Hepta de esta
+investigación, con procesamiento multimodal Claude/Anthropic. Esto sustituye la regla de
+la misión previa que impedía al agente ver los medios y le exigía usar descripciones de
+Muse. Quedan cubiertos: descarga desde Hepta Insights/Fabric/OneLake, preparación, recortes,
+overlays, selección de objetos y anotaciones asistidas (registrando quién revisó), y
+procesamiento con Meta Model API (Standard Mode, Files con expiración y DELETE) dentro del
+presupuesto acumulado de USD 50.
+
+Se mantiene sin cambios: no hay publicación ni versionado de medios, frames, máscaras,
+overlays ni derivados Hepta; no se usan en CI; no se exponen credenciales, URLs firmadas,
+IDs de cliente ni coordenadas de infraestructura; no se entrenan modelos; no hay Contributor
+Mode. Las anotaciones de un agente se etiquetan como tales y no equivalen a validación de un
+especialista humano. No se infieren distancias a conductores desde RGB. Limitación externa
+que no depende del proyecto: lo que el agente visualiza se procesa en la infraestructura de
+Anthropic, igual que lo enviado a Meta se procesa en la de Meta, según sus términos.

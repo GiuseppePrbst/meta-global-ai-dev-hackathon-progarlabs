@@ -1,0 +1,135 @@
+{
+ "dataset": "CanopyRS/Detectree2",
+ "attribution": "Ball, Jackson, Hickman & Koay (2023), Crown Data for 'Accurate delineation of individual tree crowns in tropical forests from aerial RGB imagery using Mask R-CNN', Zenodo 10.5281/zenodo.8136161, CC BY 4.0; via CanopyRS/Detectree2",
+ "license": "CC-BY-4.0",
+ "split": "test",
+ "selection": "first rows of test split; largest untruncated reference crown",
+ "model": "sam-3.1",
+ "n_tiles": 4,
+ "mean_iou_box_from_reference": 0.7422845035091739,
+ "mean_iou_concept_tree_best_match_any_crown": 0.19094986372757494,
+ "concept_tree_tiles_with_any_mask": 1,
+ "limitations": [
+  "n tiny; not a benchmark score",
+  "box from reference annotation: delineation only, not detection",
+  "tropical Malaysia ~0.1 m/px; no transfer claim to Valdivian forest"
+ ],
+ "tiles": [
+  {
+   "tile": "sep_ma14_21_orthomosaic_20141023_reprojected_full_res_tile_test_1000_sf1p0_23500_10000",
+   "reference_crowns_in_tile": 2,
+   "selected_crown_index": 1,
+   "box_from_reference": {
+    "best_iou_any_reference_crown": 0.743000737863537,
+    "status": "completed",
+    "masks_returned": 1,
+    "best_iou": 0.743000737863537,
+    "best_dice": 0.8525535551686129,
+    "precision": 0.9235148557683989,
+    "recall": 0.791719206634129,
+    "confidence": 0.84375,
+    "latency_ms": 2150,
+    "estimated_usd": 0.0025
+   },
+   "concept_tree": {
+    "best_iou_any_reference_crown": 0.0,
+    "status": "no_matches",
+    "masks_returned": 0,
+    "best_iou": 0.0,
+    "best_dice": 0.0,
+    "precision": null,
+    "recall": 0.0,
+    "confidence": null,
+    "latency_ms": 1814,
+    "estimated_usd": 0.0025
+   }
+  },
+  {
+   "tile": "sep_ma14_21_orthomosaic_20141023_reprojected_full_res_tile_test_1000_sf1p0_23500_9000",
+   "reference_crowns_in_tile": 3,
+   "selected_crown_index": 0,
+   "box_from_reference": {
+    "best_iou_any_reference_crown": 0.8058793447017123,
+    "status": "completed",
+    "masks_returned": 1,
+    "best_iou": 0.8058793447017123,
+    "best_dice": 0.8925062984590747,
+    "precision": 0.9665200287635887,
+    "recall": 0.829021841666062,
+    "confidence": 0.8984375,
+    "latency_ms": 2704,
+    "estimated_usd": 0.0025
+   },
+   "concept_tree": {
+    "best_iou_any_reference_crown": 0.7637994549102998,
+    "status": "completed",
+    "masks_returned": 1,
+    "best_iou": 0.0,
+    "best_dice": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "confidence": 0.5038759708404541,
+    "latency_ms": 2152,
+    "estimated_usd": 0.0025
+   }
+  },
+  {
+   "tile": "sep_ma14_21_orthomosaic_20141023_reprojected_full_res_tile_test_1000_sf1p0_23500_9500",
+   "reference_crowns_in_tile": 4,
+   "selected_crown_index": 3,
+   "box_from_reference": {
+    "best_iou_any_reference_crown": 0.7093041219015519,
+    "status": "completed",
+    "masks_returned": 1,
+    "best_iou": 0.7093041219015519,
+    "best_dice": 0.8299332024221311,
+    "precision": 0.9300946558137821,
+    "recall": 0.7492471331721283,
+    "confidence": 0.77734375,
+    "latency_ms": 1753,
+    "estimated_usd": 0.0025
+   },
+   "concept_tree": {
+    "best_iou_any_reference_crown": 0.0,
+    "status": "no_matches",
+    "masks_returned": 0,
+    "best_iou": 0.0,
+    "best_dice": 0.0,
+    "precision": null,
+    "recall": 0.0,
+    "confidence": null,
+    "latency_ms": 2017,
+    "estimated_usd": 0.0025
+   }
+  },
+  {
+   "tile": "sep_ma14_21_orthomosaic_20141023_reprojected_full_res_tile_test_1000_sf1p0_24000_10000",
+   "reference_crowns_in_tile": 6,
+   "selected_crown_index": 4,
+   "box_from_reference": {
+    "best_iou_any_reference_crown": 0.710953809569894,
+    "status": "completed",
+    "masks_returned": 1,
+    "best_iou": 0.710953809569894,
+    "best_dice": 0.8310613712577269,
+    "precision": 0.9126468604692436,
+    "recall": 0.7628654927383584,
+    "confidence": 0.82421875,
+    "latency_ms": 2656,
+    "estimated_usd": 0.0025
+   },
+   "concept_tree": {
+    "best_iou_any_reference_crown": 0.0,
+    "status": "no_matches",
+    "masks_returned": 0,
+    "best_iou": 0.0,
+    "best_dice": 0.0,
+    "precision": null,
+    "recall": 0.0,
+    "confidence": null,
+    "latency_ms": 1752,
+    "estimated_usd": 0.0025
+   }
+  }
+ ]
+}
