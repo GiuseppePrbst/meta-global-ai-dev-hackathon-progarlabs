@@ -201,7 +201,10 @@ Autoría personal verificada. Asistencia declarada; no coautores ficticios. El e
 anterior había desaparecido: el push de reconciliación ocurrió antes de detectarlo. Se recuperó
 Gitleaks 8.30.1 oficial fuera del repo, verificó SHA publicado y escaneó historia reconciliada
 sin hallazgos; también pasaron controles CI. Nuevos pushes requieren staged/diff y scanner.
-Commits, nuevo PR y CI final se registran en el PR enlazado a esta rama; no se fusiona ese PR.
+Commits funcionales `0f18f5c` y `4936282`, más cierre documental de trazabilidad, publicados
+en `feat/backend-meta-consolidation`. [PR #17](https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs/pull/17)
+abierto contra main, sin merge. [Checks vigentes](https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs/pull/17/checks)
+y conclusión final se registran en el PR, evitando confundir una ejecución previa con su HEAD final.
 No se publican archivos de conexión, claves, GeoJSON fuente, raster ni material Hepta.
 
 ## L. Cinco acciones para la demo
