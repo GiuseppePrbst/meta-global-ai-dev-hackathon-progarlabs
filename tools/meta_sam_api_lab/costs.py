@@ -16,19 +16,24 @@ TARIFFS = {
 
 
 def estimate(model: str | None, usage: dict) -> float | None:
-    """Tariff estimate from reported usage; None when the model has no known tariff."""
-    if model == "sam-3.1":
-        t = TARIFFS[model]
-        frames = usage.get("video_frames_processed", 0)
-        return usage.get("images_processed", 0) * t["image"] + (
-            max(t["min_frames"], frames) * t["frame"] if frames else 0
-        )
-    if model == "muse-spark-1.3":
-        t = TARIFFS[model]
-        tokens_in = usage.get("prompt_tokens", usage.get("input_tokens", 0))
-        tokens_out = usage.get("completion_tokens", usage.get("output_tokens", 0))
-        return tokens_in * t["input"] + tokens_out * t["output"]
-    return None
+    """Tariff estimate from reported usage keys; a combined SAM+Muse call adds both.
+
+    None only when usage is present but no priced key or model is recognized.
+    """
+    sam, muse = TARIFFS["sam-3.1"], TARIFFS["muse-spark-1.3"]
+    frames = usage.get("video_frames_processed", 0)
+    images = usage.get("images_processed", 0)
+    tokens_in = usage.get("prompt_tokens", usage.get("input_tokens", 0))
+    tokens_out = usage.get("completion_tokens", usage.get("output_tokens", 0))
+    known = model in TARIFFS or (model or "").startswith("sam-3.1+")
+    if not known and not (frames or images):
+        return None
+    return (
+        images * sam["image"]
+        + (max(sam["min_frames"], frames) * sam["frame"] if frames else 0)
+        + tokens_in * muse["input"]
+        + tokens_out * muse["output"]
+    )
 
 
 def summarize_rows(rows: list[dict], authorized_usd: float, historical_owner: str):

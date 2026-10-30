@@ -168,6 +168,8 @@ def test_cost_view_keeps_authorization_reservation_usage_and_estimate_apart():
     assert costs.estimate("sam-3.1", {"video_frames_processed": 10}) == pytest.approx(
         0.01
     )
+    combined = {"images_processed": 1, "prompt_tokens": 1000, "completion_tokens": 0}
+    assert costs.estimate("sam-3.1+muse-spark-1.3", combined) == pytest.approx(0.00375)
 
 
 def test_remote_files_counts_only_recorded_deletes(tmp_path):
