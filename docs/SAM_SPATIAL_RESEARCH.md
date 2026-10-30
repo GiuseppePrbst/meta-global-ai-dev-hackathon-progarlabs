@@ -145,3 +145,49 @@ Elevarlo requiere un cambio de código revisado que registre la autorización; n
 hizo. Sin reintentos automáticos. El ledger también limita 10 solicitudes diarias por
 identidad, y el 30-10 ya registra diez. Sugerencia de orden: 1 → 2 → (3) → 4,
 revisando cada resultado antes de seguir.
+
+## I. Resultados reales — campaña USD 50, 30-10-2026
+
+Ejecutado con presupuesto nuevo y con inspección visual directa del agente, ambas cosas
+autorizadas por el propietario. Detalle, costos y decisiones en
+[META_VALIDATION_CAMPAIGN_REPORT.md](META_VALIDATION_CAMPAIGN_REPORT.md).
+Medios y máscaras Hepta siguen privados.
+
+**Fotografía** (la misma de `photo-vegetation-001`, 4032×2268). Lleva una caja púrpura
+impresa en origen: es una anotación operacional, no la dibujó el laboratorio.
+
+| Exp. | Prompt | Máscaras | Confianza | Cobertura de imagen | IoU / Dice vs referencia del agente | Lectura visual |
+| --- | --- | ---: | ---: | ---: | --- | --- |
+| Histórico | `tree` | 0 | — | — | — | Sin detección |
+| Histórico | `vegetation` | 1 | — | 21,6 % | — | Masa del dosel derecho |
+| A1 | Caja sobre copa (propuesta Muse A0, coincide con la inspección visual) | 1 | 0,79 | 8,7 % | 0,712 / 0,832 | Correcto como grupo de latifoliadas; excluye cable, camino y eucaliptos; algo de ramillas desnudas; omite sotobosque |
+| A2 | Punto positivo + negativo, misma copa | 1 | 0,34 | 5,9 % | 0,631 / 0,774 (precisión 0,91, recall 0,68) | Subsegmentado: solo la mitad derecha |
+| A3 | Dos cajas, IDs 1 y 2 | 2 | 0,79 / 0,61 | 8,7 % / 3,6 % | — | Dos instancias distintas; ID 1 idéntico a A1 (determinista); ID 2 aísla tronco y columna central de un árbol dentro del dosel continuo, angosto en ancho |
+
+La referencia la trazó el agente sobre el original sin máscara, después de haber visto A1
+(sesgo posible, precisión ~10–20 px). **No es anotación de especialista.**
+
+**Video** `clip-001` (el clip con dos `no_matches` históricos), frame 3 elegido por
+inspección visual, `both`, confianza:
+
+| Exp. | Resolución | Máscaras | Track ID 1 | Track ID 2 | Latencia | Lectura visual |
+| --- | --- | ---: | --- | --- | ---: | --- |
+| B1 | 640×360 | 44/50 frames con objeto | f0–f14 sin huecos | f0–f28 sin huecos | 16,6 s | Seguimiento positivo; tracks terminan cuando cada árbol sale del cuadro (cámara avanza); sin cambios de ID en frames revisados |
+| B3 | 960×540 | 45 | f0–f15 | f0–f28 | 28,6 s | Igual a B1; IoU medio vs 640: 0,87 / 0,79 |
+| B3 | 1280×720 | 45 | f0–f15 | f0–f28 | 51,4 s | Igual a B1; IoU medio vs 640: 0,79 / 0,97; bordes visualmente iguales en f8 |
+
+No se ejecutó B2 (corrección) porque no hubo pérdida de seguimiento, ni B4 porque el clip
+original ya dio tracking. Frames 29–49 sin máscara: ningún objeto con prompt está en cuadro.
+
+**Benchmark externo Detectree2** (4 teselas CC BY 4.0): caja tomada de la referencia, IoU
+medio **0,742** (0,71–0,81), confianza 0,78–0,90. Concepto `tree`: máscara en 1 de 4
+teselas (IoU 0,76 con otra copa real). Detalle en
+[`evaluations/aerial/detectree2-sam.json`](../evaluations/aerial/detectree2-sam.json).
+
+**Conclusiones**:
+1. H1 confirmada en dos dominios: el concepto `tree` casi nunca detecta copas aéreas.
+2. Un prompt espacial basta para segmentar un árbol o grupo concreto con IoU ~0,7.
+3. La caja supera a los puntos en esta copa.
+4. Para este clip, más resolución solo triplica la latencia.
+5. SAM 3.1 sigue árboles en video mientras están en cuadro; la limitación principal es
+   el movimiento de cámara.

@@ -99,3 +99,14 @@ casos validados: n = 0. La confianza de SAM no es IoU ni probabilidad; Top-k no 
 con mocks. Protocolo A–F, negativos y benchmarks aéreos en
 [BOTANICAL_EVALUATION.md](BOTANICAL_EVALUATION.md). Diagnóstico y campaña pagada propuesta
 en [SAM_SPATIAL_RESEARCH.md](SAM_SPATIAL_RESEARCH.md).
+
+## Campaña real USD 50 — 30-10-2026
+
+- **SAM:** prompts espaciales reales. En foto, caja con IoU 0,712 contra una referencia
+  del agente. En video, primer tracking positivo (dos árboles, 15 y 29 frames). En
+  Detectree2, caja de referencia con IoU 0,742, frente a `tree` que detecta 1/4.
+- **Muse:** 47 casos con etiquetas débiles. Top-1 0,686, pero 11/12 negativos reciben
+  especie del catálogo.
+- **Backend:** corregido el truncamiento de Muse por razonamiento.
+- No es precisión validada.
+[Informe](META_VALIDATION_CAMPAIGN_REPORT.md).
