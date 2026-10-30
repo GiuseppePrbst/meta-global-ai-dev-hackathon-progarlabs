@@ -15,6 +15,6 @@ Ordenado por valor de la demo, evidencia científica y dependencia. P0 bloquea e
 | P2 | Más taxones, fotografías y rutas verificadas | Ampliar tras validar experiencia y licencias. |
 | P3 | DINOv3, crecimiento, invasoras e infraestructura | Investigación posterior; requiere nuevos datos, permisos y evaluación. |
 
-No añadir cuentas complejas, gamificación, red social, pagos, app nativa u offline durante el bootstrap. Antes de exposición pública sí se requieren controles de acceso/retención adecuados; no posponerlos para publicar datos reales.
+No añadir cuentas complejas, gamificación, red social, pagos ni modo offline completo durante el bootstrap. La app nativa (Expo) es el cliente de la demo desde el 27-10-2026 ([ADR 0001](../../apps/mobile/docs/adr/0001-app-movil-como-cliente-de-la-demo.md)); solo tolera desconexión. Antes de exposición pública sí se requieren controles de acceso/retención adecuados; no posponerlos para publicar datos reales.
 
 Fabiana define valor y estrategia empresarial; José estima experiencia/interfaz; Giuseppe estima datos/modelos/riesgo. La priorización competitiva no se atribuye a Fabiana mientras su participación no esté autorizada. Recortar alcance frente a una dependencia imposible, sin fingir que se completó.
