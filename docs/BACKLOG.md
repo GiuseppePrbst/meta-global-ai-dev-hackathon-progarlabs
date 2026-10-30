@@ -115,3 +115,16 @@ Estado base: 27-10-2026. Los IDs son estables y las 11 issues iniciales fueron c
   Pendiente dataset con etiquetas humanas y autorización externa; no precisión atribuible al mock.
 
 Las issues no se cierran por tener código parcial. Evidencia: [reporte GIS/ML](GIS_ML_REPORT.md).
+
+## Incremento de contexto — 27-10-2026
+
+- BV-04: crosswalk del catálogo/sinónimos para nombres predominantes, ambiguos/fuera de
+  catálogo unresolved. No equivale a etiquetas ni cierra la revisión botánica.
+- BV-05: se conservan Muse/SAM; sin sustitución de modelos ni llamadas pagadas nuevas.
+- BV-06: point/area/layers y migración PostGIS, QA real offline del piloto CONAF/BCN.
+  Importación de archivos reales en PostGIS local pendiente; CI verifica fixtures sintéticos.
+- BV-07: fechas por tile verificadas y nuevo método ponderado; no reescribe evidencia #13.
+- BV-08: protocolo acotado, n=0 confirmado por usuario; dataset humano/permisos y A/B/D/E
+  pendientes, BioCLIP condicionado. No cerrar issues por pruebas del software.
+
+Próximos pasos y trazabilidad en [informe de contexto](FOREST_CONTEXT_REPORT.md).

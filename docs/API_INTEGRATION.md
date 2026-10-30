@@ -91,3 +91,73 @@ No es un control de presupuesto distribuido. Proceso forestal independiente de M
 Tarea de integración José: mostrar candidatos/evidencias y limitaciones sin porcentajes,
 distinguir abstención/error y mostrar fuente/periodo/cobertura de alturas. El selector de
 atlas actual aún no envía polígonos al endpoint. No se modificó su implementación.
+
+## Contexto auditado y alturas ponderadas (incremento 27-10-2026)
+
+Los endpoints anteriores mantienen sus tipos/campos; forest/analyze conserva Polygon y
+selección por centro. Las rutas nuevas son aditivas y sus esquemas completos están en
+OpenAPI. Requieren ingesta de capas en PostGIS o raster revisado, no se cargan datos
+automáticamente. [Informe y QA real](FOREST_CONTEXT_REPORT.md). No hay cambios de UI.
+
+| Ruta | Entrada y estados |
+| --- | --- |
+| GET /layers | ContextLayer[]; [] si no hay fuentes registradas; 503 sin DB/migración |
+| POST /context/point | location Point WGS84, accuracy_m opcional null o 0–200; ContextResponse |
+| POST /context/area | area Polygon/MultiPolygon WGS84, hasta 1 km² y 20000 posiciones; ContextResponse |
+| POST /forest/analyze/weighted | source_id chmv2 y area Polygon/MultiPolygon; WeightedStatistics |
+
+Point válido de referencia del atlas, sin exactitud GPS afirmada:
+
+```json
+{"location":{"type":"Point","coordinates":[-72.08333333333333,-40.68333333333333]},"accuracy_m":null}
+```
+
+Ejemplo AOI pequeño (solo contrato; no límite oficial):
+
+```json
+{"area":{"type":"Polygon","coordinates":[[[-72.084,-40.684],[-72.082,-40.684],[-72.082,-40.682],[-72.084,-40.682],[-72.084,-40.684]]]}}
+```
+
+ContextResponse contiene status matched/no_coverage, forest_context[], protected_context[],
+source_refs[], coverage[], query_area_m2, accuracy_m, analysis_crs, taxonomy_version,
+quality_flags y limitations. Cada match conserva source_id/feature_id, attributes_raw,
+attributes normalizados, predominant_species[], point_on_boundary y área/fracción cuando
+corresponde. Un taxón unresolved tiene accepted_taxon_id=null; no se elimina del contexto.
+Las especies predominantes nunca son identificación de la foto ni labels de entrenamiento.
+
+Ejemplo de elemento taxonómico real observado en el motor offline:
+
+```json
+{"scientific_name_raw":"Laurelia philippiana","accepted_taxon_id":"laureliopsis-philippiana","resolution":"catalog_match"}
+```
+
+Punto en frontera puede tener varios matches; quality_flags incluye point_on_boundary
+y multiple_matches. Capas solapadas usan unión por fuente y reportan overlap_excess_m2.
+No sumar coberturas forestales/protegidas entre sí. No mostrar no_coverage como sin bosque,
+sin especies o sin protección. accuracy_m null significa incertidumbre no proporcionada.
+
+ContextLayer informa productor/distribuidor, versión, fecha, licencia, hash del recorte,
+source_crs, storage_crs EPSG:4326 y estados separados de derechos/geometría/taxonomía.
+Ready se refiere a disponibilidad local, no a autorización de despliegue público: CONAF
+conserva redistribution_pending; BCN sigue siendo referencial. `altura` sigue como
+height_class_raw; superf_ha del padre no es superficie del AOI.
+
+Sin cobertura en punto: status no_coverage, listas de matches vacías y limitación explícita.
+Sin cobertura en AOI: cada fuente tiene fraction=0 y union_area_m2=0; no ausencia ecológica.
+Sin DB: 503 detail Contexto no configurado: requiere PostGIS y migración 002. Sin tablas o
+conexión: 503 detail Capas de contexto no disponibles. Geometría/precisión inválida: 422.
+
+Weighted usa el area del JSON anterior añadiendo source_id chmv2. Devuelve status
+ok/no_coverage/no_valid_data, método pixel_footprint_area, estimated=true, áreas AOI/raster/
+válida/nodata/cero ambiguo, coverage_fraction y ambiguous_fraction con denominador explícito,
+píxeles válidos, mean/min/max_height_m y source_acquisition_start/end/acquisition_reason.
+Fechas conocidas del tile 2102332230: 2013-09-16/2018-09-15, intervalo de seis adquisiciones.
+No es fecha por píxel. Con todo cero ambiguo, mean/min/max=null y status no_valid_data;
+no mostrar altura 0. Sin fechas verificadas, ambas null y razón explícita.
+
+El raster sin configurar responde 501; manifiesto/raster inválido 503; límites 422.
+[Resultados reales ponderados](../data/public/chmv2-weighted-2026-10-27.json).
+
+Tarea de José: estados de carga/error/no_coverage, procedencia/antigüedad, matches ambiguos
+y cobertura por fuente. Antes de producción: identidad por usuario, privacidad de observaciones,
+presupuesto global y worker con cancelación efectiva. No colocar tokens compartidos en la app.

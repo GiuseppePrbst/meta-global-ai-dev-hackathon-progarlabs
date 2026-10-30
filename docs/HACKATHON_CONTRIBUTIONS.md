@@ -43,3 +43,18 @@ Meta muse-spark-1.3/sam-3.1 y meta-sam-parser 0.1.0 son productos/dependencias p
 Se ejecutaron llamadas reales sobre dibujo sintético y una ventana raster abierta; no se
 entrenó modelo ni descargaron pesos. Cero fotos botánicas etiquetadas evaluadas.
 El historial técnico no acredita por sí solo admisión ni elegibilidad competitiva.
+
+## Contexto forestal verificable — 27 de octubre de 2026
+
+Incremento nuevo asistido por agente para Giuseppe: adquisición pública acotada, perfiles
+reales de piloto CONAF/BCN, contratos de contexto point/area, migración/store PostGIS,
+resolución taxonómica parcial, lectura de índices temporales CHMv2 y ponderación por huella.
+Se preservan clientes Meta, catálogo, observaciones y frontend. Cero modelos entrenados,
+fotos humanas evaluadas o llamadas Meta nuevas. Trabajo previo #13 y Research Pack son
+antecedentes; el ZIP se verificó y sus tests se ejecutaron aparte, no se copió a ciegas.
+Fiona/PyArrow/Shapely/PostGIS y los datasets son dependencias/productos preexistentes.
+
+Se preparó PR de reconciliación #15 porque el merge de #13 a bootstrap no había llegado
+a main. Sin merge automático ni cambios a PR ajenos. Informe, fuentes, comandos y límites
+en [FOREST_CONTEXT_REPORT](FOREST_CONTEXT_REPORT.md). Autor/committer humano verificado
+GiuseppePrbst; no se atribuye implementación a José ni contribución competitiva a Fabiana.

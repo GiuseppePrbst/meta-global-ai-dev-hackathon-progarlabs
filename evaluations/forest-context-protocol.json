@@ -1,0 +1,26 @@
+{
+  "protocol_version": "forest-context-v1-2026-10-27",
+  "status": "blocked_missing_human_labels",
+  "n_evaluable": 0,
+  "paid_calls": 0,
+  "observed_cost": 0,
+  "currency": "USD",
+  "approved_budget_for_this_run": 0,
+  "labels": "Independent human review; never spatial joins or the evaluated model",
+  "catalog": "Existing eight species plus explicit out-of-catalog negatives",
+  "splits": "Freeze by individual, campaign and spatial block before inference",
+  "duplicates": "SHA-256 plus perceptual near-duplicate review; no crossing splits",
+  "domains": ["ground", "drone"],
+  "experiments": {
+    "A": "Existing Muse baseline",
+    "B": "Existing SAM + Muse on identical cases",
+    "C": "BioCLIP2 local only if resources and a labeled dataset justify it",
+    "D": "Best measured visual baseline plus audited real context, without hard taxon exclusion",
+    "E": "Identical D with fixed-seed context permutation as negative control"
+  },
+  "metrics": ["top1", "top3", "abstention", "false_positives_on_negatives", "provider_errors", "latency", "n"],
+  "paired_comparison": "Same independent individuals; report each domain separately",
+  "decision": "No context improvement claim without a paired measurement and negative-control review",
+  "privacy": "Hepta images/weights/annotations stay local; no Meta transfer or publication",
+  "references": "Protected books/slides are not a dataset; a book excerpt is not an independent source"
+}

@@ -94,3 +94,5 @@ José Schwerter lidera Frontend/UI/UX; Giuseppe Proboste lidera GIS/ML. Fabiana 
 Los datos de Hepta Insights y sus derivados son **RESTRICTED**: deben permanecer fuera del repositorio y los worktrees y no se pueden enviar a Meta. Las claves solo viven en backend. [Política de datos](docs/DATA_GOVERNANCE.md), [licencias de fuentes](docs/DATASET_LICENSES.md) y [seguridad](docs/SECURITY.md).
 
 Repositorio público no equivale a licencia abierta de todos sus contenidos. No se concede una licencia de código hasta que ProGarLabs la decida explícitamente; cada dataset conserva sus términos. No se incluyen fotografías ajenas ni datasets restringidos.
+
+Incremento de contexto: [QA forestal real, PostGIS y ponderación temporal CHMv2](docs/FOREST_CONTEXT_REPORT.md).

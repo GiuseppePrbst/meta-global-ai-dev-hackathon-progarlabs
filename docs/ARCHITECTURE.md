@@ -66,3 +66,24 @@ una lectura por proceso, archivos 64 MiB. El plazo no interrumpe I/O bloqueada.
 Se excluyen ceros ambiguos CHMv2 y se declara sesgo potencial; fixture mantiene cero válido.
 Periodo global no sustituye fecha de adquisición del tile. Revisar aislamiento de proceso
 y nodata antes de ampliar proveedores. OpenAPI añade CanopyStatistics y campos de trazabilidad.
+
+## Contexto forestal auditable, 27-10-2026
+
+[Informe del incremento](FOREST_CONTEXT_REPORT.md). Se agrega almacenamiento PostGIS en
+context_layers/context_features con migración 002 reversible, GiST y geometría MultiPolygon
+4326. No se modifica observations. Ingesta local por hash/ID, fuentes originales fuera de Git.
+PostGIS selecciona candidatos por intersección; el módulo GIS compartido calcula contexto
+y superficies EPSG:32718. API point/area y QA offline usan el mismo motor. Por fuente,
+la cobertura usa unión; solapamiento separado. Los atributos originales nunca se sustituyen
+por códigos supuestos ni se convierten en etiquetas individuales. Taxonomía versionada
+por catálogo/sinónimos exactos, dejando fuera de catálogo/ambiguos unresolved.
+
+Se mantiene el raster histórico por centro. La ruta adicional forest/analyze/weighted
+intersecta huellas nativas con AOI en CRS métrico local; añade fracciones de área válida,
+nodata y ceros ambiguos, y fechas de adquisición independientes de publicación/modelo.
+Los Parquet estáticos se unen por quadkey único, no por una API STAC supuesta.
+
+Extra data opcional: Fiona/PyArrow para investigar SHP/Parquet; no entran al runtime mínimo.
+Versiones exactas en uv.lock. No se agregan modelos ni microservicios. Los límites de tiempo
+raster siguen siendo cooperativos; no se presenta este incremento como despliegue público.
+Reconsiderar worker aislado antes de exponerlo. Contexto es informativo hasta evaluar A/B/D/E.

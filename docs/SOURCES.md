@@ -62,3 +62,21 @@ Copernicus y NASA Earthdata son fuentes candidatas, todavía sin un recurso sele
 - [Fabric list tables](https://learn.microsoft.com/en-us/rest/api/fabric/lakehouse/tables/list-tables),
   [OneLake access](https://learn.microsoft.com/en-us/fabric/onelake/onelake-access-api).
   Se verificó sesión Azure y acceso local a esquema; no se publican IDs, URLs ni registros privados.
+
+## Verificación de fuentes forestales, 27-10-2026
+
+- [Catálogo MINAGRI](https://ide.minagri.gob.cl/descarga-de-capas-shp/planificacion-catastral/):
+  cbn_10reg_2018, escala 1:50000, EPSG:32718 anunciado; archivo RAR demasiado grande para
+  el límite, no verificado como SHP.
+- [Servicio oficial CIREN/13](https://esri.ciren.cl/server/rest/services/USOS_DE_LA_TIERRA__CONAF/MapServer/13):
+  metadatos/fields y features reales del piloto; latestWkid 3857, exportación WGS84 explícita.
+- [Metadato legal CONAF](https://geoportal.cl/geoportal/catalog/42565/Servicio%20Web%20de%20Mapas%20-%20Usos%20de%20la%20Tierra%20%28CONAF%29):
+  atribuir CONAF. No se interpreta como licencia CC ni permiso general de redistribución.
+- [BCN catálogo y términos](https://www.bcn.cl/siit/mapas_vectoriales/index_html),
+  [ZIP SNASPE](https://www.bcn.cl/obtienearchivo?id=repositorio%2F10221%2F10404%2F2%2FSnaspe.zip):
+  descarga verificada, PRJ/CPG y QA piloto; atribución BCN, cartografía referencial de varias ediciones.
+- [CHMv2 cloud-native](https://source.coop/tge-labs/meta-chm-v2),
+  [acq_dates](https://data.source.coop/tge-labs/meta-chm-v2/acq_dates.parquet),
+  [tiles](https://data.source.coop/tge-labs/meta-chm-v2/tiles.parquet): esquemas y hashes
+  verificados, quadkey uno a uno, seis adquisiciones 2013-09-16/2018-09-15 para 2102332230.
+  Son índices/catálogo estático, no API STAC search.

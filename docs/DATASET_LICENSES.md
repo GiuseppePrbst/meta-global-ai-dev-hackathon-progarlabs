@@ -56,3 +56,19 @@ Completar valores reales, checksum y límites espaciales/temporales antes de usa
 La consulta de fuentes no equivale a revisión botánica humana. No se otorga nueva licencia
 a fotografías privadas; autorización local del usuario registrada en la sesión, sin publicación
 ni envío a terceros. No se incorporó ningún contenido Hepta al repositorio.
+
+## Fuentes reales de contexto, 27-10-2026
+
+| Recurso | Fuente/versión y procesamiento | Derechos / validación |
+| --- | --- | --- |
+| cbn_10reg_2018 MINAGRI | Catálogo oficial, CONAF productor, IDE MINAGRI/CIREN distribuidor. RAR HTTP 200 de 944670461 bytes; bloqueado a 256 MiB, no descargado. | PRJ/DBF/CPG y derechos de redistribución del fichero no comprobados; no etiquetar validated. |
+| Catastro Los Lagos CIREN REST/13 | Mismo linaje CONAF 2018, no otra validación independiente. Tres features oficiales completos del AOI 500×500 m, output WGS84, fuente 3857, recorte/QA en 32718. | Metadato legal exige citar CONAF; local reference, redistribution_pending. Geometría del piloto comprobada; taxonomía parcial y validación humana pendiente. No publicar polígonos/archivos crudos aquí. |
+| BCN Snaspe.zip | Biblioteca del Congreso Nacional, compilación oficial de edición por registro no verificada. 137 registros, PRJ 3857, CPG UTF-8, piloto de un polígono; ocho geometrías inválidas fuera del piloto sin reparar. | Términos propios de libre uso con atribución BCN; referencial, no geodésico ni garantía legal actual. No se asigna licencia CC uniforme. |
+| CHMv2 acq_dates/tiles Parquet | Meta/WRI, repackaging Taylor Geospatial, consulta 27-10-2026, unión por quadkey de 213109 filas cada uno. | CC BY 4.0; atribución Meta/WRI/Vantor y Taylor Geospatial. Intervalo del tile 2013-09-16/2018-09-15, no captura de cada píxel. |
+
+Archivos y hashes de todos los componentes, campos, perfiles y discrepancias en
+[data/public/forest-context-qa-2026-10-27.json](../data/public/forest-context-qa-2026-10-27.json)
+y [evidencia CHMv2 nueva](../data/public/chmv2-weighted-2026-10-27.json). Datos binarios,
+recortes y dominios completos permanecen fuera del checkout; responsable de revisión
+Giuseppe. Fecha de acceso no cambia la edición de catastro a 2026. No se otorgan permisos
+de entrenamiento/publicación sobre libros, fotos privadas ni recursos no comprobados.

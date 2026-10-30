@@ -1,3 +1,4 @@
+from datetime import date
 from typing import Annotated, Literal, Protocol
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -95,3 +96,32 @@ class UnconfiguredCanopyProvider:
         raise NotImplementedError(
             "CHMv2 no configurado: falta seleccionar y validar una fuente COG permitida."
         )
+
+
+class WeightedStatistics(BaseModel):
+    status: Literal["ok", "no_coverage", "no_valid_data"]
+    source_id: str
+    source_version: str
+    method: Literal["pixel_footprint_area"] = "pixel_footprint_area"
+    analysis_crs: Literal["EPSG:32718"] = "EPSG:32718"
+    source_crs: str
+    unit: Literal["m"] = "m"
+    estimated: Literal[True] = True
+    aoi_area_m2: float
+    raster_intersection_area_m2: float
+    valid_area_m2: float
+    ambiguous_zero_area_m2: float
+    nodata_area_m2: float
+    coverage_fraction: float
+    ambiguous_fraction: float | None
+    ambiguous_fraction_denominator: Literal["raster_intersection_area_m2"] = (
+        "raster_intersection_area_m2"
+    )
+    valid_pixels: int
+    mean_height_m: float | None
+    min_height_m: float | None
+    max_height_m: float | None
+    source_acquisition_start: date | None
+    source_acquisition_end: date | None
+    acquisition_reason: str | None
+    limitations: list[str]

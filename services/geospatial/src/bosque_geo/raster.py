@@ -1,6 +1,7 @@
 """Bounded local raster analysis. Raster paths never come from HTTP requests."""
 
 import hashlib
+from datetime import date
 from pathlib import Path
 from threading import BoundedSemaphore
 from time import monotonic
@@ -8,7 +9,7 @@ from typing import Literal
 
 import numpy as np
 import rasterio
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 from pyproj import Geod
 from rasterio.features import geometry_mask, geometry_window, shapes
 from rasterio.warp import transform_geom
@@ -33,6 +34,21 @@ class RasterSpec(BaseModel):
     offset: float = Field(allow_inf_nan=False)
     zero_policy: Literal["valid", "exclude_ambiguous"]
     validated: Literal[True]
+    source_acquisition_start: date | None = None
+    source_acquisition_end: date | None = None
+    acquisition_reason: str | None = "Fecha por tile no verificada"
+
+    @model_validator(mode="after")
+    def acquisition_interval(self):
+        if bool(self.source_acquisition_start) != bool(self.source_acquisition_end):
+            raise ValueError("Se requieren ambas fechas o ninguna")
+        if self.source_acquisition_start:
+            if self.source_acquisition_start > self.source_acquisition_end:
+                raise ValueError("Intervalo de adquisición invertido")
+            self.acquisition_reason = None
+        elif not self.acquisition_reason:
+            raise ValueError("Fechas ausentes requieren una razón")
+        return self
 
 
 def area_m2(geometry: dict) -> float:

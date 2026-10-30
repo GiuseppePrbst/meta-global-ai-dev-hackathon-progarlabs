@@ -51,3 +51,11 @@ Cualquier copia permitida debe permanecer fuera del repositorio y de sus worktre
 Se comprobó acceso de lectura a esquema con Azure/OneLake; no se descargaron fotos.
 Antes de ampliar uso se requiere autorización específica del titular. La declaración
 del usuario queda como evidencia de sesión, no como una licencia pública del dataset.
+
+## Alcance comunicado para esta misión de contexto
+
+El usuario confirmó autorización de procesamiento y entrenamiento LOCAL con fotos Hepta,
+sin publicación ni envío a Meta. Pesos, anotaciones y derivados permanecen privados fuera
+de repositorios/worktrees; no se amplía a otros datos. No se accedió a Fabric/Hepta ni se
+entrenó durante este incremento. No hay conjunto humano etiquetado. Los libros/PPTX no
+se redistribuyen ni se convierten en dataset; imágenes externas requieren permiso específico.
