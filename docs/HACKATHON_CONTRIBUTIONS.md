@@ -134,3 +134,18 @@ propietario; sus anotaciones están etiquetadas como del agente. Preexistentes: 
 Hepta privados, Detectree2 (CC BY 4.0), fotos Pl@ntNet/Commons con licencia por archivo,
 APIs GBIF/WFO y modelos alojados de Meta. Sin cambios web/móvil ni atribuciones a José o
 Fabiana.
+
+## Consolidación e identificación open-set — 30-10-2026
+
+Giuseppe autorizó los merges secuenciales de #17 a #21 (merge commits, sin `--admin`;
+`main` sin protección configurada). Trabajo nuevo con asistencia de Claude Code (Claude
+Opus 5.5):
+- Contrato y estrategias open-set.
+- Comparadores con fuente.
+- Conjunto independiente congelado.
+- Métricas pareadas.
+- Contratos para José.
+
+La revisión visual de casos es del agente. Sin cambios web/móvil ni atribuciones a José o
+Fabiana. Preexistentes: fotos Pl@ntNet/Commons con licencia por archivo, fichas de
+Fundación Philippi, conifers.org y RHS, y modelos alojados de Meta.

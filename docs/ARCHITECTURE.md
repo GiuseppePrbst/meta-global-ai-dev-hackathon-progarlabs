@@ -188,3 +188,23 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
   `by_photo_type`. Sin inferencia local ni nuevos SDK.
 [Investigación](SAM_SPATIAL_RESEARCH.md) · [Datasets](BOTANICAL_DATASETS.md) ·
 [Evaluación](BOTANICAL_EVALUATION.md).
+
+## Decisión 2026-10-30 — identificación de conjunto abierto
+
+- `Identification` añade campos opcionales: `catalog_assessment`, `acceptance`,
+  `accepted_species_id`, `exploratory_candidates`, `similar_out_of_catalog` y `strategy`.
+  `status`, `candidates` y los códigos HTTP no cambian. Una hipótesis no aceptada nunca va
+  en `candidates`: un cliente antiguo ve una abstención y la captura no puede usar esa
+  especie, porque `capture_store` exige que esté en `candidates`.
+- Estrategias en `bosque_ai.open_set`:
+  - `baseline`: prompt, esquema y tope de 1200 tokens previos, intactos.
+  - `abstain`: reglas de conjunto abierto, tope de 1600 tokens.
+  - `comparators`: añade 6 comparadores externos con fuente, cargados desde
+    `resources/comparators.json` y validados contra el catálogo.
+  - `verify`: segunda llamada solo si hay candidato aceptado, con los comparadores
+    pertinentes a ese candidato. Es una comprobación del mismo modelo, no una validación
+    independiente.
+- Aceptación selectiva determinista: `supported_candidate`, al menos un rasgo observado y
+  ninguna contradicción para el candidato.
+- `/identify` usa `IDENTIFY_STRATEGY` (por defecto `baseline`), sin endpoints nuevos.
+- Los comparadores no son especies coleccionables y su loader rechaza duplicados del catálogo.
