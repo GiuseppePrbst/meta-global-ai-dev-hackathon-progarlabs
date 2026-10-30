@@ -36,6 +36,7 @@ class MetaResponsesClient:
         self.api_key = api_key
         self.timeout_seconds = timeout_seconds
         self.transport = transport
+        self.usage: dict[str, int] = {}
 
     async def output_text(
         self,
@@ -86,6 +87,7 @@ class MetaResponsesClient:
                         "schema": schema,
                     },
                 },
+                "max_completion_tokens": 1200,
             }
         try:
             async with (
@@ -127,6 +129,9 @@ class MetaResponsesClient:
                                     )
                             if event.get("type") == "response.completed":
                                 completed = True
+                                self.record_usage(
+                                    event.get("response", {}).get("usage")
+                                )
                     if not completed:
                         raise MetaAPIError("Meta devolvió un stream incompleto")
                     text = "".join(chunks)
@@ -138,6 +143,7 @@ class MetaResponsesClient:
                     body: dict[str, Any] = response.json()
                     if not isinstance(body, dict):
                         raise MetaAPIError("Meta devolvió una respuesta inválida")
+                    self.record_usage(body.get("usage"))
                     if schema is not None:
                         choice = body["choices"][0]
                         if choice.get("finish_reason") != "stop":
@@ -175,6 +181,22 @@ class MetaResponsesClient:
             logger.warning("meta_request_failed reason=transport_or_protocol")
             raise MetaAPIError("No se pudo interpretar la respuesta de Meta") from None
 
+    def record_usage(self, usage):
+        if not isinstance(usage, dict):
+            return
+        for key in (
+            "prompt_tokens",
+            "completion_tokens",
+            "total_tokens",
+            "input_tokens",
+            "output_tokens",
+            "images_processed",
+            "video_frames_processed",
+        ):
+            value = usage.get(key)
+            if type(value) is int and value >= 0:
+                self.usage[key] = self.usage.get(key, 0) + value
+
 
 class MuseSparkAdapter:
     def __init__(self, client: MetaResponsesClient, model: str = "muse-spark-1.3"):
@@ -190,7 +212,12 @@ class MuseSparkAdapter:
         )
 
     async def identify(
-        self, image: bytes, content_type: str, catalog: dict[str, str]
+        self,
+        image: bytes,
+        content_type: str,
+        catalog: dict[str, str],
+        *,
+        knowledge: dict | None = None,
     ) -> Identification:
         started = perf_counter()
         prompt = (
@@ -201,6 +228,8 @@ class MuseSparkAdapter:
             "diagnósticos, devuelve candidates vacío y pide otra fotografía. Incluye evidencia "
             "observable por candidato y limitaciones. Catálogo controlado: "
             + json.dumps(catalog, ensure_ascii=False)
+            + ". Evidencia del catálogo (pending no es rasgo verificado): "
+            + json.dumps(knowledge or {}, ensure_ascii=False)
         )
         try:
             text = await self.client.output_text(
@@ -222,6 +251,8 @@ class MuseSparkAdapter:
                 limitations=parsed.limitations,
                 execution_status="completed",
                 latency_ms=(perf_counter() - started) * 1000,
+                prompt_version="botanical-visible-v2",
+                usage=self.client.usage.copy(),
             )
         except ValidationError:
             raise MetaAPIError("Meta devolvió un análisis botánico inválido") from None

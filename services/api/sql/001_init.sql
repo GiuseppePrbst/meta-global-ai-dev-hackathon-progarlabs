@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS observations (
     species_id text,
     notes text NOT NULL DEFAULT '' CHECK (length(notes) <= 2000),
     location geometry(Point, 4326),
+    accuracy_m double precision CHECK (accuracy_m >= 0 AND accuracy_m <= 200),
     created_at timestamptz NOT NULL DEFAULT now()
 );
 
