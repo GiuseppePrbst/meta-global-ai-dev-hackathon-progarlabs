@@ -6,23 +6,45 @@ from pathlib import Path
 from bosque_ai.meta import MetaResponsesClient
 
 from tools.meta_sam_api_lab.lab import (
+    ObjectSpec,
     cleanup_remote,
     config_from_private,
     run_experiment,
     write_json,
 )
-from tools.meta_sam_api_lab.media import extract, inventory, prepare_clip, private_path
+from tools.meta_sam_api_lab.media import (
+    extract,
+    inventory,
+    prepare_clip,
+    prepare_resolution_matrix,
+    private_path,
+)
 
 
 def main():
     parser = argparse.ArgumentParser(description="Private hosted SAM 3.1 visual lab")
     parser.add_argument(
-        "action", choices=["inventory", "prepare", "image", "video", "serve", "cleanup"]
+        "action",
+        choices=[
+            "inventory",
+            "prepare",
+            "matrix",
+            "image",
+            "video",
+            "serve",
+            "cleanup",
+        ],
     )
     parser.add_argument("--source", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--config", type=Path)
-    parser.add_argument("--concept", default="tree")
+    parser.add_argument("--concept")
+    parser.add_argument(
+        "--objects", type=Path, help="Private JSON list of ObjectSpec (spatial prompts)"
+    )
+    parser.add_argument("--direction", choices=["both", "forward", "backward"])
+    parser.add_argument("--confidence", action="store_true")
+    parser.add_argument("--width", type=int, default=640)
     parser.add_argument(
         "--box", type=float, nargs=4, metavar=("LEFT", "TOP", "RIGHT", "BOTTOM")
     )
@@ -52,6 +74,12 @@ def main():
             manifest["cleanup"] = asyncio.run(cleanup_remote(client, manifest))
             write_json(manifest_path, manifest)
             print(json.dumps({"cleanup": manifest["cleanup"]}))
+        elif args.action == "matrix":
+            # Local FFmpeg only: same interval/FPS/duration at 640, 960 and 1280 px.
+            matrix = prepare_resolution_matrix(
+                args.source, private_path(args.output), start=args.start
+            )
+            print(json.dumps({"status": "prepared", "clips": len(matrix["clips"])}))
         elif args.action in {"inventory", "prepare"}:
             output = private_path(args.output)
             output.mkdir(parents=True, exist_ok=True)
@@ -64,9 +92,21 @@ def main():
                     if Path(row["name"]).suffix.lower() == ".mp4"
                 )
                 source = extract(args.source, output / "source", index)
-                prepare_clip(source, output / "clip", start=args.start)
+                prepare_clip(
+                    source, output / "clip", start=args.start, width=args.width
+                )
             print(json.dumps({"status": "prepared", "entries": len(data["entries"])}))
         else:
+            objects = (
+                [
+                    ObjectSpec.model_validate(item)
+                    for item in json.loads(
+                        private_path(args.objects).read_text(encoding="utf-8")
+                    )
+                ]
+                if args.objects
+                else None
+            )
             result = asyncio.run(
                 run_experiment(
                     config_from_private(args.config),
@@ -76,6 +116,9 @@ def main():
                     video=args.action == "video",
                     authorized=args.authorize_meta,
                     object_box=args.box,
+                    objects=objects,
+                    direction=args.direction,
+                    include_confidence=args.confidence,
                 )
             )
             print(

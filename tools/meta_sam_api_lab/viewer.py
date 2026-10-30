@@ -3,21 +3,92 @@
 import asyncio
 import json
 import logging
+from datetime import UTC, datetime
 from pathlib import Path
+from typing import Literal
 from uuid import uuid4
 
 from fastapi import FastAPI, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
+from PIL import Image
 from pydantic import BaseModel, ConfigDict, Field
 
-from tools.meta_sam_api_lab.lab import CONCEPTS, config_from_private, run_experiment
+from tools.meta_sam_api_lab.lab import (
+    CONCEPTS,
+    SAFE_ID,
+    ObjectSpec,
+    config_from_private,
+    describe_media,
+    ledger_status,
+    plan_request,
+    run_experiment,
+)
 from tools.meta_sam_api_lab.media import private_path
+from tools.meta_sam_api_lab.metrics import (
+    QUALITY,
+    mask_metrics,
+    polygon_mask,
+    track_metrics,
+)
 
 
 class RunRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     source: str = Field(min_length=1, max_length=300)
-    concept: str = "tree"
+    concept: str | None = None
+    objects: list[ObjectSpec] | None = Field(default=None, max_length=16)
+    direction: Literal["both", "forward", "backward"] | None = None
+    include_confidence: bool = False
+    parent_experiment_id: str | None = Field(default=None, max_length=64)
+    correction_reason: str | None = Field(default=None, max_length=300)
+
+
+class Reference(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    reference_id: str = Field(pattern=r"^[A-Za-z0-9_-]{1,32}$")
+    frame: int = Field(ge=0)
+    polygons: list[list[list[float]]] = Field(min_length=1, max_length=20)
+
+
+class ReviewRequest(BaseModel):
+    """Human review stored beside, never inside, the provider result."""
+
+    model_config = ConfigDict(extra="forbid")
+    reviewer: str = Field(min_length=1, max_length=100)
+    quality: Literal[QUALITY] | None = None
+    notes: str = Field(default="", max_length=2000)
+    references: list[Reference] = Field(default_factory=list, max_length=500)
+
+
+RESULT_FIELDS = {
+    "status",
+    "model",
+    "model_version",
+    "concept",
+    "media",
+    "cleanup",
+    "usage",
+    "latency_ms",
+    "estimated_usd",
+    "preview_estimated_usd",
+    "frames",
+    "tracks",
+    "fps",
+    "masks",
+    "no_mask_frames",
+    "prompt_mode",
+    "prompt",
+    "objects",
+    "direction",
+    "prompt_frame",
+    "prepared_size",
+    "frames_processed_estimate",
+    "include_confidence",
+    "parent_experiment_id",
+    "correction_reason",
+    "created_at",
+    "source_ref",
+}
 
 
 def create_viewer(root: Path, config_file: Path, port: int = 8876):
@@ -69,13 +140,41 @@ def create_viewer(root: Path, config_file: Path, port: int = 8876):
             raise HTTPException(404, "Media type not served")
         return resolved
 
+    def saved(identifier: str) -> Path:
+        if not SAFE_ID.fullmatch(identifier):
+            raise HTTPException(404, "Result not found")
+        path = root / "outputs" / identifier
+        if not (path / "result.json").is_file():
+            raise HTTPException(404, "Result not found")
+        return path
+
+    def describe(source: Path) -> dict:
+        try:
+            info = describe_media(source, source.suffix.lower() == ".mp4")
+        except (ValueError, HTTPException) as exc:
+            raise HTTPException(422, str(getattr(exc, "detail", exc))) from None
+        info.pop("image_bytes", None)
+        return info
+
+    def plan(item: RunRequest):
+        source = asset(item.source)
+        info = describe(source)
+        try:
+            return source, plan_request(
+                info, item.concept, item.objects, item.direction
+            )
+        except ValueError as exc:
+            raise HTTPException(422, str(exc)) from None
+
     @app.get("/")
     def index():
         return FileResponse(static / "viewer.html")
 
-    @app.get("/viewer.js")
-    def javascript():
-        return FileResponse(static / "viewer.js", media_type="text/javascript")
+    @app.get("/{name}.js")
+    def javascript(name: str):
+        if name not in {"viewer", "geometry"}:
+            raise HTTPException(404, "Not found")
+        return FileResponse(static / f"{name}.js", media_type="text/javascript")
 
     @app.get("/assets/{path:path}")
     def media(path: str):
@@ -104,39 +203,97 @@ def create_viewer(root: Path, config_file: Path, port: int = 8876):
                 {
                     "id": manifest.parent.name,
                     "status": data["status"],
-                    "concept": data["concept"],
+                    "concept": data.get("concept") or "spatial",
                     "media": data["media"],
+                    "prompt_mode": data.get("prompt_mode") or "concept",
+                    "parent_experiment_id": data.get("parent_experiment_id"),
                 }
             )
         return {"sources": sources, "results": results, "concepts": sorted(CONCEPTS)}
 
     @app.get("/api/result/{identifier}")
     def result(identifier: str):
-        if not identifier or any(
-            c not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-"
-            for c in identifier
-        ):
-            raise HTTPException(404, "Result not found")
-        path = root / "outputs" / identifier / "result.json"
-        if not path.is_file():
-            raise HTTPException(404, "Result not found")
-        data = json.loads(path.read_text(encoding="utf-8"))
-        fields = {
-            "status",
-            "model",
-            "concept",
-            "media",
-            "cleanup",
-            "usage",
-            "latency_ms",
-            "estimated_usd",
-            "frames",
-            "tracks",
-            "fps",
-            "masks",
-            "no_mask_frames",
+        data = json.loads((saved(identifier) / "result.json").read_text("utf-8"))
+        return {key: value for key, value in data.items() if key in RESULT_FIELDS}
+
+    @app.get("/api/source")
+    def source_info(path: str):
+        """Prepared size, frames and FPS: the space every prompt coordinate uses."""
+        return describe(asset(path))
+
+    @app.post("/api/preview")
+    def preview(item: RunRequest):
+        """Exact request a run would send, plus read-only budget. Never reserves."""
+        _, planned = plan(item)
+        try:
+            budget = ledger_status(config_from_private(config_file))
+        except Exception:  # noqa: BLE001 - private config/DB detail stays server-side
+            budget = {"status": "unavailable", "can_reserve": False}
+        return {
+            **planned,
+            "include_confidence": item.include_confidence,
+            "budget": budget,
         }
-        return {key: value for key, value in data.items() if key in fields}
+
+    @app.get("/api/review/{identifier}")
+    def latest_review(identifier: str):
+        reviews = sorted(saved(identifier).glob("review-*.json"))
+        return json.loads(reviews[-1].read_text("utf-8")) if reviews else None
+
+    @app.post("/api/review/{identifier}")
+    def review(identifier: str, item: ReviewRequest):
+        folder = saved(identifier)
+        data = json.loads((folder / "result.json").read_text("utf-8"))
+        frames = {f["frame"]: f for f in data.get("frames") or []}
+        evaluations, matches = [], {}
+        for reference in item.references:
+            frame = frames.get(reference.frame)
+            if frame is None:
+                raise HTTPException(422, "Reference frame not in result")
+            with Image.open(folder / frame["source"]) as image:
+                size = image.size
+            if any(
+                not (0 <= x <= size[0] and 0 <= y <= size[1])
+                for polygon in reference.polygons
+                for x, y, *_ in polygon
+            ):
+                raise HTTPException(422, "Reference outside prepared media")
+            try:
+                truth = polygon_mask(size, reference.polygons)
+            except ValueError as exc:
+                raise HTTPException(422, str(exc)) from None
+            scored = []
+            for obj in frame["objects"]:
+                with Image.open(folder / obj["mask"]) as mask:
+                    scored.append((obj["id"], mask_metrics(mask, truth)))
+            best = max(scored, key=lambda pair: pair[1]["iou"] or 0, default=None)
+            evaluations.append(
+                {
+                    "reference_id": reference.reference_id,
+                    "frame": reference.frame,
+                    "best_predicted_id": best[0] if best else None,
+                    "metrics": best[1]
+                    if best
+                    else mask_metrics(Image.new("1", size), truth),
+                    "all_predictions": dict(scored),
+                }
+            )
+            matches.setdefault(reference.frame, {})[reference.reference_id] = (
+                (best[0], best[1]["iou"] or 0) if best else (None, 0)
+            )
+        record = {
+            "classification": "RESTRICTED",
+            "result_id": identifier,
+            "reviewed_at": datetime.now(UTC).isoformat(timespec="seconds"),
+            **item.model_dump(),
+            "evaluations": evaluations,
+            "tracking": track_metrics(matches) if data["media"] == "video" else None,
+            "note": "Human reference; model confidence is not IoU or accuracy.",
+        }
+        stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%S%fZ")
+        with (folder / f"review-{stamp}.json").open("x", encoding="utf-8") as target:
+            json.dump(record, target, indent=2)
+        return record
 
     @app.post("/api/upload")
     async def upload(file: UploadFile):
@@ -167,9 +324,9 @@ def create_viewer(root: Path, config_file: Path, port: int = 8876):
 
     @app.post("/api/run")
     async def run(item: RunRequest):
-        if item.concept not in CONCEPTS:
-            raise HTTPException(422, "One allowed concept required")
-        source = asset(item.source)
+        source, _ = plan(item)  # same validation as preview, before any reservation
+        if item.parent_experiment_id is not None:
+            saved(item.parent_experiment_id)
         config = config_from_private(config_file)
         identifier = uuid4().hex
         output = root / "outputs" / identifier
@@ -184,6 +341,12 @@ def create_viewer(root: Path, config_file: Path, port: int = 8876):
                         item.concept,
                         video=source.suffix.lower() == ".mp4",
                         authorized=True,
+                        objects=item.objects,
+                        direction=item.direction,
+                        include_confidence=item.include_confidence,
+                        parent_experiment_id=item.parent_experiment_id,
+                        correction_reason=item.correction_reason,
+                        source_ref=item.source,
                     )
                 except Exception as exc:  # noqa: BLE001 - private worker boundary
                     path = output / "result.json"
@@ -194,6 +357,9 @@ def create_viewer(root: Path, config_file: Path, port: int = 8876):
                                 {
                                     "status": "validation_error",
                                     "concept": item.concept,
+                                    "prompt_mode": "spatial"
+                                    if item.objects
+                                    else "concept",
                                     "media": "video"
                                     if source.suffix.lower() == ".mp4"
                                     else "image",

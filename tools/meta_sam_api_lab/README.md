@@ -48,11 +48,13 @@ prepare --source <ZIP_AUTORIZADO> --output <PRIVATE_ROOT>/prepared-run --start 5
 image --source <FOTO> --output <PRIVATE_ROOT>/outputs/image-run --config <CONFIG> --concept vegetation --authorize-meta
 video --source <CLIP_PREPARADO> --output <PRIVATE_ROOT>/outputs/video-run --config <CONFIG> --concept tree --authorize-meta
 video --source <CLIP_PREPARADO> --output <PRIVATE_ROOT>/outputs/box-run --config <CONFIG> --box 10.2 20.4 100.8 150.1 --authorize-meta
+video --source <CLIP_PREPARADO> --output <PRIVATE_ROOT>/outputs/spatial-run --config <CONFIG> --objects <OBJETOS.json> --direction both --confidence --authorize-meta
+matrix --source <VIDEO_EXTRAIDO> --output <PRIVATE_ROOT>/prepared/resolution-matrix --start 5
 cleanup --output <PRIVATE_ROOT>/outputs/video-run --config <CONFIG>
 serve --output <PRIVATE_ROOT> --config <CONFIG> --port 8876
 ```
 
-`prepare` extrae el primer MP4 del ZIP validado y genera cinco segundos, ancho 640,
+`prepare` extrae el primer MP4 del ZIP validado y genera cinco segundos, ancho `--width` (640, 960 o 1280; 640 por defecto),
 10 FPS, H.264, sin audio/telemetría; no sobrescribe. `inventory` no extrae. Para otro
 clip usa `media.prepare_clip(source, output, start=..., seconds=...)`, máximo diez segundos.
 Consulta `preparation.json` para transformación, orientación y tiempos relativos.
@@ -68,11 +70,33 @@ El helper explícito `lab.scene_advisory(config, sources, output)` admite hasta 
 imágenes y Muse 1.3 con JSON Schema y esfuerzo `minimal`; reserva presupuesto y nunca
 se llama automáticamente desde SAM. Su propuesta visual no es ground truth.
 
+### Prompts espaciales
+
+`--objects` apunta a un JSON privado con una lista de objetos en píxeles del medio preparado:
+
+```json
+[{"id": 1, "prompts": [{"frame": 10, "box": [12.5, 30, 200.2, 310]},
+                       {"frame": 25, "points": [{"x": 80, "y": 90, "label": "negative"}]}]},
+ {"id": 2, "prompts": [{"frame": 40, "box": [300, 40, 420, 200]}]}]
+```
+
+Concepto y objetos son excluyentes. Hasta 16 objetos, una caja por objeto y frame, frame 0
+en imagen. `backward` exige un primer prompt después del frame 0. Coordenadas fuera del
+medio se rechazan. El builder oficial genera el texto antes de reservar. `--box` sigue
+disponible como atajo (objeto 1, frame 0, `forward`). `matrix` prepara 640/960/1280 del
+mismo intervalo, FPS y duración, sin inferencia. [Investigación](../../docs/SAM_SPATIAL_RESEARCH.md).
+
 ## Visor
 
 Abre [127.0.0.1:8876](http://127.0.0.1:8876). El servidor escucha solo en loopback;
 no uses túneles ni enlaces públicos. Espera `photos/`, `prepared/`, `outputs/` y
 `uploads/` dentro de la raíz privada. Resultados son directorios con `result.json`.
+Nueva solicitud: concepto, caja, punto positivo/negativo, varios objetos, frame de referencia,
+dirección, confianza, zoom y corrección de un experimento espacial (crea uno nuevo con
+`parent_experiment_id`). «Previsualizar» muestra el prompt exacto, el costo estimado y el
+ledger en solo lectura. «Enviar a Meta» solo se habilita si la vista previa coincide con la
+solicitud y el ledger admite reserva. La revisión humana (calidad, notas, polígonos de
+referencia, IoU/Dice) se guarda en `review-<UTC>.json` sin tocar `result.json`.
 Seleccionar un resultado guardado no hace inferencia. Permite máscaras, contornos,
 cajas/IDs, opacidad, instancia, reproducción, avance por frame y videos exportados.
 Solo «Enviar a Meta» crea una solicitud; la configuración privada debe autorizarla.
@@ -91,7 +115,7 @@ No se borra el original. `store:false` no sustituye la limpieza de Files ni impl
 ## Pruebas
 
 ```powershell
-uv run --project services/api --extra dev --frozen pytest -c services/api/pyproject.toml services/botanical-ai/tests/test_visual_lab.py -q
+uv run --project services/api --extra dev --frozen pytest -c services/api/pyproject.toml services/botanical-ai/tests/test_visual_lab.py services/botanical-ai/tests/test_sam_spatial.py -q
 uv run --project services/api --extra dev --frozen ruff check services evaluations tools
 uv run --project services/api --extra dev --frozen ruff format --check services evaluations tools
 node tools/meta_sam_api_lab/viewer.test.cjs
