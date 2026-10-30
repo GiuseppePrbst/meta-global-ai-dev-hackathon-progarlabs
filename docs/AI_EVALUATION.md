@@ -110,3 +110,15 @@ en [SAM_SPATIAL_RESEARCH.md](SAM_SPATIAL_RESEARCH.md).
 - **Backend:** corregido el truncamiento de Muse por razonamiento.
 - No es precisión validada.
 [Informe](META_VALIDATION_CAMPAIGN_REPORT.md).
+
+## Conjunto abierto — 30-10-2026
+
+`/identify` usa por defecto `IDENTIFY_STRATEGY=verify` (prompt `open-set-verify-v2`).
+- **Elección:** sobre el conjunto de desarrollo, con criterio fijado de antemano.
+- **Confirmación:** sobre un conjunto independiente congelado de 56 casos. La falsa
+  identificación de especies fuera del catálogo baja de 25/37 a 3/37. Los correctos
+  aceptados pasan de 10/19 a 8/19, con riesgo selectivo de 0/8.
+- **Costo:** +31 % por tarifa y +1 s de latencia mediana.
+
+Son etiquetas débiles: no hay precisión validada. «Aceptado» significa presentable, no
+verificado. [Reporte](OPEN_SET_IDENTIFICATION_REPORT.md).

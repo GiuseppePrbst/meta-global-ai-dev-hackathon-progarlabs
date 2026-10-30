@@ -355,8 +355,13 @@ como la identificación actual.
 añaden campos opcionales con valores por defecto seguros. Un cliente que los ignore sigue
 funcionando y, si no hay candidato aceptado, verá `status: "insufficient_evidence"` con
 `candidates: []`: es decir, una abstención y nunca una especie dudosa. La estrategia
-activa la define el backend (`IDENTIFY_STRATEGY`). Sin evaluación que justifique otra,
-queda `baseline` y los campos nuevos valen `not_assessed` / `not_applicable`.
+activa la define el backend (`IDENTIFY_STRATEGY`): por defecto **`verify`** (v2), tras la
+evaluación del 30-10-2026. Con `baseline` los campos nuevos valen `not_assessed` /
+`not_applicable`. Esperar más abstenciones que antes: el sistema prefiere no identificar
+a identificar mal. En la evaluación, 3/37 negativos aceptados frente a 25/37, y 8/19
+positivos correctos aceptados frente a 10/19. Con 3 fotos del mismo ejemplar `verify`
+tendió a abstenerse (n pequeño), así que conviene pedir **una** foto adicional concreta
+según `recommended_next_photo`.
 
 | Campo nuevo | Valores | Qué significa para la UI |
 | --- | --- | --- |

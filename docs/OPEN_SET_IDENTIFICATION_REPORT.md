@@ -77,15 +77,72 @@ foto no diagnóstica detectada y **los 3 negativos difíciles aceptados** (2 ñi
 
 Detalle en [BOTANICAL_DATASETS.md](BOTANICAL_DATASETS.md).
 
-## E. Comparación
+## E. Comparación (observada, Meta real, `muse-spark-1.3`, `reasoning_effort=minimal`)
 
-Pendiente: se ejecuta tras el reinicio legítimo de la cuota diaria del ledger (00:00 UTC).
-El 30-10 se alcanzaron 143 de 150 solicitudes y no se elevó ni reinició la cuota.
+Datos completos en [`open-set-campaign-2026-10-30.json`](../evaluations/botanical/open-set-campaign-2026-10-30.json).
+k/n con IC95 de Wilson. «Correcto» significa aceptar la especie correcta en un positivo
+o no aceptar ninguna especie en un negativo.
 
-## F. Multivista
+**Desarrollo** (35 positivos y 12 negativos; se usó para diseñar y elegir):
 
-Pendiente, con el mismo motivo. Protocolo: 1, 2 y 3 vistas del mismo individuo,
-comparadas de forma pareada.
+| Estrategia | Correctos aceptados | Cobertura | Riesgo selectivo | Abstención innecesaria | Negativos con propuesta | **Negativos aceptados** |
+| --- | --- | --- | --- | --- | --- | --- |
+| A baseline (histórico) | 24/35 | 28/35 | 4/28 | 0/35 | 11/12 | **11/12** |
+| B abstain (etapa 1 de D) | 19/35 | 19/35 | 0/19 | 5/35 | 8/12 | 7/12 |
+| C comparators | 13/35 | 15/35 | 2/15 | 7/35 | 7/12 | 3/12 |
+| D verify-v1 | 10/35 | 10/35 | 0/10 | 14/35 | 8/12 | 0/12 |
+| D′ verify-v2 (solo la contradicción rechaza) | 14/35 | 14/35 | 0/14 | 10/35 | 8/12 | 3/12 |
+
+- C empeora los positivos: el Top-1 propuesto baja de 24/35 a 20/35, porque los
+  comparadores en el prompt hacen dudar de especies correctas.
+- D′ se calculó exactamente sobre los veredictos ya registrados, sin llamadas nuevas.
+- Criterio fijado antes de la evaluación independiente: ≤ 3/12 negativos aceptados; luego
+  más correctos aceptados; luego costo. Elegida **verify-v2**, congelada en el commit
+  `0283441` antes de ejecutar el conjunto de 56 casos.
+
+**Evaluación independiente congelada** (19 positivos, 22 negativos difíciles y 15 generales):
+
+| Métrica | Baseline | verify-v2 |
+| --- | --- | --- |
+| Negativos aceptados (falsa identificación) | 25/37 [0,51–0,80] | **3/37 [0,03–0,21]** |
+| — difíciles | 19/22 | 2/22 |
+| — generales | 6/15 | 1/15 |
+| Negativos marcados como fuera del catálogo | 0/37 | 23/37 |
+| Correctos aceptados en positivos | 10/19 [0,32–0,73] | 8/19 [0,23–0,64] |
+| Cobertura en positivos | 12/19 | 8/19 |
+| Riesgo selectivo | 2/12 | **0/8** |
+| Top-1 / Top-3 propuesto | 10/19 / 11/19 | 11/19 / 12/19 |
+| Errores de proveedor | 0/56 | 0/56 |
+| Latencia mediana | 6,7 s | 7,7 s |
+| Tokens entrada/salida | 118.211 / 38.432 | 167.626 / 46.398 (19 verificaciones) |
+| Costo estimado (tarifa) | USD 0,311 | USD 0,407 (+31 %) |
+
+- **Comparación pareada** de resultado correcto (n=56): ambas aciertan 19, solo baseline 3,
+  **solo verify-v2 23**, ambas fallan 11. McNemar exacto p ≈ 8,8·10⁻⁵.
+- **Negativos aún aceptados por verify-v2:** *Saxegothaea* → mañío, *Prumnopitys* → mañío,
+  *Gevuina* → tineo. Las podocarpáceas siguen siendo el punto débil.
+- **Positivos perdidos frente al baseline:** un ulmo (marcado fuera del catálogo) y una
+  lenga (contradicción). Los positivos no diagnósticos (fotos `unknown` o lejanas)
+  abstienen en ambas estrategias.
+- **Recomendación:** `IDENTIFY_STRATEGY=verify`, que pasa a ser el valor por defecto;
+  `baseline` sigue disponible.
+
+## F. Multivista (observada; mismos 5 individuos, 14 combinaciones)
+
+| Vistas | verify-v2 correctos aceptados | Baseline | Tokens de entrada medios (verify) | Latencia mediana (verify) |
+| --- | --- | --- | --- | --- |
+| 1 | 1/5 | 1/5 | 1.958 | 6,1 s |
+| 2 | **3/5** | 3/5 | 4.181 | 9,3 s |
+| 3 | **0/4** | 3/4 | 4.074 | 8,1 s |
+
+- Una segunda foto del mismo ejemplar ayuda en ambas estrategias. Con verify-v2, la
+  **tercera vista provocó abstención** en los 4 casos: insuficiente o fuera del catálogo.
+- Hipótesis no probada: más vistas aumentan la probabilidad de que la verificación
+  estricta encuentre un rasgo «contradictorio».
+- La recomendación de foto (`recommended_next_photo`) fue específica: envés o hoja completa.
+- El baseline tuvo 1 truncamiento con 2 imágenes.
+- Con n=5 no hay conclusión estadística. **Recomendación provisional:** pedir como máximo
+  una foto adicional y evaluar 3 vistas antes de recomendarlas.
 
 ## G. SAM
 
@@ -108,17 +165,63 @@ Compatible hacia atrás. OpenAPI documenta los campos nuevos (test). Hay 8 ejemp
 
 ## J. Seguridad y presupuesto
 
-- **Autorización:** se mantiene la inspección visual del agente.
-- **Publicación:** solo metadatos de fotos de terceros con licencia; ningún medio Hepta.
-- **Presupuesto:** fase F con subtope de USD 10, tomado de la contingencia E. La reserva
-  por llamada bajó de 0,05 a 0,03, que cubre el peor caso observado (~0,022 con 3
-  imágenes). El techo global sigue en USD 50 y la concurrencia en 1.
+- **Cuota diaria:** por decisión del propietario, el contador interno de 150 solicitudes
+  diarias (control propio, no de Meta, que documenta 3.000 RPM) queda **desactivado solo
+  en el perfil de investigación** (`daily_requests: null`). Producción lo mantiene. Siguen
+  activos el techo acumulado de USD 50, el ledger, la identidad, la concurrencia (4) y el
+  tope por fase, este último ahora atómico dentro del lock del ledger.
+- **Reasignación trazable:** USD 10 de la fase D (usada 0,40 de 14) a la F; el total se
+  mantiene en 49 + 1 histórico.
+- **Ledger tras la campaña** (sin facturación verificada; el panel del propietario muestra
+  gasto 0 con créditos gratuitos):
+
+| Concepto | USD |
+| --- | ---: |
+| Autorizado | 50,00 |
+| Reservado total (histórico 1,00) | 14,85 |
+| Fase F (este sprint), reservado / estimado | 7,20 / 1,574 |
+| Estimado acumulado por tarifa | 2,433 |
+| Capacidad restante | 35,15 |
+
+- **Solicitudes de la fase F:** 240, con 239 `completed` y 1 `provider_error` (truncamiento
+  baseline multivista). Reutilización de etapa 1: 6 casos (no se pagó dos veces). Errores
+  429 del proveedor: ninguno. El backoff con `Retry-After` está implementado y probado.
+- **Privacidad:** solo fotos botánicas públicas con licencia. El aviso de Billing sobre uso
+  de contenido con créditos gratuitos no figura en la página oficial de precios, que afirma
+  que Standard no entrena con el contenido. Al no poder confirmarlo, **no se envió material
+  Hepta nuevo**; esa línea queda separada hasta verificarlo.
 
 ## K. Validaciones
 
-236 pruebas Python correctas y 11 omitidas, que requieren un PostgreSQL de pruebas
-aislado; no se ejecutó DDL en el servidor del ledger. Ruff correcto.
+- 247 pruebas Python correctas y 12 omitidas, entre ellas la de reservas concurrentes con
+  cuota diaria desactivada, que corre en CI con PostgreSQL aislado. No se ejecutó DDL en
+  el servidor del ledger.
+- Ruff correcto.
+- Tests nuevos:
+  - Perfil de investigación sin contador diario y perfil normal con él.
+  - Tope por fase atómico con 8 hilos.
+  - Reasignación sin cambiar el total.
+  - 429/500/503 reintentables con `Retry-After` y 400/413 permanentes.
+  - Backoff, reanudación sin duplicados y reutilización de la etapa 1.
+  - `/identify` de punta a punta con `verify` por defecto.
 
 ## L. Git
 
-Rama `feat/botanical-open-set-recognition` desde `main` (`e1b01e6`). PR #22 abierto sin merge.
+Rama `feat/botanical-open-set-recognition` desde `main` (`e1b01e6`), con commits
+Conventional de `GiuseppePrbst`.
+- Conjunto independiente congelado: `ee7e76a`.
+- Selección y congelación de la estrategia: `0283441`, anterior a la evaluación de 56 casos.
+- Perfil sin contador diario: `87a650a`.
+
+PR #22 abierto contra `main`, **sin merge**.
+
+## M. Próximas cinco acciones
+
+1. Revisión de especialista de los 47 + 56 casos para pasar de exploración a evaluación
+   validada.
+2. Que José consuma `acceptance`, `exploratory_candidates` y `catalog_assessment`.
+3. Mejorar las podocarpáceas: rasgos del envés y bandas estomáticas con fuente chilena.
+   Medir de nuevo solo con un conjunto independiente nuevo.
+4. Multivista con más individuos; decidir si 3 vistas valen la pena con verify.
+5. Caja de usuario + SAM frente a la foto original, como prueba controlada.
+

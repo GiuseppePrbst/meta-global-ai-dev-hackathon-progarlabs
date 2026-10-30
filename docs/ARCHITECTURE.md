@@ -206,5 +206,5 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
     independiente.
 - Aceptación selectiva determinista: `supported_candidate`, al menos un rasgo observado y
   ninguna contradicción para el candidato.
-- `/identify` usa `IDENTIFY_STRATEGY` (por defecto `baseline`), sin endpoints nuevos.
+- `/identify` usa `IDENTIFY_STRATEGY` (por defecto `verify`, v2, desde la evaluación del 30-10-2026), sin endpoints nuevos.
 - Los comparadores no son especies coleccionables y su loader rechaza duplicados del catálogo.
