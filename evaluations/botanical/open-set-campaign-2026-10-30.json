@@ -1,0 +1,3653 @@
+{
+ "campaign": "open-set 2026-10-30",
+ "model": "muse-spark-1.3",
+ "reasoning_effort": "minimal",
+ "label_status": "weakly_labeled_exploration (platform labels + agent visual review; no expert review)",
+ "eval_set_freeze_sha256": "9e82f0d75e2c8ec3031b825b74b9e6394fb39b44461861cbf07b605e84d1ea61",
+ "selection": {
+  "criterion": "<=3/12 false acceptances on dev negatives; then most correct acceptances; then cost",
+  "chosen": "verify (open-set-verify-v2)",
+  "commit": "0283441"
+ },
+ "note": "abstain metrics on dev derive from verify stage 1 (identical prompt); its catalog_assessment field reflects the post-verification state and is not reported",
+ "development": {
+  "baseline_hist": {
+   "metrics": {
+    "top1_proposed": {
+     "k": 24,
+     "n": 35,
+     "rate": 0.6857142857142857,
+     "ci95": [
+      0.5202,
+      0.8145
+     ]
+    },
+    "top3_proposed": {
+     "k": 27,
+     "n": 35,
+     "rate": 0.7714285714285715,
+     "ci95": [
+      0.6098,
+      0.8793
+     ]
+    },
+    "correct_accepted_on_positives": {
+     "k": 24,
+     "n": 35,
+     "rate": 0.6857142857142857,
+     "ci95": [
+      0.5202,
+      0.8145
+     ]
+    },
+    "coverage_positives": {
+     "k": 28,
+     "n": 35,
+     "rate": 0.8,
+     "ci95": [
+      0.6411,
+      0.8996
+     ]
+    },
+    "selective_risk": {
+     "k": 4,
+     "n": 28,
+     "rate": 0.14285714285714285,
+     "ci95": [
+      0.057,
+      0.3149
+     ]
+    },
+    "unnecessary_abstention": {
+     "k": 0,
+     "n": 35,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.0989
+     ]
+    },
+    "negatives_with_proposal": {
+     "k": 11,
+     "n": 12,
+     "rate": 0.9166666666666666,
+     "ci95": [
+      0.6461,
+      0.9851
+     ]
+    },
+    "negatives_false_acceptance": {
+     "k": 11,
+     "n": 12,
+     "rate": 0.9166666666666666,
+     "ci95": [
+      0.6461,
+      0.9851
+     ]
+    },
+    "negatives_flagged_out_of_catalog": {
+     "k": 0,
+     "n": 12,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.2425
+     ]
+    },
+    "provider_errors": {
+     "k": 0,
+     "n": 47,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.0756
+     ]
+    }
+   }
+  },
+  "abstain_from_verify_stage1": {
+   "metrics": {
+    "top1_proposed": {
+     "k": 24,
+     "n": 35,
+     "rate": 0.6857142857142857,
+     "ci95": [
+      0.5202,
+      0.8145
+     ]
+    },
+    "top3_proposed": {
+     "k": 26,
+     "n": 35,
+     "rate": 0.7428571428571429,
+     "ci95": [
+      0.5793,
+      0.8584
+     ]
+    },
+    "correct_accepted_on_positives": {
+     "k": 19,
+     "n": 35,
+     "rate": 0.5428571428571428,
+     "ci95": [
+      0.3819,
+      0.6953
+     ]
+    },
+    "coverage_positives": {
+     "k": 19,
+     "n": 35,
+     "rate": 0.5428571428571428,
+     "ci95": [
+      0.3819,
+      0.6953
+     ]
+    },
+    "selective_risk": {
+     "k": 0,
+     "n": 19,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.1682
+     ]
+    },
+    "unnecessary_abstention": {
+     "k": 5,
+     "n": 35,
+     "rate": 0.14285714285714285,
+     "ci95": [
+      0.0626,
+      0.2938
+     ]
+    },
+    "negatives_with_proposal": {
+     "k": 8,
+     "n": 12,
+     "rate": 0.6666666666666666,
+     "ci95": [
+      0.3906,
+      0.8619
+     ]
+    },
+    "negatives_false_acceptance": {
+     "k": 7,
+     "n": 12,
+     "rate": 0.5833333333333334,
+     "ci95": [
+      0.3195,
+      0.8067
+     ]
+    },
+    "negatives_flagged_out_of_catalog": {
+     "k": 7,
+     "n": 12,
+     "rate": 0.5833333333333334,
+     "ci95": [
+      0.3195,
+      0.8067
+     ]
+    },
+    "provider_errors": {
+     "k": 0,
+     "n": 47,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.0756
+     ]
+    }
+   }
+  },
+  "comparators": {
+   "metrics": {
+    "top1_proposed": {
+     "k": 20,
+     "n": 35,
+     "rate": 0.5714285714285714,
+     "ci95": [
+      0.4086,
+      0.7202
+     ]
+    },
+    "top3_proposed": {
+     "k": 20,
+     "n": 35,
+     "rate": 0.5714285714285714,
+     "ci95": [
+      0.4086,
+      0.7202
+     ]
+    },
+    "correct_accepted_on_positives": {
+     "k": 13,
+     "n": 35,
+     "rate": 0.37142857142857144,
+     "ci95": [
+      0.2317,
+      0.5366
+     ]
+    },
+    "coverage_positives": {
+     "k": 15,
+     "n": 35,
+     "rate": 0.42857142857142855,
+     "ci95": [
+      0.2798,
+      0.5914
+     ]
+    },
+    "selective_risk": {
+     "k": 2,
+     "n": 15,
+     "rate": 0.13333333333333333,
+     "ci95": [
+      0.0374,
+      0.3788
+     ]
+    },
+    "unnecessary_abstention": {
+     "k": 7,
+     "n": 35,
+     "rate": 0.2,
+     "ci95": [
+      0.1004,
+      0.3589
+     ]
+    },
+    "negatives_with_proposal": {
+     "k": 7,
+     "n": 12,
+     "rate": 0.5833333333333334,
+     "ci95": [
+      0.3195,
+      0.8067
+     ]
+    },
+    "negatives_false_acceptance": {
+     "k": 3,
+     "n": 12,
+     "rate": 0.25,
+     "ci95": [
+      0.0889,
+      0.5323
+     ]
+    },
+    "negatives_flagged_out_of_catalog": {
+     "k": 4,
+     "n": 12,
+     "rate": 0.3333333333333333,
+     "ci95": [
+      0.1381,
+      0.6094
+     ]
+    },
+    "provider_errors": {
+     "k": 0,
+     "n": 47,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.0756
+     ]
+    }
+   }
+  },
+  "verify_v1": {
+   "metrics": {
+    "top1_proposed": {
+     "k": 24,
+     "n": 35,
+     "rate": 0.6857142857142857,
+     "ci95": [
+      0.5202,
+      0.8145
+     ]
+    },
+    "top3_proposed": {
+     "k": 26,
+     "n": 35,
+     "rate": 0.7428571428571429,
+     "ci95": [
+      0.5793,
+      0.8584
+     ]
+    },
+    "correct_accepted_on_positives": {
+     "k": 10,
+     "n": 35,
+     "rate": 0.2857142857142857,
+     "ci95": [
+      0.1633,
+      0.4506
+     ]
+    },
+    "coverage_positives": {
+     "k": 10,
+     "n": 35,
+     "rate": 0.2857142857142857,
+     "ci95": [
+      0.1633,
+      0.4506
+     ]
+    },
+    "selective_risk": {
+     "k": 0,
+     "n": 10,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.2775
+     ]
+    },
+    "unnecessary_abstention": {
+     "k": 14,
+     "n": 35,
+     "rate": 0.4,
+     "ci95": [
+      0.2555,
+      0.5643
+     ]
+    },
+    "negatives_with_proposal": {
+     "k": 8,
+     "n": 12,
+     "rate": 0.6666666666666666,
+     "ci95": [
+      0.3906,
+      0.8619
+     ]
+    },
+    "negatives_false_acceptance": {
+     "k": 0,
+     "n": 12,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.2425
+     ]
+    },
+    "negatives_flagged_out_of_catalog": {
+     "k": 7,
+     "n": 12,
+     "rate": 0.5833333333333334,
+     "ci95": [
+      0.3195,
+      0.8067
+     ]
+    },
+    "provider_errors": {
+     "k": 0,
+     "n": 47,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.0756
+     ]
+    }
+   }
+  },
+  "verify_v2_offline_policy": {
+   "metrics": {
+    "top1_proposed": {
+     "k": 24,
+     "n": 35,
+     "rate": 0.6857142857142857,
+     "ci95": [
+      0.5202,
+      0.8145
+     ]
+    },
+    "top3_proposed": {
+     "k": 26,
+     "n": 35,
+     "rate": 0.7428571428571429,
+     "ci95": [
+      0.5793,
+      0.8584
+     ]
+    },
+    "correct_accepted_on_positives": {
+     "k": 14,
+     "n": 35,
+     "rate": 0.4,
+     "ci95": [
+      0.2555,
+      0.5643
+     ]
+    },
+    "coverage_positives": {
+     "k": 14,
+     "n": 35,
+     "rate": 0.4,
+     "ci95": [
+      0.2555,
+      0.5643
+     ]
+    },
+    "selective_risk": {
+     "k": 0,
+     "n": 14,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.2153
+     ]
+    },
+    "unnecessary_abstention": {
+     "k": 10,
+     "n": 35,
+     "rate": 0.2857142857142857,
+     "ci95": [
+      0.1633,
+      0.4506
+     ]
+    },
+    "negatives_with_proposal": {
+     "k": 8,
+     "n": 12,
+     "rate": 0.6666666666666666,
+     "ci95": [
+      0.3906,
+      0.8619
+     ]
+    },
+    "negatives_false_acceptance": {
+     "k": 3,
+     "n": 12,
+     "rate": 0.25,
+     "ci95": [
+      0.0889,
+      0.5323
+     ]
+    },
+    "negatives_flagged_out_of_catalog": {
+     "k": 7,
+     "n": 12,
+     "rate": 0.5833333333333334,
+     "ci95": [
+      0.3195,
+      0.8067
+     ]
+    },
+    "provider_errors": {
+     "k": 0,
+     "n": 47,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.0756
+     ]
+    }
+   }
+  }
+ },
+ "development_paired_vs_baseline": {
+  "abstain_from_verify_stage1": {
+   "n": 47,
+   "both_correct": 19,
+   "only_first": 6,
+   "only_second": 5,
+   "both_wrong": 17
+  },
+  "comparators": {
+   "n": 47,
+   "both_correct": 14,
+   "only_first": 11,
+   "only_second": 8,
+   "both_wrong": 14
+  },
+  "verify_v1": {
+   "n": 47,
+   "both_correct": 10,
+   "only_first": 15,
+   "only_second": 12,
+   "both_wrong": 10
+  },
+  "verify_v2_offline_policy": {
+   "n": 47,
+   "both_correct": 14,
+   "only_first": 11,
+   "only_second": 9,
+   "both_wrong": 13
+  }
+ },
+ "independent": {
+  "baseline": {
+   "metrics": {
+    "top1_proposed": {
+     "k": 10,
+     "n": 19,
+     "rate": 0.5263157894736842,
+     "ci95": [
+      0.3171,
+      0.7267
+     ]
+    },
+    "top3_proposed": {
+     "k": 11,
+     "n": 19,
+     "rate": 0.5789473684210527,
+     "ci95": [
+      0.3628,
+      0.7686
+     ]
+    },
+    "correct_accepted_on_positives": {
+     "k": 10,
+     "n": 19,
+     "rate": 0.5263157894736842,
+     "ci95": [
+      0.3171,
+      0.7267
+     ]
+    },
+    "coverage_positives": {
+     "k": 12,
+     "n": 19,
+     "rate": 0.631578947368421,
+     "ci95": [
+      0.4104,
+      0.8085
+     ]
+    },
+    "selective_risk": {
+     "k": 2,
+     "n": 12,
+     "rate": 0.16666666666666666,
+     "ci95": [
+      0.047,
+      0.448
+     ]
+    },
+    "unnecessary_abstention": {
+     "k": 0,
+     "n": 19,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.1682
+     ]
+    },
+    "negatives_with_proposal": {
+     "k": 25,
+     "n": 37,
+     "rate": 0.6756756756756757,
+     "ci95": [
+      0.5146,
+      0.8037
+     ]
+    },
+    "negatives_false_acceptance": {
+     "k": 25,
+     "n": 37,
+     "rate": 0.6756756756756757,
+     "ci95": [
+      0.5146,
+      0.8037
+     ]
+    },
+    "negatives_flagged_out_of_catalog": {
+     "k": 0,
+     "n": 37,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.0941
+     ]
+    },
+    "provider_errors": {
+     "k": 0,
+     "n": 56,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.0642
+     ]
+    }
+   },
+   "rows": [
+    {
+     "image_id": "commons:37291155",
+     "label": "aextoxicon-punctatum",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5031,
+     "usage": {
+      "prompt_tokens": 3498,
+      "completion_tokens": 315,
+      "total_tokens": 3813
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109430579:0",
+     "label": "eucryphia-cordifolia",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "weinmannia-trichosperma"
+     ],
+     "accepted": "weinmannia-trichosperma",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "complete_leaf",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5955,
+     "usage": {
+      "prompt_tokens": 1455,
+      "completion_tokens": 639,
+      "total_tokens": 2094
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:11391438",
+     "label": "eucryphia-cordifolia",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "eucryphia-cordifolia"
+     ],
+     "accepted": "eucryphia-cordifolia",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "complete_leaf",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6720,
+     "usage": {
+      "prompt_tokens": 1980,
+      "completion_tokens": 689,
+      "total_tokens": 2669
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109933521:0",
+     "label": "eucryphia-cordifolia",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "weinmannia-trichosperma",
+      "eucryphia-cordifolia",
+      "laureliopsis-philippiana"
+     ],
+     "accepted": "weinmannia-trichosperma",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7834,
+     "usage": {
+      "prompt_tokens": 1455,
+      "completion_tokens": 832,
+      "total_tokens": 2287
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:117115490",
+     "label": "laureliopsis-philippiana",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5067,
+     "usage": {
+      "prompt_tokens": 3498,
+      "completion_tokens": 355,
+      "total_tokens": 3853
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110466684:0",
+     "label": "laureliopsis-philippiana",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "laureliopsis-philippiana",
+      "eucryphia-cordifolia"
+     ],
+     "accepted": "laureliopsis-philippiana",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 8033,
+     "usage": {
+      "prompt_tokens": 1455,
+      "completion_tokens": 927,
+      "total_tokens": 2382
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:77557778",
+     "label": "nothofagus-betuloides",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5766,
+     "usage": {
+      "prompt_tokens": 3498,
+      "completion_tokens": 492,
+      "total_tokens": 3990
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110520414:0",
+     "label": "laureliopsis-philippiana",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "laureliopsis-philippiana",
+      "eucryphia-cordifolia"
+     ],
+     "accepted": "laureliopsis-philippiana",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7077,
+     "usage": {
+      "prompt_tokens": 1776,
+      "completion_tokens": 773,
+      "total_tokens": 2549
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:77962857",
+     "label": "nothofagus-betuloides",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 3361,
+     "usage": {
+      "prompt_tokens": 1796,
+      "completion_tokens": 296,
+      "total_tokens": 2092
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109924120:1",
+     "label": "nothofagus-dombeyi",
+     "negative": false,
+     "organ": "bark",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "complete_leaf",
+     "similar_out_of_catalog": [],
+     "latency_ms": 4116,
+     "usage": {
+      "prompt_tokens": 2180,
+      "completion_tokens": 415,
+      "total_tokens": 2595
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:3949186832:0",
+     "label": "nothofagus-dombeyi",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-dombeyi",
+      "nothofagus-betuloides",
+      "nothofagus-pumilio"
+     ],
+     "accepted": "nothofagus-dombeyi",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7510,
+     "usage": {
+      "prompt_tokens": 852,
+      "completion_tokens": 890,
+      "total_tokens": 1742
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109904117:0",
+     "label": "nothofagus-dombeyi",
+     "negative": false,
+     "organ": "fruit",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-dombeyi",
+      "nothofagus-betuloides",
+      "nothofagus-pumilio"
+     ],
+     "accepted": "nothofagus-dombeyi",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 8905,
+     "usage": {
+      "prompt_tokens": 2032,
+      "completion_tokens": 978,
+      "total_tokens": 3010
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110491638:0",
+     "label": "nothofagus-pumilio",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-pumilio",
+      "nothofagus-betuloides",
+      "nothofagus-dombeyi"
+     ],
+     "accepted": "nothofagus-pumilio",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 8311,
+     "usage": {
+      "prompt_tokens": 1455,
+      "completion_tokens": 852,
+      "total_tokens": 2307
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:10385557",
+     "label": "nothofagus-pumilio",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5072,
+     "usage": {
+      "prompt_tokens": 1854,
+      "completion_tokens": 354,
+      "total_tokens": 2208
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110539573:0",
+     "label": "nothofagus-pumilio",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-pumilio",
+      "nothofagus-betuloides"
+     ],
+     "accepted": "nothofagus-pumilio",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6499,
+     "usage": {
+      "prompt_tokens": 2052,
+      "completion_tokens": 709,
+      "total_tokens": 2761
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:34451819",
+     "label": "weinmannia-trichosperma",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "weinmannia-trichosperma"
+     ],
+     "accepted": "weinmannia-trichosperma",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6471,
+     "usage": {
+      "prompt_tokens": 2529,
+      "completion_tokens": 667,
+      "total_tokens": 3196
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:186664521",
+     "label": "podocarpus-nubigenus",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 8237,
+     "usage": {
+      "prompt_tokens": 3024,
+      "completion_tokens": 781,
+      "total_tokens": 3805
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110000592:0",
+     "label": "weinmannia-trichosperma",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "weinmannia-trichosperma"
+     ],
+     "accepted": "weinmannia-trichosperma",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 8371,
+     "usage": {
+      "prompt_tokens": 1724,
+      "completion_tokens": 756,
+      "total_tokens": 2480
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:34451821",
+     "label": "weinmannia-trichosperma",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "weinmannia-trichosperma"
+     ],
+     "accepted": "weinmannia-trichosperma",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "bark",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6377,
+     "usage": {
+      "prompt_tokens": 1842,
+      "completion_tokens": 654,
+      "total_tokens": 2496
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110521909:0",
+     "label": "nothofagus-antarctica",
+     "negative": true,
+     "organ": "bark",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "complete_leaf",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5444,
+     "usage": {
+      "prompt_tokens": 2667,
+      "completion_tokens": 466,
+      "total_tokens": 3133
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110552995:0",
+     "label": "nothofagus-antarctica",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-pumilio",
+      "nothofagus-betuloides"
+     ],
+     "accepted": "nothofagus-pumilio",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7999,
+     "usage": {
+      "prompt_tokens": 2052,
+      "completion_tokens": 829,
+      "total_tokens": 2881
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110033905:0",
+     "label": "nothofagus-antarctica",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-pumilio",
+      "nothofagus-betuloides",
+      "nothofagus-dombeyi"
+     ],
+     "accepted": "nothofagus-pumilio",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7521,
+     "usage": {
+      "prompt_tokens": 1455,
+      "completion_tokens": 807,
+      "total_tokens": 2262
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110282919:0",
+     "label": "nothofagus-antarctica",
+     "negative": true,
+     "organ": "whole_tree",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-pumilio",
+      "nothofagus-betuloides"
+     ],
+     "accepted": "nothofagus-pumilio",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 8915,
+     "usage": {
+      "prompt_tokens": 1455,
+      "completion_tokens": 941,
+      "total_tokens": 2396
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:186357318",
+     "label": "nothofagus-nitida",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-dombeyi",
+      "nothofagus-betuloides",
+      "nothofagus-pumilio"
+     ],
+     "accepted": "nothofagus-dombeyi",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7997,
+     "usage": {
+      "prompt_tokens": 3176,
+      "completion_tokens": 996,
+      "total_tokens": 4172
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:560083",
+     "label": "nothofagus-nitida",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-dombeyi",
+      "nothofagus-pumilio",
+      "nothofagus-betuloides"
+     ],
+     "accepted": "nothofagus-dombeyi",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6694,
+     "usage": {
+      "prompt_tokens": 1612,
+      "completion_tokens": 759,
+      "total_tokens": 2371
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:77894932",
+     "label": "laurelia-sempervirens",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "laureliopsis-philippiana",
+      "weinmannia-trichosperma",
+      "aextoxicon-punctatum"
+     ],
+     "accepted": "laureliopsis-philippiana",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 8983,
+     "usage": {
+      "prompt_tokens": 3024,
+      "completion_tokens": 1029,
+      "total_tokens": 4053
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:7529552",
+     "label": "laurelia-sempervirens",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5450,
+     "usage": {
+      "prompt_tokens": 3024,
+      "completion_tokens": 412,
+      "total_tokens": 3436
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:15261726",
+     "label": "laurelia-sempervirens",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "laureliopsis-philippiana",
+      "nothofagus-dombeyi"
+     ],
+     "accepted": "laureliopsis-philippiana",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6674,
+     "usage": {
+      "prompt_tokens": 3024,
+      "completion_tokens": 691,
+      "total_tokens": 3715
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:137471650",
+     "label": "laurelia-sempervirens",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-betuloides",
+      "eucryphia-cordifolia",
+      "nothofagus-dombeyi"
+     ],
+     "accepted": "nothofagus-betuloides",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 9110,
+     "usage": {
+      "prompt_tokens": 1674,
+      "completion_tokens": 1047,
+      "total_tokens": 2721
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110328004:0",
+     "label": "saxegothaea-conspicua",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7339,
+     "usage": {
+      "prompt_tokens": 3492,
+      "completion_tokens": 666,
+      "total_tokens": 4158
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:76223815",
+     "label": "saxegothaea-conspicua",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 4544,
+     "usage": {
+      "prompt_tokens": 2118,
+      "completion_tokens": 606,
+      "total_tokens": 2724
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110512399:0",
+     "label": "saxegothaea-conspicua",
+     "negative": true,
+     "organ": "flower",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7355,
+     "usage": {
+      "prompt_tokens": 3492,
+      "completion_tokens": 649,
+      "total_tokens": 4141
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:22725389",
+     "label": "saxegothaea-conspicua",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7816,
+     "usage": {
+      "prompt_tokens": 3024,
+      "completion_tokens": 743,
+      "total_tokens": 3767
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109904205:0",
+     "label": "podocarpus-salignus",
+     "negative": true,
+     "organ": "bark",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5943,
+     "usage": {
+      "prompt_tokens": 2180,
+      "completion_tokens": 680,
+      "total_tokens": 2860
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109790812:0",
+     "label": "podocarpus-salignus",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7060,
+     "usage": {
+      "prompt_tokens": 2180,
+      "completion_tokens": 686,
+      "total_tokens": 2866
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:6719959",
+     "label": "podocarpus-salignus",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7687,
+     "usage": {
+      "prompt_tokens": 2484,
+      "completion_tokens": 876,
+      "total_tokens": 3360
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:6719967",
+     "label": "podocarpus-salignus",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7317,
+     "usage": {
+      "prompt_tokens": 1854,
+      "completion_tokens": 814,
+      "total_tokens": 2668
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:30125239",
+     "label": "prumnopitys-andina",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6055,
+     "usage": {
+      "prompt_tokens": 1674,
+      "completion_tokens": 635,
+      "total_tokens": 2309
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:74708887",
+     "label": "prumnopitys-andina",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7338,
+     "usage": {
+      "prompt_tokens": 3268,
+      "completion_tokens": 681,
+      "total_tokens": 3949
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:66512743",
+     "label": "prumnopitys-andina",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5617,
+     "usage": {
+      "prompt_tokens": 1674,
+      "completion_tokens": 523,
+      "total_tokens": 2197
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:2374041",
+     "label": "prumnopitys-andina",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6616,
+     "usage": {
+      "prompt_tokens": 3130,
+      "completion_tokens": 570,
+      "total_tokens": 3700
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110452267:0",
+     "label": "drimys-winteri",
+     "negative": true,
+     "organ": "flower",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5622,
+     "usage": {
+      "prompt_tokens": 1455,
+      "completion_tokens": 581,
+      "total_tokens": 2036
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110289201:0",
+     "label": "luma-apiculata",
+     "negative": true,
+     "organ": "bark",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "complete_leaf",
+     "similar_out_of_catalog": [],
+     "latency_ms": 4472,
+     "usage": {
+      "prompt_tokens": 2052,
+      "completion_tokens": 378,
+      "total_tokens": 2430
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110288873:0",
+     "label": "drimys-winteri",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7788,
+     "usage": {
+      "prompt_tokens": 1296,
+      "completion_tokens": 856,
+      "total_tokens": 2152
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110295225:0",
+     "label": "luma-apiculata",
+     "negative": true,
+     "organ": "bark",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6398,
+     "usage": {
+      "prompt_tokens": 1724,
+      "completion_tokens": 536,
+      "total_tokens": 2260
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109843360:0",
+     "label": "embothrium-coccineum",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6224,
+     "usage": {
+      "prompt_tokens": 1044,
+      "completion_tokens": 649,
+      "total_tokens": 1693
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110303379:0",
+     "label": "gevuina-avellana",
+     "negative": true,
+     "organ": "fruit",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6599,
+     "usage": {
+      "prompt_tokens": 1455,
+      "completion_tokens": 707,
+      "total_tokens": 2162
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109810115:0",
+     "label": "embothrium-coccineum",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-betuloides",
+      "nothofagus-pumilio"
+     ],
+     "accepted": "nothofagus-betuloides",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 8631,
+     "usage": {
+      "prompt_tokens": 1455,
+      "completion_tokens": 896,
+      "total_tokens": 2351
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110477741:0",
+     "label": "gevuina-avellana",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "weinmannia-trichosperma"
+     ],
+     "accepted": "weinmannia-trichosperma",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "flowers_or_fruit_if_present",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6777,
+     "usage": {
+      "prompt_tokens": 2700,
+      "completion_tokens": 611,
+      "total_tokens": 3311
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:9029651",
+     "label": "lomatia-hirsuta",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-dombeyi",
+      "weinmannia-trichosperma",
+      "eucryphia-cordifolia"
+     ],
+     "accepted": "nothofagus-dombeyi",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7782,
+     "usage": {
+      "prompt_tokens": 3024,
+      "completion_tokens": 830,
+      "total_tokens": 3854
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109844278:0",
+     "label": "amomyrtus-luma",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5933,
+     "usage": {
+      "prompt_tokens": 1455,
+      "completion_tokens": 591,
+      "total_tokens": 2046
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110000231:0",
+     "label": "amomyrtus-luma",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-dombeyi",
+      "nothofagus-betuloides"
+     ],
+     "accepted": "nothofagus-dombeyi",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 8027,
+     "usage": {
+      "prompt_tokens": 1044,
+      "completion_tokens": 903,
+      "total_tokens": 1947
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110509269:0",
+     "label": "persea-lingue",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6839,
+     "usage": {
+      "prompt_tokens": 1455,
+      "completion_tokens": 761,
+      "total_tokens": 2216
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110439867:0",
+     "label": "persea-lingue",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "aextoxicon-punctatum"
+     ],
+     "accepted": "aextoxicon-punctatum",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5227,
+     "usage": {
+      "prompt_tokens": 1368,
+      "completion_tokens": 626,
+      "total_tokens": 1994
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110512319:0",
+     "label": "fitzroya-cupressoides",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5222,
+     "usage": {
+      "prompt_tokens": 1776,
+      "completion_tokens": 510,
+      "total_tokens": 2286
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109817766:0",
+     "label": "fitzroya-cupressoides",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "not_assessed",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5488,
+     "usage": {
+      "prompt_tokens": 1220,
+      "completion_tokens": 517,
+      "total_tokens": 1737
+     },
+     "stage1_reused": null
+    }
+   ]
+  },
+  "verify_v2": {
+   "metrics": {
+    "top1_proposed": {
+     "k": 11,
+     "n": 19,
+     "rate": 0.5789473684210527,
+     "ci95": [
+      0.3628,
+      0.7686
+     ]
+    },
+    "top3_proposed": {
+     "k": 12,
+     "n": 19,
+     "rate": 0.631578947368421,
+     "ci95": [
+      0.4104,
+      0.8085
+     ]
+    },
+    "correct_accepted_on_positives": {
+     "k": 8,
+     "n": 19,
+     "rate": 0.42105263157894735,
+     "ci95": [
+      0.2314,
+      0.6372
+     ]
+    },
+    "coverage_positives": {
+     "k": 8,
+     "n": 19,
+     "rate": 0.42105263157894735,
+     "ci95": [
+      0.2314,
+      0.6372
+     ]
+    },
+    "selective_risk": {
+     "k": 0,
+     "n": 8,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.3244
+     ]
+    },
+    "unnecessary_abstention": {
+     "k": 3,
+     "n": 19,
+     "rate": 0.15789473684210525,
+     "ci95": [
+      0.0552,
+      0.3757
+     ]
+    },
+    "negatives_with_proposal": {
+     "k": 16,
+     "n": 37,
+     "rate": 0.43243243243243246,
+     "ci95": [
+      0.2867,
+      0.5909
+     ]
+    },
+    "negatives_false_acceptance": {
+     "k": 3,
+     "n": 37,
+     "rate": 0.08108108108108109,
+     "ci95": [
+      0.028,
+      0.213
+     ]
+    },
+    "negatives_flagged_out_of_catalog": {
+     "k": 23,
+     "n": 37,
+     "rate": 0.6216216216216216,
+     "ci95": [
+      0.461,
+      0.7594
+     ]
+    },
+    "provider_errors": {
+     "k": 0,
+     "n": 56,
+     "rate": 0.0,
+     "ci95": [
+      0.0,
+      0.0642
+     ]
+    }
+   },
+   "rows": [
+    {
+     "image_id": "commons:37291155",
+     "label": "aextoxicon-punctatum",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "non_diagnostic_photo",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 5345,
+     "usage": {
+      "prompt_tokens": 3693,
+      "completion_tokens": 412,
+      "total_tokens": 4105
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109933521:0",
+     "label": "eucryphia-cordifolia",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "weinmannia-trichosperma",
+      "eucryphia-cordifolia",
+      "laureliopsis-philippiana"
+     ],
+     "accepted": null,
+     "catalog_assessment": "insufficient_evidence",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 8958,
+     "usage": {
+      "prompt_tokens": 1650,
+      "completion_tokens": 1156,
+      "total_tokens": 2806
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109430579:0",
+     "label": "eucryphia-cordifolia",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "eucryphia-cordifolia"
+     ],
+     "accepted": "eucryphia-cordifolia",
+     "catalog_assessment": "supported_candidate",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 11348,
+     "usage": {
+      "prompt_tokens": 2912,
+      "completion_tokens": 992,
+      "total_tokens": 3904
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:11391438",
+     "label": "eucryphia-cordifolia",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "eucryphia-cordifolia"
+     ],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [
+      "cryptocarya-alba"
+     ],
+     "latency_ms": 12008,
+     "usage": {
+      "prompt_tokens": 3962,
+      "completion_tokens": 1222,
+      "total_tokens": 5184
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:117115490",
+     "label": "laureliopsis-philippiana",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "non_diagnostic_photo",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 3666,
+     "usage": {
+      "prompt_tokens": 3693,
+      "completion_tokens": 288,
+      "total_tokens": 3981
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110466684:0",
+     "label": "laureliopsis-philippiana",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "laureliopsis-philippiana"
+     ],
+     "accepted": "laureliopsis-philippiana",
+     "catalog_assessment": "supported_candidate",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [],
+     "latency_ms": 7488,
+     "usage": {
+      "prompt_tokens": 3011,
+      "completion_tokens": 779,
+      "total_tokens": 3790
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:77557778",
+     "label": "nothofagus-betuloides",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "non_diagnostic_photo",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 4568,
+     "usage": {
+      "prompt_tokens": 3693,
+      "completion_tokens": 318,
+      "total_tokens": 4011
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:77962857",
+     "label": "nothofagus-betuloides",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "non_diagnostic_photo",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 4710,
+     "usage": {
+      "prompt_tokens": 1991,
+      "completion_tokens": 423,
+      "total_tokens": 2414
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110520414:0",
+     "label": "laureliopsis-philippiana",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "laureliopsis-philippiana"
+     ],
+     "accepted": null,
+     "catalog_assessment": "insufficient_evidence",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [
+      "Aristotelia chilensis"
+     ],
+     "latency_ms": 8026,
+     "usage": {
+      "prompt_tokens": 1971,
+      "completion_tokens": 942,
+      "total_tokens": 2913
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109924120:1",
+     "label": "nothofagus-dombeyi",
+     "negative": false,
+     "organ": "bark",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "non_diagnostic_photo",
+     "recommended_next_photo": "complete_leaf",
+     "similar_out_of_catalog": [],
+     "latency_ms": 4627,
+     "usage": {
+      "prompt_tokens": 2375,
+      "completion_tokens": 412,
+      "total_tokens": 2787
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:3949186832:0",
+     "label": "nothofagus-dombeyi",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-dombeyi"
+     ],
+     "accepted": "nothofagus-dombeyi",
+     "catalog_assessment": "supported_candidate",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [],
+     "latency_ms": 10061,
+     "usage": {
+      "prompt_tokens": 1801,
+      "completion_tokens": 1092,
+      "total_tokens": 2893
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:10385557",
+     "label": "nothofagus-pumilio",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "non_diagnostic_photo",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 4344,
+     "usage": {
+      "prompt_tokens": 2049,
+      "completion_tokens": 404,
+      "total_tokens": 2453
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109904117:0",
+     "label": "nothofagus-dombeyi",
+     "negative": false,
+     "organ": "fruit",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-dombeyi",
+      "nothofagus-betuloides"
+     ],
+     "accepted": "nothofagus-dombeyi",
+     "catalog_assessment": "supported_candidate",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 10971,
+     "usage": {
+      "prompt_tokens": 4161,
+      "completion_tokens": 1195,
+      "total_tokens": 5356
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110491638:0",
+     "label": "nothofagus-pumilio",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-pumilio"
+     ],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [
+      "Nothofagus antarctica"
+     ],
+     "latency_ms": 12137,
+     "usage": {
+      "prompt_tokens": 3034,
+      "completion_tokens": 1296,
+      "total_tokens": 4330
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110539573:0",
+     "label": "nothofagus-pumilio",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-pumilio",
+      "nothofagus-betuloides"
+     ],
+     "accepted": "nothofagus-pumilio",
+     "catalog_assessment": "supported_candidate",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [],
+     "latency_ms": 10394,
+     "usage": {
+      "prompt_tokens": 4228,
+      "completion_tokens": 1100,
+      "total_tokens": 5328
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:186664521",
+     "label": "podocarpus-nubigenus",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "helecho nativo de sotobosque tipo Gleicheniaceae",
+      "hierba nativa rastrera de hojas orbiculares"
+     ],
+     "latency_ms": 7170,
+     "usage": {
+      "prompt_tokens": 3219,
+      "completion_tokens": 657,
+      "total_tokens": 3876
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110000592:0",
+     "label": "weinmannia-trichosperma",
+     "negative": false,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "weinmannia-trichosperma"
+     ],
+     "accepted": "weinmannia-trichosperma",
+     "catalog_assessment": "supported_candidate",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [],
+     "latency_ms": 9599,
+     "usage": {
+      "prompt_tokens": 3452,
+      "completion_tokens": 1017,
+      "total_tokens": 4469
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110552995:0",
+     "label": "nothofagus-antarctica",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Nothofagus antarctica"
+     ],
+     "latency_ms": 7938,
+     "usage": {
+      "prompt_tokens": 2247,
+      "completion_tokens": 964,
+      "total_tokens": 3211
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:34451819",
+     "label": "weinmannia-trichosperma",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "weinmannia-trichosperma"
+     ],
+     "accepted": "weinmannia-trichosperma",
+     "catalog_assessment": "supported_candidate",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [],
+     "latency_ms": 10321,
+     "usage": {
+      "prompt_tokens": 5062,
+      "completion_tokens": 904,
+      "total_tokens": 5966
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:34451821",
+     "label": "weinmannia-trichosperma",
+     "negative": false,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "weinmannia-trichosperma"
+     ],
+     "accepted": "weinmannia-trichosperma",
+     "catalog_assessment": "supported_candidate",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [],
+     "latency_ms": 9466,
+     "usage": {
+      "prompt_tokens": 3688,
+      "completion_tokens": 994,
+      "total_tokens": 4682
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110521909:0",
+     "label": "nothofagus-antarctica",
+     "negative": true,
+     "organ": "bark",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "insufficient_evidence",
+     "recommended_next_photo": "complete_leaf",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6249,
+     "usage": {
+      "prompt_tokens": 2862,
+      "completion_tokens": 583,
+      "total_tokens": 3445
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110282919:0",
+     "label": "nothofagus-antarctica",
+     "negative": true,
+     "organ": "whole_tree",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-pumilio"
+     ],
+     "accepted": null,
+     "catalog_assessment": "insufficient_evidence",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6961,
+     "usage": {
+      "prompt_tokens": 1650,
+      "completion_tokens": 875,
+      "total_tokens": 2525
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:186357318",
+     "label": "nothofagus-nitida",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-dombeyi",
+      "nothofagus-betuloides"
+     ],
+     "accepted": null,
+     "catalog_assessment": "insufficient_evidence",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6832,
+     "usage": {
+      "prompt_tokens": 3371,
+      "completion_tokens": 813,
+      "total_tokens": 4184
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:560083",
+     "label": "nothofagus-nitida",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-betuloides",
+      "nothofagus-dombeyi"
+     ],
+     "accepted": null,
+     "catalog_assessment": "insufficient_evidence",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7804,
+     "usage": {
+      "prompt_tokens": 1807,
+      "completion_tokens": 893,
+      "total_tokens": 2700
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110033905:0",
+     "label": "nothofagus-antarctica",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-pumilio"
+     ],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [
+      "Nothofagus antarctica"
+     ],
+     "latency_ms": 10465,
+     "usage": {
+      "prompt_tokens": 3034,
+      "completion_tokens": 1349,
+      "total_tokens": 4383
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:7529552",
+     "label": "laurelia-sempervirens",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "non_diagnostic_photo",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 4238,
+     "usage": {
+      "prompt_tokens": 3219,
+      "completion_tokens": 362,
+      "total_tokens": 3581
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:77894932",
+     "label": "laurelia-sempervirens",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "complete_leaf",
+     "similar_out_of_catalog": [
+      "Aristotelia chilensis",
+      "Maytenus boaria"
+     ],
+     "latency_ms": 7044,
+     "usage": {
+      "prompt_tokens": 3219,
+      "completion_tokens": 754,
+      "total_tokens": 3973
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:137471650",
+     "label": "laurelia-sempervirens",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "insufficient_evidence",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 6389,
+     "usage": {
+      "prompt_tokens": 1869,
+      "completion_tokens": 667,
+      "total_tokens": 2536
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:15261726",
+     "label": "laurelia-sempervirens",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "laureliopsis-philippiana"
+     ],
+     "accepted": null,
+     "catalog_assessment": "insufficient_evidence",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [],
+     "latency_ms": 8016,
+     "usage": {
+      "prompt_tokens": 3219,
+      "completion_tokens": 922,
+      "total_tokens": 4141
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:76223815",
+     "label": "saxegothaea-conspicua",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [
+      "Saxegothaea conspicua"
+     ],
+     "latency_ms": 10988,
+     "usage": {
+      "prompt_tokens": 4510,
+      "completion_tokens": 1268,
+      "total_tokens": 5778
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110328004:0",
+     "label": "saxegothaea-conspicua",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "supported_candidate",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [],
+     "latency_ms": 12077,
+     "usage": {
+      "prompt_tokens": 7258,
+      "completion_tokens": 1145,
+      "total_tokens": 8403
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:22725389",
+     "label": "saxegothaea-conspicua",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": null,
+     "catalog_assessment": "insufficient_evidence",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Otras Podocarpaceae como Podocarpus salignus o Saxegothaea conspicua"
+     ],
+     "latency_ms": 7955,
+     "usage": {
+      "prompt_tokens": 3219,
+      "completion_tokens": 785,
+      "total_tokens": 4004
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110512399:0",
+     "label": "saxegothaea-conspicua",
+     "negative": true,
+     "organ": "flower",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [
+      "Saxegothaea conspicua"
+     ],
+     "latency_ms": 12659,
+     "usage": {
+      "prompt_tokens": 7258,
+      "completion_tokens": 1197,
+      "total_tokens": 8455
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109904205:0",
+     "label": "podocarpus-salignus",
+     "negative": true,
+     "organ": "bark",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "non_diagnostic_photo",
+     "recommended_next_photo": "complete_leaf",
+     "similar_out_of_catalog": [],
+     "latency_ms": 4799,
+     "usage": {
+      "prompt_tokens": 2375,
+      "completion_tokens": 481,
+      "total_tokens": 2856
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109790812:0",
+     "label": "podocarpus-salignus",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Podocarpus salignus"
+     ],
+     "latency_ms": 6583,
+     "usage": {
+      "prompt_tokens": 2375,
+      "completion_tokens": 677,
+      "total_tokens": 3052
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:6719967",
+     "label": "podocarpus-salignus",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Podocarpus salignus",
+      "Salix sp."
+     ],
+     "latency_ms": 6944,
+     "usage": {
+      "prompt_tokens": 2049,
+      "completion_tokens": 813,
+      "total_tokens": 2862
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:6719959",
+     "label": "podocarpus-salignus",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [
+      "Podocarpus salignus"
+     ],
+     "latency_ms": 10155,
+     "usage": {
+      "prompt_tokens": 5242,
+      "completion_tokens": 1097,
+      "total_tokens": 6339
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:74708887",
+     "label": "prumnopitys-andina",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": null,
+     "catalog_assessment": "insufficient_evidence",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 9675,
+     "usage": {
+      "prompt_tokens": 3463,
+      "completion_tokens": 869,
+      "total_tokens": 4332
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:30125239",
+     "label": "prumnopitys-andina",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [
+      "Saxegothaea conspicua"
+     ],
+     "latency_ms": 11401,
+     "usage": {
+      "prompt_tokens": 3622,
+      "completion_tokens": 1352,
+      "total_tokens": 4974
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:66512743",
+     "label": "prumnopitys-andina",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [
+      "Prumnopitys andina"
+     ],
+     "latency_ms": 8777,
+     "usage": {
+      "prompt_tokens": 3622,
+      "completion_tokens": 1101,
+      "total_tokens": 4723
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:2374041",
+     "label": "prumnopitys-andina",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [
+      "podocarpus-nubigenus"
+     ],
+     "accepted": "podocarpus-nubigenus",
+     "catalog_assessment": "supported_candidate",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 9211,
+     "usage": {
+      "prompt_tokens": 6534,
+      "completion_tokens": 828,
+      "total_tokens": 7362
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110289201:0",
+     "label": "luma-apiculata",
+     "negative": true,
+     "organ": "bark",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "complete_leaf",
+     "similar_out_of_catalog": [
+      "Luma apiculata"
+     ],
+     "latency_ms": 5615,
+     "usage": {
+      "prompt_tokens": 2247,
+      "completion_tokens": 511,
+      "total_tokens": 2758
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110288873:0",
+     "label": "drimys-winteri",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Drimys winteri"
+     ],
+     "latency_ms": 6993,
+     "usage": {
+      "prompt_tokens": 1491,
+      "completion_tokens": 662,
+      "total_tokens": 2153
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110452267:0",
+     "label": "drimys-winteri",
+     "negative": true,
+     "organ": "flower",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Drimys winteri"
+     ],
+     "latency_ms": 7116,
+     "usage": {
+      "prompt_tokens": 1650,
+      "completion_tokens": 714,
+      "total_tokens": 2364
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110295225:0",
+     "label": "luma-apiculata",
+     "negative": true,
+     "organ": "bark",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Luma apiculata"
+     ],
+     "latency_ms": 5532,
+     "usage": {
+      "prompt_tokens": 1919,
+      "completion_tokens": 507,
+      "total_tokens": 2426
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109843360:0",
+     "label": "embothrium-coccineum",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Salix sp.",
+      "Euphorbia sp."
+     ],
+     "latency_ms": 5832,
+     "usage": {
+      "prompt_tokens": 1239,
+      "completion_tokens": 668,
+      "total_tokens": 1907
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109810115:0",
+     "label": "embothrium-coccineum",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Schinus patagonicus",
+      "Aristotelia chilensis"
+     ],
+     "latency_ms": 7582,
+     "usage": {
+      "prompt_tokens": 1650,
+      "completion_tokens": 794,
+      "total_tokens": 2444
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110303379:0",
+     "label": "gevuina-avellana",
+     "negative": true,
+     "organ": "fruit",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Nandina domestica"
+     ],
+     "latency_ms": 8844,
+     "usage": {
+      "prompt_tokens": 1650,
+      "completion_tokens": 1017,
+      "total_tokens": 2667
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110477741:0",
+     "label": "gevuina-avellana",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "weinmannia-trichosperma"
+     ],
+     "accepted": "weinmannia-trichosperma",
+     "catalog_assessment": "supported_candidate",
+     "recommended_next_photo": null,
+     "similar_out_of_catalog": [],
+     "latency_ms": 9759,
+     "usage": {
+      "prompt_tokens": 5404,
+      "completion_tokens": 962,
+      "total_tokens": 6366
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "commons:9029651",
+     "label": "lomatia-hirsuta",
+     "negative": true,
+     "organ": "unknown",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [
+      "Aristotelia chilensis"
+     ],
+     "latency_ms": 8281,
+     "usage": {
+      "prompt_tokens": 3219,
+      "completion_tokens": 849,
+      "total_tokens": 4068
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110000231:0",
+     "label": "amomyrtus-luma",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [
+      "nothofagus-betuloides"
+     ],
+     "accepted": null,
+     "catalog_assessment": "insufficient_evidence",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [],
+     "latency_ms": 7898,
+     "usage": {
+      "prompt_tokens": 1239,
+      "completion_tokens": 824,
+      "total_tokens": 2063
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109844278:0",
+     "label": "amomyrtus-luma",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Myrceugenia sp.",
+      "Amomyrtus sp."
+     ],
+     "latency_ms": 6161,
+     "usage": {
+      "prompt_tokens": 1650,
+      "completion_tokens": 608,
+      "total_tokens": 2258
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110509269:0",
+     "label": "persea-lingue",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [
+      "Aristotelia chilensis"
+     ],
+     "latency_ms": 7438,
+     "usage": {
+      "prompt_tokens": 1650,
+      "completion_tokens": 886,
+      "total_tokens": 2536
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110439867:0",
+     "label": "persea-lingue",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "leaf_underside",
+     "similar_out_of_catalog": [
+      "Laurelia sempervirens"
+     ],
+     "latency_ms": 6193,
+     "usage": {
+      "prompt_tokens": 1563,
+      "completion_tokens": 737,
+      "total_tokens": 2300
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5110512319:0",
+     "label": "fitzroya-cupressoides",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Fitzroya cupressoides",
+      "Pilgerodendron uviferum"
+     ],
+     "latency_ms": 6244,
+     "usage": {
+      "prompt_tokens": 1971,
+      "completion_tokens": 670,
+      "total_tokens": 2641
+     },
+     "stage1_reused": null
+    },
+    {
+     "image_id": "gbif:5109817766:0",
+     "label": "fitzroya-cupressoides",
+     "negative": true,
+     "organ": "leaf",
+     "status": "completed",
+     "proposed": [],
+     "accepted": null,
+     "catalog_assessment": "out_of_catalog_suspected",
+     "recommended_next_photo": "closer_view",
+     "similar_out_of_catalog": [
+      "Pilgerodendron uviferum",
+      "Fitzroya cupressoides"
+     ],
+     "latency_ms": 6616,
+     "usage": {
+      "prompt_tokens": 1415,
+      "completion_tokens": 591,
+      "total_tokens": 2006
+     },
+     "stage1_reused": null
+    }
+   ]
+  },
+  "paired": {
+   "n": 56,
+   "both_correct": 19,
+   "only_first": 3,
+   "only_second": 23,
+   "both_wrong": 11
+  },
+  "mcnemar_exact_p": 8.797645568847656e-05
+ },
+ "multiview": {
+  "verify_v2": [
+   {
+    "image_id": "gbif:5109800392:1#views=1",
+    "label": "nothofagus-dombeyi",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": "non_diagnostic_photo",
+    "recommended_next_photo": "closer_view",
+    "similar_out_of_catalog": [],
+    "latency_ms": 4790,
+    "usage": {
+     "prompt_tokens": 1649,
+     "completion_tokens": 466,
+     "total_tokens": 2115
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110308095:1#views=1",
+    "label": "eucryphia-cordifolia",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": "insufficient_evidence",
+    "recommended_next_photo": "complete_leaf",
+    "similar_out_of_catalog": [],
+    "latency_ms": 6075,
+    "usage": {
+     "prompt_tokens": 2226,
+     "completion_tokens": 637,
+     "total_tokens": 2863
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5109800392:1#views=3",
+    "label": "nothofagus-dombeyi",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "nothofagus-dombeyi"
+    ],
+    "accepted": null,
+    "catalog_assessment": "insufficient_evidence",
+    "recommended_next_photo": "leaf_underside",
+    "similar_out_of_catalog": [],
+    "latency_ms": 9279,
+    "usage": {
+     "prompt_tokens": 3921,
+     "completion_tokens": 1194,
+     "total_tokens": 5115
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110308095:1#views=2",
+    "label": "eucryphia-cordifolia",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": "non_diagnostic_photo",
+    "recommended_next_photo": "closer_view",
+    "similar_out_of_catalog": [],
+    "latency_ms": 5197,
+    "usage": {
+     "prompt_tokens": 3362,
+     "completion_tokens": 452,
+     "total_tokens": 3814
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5109800392:1#views=2",
+    "label": "nothofagus-dombeyi",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "nothofagus-dombeyi"
+    ],
+    "accepted": "nothofagus-dombeyi",
+    "catalog_assessment": "supported_candidate",
+    "recommended_next_photo": "leaf_underside",
+    "similar_out_of_catalog": [],
+    "latency_ms": 11087,
+    "usage": {
+     "prompt_tokens": 5275,
+     "completion_tokens": 1130,
+     "total_tokens": 6405
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110308095:1#views=3",
+    "label": "eucryphia-cordifolia",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": "insufficient_evidence",
+    "recommended_next_photo": "complete_leaf",
+    "similar_out_of_catalog": [],
+    "latency_ms": 6566,
+    "usage": {
+     "prompt_tokens": 4498,
+     "completion_tokens": 638,
+     "total_tokens": 5136
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110335174:2#views=1",
+    "label": "nothofagus-pumilio",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": "insufficient_evidence",
+    "recommended_next_photo": "complete_leaf",
+    "similar_out_of_catalog": [],
+    "latency_ms": 4933,
+    "usage": {
+     "prompt_tokens": 1852,
+     "completion_tokens": 547,
+     "total_tokens": 2399
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110272204:1#views=3",
+    "label": "weinmannia-trichosperma",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": "out_of_catalog_suspected",
+    "recommended_next_photo": "complete_leaf",
+    "similar_out_of_catalog": [
+     "Caesalpinia spinosa (tara)"
+    ],
+    "latency_ms": 8277,
+    "usage": {
+     "prompt_tokens": 4078,
+     "completion_tokens": 965,
+     "total_tokens": 5043
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110272204:1#views=1",
+    "label": "weinmannia-trichosperma",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "weinmannia-trichosperma"
+    ],
+    "accepted": "weinmannia-trichosperma",
+    "catalog_assessment": "supported_candidate",
+    "recommended_next_photo": null,
+    "similar_out_of_catalog": [],
+    "latency_ms": 10777,
+    "usage": {
+     "prompt_tokens": 2779,
+     "completion_tokens": 1089,
+     "total_tokens": 3868
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110272204:1#views=2",
+    "label": "weinmannia-trichosperma",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "weinmannia-trichosperma"
+    ],
+    "accepted": "weinmannia-trichosperma",
+    "catalog_assessment": "supported_candidate",
+    "recommended_next_photo": null,
+    "similar_out_of_catalog": [],
+    "latency_ms": 10110,
+    "usage": {
+     "prompt_tokens": 4914,
+     "completion_tokens": 1051,
+     "total_tokens": 5965
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110335174:2#views=2",
+    "label": "nothofagus-pumilio",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "nothofagus-pumilio"
+    ],
+    "accepted": "nothofagus-pumilio",
+    "catalog_assessment": "supported_candidate",
+    "recommended_next_photo": null,
+    "similar_out_of_catalog": [
+     "Nothofagus antarctica"
+    ],
+    "latency_ms": 9300,
+    "usage": {
+     "prompt_tokens": 5294,
+     "completion_tokens": 1068,
+     "total_tokens": 6362
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5109125393:0#views=1",
+    "label": "laureliopsis-philippiana",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "eucryphia-cordifolia",
+     "aextoxicon-punctatum"
+    ],
+    "accepted": null,
+    "catalog_assessment": "insufficient_evidence",
+    "recommended_next_photo": "leaf_underside",
+    "similar_out_of_catalog": [],
+    "latency_ms": 6854,
+    "usage": {
+     "prompt_tokens": 1286,
+     "completion_tokens": 822,
+     "total_tokens": 2108
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110335174:2#views=3",
+    "label": "nothofagus-pumilio",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "nothofagus-pumilio"
+    ],
+    "accepted": null,
+    "catalog_assessment": "insufficient_evidence",
+    "recommended_next_photo": "closer_view",
+    "similar_out_of_catalog": [
+     "Nothofagus antarctica"
+    ],
+    "latency_ms": 7855,
+    "usage": {
+     "prompt_tokens": 3801,
+     "completion_tokens": 827,
+     "total_tokens": 4628
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5109125393:0#views=2",
+    "label": "laureliopsis-philippiana",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "laureliopsis-philippiana",
+     "eucryphia-cordifolia"
+    ],
+    "accepted": null,
+    "catalog_assessment": "insufficient_evidence",
+    "recommended_next_photo": "leaf_underside",
+    "similar_out_of_catalog": [],
+    "latency_ms": 7430,
+    "usage": {
+     "prompt_tokens": 2059,
+     "completion_tokens": 955,
+     "total_tokens": 3014
+    },
+    "stage1_reused": null
+   }
+  ],
+  "baseline": [
+   {
+    "image_id": "gbif:5109800392:1#views=1",
+    "label": "nothofagus-dombeyi",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "complete_leaf",
+    "similar_out_of_catalog": [],
+    "latency_ms": 4321,
+    "usage": {
+     "prompt_tokens": 1454,
+     "completion_tokens": 388,
+     "total_tokens": 1842
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110308095:1#views=1",
+    "label": "eucryphia-cordifolia",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "complete_leaf",
+    "similar_out_of_catalog": [],
+    "latency_ms": 4368,
+    "usage": {
+     "prompt_tokens": 2031,
+     "completion_tokens": 359,
+     "total_tokens": 2390
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110308095:1#views=2",
+    "label": "eucryphia-cordifolia",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "closer_view",
+    "similar_out_of_catalog": [],
+    "latency_ms": 4899,
+    "usage": {
+     "prompt_tokens": 3167,
+     "completion_tokens": 356,
+     "total_tokens": 3523
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5109800392:1#views=3",
+    "label": "nothofagus-dombeyi",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "nothofagus-dombeyi",
+     "nothofagus-betuloides"
+    ],
+    "accepted": "nothofagus-dombeyi",
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "leaf_underside",
+    "similar_out_of_catalog": [],
+    "latency_ms": 9250,
+    "usage": {
+     "prompt_tokens": 3726,
+     "completion_tokens": 1086,
+     "total_tokens": 4812
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5109800392:1#views=2",
+    "label": "nothofagus-dombeyi",
+    "negative": false,
+    "organ": "multiview",
+    "status": "provider_error",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": null,
+    "recommended_next_photo": null,
+    "similar_out_of_catalog": null,
+    "latency_ms": 9740,
+    "usage": {
+     "prompt_tokens": 2590,
+     "completion_tokens": 1200,
+     "total_tokens": 3790
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110308095:1#views=3",
+    "label": "eucryphia-cordifolia",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "closer_view",
+    "similar_out_of_catalog": [],
+    "latency_ms": 6232,
+    "usage": {
+     "prompt_tokens": 4303,
+     "completion_tokens": 505,
+     "total_tokens": 4808
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110272204:1#views=1",
+    "label": "weinmannia-trichosperma",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "weinmannia-trichosperma"
+    ],
+    "accepted": "weinmannia-trichosperma",
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "complete_leaf",
+    "similar_out_of_catalog": [],
+    "latency_ms": 6201,
+    "usage": {
+     "prompt_tokens": 1387,
+     "completion_tokens": 627,
+     "total_tokens": 2014
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110272204:1#views=3",
+    "label": "weinmannia-trichosperma",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "weinmannia-trichosperma"
+    ],
+    "accepted": "weinmannia-trichosperma",
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "leaf_underside",
+    "similar_out_of_catalog": [],
+    "latency_ms": 5966,
+    "usage": {
+     "prompt_tokens": 3883,
+     "completion_tokens": 567,
+     "total_tokens": 4450
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110335174:2#views=1",
+    "label": "nothofagus-pumilio",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "complete_leaf",
+    "similar_out_of_catalog": [],
+    "latency_ms": 5144,
+    "usage": {
+     "prompt_tokens": 1657,
+     "completion_tokens": 445,
+     "total_tokens": 2102
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110272204:1#views=2",
+    "label": "weinmannia-trichosperma",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "weinmannia-trichosperma"
+    ],
+    "accepted": "weinmannia-trichosperma",
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "bark",
+    "similar_out_of_catalog": [],
+    "latency_ms": 6721,
+    "usage": {
+     "prompt_tokens": 2456,
+     "completion_tokens": 676,
+     "total_tokens": 3132
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5109125393:0#views=1",
+    "label": "laureliopsis-philippiana",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [],
+    "accepted": null,
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "closer_view",
+    "similar_out_of_catalog": [],
+    "latency_ms": 5378,
+    "usage": {
+     "prompt_tokens": 1091,
+     "completion_tokens": 532,
+     "total_tokens": 1623
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110335174:2#views=3",
+    "label": "nothofagus-pumilio",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "nothofagus-pumilio",
+     "nothofagus-betuloides"
+    ],
+    "accepted": "nothofagus-pumilio",
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "leaf_underside",
+    "similar_out_of_catalog": [],
+    "latency_ms": 7988,
+    "usage": {
+     "prompt_tokens": 3606,
+     "completion_tokens": 895,
+     "total_tokens": 4501
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5110335174:2#views=2",
+    "label": "nothofagus-pumilio",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "nothofagus-pumilio",
+     "nothofagus-betuloides"
+    ],
+    "accepted": "nothofagus-pumilio",
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "leaf_underside",
+    "similar_out_of_catalog": [],
+    "latency_ms": 8510,
+    "usage": {
+     "prompt_tokens": 2586,
+     "completion_tokens": 996,
+     "total_tokens": 3582
+    },
+    "stage1_reused": null
+   },
+   {
+    "image_id": "gbif:5109125393:0#views=2",
+    "label": "laureliopsis-philippiana",
+    "negative": false,
+    "organ": "multiview",
+    "status": "completed",
+    "proposed": [
+     "laureliopsis-philippiana",
+     "eucryphia-cordifolia"
+    ],
+    "accepted": "laureliopsis-philippiana",
+    "catalog_assessment": "not_assessed",
+    "recommended_next_photo": "leaf_underside",
+    "similar_out_of_catalog": [],
+    "latency_ms": 8943,
+    "usage": {
+     "prompt_tokens": 1864,
+     "completion_tokens": 900,
+     "total_tokens": 2764
+    },
+    "stage1_reused": null
+   }
+  ]
+ }
+}
