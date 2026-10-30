@@ -136,3 +136,31 @@ def test_published_eval_set_matches_its_freeze_hash():
         c["agent_visual_check"]["reviewer"].startswith("claude") for c in data["cases"]
     )
     assert "expert" not in data["label_status"].split("(")[0]
+
+
+def test_stage1_rows_recover_acceptance_before_verification():
+    from evaluations.open_set_campaign import stage1_rows
+
+    rejected = {
+        "image_id": "n1",
+        "label": "x",
+        "negative": True,
+        "status": "completed",
+        "proposed": ["a"],
+        "accepted": None,
+        "stage_usage": {"identification": {}, "verification": {}},
+        "identification": {"exploratory_candidates": [{"species_id": "a"}]},
+    }
+    abstained = dict(
+        rejected,
+        stage_usage={"identification": {}},
+        identification={"exploratory_candidates": [{"species_id": "a"}]},
+    )
+    kept = dict(
+        rejected, accepted="a", stage_usage={"identification": {}, "verification": {}}
+    )
+    assert [r["accepted"] for r in stage1_rows([rejected, abstained, kept])] == [
+        "a",
+        None,
+        "a",
+    ]
