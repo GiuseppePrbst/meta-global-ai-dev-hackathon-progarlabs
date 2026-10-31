@@ -125,7 +125,7 @@ async def test_resume_skips_done_cases_and_verify_reuses_identical_stage1(
     class Adapter:
         model = "muse-spark-1.3"
 
-        def __init__(self, client):
+        def __init__(self, client, model="muse-spark-1.3"):
             self.client = client
 
         async def identify(self, image, content_type, catalog, **kw):

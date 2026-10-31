@@ -446,7 +446,7 @@ async def cleanup_remote(client, manifest):
 
 LEGACY_CAP_USD = 1
 RESEARCH_CAP_USD = 50  # user authorization 2026-10-30; cumulative, history included
-PHASES = ("A", "B", "C", "D", "E", "F")  # F: open-set sprint, 2026-10-30
+PHASES = ("A", "B", "C", "D", "E", "F", "G")  # F: open-set 30-10; G: multikingdom 31-10
 
 
 class Campaign(BaseModel):
@@ -455,7 +455,7 @@ class Campaign(BaseModel):
     model_config = ConfigDict(extra="forbid")
     authorized_usd: float = Field(gt=0, le=RESEARCH_CAP_USD)
     authorization_date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
-    phase_caps_usd: dict[Literal["A", "B", "C", "D", "E", "F"], float]
+    phase_caps_usd: dict[Literal["A", "B", "C", "D", "E", "F", "G"], float]
     # None disables the internal daily request counter (owner decision 2026-10-30);
     # it is a project control, not Meta's limit. Money caps always apply.
     daily_requests: int | None = Field(ge=1, le=200)
@@ -469,8 +469,8 @@ class Reallocation(BaseModel):
     """Traceable move of unused phase capacity; the campaign total never changes."""
 
     model_config = ConfigDict(extra="forbid")
-    from_phase: Literal["A", "B", "C", "D", "E", "F"]
-    to_phase: Literal["A", "B", "C", "D", "E", "F"]
+    from_phase: Literal["A", "B", "C", "D", "E", "F", "G"]
+    to_phase: Literal["A", "B", "C", "D", "E", "F", "G"]
     usd: float = Field(gt=0)
     reason: str = Field(min_length=5, max_length=300)
     date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")

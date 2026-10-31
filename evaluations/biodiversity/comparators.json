@@ -1,0 +1,75 @@
+[
+  {
+    "scientific_name": "Enicognathus ferrugineus",
+    "common_name": "Cachaña",
+    "family": "Psittacidae",
+    "col_xr_key": "6F9ZK",
+    "confused_with": ["enicognathus-leptorhynchus"],
+    "diagnostic_traits": [
+      "Algo menor que el choroy (unos 34 cm).",
+      "Pico corto, ancho y ganchudo, no largo y delgado.",
+      "Mancha roja en el centro del abdomen; cola rojo oscuro."
+    ],
+    "sources": ["https://es.wikipedia.org/wiki/Enicognathus_ferrugineus"],
+    "accessed_at": "2026-10-31",
+    "limitations": "Fuente secundaria; el tamaño no se aprecia en una sola foto."
+  },
+  {
+    "scientific_name": "Pteroptochos castaneus",
+    "common_name": "Hued-hued castaño",
+    "family": "Rhinocryptidae",
+    "col_xr_key": "4Q2S5",
+    "confused_with": ["pteroptochos-tarnii"],
+    "diagnostic_traits": [
+      "Garganta y pecho rufos, no gris oscuro a negro.",
+      "En Chile, al norte del río Biobío."
+    ],
+    "sources": ["https://es.wikipedia.org/wiki/Pteroptochos_tarnii"],
+    "accessed_at": "2026-10-31",
+    "limitations": "Fuente secundaria; la distribución no se ve en la foto."
+  },
+  {
+    "scientific_name": "Scelorchilus rubecula",
+    "common_name": "Chucao",
+    "family": "Rhinocryptidae",
+    "col_xr_key": "4V5DH",
+    "confused_with": ["pteroptochos-tarnii"],
+    "diagnostic_traits": [
+      "Menor (18–19 cm).",
+      "Vientre con franjas transversales blancas y negras; flancos y costados del cuello grises.",
+      "También lleva la cola levantada."
+    ],
+    "sources": ["https://es.wikipedia.org/wiki/Scelorchilus_rubecula"],
+    "accessed_at": "2026-10-31",
+    "limitations": "Fuente secundaria; no describe el color de garganta y pecho."
+  },
+  {
+    "scientific_name": "Colaptes pitius",
+    "common_name": "Pitío",
+    "family": "Picidae",
+    "col_xr_key": "WX2S",
+    "confused_with": ["campephilus-magellanicus"],
+    "diagnostic_traits": [
+      "Pardo oscuro con bordes blancos en dorso y cubiertas alares, no negro.",
+      "Mejillas y garganta café leonado; pecho blanquecino barrado de negruzco.",
+      "Ojos amarillos; frecuenta campos abiertos con arbustos."
+    ],
+    "sources": ["https://es.wikipedia.org/wiki/Colaptes_pitius"],
+    "accessed_at": "2026-10-31",
+    "limitations": "Fuente secundaria."
+  },
+  {
+    "scientific_name": "Cyttaria darwinii",
+    "common_name": "Cyttaria de Darwin",
+    "family": "Cyttariaceae",
+    "col_xr_key": "33SNH",
+    "confused_with": ["cyttaria-hariotii", "cyttaria-espinosae"],
+    "diagnostic_traits": [
+      "Esférica, de 2 a 5 cm, en grupos sobre Nothofagus.",
+      "Amarillo pálido; C. hariotii es amarillo-anaranjado."
+    ],
+    "sources": ["https://es.wikipedia.org/wiki/Cyttaria_darwinii"],
+    "accessed_at": "2026-10-31",
+    "limitations": "Fuente secundaria; la nómina RCE trata parte de C. darwinii como sinonimia de C. hariotii."
+  }
+]

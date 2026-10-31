@@ -1,0 +1,675 @@
+{
+ "computed_at": "2026-10-31",
+ "weights": {
+  "park_presence": 0.25,
+  "reusable_media": 0.25,
+  "visual_diversity_and_traits": 0.15,
+  "responsible_education": 0.15,
+  "source_quality": 0.1,
+  "conservation_information": 0.1
+ },
+ "rules": [
+  "Gates before weights: no rights, no resolvable taxonomy or no sources -> knowledge only, whatever the score.",
+  "RCE category never adds points; only the existence of a record does.",
+  "Location-sensitive taxa score lower in responsible education; sensitive mammals stay knowledge-only (used only as out-of-catalog negatives).",
+  "Recognition benchmark needs >= 20 processable photos."
+ ],
+ "taxa": [
+  {
+   "taxon_id": "aextoxicon-punctatum",
+   "kingdom": "Plantae",
+   "group": "tree",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 1.0,
+    "visual_diversity_and_traits": 0.95,
+    "responsible_education": 1.0,
+    "source_quality": 1.0,
+    "conservation_information": 1.0
+   },
+   "score": 0.992,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 137,
+   "candidates_seen": 560,
+   "selected_observations": 18,
+   "media_rejected_by_license": {
+    "non_commercial": 423
+   },
+   "record_cc_but_media_restricted": 3,
+   "gbif_in_bcn_polygon_passing_filters": 8,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "pteroptochos-tarnii",
+   "kingdom": "Animalia",
+   "group": "bird",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 0.95,
+    "visual_diversity_and_traits": 1.0,
+    "responsible_education": 1.0,
+    "source_quality": 1.0,
+    "conservation_information": 1.0
+   },
+   "score": 0.988,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 95,
+   "candidates_seen": 578,
+   "selected_observations": 22,
+   "media_rejected_by_license": {
+    "non_commercial": 483
+   },
+   "record_cc_but_media_restricted": 14,
+   "gbif_in_bcn_polygon_passing_filters": 4,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "theristicus-melanopis",
+   "kingdom": "Animalia",
+   "group": "bird",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 1.0,
+    "visual_diversity_and_traits": 1.0,
+    "responsible_education": 1.0,
+    "source_quality": 0.85,
+    "conservation_information": 1.0
+   },
+   "score": 0.985,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 192,
+   "candidates_seen": 1389,
+   "selected_observations": 22,
+   "media_rejected_by_license": {
+    "non_commercial": 1197
+   },
+   "record_cc_but_media_restricted": 26,
+   "gbif_in_bcn_polygon_passing_filters": 3,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "nothofagus-betuloides",
+   "kingdom": "Plantae",
+   "group": "tree",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 1.0,
+    "visual_diversity_and_traits": 0.95,
+    "responsible_education": 1.0,
+    "source_quality": 1.0,
+    "conservation_information": 0.5
+   },
+   "score": 0.943,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 115,
+   "candidates_seen": 564,
+   "selected_observations": 18,
+   "media_rejected_by_license": {
+    "non_commercial": 449
+   },
+   "record_cc_but_media_restricted": 49,
+   "gbif_in_bcn_polygon_passing_filters": 0,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "nothofagus-dombeyi",
+   "kingdom": "Plantae",
+   "group": "tree",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 1.0,
+    "visual_diversity_and_traits": 0.925,
+    "responsible_education": 1.0,
+    "source_quality": 1.0,
+    "conservation_information": 0.5
+   },
+   "score": 0.939,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 214,
+   "candidates_seen": 594,
+   "selected_observations": 17,
+   "media_rejected_by_license": {
+    "non_commercial": 380
+   },
+   "record_cc_but_media_restricted": 3,
+   "gbif_in_bcn_polygon_passing_filters": 12,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "weinmannia-trichosperma",
+   "kingdom": "Plantae",
+   "group": "tree",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 1.0,
+    "visual_diversity_and_traits": 0.925,
+    "responsible_education": 1.0,
+    "source_quality": 1.0,
+    "conservation_information": 0.5
+   },
+   "score": 0.939,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 177,
+   "candidates_seen": 927,
+   "selected_observations": 17,
+   "media_rejected_by_license": {
+    "non_commercial": 750
+   },
+   "record_cc_but_media_restricted": 34,
+   "gbif_in_bcn_polygon_passing_filters": 10,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "podocarpus-nubigenus",
+   "kingdom": "Plantae",
+   "group": "tree",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 0.97,
+    "visual_diversity_and_traits": 0.95,
+    "responsible_education": 1.0,
+    "source_quality": 1.0,
+    "conservation_information": 0.5
+   },
+   "score": 0.935,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 97,
+   "candidates_seen": 492,
+   "selected_observations": 18,
+   "media_rejected_by_license": {
+    "non_commercial": 395
+   },
+   "record_cc_but_media_restricted": 9,
+   "gbif_in_bcn_polygon_passing_filters": 10,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "nothofagus-pumilio",
+   "kingdom": "Plantae",
+   "group": "tree",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 1.0,
+    "visual_diversity_and_traits": 0.9,
+    "responsible_education": 1.0,
+    "source_quality": 1.0,
+    "conservation_information": 0.5
+   },
+   "score": 0.935,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 226,
+   "candidates_seen": 1008,
+   "selected_observations": 16,
+   "media_rejected_by_license": {
+    "non_commercial": 782
+   },
+   "record_cc_but_media_restricted": 45,
+   "gbif_in_bcn_polygon_passing_filters": 11,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "troglodytes-aedon",
+   "kingdom": "Animalia",
+   "group": "bird",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 1.0,
+    "visual_diversity_and_traits": 1.0,
+    "responsible_education": 1.0,
+    "source_quality": 0.85,
+    "conservation_information": 0.5
+   },
+   "score": 0.935,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 122,
+   "candidates_seen": 525,
+   "selected_observations": 22,
+   "media_rejected_by_license": {
+    "non_commercial": 403
+   },
+   "record_cc_but_media_restricted": 3,
+   "gbif_in_bcn_polygon_passing_filters": 2,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "eucryphia-cordifolia",
+   "kingdom": "Plantae",
+   "group": "tree",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 1.0,
+    "visual_diversity_and_traits": 0.875,
+    "responsible_education": 1.0,
+    "source_quality": 1.0,
+    "conservation_information": 0.5
+   },
+   "score": 0.931,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 210,
+   "candidates_seen": 1015,
+   "selected_observations": 15,
+   "media_rejected_by_license": {
+    "non_commercial": 805
+   },
+   "record_cc_but_media_restricted": 30,
+   "gbif_in_bcn_polygon_passing_filters": 31,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "laureliopsis-philippiana",
+   "kingdom": "Plantae",
+   "group": "tree",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 1.0,
+    "visual_diversity_and_traits": 0.85,
+    "responsible_education": 1.0,
+    "source_quality": 1.0,
+    "conservation_information": 0.5
+   },
+   "score": 0.927,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 143,
+   "candidates_seen": 639,
+   "selected_observations": 14,
+   "media_rejected_by_license": {
+    "non_commercial": 496
+   },
+   "record_cc_but_media_restricted": 25,
+   "gbif_in_bcn_polygon_passing_filters": 16,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "enicognathus-leptorhynchus",
+   "kingdom": "Animalia",
+   "group": "bird",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 0.67,
+    "visual_diversity_and_traits": 1.0,
+    "responsible_education": 1.0,
+    "source_quality": 1.0,
+    "conservation_information": 1.0
+   },
+   "score": 0.917,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 67,
+   "candidates_seen": 329,
+   "selected_observations": 22,
+   "media_rejected_by_license": {
+    "non_commercial": 262
+   },
+   "record_cc_but_media_restricted": 6,
+   "gbif_in_bcn_polygon_passing_filters": 1,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "campephilus-magellanicus",
+   "kingdom": "Animalia",
+   "group": "bird",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 1.0,
+    "visual_diversity_and_traits": 1.0,
+    "responsible_education": 0.4,
+    "source_quality": 1.0,
+    "conservation_information": 1.0
+   },
+   "score": 0.91,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 122,
+   "candidates_seen": 1006,
+   "selected_observations": 22,
+   "media_rejected_by_license": {
+    "non_commercial": 884
+   },
+   "record_cc_but_media_restricted": 20,
+   "gbif_in_bcn_polygon_passing_filters": 0,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "location_sensitive"
+  },
+  {
+   "taxon_id": "cyttaria-hariotii",
+   "kingdom": "Fungi",
+   "group": "fungus",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 0.4,
+    "reusable_media": 1.0,
+    "visual_diversity_and_traits": 1.0,
+    "responsible_education": 1.0,
+    "source_quality": 1.0,
+    "conservation_information": 1.0
+   },
+   "score": 0.85,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 191,
+   "candidates_seen": 815,
+   "selected_observations": 20,
+   "media_rejected_by_license": {
+    "non_commercial": 624
+   },
+   "record_cc_but_media_restricted": 23,
+   "gbif_in_bcn_polygon_passing_filters": 0,
+   "puyehue_status": "regional_candidate",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "puma-concolor",
+   "kingdom": "Animalia",
+   "group": "mammal",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 0.93,
+    "visual_diversity_and_traits": 0.1,
+    "responsible_education": 0.4,
+    "source_quality": 0.75,
+    "conservation_information": 1.0
+   },
+   "score": 0.733,
+   "decision": "knowledge_only: sensitive mammal; recognition would reward searching it",
+   "processable_media_seen": 93,
+   "candidates_seen": 536,
+   "selected_observations": 4,
+   "media_rejected_by_license": {
+    "non_commercial": 443
+   },
+   "record_cc_but_media_restricted": 9,
+   "gbif_in_bcn_polygon_passing_filters": 0,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "location_sensitive"
+  },
+  {
+   "taxon_id": "leopardus-guigna",
+   "kingdom": "Animalia",
+   "group": "mammal",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 0.44,
+    "visual_diversity_and_traits": 0.125,
+    "responsible_education": 0.4,
+    "source_quality": 0.75,
+    "conservation_information": 1.0
+   },
+   "score": 0.614,
+   "decision": "knowledge_only: sensitive mammal; recognition would reward searching it",
+   "processable_media_seen": 44,
+   "candidates_seen": 277,
+   "selected_observations": 5,
+   "media_rejected_by_license": {
+    "non_commercial": 233
+   },
+   "record_cc_but_media_restricted": 8,
+   "gbif_in_bcn_polygon_passing_filters": 0,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "location_sensitive"
+  },
+  {
+   "taxon_id": "cyttaria-espinosae",
+   "kingdom": "Fungi",
+   "group": "fungus",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 0.0,
+    "reusable_media": 0.55,
+    "visual_diversity_and_traits": 0.9,
+    "responsible_education": 1.0,
+    "source_quality": 1.0,
+    "conservation_information": 0.5
+   },
+   "score": 0.573,
+   "decision": "recognition_benchmark",
+   "processable_media_seen": 55,
+   "candidates_seen": 379,
+   "selected_observations": 16,
+   "media_rejected_by_license": {
+    "non_commercial": 324
+   },
+   "record_cc_but_media_restricted": 6,
+   "gbif_in_bcn_polygon_passing_filters": 0,
+   "puyehue_status": "not_assessed",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "dromiciops-gliroides",
+   "kingdom": "Animalia",
+   "group": "mammal",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": true,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": true,
+   "components": {
+    "park_presence": 1.0,
+    "reusable_media": 0.26,
+    "visual_diversity_and_traits": 0.125,
+    "responsible_education": 0.4,
+    "source_quality": 0.75,
+    "conservation_information": 1.0
+   },
+   "score": 0.569,
+   "decision": "knowledge_only: sensitive mammal; recognition would reward searching it",
+   "processable_media_seen": 26,
+   "candidates_seen": 94,
+   "selected_observations": 5,
+   "media_rejected_by_license": {
+    "non_commercial": 68
+   },
+   "record_cc_but_media_restricted": 6,
+   "gbif_in_bcn_polygon_passing_filters": 0,
+   "puyehue_status": "documented_in_park",
+   "sensitivity": "location_sensitive"
+  },
+  {
+   "taxon_id": "amanita-gayana",
+   "kingdom": "Fungi",
+   "group": "fungus",
+   "gates": {
+    "taxonomy_resolvable": false,
+    "sources_identified": true,
+    "processing_rights_checked": false,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": false,
+   "components": {
+    "park_presence": 0.4,
+    "reusable_media": 0.0,
+    "visual_diversity_and_traits": 0.0,
+    "responsible_education": 1.0,
+    "source_quality": 0.25,
+    "conservation_information": 1.0
+   },
+   "score": 0.375,
+   "decision": "knowledge_only: taxonomy_resolvable, processing_rights_checked",
+   "processable_media_seen": 0,
+   "candidates_seen": null,
+   "selected_observations": 0,
+   "media_rejected_by_license": null,
+   "record_cc_but_media_restricted": null,
+   "gbif_in_bcn_polygon_passing_filters": null,
+   "puyehue_status": "regional_candidate",
+   "sensitivity": "none"
+  },
+  {
+   "taxon_id": "boletus-chilensis",
+   "kingdom": "Fungi",
+   "group": "fungus",
+   "gates": {
+    "taxonomy_resolvable": true,
+    "sources_identified": true,
+    "processing_rights_checked": false,
+    "presence_declared": true,
+    "privacy_assessed": true
+   },
+   "eligible": false,
+   "components": {
+    "park_presence": 0.4,
+    "reusable_media": 0.0,
+    "visual_diversity_and_traits": 0.0,
+    "responsible_education": 0.4,
+    "source_quality": 0.75,
+    "conservation_information": 1.0
+   },
+   "score": 0.335,
+   "decision": "knowledge_only: processing_rights_checked",
+   "processable_media_seen": 0,
+   "candidates_seen": null,
+   "selected_observations": 0,
+   "media_rejected_by_license": null,
+   "record_cc_but_media_restricted": null,
+   "gbif_in_bcn_polygon_passing_filters": 0,
+   "puyehue_status": "regional_candidate",
+   "sensitivity": "location_sensitive"
+  }
+ ]
+}
