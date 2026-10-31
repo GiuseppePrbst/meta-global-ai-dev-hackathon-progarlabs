@@ -5,7 +5,6 @@ import sys
 from pathlib import Path
 
 import pytest
-from fastapi import HTTPException
 
 sys.path.insert(0, str(Path(__file__).parents[3]))
 from tools.meta_sam_api_lab import costs, lab
@@ -77,42 +76,54 @@ def test_campaign_rejects_overruns_and_unknown_fields(
         lab.config_from_private(write_config(tmp_path, budget, campaign(**overrides)))
 
 
-class FakeConnection:
-    def __init__(self, used):
-        self.used = used
-        self.params = None
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, *args):
-        return False
-
-    def execute(self, sql, params=None):
-        self.params = params
-        return self
-
-    def fetchone(self):
-        return (self.used,)
-
-
-def test_phase_admission_uses_its_own_identity_and_fails_closed(tmp_path, monkeypatch):
-    import psycopg
-
-    config = lab.config_from_private(write_config(tmp_path, 50, campaign()))
-    connection = FakeConnection(used=2_950_000)
-    monkeypatch.setattr(psycopg, "connect", lambda *a, **k: connection)
-    assert lab.admit_phase(config, "A", 3) == "sam-api-lab:A"
-    assert connection.params == ("sam-api-lab:A",)
-    connection.used = 2_960_000  # next 0.05 reservation would exceed USD 3
-    with pytest.raises(HTTPException) as error:
-        lab.admit_phase(config, "A", 3)
-    assert error.value.status_code == 429
-    assert lab.admit_phase(config, None, None) == "sam-api-lab"  # historical identity
+def test_phase_admission_passes_an_atomic_cap_to_the_ledger():
+    assert lab.phase_admission("A", 3) == ("sam-api-lab:A", 3_000_000)
+    assert lab.phase_admission(None, None) == (
+        "sam-api-lab",
+        None,
+    )  # historical identity
     with pytest.raises(ValueError):
-        lab.admit_phase(config, "Z", 1)
+        lab.phase_admission("Z", 1)
     with pytest.raises(ValueError):
-        lab.admit_phase(config, "B", None)
+        lab.phase_admission("B", None)
+
+
+def test_research_profile_can_disable_daily_counter_only_explicitly(tmp_path):
+    normal = lab.config_from_private(write_config(tmp_path, 1))
+    assert normal.budget_daily_requests_enabled and normal.budget_requests == 10
+    assert normal.budget_concurrency == 1
+    research = lab.config_from_private(
+        write_config(tmp_path, 50, campaign(daily_requests=None, concurrency=4))
+    )
+    assert research.budget_daily_requests_enabled is False
+    assert research.budget_lifetime_units == 50_000_000  # money cap unchanged
+    assert research.budget_concurrency == 4
+    with pytest.raises(ValueError):
+        lab.config_from_private(write_config(tmp_path, 50, campaign(concurrency=20)))
+
+
+def test_reallocations_move_unused_capacity_without_changing_the_total(tmp_path):
+    move = {
+        "from_phase": "D",
+        "to_phase": "F",
+        "usd": 10,
+        "reason": "open-set needs",
+        "date": "2026-10-30",
+    }
+    caps = {**CAPS, "F": 0}
+    path = write_config(
+        tmp_path, 50, campaign(phase_caps_usd=caps, reallocations=[move])
+    )
+    effective = lab.campaign_from_private(path).phase_caps_usd
+    assert effective["D"] == 4 and effective["F"] == 10
+    assert sum(effective.values()) == sum(caps.values())
+    too_much = dict(move, usd=15)
+    with pytest.raises(ValueError, match="source phase"):
+        lab.campaign_from_private(
+            write_config(
+                tmp_path, 50, campaign(phase_caps_usd=caps, reallocations=[too_much])
+            )
+        )
 
 
 def test_cost_view_keeps_authorization_reservation_usage_and_estimate_apart():

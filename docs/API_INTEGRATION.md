@@ -348,3 +348,69 @@ Forma orientativa de un contrato futuro (a decidir con José; no existe hoy):
 Coste orientativo: USD 0,0025 por imagen (tarifa Standard consultada) más la reserva del
 ledger. Requiere consentimiento de procesamiento externo y derechos de la imagen,
 como la identificación actual.
+
+## Identificación de conjunto abierto — contrato para José, 30-10-2026
+
+**Compatible hacia atrás.** No cambian `status`, `candidates` ni los códigos HTTP. Se
+añaden campos opcionales con valores por defecto seguros. Un cliente que los ignore sigue
+funcionando y, si no hay candidato aceptado, verá `status: "insufficient_evidence"` con
+`candidates: []`: es decir, una abstención y nunca una especie dudosa. La estrategia
+activa la define el backend (`IDENTIFY_STRATEGY`): por defecto **`verify`** (v2), tras la
+evaluación del 30-10-2026. Con `baseline` los campos nuevos valen `not_assessed` /
+`not_applicable`. Esperar más abstenciones que antes: el sistema prefiere no identificar
+a identificar mal. En la evaluación, 3/37 negativos aceptados frente a 25/37, y 8/19
+positivos correctos aceptados frente a 10/19. Con 3 fotos del mismo ejemplar `verify`
+tendió a abstenerse (n pequeño), así que conviene pedir **una** foto adicional concreta
+según `recommended_next_photo`.
+
+| Campo nuevo | Valores | Qué significa para la UI |
+| --- | --- | --- |
+| `catalog_assessment` | `supported_candidate`, `insufficient_evidence`, `out_of_catalog_suspected`, `non_diagnostic_photo`, `not_assessed` | Estado científico, distinto de `execution_status` |
+| `acceptance` | `accepted`, `not_accepted`, `not_applicable` | `accepted` = presentable como candidato. **Nunca** significa verificado |
+| `accepted_species_id` | ID del catálogo o `null` | Igual al primer candidato cuando `accepted` |
+| `exploratory_candidates` | hasta 3 | Hipótesis no aceptadas. **No** mostrarlas como identificación ni permitir capturarlas como esa especie |
+| `similar_out_of_catalog` | hasta 3 nombres | Posibles especies fuera del catálogo, sin certeza |
+| `strategy` | `abstain`, `comparators`, `verify` o `null` | Trazabilidad |
+
+Captura: `POST` de captura solo acepta `species_id` presente en `candidates`. Con
+abstención, la captura se registra sin especie (`capture_status: "registered"`, pendiente
+de identificación) y `taxonomic_verification_status` sigue `unverified`.
+
+Campos comunes omitidos en los ejemplos: `usage`, `stage_usage`, `latency_ms`,
+`prompt_version`, `correlation_id`, `sources`.
+
+1. **Candidato aceptado** — mostrar la especie como *candidata*, la evidencia y el botón de
+   captura con especie sugerida.
+```json
+{"status":"candidates","provider":"meta","model":"muse-spark-1.3","execution_status":"completed","catalog_assessment":"supported_candidate","acceptance":"accepted","accepted_species_id":"eucryphia-cordifolia","candidates":[{"species_id":"eucryphia-cordifolia","evidence":"Hojas opuestas; envés más claro","contradictory_evidence":[]}],"exploratory_candidates":[],"observed_traits":["hoja opuesta","envés claro"],"missing_traits":["flor"],"recommended_next_photo":null,"similar_out_of_catalog":[],"message":"Candidato compatible con los rasgos visibles; no es una verificación taxonómica.","limitations":["Una sola foto"],"evidence_status":"candidates","strategy":"comparators"}
+```
+2. **Evidencia insuficiente** — «No hay evidencia suficiente»; ofrecer la foto pedida y la
+   captura sin especie.
+```json
+{"status":"insufficient_evidence","provider":"meta","model":"muse-spark-1.3","execution_status":"completed","catalog_assessment":"insufficient_evidence","acceptance":"not_accepted","accepted_species_id":null,"candidates":[],"exploratory_candidates":[{"species_id":"nothofagus-dombeyi","evidence":"Hoja simple aserrada","contradictory_evidence":[]}],"observed_traits":["hoja simple"],"missing_traits":["forma completa de la hoja"],"recommended_next_photo":"complete_leaf","similar_out_of_catalog":[],"message":"Rasgos compatibles pero insuficientes.","limitations":[],"evidence_status":"additional_photo_requested","strategy":"comparators"}
+```
+3. **Posible especie fuera del catálogo** — «Podría no ser ninguna de las 8 especies del
+   piloto». Mencionar `similar_out_of_catalog` como posibilidad, nunca como identificación.
+```json
+{"status":"insufficient_evidence","provider":"meta","model":"muse-spark-1.3","execution_status":"completed","catalog_assessment":"out_of_catalog_suspected","acceptance":"not_accepted","accepted_species_id":null,"candidates":[],"exploratory_candidates":[{"species_id":"nothofagus-pumilio","evidence":"Hoja caduca pequeña","contradictory_evidence":["margen irregularmente dentado"]}],"observed_traits":["margen irregularmente dentado"],"missing_traits":[],"recommended_next_photo":null,"similar_out_of_catalog":["Nothofagus antarctica"],"message":"Los rasgos visibles no coinciden con lenga; podría ser una especie fuera del catálogo.","limitations":["Sin certeza sobre la especie externa"],"evidence_status":"insufficient_evidence","strategy":"verify"}
+```
+4. **Foto no diagnóstica, pide otra** — explicar qué foto tomar (`recommended_next_photo`),
+   recordando no dañar la planta ni salir del sendero.
+```json
+{"status":"insufficient_evidence","provider":"meta","model":"muse-spark-1.3","execution_status":"completed","catalog_assessment":"non_diagnostic_photo","acceptance":"not_accepted","accepted_species_id":null,"candidates":[],"exploratory_candidates":[],"observed_traits":[],"missing_traits":["hoja","corteza"],"recommended_next_photo":"closer_view","similar_out_of_catalog":[],"message":"La foto muestra el bosque a distancia; acércate a una hoja.","limitations":[],"evidence_status":"additional_photo_requested","strategy":"abstain"}
+```
+5. **Multivista** — mismo contrato con hasta 3 fotos del **mismo** ejemplar
+   (`additional_files`, `views`). Mostrar que el resultado combina las vistas.
+```json
+{"status":"candidates","provider":"meta","model":"muse-spark-1.3","execution_status":"completed","catalog_assessment":"supported_candidate","acceptance":"accepted","accepted_species_id":"laureliopsis-philippiana","candidates":[{"species_id":"laureliopsis-philippiana","evidence":"Margen fuertemente aserrado en la hoja; fruto visible en la segunda vista","contradictory_evidence":[]}],"exploratory_candidates":[],"observed_traits":["margen aserrado","hojas opuestas"],"missing_traits":[],"recommended_next_photo":null,"similar_out_of_catalog":[],"message":"Las tres vistas del mismo ejemplar son compatibles con tepa.","limitations":[],"evidence_status":"candidates","strategy":"comparators"}
+```
+6. **Error de proveedor** — HTTP 502 `{"detail":"Proveedor Meta no disponible o respuesta inválida"}`.
+   Mostrar «No se pudo analizar»; **no** es una abstención y no se reintenta automáticamente.
+7. **Presupuesto agotado** — HTTP 429 `{"detail":"Límite de consumo Meta; intenta más tarde"}`.
+   Mostrar «Análisis no disponible por ahora»; permitir guardar la captura sin especie.
+8. **Captura pendiente de identificación** — respuesta de captura sin especie:
+```json
+{"identification_id":"7b1f0c1e-0000-4000-8000-000000000000","species_id":null,"capture_status":"registered","taxonomic_verification_status":"unverified"}
+```
+Mostrarla en la colección como «pendiente de identificación». Un candidato aceptado
+tampoco convierte la captura en un registro científico verificado.

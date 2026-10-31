@@ -23,7 +23,12 @@ class ExecutionStore:
     def __init__(self, config: Settings):
         self.config = config
 
-    def reserve(self, owner: str, operation: str):
+    def reserve(self, owner: str, operation: str, owner_cap_units: int | None = None):
+        """Reserve under one advisory lock: lifetime, owner cap, daily and concurrency.
+
+        owner_cap_units bounds all reservations of this identity (research phases);
+        it is checked in the same transaction, so concurrent callers cannot overrun it.
+        """
         config = self.config
         if not config.database_url.get_secret_value():
             raise HTTPException(503, "Control global de consumo no configurado")
@@ -47,6 +52,14 @@ class ExecutionStore:
                     ).fetchone()[0]
                     if lifetime + units > config.budget_lifetime_units:
                         raise HTTPException(429, "Límite acumulado de experimentación alcanzado")
+                if owner_cap_units is not None:
+                    owned = conn.execute(
+                        "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations "
+                        "WHERE identity_id=%s",
+                        (owner,),
+                    ).fetchone()[0]
+                    if owned + units > owner_cap_units:
+                        raise HTTPException(429, "Límite de la fase de investigación alcanzado")
                 conn.execute(
                     "UPDATE execution_reservations SET status='expired' "
                     "WHERE status='reserved' AND expires_at <= now()"
@@ -62,9 +75,13 @@ class ExecutionStore:
                     """,
                     (owner,),
                 ).fetchone()
+                daily = config.budget_daily_requests_enabled
                 if (
-                    count >= config.budget_requests
-                    or own >= config.budget_requests_per_identity
+                    daily
+                    and (
+                        count >= config.budget_requests
+                        or own >= config.budget_requests_per_identity
+                    )
                     or used + units > config.budget_units
                     or active >= config.budget_concurrency
                 ):

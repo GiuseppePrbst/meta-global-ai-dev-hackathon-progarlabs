@@ -47,7 +47,7 @@ def main():
     parser.add_argument("--direction", choices=["both", "forward", "backward"])
     parser.add_argument("--confidence", action="store_true")
     parser.add_argument("--width", type=int, default=640)
-    parser.add_argument("--phase", choices=["A", "B", "C", "D", "E"])
+    parser.add_argument("--phase", choices=["A", "B", "C", "D", "E", "F"])
     parser.add_argument(
         "--experiment-note", help="Hypothesis/decision, stored privately"
     )

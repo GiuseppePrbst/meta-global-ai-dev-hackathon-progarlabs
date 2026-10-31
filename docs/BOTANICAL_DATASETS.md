@@ -144,3 +144,25 @@ Inspección visual del agente (no es validación botánica): **5 exclusiones**.
 
 El agente clasificó el órgano de 19 imágenes Commons (`organ_provenance=agent_visual`).
 Todas las etiquetas siguen como `weakly_labeled_exploration`; 0 `human_reviewed`.
+
+## Conjunto independiente de evaluación open-set — congelado el 30-10-2026
+
+El conjunto de 47 casos del 30-10 pasa a ser **desarrollo y diagnóstico**: se usó para
+diseñar las estrategias. El nuevo conjunto
+([`open-set-eval-set.json`](../evaluations/botanical/open-set-eval-set.json), hash
+`9e82f0d7…`) tiene 19 positivos de las 8 especies (Mañío solo 2 y Olivillo 1 tras las
+exclusiones), 22 negativos difíciles (los 6 comparadores) y 15 generales (Drimys winteri,
+Luma apiculata, Embothrium coccineum, Gevuina avellana, Lomatia hirsuta, Amomyrtus luma,
+Persea lingue, Fitzroya cupressoides).
+
+Se excluyeron observaciones, grupos de individuo, grupos de autor y fecha en Commons,
+imágenes y casi duplicados (dHash ≤ 6 contra todas las imágenes de desarrollo, incluida
+la multivista): 0 coincidencias. 5 exclusiones del agente:
+- Dos carteles con el nombre de la especie.
+- Un pliego de herbario.
+- Una ilustración.
+- Una textura de madera.
+
+Etiquetas: plataforma más revisión visual del agente (`platform_label` +
+`agent_visual_review`). Sin `human_reviewed` ni `expert_reviewed`. Licencias por medio en
+el manifiesto; copias fuera de Git.

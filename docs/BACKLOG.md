@@ -151,3 +151,23 @@ corresponde a José usando [contratos](API_INTEGRATION.md), sin cambios visuales
 Operación pendiente antes de internet: TLS/proxy/cuerpo limitado, identidad productiva,
 purga y reservas monetarias conservadoras. P1 (SAM video, BioCLIP, Hepta local, A/B contextual)
 no ejecutado mientras faltan estas condiciones. [Reporte](META_EXPEDITIONS_REPORT.md).
+
+## Identificación de conjunto abierto — 30-10-2026
+
+Hecho:
+- PR #17–#21 integrados en `main`.
+- Contrato open-set compatible.
+- Estrategias `abstain`, `comparators` y `verify`, con aceptación selectiva.
+- Seis comparadores con fuente y conjunto independiente congelado (56 casos).
+- Métricas con intervalos y comparación pareada.
+
+Pendiente:
+1. Revisión de especialista de los conjuntos de desarrollo y evaluación.
+2. Que José consuma `acceptance` y `exploratory_candidates`
+   ([contrato](API_INTEGRATION.md#identificación-de-conjunto-abierto--contrato-para-josé-30-10-2026)).
+3. Ampliar los comparadores con fuentes botánicas chilenas revisadas.
+4. Hecho: `verify` activada por defecto tras la evaluación independiente; revisarla cuando
+   haya etiquetas de especialista. Evaluar multivista con 3 vistas, que tendió a abstenerse.
+5. Probar el recorte por caja de usuario (SAM) frente a la foto original.
+
+[Reporte](OPEN_SET_IDENTIFICATION_REPORT.md).

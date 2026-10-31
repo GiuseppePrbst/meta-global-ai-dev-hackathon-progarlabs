@@ -329,8 +329,10 @@ async def scene_advisory(
     output = private_path(output)
     output.mkdir(parents=True, exist_ok=False)
     ledger = ExecutionStore(config)
-    owner = await asyncio.to_thread(admit_phase, config, phase, phase_cap_usd)
-    reservation = await asyncio.to_thread(ledger.reserve, owner, "identify")
+    owner, cap = phase_admission(phase, phase_cap_usd)
+    reservation = await asyncio.to_thread(
+        ledger.reserve, owner, "identify", *(() if cap is None else (cap,))
+    )
     client = MetaResponsesClient(config.model_api_key, config.meta_timeout_seconds)
     status = "provider_error"
     started = perf_counter()
@@ -444,7 +446,7 @@ async def cleanup_remote(client, manifest):
 
 LEGACY_CAP_USD = 1
 RESEARCH_CAP_USD = 50  # user authorization 2026-10-30; cumulative, history included
-PHASES = ("A", "B", "C", "D", "E")
+PHASES = ("A", "B", "C", "D", "E", "F")  # F: open-set sprint, 2026-10-30
 
 
 class Campaign(BaseModel):
@@ -453,10 +455,25 @@ class Campaign(BaseModel):
     model_config = ConfigDict(extra="forbid")
     authorized_usd: float = Field(gt=0, le=RESEARCH_CAP_USD)
     authorization_date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
-    phase_caps_usd: dict[Literal["A", "B", "C", "D", "E"], float]
-    daily_requests: int = Field(ge=1, le=200)
+    phase_caps_usd: dict[Literal["A", "B", "C", "D", "E", "F"], float]
+    # None disables the internal daily request counter (owner decision 2026-10-30);
+    # it is a project control, not Meta's limit. Money caps always apply.
+    daily_requests: int | None = Field(ge=1, le=200)
     reservation_usd: float = Field(ge=0.01, le=0.12)
     historical_reserved_usd: float = Field(ge=0)  # kept, never refunded
+    concurrency: int = Field(default=1, ge=1, le=8)
+    reallocations: list["Reallocation"] = Field(default_factory=list)
+
+
+class Reallocation(BaseModel):
+    """Traceable move of unused phase capacity; the campaign total never changes."""
+
+    model_config = ConfigDict(extra="forbid")
+    from_phase: Literal["A", "B", "C", "D", "E", "F"]
+    to_phase: Literal["A", "B", "C", "D", "E", "F"]
+    usd: float = Field(gt=0)
+    reason: str = Field(min_length=5, max_length=300)
+    date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
 
 
 def campaign_from_private(path: Path) -> Campaign | None:
@@ -464,6 +481,14 @@ def campaign_from_private(path: Path) -> Campaign | None:
     if "research_campaign" not in data:
         return None
     campaign = Campaign.model_validate(data["research_campaign"])
+    caps = dict(campaign.phase_caps_usd)
+    for move in campaign.reallocations:
+        caps[move.from_phase] = round(caps.get(move.from_phase, 0) - move.usd, 6)
+        caps[move.to_phase] = round(caps.get(move.to_phase, 0) + move.usd, 6)
+        if caps[move.from_phase] < 0:
+            raise ValueError("Reallocation exceeds the source phase cap")
+    # Effective caps; the ledger refuses a source phase already above its new cap.
+    campaign = campaign.model_copy(update={"phase_caps_usd": caps})
     new_capacity = campaign.authorized_usd - campaign.historical_reserved_usd
     if round(sum(campaign.phase_caps_usd.values()), 6) > round(new_capacity, 6):
         raise ValueError(
@@ -499,6 +524,7 @@ def config_from_private(path: Path):
         raise ValueError("Key file must contain one key, without unrelated long tokens")
     units = int(budget * 1_000_000)
     daily = campaign.daily_requests if campaign else 10
+    counter = daily is not None
     return Settings(
         _env_file=None,
         service_mode="demo",
@@ -510,9 +536,10 @@ def config_from_private(path: Path):
         meta_reservation_units=int(Decimal(str(campaign.reservation_usd)) * 1_000_000)
         if campaign
         else 120000,
-        budget_requests=daily,
-        budget_requests_per_identity=daily,
-        budget_concurrency=1,
+        budget_daily_requests_enabled=counter,
+        budget_requests=daily if counter else 10000,  # unused when disabled
+        budget_requests_per_identity=daily if counter else 1000,
+        budget_concurrency=campaign.concurrency if campaign else 1,
         meta_timeout_seconds=120,
     )
 
@@ -525,30 +552,14 @@ def phase_owner(phase: str | None) -> str:
     return f"sam-api-lab:{phase}"
 
 
-def admit_phase(config, phase: str | None, cap_usd: float | None) -> str:
-    """Per-phase ceiling checked before the shared ledger lock.
-
-    ponytail: read-then-reserve is not atomic; safe only with one lab process and
-    concurrency 1 (enforced). The global cumulative cap stays atomic in the ledger.
-    """
+def phase_admission(phase: str | None, cap_usd: float | None) -> tuple[str, int | None]:
+    """Ledger identity and cap for a phase; the ledger checks the cap atomically."""
     owner = phase_owner(phase)
     if phase is None:
-        return owner
+        return owner, None
     if cap_usd is None:
         raise ValueError("A campaign phase needs its cap")
-    import psycopg
-
-    with psycopg.connect(
-        config.database_url.get_secret_value(), connect_timeout=3
-    ) as conn:
-        used = conn.execute(
-            "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations "
-            "WHERE identity_id=%s",
-            (owner,),
-        ).fetchone()[0]
-    if used + config.meta_reservation_units > int(cap_usd * 1_000_000):
-        raise HTTPException(429, f"Phase {phase} reservation cap reached")
-    return owner
+    return owner, round(cap_usd * 1_000_000)
 
 
 def write_json(path: Path, data):
@@ -832,9 +843,11 @@ async def run_experiment(
             manifest["initial_box"] = plan["objects"][0]["prompts"][0]["box"]
 
         ledger = ExecutionStore(config)
-        owner = await asyncio.to_thread(admit_phase, config, phase, phase_cap_usd)
+        owner, cap = phase_admission(phase, phase_cap_usd)
         manifest["campaign_phase"] = phase
-        reservation = await asyncio.to_thread(ledger.reserve, owner, "identify")
+        reservation = await asyncio.to_thread(
+            ledger.reserve, owner, "identify", *(() if cap is None else (cap,))
+        )
     except HTTPException as exc:
         state("budget_exhausted" if exc.status_code == 429 else "provider_error")
         raise
@@ -967,3 +980,6 @@ async def run_experiment(
             },
         )
     return manifest
+
+
+Campaign.model_rebuild()

@@ -171,6 +171,7 @@ def test_sam_failure_is_optional_and_muse_usage_is_typed(monkeypatch):
                 sam_enabled=True,
                 model_api_key="test-only",
                 meta_access_token="local-test",
+                identify_strategy="baseline",  # pins the legacy schema this mock returns
             )
         )
     )
@@ -295,6 +296,71 @@ def test_global_budget_concurrent_workers_ownership_and_recovery():
             ExecutionStore(config).reserve("alice", "identify")
         assert unavailable.value.status_code == 503
         assert reservation is not None
+    finally:
+        with psycopg.connect(url, autocommit=True) as conn:
+            conn.execute(sql.SQL("DROP SCHEMA {} CASCADE").format(sql.Identifier(schema)))
+
+
+@pytest.mark.integration
+def test_research_profile_skips_daily_counter_but_keeps_money_and_atomic_owner_cap():
+    url = os.getenv("TEST_DATABASE_URL")
+    if not url:
+        pytest.skip("TEST_DATABASE_URL required")
+    schema = "execution_test_" + uuid4().hex
+    scripts = Path(__file__).parents[1] / "sql"
+    with psycopg.connect(url, autocommit=True) as conn:
+        conn.execute(sql.SQL("CREATE SCHEMA {}").format(sql.Identifier(schema)))
+    scoped = make_conninfo(url, options=f"-csearch_path={schema},public")
+    try:
+        with psycopg.connect(scoped) as conn:
+            conn.execute((scripts / "001_init.sql").read_text())
+            conn.execute((scripts / "003_execution.up.sql").read_text())
+        common = dict(
+            database_url=scoped,
+            budget_units=10_000,
+            budget_lifetime_units=1_000,
+            meta_reservation_units=100,
+            budget_requests=2,
+            budget_requests_per_identity=2,
+            budget_concurrency=8,
+        )
+        normal = demo(**common)
+        ExecutionStore(normal).reserve("p", "identify")
+        ExecutionStore(normal).reserve("p", "identify")
+        with pytest.raises(HTTPException):  # production profile keeps its daily counter
+            ExecutionStore(normal).reserve("p", "identify")
+        research = demo(**common, budget_daily_requests_enabled=False)
+
+        def settle():  # completed reservations stay charged but free concurrency
+            with psycopg.connect(scoped) as conn:
+                conn.execute("UPDATE execution_reservations SET status='completed'")
+
+        settle()
+
+        def admit(_):
+            try:
+                ExecutionStore(research).reserve("phase", "identify", owner_cap_units=500)
+                return "ok"
+            except HTTPException as exc:
+                return exc.status_code
+
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            results = list(pool.map(admit, range(8)))
+        assert results.count("ok") == 5  # owner cap 500 = 5 x 100, atomic under 8 workers
+        settle()
+        ExecutionStore(research).reserve("other", "identify")  # beyond 2/day: no counter
+        ExecutionStore(research).reserve("other", "identify")
+        settle()
+        ExecutionStore(research).reserve("other", "identify")  # 2+5+3 = 1000 units: full
+        settle()
+        with pytest.raises(HTTPException) as lifetime:  # cumulative money cap refuses
+            ExecutionStore(research).reserve("other", "identify")
+        assert lifetime.value.status_code == 429
+        with psycopg.connect(scoped) as conn:
+            assert (
+                conn.execute("SELECT sum(reserved_units) FROM execution_reservations").fetchone()[0]
+                <= 1_000
+            )
     finally:
         with psycopg.connect(url, autocommit=True) as conn:
             conn.execute(sql.SQL("DROP SCHEMA {} CASCADE").format(sql.Identifier(schema)))

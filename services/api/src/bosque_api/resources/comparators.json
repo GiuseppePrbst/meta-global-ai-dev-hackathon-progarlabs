@@ -1,0 +1,101 @@
+[
+  {
+    "scientific_name": "Nothofagus antarctica",
+    "common_name": "Ñirre",
+    "family": "Nothofagaceae",
+    "col_xr_key": "47SYY",
+    "confused_with": ["nothofagus-pumilio", "nothofagus-betuloides"],
+    "diagnostic_traits": [
+      "Caducifolio; hojas pequeñas con margen irregularmente dentado.",
+      "Corteza gris, áspera e irregularmente agrietada; tronco y ramas a menudo torcidos.",
+      "Frecuentemente arbustivo achaparrado en el límite superior del bosque."
+    ],
+    "sources": ["https://fundacionphilippi.cl/catalogo/nothofagus-antarctica/"],
+    "accessed_at": "2026-10-30",
+    "limitations": "La fuente no compara directamente con lenga; la distinción foliar fina requiere ver hoja completa."
+  },
+  {
+    "scientific_name": "Nothofagus nitida",
+    "common_name": "Coigüe de Chiloé",
+    "family": "Nothofagaceae",
+    "col_xr_key": "47T24",
+    "confused_with": ["nothofagus-dombeyi", "nothofagus-betuloides"],
+    "diagnostic_traits": [
+      "Siempreverde; hoja coriácea romboidal con ápice agudo y margen aserrado.",
+      "Hojas las más grandes entre los tres coigües."
+    ],
+    "sources": ["https://fundacionphilippi.cl/catalogo/nothofagus-nitida/"],
+    "accessed_at": "2026-10-30",
+    "limitations": "Sin medidas en la fuente; comparación de tamaño relativa."
+  },
+  {
+    "scientific_name": "Laurelia sempervirens",
+    "common_name": "Laurel",
+    "family": "Atherospermataceae",
+    "col_xr_key": "3SMFQ",
+    "confused_with": ["laureliopsis-philippiana"],
+    "diagnostic_traits": [
+      "Margen con dientes romos y poco profundos; en tepa el aserrado es fuerte y marcado.",
+      "Hojas coriáceas y brillantes de unos 5-10 cm.",
+      "Corteza aromática."
+    ],
+    "sources": [
+      "https://fundacionphilippi.cl/catalogo/laurelia-sempervirens/",
+      "https://www.reforestemos.org/content/uploads/leurel-28.pdf",
+      "https://www.treesandshrubsonline.org/articles/laurelia/laurelia-sempervirens/"
+    ],
+    "accessed_at": "2026-10-30",
+    "limitations": "Distinción tradicional por borde foliar (Looser 1949); Trees and Shrubs Online trata Laurelia serrata dentro de L. sempervirens, discrepancia taxonómica pendiente."
+  },
+  {
+    "scientific_name": "Saxegothaea conspicua",
+    "common_name": "Mañío macho",
+    "family": "Podocarpaceae",
+    "col_xr_key": "79QZ2",
+    "confused_with": ["podocarpus-nubigenus"],
+    "diagnostic_traits": [
+      "Hojas lineares o falcadas de 1,5-2,5 cm con pequeña punta; en sombra dispuestas en dos planos.",
+      "Envés con bandas estomáticas glaucas.",
+      "Corteza café rojiza que se desprende en placas; brotes nuevos a menudo rojizos."
+    ],
+    "sources": [
+      "https://www.conifers.org/po/Saxegothaea.php",
+      "https://fundacionphilippi.cl/catalogo/saxegothaea-conspicua/"
+    ],
+    "accessed_at": "2026-10-30",
+    "limitations": "Medidas foliares de fuente internacional; no hay comparación directa con mañío de hojas punzantes en la fuente chilena."
+  },
+  {
+    "scientific_name": "Podocarpus salignus",
+    "common_name": "Mañío de hojas largas",
+    "family": "Podocarpaceae",
+    "col_xr_key": "4KQ6P",
+    "confused_with": ["podocarpus-nubigenus"],
+    "diagnostic_traits": [
+      "Hojas largas parecidas a las del sauce, oscuras y brillantes, de hasta unos 15 cm.",
+      "Ramas arqueadas o colgantes; tronco a menudo dividido desde la base.",
+      "Corteza pardo-rojiza."
+    ],
+    "sources": [
+      "https://www.rhs.org.uk/Plants/13364/Podocarpus-salignus/Details",
+      "https://fundacionphilippi.cl/catalogo/podocarpus-salignus/"
+    ],
+    "accessed_at": "2026-10-30",
+    "limitations": "Longitud foliar de fuente hortícola internacional."
+  },
+  {
+    "scientific_name": "Prumnopitys andina",
+    "common_name": "Lleuque",
+    "family": "Podocarpaceae",
+    "col_xr_key": "4N89W",
+    "confused_with": ["podocarpus-nubigenus"],
+    "diagnostic_traits": [
+      "Hojas densas dispuestas en dos filas planas, con banda estomática gris en el envés.",
+      "Corteza gris delgada y brillante; copa piramidal que se vuelve globosa.",
+      "Semilla rodeada de arilo carnoso comestible en otoño."
+    ],
+    "sources": ["https://fundacionphilippi.cl/catalogo/prumnopitys-andina/"],
+    "accessed_at": "2026-10-30",
+    "limitations": "La fuente no describe tamaño ni ápice foliar."
+  }
+]
