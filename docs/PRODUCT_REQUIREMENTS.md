@@ -40,3 +40,21 @@ evaluado. Pruebas reales requieren derechos externos, presupuesto nuevo y materi
 La captura pública científica, crecimiento y aplicaciones industriales quedan pendientes.
 
 El bootstrap se revisa con las verificaciones del README y el [informe](BOOTSTRAP_REPORT.md). Para la entrega competitiva agregar evidencia de una llamada real Meta, dataset/licencias, evaluación, demo reproducible, video de tres minutos y revisión del portal oficial. No atribuir trabajo a Fabiana como participante sin autorización registrada.
+
+## Ampliación a ecosistema — 31-10-2026
+
+La tabla M01–M06 conserva los requisitos del 27-10-2026, centrados en árboles. Desde esta
+fecha la definición vigente es la [visión de ecosistema](PRODUCT_VISION_ECOSYSTEM.md), con
+el piloto en el [Parque Nacional Puyehue](PILOT_PUYEHUE.md). Los módulos nuevos son
+requisitos, no funciones implementadas:
+
+| Módulo | Base requerida | Aceptación |
+| --- | --- | --- |
+| M07 Fauna | Fichas educativas de especies documentadas por CONAF, con fuente y RCE con ámbito | Sin identificación por IA ni ubicaciones; observación registrable sin foto ni taxón |
+| M08 Fungi | Categoría taxonómica propia; candidatos regionales separados de la presencia en el parque | Sin consumo ni recolección; presencia solo con ocurrencia verificada |
+| M09 Conservación | [`ConservationAssessment`](RCE_CONSERVATION_2026.md) por ámbito | Categorías regionales no colapsadas; ausencia en la nómina ≠ LC |
+| M10 Parque y gemelo digital | [Entidades](ECOSYSTEM_DATA_MODEL.md) con fuente, CRS y fecha; siete tipos de evidencia | Ningún sendero, punto de fauna ni hotspot inventado; no es tiempo real |
+| M11 Cinco pantallas | Descubrir, Mapa, Enciclopedia, Mi diario y Perfil diferenciados | Estados de evidencia visibles; sin cifras ficticias ni «Ver en 3D» sin activos |
+| M12 Aventura y progresión | Misiones educativas e insignias por conocimiento | Sin especies EN/CR obligatorias, sin GPS obligatorio, sin salir del sendero |
+
+Los requisitos transversales anteriores siguen vigentes.

@@ -106,7 +106,7 @@ Hallazgos:
 
 ## 6. Taxonomía (fase independiente del presupuesto)
 
-Ver [BOTANICAL_DATASETS.md](BOTANICAL_DATASETS.md#revisión-taxonómica-y-curaduría--30-10-2026):
+Ver [BOTANICAL_DATASETS.md](BOTANICAL_DATASETS.md#revisión-taxonómica-y-curaduría--30-10-2026-campaña-usd-50):
 - *Weinmannia corymbosa*: eliminada.
 - *Betula antarctica*: excluida por conflicto entre fuentes.
 - *Calusparassus pumilio*: verificada.

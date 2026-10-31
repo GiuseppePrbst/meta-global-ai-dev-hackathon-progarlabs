@@ -171,3 +171,22 @@ Pendiente:
 5. Probar el recorte por caja de usuario (SAM) frente a la foto original.
 
 [Reporte](OPEN_SET_IDENTIFICATION_REPORT.md).
+
+## Ecosistema, gemelo digital y piloto Puyehue — 31-10-2026
+
+Origen: [visión](PRODUCT_VISION_ECOSYSTEM.md), [piloto](PILOT_PUYEHUE.md),
+[RCE](RCE_CONSERVATION_2026.md), [modelo](ECOSYSTEM_DATA_MODEL.md) y
+[roadmap P0–P3](ROADMAP.md).
+
+| ID | Prioridad | Tarea | Responsable funcional | Hecho cuando |
+| --- | --- | --- | --- | --- |
+| BV-12.1 | P0 | Pantallas Descubrir, Mapa, Enciclopedia, Mi diario y Perfil sobre los contratos implementados | José | Estados de evidencia visibles; sin datos ficticios; recorrido Playwright o móvil |
+| BV-12.2 | P0 | Fichas educativas de las 6 especies de fauna CONAF priorizadas, con RCE y ámbito | Giuseppe | Fuente y fecha por campo; sin ubicaciones |
+| BV-12.3 | P0 | Fichas educativas de hongos como candidatos regionales | Giuseppe | Rotuladas «sin evidencia de presencia en el parque»; sin comestibilidad |
+| BV-12.4 | P0 | Política de ubicaciones sensibles | Giuseppe | Regla escrita y revisada antes de publicar cualquier punto |
+| BV-12.5 | P1 | ETL RCE con pruebas (olivillo, güiña, ausencia ≠ LC) | Giuseppe | Pruebas de [RCE](RCE_CONSERVATION_2026.md#pruebas-exigidas) en verde con fixtures sintéticas |
+| BV-12.6 | P1 | Límite, sectores y senderos oficiales de Puyehue | Giuseppe | Geometría con licencia, CRS y fecha; senderos vacíos si no hay fuente |
+| BV-12.7 | P1 | Catálogo multirreino y `identification_capability` | Giuseppe | Contrato aditivo; IDs actuales intactos |
+| BV-12.8 | P1 | Ocurrencias de hongos con calidad geográfica (GBIF, mycoBaseCL) | Giuseppe | Licencia y precisión verificadas por registro |
+| BV-12.9 | P1 | Expediciones configurables | José y Giuseppe | Retos sin EN/CR, GPS ni salida de sendero |
+| BV-12.10 | P2 | Evaluación independiente de identificación de fauna y hongos | Giuseppe | Conjunto congelado por reino; sin heredar métricas de árboles |

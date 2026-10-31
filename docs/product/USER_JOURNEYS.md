@@ -1,5 +1,9 @@
 # Recorridos principales
 
+> **Nota del 31-10-2026.** Documento del bootstrap (27-10-2026), centrado en árboles y
+> conservado como registro. La definición vigente amplía el alcance a flora, fauna y hongos,
+> con gemelo digital y piloto Puyehue: [visión de ecosistema](../PRODUCT_VISION_ECOSYSTEM.md).
+
 Los recorridos objetivo no equivalen a funcionalidades completas. El bootstrap muestra explícitamente mocks, datos provisionales, errores y rutas pendientes.
 
 ## 1. Descubrimiento botánico

@@ -191,3 +191,13 @@ validation_status: pending
 Las fotos botánicas de la campaña (Pl@ntNet CC BY-SA y Commons CC BY/BY-SA/CC0 por
 archivo) se enviaron a Meta Standard para evaluar, sin entrenamiento ni redistribución.
 Las copias quedan fuera de Git con su atribución en el manifiesto local.
+
+## Fuentes del piloto Puyehue y RCE — consulta 31-10-2026
+
+| Nombre | Fuente / URL | Versión y fecha | Licencia / redistribución | Procesamiento | Responsable / estado |
+| --- | --- | --- | --- | --- | --- |
+| Nómina RCE (MMA) | [XLSX oficial](https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2026/10/NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx) | Archivo «20octubre2026»; `Ayuda!A1` dice «marzo 2026». SHA-256 `1a1dadbaf554a53f39143c40a898fc252bc2e3354734b202fb31deba4fbe607d` | Sin condiciones publicadas; **no redistribuir** el archivo ni filas completas | Lectura local de conteos y de las filas citadas en [RCE_CONSERVATION_2026.md](RCE_CONSERVATION_2026.md) | Giuseppe propuesto; importación pendiente (P1) |
+| Ficha CONAF Puyehue | [conaf.cl](https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/) | Consulta 31-10-2026 | Texto oficial; se citan hechos, no se copia la ficha | Ninguno | Fuente de presencia a escala de parque (tipo 1) |
+| SIMBIO, área protegida 971 | [SIMBIO](https://simbio.mma.gob.cl/CbaAP/Details/971) | Consulta 31-10-2026; superficie de 1994, plan de 2008 | KMZ/SHP «referencial» sin licencia verificada; no descargado | Ninguno | Pendiente |
+| Comunicado SBAP | [Traspaso marzo 2027](https://sbap.gob.cl/sala-de-prensa/noticias-y-comunicados/detalle/2026/06/16/traspaso-del-programa-de-%C3%A1reas-silvestres-de-conaf-al-servicio-se-realizar%C3%A1-a-partir-de-marzo-de-2027) | 16-06-2026 | Cita de hechos | Ninguno | Contexto institucional |
+| mycoBaseCL | [Preprint v1](https://doi.org/10.32942/X20T2N); [datos](https://doi.org/10.5281/zenodo.22388379) | v1.0, 21-09-2026; sin revisión por pares | Preprint CC BY 4.0; licencia del dataset de Zenodo **no verificada** | Ninguno | Referencia taxonómica candidata; no prueba presencia |

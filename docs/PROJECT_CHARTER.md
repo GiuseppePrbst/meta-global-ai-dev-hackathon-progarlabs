@@ -1,5 +1,9 @@
 # Acta de proyecto
 
+> **Nota del 31-10-2026.** Documento del bootstrap (27-10-2026), centrado en árboles y
+> conservado como registro. La definición vigente amplía el alcance a flora, fauna y hongos,
+> con gemelo digital y piloto Puyehue: [visión de ecosistema](PRODUCT_VISION_ECOSYSTEM.md).
+
 **Bosque Vivo Chile — Living Botanical & Forest Intelligence Platform**, ProGarLabs SpA, Osorno, Chile. Piloto de referencia: Parque Nacional Puyehue y entorno; no implica colaboración oficial con el parque ni acceso autorizado a sus datos.
 
 ## Problema y propósito

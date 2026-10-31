@@ -1,5 +1,9 @@
 # Estrategia inicial
 
+> **Nota del 31-10-2026.** Documento del bootstrap (27-10-2026), centrado en árboles y
+> conservado como registro. La definición vigente amplía el alcance a flora, fauna y hongos,
+> con gemelo digital y piloto Puyehue: [visión de ecosistema](../PRODUCT_VISION_ECOSYSTEM.md).
+
 ## Punto de entrada
 
 Empezar por visitantes adultos y personas interesadas en botánica con un recorrido breve: fotografía permitida, candidatos explicados, ficha y contexto cartográfico. Reutilizar contratos y trazabilidad para profesionales/guardaparques sin construir desde el inicio una plataforma empresarial completa.

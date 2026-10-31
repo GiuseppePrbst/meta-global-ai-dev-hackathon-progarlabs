@@ -149,3 +149,20 @@ Opus 5.5):
 La revisión visual de casos es del agente. Sin cambios web/móvil ni atribuciones a José o
 Fabiana. Preexistentes: fotos Pl@ntNet/Commons con licencia por archivo, fichas de
 Fundación Philippi, conifers.org y RHS, y modelos alojados de Meta.
+
+## Alineación de producto y piloto Puyehue — 31-10-2026
+
+Trabajo nuevo durante el evento:
+
+- documentos [visión](PRODUCT_VISION_ECOSYSTEM.md), [piloto](PILOT_PUYEHUE.md),
+  [RCE](RCE_CONSERVATION_2026.md) y [modelo](ECOSYSTEM_DATA_MODEL.md);
+- actualizaciones del README, el roadmap, el backlog y los contratos.
+
+Sin código de producto, migraciones ni endpoints. Material preexistente o de terceros
+citado: ficha CONAF, SIMBIO, comunicado SBAP, nómina RCE del MMA (no versionada),
+mycoBaseCL (preprint).
+
+Redacción y análisis con asistencia de Claude (Anthropic) en una sesión local de
+Giuseppe. Las decisiones de producto provienen del encargo de ProGarLabs. Fabiana García
+figura como diseño de producto empresarial; no se le atribuyen entregables competitivos
+mientras su admisión no esté confirmada.

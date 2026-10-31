@@ -71,3 +71,16 @@ Ejecutar también la purga de observaciones descrita en el README de API. No se 
 scheduler. Rollback 004 bloquea pérdida de evidencia/capturas y operaciones nuevas del ledger;
 requiere archivado/revisión antes de ejecutarse. Ninguna migración se aplicó a la base demo real
 en esta misión: las pruebas usan esquemas temporales de la base de pruebas existente.
+
+## Mi diario y multirreino — propuesta del 31-10-2026
+
+El comportamiento anterior no cambia. La pantalla Mi diario
+([visión](PRODUCT_VISION_ECOSYSTEM.md#cinco-pantallas)) mapea hoy `registered` a
+«descubrimiento registrado» e `identification_suggested` a «identificación sugerida por
+IA». Los estados «revisado por especialista» y «observación pública autorizada» **no
+existen**: requieren procedimientos de revisión y consentimiento de publicación todavía no
+diseñados ([modelo](ECOSYSTEM_DATA_MODEL.md#observaciones-y-capturas)).
+
+Un hallazgo de fauna u hongo se registra hoy sin taxón (`species_id` omitido), porque
+`/identify` solo evalúa las ocho especies arbóreas. Completar una colección no equivale a
+validación científica.

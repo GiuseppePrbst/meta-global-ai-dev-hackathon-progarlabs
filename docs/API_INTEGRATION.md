@@ -1,6 +1,6 @@
 # Integración API GIS/ML para José
 
-Estado más reciente: [Expediciones, multivista y voz](#expediciones-multivista-y-voz--29-10-2026).
+Estado más reciente: [conjunto abierto, `verify` por defecto](#identificación-de-conjunto-abierto--contrato-para-josé-30-10-2026). Qué consumir hoy y qué depende de backend posterior: [propuesta futura, 31-10-2026](#propuesta-futura--gemelo-digital-y-catálogo-multirreino-31-10-2026).
 
 Fuente de verdad: `/openapi.json` y `/docs` del proceso FastAPI. Evolución aditiva, sin
 migración destructiva ni cambios visuales. API local en loopback; no desplegar observaciones
@@ -414,3 +414,49 @@ Campos comunes omitidos en los ejemplos: `usage`, `stage_usage`, `latency_ms`,
 ```
 Mostrarla en la colección como «pendiente de identificación». Un candidato aceptado
 tampoco convierte la captura en un registro científico verificado.
+
+## Propuesta futura — gemelo digital y catálogo multirreino, 31-10-2026
+
+Contexto: [visión](PRODUCT_VISION_ECOSYSTEM.md), [piloto Puyehue](PILOT_PUYEHUE.md) y
+[modelo de datos](ECOSYSTEM_DATA_MODEL.md). Esta sección **no cambia ningún endpoint ni
+esquema**: las tablas de rutas anteriores siguen siendo la referencia de lo implementado, y
+`/openapi.json` es la fuente de verdad.
+
+### Implementado actualmente
+
+| Capacidad | Rutas | Nota para la UI |
+| --- | --- | --- |
+| Catálogo de 8 árboles | GET `/species`, `/species/{id}` | Únicas especies con identificación evaluada. `conservation_status` es `null`: no mostrar categoría |
+| Identificación vegetal open-set | POST `/identify` (`verify` por defecto) | Mostrar `acceptance`, `catalog_assessment` y `exploratory_candidates` como estados distintos; habrá abstenciones |
+| Capturas y colección | POST `/captures/attempts`, GET `/captures/me`, GET o DELETE `/captures/{id}`, DELETE `/identifications/{id}` | Privadas; la sugerencia es siempre `unverified` |
+| Expedición de referencia | GET `/expeditions`, `/expeditions/{id}` | `puyehue` fija; sin rutas ni GPS obligatorio |
+| Contexto GIS | GET `/layers`, POST `/context/point`, `/context/area`, GET `/forest/sources`, POST `/forest/analyze`, `/forest/analyze/weighted` | Contexto posterior a la identificación; CHMv2 es altura estimada |
+| Guía con herramientas | POST `/guide/query`, `/guide/transcribe` | Respuestas con fuentes; sin TTS ni reconocimiento de cantos |
+| Observaciones heredadas | GET, POST `/observations`, DELETE `/observations/{id}` | Ruta local; las capturas usan `/captures` |
+
+Para la pantalla Mapa de hoy:
+
+- dibujar el límite de referencia y el contexto disponible;
+- no dibujar senderos, puntos de fauna ni «hotspots»;
+- no ofrecer filtros de fauna ni de hongos que filtren datos inexistentes. Si se muestran,
+  van con estado vacío y rotulados «próximamente».
+
+### Requiere desarrollo backend
+
+Ninguna de estas rutas existe. La UI puede maquetar con estado vacío y la etiqueta «no
+implementado», nunca con datos ficticios.
+
+| Contrato | Entidad | Entrada | Salida | Fuente | Privacidad | Verificación | Fallback | Dependencias | Responsable funcional |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Catálogo multirreino | `Taxon` | `kingdom`, `group`, `park` | Taxones con `identification_capability` (`educational_catalog`, `visual_recognition_not_evaluated`, `evaluation_pending`, `identification_unavailable`, `candidate_identification`) | GBIF, COL XR, WFO, MycoBank, CONAF | Pública | `review_status` por taxón | Solo `/species` (8 árboles) | Reconciliación taxonómica | Giuseppe |
+| Fichas enriquecidas | `SpeciesProfile`, `SpeciesTrait`, `TaxonMedia` | `taxon_id` | Descripción, rasgos, confundibles, hábitat, medios con licencia, fuente y fecha | Fuentes citadas por campo | Pública; medios solo con licencia compatible | `source_checked` o `specialist_reviewed` | Ficha mínima: nombre, reino, fuente | Revisión de licencias de medios | Giuseppe (contenido), José (UI) |
+| Conservación regional | `ConservationAssessment` | `taxon_id`, `region?` | Lista de evaluaciones con ámbito; `applicable` solo si se conoce la región | [Nómina RCE](RCE_CONSERVATION_2026.md) con hash | Pública | `imported_unreviewed` o `reviewed` | «Sin clasificación RCE encontrada», nunca LC | ETL RCE y códigos regionales | Giuseppe |
+| Parques y sectores | `ProtectedArea`, `Sector` | `park_id` | Límite, sectores, reglas con fecha de consulta y fuentes | CONAF, SBAP, SIMBIO, BCN | Pública | Fuente y fecha | Ficha textual del parque sin geometría | Licencia de la geometría | Giuseppe |
+| Senderos | `OfficialTrail` | `park_id`, `sector_id?` | Solo senderos con geometría oficial; lista vacía si no hay | CONAF o SBAP | Pública | Fecha de verificación de acceso | Vacío, con mensaje «sin senderos verificados» | Fuente autorizada | Giuseppe |
+| Especie–parque | `ParkSpeciesEvidence` | `park_id`, `evidence_type?` | Taxones por tipo de evidencia (1–7) | Ficha CONAF, GBIF filtrado | Sensibles generalizados | Por tipo | Solo tipo 1 (presencia oficial a escala de parque) | Política de sensibles | Giuseppe |
+| Relaciones ecológicas | `EcologicalRelationship` | `taxon_id` | Tipo, objeto, cita y estado | Literatura citada | Pública | `documented` o `needs_review` | Ocultar la sección | Curaduría | Giuseppe |
+| Expediciones configurables | `Expedition` | `park_id` | Retos tipados sin especies EN/CR ni GPS obligatorio | Contenido educativo revisado | Progreso privado | Revisión editorial | Expedición `puyehue` actual | Modelo de progreso | José (flujo), Giuseppe (contenido) |
+| Identificación de fauna u hongos | — | Imagen | **No se ofrece** hasta tener un conjunto de evaluación propio | — | Igual que `/identify` | Evaluación independiente por reino | Registro sin taxón (`capture_status: registered`) | Dataset con licencia y protocolo | Giuseppe |
+
+Las métricas de árboles **no** aplican a fauna ni a hongos. Cuando no hay contrato, la UI
+registra el hallazgo sin taxón, con el flujo actual de capturas.

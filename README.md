@@ -1,16 +1,49 @@
 # Bosque Vivo Chile · ProGarLabs
 
-Base de una plataforma de inteligencia botánica y forestal para explorar, comprender y conservar la biodiversidad chilena. Piloto de referencia: Parque Nacional Puyehue y su entorno. Desarrollo para la Meta Global AI Developer Hackathon 2026, Startup Track.
+Bosque Vivo Chile es una plataforma de exploración, aprendizaje y colección de biodiversidad que construye una representación digital verificable —un gemelo digital— de los ecosistemas de los parques nacionales de Chile. Abarca flora, fauna y hongos, y comienza en el **Parque Nacional Puyehue** (sector Anticura). Desarrollo para la Meta Global AI Developer Hackathon 2026, Startup Track.
 
-## Estado del bootstrap
+## Definición vigente (31-10-2026)
 
-Frontend Next.js y API FastAPI sobre el bootstrap existente. La fundación GIS/ML añade
-taxonomía GBIF trazable para ocho especies, Muse estructurado y SAM opcional, evaluación
-reproducible y estadísticas CHMv2 con raster sintético y una ventana real pequeña. El mock
-sigue disponible sin claves y se abstiene. Las pruebas reales Meta usan un dibujo sintético;
-no hay precisión botánica medida. Rasgos y validación humana siguen pendientes.
+| Documento | Contenido |
+| --- | --- |
+| [Visión de producto y gemelo digital](docs/PRODUCT_VISION_ECOSYSTEM.md) | Visión, flora, fauna y Fungi, cinco pantallas, aventura, Wilo, MVP frente a futuro |
+| [Piloto Parque Nacional Puyehue](docs/PILOT_PUYEHUE.md) | Fuentes oficiales, Anticura, especies documentadas, reglas, primera expedición |
+| [Nómina RCE 2026](docs/RCE_CONSERVATION_2026.md) | Archivo oficial MMA, hash, ámbitos regionales, plan de importación |
+| [Modelo de datos del gemelo digital](docs/ECOSYSTEM_DATA_MODEL.md) | Entidades, tipos de evidencia, privacidad, APIs futuras |
+| [Roadmap](docs/ROADMAP.md) | P0 MVP, P1 territorial, P2 nacional, P3 avanzado |
+| [Contratos para José](docs/API_INTEGRATION.md) | Qué está implementado hoy y qué depende de trabajo backend |
 
-Estado vigente: [reporte GIS/ML](docs/GIS_ML_REPORT.md), [contratos para José](docs/API_INTEGRATION.md).
+**Implementado hoy:**
+
+- catálogo e identificación de **ocho especies arbóreas**, con la estrategia de conjunto
+  abierto `verify` y abstención;
+- capturas y colección privadas;
+- expedición de referencia;
+- contexto GIS y CHMv2;
+- guía con herramientas.
+
+Fauna, hongos, catálogo multirreino, conservación RCE consultable y senderos son
+**propuestas** (P1). El gemelo digital no es una simulación en tiempo real.
+
+## Estado técnico
+
+Web Next.js, app móvil Expo (PR #23) y API FastAPI con PostGIS. Componentes de IA y datos:
+
+- **Muse Spark 1.3.** Identifica las ocho especies con la estrategia `verify` (dos etapas,
+  abstención), predeterminada en `/identify` desde el PR #22. En un conjunto independiente
+  congelado de 56 casos con etiquetas débiles, los negativos aceptados bajaron de 25/37 a
+  3/37 y los aciertos aceptados de 10/19 a 8/19. Es exploración, **no precisión botánica
+  certificada**: falta la revisión de un especialista
+  ([informe](docs/OPEN_SET_IDENTIFICATION_REPORT.md)).
+- **SAM 3.1.** Herramienta opcional de selección visual: máscara real de imagen y primer
+  tracking positivo en video privado, sin métricas temporales por falta de referencias
+  humanas ([campaña](docs/META_VALIDATION_CAMPAIGN_REPORT.md)). La segmentación no prueba
+  la especie.
+- **CHMv2.** Estadísticas de altura estimada sobre una ventana real pequeña; no mide
+  crecimiento.
+- **Modo mock.** Sigue disponible sin claves y se abstiene.
+
+Historial: [reporte GIS/ML](docs/GIS_ML_REPORT.md), [consolidación backend](docs/BACKEND_META_CONSOLIDATION_REPORT.md).
 
 El alcance implementado, las pruebas realmente ejecutadas y los bloqueos se registran en [el reporte de bootstrap](docs/BOOTSTRAP_REPORT.md). El uso real de herramientas Meta y la admisión del equipo deben verificarse antes de la entrega competitiva.
 
@@ -77,6 +110,7 @@ Playwright necesita Chromium (`npx playwright install chromium`) y el build prev
 | Ruta | Responsabilidad |
 | --- | --- |
 | `apps/web` | Next.js, TypeScript, Tailwind y MapLibre; interfaz y recorridos |
+| `apps/mobile` | Expo/React Native; pestañas Atlas, Identificar, Observaciones y Especies |
 | `services/api` | FastAPI, validación y persistencia PostgreSQL/PostGIS |
 | `services/botanical-ai` | Contratos, mock y cliente Meta aislado |
 | `services/geospatial` | GeoJSON, fuentes y contrato CHMv2; GIS pesado opcional |
@@ -98,8 +132,9 @@ Repositorio público no equivale a licencia abierta de todos sus contenidos. No 
 Incremento de contexto: [QA forestal real, PostGIS y ponderación temporal CHMv2](docs/FOREST_CONTEXT_REPORT.md).
 
 Investigación privada: [SAM 3.1 mediante Meta API](docs/META_SAM_API_RESEARCH.md),
-[ejecución del laboratorio](tools/meta_sam_api_lab/README.md). Una máscara real de imagen;
-dos solicitudes de video sin coincidencias, sin tracking positivo demostrado.
+[ejecución del laboratorio](tools/meta_sam_api_lab/README.md). El primer informe (30-10-2026)
+registró dos solicitudes de video sin coincidencias; la campaña posterior logró el primer
+tracking positivo con prompt espacial ([campaña](docs/META_VALIDATION_CAMPAIGN_REPORT.md)).
 
 Prompts espaciales, correcciones y resolución: [investigación SAM espacial](docs/SAM_SPATIAL_RESEARCH.md),
 sin inferencias nuevas pagadas. Fuentes botánicas de las ocho especies y crosswalk GBIF/COL XR:

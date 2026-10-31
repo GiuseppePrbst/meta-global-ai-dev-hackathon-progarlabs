@@ -1,5 +1,9 @@
 # Personas e hipótesis
 
+> **Nota del 31-10-2026.** Documento del bootstrap (27-10-2026), centrado en árboles y
+> conservado como registro. La definición vigente amplía el alcance a flora, fauna y hongos,
+> con gemelo digital y piloto Puyehue: [visión de ecosistema](../PRODUCT_VISION_ECOSYSTEM.md).
+
 Estas personas son escenarios de diseño, **no entrevistas ni usuarios reales investigados**. Todas las experiencias Meta descritas se orientan a adultos.
 
 | Público | Necesidad / contexto | Recorrido prioritario | Criterio de utilidad y riesgo |
