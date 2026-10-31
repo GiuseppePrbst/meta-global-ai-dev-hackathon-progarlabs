@@ -1,5 +1,9 @@
 # Visión del producto
 
+> **Nota del 31-10-2026.** Visión inicial centrada en árboles, conservada como registro. La
+> definición vigente (flora, fauna, hongos, gemelo digital y piloto Puyehue) está en
+> [PRODUCT_VISION_ECOSYSTEM.md](../PRODUCT_VISION_ECOSYSTEM.md).
+
 Bosque Vivo Chile conecta a las personas adultas con los bosques de Chile mediante fotografía, conocimiento botánico y territorio. Una persona debería poder pasar de «¿qué árbol estoy mirando?» a comprender sus rasgos y su contexto, registrar una observación trazable y explorar el bosque con respeto.
 
 La propuesta combina cinco dimensiones: **descubrir** candidatos desde imágenes; **explorar** territorios y fichas; **comprender** evidencia ambiental; **conservar** mediante observaciones; **anticipar** cambios en investigación posterior. La última dimensión no bloquea el MVP.

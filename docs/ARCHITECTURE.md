@@ -208,3 +208,19 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
   ninguna contradicción para el candidato.
 - `/identify` usa `IDENTIFY_STRATEGY` (por defecto `verify`, v2, desde la evaluación del 30-10-2026), sin endpoints nuevos.
 - Los comparadores no son especies coleccionables y su loader rechaza duplicados del catálogo.
+
+## Decisión 2026-10-31 — gemelo digital de ecosistemas y piloto Puyehue
+
+- **Contexto.** El producto se amplía de 8 árboles a flora, fauna y hongos, con un gemelo
+  digital de biodiversidad y Puyehue como piloto ([visión](PRODUCT_VISION_ECOSYSTEM.md)).
+- **Decisión.** El gemelo digital es una representación geoespacial y temporal de entidades
+  con procedencia ([modelo](ECOSYSTEM_DATA_MODEL.md)), no una simulación en tiempo real.
+  - Los IDs actuales se conservan y las entidades nuevas los referencian.
+  - El reino taxonómico se separa del grupo de navegación.
+  - La conservación se modela como `ConservationAssessment` con ámbito
+    ([RCE](RCE_CONSERVATION_2026.md)).
+  - La presencia se tipa en siete clases de evidencia que no se mezclan.
+- **Consecuencias.** No hay migraciones ni endpoints en este cambio. Los contratos futuros
+  quedan propuestos en [API_INTEGRATION.md](API_INTEGRATION.md). `Species.conservation_status`
+  no se rellena con un valor único, y la identificación por IA sigue limitada a los 8
+  árboles evaluados.

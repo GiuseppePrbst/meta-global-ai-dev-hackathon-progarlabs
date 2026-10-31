@@ -122,3 +122,21 @@ en [SAM_SPATIAL_RESEARCH.md](SAM_SPATIAL_RESEARCH.md).
 
 Son etiquetas débiles: no hay precisión validada. «Aceptado» significa presentable, no
 verificado. [Reporte](OPEN_SET_IDENTIFICATION_REPORT.md).
+
+## Capacidades por reino — 31-10-2026
+
+| Reino o grupo | Estado | Evidencia |
+| --- | --- | --- |
+| Plantae: 8 especies arbóreas | `candidate_identification` con `verify` y abstención | Conjunto independiente congelado de 56 casos, etiquetas débiles: negativos aceptados 25/37 → 3/37; aciertos aceptados 10/19 → 8/19 ([informe](OPEN_SET_IDENTIFICATION_REPORT.md)). No es precisión certificada |
+| Otras plantas | `visual_recognition_not_evaluated` | Ninguna |
+| Animalia | `identification_unavailable` | Ninguna; sin audio ni rastros evaluados |
+| Fungi y líquenes | `identification_unavailable` | Ninguna |
+
+Las métricas de árboles **no** se extrapolan a otros reinos. Para habilitar un reino hace
+falta un conjunto propio con licencias, particiones sin fuga, negativos difíciles y
+congelamiento previo, igual que el protocolo open-set. SAM sigue siendo una ayuda de
+selección visual: una máscara no prueba la especie.
+
+Multivista: la recomendación inicial es **una** fotografía adicional dirigida a un rasgo
+(`recommended_next_photo`). En el conjunto pequeño evaluado, una tercera imagen aumentó las
+abstenciones de `verify`.

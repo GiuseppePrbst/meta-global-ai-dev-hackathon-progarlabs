@@ -21,3 +21,22 @@ El bootstrap sin uso real de Meta no demuestra el requisito de integración de l
 ## Checklist de grabación/envío
 
 Foto propia/autorizada y sin EXIF sensible; sin claves, coordenadas privadas, cuentas personales abiertas ni datos Hepta. UI legible en móvil, atribución de mapas visible, narración en tres minutos y enlaces accesibles desde una sesión sin privilegios. Revisar admisiones, representante, licencia del código, contribuciones preexistentes y reglas actualizadas. Solo el representante autorizado envía y guarda el comprobante de recepción.
+
+## Guion propuesto para la demo competitiva — 31-10-2026
+
+Narrativa alineada con la [visión de ecosistema](PRODUCT_VISION_ECOSYSTEM.md) y el
+[piloto Puyehue](PILOT_PUYEHUE.md). Cada tramo usa solo capacidades implementadas o se
+rotula «propuesto». Las pantallas dependen de la integración de José; si una no está lista,
+se omite y no se simula.
+
+| Tiempo | Pantalla | Mensaje verificable |
+| --- | --- | --- |
+| 0:00–0:20 | Descubrir | Bosque Vivo Chile: aventura y aprendizaje sobre biodiversidad, con un gemelo digital verificable. Piloto en el PN Puyehue, sector Anticura. Wilo presenta la misión «Exploradores del Bosque Siempreverde» |
+| 0:20–1:10 | Descubrir → cámara | Foto propia o con licencia de una de las 8 especies: `verify` acepta o se abstiene. Mostrar también una abstención ante una especie fuera del catálogo. Cifras solo con su contexto: 3/37 negativos aceptados frente a 25/37 del baseline, etiquetas débiles, sin especialista |
+| 1:10–1:35 | Mi diario | Captura privada, sugerencia `unverified` y registro sin taxón para un hallazgo de fauna u hongo |
+| 1:35–2:05 | Mapa | Límite de referencia y contexto forestal real (CONAF/CIREN, CHMv2 como altura estimada). Sin senderos ni puntos de fauna: explicar por qué |
+| 2:05–2:35 | Enciclopedia + Wilo | Ficha de olivillo con categoría RCE por ámbito (LC en Los Lagos y Los Ríos, VU al norte). Wilo responde con fuente |
+| 2:35–3:00 | Perfil / cierre | Progresión educativa sin cifras ficticias; P1 (gemelo territorial) presentado como propuesta. Reglas del parque: no salir del sendero, no recolectar, no drones |
+
+No mostrar identificación de fauna ni de hongos, senderos, puntos de especies sensibles ni
+«Ver en 3D». No usar material Hepta.

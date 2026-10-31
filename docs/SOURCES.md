@@ -161,3 +161,14 @@ límites en DATASET_LICENSES/DATA_GOVERNANCE; resultados agregados en META_SAM_A
 - Benchmarks aéreos: [CanopyRS/Detectree2](https://huggingface.co/datasets/CanopyRS/Detectree2)
   (CC BY 4.0, polígonos) y [NeonTreeEvaluation](https://github.com/weecology/NeonTreeEvaluation)
   (CC0, cajas). No descargados.
+
+## Ecosistema y piloto Puyehue — consultado 31-10-2026
+
+| Fuente | Uso | Pendiente |
+| --- | --- | --- |
+| [CONAF, PN Puyehue](https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/) | Superficie de 112.755 ha, sectores, ecosistemas, 8 árboles, fauna, reglas y horario | Senderos de Anticura no nombrados; reverificar antes de la demo |
+| [SIMBIO 971](https://simbio.mma.gob.cl/CbaAP/Details/971) | Superficie de 102.521,7 ha (1994), ecosistemas, UICN II, administración CONAF | Conflicto de superficie con CONAF registrado |
+| [SBAP, 16-06-2026](https://sbap.gob.cl/sala-de-prensa/noticias-y-comunicados/detalle/2026/06/16/traspaso-del-programa-de-%C3%A1reas-silvestres-de-conaf-al-servicio-se-realizar%C3%A1-a-partir-de-marzo-de-2027) | Traspaso anunciado «a partir de marzo de 2027» | No concluido |
+| [Portal RCE](https://clasificacionespecies.mma.gob.cl/) y [DS 54/2025](https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2026/03/DS_54_2025_MMA_oficializa_20_RCE-DO_5_3_2026.pdf) | Nómina, 20.º proceso, publicación en el DO el 05-03-2026 | Discrepancias de fecha registradas en [RCE](RCE_CONSERVATION_2026.md#versionado-y-discrepancias) |
+| [Ficha 14.º proceso](https://clasificacionespecies.mma.gob.cl/procesos-de-clasificacion/14o-proceso-de-clasificacion-de-especies-2017-2018/listado-de-especies-y-fichas-finales-14o-proceso-rce/) | Olivillo VU norte / LC sur | — |
+| [mycoBaseCL](https://doi.org/10.32942/X20T2N) | Catálogo de hongos de Chile, preprint v1 | Sin revisión por pares; licencia del dataset |

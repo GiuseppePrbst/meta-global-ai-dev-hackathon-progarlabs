@@ -166,3 +166,12 @@ la multivista): 0 coincidencias. 5 exclusiones del agente:
 Etiquetas: plataforma más revisión visual del agente (`platform_label` +
 `agent_visual_review`). Sin `human_reviewed` ni `expert_reviewed`. Licencias por medio en
 el manifiesto; copias fuera de Git.
+
+## Nómina RCE y catálogo arbóreo — 31-10-2026
+
+De las ocho especies, solo *Aextoxicon punctatum* figura en la nómina RCE. Su categoría
+depende del ámbito: VU al norte de Valparaíso y la RM, LC desde O'Higgins al sur. Las otras
+siete no aparecen ni por nombre ni por sinonimia: eso **no** equivale a LC ni a DD
+([RCE](RCE_CONSERVATION_2026.md#coincidencia-con-el-catálogo-arbóreo)). Las ocho siguen
+siendo el único catálogo de identificación visual evaluado; la ampliación a fauna y hongos es
+editorial ([visión](PRODUCT_VISION_ECOSYSTEM.md#alcance-biológico-flora-fauna-y-fungi)).

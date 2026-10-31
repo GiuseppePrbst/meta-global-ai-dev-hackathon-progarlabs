@@ -131,3 +131,26 @@ Mode. Las anotaciones de un agente se etiquetan como tales y no equivalen a vali
 especialista humano. No se infieren distancias a conductores desde RGB. Limitación externa
 que no depende del proyecto: lo que el agente visualiza se procesa en la infraestructura de
 Anthropic, igual que lo enviado a Meta se procesa en la de Meta, según sus términos.
+
+## Ecosistema, RCE y piloto Puyehue — 31-10-2026
+
+Reglas que añade la [visión de ecosistema](PRODUCT_VISION_ECOSYSTEM.md):
+
+- **Nómina RCE.** El XLSX oficial (SHA-256 `1a1dadba…607d`) se guarda fuera de Git: el
+  portal no publica condiciones de redistribución. Un extracto mínimo solo se versiona con
+  autorización registrada ([RCE](RCE_CONSERVATION_2026.md#gobernanza)).
+- **Conversiones prohibidas:**
+  - una categoría RCE no se convierte en observación;
+  - una distribución regional no se convierte en coordenada;
+  - una especie predominante en un polígono no se convierte en árbol individual;
+  - una predicción de IA no se convierte en verificación;
+  - una captura privada no se convierte en registro público.
+- **Fauna sensible.** Sin ubicaciones precisas públicas de nidos, madrigueras ni especies
+  vulnerables.
+- **Hongos.** Sin consumo, comestibilidad ni recolección.
+- **Senderos.** Sin rutas no oficiales ni recomendaciones de ingreso a zonas restringidas.
+- **Hepta y Puyehue.** El material Hepta no se asocia al Parque Nacional Puyehue ni
+  demuestra origen en él, y su uso en investigación no autoriza vuelos de dron en el parque
+  (prohibidos sin autorización de CONAF).
+- **Imagen conceptual de UX.** Aportada en el encargo, no se versiona sin revisar sus
+  derechos.

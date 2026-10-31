@@ -1,5 +1,9 @@
 # Arquitectura de información
 
+> **Nota del 31-10-2026.** Las rutas siguientes describen la web del bootstrap. La dirección
+> vigente de cinco pantallas (Descubrir, Mapa, Enciclopedia, Mi diario y Perfil) está en
+> [PRODUCT_VISION_ECOSYSTEM.md](../PRODUCT_VISION_ECOSYSTEM.md#cinco-pantallas).
+
 | Ruta | Pregunta que resuelve | Contenido y siguientes pasos |
 | --- | --- | --- |
 | `/` | ¿Qué puedo descubrir aquí? | Propuesta, estado de la base y acceso a identificar, especies y atlas. |
