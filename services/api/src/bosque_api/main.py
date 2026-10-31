@@ -74,7 +74,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 or request.url.path.startswith(("/captures", "/guide", "/identifications"))
             )
             and request.method != "OPTIONS"
-            and (request.url.path not in public and not request.url.path.startswith("/species/"))
+            and (
+                request.url.path not in public
+                and not request.url.path.startswith(("/species/", "/taxa", "/parks/"))
+            )
         ):
             try:
                 request.state.identity = identity(config, request.headers.get("authorization"))
@@ -584,9 +587,11 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return schema
 
     app.openapi = openapi
+    from bosque_api.biodiversity import register_biodiversity_routes
     from bosque_api.expedition_routes import register_routes
 
     register_routes(app, config, landscape_context)
+    register_biodiversity_routes(app)
     return app
 
 
