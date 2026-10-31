@@ -57,7 +57,9 @@ def score(taxon, availability: dict, rce: set[str], occurrences: dict) -> dict:
     if not eligible:
         decision = "knowledge_only: " + ", ".join(k for k, v in gates.items() if not v)
     elif taxon.group == "mammal" and taxon.sensitivity == "location_sensitive":
-        decision = "knowledge_only: sensitive mammal; recognition would reward searching it"
+        decision = (
+            "knowledge_only: sensitive mammal; recognition would reward searching it"
+        )
     elif processable < MIN_MEDIA:
         decision = f"knowledge_only: fewer than {MIN_MEDIA} processable photos"
     else:
@@ -85,13 +87,15 @@ def score(taxon, availability: dict, rce: set[str], occurrences: dict) -> dict:
 def main():
     availability = {
         t["label"]: t
-        for t in json.loads((HERE / "media-availability.json").read_text("utf-8"))["taxa"]
+        for t in json.loads((HERE / "media-availability.json").read_text("utf-8"))[
+            "taxa"
+        ]
     }
     occurrences = {
         t["label"]: t.get("records_passing_filters")
-        for t in json.loads((HERE / "puyehue-gbif-occurrences.json").read_text("utf-8"))[
-            "taxa"
-        ]
+        for t in json.loads(
+            (HERE / "puyehue-gbif-occurrences.json").read_text("utf-8")
+        )["taxa"]
     }
     rce = {a.taxon_id for a in get_conservation().assessments}
     rows = sorted(
@@ -102,11 +106,15 @@ def main():
         "computed_at": "2026-10-31",
         "weights": WEIGHTS,
         "rules": [
-            "Gates before weights: no rights, no resolvable taxonomy or no sources -> "
-            "knowledge only, whatever the score.",
+            (
+                "Gates before weights: no rights, no resolvable taxonomy or no "
+                "sources -> knowledge only, whatever the score."
+            ),
             "RCE category never adds points; only the existence of a record does.",
-            "Location-sensitive taxa score lower in responsible education; sensitive "
-            "mammals stay knowledge-only (used only as out-of-catalog negatives).",
+            (
+                "Location-sensitive taxa score lower in responsible education; "
+                "sensitive mammals stay knowledge-only (out-of-catalog negatives)."
+            ),
             f"Recognition benchmark needs >= {MIN_MEDIA} processable photos.",
         ],
         "taxa": rows,

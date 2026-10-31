@@ -54,7 +54,9 @@ def main():
             }
             for r in sorted(pool, key=lambda r: r["image_id"])[:3]
         ]
-    TAXA.write_text(json.dumps(taxa, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    TAXA.write_text(
+        json.dumps(taxa, indent=1, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
     print({t["id"]: len(t["media"]) for t in taxa})
 
 

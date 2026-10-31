@@ -39,7 +39,9 @@ def download(record: dict) -> dict:
         record = {
             **record,
             "source_dataset": "plantnet_verified_gbif",  # direct URL branch
-            "media_url": record["thumbnail_url"].split("?")[0].replace("/330px-", "/1280px-"),
+            "media_url": record["thumbnail_url"]
+            .split("?")[0]
+            .replace("/330px-", "/1280px-"),
         }
     elif record["source_dataset"] == "inaturalist_research_gbif":
         record = {
@@ -288,13 +290,13 @@ PLAN = {  # step -> (panel, split, strategy, experiment, model, subset)
         "muse-spark-1.3",
         None,
     ),
-    "test-flora-verify-traits": (
+    "test-flora-verify-traits": (  # subset fixed before test runs (budget)
         "flora",
         "test",
         "verify",
         "D",
         "muse-spark-1.3",
-        None,
+        60,
     ),
     "test-flora-multiview": (
         "flora",

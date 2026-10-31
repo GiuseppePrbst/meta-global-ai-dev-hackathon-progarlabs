@@ -11,7 +11,7 @@
  "rules": [
   "Gates before weights: no rights, no resolvable taxonomy or no sources -> knowledge only, whatever the score.",
   "RCE category never adds points; only the existence of a record does.",
-  "Location-sensitive taxa score lower in responsible education; sensitive mammals stay knowledge-only (used only as out-of-catalog negatives).",
+  "Location-sensitive taxa score lower in responsible education; sensitive mammals stay knowledge-only (out-of-catalog negatives).",
   "Recognition benchmark needs >= 20 processable photos."
  ],
  "taxa": [

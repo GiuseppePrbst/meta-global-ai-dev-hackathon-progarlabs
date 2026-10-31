@@ -214,3 +214,23 @@ def test_rce_import_rejects_changed_headers():
     header = [""] * 40
     with pytest.raises(SystemExit):
         check_headers(tuple(header))
+
+
+def test_guide_tools_read_multikingdom_catalog_and_regional_rce():
+    from bosque_api.guide_tools import TOOLS, execute_tool
+
+    names = {t["function"]["name"] for t in TOOLS}
+    assert {"get_taxon_profile", "get_taxon_conservation"} <= names
+    kw = {"owner": "alice", "store": None, "landscape_context": None}
+    guina = execute_tool("get_taxon_conservation", {"taxon_id": "leopardus-guigna"}, **kw)["data"]
+    assert guina["regional_status"] == "indeterminate" and guina["applicable_category"] is None
+    lagos = execute_tool(
+        "get_taxon_conservation",
+        {"taxon_id": "leopardus-guigna", "region_id": "los-lagos"},
+        **kw,
+    )["data"]
+    assert lagos["applicable_category"] == "NT"
+    fungus = execute_tool("get_taxon_profile", {"taxon_id": "cyttaria-hariotii"}, **kw)
+    assert fungus["data"]["puyehue_status"] == "regional_candidate" and fungus["sources"]
+    with pytest.raises(ValueError, match="fuera del catálogo"):
+        execute_tool("get_taxon_profile", {"taxon_id": "inventado-x"}, **kw)

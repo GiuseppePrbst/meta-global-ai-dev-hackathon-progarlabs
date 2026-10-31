@@ -15,16 +15,32 @@ from fastapi.testclient import TestClient
 
 OUT = Path(__file__).parent / "biodiversity" / "contract-examples.json"
 LIVE = [
-    ("tree_with_recognition", "/taxa/nothofagus-dombeyi", "Árbol del catálogo de reconocimiento"),
-    ("bird_educational_not_evaluated", "/taxa/pteroptochos-tarnii", "Ave con ficha educativa"),
-    ("fungus_regional_candidate", "/taxa/cyttaria-hariotii", "Hongo candidato regional"),
+    (
+        "tree_with_recognition",
+        "/taxa/nothofagus-dombeyi",
+        "Árbol del catálogo de reconocimiento",
+    ),
+    (
+        "bird_educational_not_evaluated",
+        "/taxa/pteroptochos-tarnii",
+        "Ave con ficha educativa",
+    ),
+    (
+        "fungus_regional_candidate",
+        "/taxa/cyttaria-hariotii",
+        "Hongo candidato regional",
+    ),
     (
         "olivillo_rce_los_lagos",
         "/taxa/aextoxicon-punctatum/conservation?region=los-lagos",
         "Olivillo LC en Los Lagos (VU al norte)",
     ),
     ("guina_rce_los_rios", "/taxa/leopardus-guigna/conservation?region=los-rios", "VU"),
-    ("guina_rce_los_lagos", "/taxa/leopardus-guigna/conservation?region=los-lagos", "NT"),
+    (
+        "guina_rce_los_lagos",
+        "/taxa/leopardus-guigna/conservation?region=los-lagos",
+        "NT",
+    ),
     (
         "guina_rce_region_unknown",
         "/taxa/leopardus-guigna/conservation",
@@ -36,7 +52,11 @@ LIVE = [
         "Ausencia en la nómina no equivale a LC",
     ),
     ("taxon_without_authorized_media", "/taxa/boletus-chilensis", "media vacío"),
-    ("park_scale_presence_no_coordinates", "/taxa/leopardus-guigna", "Escala parque, sensible"),
+    (
+        "park_scale_presence_no_coordinates",
+        "/taxa/leopardus-guigna",
+        "Escala parque, sensible",
+    ),
     ("puyehue_biodiversity", "/parks/puyehue/biodiversity", "Resumen del piloto"),
     ("taxa_page_fauna", "/taxa?kingdom=Animalia&limit=3", "Paginación"),
 ]
@@ -84,7 +104,9 @@ def main():
         }
     )
     captures = json.loads(
-        (Path(__file__).parent / "expeditions-contract-examples.json").read_text("utf-8")
+        (Path(__file__).parent / "expeditions-contract-examples.json").read_text(
+            "utf-8"
+        )
     )["examples"]
     pending = next(e for e in captures if e["case"] == "capture_without_location")
     examples.append(
@@ -98,7 +120,11 @@ def main():
     )
     OUT.write_text(
         json.dumps(
-            {"classification": "contract_examples", "date": "2026-10-31", "examples": examples},
+            {
+                "classification": "contract_examples",
+                "date": "2026-10-31",
+                "examples": examples,
+            },
             indent=1,
             ensure_ascii=False,
         )
