@@ -22,8 +22,14 @@ Bosque Vivo Chile es una plataforma de exploración, aprendizaje y colección de
 - contexto GIS y CHMv2;
 - guía con herramientas.
 
-Fauna, hongos, catálogo multirreino, conservación RCE consultable y senderos son
-**propuestas** (P1). El gemelo digital no es una simulación en tiempo real.
+Rama `feat/puyehue-biodiversity-meta-evaluation` (31-10-2026, PR abierto, sin fusionar):
+catálogo multirreino de 20 taxones con ficha, evidencia en Puyehue y RCE regional
+(`GET /taxa`, `/taxa/{id}/conservation`, `/parks/puyehue/biodiversity`). Ver
+[selección del catálogo](docs/BIODIVERSITY_CATALOG_SELECTION.md),
+[evaluación multirreino con Meta](docs/MULTIKINGDOM_AI_EVALUATION.md) y
+[informe backend](docs/PUYEHUE_BACKEND_REPORT.md). La identificación de fauna y hongos
+**no** está habilitada. Senderos y límites oficiales siguen pendientes. El gemelo digital
+no es una simulación en tiempo real.
 
 ## Estado técnico
 

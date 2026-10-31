@@ -237,3 +237,27 @@ misión no requiere taxón ni ubicación (comportamiento actual de la expedició
 6. La misión piloto se puede completar sin GPS, sin especies EN/CR y sin salir del sendero.
 7. Las reglas del parque se muestran con fecha de consulta.
 8. Ningún dato Hepta en la experiencia del parque.
+
+## Evidencia y catálogo en el backend — 31-10-2026
+
+- `GET /parks/puyehue/biodiversity` devuelve:
+  - 8 árboles y 8 especies de fauna (las 6 RCE más chercán y bandurria) como
+    `documented_in_park`, con evidencia de tipo 1: mención CONAF a escala de parque, sin
+    coordenadas;
+  - 3 hongos como `regional_candidate` y *Cyttaria espinosae* como `not_assessed`.
+- **Conteo GBIF dentro del polígono referencial BCN** (31-10-2026,
+  `evaluations/biodiversity/puyehue-gbif-occurrences.json`).
+  - Filtros: sin problemas geoespaciales, incertidumbre ≤ 1.000 m y rango de especie. Se
+    publican conteos, nunca puntos.
+  - Árboles: 8–31 registros de iNaturalist por especie, salvo coigüe de Magallanes, con 0.
+  - Aves: 0–4 registros. La mayoría de los registros de eBird no declaran incertidumbre.
+  - Mamíferos sensibles: 0.
+  - Hongos: 0. Hay un registro de *C. hariotii* sin incertidumbre declarada.
+  - Esto **no** sustituye a CONAF ni crea presencia oficial.
+- **Discrepancia del polígono BCN.** Su tabla de atributos asigna el parque solo a la
+  Región de Los Ríos. La categoría RCE dependiente de la región sigue sin elegirse si la
+  región del registro no es conocida.
+- **Bandurria.** El encargo citaba *Theristicus caudatus*. La nómina RCE la trata como
+  sinónimo de *T. melanopis*, que es el taxón asignado.
+- **Chercán.** COL XR acepta *Troglodytes aedon*. Queda pendiente verificar si la lista de
+  referencia vigente separa *T. musculus*.

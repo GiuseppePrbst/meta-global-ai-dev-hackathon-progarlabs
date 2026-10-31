@@ -5,10 +5,12 @@ from bosque_ai.guide import GuideToolError
 from bosque_geo.context import ContextPointRequest
 from pydantic import BaseModel, ConfigDict, Field
 
+from bosque_api.biodiversity import REGIONS, get_taxa, regional_conservation
 from bosque_api.catalog import get_species
 from bosque_api.expeditions import Expedition
 
 CATALOG = {item.id: item for item in get_species()}
+TAXA = {item.id: item for item in get_taxa()}
 
 
 class Arguments(BaseModel):
@@ -36,6 +38,16 @@ class TrailArgument(Arguments):
     trail_id: str = Field(min_length=1, max_length=80)
 
 
+class TaxonArgument(Arguments):
+    taxon_id: str = Field(json_schema_extra={"enum": list(TAXA)})
+
+
+class ConservationArguments(TaxonArgument):
+    region_id: str | None = Field(
+        default=None, json_schema_extra={"enum": [*REGIONS.values(), None]}
+    )
+
+
 class PublicArguments(SpeciesArgument):
     region_id: str = Field(min_length=1, max_length=80)
 
@@ -49,6 +61,8 @@ TOOL_ARGUMENTS = {
     "get_verified_trail_information": TrailArgument,
     "get_user_capture_progress": Arguments,
     "get_public_species_observations": PublicArguments,
+    "get_taxon_profile": TaxonArgument,
+    "get_taxon_conservation": ConservationArguments,
 }
 TOOLS = [
     {
@@ -64,6 +78,10 @@ TOOLS = [
                 "get_verified_trail_information": "Estado de rutas, actualmente no verificadas",
                 "get_user_capture_progress": "Conteos propios; identidad fijada por el servidor",
                 "get_public_species_observations": "Estado de observaciones públicas revisadas",
+                "get_taxon_profile": "Ficha multirreino (flora, fauna, hongos) con fuentes, "
+                "evidencia en Puyehue y estado de identificación; sin coordenadas",
+                "get_taxon_conservation": "Categoría RCE según región; sin región queda "
+                "indeterminada; sin registro nunca es LC",
             }[name],
             "parameters": model.model_json_schema(),
         },
@@ -174,6 +192,26 @@ def execute_tool(
                 "limitations": s.limitations,
             }
             for s in context.source_refs
+        ]
+    elif name in {"get_taxon_profile", "get_taxon_conservation"} and (args["taxon_id"] not in TAXA):
+        raise ValueError("Taxón fuera del catálogo")
+    elif name == "get_taxon_profile":
+        taxon = TAXA[args["taxon_id"]]
+        data = taxon.model_dump(exclude={"media"})
+        sources = [
+            {"id": f"taxon:{taxon.id}:{i}", "url": s.url, "version": s.accessed_at, "scope": s.kind}
+            for i, s in enumerate(taxon.profile.sources)
+        ]
+    elif name == "get_taxon_conservation":
+        result = regional_conservation(args["taxon_id"], args["region_id"])
+        data = result.model_dump()
+        sources = [
+            {
+                "id": "rce:" + result.source.sha256[:12],
+                "url": result.source.url,
+                "version": result.source.version_text,
+                "scope": "official_rce_regional",
+            }
         ]
     else:
         if name == "get_public_species_observations":

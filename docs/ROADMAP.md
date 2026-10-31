@@ -20,6 +20,13 @@ Pendientes P0 hasta la entrega del 4-11-2026:
 | Giuseppe | Fichas de fauna y hongos con fuente y estado; política de ubicaciones sensibles; demo honesta |
 | Equipo | Revisión de elegibilidad antes de atribuir aportes de diseño |
 
+**Avance del 31-10-2026** (rama `feat/puyehue-biodiversity-meta-evaluation`, PR abierto).
+Hay catálogo multirreino de 20 taxones con fichas, evidencia en Puyehue y RCE regional, y
+las rutas `/taxa`, `/taxa/{id}/conservation` y `/parks/puyehue/biodiversity`. Esto adelanta
+parte de P1 sin migraciones. La campaña de evaluación de fauna y hongos está en
+[MULTIKINGDOM_AI_EVALUATION.md](MULTIKINGDOM_AI_EVALUATION.md). Ningún taxón de fauna u
+hongo queda habilitado para identificación.
+
 ## Calendario original de hackatón (27-10-2026)
 
 Se conserva como plan histórico; las fechas de cierre siguen vigentes.

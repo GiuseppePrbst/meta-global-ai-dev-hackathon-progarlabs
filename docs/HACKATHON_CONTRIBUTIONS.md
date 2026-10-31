@@ -166,3 +166,27 @@ Redacción y análisis con asistencia de Claude (Anthropic) en una sesión local
 Giuseppe. Las decisiones de producto provienen del encargo de ProGarLabs. Fabiana García
 figura como diseño de producto empresarial; no se le atribuyen entregables competitivos
 mientras su admisión no esté confirmada.
+
+### 31-10-2026 — backend multirreino y evaluación Meta (rama `feat/puyehue-biodiversity-meta-evaluation`)
+
+Código nuevo durante el evento:
+
+- catálogo multirreino tipado (`bosque_api/biodiversity.py`, `resources/taxa.json`);
+- conservación RCE regional (`resources/conservation.json`, `evaluations/rce_import.py`);
+- rutas `/taxa`, `/taxa/{id}`, `/taxa/{id}/conservation` y `/parks/{id}/biodiversity`;
+- pipeline experimental de fauna y hongos (`bosque_ai/multikingdom.py`);
+- registro de medios multirreino, priorización, conteo GBIF en Puyehue y campaña Meta
+  (`evaluations/biodiversity_*.py`, `multikingdom_campaign.py`, `puyehue_occurrences.py`);
+- tests nuevos y reportes en `docs/`.
+
+Material de terceros usado sin versionar medios:
+
+- metadatos de GBIF, iNaturalist, Pl@ntNet y Commons;
+- la nómina RCE (solo hechos seleccionados);
+- el polígono BCN (privado);
+- es.wikipedia y el Atlas ROC (paráfrasis citadas).
+
+Inferencias reales con Meta Model API dentro del techo acumulado de USD 50.
+
+Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe, que también
+hizo la inspección visual de las fotos. **Esa inspección no es revisión de especialista.**

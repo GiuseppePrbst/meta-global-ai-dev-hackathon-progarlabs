@@ -1,0 +1,1401 @@
+{
+ "classification": "contract_examples",
+ "date": "2026-10-31",
+ "examples": [
+  {
+   "case": "tree_with_recognition",
+   "route": "GET /taxa/aextoxicon-punctatum",
+   "http_status": 200,
+   "source": "live_response_versioned_catalog",
+   "note": "Árbol con recognition_candidate (nivel 2, provisional)",
+   "body": {
+    "id": "aextoxicon-punctatum",
+    "species_ref": "aextoxicon-punctatum",
+    "scientific_name": "Aextoxicon punctatum",
+    "common_names": [
+     "Olivillo"
+    ],
+    "group": "tree",
+    "classification": {
+     "kingdom": "Plantae",
+     "phylum": "Tracheophyta",
+     "class_name": "Magnoliopsida",
+     "order": "Berberidopsidales",
+     "family": "Aextoxicaceae",
+     "genus": "Aextoxicon"
+    },
+    "taxonomy": {
+     "checklist": "Catalogue of Life eXtended Release vía GBIF (checklist 7ddf754f-d193-4cc9-b351-99906754a03b)",
+     "col_xr_key": "65DRF",
+     "gbif_backbone_id": 4195638,
+     "accepted_name": "Aextoxicon punctatum",
+     "authorship": null,
+     "synonyms_reviewed": [],
+     "status": "source_checked",
+     "notes": "Nombre, familia, género, sinonimia y rasgos se derivan de species.json (sin duplicar).",
+     "accessed_at": "2026-10-30"
+    },
+    "profile": {
+     "description": null,
+     "habitat": "Ambiente en Puyehue según CONAF: Sectores bajos.",
+     "ecology": null,
+     "distribution": null,
+     "traits": [
+      "Cara inferior foliar grisácea con escamas pardas.",
+      "Hoja persistente y de textura coriácea."
+     ],
+     "trait_validation_status": "source_checked",
+     "sources": [
+      {
+       "title": "CONAF, ficha Parque Nacional Puyehue",
+       "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+       "accessed_at": "2026-10-31",
+       "kind": "official",
+       "license": null,
+       "notes": null
+      }
+     ],
+     "limitations": [
+      "Descripción y ecología pendientes de fuente revisada.",
+      "El ambiente no ubica individuos."
+     ],
+     "review_status": "draft_sourced"
+    },
+    "media": [
+     {
+      "media_id": "commons:50577619",
+      "media_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Aextoxicon_punctatum%2C_flor_masculina_-_Flickr_-_Pato_Novoa.jpg/640px-Aextoxicon_punctatum%2C_flor_masculina_-_Flickr_-_Pato_Novoa.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aextoxicon_punctatum,_flor_masculina_-_Flickr_-_Pato_Novoa.jpg",
+      "author": "Pato Novoa from Valparaíso, Chile",
+      "license": "CC BY 2.0",
+      "attribution": "Pato Novoa from Valparaíso, Chile, File:Aextoxicon punctatum, flor masculina - Flickr - Pato Novoa.jpg, Wikimedia Commons",
+      "redistribution": "with_attribution",
+      "review_status": "agent_visual_check"
+     },
+     {
+      "media_id": "commons:50577627",
+      "media_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Aextoxicon_punctatum_flor_femenina_-_Flickr_-_Pato_Novoa.jpg/640px-Aextoxicon_punctatum_flor_femenina_-_Flickr_-_Pato_Novoa.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aextoxicon_punctatum_flor_femenina_-_Flickr_-_Pato_Novoa.jpg",
+      "author": "Pato Novoa from Valparaíso, Chile",
+      "license": "CC BY 2.0",
+      "attribution": "Pato Novoa from Valparaíso, Chile, File:Aextoxicon punctatum flor femenina - Flickr - Pato Novoa.jpg, Wikimedia Commons",
+      "redistribution": "with_attribution",
+      "review_status": "agent_visual_check"
+     },
+     {
+      "media_id": "gbif:5231320099:0",
+      "media_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/539941529/medium.jpg",
+      "source_url": "https://www.inaturalist.org/observations/299697204",
+      "author": "Bruno Avilez",
+      "license": "CC BY",
+      "attribution": "Bruno Avilez, iNaturalist (CC BY)",
+      "redistribution": "with_attribution",
+      "review_status": "agent_visual_check"
+     }
+    ],
+    "park_evidence": [
+     {
+      "park_id": "puyehue",
+      "evidence_type": "official_park_presence",
+      "scale": "park",
+      "source": {
+       "title": "CONAF, ficha Parque Nacional Puyehue",
+       "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+       "accessed_at": "2026-10-31",
+       "kind": "official",
+       "license": null,
+       "notes": null
+      },
+      "observed_date": null,
+      "precision": "park_scale_no_coordinates",
+      "review_status": "source_checked",
+      "restrictions": [
+       "Escala de parque: no implica presencia en Anticura ni en un sendero."
+      ]
+     }
+    ],
+    "puyehue_status": "documented_in_park",
+    "sensitivity": "none",
+    "identification": {
+     "status": "recognition_candidate",
+     "level": 2,
+     "pipeline": "verify (open-set-verify-v2, muse-spark-1.3)",
+     "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+     "evaluated_at": "2026-10-31",
+     "notes": "Criterio preliminar superado en el test congelado (etiquetas débiles); provisional hasta confirmarlo en un segundo conjunto independiente. verify: 8/13 correctos aceptados, 0 aceptaciones erróneas hacia olivillo."
+    }
+   }
+  },
+  {
+   "case": "bird_educational_recognition_not_enabled",
+   "route": "GET /taxa/pteroptochos-tarnii",
+   "http_status": 200,
+   "source": "live_response_versioned_catalog",
+   "note": "Ave con ficha educativa; reconocimiento experimental, no habilitado (todas las aves CONAF del panel se evaluaron el 31-10)",
+   "body": {
+    "id": "pteroptochos-tarnii",
+    "species_ref": null,
+    "scientific_name": "Pteroptochos tarnii",
+    "common_names": [
+     "Hued-hued del sur"
+    ],
+    "group": "bird",
+    "classification": {
+     "kingdom": "Animalia",
+     "phylum": "Chordata",
+     "class_name": "Aves",
+     "order": "Passeriformes",
+     "family": "Rhinocryptidae",
+     "genus": "Pteroptochos"
+    },
+    "taxonomy": {
+     "checklist": "Catalogue of Life eXtended Release vía GBIF (checklist 7ddf754f-d193-4cc9-b351-99906754a03b)",
+     "col_xr_key": "4Q2S7",
+     "gbif_backbone_id": null,
+     "accepted_name": "Pteroptochos tarnii",
+     "authorship": "(P. P. King, 1831)",
+     "synonyms_reviewed": [],
+     "status": "source_checked",
+     "notes": null,
+     "accessed_at": "2026-10-31"
+    },
+    "profile": {
+     "description": "Tapacúlido grande del sotobosque del bosque templado.",
+     "habitat": "Sotobosque de bosque valdiviano y de Nothofagus, a menudo con colihue (Chusquea).",
+     "ecology": null,
+     "distribution": "Chile del río Biobío a Magallanes y Andes patagónicos de Argentina.",
+     "traits": [
+      "Ave terrestre de unos 25 cm, cola larga generalmente levantada.",
+      "Corona, vientre y supracaudales rufos; garganta, pecho y dorso gris pizarra a negro.",
+      "Garganta y pecho oscuros, no rufos como en P. castaneus.",
+      "En Chile se separa de P. castaneus por el río Biobío."
+     ],
+     "trait_validation_status": "secondary_source",
+     "sources": [
+      {
+       "title": "Wikipedia en español, «Pteroptochos tarnii»",
+       "url": "https://es.wikipedia.org/wiki/Pteroptochos_tarnii",
+       "accessed_at": "2026-10-31",
+       "kind": "secondary",
+       "license": "CC BY-SA 4.0",
+       "notes": "Fuente secundaria; varias frases sin cita en el artículo"
+      }
+     ],
+     "limitations": [
+      "Rasgos de fuente secundaria; revisión de especialista pendiente."
+     ],
+     "review_status": "draft_sourced"
+    },
+    "media": [
+     {
+      "media_id": "gbif:3058690130:0",
+      "media_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/114447424/medium.jpeg",
+      "source_url": "https://www.inaturalist.org/observations/70405207",
+      "author": "Jan Ebr & Ivana Ebrová",
+      "license": "CC BY",
+      "attribution": "Jan Ebr & Ivana Ebrová, iNaturalist (CC BY)",
+      "redistribution": "with_attribution",
+      "review_status": "agent_visual_check"
+     },
+     {
+      "media_id": "gbif:3070651697:0",
+      "media_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/117517847/medium.jpeg",
+      "source_url": "https://www.inaturalist.org/observations/72113293",
+      "author": "Jan Ebr & Ivana Ebrová",
+      "license": "CC BY",
+      "attribution": "Jan Ebr & Ivana Ebrová, iNaturalist (CC BY)",
+      "redistribution": "with_attribution",
+      "review_status": "agent_visual_check"
+     },
+     {
+      "media_id": "gbif:3456694162:0",
+      "media_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/174080146/medium.jpg",
+      "source_url": "https://www.inaturalist.org/observations/103934162",
+      "author": "Leonel Roget",
+      "license": "CC BY",
+      "attribution": "Leonel Roget, iNaturalist (CC BY)",
+      "redistribution": "with_attribution",
+      "review_status": "agent_visual_check"
+     }
+    ],
+    "park_evidence": [
+     {
+      "park_id": "puyehue",
+      "evidence_type": "official_park_presence",
+      "scale": "park",
+      "source": {
+       "title": "CONAF, ficha Parque Nacional Puyehue",
+       "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+       "accessed_at": "2026-10-31",
+       "kind": "official",
+       "license": null,
+       "notes": null
+      },
+      "observed_date": null,
+      "precision": "park_scale_no_coordinates",
+      "review_status": "source_checked",
+      "restrictions": [
+       "Escala de parque: no implica presencia en Anticura ni en un sendero."
+      ]
+     }
+    ],
+    "puyehue_status": "documented_in_park",
+    "sensitivity": "none",
+    "identification": {
+     "status": "recognition_experimental",
+     "level": 1,
+     "pipeline": "bosque_ai.multikingdom (muse-spark-1.3), sin endpoint",
+     "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+     "evaluated_at": "2026-10-31",
+     "notes": "12/16, pero chucao y P. castaneus aceptados como hued-hued (8 con candidatos, 3 con conocimiento)."
+    }
+   }
+  },
+  {
+   "case": "fungus_regional_candidate",
+   "route": "GET /taxa/cyttaria-hariotii",
+   "http_status": 200,
+   "source": "live_response_versioned_catalog",
+   "note": "Hongo candidato regional",
+   "body": {
+    "id": "cyttaria-hariotii",
+    "species_ref": null,
+    "scientific_name": "Cyttaria hariotii",
+    "common_names": [
+     "Llao-llao"
+    ],
+    "group": "fungus",
+    "classification": {
+     "kingdom": "Fungi",
+     "phylum": "Ascomycota",
+     "class_name": "Leotiomycetes",
+     "order": "Cyttariales",
+     "family": "Cyttariaceae",
+     "genus": "Cyttaria"
+    },
+    "taxonomy": {
+     "checklist": "Catalogue of Life eXtended Release vía GBIF (checklist 7ddf754f-d193-4cc9-b351-99906754a03b)",
+     "col_xr_key": "33SNM",
+     "gbif_backbone_id": null,
+     "accepted_name": "Cyttaria hariotii",
+     "authorship": "E. Fisch.",
+     "synonyms_reviewed": [],
+     "status": "source_checked",
+     "notes": null,
+     "accessed_at": "2026-10-31"
+    },
+    "profile": {
+     "description": "Hongo parásito de Nothofagus que forma nudos o tumores globosos en ramas y troncos.",
+     "habitat": null,
+     "ecology": null,
+     "distribution": null,
+     "traits": [
+      "Cuerpos fructíferos globosos sobre ramas de Nothofagus.",
+      "Tono amarillo-anaranjado; C. darwinii es amarillo pálido (fuente secundaria)."
+     ],
+     "trait_validation_status": "secondary_source",
+     "sources": [
+      {
+       "title": "Wikipedia en español, «Cyttaria harioti»",
+       "url": "https://es.wikipedia.org/wiki/Cyttaria_harioti",
+       "accessed_at": "2026-10-31",
+       "kind": "secondary",
+       "license": "CC BY-SA 4.0",
+       "notes": "Fuente secundaria; varias frases sin cita en el artículo"
+      },
+      {
+       "title": "Wikipedia en español, «Cyttaria darwinii»",
+       "url": "https://es.wikipedia.org/wiki/Cyttaria_darwinii",
+       "accessed_at": "2026-10-31",
+       "kind": "secondary",
+       "license": "CC BY-SA 4.0",
+       "notes": "Fuente secundaria; varias frases sin cita en el artículo"
+      }
+     ],
+     "limitations": [
+      "Sin información de consumo, comestibilidad ni recolección: Bosque Vivo nunca la ofrece.",
+      "Distribución RCE incluye Los Lagos; sin ocurrencia verificada en Puyehue (GBIF dentro del límite BCN: 0 registros que pasen filtros, 31-10-2026).",
+      "RCE registra «Cyttaria darwinii p.part.» como sinonimia: la separación con C. darwinii es delicada."
+     ],
+     "review_status": "draft_sourced"
+    },
+    "media": [
+     {
+      "media_id": "gbif:3399193162:0",
+      "media_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/163846511/medium.jpg",
+      "source_url": "https://www.inaturalist.org/observations/98415834",
+      "author": "nitsuga74",
+      "license": "CC BY",
+      "attribution": "nitsuga74, iNaturalist (CC BY)",
+      "redistribution": "with_attribution",
+      "review_status": "agent_visual_check"
+     },
+     {
+      "media_id": "gbif:3407968899:0",
+      "media_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/166662110/medium.jpg",
+      "source_url": "https://www.inaturalist.org/observations/99911599",
+      "author": "nitsuga74",
+      "license": "CC BY",
+      "attribution": "nitsuga74, iNaturalist (CC BY)",
+      "redistribution": "with_attribution",
+      "review_status": "agent_visual_check"
+     },
+     {
+      "media_id": "gbif:3994263807:0",
+      "media_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/246981552/medium.jpg",
+      "source_url": "https://www.inaturalist.org/observations/143957926",
+      "author": "Bob Walker",
+      "license": "CC BY",
+      "attribution": "Bob Walker, iNaturalist (CC BY)",
+      "redistribution": "with_attribution",
+      "review_status": "agent_visual_check"
+     }
+    ],
+    "park_evidence": [],
+    "puyehue_status": "regional_candidate",
+    "sensitivity": "none",
+    "identification": {
+     "status": "recognition_experimental",
+     "level": 1,
+     "pipeline": "bosque_ai.multikingdom (muse-spark-1.3), sin endpoint",
+     "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+     "evaluated_at": "2026-10-31",
+     "notes": "Riesgo selectivo 10/19 con candidatos; C. darwinii aceptada como hariotii 8/8. No apto."
+    }
+   }
+  },
+  {
+   "case": "olivillo_rce_los_lagos",
+   "route": "GET /taxa/aextoxicon-punctatum/conservation?region=los-lagos",
+   "http_status": 200,
+   "source": "live_response_versioned_catalog",
+   "note": "Olivillo LC en Los Lagos (VU al norte)",
+   "body": {
+    "taxon_id": "aextoxicon-punctatum",
+    "system": "RCE",
+    "record_status": "found",
+    "region": "los-lagos",
+    "regional_status": "determined",
+    "applicable_category": "LC",
+    "applicable_scope": "VI-XII",
+    "scopes": [
+     {
+      "category": "VU",
+      "regions": [
+       "arica-parinacota",
+       "tarapaca",
+       "antofagasta",
+       "atacama",
+       "coquimbo",
+       "valparaiso",
+       "metropolitana"
+      ],
+      "scope_text": "XV-V-RM"
+     },
+     {
+      "category": "LC",
+      "regions": [
+       "ohiggins",
+       "maule",
+       "nuble",
+       "biobio",
+       "araucania",
+       "los-rios",
+       "los-lagos",
+       "aysen",
+       "magallanes"
+      ],
+      "scope_text": "VI-XII"
+     }
+    ],
+    "park_regions": {
+     "los-rios": "LC",
+     "los-lagos": "LC"
+    },
+    "criteria": "VU B1ab(iii)+2ab(iii) Desde Regiones de Valparaíso y Metropolitana de Santiago al norte; -- Desde Región del Libertador Bernardo O’Higgins al sur.",
+    "process": 14,
+    "decree": "DS 79/2018 MMA",
+    "source": {
+     "title": "Nómina de especies según estado de conservación, RCE (MMA)",
+     "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2026/10/NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+     "file_name": "NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+     "sha256": "1a1dadbaf554a53f39143c40a898fc252bc2e3354734b202fb31deba4fbe607d",
+     "version_text": "ACTUALIZADO marzo 2026 (incluye hasta 20mo Proceso)",
+     "accessed_at": "2026-10-31",
+     "redistribution": "Sin licencia publicada: se versionan solo hechos seleccionados con atribución; el libro íntegro queda fuera de Git.",
+     "review_status": "imported_unreviewed"
+    },
+    "notes": [
+     "Categoría oficial RCE (Chile); no es una categoría UICN global."
+    ]
+   }
+  },
+  {
+   "case": "guina_rce_los_rios",
+   "route": "GET /taxa/leopardus-guigna/conservation?region=los-rios",
+   "http_status": 200,
+   "source": "live_response_versioned_catalog",
+   "note": "VU",
+   "body": {
+    "taxon_id": "leopardus-guigna",
+    "system": "RCE",
+    "record_status": "found",
+    "region": "los-rios",
+    "regional_status": "determined",
+    "applicable_category": "VU",
+    "applicable_scope": "XV-XIV",
+    "scopes": [
+     {
+      "category": "VU",
+      "regions": [
+       "arica-parinacota",
+       "tarapaca",
+       "antofagasta",
+       "atacama",
+       "coquimbo",
+       "valparaiso",
+       "metropolitana",
+       "ohiggins",
+       "maule",
+       "nuble",
+       "biobio",
+       "araucania",
+       "los-rios"
+      ],
+      "scope_text": "XV-XIV"
+     },
+     {
+      "category": "NT",
+      "regions": [
+       "los-lagos",
+       "aysen",
+       "magallanes"
+      ],
+      "scope_text": "X-XII"
+     }
+    ],
+    "park_regions": {
+     "los-rios": "VU",
+     "los-lagos": "NT"
+    },
+    "criteria": "VU A2c; C2a(i) (XIV al norte); - (X al sur)",
+    "process": 7,
+    "decree": "DS 42/2011 MMA",
+    "source": {
+     "title": "Nómina de especies según estado de conservación, RCE (MMA)",
+     "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2026/10/NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+     "file_name": "NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+     "sha256": "1a1dadbaf554a53f39143c40a898fc252bc2e3354734b202fb31deba4fbe607d",
+     "version_text": "ACTUALIZADO marzo 2026 (incluye hasta 20mo Proceso)",
+     "accessed_at": "2026-10-31",
+     "redistribution": "Sin licencia publicada: se versionan solo hechos seleccionados con atribución; el libro íntegro queda fuera de Git.",
+     "review_status": "imported_unreviewed"
+    },
+    "notes": [
+     "Categoría oficial RCE (Chile); no es una categoría UICN global."
+    ]
+   }
+  },
+  {
+   "case": "guina_rce_los_lagos",
+   "route": "GET /taxa/leopardus-guigna/conservation?region=los-lagos",
+   "http_status": 200,
+   "source": "live_response_versioned_catalog",
+   "note": "NT",
+   "body": {
+    "taxon_id": "leopardus-guigna",
+    "system": "RCE",
+    "record_status": "found",
+    "region": "los-lagos",
+    "regional_status": "determined",
+    "applicable_category": "NT",
+    "applicable_scope": "X-XII",
+    "scopes": [
+     {
+      "category": "VU",
+      "regions": [
+       "arica-parinacota",
+       "tarapaca",
+       "antofagasta",
+       "atacama",
+       "coquimbo",
+       "valparaiso",
+       "metropolitana",
+       "ohiggins",
+       "maule",
+       "nuble",
+       "biobio",
+       "araucania",
+       "los-rios"
+      ],
+      "scope_text": "XV-XIV"
+     },
+     {
+      "category": "NT",
+      "regions": [
+       "los-lagos",
+       "aysen",
+       "magallanes"
+      ],
+      "scope_text": "X-XII"
+     }
+    ],
+    "park_regions": {
+     "los-rios": "VU",
+     "los-lagos": "NT"
+    },
+    "criteria": "VU A2c; C2a(i) (XIV al norte); - (X al sur)",
+    "process": 7,
+    "decree": "DS 42/2011 MMA",
+    "source": {
+     "title": "Nómina de especies según estado de conservación, RCE (MMA)",
+     "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2026/10/NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+     "file_name": "NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+     "sha256": "1a1dadbaf554a53f39143c40a898fc252bc2e3354734b202fb31deba4fbe607d",
+     "version_text": "ACTUALIZADO marzo 2026 (incluye hasta 20mo Proceso)",
+     "accessed_at": "2026-10-31",
+     "redistribution": "Sin licencia publicada: se versionan solo hechos seleccionados con atribución; el libro íntegro queda fuera de Git.",
+     "review_status": "imported_unreviewed"
+    },
+    "notes": [
+     "Categoría oficial RCE (Chile); no es una categoría UICN global."
+    ]
+   }
+  },
+  {
+   "case": "guina_rce_region_unknown",
+   "route": "GET /taxa/leopardus-guigna/conservation",
+   "http_status": 200,
+   "source": "live_response_versioned_catalog",
+   "note": "Sin región: indeterminado, con ambas categorías del parque",
+   "body": {
+    "taxon_id": "leopardus-guigna",
+    "system": "RCE",
+    "record_status": "found",
+    "region": null,
+    "regional_status": "indeterminate",
+    "applicable_category": null,
+    "applicable_scope": null,
+    "scopes": [
+     {
+      "category": "VU",
+      "regions": [
+       "arica-parinacota",
+       "tarapaca",
+       "antofagasta",
+       "atacama",
+       "coquimbo",
+       "valparaiso",
+       "metropolitana",
+       "ohiggins",
+       "maule",
+       "nuble",
+       "biobio",
+       "araucania",
+       "los-rios"
+      ],
+      "scope_text": "XV-XIV"
+     },
+     {
+      "category": "NT",
+      "regions": [
+       "los-lagos",
+       "aysen",
+       "magallanes"
+      ],
+      "scope_text": "X-XII"
+     }
+    ],
+    "park_regions": {
+     "los-rios": "VU",
+     "los-lagos": "NT"
+    },
+    "criteria": "VU A2c; C2a(i) (XIV al norte); - (X al sur)",
+    "process": 7,
+    "decree": "DS 42/2011 MMA",
+    "source": {
+     "title": "Nómina de especies según estado de conservación, RCE (MMA)",
+     "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2026/10/NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+     "file_name": "NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+     "sha256": "1a1dadbaf554a53f39143c40a898fc252bc2e3354734b202fb31deba4fbe607d",
+     "version_text": "ACTUALIZADO marzo 2026 (incluye hasta 20mo Proceso)",
+     "accessed_at": "2026-10-31",
+     "redistribution": "Sin licencia publicada: se versionan solo hechos seleccionados con atribución; el libro íntegro queda fuera de Git.",
+     "review_status": "imported_unreviewed"
+    },
+    "notes": [
+     "La categoría depende de la región del registro; sin región informada no se elige una. Puyehue abarca Los Ríos y Los Lagos.",
+     "Categoría oficial RCE (Chile); no es una categoría UICN global."
+    ]
+   }
+  },
+  {
+   "case": "taxon_without_rce_record",
+   "route": "GET /taxa/nothofagus-dombeyi/conservation?region=los-lagos",
+   "http_status": 200,
+   "source": "live_response_versioned_catalog",
+   "note": "Ausencia en la nómina no equivale a LC",
+   "body": {
+    "taxon_id": "nothofagus-dombeyi",
+    "system": "RCE",
+    "record_status": "no_rce_record_found",
+    "region": "los-lagos",
+    "regional_status": "not_applicable",
+    "applicable_category": null,
+    "applicable_scope": null,
+    "scopes": [],
+    "park_regions": {
+     "los-rios": null,
+     "los-lagos": null
+    },
+    "criteria": null,
+    "process": null,
+    "decree": null,
+    "source": {
+     "title": "Nómina de especies según estado de conservación, RCE (MMA)",
+     "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2026/10/NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+     "file_name": "NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+     "sha256": "1a1dadbaf554a53f39143c40a898fc252bc2e3354734b202fb31deba4fbe607d",
+     "version_text": "ACTUALIZADO marzo 2026 (incluye hasta 20mo Proceso)",
+     "accessed_at": "2026-10-31",
+     "redistribution": "Sin licencia publicada: se versionan solo hechos seleccionados con atribución; el libro íntegro queda fuera de Git.",
+     "review_status": "imported_unreviewed"
+    },
+    "notes": [
+     "Sin coincidencia en la nómina RCE (nombre aceptado y sinónimos buscados). La ausencia no equivale a Preocupación Menor (LC) ni a ninguna categoría."
+    ]
+   }
+  },
+  {
+   "case": "taxon_without_authorized_media",
+   "route": "GET /taxa/boletus-chilensis",
+   "http_status": 200,
+   "source": "live_response_versioned_catalog",
+   "note": "media vacío",
+   "body": {
+    "id": "boletus-chilensis",
+    "species_ref": null,
+    "scientific_name": "Boletus chilensis",
+    "common_names": [
+     "Seta"
+    ],
+    "group": "fungus",
+    "classification": {
+     "kingdom": "Fungi",
+     "phylum": "Basidiomycota",
+     "class_name": "Agaricomycetes",
+     "order": "Boletales",
+     "family": "Boletaceae",
+     "genus": "Boletus"
+    },
+    "taxonomy": {
+     "checklist": "Catalogue of Life eXtended Release vía GBIF (checklist 7ddf754f-d193-4cc9-b351-99906754a03b)",
+     "col_xr_key": "68MVG",
+     "gbif_backbone_id": null,
+     "accepted_name": "Boletus chilensis",
+     "authorship": "Singer",
+     "synonyms_reviewed": [],
+     "status": "source_checked",
+     "notes": null,
+     "accessed_at": "2026-10-31"
+    },
+    "profile": {
+     "description": null,
+     "habitat": null,
+     "ecology": null,
+     "distribution": null,
+     "traits": [],
+     "trait_validation_status": "pending",
+     "sources": [],
+     "limitations": [
+      "Sin información de consumo, comestibilidad ni recolección: Bosque Vivo nunca la ofrece.",
+      "Distribución RCE incluye Los Lagos; sin ocurrencia verificada en Puyehue (GBIF dentro del límite BCN: 0 registros que pasen filtros, 31-10-2026).",
+      "1 registro GBIF con imagen en Chile: sin material para reconocimiento."
+     ],
+     "review_status": "pending"
+    },
+    "media": [],
+    "park_evidence": [],
+    "puyehue_status": "regional_candidate",
+    "sensitivity": "location_sensitive",
+    "identification": {
+     "status": "educational_catalog",
+     "level": 0,
+     "pipeline": null,
+     "evaluation": null,
+     "evaluated_at": "2026-10-31",
+     "notes": "Sin fotografías con licencia procesable ni taxonomía suficiente para evaluar."
+    }
+   }
+  },
+  {
+   "case": "park_scale_presence_no_coordinates",
+   "route": "GET /taxa/leopardus-guigna",
+   "http_status": 200,
+   "source": "live_response_versioned_catalog",
+   "note": "Escala parque, sensible",
+   "body": {
+    "id": "leopardus-guigna",
+    "species_ref": null,
+    "scientific_name": "Leopardus guigna",
+    "common_names": [
+     "Güiña"
+    ],
+    "group": "mammal",
+    "classification": {
+     "kingdom": "Animalia",
+     "phylum": "Chordata",
+     "class_name": "Mammalia",
+     "order": "Carnivora",
+     "family": "Felidae",
+     "genus": "Leopardus"
+    },
+    "taxonomy": {
+     "checklist": "Catalogue of Life eXtended Release vía GBIF (checklist 7ddf754f-d193-4cc9-b351-99906754a03b)",
+     "col_xr_key": "3T789",
+     "gbif_backbone_id": null,
+     "accepted_name": "Leopardus guigna",
+     "authorship": "(Molina, 1782)",
+     "synonyms_reviewed": [
+      "Oncifelis guigna",
+      "Felis guigna"
+     ],
+     "status": "source_checked",
+     "notes": null,
+     "accessed_at": "2026-10-31"
+    },
+    "profile": {
+     "description": null,
+     "habitat": null,
+     "ecology": null,
+     "distribution": null,
+     "traits": [],
+     "trait_validation_status": "pending",
+     "sources": [],
+     "limitations": [
+      "Rasgos de fuente secundaria; revisión de especialista pendiente.",
+      "Categoría RCE distinta en Los Ríos (VU) y Los Lagos (NT).",
+      "Descripción pendiente de fuente revisada."
+     ],
+     "review_status": "pending"
+    },
+    "media": [
+     {
+      "media_id": "gbif:5938461271:0",
+      "media_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/429129448/medium.jpeg",
+      "source_url": "https://www.inaturalist.org/observations/240834082",
+      "author": "Orlando Fuenzalida",
+      "license": "CC BY",
+      "attribution": "Orlando Fuenzalida, iNaturalist (CC BY)",
+      "redistribution": "with_attribution",
+      "review_status": "agent_visual_check"
+     }
+    ],
+    "park_evidence": [
+     {
+      "park_id": "puyehue",
+      "evidence_type": "official_park_presence",
+      "scale": "park",
+      "source": {
+       "title": "CONAF, ficha Parque Nacional Puyehue",
+       "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+       "accessed_at": "2026-10-31",
+       "kind": "official",
+       "license": null,
+       "notes": null
+      },
+      "observed_date": null,
+      "precision": "park_scale_no_coordinates",
+      "review_status": "source_checked",
+      "restrictions": [
+       "Escala de parque: no implica presencia en Anticura ni en un sendero.",
+       "Especie sensible: sin coordenadas públicas, nidos, madrigueras ni incentivo a buscarla."
+      ]
+     }
+    ],
+    "puyehue_status": "documented_in_park",
+    "sensitivity": "location_sensitive",
+    "identification": {
+     "status": "recognition_restricted",
+     "level": 0,
+     "pipeline": null,
+     "evaluation": null,
+     "evaluated_at": "2026-10-31",
+     "notes": "Mamífero sensible: sin reconocimiento por política (no incentivar su búsqueda); sus fotos solo se usaron como negativos fuera del catálogo."
+    }
+   }
+  },
+  {
+   "case": "puyehue_biodiversity",
+   "route": "GET /parks/puyehue/biodiversity",
+   "http_status": 200,
+   "source": "live_response_versioned_catalog",
+   "note": "Resumen del piloto",
+   "body": {
+    "park_id": "puyehue",
+    "name": "Parque Nacional Puyehue",
+    "regions": [
+     "los-rios",
+     "los-lagos"
+    ],
+    "boundary": "Sin geometría oficial integrada; la referencia BCN 2826 se usa solo para el estado espacial de capturas. No hay senderos ni sectores verificados.",
+    "counts": {
+     "Plantae": {
+      "documented_in_park": 8
+     },
+     "Animalia": {
+      "documented_in_park": 8
+     },
+     "Fungi": {
+      "regional_candidate": 3,
+      "not_assessed": 1
+     }
+    },
+    "taxa": [
+     {
+      "id": "nothofagus-dombeyi",
+      "scientific_name": "Nothofagus dombeyi",
+      "common_names": [
+       "Coigüe"
+      ],
+      "kingdom": "Plantae",
+      "group": "tree",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_experimental",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": null,
+       "los-lagos": null
+      }
+     },
+     {
+      "id": "eucryphia-cordifolia",
+      "scientific_name": "Eucryphia cordifolia",
+      "common_names": [
+       "Ulmo"
+      ],
+      "kingdom": "Plantae",
+      "group": "tree",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_candidate",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": null,
+       "los-lagos": null
+      }
+     },
+     {
+      "id": "aextoxicon-punctatum",
+      "scientific_name": "Aextoxicon punctatum",
+      "common_names": [
+       "Olivillo"
+      ],
+      "kingdom": "Plantae",
+      "group": "tree",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_candidate",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": "LC",
+       "los-lagos": "LC"
+      }
+     },
+     {
+      "id": "weinmannia-trichosperma",
+      "scientific_name": "Weinmannia trichosperma",
+      "common_names": [
+       "Tineo"
+      ],
+      "kingdom": "Plantae",
+      "group": "tree",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_experimental",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": null,
+       "los-lagos": null
+      }
+     },
+     {
+      "id": "laureliopsis-philippiana",
+      "scientific_name": "Laureliopsis philippiana",
+      "common_names": [
+       "Tepa"
+      ],
+      "kingdom": "Plantae",
+      "group": "tree",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_experimental",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": null,
+       "los-lagos": null
+      }
+     },
+     {
+      "id": "podocarpus-nubigenus",
+      "scientific_name": "Podocarpus nubigenus",
+      "common_names": [
+       "Mañío"
+      ],
+      "kingdom": "Plantae",
+      "group": "tree",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_candidate",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": null,
+       "los-lagos": null
+      }
+     },
+     {
+      "id": "nothofagus-betuloides",
+      "scientific_name": "Nothofagus betuloides",
+      "common_names": [
+       "Coigüe de Magallanes"
+      ],
+      "kingdom": "Plantae",
+      "group": "tree",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_experimental",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": null,
+       "los-lagos": null
+      }
+     },
+     {
+      "id": "nothofagus-pumilio",
+      "scientific_name": "Nothofagus pumilio",
+      "common_names": [
+       "Lenga"
+      ],
+      "kingdom": "Plantae",
+      "group": "tree",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_experimental",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": null,
+       "los-lagos": null
+      }
+     },
+     {
+      "id": "enicognathus-leptorhynchus",
+      "scientific_name": "Enicognathus leptorhynchus",
+      "common_names": [
+       "Choroy"
+      ],
+      "kingdom": "Animalia",
+      "group": "bird",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_experimental",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": "LC",
+       "los-lagos": "LC"
+      }
+     },
+     {
+      "id": "campephilus-magellanicus",
+      "scientific_name": "Campephilus magellanicus",
+      "common_names": [
+       "Carpintero negro"
+      ],
+      "kingdom": "Animalia",
+      "group": "bird",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_candidate",
+      "sensitivity": "location_sensitive",
+      "rce_park_regions": {
+       "los-rios": "NT",
+       "los-lagos": "NT"
+      }
+     },
+     {
+      "id": "pteroptochos-tarnii",
+      "scientific_name": "Pteroptochos tarnii",
+      "common_names": [
+       "Hued-hued del sur"
+      ],
+      "kingdom": "Animalia",
+      "group": "bird",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_experimental",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": "LC",
+       "los-lagos": "LC"
+      }
+     },
+     {
+      "id": "troglodytes-aedon",
+      "scientific_name": "Troglodytes aedon",
+      "common_names": [
+       "Chercán"
+      ],
+      "kingdom": "Animalia",
+      "group": "bird",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_candidate",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": null,
+       "los-lagos": null
+      }
+     },
+     {
+      "id": "theristicus-melanopis",
+      "scientific_name": "Theristicus melanopis",
+      "common_names": [
+       "Bandurria"
+      ],
+      "kingdom": "Animalia",
+      "group": "bird",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_experimental",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": "LC",
+       "los-lagos": "LC"
+      }
+     },
+     {
+      "id": "dromiciops-gliroides",
+      "scientific_name": "Dromiciops gliroides",
+      "common_names": [
+       "Monito del monte"
+      ],
+      "kingdom": "Animalia",
+      "group": "mammal",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_restricted",
+      "sensitivity": "location_sensitive",
+      "rce_park_regions": {
+       "los-rios": "NT",
+       "los-lagos": "NT"
+      }
+     },
+     {
+      "id": "leopardus-guigna",
+      "scientific_name": "Leopardus guigna",
+      "common_names": [
+       "Güiña"
+      ],
+      "kingdom": "Animalia",
+      "group": "mammal",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_restricted",
+      "sensitivity": "location_sensitive",
+      "rce_park_regions": {
+       "los-rios": "VU",
+       "los-lagos": "NT"
+      }
+     },
+     {
+      "id": "puma-concolor",
+      "scientific_name": "Puma concolor",
+      "common_names": [
+       "Puma"
+      ],
+      "kingdom": "Animalia",
+      "group": "mammal",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_restricted",
+      "sensitivity": "location_sensitive",
+      "rce_park_regions": {
+       "los-rios": "NT",
+       "los-lagos": "NT"
+      }
+     },
+     {
+      "id": "cyttaria-hariotii",
+      "scientific_name": "Cyttaria hariotii",
+      "common_names": [
+       "Llao-llao"
+      ],
+      "kingdom": "Fungi",
+      "group": "fungus",
+      "puyehue_status": "regional_candidate",
+      "evidence_types": [],
+      "identification_status": "recognition_experimental",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": "LC",
+       "los-lagos": "LC"
+      }
+     },
+     {
+      "id": "cyttaria-espinosae",
+      "scientific_name": "Cyttaria espinosae",
+      "common_names": [
+       "Digüeñe"
+      ],
+      "kingdom": "Fungi",
+      "group": "fungus",
+      "puyehue_status": "not_assessed",
+      "evidence_types": [],
+      "identification_status": "recognition_experimental",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": null,
+       "los-lagos": null
+      }
+     },
+     {
+      "id": "boletus-chilensis",
+      "scientific_name": "Boletus chilensis",
+      "common_names": [
+       "Seta"
+      ],
+      "kingdom": "Fungi",
+      "group": "fungus",
+      "puyehue_status": "regional_candidate",
+      "evidence_types": [],
+      "identification_status": "educational_catalog",
+      "sensitivity": "location_sensitive",
+      "rce_park_regions": {
+       "los-rios": "EN",
+       "los-lagos": "EN"
+      }
+     },
+     {
+      "id": "amanita-gayana",
+      "scientific_name": "Amanita gayana",
+      "common_names": [
+       "Hongo de Gay"
+      ],
+      "kingdom": "Fungi",
+      "group": "fungus",
+      "puyehue_status": "regional_candidate",
+      "evidence_types": [],
+      "identification_status": "educational_catalog",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": "NT",
+       "los-lagos": "NT"
+      }
+     }
+    ],
+    "notes": [
+     "documented_in_park = mención oficial a escala de parque; no implica Anticura.",
+     "regional_candidate = distribución regional sin ocurrencia verificada aquí.",
+     "Ninguna respuesta incluye coordenadas de individuos."
+    ]
+   }
+  },
+  {
+   "case": "taxa_page_fauna",
+   "route": "GET /taxa?kingdom=Animalia&limit=3",
+   "http_status": 200,
+   "source": "live_response_versioned_catalog",
+   "note": "Paginación",
+   "body": {
+    "items": [
+     {
+      "id": "enicognathus-leptorhynchus",
+      "scientific_name": "Enicognathus leptorhynchus",
+      "common_names": [
+       "Choroy"
+      ],
+      "kingdom": "Animalia",
+      "group": "bird",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_experimental",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": "LC",
+       "los-lagos": "LC"
+      }
+     },
+     {
+      "id": "campephilus-magellanicus",
+      "scientific_name": "Campephilus magellanicus",
+      "common_names": [
+       "Carpintero negro"
+      ],
+      "kingdom": "Animalia",
+      "group": "bird",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_candidate",
+      "sensitivity": "location_sensitive",
+      "rce_park_regions": {
+       "los-rios": "NT",
+       "los-lagos": "NT"
+      }
+     },
+     {
+      "id": "pteroptochos-tarnii",
+      "scientific_name": "Pteroptochos tarnii",
+      "common_names": [
+       "Hued-hued del sur"
+      ],
+      "kingdom": "Animalia",
+      "group": "bird",
+      "puyehue_status": "documented_in_park",
+      "evidence_types": [
+       "official_park_presence"
+      ],
+      "identification_status": "recognition_experimental",
+      "sensitivity": "none",
+      "rce_park_regions": {
+       "los-rios": "LC",
+       "los-lagos": "LC"
+      }
+     }
+    ],
+    "total": 8,
+    "limit": 3,
+    "offset": 0
+   }
+  },
+  {
+   "case": "identification_out_of_catalog",
+   "route": "POST /identify",
+   "http_status": 200,
+   "source": "fixture_validated_by_model",
+   "note": "Fixture (valores de ejemplo); exploratory_candidates no se presentan.",
+   "body": {
+    "status": "insufficient_evidence",
+    "provider": "meta",
+    "model": "muse-spark-1.3",
+    "candidates": [],
+    "message": "Lo visible no corresponde a ninguna especie del catálogo.",
+    "limitations": [],
+    "latency_ms": null,
+    "execution_status": "completed",
+    "segmentation_status": "disabled",
+    "stage_latency_ms": {},
+    "correlation_id": null,
+    "prompt_version": "open-set-verify-v2",
+    "usage": {},
+    "stage_usage": {},
+    "identification_id": null,
+    "observed_traits": [
+     "hojas pequeñas de margen irregular"
+    ],
+    "missing_traits": [],
+    "recommended_next_photo": null,
+    "evidence_status": "insufficient_evidence",
+    "sources": [],
+    "catalog_assessment": "out_of_catalog_suspected",
+    "acceptance": "not_accepted",
+    "accepted_species_id": null,
+    "exploratory_candidates": [
+     {
+      "species_id": "nothofagus-pumilio",
+      "evidence": "hoja caduca dentada",
+      "contradictory_evidence": []
+     }
+    ],
+    "similar_out_of_catalog": [
+     "Nothofagus antarctica"
+    ],
+    "strategy": "verify"
+   }
+  },
+  {
+   "case": "personal_capture_pending_identification",
+   "route": "POST /captures/attempts",
+   "http_status": 201,
+   "contract_model": "Capture",
+   "note": "Fixture existente: hallazgo personal sin identificación aceptada ni especie asignada; no es ocurrencia pública.",
+   "body": {
+    "capture_id": "00000000-0000-4000-8000-000000000002",
+    "observation_id": "00000000-0000-4000-8000-000000000002",
+    "owner_id": "synthetic-owner",
+    "expedition_id": "puyehue",
+    "identification_id": "00000000-0000-4000-8000-000000000001",
+    "species_id": null,
+    "capture_status": "registered",
+    "taxonomic_verification_status": "unverified",
+    "observed_at": "2026-10-29T12:00:00Z",
+    "location": null,
+    "accuracy_m": null,
+    "location_visibility": "private",
+    "image_reference": null,
+    "evidence": {
+     "status": "insufficient_evidence",
+     "provider": "mock",
+     "model": null,
+     "candidates": [],
+     "message": "Mock sin inferencia",
+     "limitations": [],
+     "latency_ms": null,
+     "execution_status": "mock",
+     "segmentation_status": "disabled",
+     "stage_latency_ms": {},
+     "correlation_id": null,
+     "prompt_version": null,
+     "usage": {},
+     "stage_usage": {},
+     "identification_id": "00000000-0000-4000-8000-000000000001",
+     "observed_traits": [],
+     "missing_traits": [],
+     "recommended_next_photo": null,
+     "evidence_status": "insufficient_evidence",
+     "sources": []
+    },
+    "spatial_status": "not_provided",
+    "quality_flags": [],
+    "created_at": "2026-10-29T12:00:00Z",
+    "updated_at": "2026-10-29T12:00:00Z"
+   },
+   "source": "fixture_from_expeditions_contract_examples"
+  }
+ ]
+}

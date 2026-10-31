@@ -1,0 +1,443 @@
+{
+ "queried_at": "2026-10-31T16:50:26+00:00",
+ "polygon": "BCN SNASPE objectid 2826 'P.N.Puyehue' (Región: Los Ríos in the attribute table), EPSG:3857 -> EPSG:4326, simplified 0.005 deg; reference only",
+ "filters": "no geospatial issue; uncertainty <= 1000 m; human observation or preserved specimen; species rank or below; first 300 records per taxon",
+ "evidence_rule": "Candidate scientific/citizen records; not official park presence until reviewed. No coordinates published.",
+ "taxa": [
+  {
+   "label": "nothofagus-dombeyi",
+   "name": "Nothofagus dombeyi",
+   "col_xr": "R8FKD",
+   "status": "ok",
+   "records_in_polygon": 17,
+   "records_inspected": 17,
+   "records_passing_filters": 12,
+   "year_range": [
+    2014,
+    2026
+   ],
+   "basis_of_record": {
+    "HUMAN_OBSERVATION": 12
+   },
+   "datasets": {
+    "iNaturalist research-grade observations": 12
+   },
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 5
+   },
+   "example_gbif_keys": [
+    6131411542,
+    6133166885,
+    4516236642,
+    4046469865,
+    4046481914
+   ]
+  },
+  {
+   "label": "eucryphia-cordifolia",
+   "name": "Eucryphia cordifolia",
+   "col_xr": "3BYLN",
+   "status": "ok",
+   "records_in_polygon": 39,
+   "records_inspected": 39,
+   "records_passing_filters": 31,
+   "year_range": [
+    2014,
+    2026
+   ],
+   "basis_of_record": {
+    "HUMAN_OBSERVATION": 31
+   },
+   "datasets": {
+    "iNaturalist research-grade observations": 31
+   },
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 8
+   },
+   "example_gbif_keys": [
+    6147600377,
+    5087134974,
+    5837701201,
+    5839820707,
+    5839858024
+   ]
+  },
+  {
+   "label": "aextoxicon-punctatum",
+   "name": "Aextoxicon punctatum",
+   "col_xr": "65DRF",
+   "status": "ok",
+   "records_in_polygon": 10,
+   "records_inspected": 10,
+   "records_passing_filters": 8,
+   "year_range": [
+    2014,
+    2026
+   ],
+   "basis_of_record": {
+    "HUMAN_OBSERVATION": 8
+   },
+   "datasets": {
+    "iNaturalist research-grade observations": 8
+   },
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 2
+   },
+   "example_gbif_keys": [
+    6133493089,
+    6185107017,
+    5908757784,
+    5909123809,
+    4133611212
+   ]
+  },
+  {
+   "label": "weinmannia-trichosperma",
+   "name": "Weinmannia trichosperma",
+   "col_xr": "5BWSY",
+   "status": "ok",
+   "records_in_polygon": 16,
+   "records_inspected": 16,
+   "records_passing_filters": 10,
+   "year_range": [
+    2014,
+    2023
+   ],
+   "basis_of_record": {
+    "HUMAN_OBSERVATION": 10
+   },
+   "datasets": {
+    "iNaturalist research-grade observations": 10
+   },
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 6
+   },
+   "example_gbif_keys": [
+    4046315885,
+    4046407924,
+    4046644882,
+    4046690953,
+    4137661952
+   ]
+  },
+  {
+   "label": "laureliopsis-philippiana",
+   "name": "Laureliopsis philippiana",
+   "col_xr": "3SMFT",
+   "status": "ok",
+   "records_in_polygon": 19,
+   "records_inspected": 19,
+   "records_passing_filters": 16,
+   "year_range": [
+    2014,
+    2026
+   ],
+   "basis_of_record": {
+    "HUMAN_OBSERVATION": 16
+   },
+   "datasets": {
+    "iNaturalist research-grade observations": 16
+   },
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 3
+   },
+   "example_gbif_keys": [
+    6130718009,
+    6352519717,
+    5839905751,
+    5839947967,
+    6131293378
+   ]
+  },
+  {
+   "label": "podocarpus-nubigenus",
+   "name": "Podocarpus nubigenus",
+   "col_xr": "4KQ5H",
+   "status": "ok",
+   "records_in_polygon": 13,
+   "records_inspected": 13,
+   "records_passing_filters": 10,
+   "year_range": [
+    2013,
+    2025
+   ],
+   "basis_of_record": {
+    "HUMAN_OBSERVATION": 10
+   },
+   "datasets": {
+    "iNaturalist research-grade observations": 10
+   },
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 3
+   },
+   "example_gbif_keys": [
+    6131036857,
+    5935325447,
+    5062845103,
+    4134164927,
+    4137613767
+   ]
+  },
+  {
+   "label": "nothofagus-betuloides",
+   "name": "Nothofagus betuloides",
+   "col_xr": "V5FNY",
+   "status": "ok",
+   "records_in_polygon": 5,
+   "records_inspected": 5,
+   "records_passing_filters": 0,
+   "year_range": null,
+   "basis_of_record": {},
+   "datasets": {},
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 5
+   },
+   "example_gbif_keys": []
+  },
+  {
+   "label": "nothofagus-pumilio",
+   "name": "Nothofagus pumilio",
+   "col_xr": "47T2C",
+   "status": "ok",
+   "records_in_polygon": 19,
+   "records_inspected": 19,
+   "records_passing_filters": 11,
+   "year_range": [
+    2019,
+    2026
+   ],
+   "basis_of_record": {
+    "HUMAN_OBSERVATION": 11
+   },
+   "datasets": {
+    "iNaturalist research-grade observations": 11
+   },
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 8
+   },
+   "example_gbif_keys": [
+    6131061315,
+    5063787636,
+    5063825719,
+    5063842655,
+    5938393982
+   ]
+  },
+  {
+   "label": "enicognathus-leptorhynchus",
+   "name": "Enicognathus leptorhynchus",
+   "col_xr": "6F9ZF",
+   "status": "ok",
+   "records_in_polygon": 114,
+   "records_inspected": 114,
+   "records_passing_filters": 1,
+   "year_range": [
+    2020,
+    2020
+   ],
+   "basis_of_record": {
+    "HUMAN_OBSERVATION": 1
+   },
+   "datasets": {
+    "iNaturalist research-grade observations": 1
+   },
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 113
+   },
+   "example_gbif_keys": [
+    2573887979
+   ]
+  },
+  {
+   "label": "campephilus-magellanicus",
+   "name": "Campephilus magellanicus",
+   "col_xr": "QCHG",
+   "status": "ok",
+   "records_in_polygon": 145,
+   "records_inspected": 145,
+   "records_passing_filters": 0,
+   "year_range": null,
+   "basis_of_record": {},
+   "datasets": {},
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 145
+   },
+   "example_gbif_keys": []
+  },
+  {
+   "label": "pteroptochos-tarnii",
+   "name": "Pteroptochos tarnii",
+   "col_xr": "4Q2S7",
+   "status": "ok",
+   "records_in_polygon": 412,
+   "records_inspected": 300,
+   "records_passing_filters": 4,
+   "year_range": [
+    2022,
+    2026
+   ],
+   "basis_of_record": {
+    "HUMAN_OBSERVATION": 4
+   },
+   "datasets": {
+    "iNaturalist research-grade observations": 4
+   },
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 295,
+    "basis_or_rank": 1
+   },
+   "example_gbif_keys": [
+    6185051323,
+    4046602901,
+    4022224511,
+    4022240336
+   ]
+  },
+  {
+   "label": "troglodytes-aedon",
+   "name": "Troglodytes aedon",
+   "col_xr": "598SY",
+   "status": "ok",
+   "records_in_polygon": 288,
+   "records_inspected": 288,
+   "records_passing_filters": 2,
+   "year_range": [
+    1976,
+    1976
+   ],
+   "basis_of_record": {
+    "PRESERVED_SPECIMEN": 2
+   },
+   "datasets": {
+    "0c4bf92b-95c9-4a2a-9756-67d98195459f": 1,
+    "Royal Belgian Institute of Natural Sciences Collection": 1
+   },
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 286
+   },
+   "example_gbif_keys": [
+    3024477055,
+    3025531236
+   ]
+  },
+  {
+   "label": "theristicus-melanopis",
+   "name": "Theristicus melanopis",
+   "col_xr": "7BX4X",
+   "status": "ok",
+   "records_in_polygon": 154,
+   "records_inspected": 154,
+   "records_passing_filters": 3,
+   "year_range": [
+    2014,
+    2019
+   ],
+   "basis_of_record": {
+    "HUMAN_OBSERVATION": 3
+   },
+   "datasets": {
+    "iNaturalist research-grade observations": 3
+   },
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 151
+   },
+   "example_gbif_keys": [
+    2465196457,
+    4126815562,
+    4127194546
+   ]
+  },
+  {
+   "label": "dromiciops-gliroides",
+   "name": "Dromiciops gliroides",
+   "col_xr": "37PW6",
+   "status": "ok",
+   "records_in_polygon": 21,
+   "records_inspected": 21,
+   "records_passing_filters": 0,
+   "year_range": null,
+   "basis_of_record": {},
+   "datasets": {},
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 2,
+    "basis_or_rank": 19
+   }
+  },
+  {
+   "label": "leopardus-guigna",
+   "name": "Leopardus guigna",
+   "col_xr": "3T789",
+   "status": "ok",
+   "records_in_polygon": 0,
+   "records_inspected": 0,
+   "records_passing_filters": 0,
+   "year_range": null,
+   "basis_of_record": {},
+   "datasets": {},
+   "rejected_reasons": {}
+  },
+  {
+   "label": "puma-concolor",
+   "name": "Puma concolor",
+   "col_xr": "4QHKG",
+   "status": "ok",
+   "records_in_polygon": 0,
+   "records_inspected": 0,
+   "records_passing_filters": 0,
+   "year_range": null,
+   "basis_of_record": {},
+   "datasets": {},
+   "rejected_reasons": {}
+  },
+  {
+   "label": "cyttaria-hariotii",
+   "name": "Cyttaria hariotii",
+   "col_xr": "33SNM",
+   "status": "ok",
+   "records_in_polygon": 1,
+   "records_inspected": 1,
+   "records_passing_filters": 0,
+   "year_range": null,
+   "basis_of_record": {},
+   "datasets": {},
+   "rejected_reasons": {
+    "uncertainty_missing_or_over_1000m": 1
+   },
+   "example_gbif_keys": []
+  },
+  {
+   "label": "cyttaria-espinosae",
+   "name": "Cyttaria espinosae",
+   "col_xr": "33SNJ",
+   "status": "ok",
+   "records_in_polygon": 0,
+   "records_inspected": 0,
+   "records_passing_filters": 0,
+   "year_range": null,
+   "basis_of_record": {},
+   "datasets": {},
+   "rejected_reasons": {},
+   "example_gbif_keys": []
+  },
+  {
+   "label": "boletus-chilensis",
+   "name": "Boletus chilensis",
+   "col_xr": "68MVG",
+   "status": "ok",
+   "records_in_polygon": 0,
+   "records_inspected": 0,
+   "records_passing_filters": 0,
+   "year_range": null,
+   "basis_of_record": {},
+   "datasets": {},
+   "rejected_reasons": {},
+   "example_gbif_keys": []
+  },
+  {
+   "label": "amanita-gayana",
+   "name": "Amanita gayana",
+   "col_xr": "T7Z",
+   "status": "taxonomy_unresolved"
+  }
+ ]
+}

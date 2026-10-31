@@ -190,3 +190,16 @@ Origen: [visión](PRODUCT_VISION_ECOSYSTEM.md), [piloto](PILOT_PUYEHUE.md),
 | BV-12.8 | P1 | Ocurrencias de hongos con calidad geográfica (GBIF, mycoBaseCL) | Giuseppe | Licencia y precisión verificadas por registro |
 | BV-12.9 | P1 | Expediciones configurables | José y Giuseppe | Retos sin EN/CR, GPS ni salida de sendero |
 | BV-12.10 | P2 | Evaluación independiente de identificación de fauna y hongos | Giuseppe | Conjunto congelado por reino; sin heredar métricas de árboles |
+
+### Avance del 31-10-2026 (rama `feat/puyehue-biodiversity-meta-evaluation`)
+
+| ID | Estado | Evidencia |
+| --- | --- | --- |
+| BV-12.2 | Parcial | Fichas de las 8 especies de fauna CONAF (6 RCE más chercán y bandurria) en `/taxa`. Los mamíferos tienen solo identidad, RCE y evidencia del parque, sin descripción con fuente |
+| BV-12.3 | Hecho | 4 hongos con `regional_candidate` o `not_assessed`; sin comestibilidad |
+| BV-12.5 | Hecho (subconjunto) | `evaluations/rce_import.py` idempotente, con pruebas de olivillo, güiña, ausencia ≠ LC y encabezados |
+| BV-12.7 | Hecho | Catálogo multirreino y `IdentificationCapability` aditivos; IDs intactos |
+| BV-12.8 | Parcial | Conteo GBIF dentro del polígono BCN: ningún hongo pasa los filtros. mycoBaseCL no se integró |
+| BV-12.10 | Primera ronda | Conjuntos congelados por reino y campaña real ([informe](MULTIKINGDOM_AI_EVALUATION.md)) |
+| BV-13.1 | Nuevo P1 | Resolver la región desde coordenadas con límites regionales oficiales en PostGIS |
+| BV-13.2 | Nuevo P1 | Revisión de especialista de las etiquetas de los conjuntos congelados |
