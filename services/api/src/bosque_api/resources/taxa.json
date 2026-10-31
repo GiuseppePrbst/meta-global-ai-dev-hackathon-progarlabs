@@ -59,9 +59,9 @@
    "status": "recognition_experimental",
    "level": 1,
    "pipeline": "verify (open-set-verify-v2, muse-spark-1.3)",
-   "evaluation": "docs/OPEN_SET_IDENTIFICATION_REPORT.md",
-   "evaluated_at": "2026-10-30",
-   "notes": "Placeholder reemplazado tras la campaña 31-10."
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "verify: 0/11; los 11 casos de test eran árboles enteros o paisajes y se marcaron non_diagnostic_photo. Falta evaluar hojas."
   },
   "media": [
    {
@@ -153,12 +153,12 @@
   "puyehue_status": "documented_in_park",
   "sensitivity": "none",
   "identification": {
-   "status": "recognition_experimental",
-   "level": 1,
+   "status": "recognition_candidate",
+   "level": 2,
    "pipeline": "verify (open-set-verify-v2, muse-spark-1.3)",
-   "evaluation": "docs/OPEN_SET_IDENTIFICATION_REPORT.md",
-   "evaluated_at": "2026-10-30",
-   "notes": "Placeholder reemplazado tras la campaña 31-10."
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "Criterio preliminar superado en el test congelado (etiquetas débiles); provisional hasta confirmarlo en un segundo conjunto independiente. verify: 4/8, 0 aceptaciones erróneas hacia ulmo; n pequeño."
   },
   "media": [
    {
@@ -250,12 +250,12 @@
   "puyehue_status": "documented_in_park",
   "sensitivity": "none",
   "identification": {
-   "status": "recognition_experimental",
-   "level": 1,
+   "status": "recognition_candidate",
+   "level": 2,
    "pipeline": "verify (open-set-verify-v2, muse-spark-1.3)",
-   "evaluation": "docs/OPEN_SET_IDENTIFICATION_REPORT.md",
-   "evaluated_at": "2026-10-30",
-   "notes": "Placeholder reemplazado tras la campaña 31-10."
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "Criterio preliminar superado en el test congelado (etiquetas débiles); provisional hasta confirmarlo en un segundo conjunto independiente. verify: 8/13 correctos aceptados, 0 aceptaciones erróneas hacia olivillo."
   },
   "media": [
    {
@@ -350,9 +350,9 @@
    "status": "recognition_experimental",
    "level": 1,
    "pipeline": "verify (open-set-verify-v2, muse-spark-1.3)",
-   "evaluation": "docs/OPEN_SET_IDENTIFICATION_REPORT.md",
-   "evaluated_at": "2026-10-30",
-   "notes": "Placeholder reemplazado tras la campaña 31-10."
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "verify: 13/13 positivos, pero 4 aceptaciones erróneas hacia tineo (Caldcluvia 2, Gevuina 1, tepa 1)."
   },
   "media": [
    {
@@ -447,9 +447,9 @@
    "status": "recognition_experimental",
    "level": 1,
    "pipeline": "verify (open-set-verify-v2, muse-spark-1.3)",
-   "evaluation": "docs/OPEN_SET_IDENTIFICATION_REPORT.md",
-   "evaluated_at": "2026-10-30",
-   "notes": "Placeholder reemplazado tras la campaña 31-10."
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "verify: 2/13 correctos aceptados; muchas abstenciones."
   },
   "media": [
    {
@@ -541,12 +541,12 @@
   "puyehue_status": "documented_in_park",
   "sensitivity": "none",
   "identification": {
-   "status": "recognition_experimental",
-   "level": 1,
+   "status": "recognition_candidate",
+   "level": 2,
    "pipeline": "verify (open-set-verify-v2, muse-spark-1.3)",
-   "evaluation": "docs/OPEN_SET_IDENTIFICATION_REPORT.md",
-   "evaluated_at": "2026-10-30",
-   "notes": "Placeholder reemplazado tras la campaña 31-10."
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "Criterio preliminar superado en el test congelado (etiquetas débiles); provisional hasta confirmarlo en un segundo conjunto independiente. verify: 9/15; 1 Saxegothaea aceptada como mañío."
   },
   "media": [
    {
@@ -641,9 +641,9 @@
    "status": "recognition_experimental",
    "level": 1,
    "pipeline": "verify (open-set-verify-v2, muse-spark-1.3)",
-   "evaluation": "docs/OPEN_SET_IDENTIFICATION_REPORT.md",
-   "evaluated_at": "2026-10-30",
-   "notes": "Placeholder reemplazado tras la campaña 31-10."
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "verify: 5/13; 3 aceptaciones erróneas hacia coigüe de Magallanes (N. nitida 2, coigüe 1)."
   },
   "media": [
    {
@@ -738,9 +738,9 @@
    "status": "recognition_experimental",
    "level": 1,
    "pipeline": "verify (open-set-verify-v2, muse-spark-1.3)",
-   "evaluation": "docs/OPEN_SET_IDENTIFICATION_REPORT.md",
-   "evaluated_at": "2026-10-30",
-   "notes": "Placeholder reemplazado tras la campaña 31-10."
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "verify: 4/14 correctos aceptados."
   },
   "media": [
    {
@@ -857,12 +857,12 @@
   "puyehue_status": "documented_in_park",
   "sensitivity": "none",
   "identification": {
-   "status": "recognition_not_evaluated",
-   "level": 0,
-   "pipeline": null,
-   "evaluation": null,
-   "evaluated_at": null,
-   "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+   "status": "recognition_experimental",
+   "level": 1,
+   "pipeline": "bosque_ai.multikingdom (muse-spark-1.3), sin endpoint",
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "13/15 con candidatos y 3/15 con conocimiento; la cachaña se acepta como choroy."
   },
   "media": [
    {
@@ -979,12 +979,12 @@
   "puyehue_status": "documented_in_park",
   "sensitivity": "location_sensitive",
   "identification": {
-   "status": "recognition_not_evaluated",
-   "level": 0,
-   "pipeline": null,
-   "evaluation": null,
-   "evaluated_at": null,
-   "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+   "status": "recognition_candidate",
+   "level": 2,
+   "pipeline": "bosque_ai.multikingdom (muse-spark-1.3), sin endpoint",
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "Criterio preliminar superado en el test congelado (etiquetas débiles); provisional hasta confirmarlo en un segundo conjunto independiente. 16/16 con ambas estrategias; pitío y Veniliornis nunca aceptados como carpintero."
   },
   "media": [
    {
@@ -1093,12 +1093,12 @@
   "puyehue_status": "documented_in_park",
   "sensitivity": "none",
   "identification": {
-   "status": "recognition_not_evaluated",
-   "level": 0,
-   "pipeline": null,
-   "evaluation": null,
-   "evaluated_at": null,
-   "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+   "status": "recognition_experimental",
+   "level": 1,
+   "pipeline": "bosque_ai.multikingdom (muse-spark-1.3), sin endpoint",
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "12/16, pero chucao y P. castaneus aceptados como hued-hued (8 con candidatos, 3 con conocimiento)."
   },
   "media": [
    {
@@ -1207,12 +1207,12 @@
   "puyehue_status": "documented_in_park",
   "sensitivity": "none",
   "identification": {
-   "status": "recognition_not_evaluated",
-   "level": 0,
-   "pipeline": null,
-   "evaluation": null,
-   "evaluated_at": null,
-   "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+   "status": "recognition_candidate",
+   "level": 2,
+   "pipeline": "bosque_ai.multikingdom (muse-spark-1.3), sin endpoint",
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "Criterio preliminar superado en el test congelado (etiquetas débiles); provisional hasta confirmarlo en un segundo conjunto independiente. 10/12 con ambas estrategias; Cistothorus aceptado 0 y 1 veces."
   },
   "media": [
    {
@@ -1323,12 +1323,12 @@
   "puyehue_status": "documented_in_park",
   "sensitivity": "none",
   "identification": {
-   "status": "recognition_not_evaluated",
-   "level": 0,
-   "pipeline": null,
-   "evaluation": null,
-   "evaluated_at": null,
-   "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+   "status": "recognition_experimental",
+   "level": 1,
+   "pipeline": "bosque_ai.multikingdom (muse-spark-1.3), sin endpoint",
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "17/17, pero T. caudatus aceptada como bandurria 4 y 3 veces (taxón casi ausente en Chile)."
   },
   "media": [
    {
@@ -1427,12 +1427,12 @@
   "puyehue_status": "documented_in_park",
   "sensitivity": "location_sensitive",
   "identification": {
-   "status": "recognition_not_evaluated",
+   "status": "recognition_restricted",
    "level": 0,
    "pipeline": null,
    "evaluation": null,
-   "evaluated_at": null,
-   "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+   "evaluated_at": "2026-10-31",
+   "notes": "Mamífero sensible: sin reconocimiento por política (no incentivar su búsqueda); sus fotos solo se usaron como negativos fuera del catálogo."
   },
   "media": [
    {
@@ -1513,12 +1513,12 @@
   "puyehue_status": "documented_in_park",
   "sensitivity": "location_sensitive",
   "identification": {
-   "status": "recognition_not_evaluated",
+   "status": "recognition_restricted",
    "level": 0,
    "pipeline": null,
    "evaluation": null,
-   "evaluated_at": null,
-   "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+   "evaluated_at": "2026-10-31",
+   "notes": "Mamífero sensible: sin reconocimiento por política (no incentivar su búsqueda); sus fotos solo se usaron como negativos fuera del catálogo."
   },
   "media": [
    {
@@ -1597,12 +1597,12 @@
   "puyehue_status": "documented_in_park",
   "sensitivity": "location_sensitive",
   "identification": {
-   "status": "recognition_not_evaluated",
+   "status": "recognition_restricted",
    "level": 0,
    "pipeline": null,
    "evaluation": null,
-   "evaluated_at": null,
-   "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+   "evaluated_at": "2026-10-31",
+   "notes": "Mamífero sensible: sin reconocimiento por política (no incentivar su búsqueda); sus fotos solo se usaron como negativos fuera del catálogo."
   },
   "media": [
    {
@@ -1681,12 +1681,12 @@
   "puyehue_status": "regional_candidate",
   "sensitivity": "none",
   "identification": {
-   "status": "recognition_not_evaluated",
-   "level": 0,
-   "pipeline": null,
-   "evaluation": null,
-   "evaluated_at": null,
-   "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+   "status": "recognition_experimental",
+   "level": 1,
+   "pipeline": "bosque_ai.multikingdom (muse-spark-1.3), sin endpoint",
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "Riesgo selectivo 10/19 con candidatos; C. darwinii aceptada como hariotii 8/8. No apto."
   },
   "media": [
    {
@@ -1778,12 +1778,12 @@
   "puyehue_status": "not_assessed",
   "sensitivity": "none",
   "identification": {
-   "status": "recognition_not_evaluated",
-   "level": 0,
-   "pipeline": null,
-   "evaluation": null,
-   "evaluated_at": null,
-   "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+   "status": "recognition_experimental",
+   "level": 1,
+   "pipeline": "bosque_ai.multikingdom (muse-spark-1.3), sin endpoint",
+   "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+   "evaluated_at": "2026-10-31",
+   "notes": "1/15 con candidatos y 12/15 con conocimiento; inestable entre estrategias."
   },
   "media": []
  },
@@ -1831,12 +1831,12 @@
   "puyehue_status": "regional_candidate",
   "sensitivity": "location_sensitive",
   "identification": {
-   "status": "recognition_not_evaluated",
+   "status": "educational_catalog",
    "level": 0,
    "pipeline": null,
    "evaluation": null,
-   "evaluated_at": null,
-   "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+   "evaluated_at": "2026-10-31",
+   "notes": "Sin fotografías con licencia procesable ni taxonomía suficiente para evaluar."
   },
   "media": []
  },
@@ -1887,12 +1887,12 @@
   "puyehue_status": "regional_candidate",
   "sensitivity": "none",
   "identification": {
-   "status": "recognition_not_evaluated",
+   "status": "educational_catalog",
    "level": 0,
    "pipeline": null,
    "evaluation": null,
-   "evaluated_at": null,
-   "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+   "evaluated_at": "2026-10-31",
+   "notes": "Sin fotografías con licencia procesable ni taxonomía suficiente para evaluar."
   },
   "media": []
  }

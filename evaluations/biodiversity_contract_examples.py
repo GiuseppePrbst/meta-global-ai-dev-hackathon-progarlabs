@@ -17,13 +17,13 @@ OUT = Path(__file__).parent / "biodiversity" / "contract-examples.json"
 LIVE = [
     (
         "tree_with_recognition",
-        "/taxa/nothofagus-dombeyi",
-        "Árbol del catálogo de reconocimiento",
+        "/taxa/aextoxicon-punctatum",
+        "Árbol con recognition_candidate (nivel 2, provisional)",
     ),
     (
-        "bird_educational_not_evaluated",
+        "bird_educational_recognition_not_enabled",
         "/taxa/pteroptochos-tarnii",
-        "Ave con ficha educativa",
+        "Ave con ficha educativa; reconocimiento experimental, no habilitado (todas las aves CONAF del panel se evaluaron el 31-10)",
     ),
     (
         "fungus_regional_candidate",

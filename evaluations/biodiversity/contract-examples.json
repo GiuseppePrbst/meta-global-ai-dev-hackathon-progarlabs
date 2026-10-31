@@ -4,49 +4,45 @@
  "examples": [
   {
    "case": "tree_with_recognition",
-   "route": "GET /taxa/nothofagus-dombeyi",
+   "route": "GET /taxa/aextoxicon-punctatum",
    "http_status": 200,
    "source": "live_response_versioned_catalog",
-   "note": "Árbol del catálogo de reconocimiento",
+   "note": "Árbol con recognition_candidate (nivel 2, provisional)",
    "body": {
-    "id": "nothofagus-dombeyi",
-    "species_ref": "nothofagus-dombeyi",
-    "scientific_name": "Nothofagus dombeyi",
+    "id": "aextoxicon-punctatum",
+    "species_ref": "aextoxicon-punctatum",
+    "scientific_name": "Aextoxicon punctatum",
     "common_names": [
-     "Coigüe"
+     "Olivillo"
     ],
     "group": "tree",
     "classification": {
      "kingdom": "Plantae",
      "phylum": "Tracheophyta",
      "class_name": "Magnoliopsida",
-     "order": "Fagales",
-     "family": "Nothofagaceae",
-     "genus": "Nothofagus"
+     "order": "Berberidopsidales",
+     "family": "Aextoxicaceae",
+     "genus": "Aextoxicon"
     },
     "taxonomy": {
      "checklist": "Catalogue of Life eXtended Release vía GBIF (checklist 7ddf754f-d193-4cc9-b351-99906754a03b)",
-     "col_xr_key": "R8FKD",
-     "gbif_backbone_id": 2874895,
-     "accepted_name": "Nothofagus dombeyi",
+     "col_xr_key": "65DRF",
+     "gbif_backbone_id": 4195638,
+     "accepted_name": "Aextoxicon punctatum",
      "authorship": null,
-     "synonyms_reviewed": [
-      "Fagus dombeyi Mirb.",
-      "Fagus dombeyi var. microphylla Phil.",
-      "Nothofagus dombeyi (Mirb.) Blume"
-     ],
+     "synonyms_reviewed": [],
      "status": "source_checked",
      "notes": "Nombre, familia, género, sinonimia y rasgos se derivan de species.json (sin duplicar).",
      "accessed_at": "2026-10-30"
     },
     "profile": {
      "description": null,
-     "habitat": "Ambiente en Puyehue según CONAF: Bajo y alto; domina en altura.",
+     "habitat": "Ambiente en Puyehue según CONAF: Sectores bajos.",
      "ecology": null,
      "distribution": null,
      "traits": [
-      "Hoja simple con disposición alterna, forma romboidal y borde aserrado.",
-      "Follaje persistente; la persistencia no se demuestra con una sola foto."
+      "Cara inferior foliar grisácea con escamas pardas.",
+      "Hoja persistente y de textura coriácea."
      ],
      "trait_validation_status": "source_checked",
      "sources": [
@@ -67,32 +63,32 @@
     },
     "media": [
      {
-      "media_id": "commons:10393830",
-      "media_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Nothofagus_dombeyi_leaves_001_%28Valerio_Pillar%29.jpg/640px-Nothofagus_dombeyi_leaves_001_%28Valerio_Pillar%29.jpg",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_leaves_001_(Valerio_Pillar).jpg",
-      "author": "Valerio Pillar from Porto Alegre, Brazil",
-      "license": "CC BY-SA 2.0",
-      "attribution": "Valerio Pillar from Porto Alegre, Brazil, File:Nothofagus dombeyi leaves 001 (Valerio Pillar).jpg, Wikimedia Commons",
-      "redistribution": "share_alike_with_attribution",
-      "review_status": "agent_visual_check"
-     },
-     {
-      "media_id": "commons:124480347",
-      "media_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Nothofagus_dombeyi_18224964.jpg/640px-Nothofagus_dombeyi_18224964.jpg",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_18224964.jpg",
-      "author": "Cristian Riquelme",
-      "license": "CC BY 4.0",
-      "attribution": "Cristian Riquelme, File:Nothofagus dombeyi 18224964.jpg, Wikimedia Commons",
+      "media_id": "commons:50577619",
+      "media_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Aextoxicon_punctatum%2C_flor_masculina_-_Flickr_-_Pato_Novoa.jpg/640px-Aextoxicon_punctatum%2C_flor_masculina_-_Flickr_-_Pato_Novoa.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aextoxicon_punctatum,_flor_masculina_-_Flickr_-_Pato_Novoa.jpg",
+      "author": "Pato Novoa from Valparaíso, Chile",
+      "license": "CC BY 2.0",
+      "attribution": "Pato Novoa from Valparaíso, Chile, File:Aextoxicon punctatum, flor masculina - Flickr - Pato Novoa.jpg, Wikimedia Commons",
       "redistribution": "with_attribution",
       "review_status": "agent_visual_check"
      },
      {
-      "media_id": "commons:157934163",
-      "media_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Nothofagus_dombeyi_-_Daniela_Colleoni_Villagr%C3%A1n_-_458644193.jpeg/640px-Nothofagus_dombeyi_-_Daniela_Colleoni_Villagr%C3%A1n_-_458644193.jpeg",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_-_Daniela_Colleoni_Villagr%C3%A1n_-_458644193.jpeg",
-      "author": "Daniela Colleoni Villagrán",
-      "license": "CC BY 4.0",
-      "attribution": "Daniela Colleoni Villagrán, File:Nothofagus dombeyi - Daniela Colleoni Villagrán - 458644193.jpeg, Wikimedia Commons",
+      "media_id": "commons:50577627",
+      "media_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Aextoxicon_punctatum_flor_femenina_-_Flickr_-_Pato_Novoa.jpg/640px-Aextoxicon_punctatum_flor_femenina_-_Flickr_-_Pato_Novoa.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aextoxicon_punctatum_flor_femenina_-_Flickr_-_Pato_Novoa.jpg",
+      "author": "Pato Novoa from Valparaíso, Chile",
+      "license": "CC BY 2.0",
+      "attribution": "Pato Novoa from Valparaíso, Chile, File:Aextoxicon punctatum flor femenina - Flickr - Pato Novoa.jpg, Wikimedia Commons",
+      "redistribution": "with_attribution",
+      "review_status": "agent_visual_check"
+     },
+     {
+      "media_id": "gbif:5231320099:0",
+      "media_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/539941529/medium.jpg",
+      "source_url": "https://www.inaturalist.org/observations/299697204",
+      "author": "Bruno Avilez",
+      "license": "CC BY",
+      "attribution": "Bruno Avilez, iNaturalist (CC BY)",
       "redistribution": "with_attribution",
       "review_status": "agent_visual_check"
      }
@@ -121,21 +117,21 @@
     "puyehue_status": "documented_in_park",
     "sensitivity": "none",
     "identification": {
-     "status": "recognition_experimental",
-     "level": 1,
+     "status": "recognition_candidate",
+     "level": 2,
      "pipeline": "verify (open-set-verify-v2, muse-spark-1.3)",
-     "evaluation": "docs/OPEN_SET_IDENTIFICATION_REPORT.md",
-     "evaluated_at": "2026-10-30",
-     "notes": "Placeholder reemplazado tras la campaña 31-10."
+     "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+     "evaluated_at": "2026-10-31",
+     "notes": "Criterio preliminar superado en el test congelado (etiquetas débiles); provisional hasta confirmarlo en un segundo conjunto independiente. verify: 8/13 correctos aceptados, 0 aceptaciones erróneas hacia olivillo."
     }
    }
   },
   {
-   "case": "bird_educational_not_evaluated",
+   "case": "bird_educational_recognition_not_enabled",
    "route": "GET /taxa/pteroptochos-tarnii",
    "http_status": 200,
    "source": "live_response_versioned_catalog",
-   "note": "Ave con ficha educativa",
+   "note": "Ave con ficha educativa; reconocimiento experimental, no habilitado (todas las aves CONAF del panel se evaluaron el 31-10)",
    "body": {
     "id": "pteroptochos-tarnii",
     "species_ref": null,
@@ -246,12 +242,12 @@
     "puyehue_status": "documented_in_park",
     "sensitivity": "none",
     "identification": {
-     "status": "recognition_not_evaluated",
-     "level": 0,
-     "pipeline": null,
-     "evaluation": null,
-     "evaluated_at": null,
-     "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+     "status": "recognition_experimental",
+     "level": 1,
+     "pipeline": "bosque_ai.multikingdom (muse-spark-1.3), sin endpoint",
+     "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+     "evaluated_at": "2026-10-31",
+     "notes": "12/16, pero chucao y P. castaneus aceptados como hued-hued (8 con candidatos, 3 con conocimiento)."
     }
    }
   },
@@ -359,12 +355,12 @@
     "puyehue_status": "regional_candidate",
     "sensitivity": "none",
     "identification": {
-     "status": "recognition_not_evaluated",
-     "level": 0,
-     "pipeline": null,
-     "evaluation": null,
-     "evaluated_at": null,
-     "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+     "status": "recognition_experimental",
+     "level": 1,
+     "pipeline": "bosque_ai.multikingdom (muse-spark-1.3), sin endpoint",
+     "evaluation": "docs/MULTIKINGDOM_AI_EVALUATION.md",
+     "evaluated_at": "2026-10-31",
+     "notes": "Riesgo selectivo 10/19 con candidatos; C. darwinii aceptada como hariotii 8/8. No apto."
     }
    }
   },
@@ -723,12 +719,12 @@
     "puyehue_status": "regional_candidate",
     "sensitivity": "location_sensitive",
     "identification": {
-     "status": "recognition_not_evaluated",
+     "status": "educational_catalog",
      "level": 0,
      "pipeline": null,
      "evaluation": null,
-     "evaluated_at": null,
-     "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+     "evaluated_at": "2026-10-31",
+     "notes": "Sin fotografías con licencia procesable ni taxonomía suficiente para evaluar."
     }
    }
   },
@@ -820,12 +816,12 @@
     "puyehue_status": "documented_in_park",
     "sensitivity": "location_sensitive",
     "identification": {
-     "status": "recognition_not_evaluated",
+     "status": "recognition_restricted",
      "level": 0,
      "pipeline": null,
      "evaluation": null,
-     "evaluated_at": null,
-     "notes": "Sin evaluación de reconocimiento por imagen; ficha educativa disponible."
+     "evaluated_at": "2026-10-31",
+     "notes": "Mamífero sensible: sin reconocimiento por política (no incentivar su búsqueda); sus fotos solo se usaron como negativos fuera del catálogo."
     }
    }
   },
@@ -887,7 +883,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_experimental",
+      "identification_status": "recognition_candidate",
       "sensitivity": "none",
       "rce_park_regions": {
        "los-rios": null,
@@ -906,7 +902,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_experimental",
+      "identification_status": "recognition_candidate",
       "sensitivity": "none",
       "rce_park_regions": {
        "los-rios": "LC",
@@ -963,7 +959,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_experimental",
+      "identification_status": "recognition_candidate",
       "sensitivity": "none",
       "rce_park_regions": {
        "los-rios": null,
@@ -1020,7 +1016,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_experimental",
       "sensitivity": "none",
       "rce_park_regions": {
        "los-rios": "LC",
@@ -1039,7 +1035,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_candidate",
       "sensitivity": "location_sensitive",
       "rce_park_regions": {
        "los-rios": "NT",
@@ -1058,7 +1054,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_experimental",
       "sensitivity": "none",
       "rce_park_regions": {
        "los-rios": "LC",
@@ -1077,7 +1073,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_candidate",
       "sensitivity": "none",
       "rce_park_regions": {
        "los-rios": null,
@@ -1096,7 +1092,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_experimental",
       "sensitivity": "none",
       "rce_park_regions": {
        "los-rios": "LC",
@@ -1115,7 +1111,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_restricted",
       "sensitivity": "location_sensitive",
       "rce_park_regions": {
        "los-rios": "NT",
@@ -1134,7 +1130,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_restricted",
       "sensitivity": "location_sensitive",
       "rce_park_regions": {
        "los-rios": "VU",
@@ -1153,7 +1149,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_restricted",
       "sensitivity": "location_sensitive",
       "rce_park_regions": {
        "los-rios": "NT",
@@ -1170,7 +1166,7 @@
       "group": "fungus",
       "puyehue_status": "regional_candidate",
       "evidence_types": [],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_experimental",
       "sensitivity": "none",
       "rce_park_regions": {
        "los-rios": "LC",
@@ -1187,7 +1183,7 @@
       "group": "fungus",
       "puyehue_status": "not_assessed",
       "evidence_types": [],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_experimental",
       "sensitivity": "none",
       "rce_park_regions": {
        "los-rios": null,
@@ -1204,7 +1200,7 @@
       "group": "fungus",
       "puyehue_status": "regional_candidate",
       "evidence_types": [],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "educational_catalog",
       "sensitivity": "location_sensitive",
       "rce_park_regions": {
        "los-rios": "EN",
@@ -1221,7 +1217,7 @@
       "group": "fungus",
       "puyehue_status": "regional_candidate",
       "evidence_types": [],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "educational_catalog",
       "sensitivity": "none",
       "rce_park_regions": {
        "los-rios": "NT",
@@ -1256,7 +1252,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_experimental",
       "sensitivity": "none",
       "rce_park_regions": {
        "los-rios": "LC",
@@ -1275,7 +1271,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_candidate",
       "sensitivity": "location_sensitive",
       "rce_park_regions": {
        "los-rios": "NT",
@@ -1294,7 +1290,7 @@
       "evidence_types": [
        "official_park_presence"
       ],
-      "identification_status": "recognition_not_evaluated",
+      "identification_status": "recognition_experimental",
       "sensitivity": "none",
       "rce_park_regions": {
        "los-rios": "LC",

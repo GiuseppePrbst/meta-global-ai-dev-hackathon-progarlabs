@@ -224,3 +224,25 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
   quedan propuestos en [API_INTEGRATION.md](API_INTEGRATION.md). `Species.conservation_status`
   no se rellena con un valor único, y la identificación por IA sigue limitada a los 8
   árboles evaluados.
+
+## Decisión 2026-10-31 — catálogo multirreino y conservación regional implementados
+
+- **Contexto.** Primer incremento de backend del [modelo de datos](ECOSYSTEM_DATA_MODEL.md),
+  en la rama `feat/puyehue-biodiversity-meta-evaluation`.
+- **Decisión.**
+  - Un solo almacén versionado, `resources/taxa.json`, con dos catálogos lógicos: conocimiento
+    (todo taxón con ficha y fuentes) y reconocimiento (capacidad respaldada por evaluación).
+  - Los 8 árboles se referencian con `species_ref` y sus nombres, taxonomía y rasgos se
+    derivan de `species.json`, sin duplicarlos. `/species` no cambia.
+  - `resources/conservation.json` lo genera `evaluations/rce_import.py`, que es idempotente,
+    verifica el hash del libro y los encabezados, y solo importa los taxones del catálogo.
+    El libro RCE completo no se versiona.
+  - Ámbitos RCE expandidos a regiones explícitas; sin región la categoría es `indeterminate`;
+    sin registro es `no_rce_record_found`, nunca LC.
+  - Rutas aditivas y públicas de solo lectura: `GET /taxa`, `/taxa/{id}`,
+    `/taxa/{id}/conservation` y `/parks/{park_id}/biodiversity`. Ninguna devuelve coordenadas.
+  - El pipeline de fauna y hongos (`bosque_ai.multikingdom`) es solo de evaluación y no está
+    conectado a `/identify`.
+- **Sin migraciones.** El catálogo es de solo lectura y vive en archivos versionados. La región
+  se declara como parámetro: resolverla desde coordenadas con PostGIS requiere límites
+  regionales oficiales que todavía no se han integrado.

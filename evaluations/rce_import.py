@@ -42,7 +42,13 @@ SHEET_ORDER = [
 
 
 # Column positions used by build(); the import fails if their headers change.
-HEADERS = {0: "NOMBRE CIENT", 2: "SINONIMIA", 24: "Los Lagos", 32: "CATEGOR", 33: "FUENTE"}
+HEADERS = {
+    0: "NOMBRE CIENT",
+    2: "SINONIMIA",
+    24: "Los Lagos",
+    32: "CATEGOR",
+    33: "FUENTE",
+}
 HEADERS |= {34: "Criterio", 35: "PROCESO", 36: "DECRETO"}
 
 

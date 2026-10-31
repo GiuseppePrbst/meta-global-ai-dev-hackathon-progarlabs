@@ -87,8 +87,11 @@ def test_capability_level_must_match_status_and_evidence():
     with pytest.raises(ValidationError):  # experimental without pipeline/evaluation
         IdentificationCapability(status="recognition_experimental", level=1, notes="x")
     for taxon in get_taxa():
-        if taxon.classification.kingdom != "Plantae":
-            assert taxon.identification.level <= 1  # no fauna/fungi capture enabled
+        assert taxon.identification.status != "recognition_enabled"  # needs owner + expert
+        if taxon.classification.kingdom != "Plantae" and taxon.identification.level == 2:
+            assert "sin endpoint" in taxon.identification.pipeline  # not wired to /identify
+        if taxon.group == "mammal":
+            assert taxon.identification.status == "recognition_restricted"
 
 
 def test_sensitive_fauna_never_expose_coordinates(client):

@@ -147,3 +147,18 @@ Exploración con etiquetas débiles (plataforma + revisión del agente). Detalle
 - **Multivista:** 2 vistas ayudan (1/5 → 3/5); con `verify-v2`, 3 vistas abstienen (0/4).
   n=5, sin conclusión estadística.
 - Las podocarpáceas siguen siendo la confusión residual.
+
+## Conjunto independiente nuevo — 31-10-2026
+
+`verify-v2` se evaluó sin modificarlo sobre 149 casos nuevos
+([frozen-sets.json](../evaluations/biodiversity/frozen-sets.json), sin solapamiento con los
+casos del 30-10).
+
+| Estrategia | Correctos aceptados | Negativos aceptados |
+| --- | --- | --- |
+| Baseline | 67/101 | 23/48 |
+| `verify` | 45/100 | 8/48 |
+
+Se confirma el intercambio cobertura–abstención. Desglose por especie, multivista y rasgos
+del catálogo en [MULTIKINGDOM_AI_EVALUATION.md](MULTIKINGDOM_AI_EVALUATION.md). Los archivos
+históricos del PR #22 no se modificaron.
