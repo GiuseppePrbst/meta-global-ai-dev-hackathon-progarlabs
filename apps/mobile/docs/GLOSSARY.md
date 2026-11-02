@@ -40,6 +40,11 @@ Registro persistido de que una persona vio algo, con especie opcional elegida po
 _Evitar_: Avistamiento, hallazgo, reporte
 _En código_: `Observation`
 
+**Guía de campo** (personal):
+Colección de especies que una persona ya identificó con una foto y eligió sumar. Guarda solo la especie y la fecha; no guarda la foto ni la ubicación. No es un borrador ni una observación. Mientras no se pueda sumar desde Identificar, la app muestra datos de prueba rotulados.
+_Evitar_: Colección de observaciones, álbum (como término de dominio), logros
+_En código_: `GuideEntry`
+
 ## Territorio
 
 **Elevación del terreno**:

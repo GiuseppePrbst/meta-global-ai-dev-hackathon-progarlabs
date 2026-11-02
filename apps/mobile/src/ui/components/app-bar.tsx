@@ -7,7 +7,7 @@ import { BAND_EDGE } from '@/ui/art/watercolor';
 import { BackIcon } from '@/ui/components/icons';
 import { IconButton } from '@/ui/components/icon-button';
 import { useLayoutSize } from '@/ui/hooks/use-layout-size';
-import { space, type, useTheme } from '@/ui/tokens/theme';
+import { space, stroke, type, useTheme } from '@/ui/tokens/theme';
 
 /** Alto de la barra bajo la barra de estado, sin contar el filo mojado. */
 export const APP_BAR_HEIGHT = 64;
@@ -35,9 +35,11 @@ export function AppBar({ title, seed, backLabel, onBack, titleStyle }: AppBarPro
     <View style={[styles.bar, { paddingTop: insets.top }]} onLayout={onLayout}>
       <BandBackground seed={seed} width={width} height={height} />
       <IconButton label={backLabel} onPress={onBack} on="band">
-        <BackIcon color={color.onTopBar} />
+        <View style={[styles.bubble, { backgroundColor: color.surface, borderColor: color.topBarEdge }]}>
+          <BackIcon color={color.leafInk} size={22} />
+        </View>
       </IconButton>
-      <Animated.Text style={[type.titleMedium, styles.title, { color: color.onTopBar }, titleStyle]} numberOfLines={1}>
+      <Animated.Text style={[type.titleLarge, styles.title, { color: color.onTopBar }, titleStyle]} numberOfLines={1}>
         {title}
       </Animated.Text>
     </View>
@@ -58,4 +60,5 @@ const styles = StyleSheet.create({
     gap: space.xs,
   },
   title: { flex: 1, paddingRight: space.lg },
+  bubble: { width: 40, height: 40, borderRadius: 20, borderWidth: stroke.ink, alignItems: 'center', justifyContent: 'center' },
 });

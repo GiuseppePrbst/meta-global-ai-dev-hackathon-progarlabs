@@ -2,7 +2,7 @@ import { type StyleProp, StyleSheet, TextInput, View, type ViewStyle } from 'rea
 
 import { CloseIcon, SearchIcon } from '@/ui/components/icons';
 import { IconButton } from '@/ui/components/icon-button';
-import { radius, space, type, useTheme } from '@/ui/tokens/theme';
+import { radius, space, stroke, type, useTheme } from '@/ui/tokens/theme';
 
 type SearchFieldProps = {
   value: string;
@@ -19,7 +19,7 @@ type SearchFieldProps = {
 export function SearchField({ value, onChangeText, placeholder, label, clearLabel, style }: SearchFieldProps) {
   const { color } = useTheme();
   return (
-    <View style={[styles.search, { backgroundColor: color.searchField }, style]}>
+    <View style={[styles.search, { backgroundColor: color.searchField, borderColor: color.topBarEdge }, style]}>
       <SearchIcon color={color.onSearchFieldVariant} />
       <TextInput
         value={value}
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   search: {
     minHeight: 56,
     borderRadius: radius.full,
+    borderWidth: stroke.ink,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: space.lg,

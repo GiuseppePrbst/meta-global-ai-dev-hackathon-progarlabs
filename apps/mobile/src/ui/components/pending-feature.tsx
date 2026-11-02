@@ -5,11 +5,12 @@ import Svg from 'react-native-svg';
 import { Paper } from '@/ui/art/paper';
 import { BAND_EDGE, seedOf, Wash } from '@/ui/art/watercolor';
 import { Button } from '@/ui/components/button';
+import { Ledge } from '@/ui/components/ledge';
 import { ScreenHeader } from '@/ui/components/screen-header';
 import { Tag } from '@/ui/components/tag';
 import { Text } from '@/ui/components/text';
 import { useLayoutSize } from '@/ui/hooks/use-layout-size';
-import { space, useTheme } from '@/ui/tokens/theme';
+import { radius, space, useTheme } from '@/ui/tokens/theme';
 
 type PendingFeatureProps = {
   title: string;
@@ -34,22 +35,27 @@ export function PendingFeature({ title, subtitle, heading, body, tag, action, on
     <Paper style={styles.screen}>
       <ScreenHeader title={title} subtitle={subtitle} cover={cover} />
       <ScrollView contentContainerStyle={styles.content}>
-        <View style={styles.sheet} accessible={false} importantForAccessibility="no-hide-descendants"
-          onLayout={artSize.onLayout}>
-          <Svg width={artSize.width} height={artSize.height} style={StyleSheet.absoluteFill}>
-            <Wash seed={seedOf(title)} cx={artSize.width / 2} cy={artSize.height / 2} rx={artSize.width * 0.38}
-              ry={artSize.height * 0.38} color={color.backdrop} opacity={0.45} wobble={0.16} grain={16} />
-          </Svg>
-          {art}
-        </View>
-        <Animated.View entering={FadeInDown.delay(240).duration(360)} style={styles.text}>
-          <Text variant="titleLarge" accessibilityRole="header">
-            {heading}
-          </Text>
-          <Tag label={tag} background="demo" ink="onDemo" mark="dash" tilt="right" />
-          <Text variant="bodyLarge" tone="onSurfaceVariant">{body}</Text>
-          <Button label={action} onPress={onAction} style={styles.button} />
-        </Animated.View>
+        {/* Tarjeta de la misión que viene: la ilustración arriba, sobre su aguada, y el porqué debajo. */}
+        <Ledge face="surface" radius={radius.card}>
+          <View style={[styles.sheet, { backgroundColor: color.background }]} accessible={false}
+            importantForAccessibility="no-hide-descendants" onLayout={artSize.onLayout}>
+            <Svg width={artSize.width} height={artSize.height} style={StyleSheet.absoluteFill}>
+              <Wash seed={seedOf(title)} cx={artSize.width / 2} cy={artSize.height / 2} rx={artSize.width * 0.38}
+                ry={artSize.height * 0.38} color={color.backdrop} opacity={0.45} wobble={0.16} grain={16} />
+            </Svg>
+            {art}
+            <View style={styles.tag}>
+              <Tag label={tag} background="demo" ink="onDemo" mark="dash" tilt="right" />
+            </View>
+          </View>
+          <Animated.View entering={FadeInDown.delay(240).duration(360)} style={[styles.text, { borderColor: color.leafInk }]}>
+            <Text variant="titleLarge" accessibilityRole="header">
+              {heading}
+            </Text>
+            <Text variant="bodyLarge" tone="onSurfaceVariant">{body}</Text>
+          </Animated.View>
+        </Ledge>
+        <Button label={action} onPress={onAction} style={styles.button} />
       </ScrollView>
     </Paper>
   );
@@ -59,11 +65,13 @@ const styles = StyleSheet.create({
   screen: { flex: 1 },
   content: { padding: space.lg, paddingTop: BAND_EDGE + space.lg, paddingBottom: space.xxl, gap: space.xl },
   sheet: {
-    aspectRatio: 1.4,
+    aspectRatio: 1.5,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
   },
-  text: { gap: space.md, alignItems: 'flex-start' },
-  button: { marginTop: space.sm },
+  // La cinta de estado queda pegada a la ilustración, en su esquina.
+  tag: { position: 'absolute', top: space.md, left: space.md },
+  text: { gap: space.sm, padding: space.lg, borderTopWidth: 2 },
+  button: { alignSelf: 'stretch' },
 });

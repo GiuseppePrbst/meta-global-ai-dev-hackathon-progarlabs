@@ -35,7 +35,7 @@ type Variant = {
 
 const variants: Record<SegmentedControlProps<string>['variant'], Variant> = {
   band: {
-    border: 'onTopBarVariant', thumb: 'segmentSelected', ink: 'onTopBar', inkSelected: 'onSegmentSelected',
+    border: 'onTopBarVariant', thumb: 'navIndicator', ink: 'onTopBar', inkSelected: 'onNavIndicator',
     ripple: 'onTopBarRipple', iconSize: 18, label: 'labelLarge',
   },
   paper: {
@@ -89,7 +89,7 @@ export function SegmentedControl<T extends string>({
 
 const styles = StyleSheet.create({
   control: { flexDirection: 'row', borderRadius: radius.full, overflow: 'hidden' },
-  band: { borderWidth: 1.5 },
+  band: { borderWidth: 2 },
   // Segmentos iguales: el pulgar mide lo mismo que cada opción.
   paper: { borderWidth: 1, minWidth: 168 },
   thumb: { position: 'absolute', top: 0, bottom: 0, left: 0, borderRadius: radius.full },

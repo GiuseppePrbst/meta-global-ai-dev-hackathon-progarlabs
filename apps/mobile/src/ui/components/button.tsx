@@ -1,31 +1,43 @@
-import { Pressable, type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
+import { type StyleProp, StyleSheet, type ViewStyle } from 'react-native';
 
+import { Ledge } from '@/ui/components/ledge';
 import { Text } from '@/ui/components/text';
-import { radius, space, useTheme } from '@/ui/tokens/theme';
+import { type ColorToken, radius, space } from '@/ui/tokens/theme';
 
 type ButtonProps = {
   label: string;
   onPress: () => void;
+  /** `primary`: la acción del paso, en verde bosque. `tonal`: una acción secundaria, en lima. */
+  tone?: 'primary' | 'tonal';
+  /** Ícono antes del texto. */
+  leading?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
 };
 
-/** Botón relleno de la acción principal: píldora de 48 dp en el verde de la barra. */
-export function Button({ label, onPress, style }: ButtonProps) {
-  const { color } = useTheme();
+const tones: Record<NonNullable<ButtonProps['tone']>, { face: ColorToken; edge: ColorToken; ink: ColorToken }> = {
+  primary: { face: 'primary', edge: 'topBarEdge', ink: 'onPrimary' },
+  tonal: { face: 'lime', edge: 'leafInk', ink: 'leafInk' },
+};
+
+/** Botón en píldora con canto que se hunde al tocarlo; 52 dp de alto con el canto. */
+export function Button({ label, onPress, tone = 'primary', leading, style }: ButtonProps) {
+  const look = tones[tone];
   return (
-    <Pressable onPress={onPress} accessibilityRole="button" android_ripple={{ color: color.ripple }}
-      style={[styles.button, { backgroundColor: color.primary }, style]}>
-      <Text variant="labelLarge" tone="onPrimary">{label}</Text>
-    </Pressable>
+    <Ledge face={look.face} edge={look.edge} radius={radius.full} onPress={onPress} accessibilityRole="button"
+      style={style} faceStyle={styles.face}>
+      {leading}
+      <Text variant="button" tone={look.ink}>{label}</Text>
+    </Ledge>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
+  face: {
     minHeight: 48,
     paddingHorizontal: space.xl,
-    borderRadius: radius.full,
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden',
+    gap: space.sm,
   },
 });

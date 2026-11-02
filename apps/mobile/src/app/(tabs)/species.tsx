@@ -4,10 +4,10 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import type { Species } from '@/domain/species';
 import { CatalogCover, EmptySheet } from '@/features/catalog/art/catalog-art';
 import { filterSpecies, sheetNumber } from '@/features/catalog/catalog';
-import { SPECIES_THUMB, SpeciesRow } from '@/features/catalog/species-row';
+import { SpeciesCard } from '@/features/catalog/species-card';
 import { useSpeciesCatalog } from '@/features/catalog/use-species';
 import { formatDate, t } from '@/i18n/es-CL';
-import { BAND_EDGE, Divider, EmptyState, LoadingState, Paper, ScreenHeader, SearchField, space, StatusBanner, Text, useTheme } from '@/ui';
+import { BAND_EDGE, EmptyState, LoadingState, Paper, ScreenHeader, SearchField, space, StatusBanner, Text, useTheme } from '@/ui';
 
 const NO_SPECIES: Species[] = [];
 
@@ -47,17 +47,19 @@ export default function SpeciesListScreen() {
       <FlatList
         data={results}
         keyExtractor={(item) => item.id}
+        numColumns={2}
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{ paddingTop: BAND_EDGE, paddingBottom: space.xl }}
+        contentContainerStyle={styles.content}
+        columnWrapperStyle={styles.columns}
         ListHeaderComponent={
           <View style={styles.bannerWrap}>
             <StatusBanner message={t.species.demoBanner} />
           </View>
         }
         renderItem={({ item, index }) => (
-          <SpeciesRow species={item} sheet={sheetNumber(catalog, item.id)} index={index} enter={firstRender.current} />
+          <SpeciesCard species={item} sheet={sheetNumber(catalog, item.id)} index={index} enter={firstRender.current} />
         )}
-        ItemSeparatorComponent={Separator}
+        ItemSeparatorComponent={Gap}
         ListEmptyComponent={empty}
         ListFooterComponent={
           results.length && provenance ? (
@@ -71,14 +73,17 @@ export default function SpeciesListScreen() {
   );
 }
 
-function Separator() {
-  return <Divider style={styles.separator} />;
+function Gap() {
+  return <View style={styles.gap} />;
 }
 
 const styles = StyleSheet.create({
   screen: { flex: 1 },
   search: { marginTop: space.md },
-  bannerWrap: { padding: space.lg, paddingBottom: space.sm },
-  separator: { height: 1, marginLeft: space.lg + SPECIES_THUMB + space.lg, marginRight: space.lg },
+  content: { paddingTop: BAND_EDGE, paddingBottom: space.xl },
+  bannerWrap: { padding: space.lg, paddingBottom: space.lg },
+  // Álbum de dos columnas: los cromos de una fila miden lo mismo.
+  columns: { paddingHorizontal: space.lg, gap: space.md },
+  gap: { height: space.md },
   footer: { paddingHorizontal: space.lg, paddingTop: space.xl, textAlign: 'center' },
 });
