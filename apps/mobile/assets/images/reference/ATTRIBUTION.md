@@ -1,6 +1,6 @@
 # Fotos de referencia (solo desarrollo)
 
-Copias sin editar de miniaturas de 960 px de Wikimedia Commons (el original de *Podocarpus*, de 615 px, tal cual), descargadas el 28-10-2026. Se usan en la ficha de especie hasta que la API entregue fotos; entonces se eliminan. Ninguna fue tomada en Puyehue ni prueba presencia de la especie en el área. Las obras CC BY-SA conservan su licencia; la app muestra autor, licencia y enlace junto a cada foto.
+Copias sin editar de miniaturas de 960 px de Wikimedia Commons (el original de *Podocarpus*, de 615 px, tal cual), descargadas el 28-10-2026. Se usan en la ficha de especie, en las tarjetas del catálogo, en el diario y en la tarjeta de observación del mapa (recortadas solo al mostrarse, el archivo no se edita) hasta que la API entregue fotos; entonces se eliminan. Ninguna fue tomada en Puyehue ni prueba presencia de la especie en el área. Las obras CC BY-SA conservan su licencia; la ficha muestra autor, licencia y enlace junto a la foto, y el catálogo avisa que los créditos están en cada ficha.
 
 | Archivo | Original en Commons | Autor | Licencia |
 | --- | --- | --- | --- |

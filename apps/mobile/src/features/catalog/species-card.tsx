@@ -1,70 +1,67 @@
-import { router } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import Svg from 'react-native-svg';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import type { Species } from '@/domain/species';
-import { ProvisionalTag } from '@/features/catalog/provisional-tag';
-import { LeafPlate, speciesWash } from '@/features/species-art/leaf-plate';
+import { openSpecies } from '@/features/catalog/open-species';
+import { getReferencePhoto } from '@/features/catalog/reference-photos';
+import { toggleSaved } from '@/features/catalog/saved';
+import { speciesTagLabels, SpeciesTags } from '@/features/catalog/species-tags';
 import { t } from '@/i18n/es-CL';
-import { Ledge, radius, seedOf, space, Text, useLayoutSize, useTheme, Wash } from '@/ui';
+import { BookmarkIcon, Button, ChevronIcon, IconButton, LeafIcon, radius, space, Text, useTheme } from '@/ui';
 
-const PLATE_HEIGHT = 128;
+type SpeciesCardProps = { species: Species; saved: boolean };
 
-type SpeciesCardProps = {
-  species: Species;
-  /** Número de pliego ya calculado sobre el catálogo. */
-  sheet: string;
-  index: number;
-  /** Entrar escalonada: solo al abrir el catálogo, no en cada búsqueda. */
-  enter: boolean;
-};
-
-/** Cromo del álbum: la lámina en su ventana de papel, el número a mano, nombres y estado. Abre la ficha. */
-export function SpeciesCard({ species, sheet, index, enter }: SpeciesCardProps) {
+/** Tarjeta del catálogo: foto de referencia cuadrada, nombres, etiquetas, descripción y acción. */
+export function SpeciesCard({ species, saved }: SpeciesCardProps) {
   const { color } = useTheme();
-  const plate = useLayoutSize();
-
+  const photo = getReferencePhoto(species.id);
+  const open = () => openSpecies(species.id);
   return (
-    <Animated.View style={styles.slot} entering={enter ? FadeInDown.delay(80 + index * 55).duration(340) : undefined}>
-      <Ledge face="surface" radius={radius.card} style={styles.card} faceStyle={styles.face} accessibilityRole="button"
-        accessibilityLabel={t.species.rowA11y(species.commonName, species.scientificName)}
-        onPress={() => router.push({ pathname: '/species/[id]', params: { id: species.id } })}>
-        <View style={[styles.plate, { backgroundColor: color.background }]} onLayout={plate.onLayout}>
-          {plate.width > 0 ? (
-            <Svg width={plate.width} height={PLATE_HEIGHT} style={StyleSheet.absoluteFill} accessible={false}>
-              <Wash seed={seedOf(species.id)} cx={plate.width / 2} cy={PLATE_HEIGHT / 2} rx={plate.width * 0.42}
-                ry={PLATE_HEIGHT * 0.4} color={speciesWash(species.id)} opacity={0.28} wobble={0.2} grain={8} />
-            </Svg>
-          ) : null}
-          <LeafPlate speciesId={species.id} size={108} />
-          <Text variant="handBold" tone="accent" style={styles.sheet}>{t.species.sheet(sheet)}</Text>
+    // La tarjeta no es un solo botón: así el marcador y «Ver ficha» siguen accesibles por separado.
+    // Foto y nombres también abren la ficha al tocarlos, sin duplicar el foco del lector de pantalla.
+    <View style={[styles.card, { backgroundColor: color.surface, borderColor: color.outlineVariant }]}>
+      <Pressable onPress={open} focusable={false} importantForAccessibility="no-hide-descendants" accessibilityElementsHidden style={[styles.photo, { backgroundColor: color.surfaceMuted }]}>
+        {photo ? (
+          <Image source={photo.source} style={StyleSheet.absoluteFill} resizeMode="cover" accessibilityIgnoresInvertColors />
+        ) : (
+          <LeafIcon color={color.outline} size={32} />
+        )}
+      </Pressable>
+      <View style={styles.body}>
+        <View style={styles.titleRow}>
+          <Pressable onPress={open} style={styles.names} accessible
+            accessibilityLabel={`${species.commonName}, ${species.scientificName}. ${speciesTagLabels(species).join(', ')}.`}>
+            <Text variant="titleMedium" numberOfLines={1}>{species.commonName}</Text>
+            <Text variant="scientific" tone="onSurfaceVariant" numberOfLines={1}>{species.scientificName}</Text>
+          </Pressable>
+          <IconButton label={saved ? t.species.unsave(species.commonName) : t.species.save(species.commonName)}
+            selected={saved} onPress={() => toggleSaved(species.id)} style={styles.bookmark}>
+            <BookmarkIcon color={color.onSurface} fill={saved ? color.lime : 'none'} size={22} />
+          </IconButton>
         </View>
-        <View style={styles.text}>
-          <Text variant="titleMedium" numberOfLines={2}>{species.commonName}</Text>
-          <Text variant="scientific" tone="onSurfaceVariant" numberOfLines={2}>{species.scientificName}</Text>
-          <View style={styles.tag}>
-            <ProvisionalTag />
-          </View>
-        </View>
-      </Ledge>
-    </Animated.View>
+        <SpeciesTags species={species} hidden />
+        <Text variant="bodySmall" tone="onSurfaceVariant" numberOfLines={2}>{species.traits.habit}</Text>
+        <Button label={t.species.open} accessibilityLabel={t.species.openA11y(species.commonName)} onPress={open} tone="soft"
+          size="compact" role="link" trailing={<ChevronIcon color={color.onLimeSoft} size={18} />} style={styles.action} />
+      </View>
+    </View>
   );
 }
 
+const PHOTO = 112;
+
 const styles = StyleSheet.create({
-  slot: { flex: 1 },
-  card: { flex: 1 },
-  face: { flex: 1, padding: space.sm },
-  // Ventana de papel donde se pinta la lámina, con las esquinas del cromo.
-  plate: {
-    height: PLATE_HEIGHT,
-    borderRadius: radius.card - space.sm,
-    alignItems: 'center',
-    justifyContent: 'center',
+  card: {
+    flexDirection: 'row',
+    gap: space.md,
+    padding: space.sm,
+    borderRadius: radius.lg,
+    borderWidth: 1,
     overflow: 'hidden',
   },
-  sheet: { position: 'absolute', top: space.xs, left: space.md, fontVariant: ['tabular-nums'] },
-  text: { flex: 1, paddingHorizontal: space.xs, paddingTop: space.sm, gap: 2 },
-  tag: { marginTop: 'auto', paddingTop: space.sm, paddingBottom: space.xs },
+  photo: { width: PHOTO, height: PHOTO, alignSelf: 'center', borderRadius: radius.md, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
+  body: { flex: 1, gap: 6, paddingVertical: space.xs, paddingRight: space.xs },
+  titleRow: { flexDirection: 'row', alignItems: 'flex-start', gap: space.xs },
+  names: { flex: 1, gap: 1 },
+  bookmark: { marginTop: -10, marginRight: -10 },
+  action: { marginTop: 2 },
 });

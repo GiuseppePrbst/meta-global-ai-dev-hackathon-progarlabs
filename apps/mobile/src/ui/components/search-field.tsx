@@ -2,7 +2,7 @@ import { type StyleProp, StyleSheet, TextInput, View, type ViewStyle } from 'rea
 
 import { CloseIcon, SearchIcon } from '@/ui/components/icons';
 import { IconButton } from '@/ui/components/icon-button';
-import { radius, space, stroke, type, useTheme } from '@/ui/tokens/theme';
+import { radius, space, type, useTheme } from '@/ui/tokens/theme';
 
 type SearchFieldProps = {
   value: string;
@@ -12,30 +12,32 @@ type SearchFieldProps = {
   label: string;
   /** Etiqueta del botón que borra el texto. */
   clearLabel: string;
+  autoFocus?: boolean;
   style?: StyleProp<ViewStyle>;
 };
 
-/** Campo de búsqueda en píldora blanca de 56 dp, pensado para ir sobre la banda de una barra superior. */
-export function SearchField({ value, onChangeText, placeholder, label, clearLabel, style }: SearchFieldProps) {
+/** Campo de búsqueda en píldora gris claro de 48 dp. */
+export function SearchField({ value, onChangeText, placeholder, label, clearLabel, autoFocus, style }: SearchFieldProps) {
   const { color } = useTheme();
   return (
-    <View style={[styles.search, { backgroundColor: color.searchField, borderColor: color.topBarEdge }, style]}>
-      <SearchIcon color={color.onSearchFieldVariant} />
+    <View style={[styles.search, { backgroundColor: color.surfaceMuted }, style]}>
+      <SearchIcon color={color.onSurfaceVariant} size={20} />
       <TextInput
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
-        placeholderTextColor={color.onSearchFieldVariant}
+        placeholderTextColor={color.onSurfaceVariant}
         accessibilityLabel={label}
-        selectionColor={color.leafInk}
-        cursorColor={color.leafInk}
+        selectionColor={color.onLimeSoft}
+        cursorColor={color.onSurface}
         returnKeyType="search"
         autoCorrect={false}
-        style={[type.bodyLarge, styles.input, { color: color.onSearchField }]}
+        autoFocus={autoFocus}
+        style={[type.bodyLarge, styles.input, { color: color.onSurface }]}
       />
       {value ? (
-        <IconButton label={clearLabel} onPress={() => onChangeText('')} hitSlop={4}>
-          <CloseIcon color={color.onSearchFieldVariant} />
+        <IconButton label={clearLabel} onPress={() => onChangeText('')}>
+          <CloseIcon color={color.onSurfaceVariant} size={20} />
         </IconButton>
       ) : null}
     </View>
@@ -44,14 +46,13 @@ export function SearchField({ value, onChangeText, placeholder, label, clearLabe
 
 const styles = StyleSheet.create({
   search: {
-    minHeight: 56,
+    minHeight: 48,
     borderRadius: radius.full,
-    borderWidth: stroke.ink,
     flexDirection: 'row',
     alignItems: 'center',
     paddingLeft: space.lg,
-    paddingRight: space.xs,
-    gap: space.md,
+    paddingRight: space.xxs,
+    gap: space.sm,
   },
-  input: { flex: 1, paddingVertical: space.md },
+  input: { flex: 1, paddingVertical: space.sm },
 });

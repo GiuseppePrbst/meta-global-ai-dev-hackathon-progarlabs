@@ -1,5 +1,4 @@
-/** Punto WGS84; la API lo envía como GeoJSON `[longitud, latitud]`. */
-export type GeoPoint = { longitude: number; latitude: number };
+import type { GeoPoint } from '@/domain/geo';
 
 export type Observation = {
   id: string;
