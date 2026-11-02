@@ -166,3 +166,22 @@ Redacción y análisis con asistencia de Claude (Anthropic) en una sesión local
 Giuseppe. Las decisiones de producto provienen del encargo de ProGarLabs. Fabiana García
 figura como diseño de producto empresarial; no se le atribuyen entregables competitivos
 mientras su admisión no esté confirmada.
+
+## Rediseño visual de la app móvil — 02-11-2026
+
+Trabajo nuevo durante el evento, en `apps/mobile/` (rama `feat/ui-redesign`):
+
+- nuevo lenguaje visual (verde casi negro, fondo claro, acento lima, Figtree) a partir de una
+  imagen de referencia de tres pantallas aportada por José; reemplaza el cuaderno de acuarela;
+- pestañas Identificar · Mapa · Especies · Diario; mapa oscuro con capas, sendero de
+  demostración sintético y recorrido por paradas sin GPS; catálogo con filtros y guardadas
+  en memoria; Diario con cifras, guía, recorridos e insignias derivadas, todo rotulado como
+  demostración;
+- lógica pura nueva con pruebas (`demo-trail`, `badges`, filtros del catálogo).
+
+Dependencia de terceros añadida: `@expo-google-fonts/figtree` (Figtree, SIL OFL 1.1). Las
+fotos de referencia de Wikimedia Commons ya estaban en el repositorio. El sendero, las
+observaciones, los recorridos y la guía son datos sintéticos; no son registros de terreno.
+
+Diseño e implementación con asistencia de Claude (Anthropic) en una sesión local de José,
+quien fijó la dirección visual y el alcance. Sin verificación en Android físico en esta sesión.

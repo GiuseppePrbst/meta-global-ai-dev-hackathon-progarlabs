@@ -1,22 +1,20 @@
 import { router } from 'expo-router';
 
-import { Viewfinder, ViewfinderCover } from '@/features/identification/viewfinder-art';
 import { t } from '@/i18n/es-CL';
-import { PendingFeature, useTheme } from '@/ui';
+import { CameraIcon, LeafIcon, PendingFeature, SpeciesIcon } from '@/ui';
+
+const icons = [CameraIcon, SpeciesIcon, LeafIcon];
 
 export default function IdentifyScreen() {
-  const { color } = useTheme();
   return (
     <PendingFeature
       title={t.pending.identifyTitle}
-      subtitle={t.pending.identifySubtitle}
       heading={t.pending.identifyHeading}
       body={t.pending.identifyBody}
       tag={t.pending.tag}
+      steps={t.pending.identifySteps.map((label, i) => ({ icon: icons[i], label }))}
       action={t.pending.identifyAction}
       onAction={() => router.navigate('/species')}
-      art={<Viewfinder ink={color.accent} />}
-      cover={<ViewfinderCover ink={color.onTopBar} wash={color.lime} />}
     />
   );
 }

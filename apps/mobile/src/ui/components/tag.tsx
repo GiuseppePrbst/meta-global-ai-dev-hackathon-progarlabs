@@ -1,48 +1,29 @@
 import { StyleSheet, View } from 'react-native';
 
 import { Text } from '@/ui/components/text';
-import { type ColorToken, useTheme } from '@/ui/tokens/theme';
+import { type ColorToken, radius, useTheme } from '@/ui/tokens/theme';
 
-type TagProps = {
-  label: string;
-  background: ColorToken;
-  ink: ColorToken;
-  /** `ring`: círculo abierto, «aún sin validar». `dash`: guion, «todavía no». */
-  mark: 'ring' | 'dash';
-  /** Color de la marca; por defecto el del texto. */
-  markColor?: ColorToken;
-  tilt: 'left' | 'right';
+export type TagTone = 'lime' | 'provisional' | 'demo' | 'neutral' | 'dark';
+
+const tones: Record<TagTone, { face: ColorToken; ink: ColorToken }> = {
+  lime: { face: 'limeSoft', ink: 'onLimeSoft' },
+  provisional: { face: 'provisional', ink: 'onProvisional' },
+  demo: { face: 'demo', ink: 'onDemo' },
+  neutral: { face: 'surfaceMuted', ink: 'onSurfaceVariant' },
+  dark: { face: 'darkSurfaceHigh', ink: 'onDark' },
 };
 
-/** Etiqueta de estado como un trozo de cinta. Siempre con texto, nunca solo color. */
-export function Tag({ label, background, ink, mark, markColor = ink, tilt }: TagProps) {
+/** Etiqueta corta de grupo o estado: siempre con texto, el color solo acompaña. */
+export function Tag({ label, tone }: { label: string; tone: TagTone }) {
   const { color } = useTheme();
+  const look = tones[tone];
   return (
-    <View style={[styles.tape, tilt === 'left' ? styles.tiltLeft : styles.tiltRight,
-      { backgroundColor: color[background], borderColor: color[ink] }]}>
-      {mark === 'ring'
-        ? <View style={[styles.ring, { borderColor: color[markColor] }]} />
-        : <View style={[styles.dash, { backgroundColor: color[markColor] }]} />}
-      <Text variant="labelMedium" tone={ink} style={styles.text}>{label}</Text>
+    <View style={[styles.tag, { backgroundColor: color[look.face] }]}>
+      <Text variant="tag" tone={look.ink} numberOfLines={1}>{label}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  // Cinta gruesa con filo de tinta: esquinas casi rectas y una leve inclinación, como pegada a mano.
-  tape: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    gap: 6,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 3,
-    borderWidth: 1.5,
-  },
-  tiltLeft: { transform: [{ rotate: '-2deg' }] },
-  tiltRight: { transform: [{ rotate: '1.5deg' }] },
-  text: { fontWeight: '800' },
-  ring: { width: 9, height: 9, borderRadius: 5, borderWidth: 2 },
-  dash: { width: 9, height: 2, borderRadius: 1 },
+  tag: { alignSelf: 'flex-start', paddingHorizontal: 7, paddingVertical: 2, borderRadius: radius.sm - 2 },
 });
