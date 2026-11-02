@@ -1,22 +1,32 @@
 import { router } from 'expo-router';
+import { ScrollView, StyleSheet } from 'react-native';
 
-import { FieldNotebook, NotebookCover } from '@/features/observations/notebook-art';
+import { useSpeciesCatalog } from '@/features/catalog/use-species';
+import { GuidePreview } from '@/features/guide/guide-preview';
+import { useGuide } from '@/features/guide/use-guide';
+import { NotebookCover } from '@/features/observations/notebook-art';
 import { t } from '@/i18n/es-CL';
-import { PendingFeature, useTheme } from '@/ui';
+import { BAND_EDGE, Button, LoadingState, Paper, ScreenHeader, space, useTheme } from '@/ui';
 
 export default function ObservationsScreen() {
   const { color } = useTheme();
+  const { data: catalog } = useSpeciesCatalog();
+  const { data: entries } = useGuide();
+
   return (
-    <PendingFeature
-      title={t.pending.observationsTitle}
-      subtitle={t.pending.observationsSubtitle}
-      heading={t.pending.observationsHeading}
-      body={t.pending.observationsBody}
-      tag={t.pending.tag}
-      action={t.pending.observationsAction}
-      onAction={() => router.navigate('/atlas')}
-      art={<FieldNotebook ink={color.leafInk} paper={color.surface} accent={color.accent} />}
-      cover={<NotebookCover ink={color.onTopBar} wash={color.lime} />}
-    />
+    <Paper style={styles.screen}>
+      <ScreenHeader title={t.pending.observationsTitle} subtitle={t.pending.observationsSubtitle}
+        cover={<NotebookCover ink={color.onTopBar} wash={color.lime} />} />
+      <ScrollView contentContainerStyle={styles.content}>
+        {catalog && entries ? <GuidePreview catalog={catalog} entries={entries} /> : <LoadingState label={t.guide.loading} />}
+        <Button label={t.guide.explore} onPress={() => router.navigate('/species')} style={styles.button} />
+      </ScrollView>
+    </Paper>
   );
 }
+
+const styles = StyleSheet.create({
+  screen: { flex: 1 },
+  content: { padding: space.lg, paddingTop: BAND_EDGE + space.lg, paddingBottom: space.xxl, gap: space.xl },
+  button: { alignSelf: 'stretch' },
+});

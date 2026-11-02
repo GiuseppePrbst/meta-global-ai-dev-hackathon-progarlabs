@@ -6,7 +6,7 @@ import { EmptyAtlasSheet, SurveyHill } from '@/features/atlas/contour-art';
 import { CONTROLS_BOTTOM, CONTROLS_GUTTER } from '@/features/atlas/map-layout';
 import { UnverifiedMark } from '@/features/atlas/status-marks';
 import { t } from '@/i18n/es-CL';
-import { BAND_EDGE, Chip, Divider, EmptyState, FrameIcon, IconButton, MinusIcon, PlusIcon, radius, space, StatusBanner, Surface, Text, useTheme } from '@/ui';
+import { BAND_EDGE, Chip, Divider, EmptyState, FrameIcon, IconButton, MinusIcon, PlusIcon, radius, space, StatusBanner, stroke, Surface, Text, useTheme } from '@/ui';
 
 // Piezas que flotan sobre el mapa del Atlas, o lo tapan mientras no puede mostrarse.
 
@@ -46,16 +46,16 @@ export function MapControls({ onZoomIn, onZoomOut, onRecenter }: MapControlsProp
   const { color } = useTheme();
   return (
     <Animated.View entering={FadeIn.delay(700).duration(320)} style={styles.controls}>
-      <Surface elevation="raised" style={styles.group}>
+      <Surface elevation="raised" style={[styles.group, { borderColor: color.leafInk }]}>
         <IconButton label={t.atlas.zoomIn} onPress={onZoomIn} borderless={false}>
           <PlusIcon color={color.onSurface} />
         </IconButton>
-        <Divider />
+        <Divider style={{ height: stroke.ink, backgroundColor: color.outlineVariant }} />
         <IconButton label={t.atlas.zoomOut} onPress={onZoomOut} borderless={false}>
           <MinusIcon color={color.onSurface} />
         </IconButton>
       </Surface>
-      <Surface elevation="raised" style={styles.group}>
+      <Surface elevation="raised" style={[styles.group, { borderColor: color.leafInk }]}>
         <IconButton label={t.atlas.recenter} onPress={onRecenter} borderless={false}>
           <FrameIcon color={color.primary} />
         </IconButton>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     position: 'absolute', top: BAND_EDGE + space.md, left: space.md, right: CONTROLS_GUTTER, gap: space.sm, alignItems: 'flex-start',
   },
   controls: { position: 'absolute', right: space.md, bottom: CONTROLS_BOTTOM, gap: space.md },
-  group: { borderRadius: radius.lg, overflow: 'hidden' },
+  group: { borderRadius: radius.lg, borderWidth: stroke.ink, overflow: 'hidden' },
   attribution: {
     position: 'absolute',
     right: space.md,

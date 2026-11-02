@@ -18,7 +18,8 @@ type TagProps = {
 export function Tag({ label, background, ink, mark, markColor = ink, tilt }: TagProps) {
   const { color } = useTheme();
   return (
-    <View style={[styles.tape, tilt === 'left' ? styles.tiltLeft : styles.tiltRight, { backgroundColor: color[background] }]}>
+    <View style={[styles.tape, tilt === 'left' ? styles.tiltLeft : styles.tiltRight,
+      { backgroundColor: color[background], borderColor: color[ink] }]}>
       {mark === 'ring'
         ? <View style={[styles.ring, { borderColor: color[markColor] }]} />
         : <View style={[styles.dash, { backgroundColor: color[markColor] }]} />}
@@ -28,15 +29,16 @@ export function Tag({ label, background, ink, mark, markColor = ink, tilt }: Tag
 }
 
 const styles = StyleSheet.create({
-  // Cinta: esquinas casi rectas y una leve inclinación, como pegada a mano.
+  // Cinta gruesa con filo de tinta: esquinas casi rectas y una leve inclinación, como pegada a mano.
   tape: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
     gap: 6,
     paddingHorizontal: 10,
-    paddingVertical: 3,
-    borderRadius: 2,
+    paddingVertical: 4,
+    borderRadius: 3,
+    borderWidth: 1.5,
   },
   tiltLeft: { transform: [{ rotate: '-2deg' }] },
   tiltRight: { transform: [{ rotate: '1.5deg' }] },

@@ -7,6 +7,8 @@ import Animated, {
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
+  withSequence,
+  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -14,7 +16,7 @@ import Svg from 'react-native-svg';
 
 import { seedOf, Wash } from '@/ui/art/watercolor';
 import { Text } from '@/ui/components/text';
-import { space, useTheme } from '@/ui/tokens/theme';
+import { space, stroke, useTheme } from '@/ui/tokens/theme';
 
 /** Barra de navegación Material 3: contenedor de las pestañas principales, respeta el borde inferior. */
 export function NavigationBar({ style, ...props }: ViewProps) {
@@ -39,18 +41,26 @@ type NavigationItemProps = Omit<TabTriggerSlotProps, 'ref'> & { label: string; i
 
 /**
  * Destino de la barra. El indicador de Material 3 es aquí una mancha de acuarela lima, distinta en
- * cada destino; se abre desde el centro al activarse.
+ * cada destino; se abre desde el centro al activarse y el ícono da un pequeño salto.
  */
 export function NavigationItem({ label, icon: Icon, isFocused = false, ...props }: NavigationItemProps) {
   const { color } = useTheme();
   const reducedMotion = useReducedMotion();
   const active = useSharedValue(isFocused ? 1 : 0);
+  const hop = useSharedValue(0);
 
   useEffect(() => {
     active.set(
       reducedMotion ? (isFocused ? 1 : 0) : withTiming(isFocused ? 1 : 0, { duration: 260, easing: Easing.out(Easing.exp) }),
     );
-  }, [active, isFocused, reducedMotion]);
+    if (isFocused && !reducedMotion) {
+      hop.set(withSequence(withTiming(1, { duration: 110, easing: Easing.out(Easing.quad) }), withSpring(0, { damping: 9, stiffness: 260 })));
+    }
+  }, [active, hop, isFocused, reducedMotion]);
+
+  const iconStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: -5 * hop.get() }, { scale: 1 + 0.16 * hop.get() }, { rotate: `${-8 * hop.get()}deg` }],
+  }));
 
   const indicatorStyle = useAnimatedStyle(() => ({
     opacity: active.get(),
@@ -75,9 +85,9 @@ export function NavigationItem({ label, icon: Icon, isFocused = false, ...props 
           </Svg>
         </Animated.View>
         {/* Envuelto para que en web el ícono quede sobre el indicador absoluto. */}
-        <View>
+        <Animated.View style={iconStyle}>
           <Icon color={iconColor} fill={isFocused ? color.navIconFill : undefined} />
-        </View>
+        </Animated.View>
       </View>
       <Text variant="labelMedium" tone={isFocused ? 'onSurface' : 'onSurfaceVariant'} numberOfLines={1}
         style={isFocused && styles.labelActive}>
@@ -92,7 +102,7 @@ const INDICATOR = { width: 72, height: 40 };
 const styles = StyleSheet.create({
   bar: {
     flexDirection: 'row',
-    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopWidth: stroke.ink,
   },
   item: {
     flex: 1,
@@ -111,5 +121,5 @@ const styles = StyleSheet.create({
     width: INDICATOR.width,
     height: INDICATOR.height,
   },
-  labelActive: { fontWeight: '800' },
+  labelActive: { fontFamily: 'BricolageGrotesque_800ExtraBold', fontWeight: undefined },
 });

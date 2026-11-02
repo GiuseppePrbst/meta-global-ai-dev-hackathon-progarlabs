@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import { Surface } from '@/ui/components/surface';
 import { Text } from '@/ui/components/text';
-import { radius, space } from '@/ui/tokens/theme';
+import { radius, space, stroke, useTheme } from '@/ui/tokens/theme';
 
 type ChipProps = {
   label: string;
@@ -14,10 +14,11 @@ type ChipProps = {
 
 /** Píldora informativa que flota sobre el mapa o el papel; no es un botón. */
 export function Chip({ label, leading, accessibilityLabel }: ChipProps) {
+  const { color } = useTheme();
   return (
-    <Surface elevation="raised" style={styles.chip} accessible accessibilityLabel={accessibilityLabel}>
+    <Surface elevation="raised" style={[styles.chip, { borderColor: color.leafInk }]} accessible accessibilityLabel={accessibilityLabel}>
       {leading}
-      <Text variant="labelLarge">{label}</Text>
+      <Text variant="titleSmall">{label}</Text>
     </Surface>
   );
 }
@@ -27,8 +28,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: space.sm,
-    minHeight: 36,
+    minHeight: 40,
     paddingHorizontal: space.md,
     borderRadius: radius.full,
+    borderWidth: stroke.ink,
   },
 });

@@ -82,6 +82,9 @@ export const type = {
   headlineSmall: { fontFamily: 'BricolageGrotesque_700Bold', fontSize: 24, lineHeight: 30, letterSpacing: -0.2 },
   titleLarge: { fontFamily: 'BricolageGrotesque_700Bold', fontSize: 22, lineHeight: 28, letterSpacing: -0.2 },
   titleMedium: { fontFamily: 'BricolageGrotesque_600SemiBold', fontSize: 19, lineHeight: 24 },
+  titleSmall: { fontFamily: 'BricolageGrotesque_700Bold', fontSize: 16, lineHeight: 20 },
+  // Botones y cifras del álbum: la misma voz gruesa de los títulos.
+  button: { fontFamily: 'BricolageGrotesque_800ExtraBold', fontSize: 16, lineHeight: 20, letterSpacing: 0.1 },
   scientific: { fontFamily: 'Literata_400Regular_Italic', fontSize: 15, lineHeight: 20 },
   scientificLarge: { fontFamily: 'Literata_400Regular_Italic', fontSize: 19, lineHeight: 26 },
   hand: { fontFamily: 'Kalam_400Regular', fontSize: 16, lineHeight: 22 },
@@ -96,7 +99,11 @@ export const type = {
 } satisfies Record<string, TextStyle>;
 
 export const space = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 };
-export const radius = { sm: 8, md: 12, lg: 20, full: 999 };
+export const radius = { sm: 8, md: 12, lg: 20, card: 24, full: 999 };
+
+// Álbum de cromos: lo que se pega o se toca lleva contorno de tinta y un canto inferior que se
+// hunde al presionar, como un cromo de cartón. El canto no es sombra: es el grosor de la pieza.
+export const stroke = { ink: 2, ledge: 4 };
 
 // Sombras de lo que flota sobre el papel o el mapa; el color va aparte (`shadowColor: color.scrim`).
 export const elevation = {

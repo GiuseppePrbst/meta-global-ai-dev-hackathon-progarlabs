@@ -10,9 +10,11 @@ import { getReferencePhoto } from '@/features/catalog/art/reference-photos';
 import { TapedPhoto } from '@/features/catalog/art/taped-photo';
 import { sheetNumber } from '@/features/catalog/catalog';
 import { ProvisionalTag } from '@/features/catalog/provisional-tag';
+import { useGuideEntry } from '@/features/guide/use-guide';
+import { LeafPlate } from '@/features/species-art/leaf-plate';
 import { useSpeciesCatalog } from '@/features/catalog/use-species';
 import { formatDate, t } from '@/i18n/es-CL';
-import { HerbariumLabel, InfoIcon, LeafIcon, PhotoIcon, type Segment, SegmentedControl, seedOf, space, Text, TextButton, useTheme } from '@/ui';
+import { HerbariumLabel, InfoIcon, LeafIcon, Ledge, PhotoIcon, radius, type Segment, SegmentedControl, seedOf, space, StickerSlot, Tag, Text, TextButton, useTheme } from '@/ui';
 
 type PlateFace = 'plate' | 'photo';
 
@@ -36,6 +38,7 @@ export function SpeciesSheet({ species, onNameLayout }: SpeciesSheetProps) {
   const { traits, provenance } = species;
   const photo = getReferencePhoto(species.id);
   const [face, setFace] = useState<PlateFace>('plate');
+  const inGuide = useGuideEntry(species.id);
 
   const notes: { label: string; value: string; marker?: string }[] = [
     { label: t.detail.leaf, value: traits.leaf, marker: '1' },
@@ -108,6 +111,30 @@ export function SpeciesSheet({ species, onNameLayout }: SpeciesSheetProps) {
         </View>
       </View>
 
+      {/* Su lugar en la guía personal: el cromo si ya la sumó, o el hueco que falta llenar. */}
+      <Ledge face="surface" radius={radius.card} style={styles.guide} faceStyle={styles.guideFace}>
+        {inGuide ? (
+          <View style={[styles.guideSlot, styles.guideCromo, { borderColor: color.leafInk }]} accessible
+            accessibilityLabel={t.guide.detailCollectedA11y(sheet)}>
+            <LeafPlate speciesId={species.id} size={60} />
+            <Text variant="handBold" tone="accent" style={styles.guideNumber}>{sheet}</Text>
+          </View>
+        ) : (
+          <StickerSlot number={sheet} accessibilityLabel={t.guide.detailSlotA11y(sheet)} style={styles.guideSlot}>
+            <LeafPlate speciesId={species.id} size={56} ink={color.outline} wash={color.outlineVariant} />
+          </StickerSlot>
+        )}
+        <View style={styles.guideText}>
+          <Text variant="titleSmall">{inGuide ? t.guide.detailCollectedTitle : t.guide.detailTitle}</Text>
+          <Text variant="bodyMedium" tone="onSurfaceVariant">
+            {inGuide ? t.guide.detailCollectedBody(inGuide.addedAt) : t.guide.detailBody}
+          </Text>
+          {inGuide
+            ? <Tag label={t.guide.demoTag} background="demo" ink="onDemo" mark="ring" markColor="accent" tilt="right" />
+            : <Tag label={t.pending.tag} background="demo" ink="onDemo" mark="dash" tilt="right" />}
+        </View>
+      </Ledge>
+
       <View style={styles.notes}>
         <Text variant="titleLarge" accessibilityRole="header">
           {t.detail.traitsTitle}
@@ -150,6 +177,12 @@ const styles = StyleSheet.create({
   identity: { paddingTop: space.lg, gap: space.xs },
   entryRule: { height: 1.5, marginTop: space.md },
   statusBlock: { marginTop: space.md, gap: space.sm },
+  guide: { marginTop: space.xl },
+  guideFace: { flexDirection: 'row', alignItems: 'center', gap: space.lg, padding: space.md },
+  guideSlot: { width: 84 },
+  guideCromo: { aspectRatio: 1, borderRadius: radius.lg, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },
+  guideNumber: { position: 'absolute', top: 4, left: 10, fontVariant: ['tabular-nums'] },
+  guideText: { flex: 1, gap: space.xs, alignItems: 'flex-start' },
   notes: { paddingTop: space.xxl, gap: space.md },
   draft: { flexDirection: 'row', gap: space.sm, alignItems: 'flex-start' },
   draftText: { flex: 1, marginTop: -2 },

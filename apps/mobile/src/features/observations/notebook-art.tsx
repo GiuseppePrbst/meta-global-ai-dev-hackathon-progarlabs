@@ -1,25 +1,6 @@
-import Svg, { Path, Rect } from 'react-native-svg';
+import Svg from 'react-native-svg';
 
 import { FadeGroup, InkPath, useInk, Wash } from '@/ui';
-
-/** Libreta de terreno con renglones vacíos y una hoja punteada: el borrador que aún no existe. */
-export function FieldNotebook({ ink, paper, accent }: { ink: string; paper: string; accent: string }) {
-  return (
-    <Svg width={176} height={150} viewBox="0 0 176 150" accessible={false} style={{ transform: [{ rotate: '-4deg' }] }}>
-      <Rect x={28} y={8} width={124} height={134} rx={6} stroke={ink} strokeWidth={2} fill={paper} />
-      <Path d="M44 8v134" stroke={ink} strokeWidth={1} opacity={0.6} />
-      {[34, 52, 70, 88, 106, 124].map((y) => (
-        <Path key={y} d={`M54 ${y}h84`} stroke={ink} strokeWidth={1} opacity={0.35} strokeLinecap="round" />
-      ))}
-      {[24, 48, 72, 96, 120].map((y) => (
-        <Rect key={y} x={22} y={y} width={12} height={5} rx={2.5} stroke={ink} strokeWidth={1.2} fill="none" />
-      ))}
-      <Path d="M112 112c-12-6-15-18-6-34 13 12 16 24 6 34Zm0 0v12" stroke={accent} strokeWidth={2}
-        strokeDasharray={[4, 3]} strokeLinecap="round" fill="none" />
-      <Path d="M58 52h50M58 70h34" stroke={ink} strokeWidth={1.5} strokeDasharray={[2, 4]} strokeLinecap="round" opacity={0.7} />
-    </Svg>
-  );
-}
 
 // Trazos de la portada en orden de entintado; `length` es el largo aproximado de cada uno.
 const coverStrokes = [
