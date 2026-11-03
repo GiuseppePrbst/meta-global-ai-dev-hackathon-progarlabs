@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icon } from "./icon";
 
-const links = [["/", "Inicio"], ["/atlas", "Atlas"], ["/especies", "Especies"], ["/proyecto", "El proyecto"]];
+const links = [["/", "Inicio"], ["/wilo", "Wilo"], ["/atlas", "Atlas"], ["/especies", "Especies"], ["/proyecto", "El proyecto"]];
 
 export function Navigation() {
   const pathname = usePathname();
