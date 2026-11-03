@@ -66,3 +66,20 @@ Fuentes oficiales consultadas 29-10-2026: [STT](https://dev.meta.ai/docs/speech-
 [voz](https://dev.meta.ai/docs/cookbook/voice-api-fundamentals),
 [tool calling](https://dev.meta.ai/docs/cookbook/tool-function-calling).
 Contratos y ejemplos en [API_INTEGRATION](API_INTEGRATION.md).
+
+## Actualización 03-11-2026 (Wilo)
+
+Lo anterior describe la versión del 29-10. Cambios vigentes:
+
+- `languageBias` se envía solo cuando se pide con `language_hint` (`es` → `["Spanish"]`, `en` → `["English"]`, `mixed` → ambos). Por defecto (`auto`) no se envía.
+- Las keywords ya no son una lista fija: `voice_keywords()` genera hasta 100 desde el Atlas, cada una de 30 caracteres o menos.
+- La API real rechaza keywords de más de 30 caracteres y listas de más de 500 términos.
+- El guía usa `wilo-guide-v3`:
+  - responde en el idioma de la pregunta;
+  - afirmaciones citadas y control de cifras;
+  - una segunda ronda de herramientas solo después de una búsqueda;
+  - 4096 tokens en el turno final.
+- Se agregaron `POST /guide/ask` y un proxy WebSocket de tiempo real. TTS sigue en el dispositivo.
+- El plazo recomendado es `META_TIMEOUT_SECONDS=90`.
+
+Contrato: [WILO_VOICE_API_HANDOFF.md](WILO_VOICE_API_HANDOFF.md).

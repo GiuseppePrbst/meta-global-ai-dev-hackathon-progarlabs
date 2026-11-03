@@ -255,3 +255,11 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
   `resources/media-assets.json`, que empieza vacío hasta aprobar derechos.
 - Los binarios y el material privado viven fuera de Git y de PostgreSQL. Detalle en
   [MEDIA_LIBRARY_ARCHITECTURE.md](MEDIA_LIBRARY_ARCHITECTURE.md).
+
+## Decisión 2026-11-03 — Wilo: Knowledge Atlas y voz
+
+- **Snapshot versionado en memoria.** El conocimiento de Wilo es un snapshot (`resources/knowledge-atlas.json`, SHA-256 de sus entidades) generado sin red por `atlas_build.py`, con índices en memoria. No se usa base vectorial ni PostgreSQL de texto completo mientras quepa en memoria: unas 720 entidades.
+- **Jerarquía de fuentes.** CONAF/SBAP, luego SIG gubernamental, ciencia, operadores, turismo y plataformas colaborativas. Las fuentes secundarias se registran como tales y nunca reemplazan a las oficiales.
+- **Elegibilidad para la demo.** Es una capa aparte (`demo.py`, `demo-eligibility.json`) que no modifica el catálogo.
+- **Nueva dependencia `websockets==15.0.1`.** Habilita WebSocket en uvicorn y el cliente del tiempo real de Meta.
+- **Ledger.** Cada etapa (`transcribe`, `guide`) reserva por separado. Las campañas de evaluación usan la identidad `wilo-voice-lab`, con un tope atómico de USD 5 dentro del presupuesto de laboratorio existente. No es un presupuesto nuevo.

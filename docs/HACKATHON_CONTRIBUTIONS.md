@@ -255,3 +255,28 @@ Intelligence). Este incremento no modifica archivos de Codex.
 
 Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe. Las
 referencias son del agente, no de un especialista.
+
+## Wilo voice y Knowledge Atlas — 03-11-2026
+
+Código nuevo durante el evento:
+
+- `atlas.py`, `atlas_build.py`, `demo.py`, `wilo.py` y las herramientas de Wilo;
+- `language_hint` y las keywords dinámicas;
+- grounding por afirmación;
+- el proxy WebSocket;
+- el parser CONAF revisado (PR #32);
+- los evaluadores `evaluations/wilo_*.py`.
+
+Datos públicos preexistentes, con su procedencia en [SOURCES.md](SOURCES.md):
+
+- fichas CONAF, BCN SNASPE, RCE/MMA y GBIF;
+- Philippi, UdeC, SIB y Commons.
+
+Evaluación:
+
+- 79 grabaciones reales del propietario, privadas y procesadas con su autorización;
+- audio TTS sintético.
+
+Dependencia nueva: `websockets==15.0.1`.
+
+Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe. Las auditorías y referencias son del agente, no de un especialista.
