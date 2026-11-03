@@ -12,6 +12,8 @@ from pathlib import Path
 TARIFFS = {
     "sam-3.1": {"image": 2.50 / 1000, "frame": 0.20 / 1000, "min_frames": 50},
     "muse-spark-1.3": {"input": 1.25 / 1_000_000, "output": 4.25 / 1_000_000},
+    # Consulted 2026-10-31; Standard mode only, preview model.
+    "muse-wonder-1.0": {"input": 4.00 / 1_000_000, "output": 20.00 / 1_000_000},
 }
 
 
@@ -20,7 +22,10 @@ def estimate(model: str | None, usage: dict) -> float | None:
 
     None only when usage is present but no priced key or model is recognized.
     """
-    sam, muse = TARIFFS["sam-3.1"], TARIFFS["muse-spark-1.3"]
+    sam = TARIFFS["sam-3.1"]
+    muse = TARIFFS[
+        "muse-wonder-1.0" if model == "muse-wonder-1.0" else "muse-spark-1.3"
+    ]
     frames = usage.get("video_frames_processed", 0)
     images = usage.get("images_processed", 0)
     tokens_in = usage.get("prompt_tokens", usage.get("input_tokens", 0))

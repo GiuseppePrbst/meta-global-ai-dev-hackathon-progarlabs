@@ -172,3 +172,28 @@ Propuestas para P1; **no existen**. Contratos detallados en
 | `GET /parks/{id}/trails` | Solo senderos con geometría oficial; vacío si no hay |
 | `GET /taxa/{id}/relationships` | Relaciones documentadas con cita |
 | `GET /expeditions/{id}` (ampliado) | Retos configurables |
+
+## Estado de implementación — 31-10-2026
+
+Primer incremento (rama `feat/puyehue-biodiversity-meta-evaluation`):
+
+| Entidad del modelo | Implementación | Estado |
+| --- | --- | --- |
+| `Taxon`, `TaxonProfile`, `TaxonTrait` | `Taxon`, `TaxonProfile` (rasgos en `profile.traits`) en `bosque_api/biodiversity.py` | Implementado, solo lectura, 20 taxones |
+| `TaxonMedia` | `Taxon.media` con autor, licencia y atribución | Implementado; solo medios redistribuibles |
+| `ParkSpeciesEvidence` | `ParkTaxonEvidence` con los siete tipos | Implementado; hoy solo tipo 1 a escala de parque |
+| `ConservationAssessment` | `ConservationAssessment` + `ConservationScope` por región | Implementado desde la nómina RCE |
+| Capacidad de identificación | `IdentificationCapability` (niveles 0–3) | Implementado; el nivel debe coincidir con el estado y la evidencia |
+| `ProtectedArea`, `Sector`, `OfficialTrail`, `EcologicalRelationship` | — | Pendiente |
+
+Los estados de capacidad sustituyen a los propuestos el 31-10:
+
+- `educational_catalog`;
+- `recognition_not_evaluated`;
+- `recognition_experimental` (nivel 1);
+- `recognition_candidate` (nivel 2);
+- `recognition_enabled` (nivel 3);
+- `recognition_restricted`.
+
+Rutas implementadas: `GET /taxa`, `/taxa/{id}`, `/taxa/{id}/conservation?region=` y
+`/parks/{id}/biodiversity`. `/parks/{id}`, `/trails` y `/relationships` siguen pendientes.

@@ -183,8 +183,14 @@ async def run_cases(
     phase: str = "C",
     stage1: dict[str, dict] | None = None,
     log=print,
+    domain: str = "flora",
+    panel: dict | None = None,
+    model: str = "muse-spark-1.3",
 ):
     """One identification per case, resumable, bounded concurrency. Private output.
+
+    domain "fauna"/"fungi" uses the separate multikingdom pipeline with the panel's
+    catalog, sourced traits and comparators (strategy "candidates"/"knowledge").
 
     Cases already present in the output file (any status) are never sent again.
     For the verify strategy, a stage-1 result with the same prompt version and
@@ -227,7 +233,7 @@ async def run_cases(
 
     async def one(case):
         client = MetaResponsesClient(config.model_api_key, config.meta_timeout_seconds)
-        adapter = MuseSparkAdapter(client)  # per case: usage never mixes across tasks
+        adapter = MuseSparkAdapter(client, model)  # per case: usage never mixes
         owner, cap = phase_admission(phase, campaign.phase_caps_usd[phase])
         reservation = await asyncio.to_thread(
             ledger.reserve, owner, "identify", *(() if cap is None else (cap,))
@@ -252,7 +258,25 @@ async def run_cases(
                 except (ValueError, OSError):
                     row["segmentation_status"] = "error"
             cached = (stage1 or {}).get(case["image_id"])
-            if (
+            if domain != "flora":
+                from bosque_ai.multikingdom import identify_organism
+
+                ident = await with_backoff(
+                    lambda: identify_organism(
+                        client,
+                        model,
+                        domain,
+                        image,
+                        "image/jpeg",
+                        panel["catalog"],
+                        strategy=strategy,
+                        knowledge=panel.get("knowledge"),
+                        comparators=panel.get("comparators"),
+                        additional_images=extra or None,
+                        views=case.get("views"),
+                    )
+                )
+            elif (
                 strategy == "verify"
                 and cached
                 and cached.get("prompt_version") == PROMPT_VERSIONS["abstain"]
@@ -306,13 +330,13 @@ async def run_cases(
             )
         finally:
             usage = client.usage.copy()
-            model = "sam-3.1+muse-spark-1.3" if experiment == "B" else "muse-spark-1.3"
+            model_used = f"sam-3.1+{model}" if experiment == "B" else model
             await asyncio.to_thread(
                 ledger.finish,
                 reservation,
                 status,
                 {
-                    "model": model,
+                    "model": model_used,
                     "usage": usage,
                     "experiment": experiment,
                     "strategy": strategy,

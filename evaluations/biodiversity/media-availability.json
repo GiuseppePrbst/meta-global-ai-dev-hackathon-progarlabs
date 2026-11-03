@@ -1,0 +1,793 @@
+{
+ "queried_at": "2026-10-31T17:00:31+00:00",
+ "taxonomy_checklist": "7ddf754f-d193-4cc9-b351-99906754a03b",
+ "taxa": [
+  {
+   "panel": "flora",
+   "label": "nothofagus-dombeyi",
+   "name": "Nothofagus dombeyi",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 594,
+   "processable_license": 214,
+   "rejected_by_license": {
+    "non_commercial": 380
+   },
+   "record_cc_but_media_restricted": 3,
+   "selected_media": 18,
+   "selected_observations": 17,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "eucryphia-cordifolia",
+   "name": "Eucryphia cordifolia",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 1015,
+   "processable_license": 210,
+   "rejected_by_license": {
+    "non_commercial": 805
+   },
+   "record_cc_but_media_restricted": 30,
+   "selected_media": 19,
+   "selected_observations": 15,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "aextoxicon-punctatum",
+   "name": "Aextoxicon punctatum",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 560,
+   "processable_license": 137,
+   "rejected_by_license": {
+    "non_commercial": 423
+   },
+   "record_cc_but_media_restricted": 3,
+   "selected_media": 32,
+   "selected_observations": 18,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "weinmannia-trichosperma",
+   "name": "Weinmannia trichosperma",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 927,
+   "processable_license": 177,
+   "rejected_by_license": {
+    "non_commercial": 750
+   },
+   "record_cc_but_media_restricted": 34,
+   "selected_media": 26,
+   "selected_observations": 17,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "laureliopsis-philippiana",
+   "name": "Laureliopsis philippiana",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 639,
+   "processable_license": 143,
+   "rejected_by_license": {
+    "non_commercial": 496
+   },
+   "record_cc_but_media_restricted": 25,
+   "selected_media": 25,
+   "selected_observations": 14,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "podocarpus-nubigenus",
+   "name": "Podocarpus nubigenus",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 492,
+   "processable_license": 97,
+   "rejected_by_license": {
+    "non_commercial": 395
+   },
+   "record_cc_but_media_restricted": 9,
+   "selected_media": 28,
+   "selected_observations": 18,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "nothofagus-betuloides",
+   "name": "Nothofagus betuloides",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 564,
+   "processable_license": 115,
+   "rejected_by_license": {
+    "non_commercial": 449
+   },
+   "record_cc_but_media_restricted": 49,
+   "selected_media": 33,
+   "selected_observations": 18,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "nothofagus-pumilio",
+   "name": "Nothofagus pumilio",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 1008,
+   "processable_license": 226,
+   "rejected_by_license": {
+    "non_commercial": 782
+   },
+   "record_cc_but_media_restricted": 45,
+   "selected_media": 18,
+   "selected_observations": 16,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "nothofagus-nitida",
+   "name": "Nothofagus nitida",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 348,
+   "processable_license": 89,
+   "rejected_by_license": {
+    "non_commercial": 259
+   },
+   "record_cc_but_media_restricted": 10,
+   "selected_media": 8,
+   "selected_observations": 5,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "nothofagus-obliqua",
+   "name": "Nothofagus obliqua",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 615,
+   "processable_license": 172,
+   "rejected_by_license": {
+    "non_commercial": 443
+   },
+   "record_cc_but_media_restricted": 4,
+   "selected_media": 5,
+   "selected_observations": 5,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "nothofagus-antarctica",
+   "name": "Nothofagus antarctica",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 880,
+   "processable_license": 194,
+   "rejected_by_license": {
+    "non_commercial": 686
+   },
+   "record_cc_but_media_restricted": 41,
+   "selected_media": 9,
+   "selected_observations": 5,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "laurelia-sempervirens",
+   "name": "Laurelia sempervirens",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 694,
+   "processable_license": 140,
+   "rejected_by_license": {
+    "non_commercial": 554
+   },
+   "record_cc_but_media_restricted": 44,
+   "selected_media": 8,
+   "selected_observations": 5,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "saxegothaea-conspicua",
+   "name": "Saxegothaea conspicua",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 541,
+   "processable_license": 122,
+   "rejected_by_license": {
+    "non_commercial": 419
+   },
+   "record_cc_but_media_restricted": 9,
+   "selected_media": 11,
+   "selected_observations": 5,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "podocarpus-salignus",
+   "name": "Podocarpus salignus",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 520,
+   "processable_license": 95,
+   "rejected_by_license": {
+    "non_commercial": 425
+   },
+   "record_cc_but_media_restricted": 26,
+   "selected_media": 6,
+   "selected_observations": 4,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "caldcluvia-paniculata",
+   "name": "Caldcluvia paniculata",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 845,
+   "processable_license": 200,
+   "rejected_by_license": {
+    "non_commercial": 645
+   },
+   "record_cc_but_media_restricted": 37,
+   "selected_media": 8,
+   "selected_observations": 4,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "drimys-winteri",
+   "name": "Drimys winteri",
+   "role": "general",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 1027,
+   "processable_license": 202,
+   "rejected_by_license": {
+    "non_commercial": 825
+   },
+   "record_cc_but_media_restricted": 32,
+   "selected_media": 5,
+   "selected_observations": 3,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "luma-apiculata",
+   "name": "Luma apiculata",
+   "role": "general",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 1113,
+   "processable_license": 234,
+   "rejected_by_license": {
+    "non_commercial": 879
+   },
+   "record_cc_but_media_restricted": 8,
+   "selected_media": 7,
+   "selected_observations": 3,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "embothrium-coccineum",
+   "name": "Embothrium coccineum",
+   "role": "general",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 1027,
+   "processable_license": 215,
+   "rejected_by_license": {
+    "non_commercial": 812
+   },
+   "record_cc_but_media_restricted": 12,
+   "selected_media": 3,
+   "selected_observations": 3,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "flora",
+   "label": "gevuina-avellana",
+   "name": "Gevuina avellana",
+   "role": "general",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 1096,
+   "processable_license": 212,
+   "rejected_by_license": {
+    "non_commercial": 884
+   },
+   "record_cc_but_media_restricted": 25,
+   "selected_media": 3,
+   "selected_observations": 3,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "enicognathus-leptorhynchus",
+   "name": "Enicognathus leptorhynchus",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 329,
+   "processable_license": 67,
+   "rejected_by_license": {
+    "non_commercial": 262
+   },
+   "record_cc_but_media_restricted": 6,
+   "selected_media": 31,
+   "selected_observations": 22,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "campephilus-magellanicus",
+   "name": "Campephilus magellanicus",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 1006,
+   "processable_license": 122,
+   "rejected_by_license": {
+    "non_commercial": 884
+   },
+   "record_cc_but_media_restricted": 20,
+   "selected_media": 35,
+   "selected_observations": 22,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "pteroptochos-tarnii",
+   "name": "Pteroptochos tarnii",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL",
+    "AR"
+   ],
+   "candidates_seen": 578,
+   "processable_license": 95,
+   "rejected_by_license": {
+    "non_commercial": 483
+   },
+   "record_cc_but_media_restricted": 14,
+   "selected_media": 33,
+   "selected_observations": 22,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "troglodytes-aedon",
+   "name": "Troglodytes aedon",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 525,
+   "processable_license": 122,
+   "rejected_by_license": {
+    "non_commercial": 403
+   },
+   "record_cc_but_media_restricted": 3,
+   "selected_media": 41,
+   "selected_observations": 22,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "theristicus-melanopis",
+   "name": "Theristicus melanopis",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 1389,
+   "processable_license": 192,
+   "rejected_by_license": {
+    "non_commercial": 1197
+   },
+   "record_cc_but_media_restricted": 26,
+   "selected_media": 33,
+   "selected_observations": 22,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "enicognathus-ferrugineus",
+   "name": "Enicognathus ferrugineus",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 694,
+   "processable_license": 110,
+   "rejected_by_license": {
+    "non_commercial": 584
+   },
+   "record_cc_but_media_restricted": 14,
+   "selected_media": 9,
+   "selected_observations": 8,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "scelorchilus-rubecula",
+   "name": "Scelorchilus rubecula",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 721,
+   "processable_license": 100,
+   "rejected_by_license": {
+    "non_commercial": 621
+   },
+   "record_cc_but_media_restricted": 12,
+   "selected_media": 18,
+   "selected_observations": 8,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "colaptes-pitius",
+   "name": "Colaptes pitius",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 843,
+   "processable_license": 112,
+   "rejected_by_license": {
+    "no_derivatives": 1,
+    "non_commercial": 730
+   },
+   "record_cc_but_media_restricted": 9,
+   "selected_media": 12,
+   "selected_observations": 8,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "pteroptochos-castaneus",
+   "name": "Pteroptochos castaneus",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL",
+    "AR",
+    "any"
+   ],
+   "candidates_seen": 61,
+   "processable_license": 12,
+   "rejected_by_license": {
+    "non_commercial": 49
+   },
+   "record_cc_but_media_restricted": 0,
+   "selected_media": 11,
+   "selected_observations": 6,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "theristicus-caudatus",
+   "name": "Theristicus caudatus",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL",
+    "AR"
+   ],
+   "candidates_seen": 450,
+   "processable_license": 158,
+   "rejected_by_license": {
+    "non_commercial": 292
+   },
+   "record_cc_but_media_restricted": 1,
+   "selected_media": 12,
+   "selected_observations": 6,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "cistothorus-platensis",
+   "name": "Cistothorus platensis",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 211,
+   "processable_license": 23,
+   "rejected_by_license": {
+    "non_commercial": 188
+   },
+   "record_cc_but_media_restricted": 0,
+   "selected_media": 9,
+   "selected_observations": 6,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "veniliornis-lignarius",
+   "name": "Veniliornis lignarius",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 1015,
+   "processable_license": 175,
+   "rejected_by_license": {
+    "no_derivatives": 1,
+    "non_commercial": 839
+   },
+   "record_cc_but_media_restricted": 3,
+   "selected_media": 12,
+   "selected_observations": 6,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "dromiciops-gliroides",
+   "name": "Dromiciops gliroides",
+   "role": "general",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 94,
+   "processable_license": 26,
+   "rejected_by_license": {
+    "non_commercial": 68
+   },
+   "record_cc_but_media_restricted": 6,
+   "selected_media": 10,
+   "selected_observations": 5,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "leopardus-guigna",
+   "name": "Leopardus guigna",
+   "role": "general",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 277,
+   "processable_license": 44,
+   "rejected_by_license": {
+    "non_commercial": 233
+   },
+   "record_cc_but_media_restricted": 8,
+   "selected_media": 8,
+   "selected_observations": 5,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "puma-concolor",
+   "name": "Puma concolor",
+   "role": "general",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 536,
+   "processable_license": 93,
+   "rejected_by_license": {
+    "non_commercial": 443
+   },
+   "record_cc_but_media_restricted": 9,
+   "selected_media": 7,
+   "selected_observations": 4,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fauna",
+   "label": "turdus-falcklandii",
+   "name": "Turdus falcklandii",
+   "role": "general",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 921,
+   "processable_license": 151,
+   "rejected_by_license": {
+    "non_commercial": 770
+   },
+   "record_cc_but_media_restricted": 1,
+   "selected_media": 7,
+   "selected_observations": 4,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fungi",
+   "label": "cyttaria-hariotii",
+   "name": "Cyttaria hariotii",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL",
+    "AR"
+   ],
+   "candidates_seen": 815,
+   "processable_license": 191,
+   "rejected_by_license": {
+    "non_commercial": 624
+   },
+   "record_cc_but_media_restricted": 23,
+   "selected_media": 28,
+   "selected_observations": 20,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fungi",
+   "label": "cyttaria-espinosae",
+   "name": "Cyttaria espinosae",
+   "role": "catalog",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 379,
+   "processable_license": 55,
+   "rejected_by_license": {
+    "non_commercial": 324
+   },
+   "record_cc_but_media_restricted": 6,
+   "selected_media": 21,
+   "selected_observations": 16,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fungi",
+   "label": "cyttaria-darwinii",
+   "name": "Cyttaria darwinii",
+   "role": "hard",
+   "status": "ok",
+   "countries_tried": [
+    "CL",
+    "AR"
+   ],
+   "candidates_seen": 443,
+   "processable_license": 108,
+   "rejected_by_license": {
+    "non_commercial": 335
+   },
+   "record_cc_but_media_restricted": 30,
+   "selected_media": 11,
+   "selected_observations": 10,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fungi",
+   "label": "amanita-muscaria",
+   "name": "Amanita muscaria",
+   "role": "general",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 1550,
+   "processable_license": 131,
+   "rejected_by_license": {
+    "non_commercial": 1419
+   },
+   "record_cc_but_media_restricted": 11,
+   "selected_media": 8,
+   "selected_observations": 5,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fungi",
+   "label": "fistulina-antarctica",
+   "name": "Fistulina antarctica",
+   "role": "general",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 410,
+   "processable_license": 40,
+   "rejected_by_license": {
+    "non_commercial": 370
+   },
+   "record_cc_but_media_restricted": 24,
+   "selected_media": 7,
+   "selected_observations": 5,
+   "excluded_as_leak": 0
+  },
+  {
+   "panel": "fungi",
+   "label": "aleurodiscus-vitellinus",
+   "name": "Aleurodiscus vitellinus",
+   "role": "general",
+   "status": "ok",
+   "countries_tried": [
+    "CL"
+   ],
+   "candidates_seen": 655,
+   "processable_license": 83,
+   "rejected_by_license": {
+    "non_commercial": 572
+   },
+   "record_cc_but_media_restricted": 16,
+   "selected_media": 7,
+   "selected_observations": 4,
+   "excluded_as_leak": 0
+  }
+ ]
+}

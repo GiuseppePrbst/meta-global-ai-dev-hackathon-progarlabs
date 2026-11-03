@@ -209,3 +209,15 @@ automáticamente. Material Hepta: nunca asociado al parque ni publicado
 Fabiana García orienta el diseño de producto empresarial; mientras no conste su admisión,
 este documento no le atribuye entregables competitivos
 ([gobernanza del equipo](TEAM_AND_GOVERNANCE.md)).
+
+## Actualización 31-10-2026 — estados de capacidad implementados
+
+El backend usa ahora `educational_catalog`, `recognition_not_evaluated`,
+`recognition_experimental`, `recognition_candidate`, `recognition_enabled` y
+`recognition_restricted` ([modelo](ECOSYSTEM_DATA_MODEL.md#estado-de-implementación--31-10-2026)).
+
+- La tabla de alcance biológico sigue vigente: no hay identificación de fauna ni de hongos
+  para el visitante.
+- Carpintero negro y chercán alcanzaron un criterio preliminar en evaluación, sin endpoint
+  ([evaluación](MULTIKINGDOM_AI_EVALUATION.md)).
+- Los hongos *Cyttaria* no se distinguen entre sí: siguen solo como fichas.

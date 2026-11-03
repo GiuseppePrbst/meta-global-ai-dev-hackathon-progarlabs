@@ -272,3 +272,24 @@ la región.
 - Un hash distinto crea una versión nueva, y reimportar el mismo hash no cambia nada.
 - Encabezados cambiados hacen fallar la importación.
 - Las fixtures de CI son **sintéticas** e imitan la estructura, sin copiar filas del XLSX.
+
+## Importación implementada — 31-10-2026
+
+`evaluations/rce_import.py` genera `services/api/src/bosque_api/resources/conservation.json`.
+
+- **Controles:** verifica el SHA-256 y los encabezados de las columnas usadas, y busca por
+  nombre aceptado y sinónimos. Es idempotente: dos ejecuciones dieron un hash idéntico.
+- **Resultado:** 11 de los 20 taxones del catálogo tienen registro RCE. Los otros 9 aparecen
+  explícitos en `not_found`; entre ellos, 7 árboles y el chercán.
+- **Bandurria:** se encontró como *Theristicus melanopis*; la nómina lista *T. caudatus*
+  como sinónimo.
+- **API:** `GET /taxa/{id}/conservation?region=` aplica el ámbito. Los tests cubren:
+  - olivillo VU en Valparaíso y LC en Los Lagos (proceso 14, DS 79/2018);
+  - güiña VU en Los Ríos, NT en Los Lagos e indeterminado sin región;
+  - ausencia sin LC;
+  - diferencia RCE/UICN;
+  - reingesta idempotente y encabezados cambiados.
+- **Pendiente:**
+  - las fixtures de CI usan una fila con valores públicos ya citados en este documento, no
+    el libro completo;
+  - la resolución de la región desde coordenadas.

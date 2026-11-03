@@ -140,3 +140,18 @@ selección visual: una máscara no prueba la especie.
 Multivista: la recomendación inicial es **una** fotografía adicional dirigida a un rasgo
 (`recommended_next_photo`). En el conjunto pequeño evaluado, una tercera imagen aumentó las
 abstenciones de `verify`.
+
+## Capacidades por reino tras la campaña del 31-10-2026
+
+Detalle en [MULTIKINGDOM_AI_EVALUATION.md](MULTIKINGDOM_AI_EVALUATION.md), con etiquetas
+débiles y sin especialista.
+
+| Reino | Correctos aceptados | Negativos aceptados | Riesgo selectivo |
+| --- | --- | --- | --- |
+| Flora, `verify` | 45/100 | 8/48 | 3/48 |
+| Fauna, candidatos | 68/76 | 15/58 (todos especies parecidas) | 0/68 |
+| Hongos, candidatos | 9/29 | 8/35 | 10/19 |
+
+- Los resultados de flora no se extrapolan a fauna ni a hongos.
+- Nivel 2 provisional: olivillo, ulmo, mañío, carpintero negro y chercán.
+- Nivel 3: ningún taxón.

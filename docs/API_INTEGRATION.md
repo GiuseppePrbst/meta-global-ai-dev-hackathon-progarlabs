@@ -460,3 +460,38 @@ implementado», nunca con datos ficticios.
 
 Las métricas de árboles **no** aplican a fauna ni a hongos. Cuando no hay contrato, la UI
 registra el hallazgo sin taxón, con el flujo actual de capturas.
+
+## Catálogo multirreino implementado — 31-10-2026
+
+Rama `feat/puyehue-biodiversity-meta-evaluation`, todavía sin fusionar. Las rutas son
+públicas, de solo lectura y aditivas; `/species`, `/identify`, `/captures/*` y
+`/observations` no cambian. Ejemplos reales en
+[`contract-examples.json`](../evaluations/biodiversity/contract-examples.json): las respuestas
+GET son en vivo y la identificación y la captura son fixtures marcados como tales.
+
+| Ruta | Devuelve | Filtros y límites | Nota para la UI |
+| --- | --- | --- | --- |
+| `GET /taxa` | `TaxonPage`: `items` (resumen), `total`, `limit`, `offset` | `kingdom`, `group` (`tree`, `bird`, `mammal`, `fungus`), `puyehue_status`, `evidence_type`, `identification_status`, `rce_category` (en Los Ríos o Los Lagos); `limit` 1–100 (50 por defecto), `offset` ≤ 10.000 | `puyehue_status` es evidencia del parque, no distribución regional |
+| `GET /taxa/{id}` | `Taxon` completo: `classification`, `taxonomy`, `profile` (rasgos y fuentes), `media` (con atribución), `park_evidence`, `sensitivity`, `identification` | 404 si no existe | Los campos `null` se muestran como «sin información», no se rellenan |
+| `GET /taxa/{id}/conservation?region=` | `RegionalConservation` | `region`: `los-rios`, `los-lagos` y demás slugs regionales; un valor inválido da 422 | Sin región: `indeterminate` y `park_regions` con ambas categorías. Sin registro: `no_rce_record_found`, **nunca LC** |
+| `GET /parks/puyehue/biodiversity` | Conteos por reino y estado, y resúmenes de taxones | `kingdom` | Ninguna coordenada; `boundary` explica que no hay geometría oficial |
+
+### Estados que la UI debe distinguir
+
+- **`identification.status`**
+  - `recognition_experimental` (nivel 1) y `recognition_candidate` (nivel 2, detrás de una
+    feature flag): muestran el resultado de `/identify` como sugerencia.
+  - `recognition_not_evaluated`: solo ficha y registro sin taxón.
+  - `recognition_enabled` (nivel 3): ningún taxón lo tiene hoy.
+- **`puyehue_status`**
+  - `documented_in_park`: mención oficial a escala de parque, sin coordenadas.
+  - `regional_candidate`: rotular «sin evidencia de presencia en el parque».
+  - `not_assessed`.
+- **`sensitivity: location_sensitive`**: no ofrecer «dónde verlo» ni misiones de búsqueda.
+- **Hongos**: no mostrar nada sobre consumo; la API no lo contiene.
+
+### Identificación de fauna y hongos
+
+**No hay endpoint.** `bosque_ai.multikingdom` solo se usa en la evaluación
+([informe](MULTIKINGDOM_AI_EVALUATION.md)). La UI registra el hallazgo como captura sin
+taxón, con el flujo actual.

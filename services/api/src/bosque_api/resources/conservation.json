@@ -1,0 +1,582 @@
+{
+ "source": {
+  "title": "Nómina de especies según estado de conservación, RCE (MMA)",
+  "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2026/10/NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+  "file_name": "NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+  "sha256": "1a1dadbaf554a53f39143c40a898fc252bc2e3354734b202fb31deba4fbe607d",
+  "version_text": "ACTUALIZADO marzo 2026 (incluye hasta 20mo Proceso)",
+  "accessed_at": "2026-10-31",
+  "redistribution": "Sin licencia publicada: se versionan solo hechos seleccionados con atribución; el libro íntegro queda fuera de Git.",
+  "review_status": "imported_unreviewed"
+ },
+ "assessments": [
+  {
+   "taxon_id": "aextoxicon-punctatum",
+   "system": "RCE",
+   "jurisdiction": "Chile",
+   "rce_name": "Aextoxicon punctatum",
+   "category_text": "VU (XV-V-RM ); LC (VI-XII)",
+   "scopes": [
+    {
+     "category": "VU",
+     "regions": [
+      "arica-parinacota",
+      "tarapaca",
+      "antofagasta",
+      "atacama",
+      "coquimbo",
+      "valparaiso",
+      "metropolitana"
+     ],
+     "scope_text": "XV-V-RM"
+    },
+    {
+     "category": "LC",
+     "regions": [
+      "ohiggins",
+      "maule",
+      "nuble",
+      "biobio",
+      "araucania",
+      "los-rios",
+      "los-lagos",
+      "aysen",
+      "magallanes"
+     ],
+     "scope_text": "VI-XII"
+    }
+   ],
+   "criteria": "VU B1ab(iii)+2ab(iii) Desde Regiones de Valparaíso y Metropolitana de Santiago al norte; -- Desde Región del Libertador Bernardo O’Higgins al sur.",
+   "process": 14,
+   "decree": "DS 79/2018 MMA",
+   "source_of_category": "RCE",
+   "distribution_regions": [
+    "coquimbo",
+    "valparaiso",
+    "metropolitana",
+    "ohiggins",
+    "maule",
+    "nuble",
+    "biobio",
+    "araucania",
+    "los-rios",
+    "los-lagos"
+   ]
+  },
+  {
+   "taxon_id": "amanita-gayana",
+   "system": "RCE",
+   "jurisdiction": "Chile",
+   "rce_name": "Amanita gayana",
+   "category_text": "NT",
+   "scopes": [
+    {
+     "category": "NT",
+     "regions": [
+      "arica-parinacota",
+      "tarapaca",
+      "antofagasta",
+      "atacama",
+      "coquimbo",
+      "valparaiso",
+      "metropolitana",
+      "ohiggins",
+      "maule",
+      "nuble",
+      "biobio",
+      "araucania",
+      "los-rios",
+      "los-lagos",
+      "aysen",
+      "magallanes"
+     ],
+     "scope_text": "nacional"
+    }
+   ],
+   "criteria": null,
+   "process": 11,
+   "decree": "DS 38/2015 MMA",
+   "source_of_category": "RCE",
+   "distribution_regions": [
+    "biobio",
+    "araucania",
+    "los-rios",
+    "los-lagos"
+   ]
+  },
+  {
+   "taxon_id": "boletus-chilensis",
+   "system": "RCE",
+   "jurisdiction": "Chile",
+   "rce_name": "Boletus chilensis",
+   "category_text": "EN",
+   "scopes": [
+    {
+     "category": "EN",
+     "regions": [
+      "arica-parinacota",
+      "tarapaca",
+      "antofagasta",
+      "atacama",
+      "coquimbo",
+      "valparaiso",
+      "metropolitana",
+      "ohiggins",
+      "maule",
+      "nuble",
+      "biobio",
+      "araucania",
+      "los-rios",
+      "los-lagos",
+      "aysen",
+      "magallanes"
+     ],
+     "scope_text": "nacional"
+    }
+   ],
+   "criteria": "EN B1ab(iii)+2ab(iii)",
+   "process": 15,
+   "decree": "DS 23/2019 MMA",
+   "source_of_category": "RCE",
+   "distribution_regions": [
+    "araucania",
+    "los-rios",
+    "los-lagos"
+   ]
+  },
+  {
+   "taxon_id": "campephilus-magellanicus",
+   "system": "RCE",
+   "jurisdiction": "Chile",
+   "rce_name": "Campephilus magellanicus",
+   "category_text": "NT",
+   "scopes": [
+    {
+     "category": "NT",
+     "regions": [
+      "arica-parinacota",
+      "tarapaca",
+      "antofagasta",
+      "atacama",
+      "coquimbo",
+      "valparaiso",
+      "metropolitana",
+      "ohiggins",
+      "maule",
+      "nuble",
+      "biobio",
+      "araucania",
+      "los-rios",
+      "los-lagos",
+      "aysen",
+      "magallanes"
+     ],
+     "scope_text": "nacional"
+    }
+   ],
+   "criteria": null,
+   "process": 16,
+   "decree": "DS 16/2020 MMA",
+   "source_of_category": "RCE",
+   "distribution_regions": [
+    "ohiggins",
+    "maule",
+    "nuble",
+    "biobio",
+    "araucania",
+    "los-rios",
+    "los-lagos",
+    "aysen",
+    "magallanes"
+   ]
+  },
+  {
+   "taxon_id": "cyttaria-hariotii",
+   "system": "RCE",
+   "jurisdiction": "Chile",
+   "rce_name": "Cyttaria hariotii",
+   "category_text": "LC",
+   "scopes": [
+    {
+     "category": "LC",
+     "regions": [
+      "arica-parinacota",
+      "tarapaca",
+      "antofagasta",
+      "atacama",
+      "coquimbo",
+      "valparaiso",
+      "metropolitana",
+      "ohiggins",
+      "maule",
+      "nuble",
+      "biobio",
+      "araucania",
+      "los-rios",
+      "los-lagos",
+      "aysen",
+      "magallanes"
+     ],
+     "scope_text": "nacional"
+    }
+   ],
+   "criteria": null,
+   "process": 20,
+   "decree": "DS 54/2025 MMA",
+   "source_of_category": "RCE",
+   "distribution_regions": [
+    "ohiggins",
+    "maule",
+    "nuble",
+    "biobio",
+    "araucania",
+    "los-rios",
+    "los-lagos",
+    "aysen",
+    "magallanes"
+   ]
+  },
+  {
+   "taxon_id": "dromiciops-gliroides",
+   "system": "RCE",
+   "jurisdiction": "Chile",
+   "rce_name": "Dromiciops gliroides",
+   "category_text": "NT",
+   "scopes": [
+    {
+     "category": "NT",
+     "regions": [
+      "arica-parinacota",
+      "tarapaca",
+      "antofagasta",
+      "atacama",
+      "coquimbo",
+      "valparaiso",
+      "metropolitana",
+      "ohiggins",
+      "maule",
+      "nuble",
+      "biobio",
+      "araucania",
+      "los-rios",
+      "los-lagos",
+      "aysen",
+      "magallanes"
+     ],
+     "scope_text": "nacional"
+    }
+   ],
+   "criteria": null,
+   "process": 7,
+   "decree": "DS 42/2011 MMA",
+   "source_of_category": "RCE",
+   "distribution_regions": [
+    "maule",
+    "nuble",
+    "biobio",
+    "araucania",
+    "los-rios",
+    "los-lagos",
+    "aysen"
+   ]
+  },
+  {
+   "taxon_id": "enicognathus-leptorhynchus",
+   "system": "RCE",
+   "jurisdiction": "Chile",
+   "rce_name": "Enicognathus leptorhynchus",
+   "category_text": "LC",
+   "scopes": [
+    {
+     "category": "LC",
+     "regions": [
+      "arica-parinacota",
+      "tarapaca",
+      "antofagasta",
+      "atacama",
+      "coquimbo",
+      "valparaiso",
+      "metropolitana",
+      "ohiggins",
+      "maule",
+      "nuble",
+      "biobio",
+      "araucania",
+      "los-rios",
+      "los-lagos",
+      "aysen",
+      "magallanes"
+     ],
+     "scope_text": "nacional"
+    }
+   ],
+   "criteria": null,
+   "process": 14,
+   "decree": "DS 79/2018 MMA",
+   "source_of_category": "RCE",
+   "distribution_regions": [
+    "maule",
+    "nuble",
+    "biobio",
+    "araucania",
+    "los-rios",
+    "los-lagos",
+    "aysen"
+   ]
+  },
+  {
+   "taxon_id": "leopardus-guigna",
+   "system": "RCE",
+   "jurisdiction": "Chile",
+   "rce_name": "Leopardus guigna",
+   "category_text": "VU (XV-XIV); NT (X-XII)",
+   "scopes": [
+    {
+     "category": "VU",
+     "regions": [
+      "arica-parinacota",
+      "tarapaca",
+      "antofagasta",
+      "atacama",
+      "coquimbo",
+      "valparaiso",
+      "metropolitana",
+      "ohiggins",
+      "maule",
+      "nuble",
+      "biobio",
+      "araucania",
+      "los-rios"
+     ],
+     "scope_text": "XV-XIV"
+    },
+    {
+     "category": "NT",
+     "regions": [
+      "los-lagos",
+      "aysen",
+      "magallanes"
+     ],
+     "scope_text": "X-XII"
+    }
+   ],
+   "criteria": "VU A2c; C2a(i) (XIV al norte); - (X al sur)",
+   "process": 7,
+   "decree": "DS 42/2011 MMA",
+   "source_of_category": "RCE",
+   "distribution_regions": [
+    "coquimbo",
+    "valparaiso",
+    "metropolitana",
+    "ohiggins",
+    "maule",
+    "nuble",
+    "biobio",
+    "araucania",
+    "los-rios",
+    "los-lagos",
+    "aysen"
+   ]
+  },
+  {
+   "taxon_id": "pteroptochos-tarnii",
+   "system": "RCE",
+   "jurisdiction": "Chile",
+   "rce_name": "Pteroptochos tarnii",
+   "category_text": "LC",
+   "scopes": [
+    {
+     "category": "LC",
+     "regions": [
+      "arica-parinacota",
+      "tarapaca",
+      "antofagasta",
+      "atacama",
+      "coquimbo",
+      "valparaiso",
+      "metropolitana",
+      "ohiggins",
+      "maule",
+      "nuble",
+      "biobio",
+      "araucania",
+      "los-rios",
+      "los-lagos",
+      "aysen",
+      "magallanes"
+     ],
+     "scope_text": "nacional"
+    }
+   ],
+   "criteria": null,
+   "process": 14,
+   "decree": "DS 79/2018 MMA",
+   "source_of_category": "RCE",
+   "distribution_regions": [
+    "biobio",
+    "araucania",
+    "los-rios",
+    "los-lagos",
+    "aysen",
+    "magallanes"
+   ]
+  },
+  {
+   "taxon_id": "puma-concolor",
+   "system": "RCE",
+   "jurisdiction": "Chile",
+   "rce_name": "Puma concolor",
+   "category_text": "NT",
+   "scopes": [
+    {
+     "category": "NT",
+     "regions": [
+      "arica-parinacota",
+      "tarapaca",
+      "antofagasta",
+      "atacama",
+      "coquimbo",
+      "valparaiso",
+      "metropolitana",
+      "ohiggins",
+      "maule",
+      "nuble",
+      "biobio",
+      "araucania",
+      "los-rios",
+      "los-lagos",
+      "aysen",
+      "magallanes"
+     ],
+     "scope_text": "nacional"
+    }
+   ],
+   "criteria": null,
+   "process": 7,
+   "decree": "DS 42/2011 MMA",
+   "source_of_category": "RCE",
+   "distribution_regions": [
+    "arica-parinacota",
+    "tarapaca",
+    "antofagasta",
+    "atacama",
+    "coquimbo",
+    "valparaiso",
+    "metropolitana",
+    "ohiggins",
+    "maule",
+    "nuble",
+    "biobio",
+    "araucania",
+    "los-rios",
+    "los-lagos",
+    "aysen",
+    "magallanes"
+   ]
+  },
+  {
+   "taxon_id": "theristicus-melanopis",
+   "system": "RCE",
+   "jurisdiction": "Chile",
+   "rce_name": "Theristicus melanopis",
+   "category_text": "LC",
+   "scopes": [
+    {
+     "category": "LC",
+     "regions": [
+      "arica-parinacota",
+      "tarapaca",
+      "antofagasta",
+      "atacama",
+      "coquimbo",
+      "valparaiso",
+      "metropolitana",
+      "ohiggins",
+      "maule",
+      "nuble",
+      "biobio",
+      "araucania",
+      "los-rios",
+      "los-lagos",
+      "aysen",
+      "magallanes"
+     ],
+     "scope_text": "nacional"
+    }
+   ],
+   "criteria": null,
+   "process": 13,
+   "decree": "DS 06/2017 MMA",
+   "source_of_category": "RCE",
+   "distribution_regions": [
+    "antofagasta",
+    "atacama",
+    "coquimbo",
+    "valparaiso",
+    "metropolitana",
+    "ohiggins",
+    "maule",
+    "nuble",
+    "biobio",
+    "araucania",
+    "los-rios",
+    "los-lagos",
+    "aysen",
+    "magallanes"
+   ]
+  }
+ ],
+ "not_found": {
+  "cyttaria-espinosae": [
+   "cyttaria espinosae"
+  ],
+  "eucryphia-cordifolia": [
+   "eucryphia cordifolia",
+   "eucryphia patagonica",
+   "pellinia chilensis",
+   "pellinia cordifolia"
+  ],
+  "laureliopsis-philippiana": [
+   "laurelia philippiana",
+   "laurelia serrata",
+   "laureliopsis philippiana"
+  ],
+  "nothofagus-betuloides": [
+   "calusparassus betuloides",
+   "calusparassus forsteri",
+   "fagus betuloides",
+   "fagus dubia",
+   "fagus forsteri",
+   "nothofagus betuloides",
+   "nothofagus dubia",
+   "nothofagus forsteri",
+   "nothofagus patagonica"
+  ],
+  "nothofagus-dombeyi": [
+   "fagus dombeyi",
+   "nothofagus dombeyi"
+  ],
+  "nothofagus-pumilio": [
+   "calusparassus pumilio",
+   "fagus antarctica",
+   "fagus pumilio",
+   "fagus pumilo",
+   "nothofagus pumilio"
+  ],
+  "podocarpus-nubigenus": [
+   "nageia nubigena",
+   "podocarpus nubigenus",
+   "saxegothaea gracilis"
+  ],
+  "troglodytes-aedon": [
+   "troglodytes aedon"
+  ],
+  "weinmannia-trichosperma": [
+   "weinmannia dentata",
+   "weinmannia producta",
+   "weinmannia sessiliflora",
+   "weinmannia trichosperma",
+   "windmannia trichosperma"
+  ]
+ }
+}

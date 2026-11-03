@@ -201,3 +201,20 @@ Las copias quedan fuera de Git con su atribución en el manifiesto local.
 | SIMBIO, área protegida 971 | [SIMBIO](https://simbio.mma.gob.cl/CbaAP/Details/971) | Consulta 31-10-2026; superficie de 1994, plan de 2008 | KMZ/SHP «referencial» sin licencia verificada; no descargado | Ninguno | Pendiente |
 | Comunicado SBAP | [Traspaso marzo 2027](https://sbap.gob.cl/sala-de-prensa/noticias-y-comunicados/detalle/2026/06/16/traspaso-del-programa-de-%C3%A1reas-silvestres-de-conaf-al-servicio-se-realizar%C3%A1-a-partir-de-marzo-de-2027) | 16-06-2026 | Cita de hechos | Ninguno | Contexto institucional |
 | mycoBaseCL | [Preprint v1](https://doi.org/10.32942/X20T2N); [datos](https://doi.org/10.5281/zenodo.22388379) | v1.0, 21-09-2026; sin revisión por pares | Preprint CC BY 4.0; licencia del dataset de Zenodo **no verificada** | Ninguno | Referencia taxonómica candidata; no prueba presencia |
+
+## Campaña multirreino — 31-10-2026
+
+| Fuente | Uso | Licencia aplicada | Redistribución en Git | Notas |
+| --- | --- | --- | --- | --- |
+| iNaturalist research-grade vía GBIF (`50c9509d-…`) | Fotos de flora, fauna y hongos para evaluación con Meta | **Licencia del medio**, no la del registro: se aceptan CC0, CC BY y CC BY-SA; se rechazan NC, ND y medios sin licencia | Solo metadatos (ID, URL, autor, licencia) | Muchos registros CC BY tienen la foto en CC BY-NC: se rechazan (`record_cc_but_media_restricted` en `evaluations/biodiversity/media-availability.json`) |
+| Pl@ntNet verificado vía GBIF (10.15468/gtebaa) | Flora | Licencia por medio, normalmente CC BY-SA | Solo metadatos | El conjunto automático (10.15468/mma2ec) no se usa como verdad de terreno |
+| Wikimedia Commons | Flora, fauna, hongos y paisajes de Puyehue sin organismo | `LicenseShortName` por archivo | Solo metadatos | La categoría no prueba el taxón: se combina con inspección del agente |
+| Nómina RCE (MMA), SHA-256 `1a1dadba…607d` | `resources/conservation.json` (11 taxones) | Sin licencia publicada | Solo hechos seleccionados con atribución; el XLSX queda fuera de Git | Reimportación idempotente con `evaluations/rce_import.py` |
+| BCN SNASPE (`Snaspe.zip`, SHA-256 `f3fa0c6f…9d64`) | Polígono referencial para contar registros GBIF en Puyehue | «Libre uso con atribución» (BCN) | No: geometría privada y simplificada | La tabla de atributos asigna el parque solo a Los Ríos, aunque abarca dos regiones |
+| es.wikipedia | Rasgos secundarios de fichas y comparadores | CC BY-SA 4.0 | Paráfrasis breve con enlace | Fuente secundaria; muchas frases no tienen cita |
+| ROC, Atlas de las Aves Nidificantes de Chile | Ficha del carpintero negro | Derechos del editor | Paráfrasis breve con enlace | Sin reproducción de texto |
+
+eBird y Macaulay Library no se usaron como fuente de medios porque sus licencias no permiten
+reutilizarlos en volumen. Las fotos de la campaña se guardan solo en
+`D:/data/bosque-vivo/biodiversity-originals`, fuera de Git. Ninguna se publica ni se usa
+para entrenar.

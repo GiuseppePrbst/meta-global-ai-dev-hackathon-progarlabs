@@ -1,0 +1,5362 @@
+{
+ "set": "multikingdom-independent-2026-10-31",
+ "frozen_at": "2026-10-31",
+ "freeze_sha256": "72433771aed4bec1543587fcb6f0255ba7417cb0f063a58824548367f60f3984",
+ "label_status": "platform label (iNaturalist research grade / Pl@ntNet / Commons) + agent visual review; no human or expert review",
+ "leak_controls": [
+  "observation",
+  "individual_group (observation, photographer+date, exact and dHash<=6)",
+  "previous campaigns: image, observation, group and dHash<=6",
+  "max two first views per photographer and taxon"
+ ],
+ "panels": {
+  "flora": {
+   "development": [
+    {
+     "image_id": "commons:10393830",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "6489bcc943c0b966aa517d4f2516988b46a63bbab5d54c046bbbb70f6fbd7600",
+     "license": "CC BY-SA 2.0",
+     "author": "Valerio Pillar from Porto Alegre, Brazil",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_leaves_001_(Valerio_Pillar).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:124480347",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "cb32cf841e5de79cb093ea3fc5fed5c97e4dd008aea69c79e92f207d357ecb95",
+     "license": "CC BY 4.0",
+     "author": "Cristian Riquelme",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_18224964.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:157934163",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "4e26cacb1425c4c84c10602f58126c0ea934c97701d21ab4158f4e38bc6ce866",
+     "license": "CC BY 4.0",
+     "author": "Daniela Colleoni Villagrán",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_-_Daniela_Colleoni_Villagr%C3%A1n_-_458644193.jpeg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:157936055",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "900240d0132c3f5a08f26941f307430864939c979a4877f844c748f8eecedd5f",
+     "license": "CC0",
+     "author": "Warren Bohmwald",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_-_Warren_Bohmwald_-_458885887.jpeg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:178242114",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "fee3b1bf4e9ecb629583f68026df8d2de7888301473b9e76d9df9768762235a8",
+     "license": "CC BY-SA 4.0",
+     "author": "Bioleta Sampedro",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Timidez_Bot%C3%A1nica_en_Coihues_(cropped).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:186315294",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "74adab32f37ef724a4c1151ff27fde774e9980e52c81751e028cbd7ee6755f0c",
+     "license": "CC BY 4.0",
+     "author": "Krzysztof Ziarnek, Kenraiz",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_kz03.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:1483951",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "fdd8c1711c58263cba634e1440ce1b2359979703027ac3d69b80ee6002c69721",
+     "license": "CC BY-SA 3.0",
+     "author": "Fernando Bórquez, subida por Lin linao",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Eucryphia_cordifolia-flores.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:1518462",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "395292200447656931e614938968d7f35530a1efa0944d19bb6aa6ced021110d",
+     "license": "CC BY-SA 3.0",
+     "author": "Lin linao",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Eucryphia_cordifolia-hojas.JPG",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:157935829",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "83cbbffb8ce364d4cefbd9344113115a7cbc8de0bedbdb0973c3667b48aa905b",
+     "license": "CC BY 4.0",
+     "author": "Daniela Colleoni Villagrán",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Eucryphia_cordifolia_-_Daniela_Colleoni_Villagr%C3%A1n_-_458704726.jpeg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:34451823",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "722a25b5d2107141ea4ebc77701e3336f02ff21adc8e0ffad2747873e05c12fa",
+     "license": "CC BY 2.0",
+     "author": "Dick Culbert from Gibsons, B.C., Canada",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Eucryphia_cordifolia,_fruit_(8661827246).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:34451974",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ec4a2f1186d70c842ae218a524a32239933b1280badd3f3988b34f852f7a7266",
+     "license": "CC BY 2.0",
+     "author": "Dick Culbert from Gibsons, B.C., Canada",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Eucryphia_cordifolia_(8624425307).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:50577619",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "cfbec00359e9f340b3013562ae73f7b64b1bc15e82f16056bc5864639a3898e8",
+     "license": "CC BY 2.0",
+     "author": "Pato Novoa from Valparaíso, Chile",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Aextoxicon_punctatum,_flor_masculina_-_Flickr_-_Pato_Novoa.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:50577627",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "6eedc251a57242fa53b8c26953e1b818ead0e52d988fc732a5bf3b56192722c6",
+     "license": "CC BY 2.0",
+     "author": "Pato Novoa from Valparaíso, Chile",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Aextoxicon_punctatum_flor_femenina_-_Flickr_-_Pato_Novoa.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5231320099:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "0d51ed0a8d88056e670a114ba863e0254ae99562685ea0d7d4c3ed023501562f",
+     "license": "CC BY",
+     "author": "Bruno Avilez",
+     "source_url": "https://www.inaturalist.org/observations/299697204",
+     "extra_image_ids": [
+      "gbif:5231320099:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5231566116:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "13d83b87ee500723833f32bea385e55c1f9e6de95e2c829ee2a6ce95df366bd8",
+     "license": "CC BY",
+     "author": "Pablo Silva",
+     "source_url": "https://www.inaturalist.org/observations/297965149",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:6129919249:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "759ae330cec57f9baffff2debc04f8136fd621b5b1b89cfe70ac4a5bec05edf0",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/334775975",
+     "extra_image_ids": [
+      "gbif:6129919249:1"
+     ]
+    },
+    {
+     "image_id": "commons:50659995",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "f9946437dd5ad3e4027c9a5304eac11810f0cc17eda76e8afc0997f4abcaf4bd",
+     "license": "CC BY 2.0",
+     "author": "Dick Culbert from Gibsons, B.C., Canada",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Weinmannia_trichosperma_-_Flickr_-_Dick_Culbert.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2563569930:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "3638715f148ae6fc0381c41f7ec338bc0a2da876185d18cd57178d0836902ac4",
+     "license": "CC BY",
+     "author": "Nolan Exe",
+     "source_url": "https://www.inaturalist.org/observations/37897821",
+     "extra_image_ids": [
+      "gbif:2563569930:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3070535426:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "d97224b8da94b414522a5815fc7dd39b42f846d6348a0c5c5233d54602fc30ce",
+     "license": "CC BY",
+     "author": "Nicolás Lavandero",
+     "source_url": "https://www.inaturalist.org/observations/70070842",
+     "extra_image_ids": [
+      "gbif:3070535426:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3333090592:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ac64ab140efb34064b13e868fe7ded04fe81ea5cc987ad3d8b630c14697ee5e7",
+     "license": "CC BY",
+     "author": "Jorge Herreros de Lartundo",
+     "source_url": "https://www.inaturalist.org/observations/88202157",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4006614737:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "f4181531b578652153c4a92ca37ee60dfe6aba07d451348c24708f9f8cb8c541",
+     "license": "CC BY-SA",
+     "author": "Nicolás Villaseca Merino",
+     "source_url": "https://www.inaturalist.org/observations/144357563",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:157935725",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "f966a380fe2cba3d28a1596ac963a4446f6ba3f33a0d7c2a1cfc954a7c77726e",
+     "license": "CC BY 4.0",
+     "author": "Daniela Colleoni Villagrán",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Laureliopsis_philippiana_-_Daniela_Colleoni_Villagr%C3%A1n_-_458650243.jpeg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:157935746",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "195d94d293a6eddb19b6d5fe402701b6db193c36fa7062964caad8dc628689a3",
+     "license": "CC BY 4.0",
+     "author": "Daniela Colleoni Villagrán",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Laureliopsis_philippiana_-_Daniela_Colleoni_Villagr%C3%A1n_-_458704370.jpeg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2574234206:0",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "04dadc862886af1231b5c2c4fd1b2d5082ab63831505641bc097d18836065b94",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/38685259",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2576409153:0",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "474c6ea8bd20c524bc4979979b71f72a1e8430415a830a3dbcb123af59245ba8",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/39214952",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4510172763:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "925761d8a2e70ceed93c9cc1fc61c895de905601bbd2bd8a3d4368c8a352ad94",
+     "license": "CC0",
+     "author": "Rolando Díaz Fuentes",
+     "source_url": "https://www.inaturalist.org/observations/195963815",
+     "extra_image_ids": [
+      "gbif:4510172763:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4936301069:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "bccb46cb7e4500277a3cfe3b68e6bfd8c84badb2f488fae565eb0051511d1cf2",
+     "license": "CC BY",
+     "author": "Cesar Ormazabal",
+     "source_url": "https://www.inaturalist.org/observations/107448587",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5062705572:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "9c2a86874fe9f584024e9fd40cf13cee553bf25006c7105b1111e28bdf0bf0bb",
+     "license": "CC BY",
+     "author": "Christoph Moning",
+     "source_url": "https://www.inaturalist.org/observations/200448745",
+     "extra_image_ids": [
+      "gbif:5062705572:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3097255427:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "7d9dcc23944a6982c358c6f54dc2db539dd7a65119a928632a97751ddfe9758e",
+     "license": "CC BY",
+     "author": "Aira Francisca Faúndez Fallau",
+     "source_url": "https://www.inaturalist.org/observations/50491134",
+     "extra_image_ids": [
+      "gbif:3097255427:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3337889451:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "617325ce963b8132c0e119526fe73385524620841f8876b738ee05332d2a0a10",
+     "license": "CC BY",
+     "author": "aacocucci",
+     "source_url": "https://www.inaturalist.org/observations/63532948",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3746950340:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "e12f0949b046a198ac76aae2ce219db035136bc69f48290b63b81e592edd01ce",
+     "license": "CC BY",
+     "author": "Nolan Exe",
+     "source_url": "https://www.inaturalist.org/observations/37991503",
+     "extra_image_ids": [
+      "gbif:3746950340:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4171685925:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "843f223c1a3a5fdf69ce50c71d7c9a0d25d23db98556e917db3061868b61c975",
+     "license": "CC BY",
+     "author": "F. Bemmerlein-Lux",
+     "source_url": "https://www.inaturalist.org/observations/175340588",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:185077843",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "4cbbc2f7c36c84ad73a655c893ae4705b6fde82f66059cfc62f9c585c8f145fe",
+     "license": "CC BY 4.0",
+     "author": "Estela Caipillan",
+     "source_url": "https://commons.wikimedia.org/wiki/File:%C3%81rbol_nevado_en_el_Jard%C3%ADn_Bot%C3%A1nico_de_Ushuaia.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:186360470",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "cab6929a6e24efe1413583ba6925497481b32fc7888f92387410acc3bb1086c3",
+     "license": "CC BY 4.0",
+     "author": "Krzysztof Ziarnek, Kenraiz",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_pumilio_kz03.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:186360471",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "45ae8972b5bb22fe187cb021c3676f67ea148c2c62e4ca8e7ad0c0f5b59f5998",
+     "license": "CC BY 4.0",
+     "author": "Krzysztof Ziarnek, Kenraiz",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_pumilio_kz02.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3079684684:0",
+     "species_id": "nothofagus-nitida",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "9d9b0d115395ec9baf9a9cf805e08238ceb2030e0fc9a11fc2abf5f6fc1898b6",
+     "license": "CC BY",
+     "author": "Darío De la Fuente",
+     "source_url": "https://www.inaturalist.org/observations/33537309",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3949486593:0",
+     "species_id": "nothofagus-obliqua",
+     "role": "hard",
+     "organ": "leaf",
+     "sha256": "f1daa83808887a60b30890c51831777742fa816c8d493c658d382ed039b6558d",
+     "license": "cc-by-sa",
+     "author": "stanislas auber",
+     "source_url": "https://bs.plantnet.org/image/o/d1f416186d4679a1c80f51c08ef1dd28c63931db",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2563643955:0",
+     "species_id": "nothofagus-antarctica",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "07d13125b324500f6e391e7dc3dcd79452a6282d0022571fa18f53bb983ea83c",
+     "license": "CC BY",
+     "author": "Nolan Exe",
+     "source_url": "https://www.inaturalist.org/observations/38096354",
+     "extra_image_ids": [
+      "gbif:2563643955:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3058735045:0",
+     "species_id": "nothofagus-antarctica",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "8b78d55b9704eccb5ca3a05e1f0ec3fd194b32a378552602bcf3cd8c44b7ba63",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/70279454",
+     "extra_image_ids": [
+      "gbif:3058735045:1"
+     ]
+    },
+    {
+     "image_id": "gbif:2579319396:0",
+     "species_id": "laurelia-sempervirens",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "9a56fd86a6142832938b96f84111b0454b98c82a679f7984961a127ea870e09f",
+     "license": "CC0",
+     "author": "Matias Adolfo González Tobar",
+     "source_url": "https://www.inaturalist.org/observations/39774730",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3746957966:0",
+     "species_id": "saxegothaea-conspicua",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "f41d342e27d55329d8e5bb6ec76f2f514a741b26cc6ce3133cb730aa079608ed",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/109243986",
+     "extra_image_ids": [
+      "gbif:3746957966:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3018151898:0",
+     "species_id": "podocarpus-salignus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "b704253fd0597d41442b216d314e585cd9f10b45dd7ab95de7fa82c5b336af85",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/67531691",
+     "extra_image_ids": [
+      "gbif:3018151898:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3802505768:0",
+     "species_id": "podocarpus-salignus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "7de3634d1edf0ed13b96c4fca5abbd4db9e8706f86468e1983e306ec874c0c12",
+     "license": "CC BY",
+     "author": "Víctor Vidal Echeverría",
+     "source_url": "https://www.inaturalist.org/observations/117943533",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3997860901:0",
+     "species_id": "drimys-winteri",
+     "role": "general",
+     "organ": "flower",
+     "sha256": "766508226ce58ad5e67f1d8edb04db344fe0a44f34c51b2e5763e1185b02fff4",
+     "license": "cc-by-sa",
+     "author": "dassori paul",
+     "source_url": "https://bs.plantnet.org/image/o/7d6787fad98d5c65ecebc4a514ab5ff31377990f",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4018139206:0",
+     "species_id": "drimys-winteri",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "b4422931b496d0ad5c4ff262483e9cac0088e090c9104aa39e14fd7d4a3871ab",
+     "license": "CC BY",
+     "author": "Patricio Novoa",
+     "source_url": "https://www.inaturalist.org/observations/146570796",
+     "extra_image_ids": [
+      "gbif:4018139206:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4528104879:0",
+     "species_id": "luma-apiculata",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "ff573937054aa87ff94d312ac2d869980ac60979452255225ee2fa58172fe86a",
+     "license": "CC BY",
+     "author": "Christoph Moning",
+     "source_url": "https://www.inaturalist.org/observations/200449707",
+     "extra_image_ids": [
+      "gbif:4528104879:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4528383488:0",
+     "species_id": "luma-apiculata",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "a4d0d8c4212a430fb362eb716f4e0ad58b15bcd007565313028dbdb2421be4be",
+     "license": "CC BY",
+     "author": "F. Bemmerlein-Lux",
+     "source_url": "https://www.inaturalist.org/observations/200651407",
+     "extra_image_ids": [
+      "gbif:4528383488:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3949038899:0",
+     "species_id": "embothrium-coccineum",
+     "role": "general",
+     "organ": "flower",
+     "sha256": "7ffe2296e403f107d4d480ff1cd9586ccddc96ed7e32c3c96c60fb73c614c750",
+     "license": "cc-by-sa",
+     "author": "Contreras Viviana",
+     "source_url": "https://bs.plantnet.org/image/o/b9ac94a69f2a50b13f50d7ead61a3169f96e5412",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2974474863:0",
+     "species_id": "gevuina-avellana",
+     "role": "general",
+     "organ": "fruit",
+     "sha256": "1f09fef54a9aff6c6650aa269ea81b5d3e360ff8cae054c6da4cb784e4584d9a",
+     "license": "cc-by-sa",
+     "author": "Delanie",
+     "source_url": "https://bs.plantnet.org/image/o/26d8ff73c8ec4cd4c06ae7b17b4a01c26882835a",
+     "extra_image_ids": []
+    }
+   ],
+   "test": [
+    {
+     "image_id": "commons:10393748",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "4d4ad73aa920238d25bb7b01a2c81d759357b9a39f29173e297d6a494bb4c0c1",
+     "license": "CC BY 2.0",
+     "author": "eduardo fontanarrosa from Bariloche, Argentina",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_002_(lalofont).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:115460750",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "4861bcd5f9032a7fa2f447818cf3a1d8711730e66ecde995bef278d14f357738",
+     "license": "CC BY-SA 4.0",
+     "author": "LBM1948",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Bariloche,_varios_1994_06.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:115460751",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "7e8b7d60f91581ad5adaec0291bd045de850ae65ae51b5b3495f529e50bc2590",
+     "license": "CC BY-SA 4.0",
+     "author": "LBM1948",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Bariloche,_varios_1994_05.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:1236316",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ac7a0773755e5d59c451a0867f3e531b35e022c56e50d2e8f60fc3da088b1ab0",
+     "license": "CC BY-SA 3.0",
+     "author": "Lin linao",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi-dos.JPG",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:124480551",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "73db3873eaa1e76185296939283758635665c8de97870cc0e437f1f225f256d8",
+     "license": "CC BY 4.0",
+     "author": "Romi Galeota Lencina",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_26804715.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:132877602",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "109c41470a5298f1d3c949a7cc861546dbef158637dd7136c53b0f584bfa39f6",
+     "license": "CC BY 4.0",
+     "author": "Francisco E. Fonturbel",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_150770837.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:1360358",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "24fafe58ffbea82cbd7bf569fec2ebbf1f2a3172ab923cdedae5e13105ef6d18",
+     "license": "CC BY-SA 3.0",
+     "author": "Luis Ibarra (Sativo)",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Coihue_adulto.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:17042368",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "705a1d43ae763fcca8d01817e3f933d2807f8aa6f75a15ce3acd55c7f4062b39",
+     "license": "CC BY 2.0",
+     "author": "Pato Novoa",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_-_Camino_Puc%C3%B3n_-_Volc%C3%A1n_Villarrica_by_Pato_Novoa.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:17042377",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ac9e303623c7d00b3311796d7c7e1dcff3022ea4cd831b58260e007271cb6de4",
+     "license": "CC BY 2.0",
+     "author": "Pato Novoa",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_-_Camino_Puc%C3%B3n_-_Volc%C3%A1n_Villarrica_by_Pato_Novoa_-_002.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:181432302",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "3312f53d9ab9e29a4c249cd771dd64fab7a58e00182c143f4674456ca23be156",
+     "license": "CC BY 4.0",
+     "author": "Matt Berger",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_(Araucania,_Chile).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:181432530",
+     "species_id": "nothofagus-dombeyi",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "f49b0f2bb8030ee84c6b727bff87762f8ec4945336d905d90be2a1aa34a10076",
+     "license": "CC BY 4.0",
+     "author": "Cesar Ormazabal",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_(Puesco_Bajo,_Araucan%C3%ADa,_Chile).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:4120376",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "fca12a875b035d4d5c4d00a0c71d04db1e0490338bc61b68ac90dbc29a9280db",
+     "license": "CC BY 2.0",
+     "author": "Cristian Ordenes",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Eucryphia_cordifolia_Flor_del_ulmo_(RastaChango).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:52062024",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "a4a875f2fc6333982a45d56f4d44650a9a288c3e54768d1f8edcf9b17e681818",
+     "license": "CC BY 2.0",
+     "author": "F. Hohmann",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Polinizaci%C3%B3n_flor_de_ulmo.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:52621970",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "aeec19100593f2dc838b2ed8810d1697a6272cf28119d50cf9fab217115e09d5",
+     "license": "CC BY-SA 4.0",
+     "author": "Lin linao",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Hojas_y_brote_de_ulmo.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:60085679",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "c381ee9dc4fb2d7e2173534b0859201776c29a051ace8edce7fb6e163b29671a",
+     "license": "CC0",
+     "author": "Daderot",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Eucryphia_cordifolia_(Eucryphia_glutinosa)_-_RHS_Garden_Harlow_Carr_-_North_Yorkshire,_England_-_DSC01150.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:607213",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "543b4bc55fb166d5f10da01ef291797636c2ce03682779d74f0fa84534cc752f",
+     "license": "CC BY-SA 3.0",
+     "author": "Franz Xaver",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Eucryphia_cordifolia.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:68344324",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "c1dfca0e51db91ec779ab0454e4ef7aff6471bb75132f581a0540baa80b3b5ef",
+     "license": "CC BY-SA 4.0",
+     "author": "Krzysztof Ziarnek, Kenraiz",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Eucryphia_cordifolia_kz03.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:68344325",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "82ba41674bab0a3c857bca1d94062bac63277e2a98678ccbc33cbd3a7e7f4a73",
+     "license": "CC BY-SA 4.0",
+     "author": "Krzysztof Ziarnek, Kenraiz",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Eucryphia_cordifolia_kz01.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3039475155:0",
+     "species_id": "eucryphia-cordifolia",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "0849d8c52a63370b3e51e611659f556253a317e4e3852e31c9e9f835efd24501",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/69434005",
+     "extra_image_ids": [
+      "gbif:3039475155:1"
+     ]
+    },
+    {
+     "image_id": "commons:473576",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ffc83b503a83ca57ea7b4296e28ca7c6685fac6f4ae556282285730f25f7f90c",
+     "license": "Public domain",
+     "author": "No machine-readable author provided. Lin linao assumed (based on copyright claims).",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Abtao-Parque_Nacional_Chilo%C3%A9.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5063289112:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "8ff74179ff1e28ce9964ab53dc002a90afb63576978fee1a2a84536c22a5cf7e",
+     "license": "CC BY",
+     "author": "Cody Hinchliff",
+     "source_url": "https://www.inaturalist.org/observations/259382576",
+     "extra_image_ids": [
+      "gbif:5063289112:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5063293230:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "f0346f51be013be011fc5be0d04a8bfe89c64ae452d61a8345ccefbf5e7c397c",
+     "license": "CC BY",
+     "author": "Cody Hinchliff",
+     "source_url": "https://www.inaturalist.org/observations/259382395",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5063695549:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ee45a8c05f8a1b652a1b22984926082228962824aae1d0b2cec3fcfe35657635",
+     "license": "CC BY",
+     "author": "Matt Berger",
+     "source_url": "https://www.inaturalist.org/observations/260344424",
+     "extra_image_ids": [
+      "gbif:5063695549:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5063720623:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "07f698b91f4edf4c736c2fcacdb4692b56aee22f76ef0b259a3b310d6c42dbb1",
+     "license": "CC BY",
+     "author": "Matt Berger",
+     "source_url": "https://www.inaturalist.org/observations/260344538",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5087454288:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "185b1d3ad01ae8b90c71d03a651fdde70f3aed69acf8cc15be956c987d920542",
+     "license": "CC BY",
+     "author": "Eric Schmidt",
+     "source_url": "https://www.inaturalist.org/observations/264041686",
+     "extra_image_ids": [
+      "gbif:5087454288:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5087594258:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "007b590b06998c08cc1d225bbd4087aa3469e72ae5ceea0fc7a15ea774ae82b1",
+     "license": "CC BY",
+     "author": "Eric Schmidt",
+     "source_url": "https://www.inaturalist.org/observations/264760566",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5133590239:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b81b2dc1f76ad1da6fa2f387cce44a6e01e2a508d1d8f7315b007925f7aae5bf",
+     "license": "CC BY",
+     "author": "Bárbara Salas Osorio",
+     "source_url": "https://www.inaturalist.org/observations/270523128",
+     "extra_image_ids": [
+      "gbif:5133590239:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5188384854:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "4b0b3a6548d2f99df9844ea3b2d323090c8aedb9d9af6357c8d60e70c5373300",
+     "license": "CC BY",
+     "author": "Cesar Ormazabal",
+     "source_url": "https://www.inaturalist.org/observations/288053443",
+     "extra_image_ids": [
+      "gbif:5188384854:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5230452800:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "a541a5324bd4f413800753b13882ddd79323a5bc88e1923881ae7713184b6201",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/297464608",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5231396782:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "7b34d1b10a6c8e3bc9888e2e241bced4a3364f1bc750dab652ad8018b34b9e51",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/297463494",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5231622760:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "a39b43902264a07e047268032a5df6d1bd029cc4c5e5bf4c3e0e81026aed9cfa",
+     "license": "CC BY",
+     "author": "Bruno Avilez",
+     "source_url": "https://www.inaturalist.org/observations/289373263",
+     "extra_image_ids": [
+      "gbif:5231622760:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5281827639:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b80a4c09a489e3ece66fbb29293ffa4ba167fdfc687763630d10841d8644c697",
+     "license": "CC BY",
+     "author": "David Gutiérrez",
+     "source_url": "https://www.inaturalist.org/observations/292946062",
+     "extra_image_ids": [
+      "gbif:5281827639:1"
+     ]
+    },
+    {
+     "image_id": "commons:598273",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "034516736bd89e93810e177477c0bb14437573486bc0573d921f064b3634f581",
+     "license": "CC BY-SA 3.0",
+     "author": "Franz Xaver",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Weinmannia_trichosperma.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:68347946",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "bb7eb09571ace946c6bb90c70e2b23d47a2761e3ff89281c27d75d53131d68f6",
+     "license": "CC BY-SA 4.0",
+     "author": "Krzysztof Ziarnek, Kenraiz",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Weinmannia_trichosperma_kz02.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:68347948",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "826876974461fcc5a3cda386b1049867f4c736298c6f91ed1dce8f703d1bc333",
+     "license": "CC BY-SA 4.0",
+     "author": "Krzysztof Ziarnek, Kenraiz",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Weinmannia_trichosperma_kz01.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2563635158:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "6784359ad5587467284dea77500b866c3f8693495ddcf5852650bf121c6b1e94",
+     "license": "CC BY",
+     "author": "Nolan Exe",
+     "source_url": "https://www.inaturalist.org/observations/38074956",
+     "extra_image_ids": [
+      "gbif:2563635158:1"
+     ]
+    },
+    {
+     "image_id": "gbif:2576249646:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "0358dc12b34c5d08d0332689c4d59442e3fe872f97ddcb7aee7ad48aa6b01229",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/39384889",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2576297396:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "75c604332911cb4a6583950d64396453c94083de6c64de5cc46d6e3ea6456611",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/39214055",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3032073316:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "e068b715fc03a3998c6c89423df0c1edcf1d599c573b4cd7a2c08c34c8f7bb8f",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/67754722",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3070704496:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "f8346bfbc7738f2ae0ad70218a06e81cfb0637a7833c6decd22068e3cc3ac57a",
+     "license": "CC BY",
+     "author": "Nicolás Lavandero",
+     "source_url": "https://www.inaturalist.org/observations/70070767",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3327787921:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "4c46fbe49f67bf3f4ff677ff6bf25db2b3ad970b8fa7763b06228d13516f1197",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/86485791",
+     "extra_image_ids": [
+      "gbif:3327787921:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3335560406:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "56b0aae71395ddd268225ff0e726d64908da440a0b21fd5c0d71421168f66424",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/89921836",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3335562423:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "073b6e2d824e067a6be2b923088aa19ac9fe3df6ba93286660bf2ddca209bdf9",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/89909861",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3912321515:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "a93276dff0fe7ac009e740cd427a8df8035f838916b0addad4a66b8212fb787c",
+     "license": "CC0",
+     "author": "Rolando Díaz Fuentes",
+     "source_url": "https://www.inaturalist.org/observations/135394126",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3912477648:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "6e5f31aac434a319f65da903fe99d83c3abbd1042473e649518c2b7fdeeffa85",
+     "license": "CC0",
+     "author": "Rolando Díaz Fuentes",
+     "source_url": "https://www.inaturalist.org/observations/135661768",
+     "extra_image_ids": [
+      "gbif:3912477648:1"
+     ]
+    },
+    {
+     "image_id": "commons:117115505",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "aed156a190e0d791fe91679a3bf70b79f314ab3e3279fc6147eb20bd3ed91970",
+     "license": "CC BY 4.0",
+     "author": "Aira Francisca Faúndez Fallau",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Laureliopsis_philippiana_80168194.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:138643139",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "019a6c0073ae44b9bd704a04e7b06c3bdf558b0007f64bdf1bda0114b074df6e",
+     "license": "CC BY 4.0",
+     "author": "(c) Cristian Riquelme, some rights reserved (CC BY)",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Laureliopsis_philippiana,_Valdivia,_Los_R%C3%ADos,_Chile_62188473.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:176710701",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "2b99e6a0573c882d38fd75f8d451475116d162ad85fdc2bc0cc4925cc3b9b94e",
+     "license": "CC0",
+     "author": "Rolando Díaz Fuentes",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Laureliopsis_philippiana_-_Rolando_D%C3%ADaz_Fuentes_-_230446979.jpeg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:56956047",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "22bed2e051dae110b6d0b8492193802d72184ec8e1c57201f094426a2c9ff773",
+     "license": "CC0",
+     "author": "Daderot",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Laureliopsis_philippiana_-_Trebah_Garden_-_Cornwall,_England_-_DSC01659.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:56956048",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "13d54bf9f2216507e4c249dde3d2defaf9c389cc00ff79ff8d961fc84aebcfe0",
+     "license": "CC0",
+     "author": "Daderot",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Laureliopsis_philippiana_-_Trebah_Garden_-_Cornwall,_England_-_DSC01661.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2576408107:0",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "cb60eef10bde0aebe5adea69e257fa608fbeef91840a941c3fa18b1357cd56ce",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/39216818",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2576462199:0",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "8291f6a6aecfdce05284d8c196431c9e3a15c2cfddad35174dc604ca47d25d60",
+     "license": "CC0",
+     "author": "Andrés Villarroel Moncada",
+     "source_url": "https://www.inaturalist.org/observations/39543637",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3070735470:0",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "6cee596f4347e7aa125b29e9f64f8b5b9d45d09a014d97636538f350cd09c2ef",
+     "license": "CC BY",
+     "author": "Nicolás Lavandero",
+     "source_url": "https://www.inaturalist.org/observations/70070836",
+     "extra_image_ids": [
+      "gbif:3070735470:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3097069412:0",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "419e9d8579e6be0240f5313ecbac372c1fbd08a49f0e750a021e9b2a0a6a1df5",
+     "license": "CC BY",
+     "author": "Aira Francisca Faúndez Fallau",
+     "source_url": "https://www.inaturalist.org/observations/50491118",
+     "extra_image_ids": [
+      "gbif:3097069412:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3384869403:0",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "e3c4eb2c74e8253e396a72ad40908d1665e4e83d217bc4a66673c65beb14b7cf",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/95279866",
+     "extra_image_ids": [
+      "gbif:3384869403:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3391310896:0",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "38b9c96670fa79cafda4ac157aa12d3774689d8e38a31a37604c9e45818c38d8",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/97822814",
+     "extra_image_ids": [
+      "gbif:3391310896:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3747053190:0",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "4ee2a821285c1f08b93b07b5b9189bdb4478ace061216e02efbd73b07783ea15",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/109243982",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3912029801:0",
+     "species_id": "laureliopsis-philippiana",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "d2dab24a0584f378bef7dba296b9ccf7ae4fdd3fe8cf83be2c533cef25e19205",
+     "license": "CC0",
+     "author": "Rolando Díaz Fuentes",
+     "source_url": "https://www.inaturalist.org/observations/135130909",
+     "extra_image_ids": [
+      "gbif:3912029801:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3079729669:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "de16d7d95a8d973430c350e307c1d385703962c953eb3483e6b54f7dc25931c8",
+     "license": "CC BY",
+     "author": "Darío De la Fuente",
+     "source_url": "https://www.inaturalist.org/observations/33537890",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3096986419:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "e10ba5af1d0a4114e2eafc404044a48c99447ac99de53bf37a7b46cb2a3046c6",
+     "license": "CC BY",
+     "author": "Aira Francisca Faúndez Fallau",
+     "source_url": "https://www.inaturalist.org/observations/50491165",
+     "extra_image_ids": [
+      "gbif:3096986419:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3399320615:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "75ad54c379a24b6c0d13528b06f3dd1c0c7d55d6f1099f92ad262e83c5e3c040",
+     "license": "CC BY",
+     "author": "David Gutiérrez",
+     "source_url": "https://www.inaturalist.org/observations/98833616",
+     "extra_image_ids": [
+      "gbif:3399320615:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3985711228:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "0acc16a4793c83ec6171f46b49714c1a99f575bfd6c25e6fc0c6183d1e9fa1e3",
+     "license": "CC BY",
+     "author": "Loren Cassin Sackett",
+     "source_url": "https://www.inaturalist.org/observations/142308984",
+     "extra_image_ids": [
+      "gbif:3985711228:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4029194190:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "84763fda555f934b8c3f53f6cacfc7c5d3818241e2b4de6f768f47179d40ea47",
+     "license": "CC BY",
+     "author": "Aira Francisca Faúndez Fallau",
+     "source_url": "https://www.inaturalist.org/observations/148050264",
+     "extra_image_ids": [
+      "gbif:4029194190:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4076073650:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "32a1f4766b508e6b90195812e15aabdb7707be1a7cc3cde4c396415288235bba",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/153271185",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4126690513:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "38534551ae7025480aacfcaa2f054f339829c0544e4690bf33a84ec4cae3223f",
+     "license": "CC BY-SA",
+     "author": "Tony Rebelo",
+     "source_url": "https://www.inaturalist.org/observations/20142206",
+     "extra_image_ids": [
+      "gbif:4126690513:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4126707586:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "a840f56752ad8c159ce3198e89ca08092be756db95544eb2053504314025335d",
+     "license": "CC BY-SA",
+     "author": "Tony Rebelo",
+     "source_url": "https://www.inaturalist.org/observations/20150120",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4863464662:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "88f3fdf3a3927e01698327bfa4dcc21b0db737dec3a65db7b71b214468632751",
+     "license": "CC BY",
+     "author": "Pablo Silva",
+     "source_url": "https://www.inaturalist.org/observations/214719708",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4935733385:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "9de97651986478150965cd9a5c5a62d2a7204d82d9a7fce484ae27b67bdddacf",
+     "license": "CC BY",
+     "author": "Cesar Ormazabal",
+     "source_url": "https://www.inaturalist.org/observations/110199519",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5062723974:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "c039d9cd5c6bf2464adc58cb2d94e15db523d596e270ecb19cc3768aac9b53e0",
+     "license": "CC BY",
+     "author": "Flavien Saboureau",
+     "source_url": "https://www.inaturalist.org/observations/209147159",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5062845103:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b6bea7e1d9711a207cf63bbff43ff7f74faaab2710ea7407a7108fc7d1a7a214",
+     "license": "CC BY",
+     "author": "Ariadna Tripaldi",
+     "source_url": "https://www.inaturalist.org/observations/246475253",
+     "extra_image_ids": [
+      "gbif:5062845103:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5062875102:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "abbe6187e980d683d632569ed9146efc3f0de292cafc1f7300fea8fdfa539279",
+     "license": "CC BY",
+     "author": "avocat",
+     "source_url": "https://www.inaturalist.org/observations/256063982",
+     "extra_image_ids": [
+      "gbif:5062875102:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5063480198:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "bd3cdce6a9f1129719ad0bccaceeb1d0b76ff6abba68eaa2239eecd54beb001f",
+     "license": "CC BY",
+     "author": "Hayden Jones",
+     "source_url": "https://www.inaturalist.org/observations/259755113",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5063549179:0",
+     "species_id": "podocarpus-nubigenus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "7608c894c429fbcd74aa92aee29247f8ce645071f8557531aac06a86f582518e",
+     "license": "CC BY",
+     "author": "Hayden Jones",
+     "source_url": "https://www.inaturalist.org/observations/259915418",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:92519784",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "2e68dde937d9d03c53c8d6a7cbeab6c523d0d4730eb675ea120061f2a3fb1fcc",
+     "license": "CC BY-SA 2.0",
+     "author": "Jocelyn Kinghorn from Christchurch, New Zealand",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Just_Like_a_Mirror_-_Flickr_-_Jocey_K.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2573912505:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "024ae7164f1af5f9d1ce414bb9e1fb6762ae6c0f974a76ed306216021b5cce69",
+     "license": "CC BY",
+     "author": "Nolan Exe",
+     "source_url": "https://www.inaturalist.org/observations/37992744",
+     "extra_image_ids": [
+      "gbif:2573912505:2"
+     ]
+    },
+    {
+     "image_id": "gbif:3039247992:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "f66f57bbf0fbc52c9a4da0c05f3c48bb0a7cd109d302a4268539b00815fd4f20",
+     "license": "CC BY",
+     "author": "Erasmo Macaya Horta",
+     "source_url": "https://www.inaturalist.org/observations/68813679",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3985614144:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "0bf3ff97b7c3b993cb38e9c8abe2b65b78f33c9e3e377e46a4fdbe6ab2fdb3dd",
+     "license": "CC BY",
+     "author": "Nicolás Lavandero",
+     "source_url": "https://www.inaturalist.org/observations/142189806",
+     "extra_image_ids": [
+      "gbif:3985614144:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4054828553:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ca82721be9d3e2b57f168d85d7e7cf5a7cf4ce38660c5f988681b0e0ba5ef978",
+     "license": "CC BY",
+     "author": "Agustin Cifuentes Oportus",
+     "source_url": "https://www.inaturalist.org/observations/148727144",
+     "extra_image_ids": [
+      "gbif:4054828553:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4055093297:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ced332b2bcfed5722ac0057b27ee6f2e400553ea926d1bca83d186ad105fd4a1",
+     "license": "CC BY-SA",
+     "author": "Nicolás Villaseca Merino",
+     "source_url": "https://www.inaturalist.org/observations/150482744",
+     "extra_image_ids": [
+      "gbif:4055093297:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4116104273:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ef34754a557141db37d7b258b5849ba48524295ed0fc035b9687390fb7f065f7",
+     "license": "CC BY",
+     "author": "Claudio Cantú Muñiz",
+     "source_url": "https://www.inaturalist.org/observations/161500030",
+     "extra_image_ids": [
+      "gbif:4116104273:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4171634060:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "672ca97a5c1bfbe92afce3d8edce32b7b1e360fa9815961368091f803b9807e9",
+     "license": "CC BY",
+     "author": "F. Bemmerlein-Lux",
+     "source_url": "https://www.inaturalist.org/observations/175340587",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4439014463:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "180fe6710f79ed23626eda494de193e4b18372f55f909b2922d6bfadd1149373",
+     "license": "CC BY",
+     "author": "Pablo Silva",
+     "source_url": "https://www.inaturalist.org/observations/189872467",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4458705075:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "6f859c1f66a98c82f5a3fe56a438a0abc5a97a7ebeab16af8b70a9e52960fce0",
+     "license": "CC BY",
+     "author": "Nelson Balcar",
+     "source_url": "https://www.inaturalist.org/observations/193001198",
+     "extra_image_ids": [
+      "gbif:4458705075:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4508023463:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "59a104d8cfc98fa4930c3e1bcd0c151b632c2ae315776700806c8366537fa8f3",
+     "license": "CC BY",
+     "author": "Flavien Saboureau",
+     "source_url": "https://www.inaturalist.org/observations/195583951",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4525053493:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "7ac5bd26ec414f9060e5d55762fe15029d236987473c7ba79327e0dd9a4e7c9f",
+     "license": "CC BY",
+     "author": "Pablo",
+     "source_url": "https://www.inaturalist.org/observations/199280477",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4535983906:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "89c9361fe0f98ae58629173e97ddc6001e109c463da85f3a3632058e44e430fe",
+     "license": "CC0",
+     "author": "Irene",
+     "source_url": "https://www.inaturalist.org/observations/201215937",
+     "extra_image_ids": [
+      "gbif:4535983906:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4599932102:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "8a9ded6d224b06764d9192e029a13937f92b7ce212759749186409f65e082b6f",
+     "license": "CC BY",
+     "author": "Ingvild Riska",
+     "source_url": "https://www.inaturalist.org/observations/203678159",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:1217020",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "1721a0e0f669fb556ddfd1a1cb39cfe08065256059b2f1205bcd343ae831a50d",
+     "license": "Public domain",
+     "author": "No machine-readable author provided. Rufus1961 assumed (based on copyright claims).",
+     "source_url": "https://commons.wikimedia.org/wiki/File:BosqLenga1.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:15243479",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b7a1cc765dc918061b24aed4b63fd7f7e51054a7f82bef6247b640c34ba3a1cb",
+     "license": "CC BY-SA 4.0",
+     "author": "Fernando Lopez-Anido",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Picada_al_Frey_048.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:1571898",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "eaf439793eff46856ffadeb069184b48e38382ac34fb158bfcf7fdf161f7ce1a",
+     "license": "CC BY-SA 2.5",
+     "author": "No machine-readable author provided. Heretiq assumed (based on copyright claims).",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Misodendrum_punctulatum_on_lenga.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:24215288",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "fe3364f82d335708d82d452da1865d6b6fc3a8bd1c751be4d9df6b3f43e600de",
+     "license": "CC BY 2.0",
+     "author": "Jason Hollinger",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Lenga_in_Autumn_Splendor_(3328803692).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:24215300",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "62e4d37e7d5817122aaf84d4739850fffaedb9f75eecda30bebf63267a870b01",
+     "license": "CC BY 2.0",
+     "author": "Jason Hollinger",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Sunny_Lenga_Forest_(3321050068).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:30497816",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b9b365860df099d0094557eaf0f2f7b341885f60f13d9f97489d421584230fd5",
+     "license": "CC BY-SA 3.0",
+     "author": "Lin linao",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_pumilio_-_follaje.JPG",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:30497823",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "a423f6fa4a13d0e76aa457657755e04f3878a4152daa3908ea5319f440706ec4",
+     "license": "CC BY-SA 3.0",
+     "author": "Lin linao",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_pumilio_-_rama.JPG",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:32253643",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "310a28efe871a75c130f073296d4760669912ae1bb47746dc9ec91537135b4c6",
+     "license": "CC BY-SA 3.0",
+     "author": "Pablo Navarro",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Vista_de_Lenga.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:32554492",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "a8f36593873c0ac6daf1dbe5ad874d7f8d28a2e8968ffc9ddc2f3375c9c780fd",
+     "license": "CC BY-SA 3.0",
+     "author": "Danieldi7",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Lenga_herida.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:58725567",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b0f72a45bed41212676b944956a0ea167fd86c1a08ab57587a0bd94449cc4dfd",
+     "license": "CC BY-SA 4.0",
+     "author": "Mlwiki",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_pumilio,_leaves.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:58725568",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "880991e45301d466e4ed0ab95b5a774eb89121d54bc5c711526e91b786c72cc8",
+     "license": "CC BY-SA 4.0",
+     "author": "Mlwiki",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_pumilio,_foliage.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:66423567",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "6557bc1f5d4cd53cb244002eb2139cf4c05b0a3307ed8a032b0a8ccc20008f65",
+     "license": "CC BY-SA 4.0",
+     "author": "LBM1948",
+     "source_url": "https://commons.wikimedia.org/wiki/File:%C3%91irre.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:7529779",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "91ba56ff02a4374d1f6264fc91d66619b6228ac1d57f328d9ba08ea8db254210",
+     "license": "CC BY 2.0",
+     "author": "pabloendemico",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Roble_(Nothofagus_obliqua)_y_Lenga_(Nothofagus_pumilio).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:77618175",
+     "species_id": "nothofagus-pumilio",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "0c81534aa7dcaafebe58ea1973f46448dfd34aff95a343aab5be2a453a622728",
+     "license": "CC BY-SA 3.0",
+     "author": "Gagea",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_pumilio-general_view_(cropped).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3335495447:0",
+     "species_id": "nothofagus-nitida",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "0576689f6ce2543b5162e4830e8f19ffb1d592a5a25b8740be5d61cfd47eed60",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/89921650",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3399309616:0",
+     "species_id": "nothofagus-nitida",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "438bfb589babfed48083d67c018e8daed5bf24afc0860b261c2ac642a24010ba",
+     "license": "CC BY",
+     "author": "David Gutiérrez",
+     "source_url": "https://www.inaturalist.org/observations/98833485",
+     "extra_image_ids": [
+      "gbif:3399309616:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4111834499:0",
+     "species_id": "nothofagus-nitida",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "f755ce533e3157745e6c63fd3ed77aad5f7a88ff1c6293ac9f40b4851940a735",
+     "license": "CC BY",
+     "author": "Sebastián Saiter V.",
+     "source_url": "https://www.inaturalist.org/observations/159983133",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4126715473:0",
+     "species_id": "nothofagus-nitida",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "a21548d2a4f50b0ce337799b5e93ec37b294210b614bc3808268913b177082bf",
+     "license": "CC BY-SA",
+     "author": "Tony Rebelo",
+     "source_url": "https://www.inaturalist.org/observations/20150091",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2974622146:0",
+     "species_id": "nothofagus-obliqua",
+     "role": "hard",
+     "organ": "leaf",
+     "sha256": "d7faa57c0a36089d2fa3d71ad26983b561f55923ba1ae3a9257a4326c32aa228",
+     "license": "cc-by-sa",
+     "author": "Diego Alex",
+     "source_url": "https://bs.plantnet.org/image/o/77cb5dd1ba81263e6a017c9d2ebc83c45d6609b8",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3949348251:0",
+     "species_id": "nothofagus-obliqua",
+     "role": "hard",
+     "organ": "leaf",
+     "sha256": "ee391b30c57df1a7d022b7f50f560fefdb820990e4ca33dbed9ebb0387af4b08",
+     "license": "cc-by-sa",
+     "author": "Daniel Barrera Angulo",
+     "source_url": "https://bs.plantnet.org/image/o/9efed3674624e22a801f9352c5548e8ad91b6892",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3949778807:0",
+     "species_id": "nothofagus-obliqua",
+     "role": "hard",
+     "organ": "leaf",
+     "sha256": "25aa924ef999bbc49be807393c0a5464eb2278fead6e8bb88ab7a12756ebc487",
+     "license": "cc-by-sa",
+     "author": "Manriquez Oronoz",
+     "source_url": "https://bs.plantnet.org/image/o/84586b9efc21ff39ee54a9fa504e93a2529f4d7b",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3997839220:0",
+     "species_id": "nothofagus-obliqua",
+     "role": "hard",
+     "organ": "leaf",
+     "sha256": "4b599bb23157143698640233fa0303dd35aa9a9f130ecd2e8207eb6a0cb393c2",
+     "license": "cc-by-sa",
+     "author": "Rolf Keller",
+     "source_url": "https://bs.plantnet.org/image/o/b73615b4169c794375503f30fbc057fbbf566697",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:1848756283:0",
+     "species_id": "nothofagus-antarctica",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "137c8d82fba498511ad34b2da7076acfcdd3d8b1c39aad28e8f2ded23a04fd69",
+     "license": "CC BY",
+     "author": "cstobie",
+     "source_url": "https://www.inaturalist.org/observations/12747711",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2620179191:0",
+     "species_id": "nothofagus-antarctica",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "efbaaa70682c71e06fdc5290e34b25cb754628c8631c784d211fb9f6653c0bfc",
+     "license": "CC BY",
+     "author": "Jean Jacques Godon",
+     "source_url": "https://www.inaturalist.org/observations/44866556",
+     "extra_image_ids": [
+      "gbif:2620179191:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3039198130:0",
+     "species_id": "nothofagus-antarctica",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "728a5d362c76f35e2aefc21703709937d6b6c25d0056cd92eda58ea5bdfbbdd2",
+     "license": "CC BY",
+     "author": "Erasmo Macaya Horta",
+     "source_url": "https://www.inaturalist.org/observations/68917780",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2005288375:0",
+     "species_id": "laurelia-sempervirens",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "019fb8ad7298375b04f2b5ad878f7e6ed12205a428a13c5f0d3b04150594b117",
+     "license": "CC BY",
+     "author": "Nicolás Lavandero",
+     "source_url": "https://www.inaturalist.org/observations/20209480",
+     "extra_image_ids": [
+      "gbif:2005288375:1"
+     ]
+    },
+    {
+     "image_id": "gbif:2576353504:0",
+     "species_id": "laurelia-sempervirens",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "e4e141942bb98122ef27fa7f2bd8665be636b3e2b9b4f0ed39700d4917a8cedc",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/39384853",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3112844732:0",
+     "species_id": "laurelia-sempervirens",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "0e273f714e5d3454b6bcd2b15f81e796f9e9f850a93a86d15f7230f55971ed99",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/77534104",
+     "extra_image_ids": [
+      "gbif:3112844732:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3743338709:0",
+     "species_id": "saxegothaea-conspicua",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "ed0fb4af3a299910ef57392cf92ab6d8239aba78b756cd5f4c6235cb87a141a5",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/108477032",
+     "extra_image_ids": [
+      "gbif:3743338709:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3881906488:0",
+     "species_id": "saxegothaea-conspicua",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "20cd6876bae96a8a42bf628d8ddce3765df777af411f5e48771a5f73a5543258",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/128739421",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4029055357:0",
+     "species_id": "saxegothaea-conspicua",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "1a3a878732381086ff55f673508d92ccd39340ced492b9ae4c81cf2372099881",
+     "license": "CC BY",
+     "author": "Aira Francisca Faúndez Fallau",
+     "source_url": "https://www.inaturalist.org/observations/148071036",
+     "extra_image_ids": [
+      "gbif:4029055357:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4165873451:0",
+     "species_id": "saxegothaea-conspicua",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "0a787815db6c4bbc422f78c70b1985bbd8d15b4447ff401f0375a81ac4458421",
+     "license": "CC BY",
+     "author": "Fabrício Mil Homens Riella",
+     "source_url": "https://www.inaturalist.org/observations/174588696",
+     "extra_image_ids": [
+      "gbif:4165873451:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3903159824:0",
+     "species_id": "podocarpus-salignus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "870cf2382b48ae73f1481921d1a9e9a51fdaaffbdc36746464353df41f6e8fa5",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/133417675",
+     "extra_image_ids": [
+      "gbif:3903159824:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3903560025:0",
+     "species_id": "podocarpus-salignus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "e0a8a80c1835cc2c70253c84db258b863d51ca8dc737b2221ed35b246bd0391c",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/134663288",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2563636007:0",
+     "species_id": "caldcluvia-paniculata",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "7b8a264c04bed620285b2d202a8f3ab11f20c4f528407da45823bdc67a77dda3",
+     "license": "CC BY",
+     "author": "Nolan Exe",
+     "source_url": "https://www.inaturalist.org/observations/38074890",
+     "extra_image_ids": [
+      "gbif:2563636007:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3031966207:0",
+     "species_id": "caldcluvia-paniculata",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "b3298ae9bd4604129e447516bbccb6a0c263bee0a62b691ead1a7ec154ef61ee",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/67754683",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3039165777:0",
+     "species_id": "caldcluvia-paniculata",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "de5ae0b8303e024ecbfe234271b501f26ec9534158eb71c570caa427ce07c4c2",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/67301252",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3070387413:0",
+     "species_id": "caldcluvia-paniculata",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "a77fbc4df1cbf4ad29c12ddf56e021f4b1215aa6fc9fe74a68e3ae85b2482b55",
+     "license": "CC BY",
+     "author": "Nicolás Lavandero",
+     "source_url": "https://www.inaturalist.org/observations/70070841",
+     "extra_image_ids": [
+      "gbif:3070387413:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3997797381:0",
+     "species_id": "drimys-winteri",
+     "role": "general",
+     "organ": "flower",
+     "sha256": "33b295f49ef52b59004b80142cd3536821e97dda5e38e56487aad9daeeb42b36",
+     "license": "cc-by-sa",
+     "author": "Vallejos Duque Sergio",
+     "source_url": "https://bs.plantnet.org/image/o/0387a31dc05f83a6d0fbf7dd1e4d681898501d4b",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4535870101:0",
+     "species_id": "luma-apiculata",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "3441b58c7df200e7910f2168ad07adde7aed2e76284a0574322159df0a29e164",
+     "license": "CC BY",
+     "author": "Bruno Avilez",
+     "source_url": "https://www.inaturalist.org/observations/197610253",
+     "extra_image_ids": [
+      "gbif:4535870101:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3949466484:0",
+     "species_id": "embothrium-coccineum",
+     "role": "general",
+     "organ": "leaf",
+     "sha256": "bcb1f0e206cf8528401294ce27487ac2e61562f54d056af1b6f6025a6239f1fa",
+     "license": "cc-by-sa",
+     "author": "Oscar Burgos",
+     "source_url": "https://bs.plantnet.org/image/o/3e27ddd6a1bde71179988d99167ed8951e00b4bc",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3949638500:0",
+     "species_id": "embothrium-coccineum",
+     "role": "general",
+     "organ": "flower",
+     "sha256": "9c2507245f5615a7a87d3482a2faa6d6590c6aaa10592f8ebd6d51f3fcd46b51",
+     "license": "cc-by-sa",
+     "author": "guilles",
+     "source_url": "https://bs.plantnet.org/image/o/c6a3ad7a39ac86e865effabc65bb53148be41b65",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2644191067:0",
+     "species_id": "gevuina-avellana",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "466041e62a85e5c9fa52c66f0496c1303b17ec7c8589aff87352a8ab6cf971b0",
+     "license": "cc-by-sa",
+     "author": "Paz Calderón",
+     "source_url": "https://bs.plantnet.org/image/o/9b9955a1d131819d237e567aa54cbc5ebf6284d5",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2974642823:0",
+     "species_id": "gevuina-avellana",
+     "role": "general",
+     "organ": "leaf",
+     "sha256": "fde1d1ba9619e15f624c099c492572a34df08b2df7a8cb50c74729bb04287a35",
+     "license": "cc-by-sa",
+     "author": "Celis Diego",
+     "source_url": "https://bs.plantnet.org/image/o/48d2107ec772e429ce8b54e7fd2b5edfa96e3c0d",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4046757827:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "03da45b0475dcaa6466918f71e6caaebe9c4e615384c964d701e72f34d5e3855",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/149443269",
+     "extra_image_ids": [
+      "gbif:4046757827:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3764167088:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "04da595c0888da73b667054bd1c6f55999e7c1ae7bc39a0203373e0eace46201",
+     "license": "CC0",
+     "author": "Hugo Hulsberg",
+     "source_url": "https://www.inaturalist.org/observations/112964290",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4126934393:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "0751b5e386d1244f728183faeda1cb2d6b536109494a51a9a78b156b04b6539a",
+     "license": "CC BY",
+     "author": "La florifunga🌱",
+     "source_url": "https://www.inaturalist.org/observations/163480521",
+     "extra_image_ids": [
+      "gbif:4126934393:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4510201458:0",
+     "species_id": "theristicus-melanopis",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "07ae37bf459a2ddd13dedb0c82d00386696287e918081bd8c576205b920462a4",
+     "license": "CC BY",
+     "author": "Charlotte Kirchner",
+     "source_url": "https://www.inaturalist.org/observations/196166632",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4022158691:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "0a560755d674ad3f9b24755a82196bd4a813d732d65429479667e8b86d0c786a",
+     "license": "CC BY",
+     "author": "Franco Arenas",
+     "source_url": "https://www.inaturalist.org/observations/147162219",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4126915482:0",
+     "species_id": "theristicus-melanopis",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "0f4679c827d553afc35e287eb63e47afee5f40571d829e1579a8c5e98d984ec5",
+     "license": "CC BY",
+     "author": "ignacio_diaz05",
+     "source_url": "https://www.inaturalist.org/observations/163927214",
+     "extra_image_ids": [
+      "gbif:4126915482:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4430653179:0",
+     "species_id": "theristicus-melanopis",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "10e494ff367897168d209f2e8724b6539eb097483152602ebe66db9e86af29b9",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/187912057",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3384000138:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "1422248f0e7aff834fd31b863ebad6b414f82dbd9af6ed4d4d7955721b6d2d65",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/95085643",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4028729135:0",
+     "species_id": "theristicus-melanopis",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "169b20eb0e43598a6e753f0d83f4f06d52e5518b23cf6414fdd67b1f99ffed46",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/147825240",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5088164347:0",
+     "species_id": "troglodytes-aedon",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "19512264424116b4af8c340ce83d742f808b2715218095d60629c39b947af1d9",
+     "license": "CC BY",
+     "author": "ignacio_diaz05",
+     "source_url": "https://www.inaturalist.org/observations/265444208",
+     "extra_image_ids": [
+      "gbif:5088164347:1"
+     ]
+    },
+    {
+     "image_id": "commons:52420104",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "9c7d99f288c119e39c8110b95a281e8fea75c0fb90d8e3ae8c7147efab004ca2",
+     "license": "CC BY-SA 3.0",
+     "author": "This image was created by user Jason Hollinger (jason) at Mushroom Observer, a source for mycological images.You can contact this user here.",
+     "source_url": "https://commons.wikimedia.org/wiki/File:2008-12-20_Pseudocyphellaria_glabra_(J.D._Hook._%26_Taylor)_Dodge_43353.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:52420041",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "1ce2abcd3e176275da994834545c44d2288553e8710b059b38c8f2c98adff2d8",
+     "license": "CC BY-SA 3.0",
+     "author": "This image was created by user Jason Hollinger (jason) at Mushroom Observer, a source for mycological images.You can contact this user here.",
+     "source_url": "https://commons.wikimedia.org/wiki/File:2008-12-24_Pseudocyphellaria_berberina_(G._Forster)_D._Galloway_%26_P._James_41430.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:49125976",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "936f823c65c0ba0a6edbea155eaf78f8fb8e2ce474c85cad33f655364c03d32a",
+     "license": "CC BY-SA 4.0",
+     "author": "Claudio Elias",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Anticura_-_Recepci%C3%B3n.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:24215887",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "b90c6f9735330be6149c2b8a89b4f3164e1384aed2fcac3d85758ca000314154",
+     "license": "CC BY 2.0",
+     "author": "Jason Hollinger",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Asteranthera_ovata_(3163923562).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:24215822",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "75a1a68a740616f5fb0d94be183c7ba5bd4f02e15c6ed2cec978ad4e481139d3",
+     "license": "CC BY 2.0",
+     "author": "Jason Hollinger",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Black-on-Black_Crustose_Lichen_(3164070570).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:24215834",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "57fff6809978985279590a646c5400217e1d272f24725af4c5fd1e60b5aace92",
+     "license": "CC BY 2.0",
+     "author": "Jason Hollinger",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Bunodophoron_(3164051842).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:79644461",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "6cee6809a64fe6ef47a55e814e5bf4650d59a2bd439b0d0ea1f055071face396",
+     "license": "CC BY-SA 4.0",
+     "author": "Natalia Reyes Escobar",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Camino_a_Lago_Constancia_Parque_Nacional_Puyehue_26.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:79644464",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "a5a56f663077e13321b4583b4f1efa89d613a7b7fafed514e856b307a8950e3c",
+     "license": "CC BY-SA 4.0",
+     "author": "Natalia Reyes Escobar",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Camino_a_Lago_Constancia_Parque_Nacional_Puyehue_27.jpg",
+     "extra_image_ids": []
+    }
+   ]
+  },
+  "fauna": {
+   "development": [
+    {
+     "image_id": "gbif:1978429989:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "f70dac0ec0c1cc445de2cb655143a4a5afb1681492c6e5889b9dea2735ddcece",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/19016901",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2573887979:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "55efcad12161fb01e69f08de04a5487433abc49482ffa5198cfff8dd4aa2cc68",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/38645565",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3468843121:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "4ef6937585a028a95ef6859800306b353bcfb21ee0c0c69a96ca26619f7109e7",
+     "license": "CC BY",
+     "author": "John G. Phillips",
+     "source_url": "https://www.inaturalist.org/observations/106411322",
+     "extra_image_ids": [
+      "gbif:3468843121:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4440674562:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "d7a9c094f26815e079c1ecb0ab6a32673f44309910da56db160e3b3946e61934",
+     "license": "CC BY",
+     "author": "Ben Lyle Bedard",
+     "source_url": "https://www.inaturalist.org/observations/190526201",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4440701230:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "dc4c2265ba3b8985493402ed6c9fcd892a38add1c382476ca53e1c4d6e45b6e3",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/190720253",
+     "extra_image_ids": [
+      "gbif:4440701230:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4525266958:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "1327186711a937d00f02cbbc4c0396c43fb5ee49ee4179379114a37ae13229a0",
+     "license": "CC BY",
+     "author": "Benjamín Ulloa Castillo",
+     "source_url": "https://www.inaturalist.org/observations/199744895",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4855370743:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "59d634043634cc4f770898e47a3ea821cc5e78b0377b964812e0a49fe0aef846",
+     "license": "CC BY",
+     "author": "Pablo Silva",
+     "source_url": "https://www.inaturalist.org/observations/213857798",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3859412329:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "8d0f15e303d5009328bb2ea7c7834fedf36b3633c0b567dcf919ea123425accf",
+     "license": "CC BY",
+     "author": "Jay Pruett",
+     "source_url": "https://www.inaturalist.org/observations/118931641",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4021965889:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "90f54efd1ed4b65b7a055c3195615191e8c6a70497110412cd6716d07908fb7d",
+     "license": "CC BY",
+     "author": "Franco Arenas",
+     "source_url": "https://www.inaturalist.org/observations/147162237",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4022294836:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "9e6e4afdec1aca8ddbda48d21d4ee21086685c6347e3ecf04064d0c1c8cca91f",
+     "license": "CC BY",
+     "author": "Tristan Jobin",
+     "source_url": "https://www.inaturalist.org/observations/147113804",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4171715769:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "a243c271a34a42be244cdc25c25b83b9a9c95e76bc6c4c682e8c21d6a8dab215",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/176519002",
+     "extra_image_ids": [
+      "gbif:4171715769:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4510159355:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "f947910cb8e31e12684cf7a8f011685a35c0e78d1c8b081bbdccc2afa12369ba",
+     "license": "CC BY",
+     "author": "Rajan Rao",
+     "source_url": "https://www.inaturalist.org/observations/195848569",
+     "extra_image_ids": [
+      "gbif:4510159355:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3058690130:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "dba8f70a0178a9613799d03494427adb4209daf3d4a5eddc652c45226b746a13",
+     "license": "CC BY",
+     "author": "Jan Ebr & Ivana Ebrová",
+     "source_url": "https://www.inaturalist.org/observations/70405207",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3070651697:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "0878223c9d6a5b181cf637b372012060872da78774b4d4a89ce96dba6ad48a5a",
+     "license": "CC BY",
+     "author": "Jan Ebr & Ivana Ebrová",
+     "source_url": "https://www.inaturalist.org/observations/72113293",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3456694162:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "9dd3fce91f6bf6fc5325e124af3d848e1e6c277cb1f98499370a9db6b865e59d",
+     "license": "CC BY",
+     "author": "Leonel Roget",
+     "source_url": "https://www.inaturalist.org/observations/103934162",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3465887726:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "86e34b905fb0b6bae9bc3fd24165db58c5cd25f8f1800f31692095d20bf941ff",
+     "license": "CC BY",
+     "author": "Leonel Roget",
+     "source_url": "https://www.inaturalist.org/observations/105412618",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3772942956:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "9e126e5d8dc2c6a201d68905ce63f5c24122ea63ad95eb7b760f2588d9614346",
+     "license": "CC0",
+     "author": "Hugo Hulsberg",
+     "source_url": "https://www.inaturalist.org/observations/115921710",
+     "extra_image_ids": [
+      "gbif:3772942956:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4022224511:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "5f057eb4780917ae061dd52473f4851fd643fdd31328be4a235ebb3cc19bd01e",
+     "license": "CC BY",
+     "author": "Tristan Jobin",
+     "source_url": "https://www.inaturalist.org/observations/147114005",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5177207072:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "6ff6d264c644472ac71b110fd5e2f73e2670739b7f840383c0e04739ad4563c1",
+     "license": "CC BY",
+     "author": "ignacio_diaz05",
+     "source_url": "https://www.inaturalist.org/observations/285833124",
+     "extra_image_ids": [
+      "gbif:5177207072:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5205922585:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b15a5c48a3feb4e0cdd36ae01e05a5d55ac8ed07ef31f711022669d3d83334b0",
+     "license": "CC BY",
+     "author": "Álvaro Parra Valdivia",
+     "source_url": "https://www.inaturalist.org/observations/291929421",
+     "extra_image_ids": [
+      "gbif:5205922585:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5759653159:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b1e560d6858c5ad9343f4bd0c2df9ec5c538354b73c763e4b94ce9b3ee20ff6f",
+     "license": "CC0",
+     "author": "Nicolás Garcés",
+     "source_url": "https://www.inaturalist.org/observations/308825474",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:6130262434:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "dd4e6f2661308b8b2747026b023b347852a45ba0643ac8216f0596cb0cd4eb7e",
+     "license": "CC BY",
+     "author": "Rodrigo Castillo Tapia",
+     "source_url": "https://www.inaturalist.org/observations/294752041",
+     "extra_image_ids": [
+      "gbif:6130262434:1"
+     ]
+    },
+    {
+     "image_id": "gbif:6131410973:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "040324d45071c170b31148fdd73d9de943775ee1f55e5dafab7970318593b8ac",
+     "license": "CC BY",
+     "author": "nebrooks",
+     "source_url": "https://www.inaturalist.org/observations/334414652",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4015362471:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "dae20384a396b0c761e62859024d55716016322a1c705abe373a88387445bdc4",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/146267100",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4172252278:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "67abdf346226affd04aaf52c05a84fbc0e4ef908d48b3e7a1fc991b0497883e3",
+     "license": "CC BY",
+     "author": "Fabrício Mil Homens Riella",
+     "source_url": "https://www.inaturalist.org/observations/177327933",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4424550464:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "4bd7d5efbb86912ad0d9f28a848b391226c7c8a5fa89d9ae46f6286cbb5aa179",
+     "license": "CC BY",
+     "author": "SebaArosZ",
+     "source_url": "https://www.inaturalist.org/observations/186800259",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4522734090:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "8c31dfc032b028d73a6321d58b4651893749bc3c6b8aea1ab70989f6339f805d",
+     "license": "CC BY",
+     "author": "Paul Hoekman",
+     "source_url": "https://www.inaturalist.org/observations/199050686",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:1890049485:0",
+     "species_id": "enicognathus-ferrugineus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "04b67a07042cd9fb0919b794896779259b9421aea3649f21eca69fa201fcc272",
+     "license": "CC BY",
+     "author": "Miguel Vieira",
+     "source_url": "https://www.inaturalist.org/observations/14830427",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2603322291:0",
+     "species_id": "enicognathus-ferrugineus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "1cd5298b1f4ec12b41ffcbdca9831bcd0c44a33460a0faee8af4e15bbb6f4d4c",
+     "license": "CC BY",
+     "author": "Jorge Herreros de Lartundo",
+     "source_url": "https://www.inaturalist.org/observations/41976775",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3005086741:0",
+     "species_id": "enicognathus-ferrugineus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "999238cd1353555676a0eafe427a66c2b23b9fdbf4346029288c3f1f20465d7a",
+     "license": "CC BY",
+     "author": "Lucy Keith-Diagne",
+     "source_url": "https://www.inaturalist.org/observations/66470019",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3398904441:0",
+     "species_id": "enicognathus-ferrugineus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "54171cc386237434472f960292095c5c33d508a69033cee334c8b23ed74bbd06",
+     "license": "CC BY",
+     "author": "Paul Asman and Jill Lenoble",
+     "source_url": "https://www.inaturalist.org/observations/98608190",
+     "extra_image_ids": [
+      "gbif:3398904441:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3747318628:0",
+     "species_id": "enicognathus-ferrugineus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "2a99b265ee67ed4beb31e70d3edc4f5e43d7ad5cf2fa199b9a66408d56e25470",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/108894323",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:1831184965:0",
+     "species_id": "scelorchilus-rubecula",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "0342f7b7a93ef9cd6db8a8a9d449e128486b25e99e01861367fa4d5ff746a904",
+     "license": "CC BY",
+     "author": "Ezequiel Vera",
+     "source_url": "https://www.inaturalist.org/observations/9854902",
+     "extra_image_ids": [
+      "gbif:1831184965:1"
+     ]
+    },
+    {
+     "image_id": "gbif:2005297908:0",
+     "species_id": "scelorchilus-rubecula",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "706f41840807b54d88a3034c9ae39ecfe4d7e128cd04c803288f44f7ef474004",
+     "license": "CC BY",
+     "author": "John Brew",
+     "source_url": "https://www.inaturalist.org/observations/20237769",
+     "extra_image_ids": [
+      "gbif:2005297908:1"
+     ]
+    },
+    {
+     "image_id": "gbif:2563606098:0",
+     "species_id": "scelorchilus-rubecula",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "36f6fa7052247323abc2d193f8fecf6f6b30b8a527cd78d2ca0d5d86e0f370a6",
+     "license": "CC BY",
+     "author": "Nolan Exe",
+     "source_url": "https://www.inaturalist.org/observations/37997207",
+     "extra_image_ids": [
+      "gbif:2563606098:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3499600415:0",
+     "species_id": "scelorchilus-rubecula",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "b037b5037294b9d3fce36aef26eabc0e6dcc0d2bad549512629ed53fb7e7c4c9",
+     "license": "CC BY",
+     "author": "Daniel Hermosilla",
+     "source_url": "https://www.inaturalist.org/observations/106821259",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2543075380:0",
+     "species_id": "colaptes-pitius",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "8f4a993ba1049e395ba5cbc7a1be0d338201745fb2b811908db1ae322e8ff12d",
+     "license": "CC BY",
+     "author": "Matias Thiele",
+     "source_url": "https://www.inaturalist.org/observations/37132372",
+     "extra_image_ids": [
+      "gbif:2543075380:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3058709845:0",
+     "species_id": "colaptes-pitius",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "55e07dba5e7dd6b0d7d658abbfd20b5db5c47526767fca34b4c81a88e76ef766",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/70253051",
+     "extra_image_ids": [
+      "gbif:3058709845:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3455865460:0",
+     "species_id": "colaptes-pitius",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "487e32d2ec4c56a12e40c068c6467b60cc5ae1be60e6b161a8e8bd6f3ceefa9a",
+     "license": "CC BY-SA",
+     "author": "Nicolás Villaseca Merino",
+     "source_url": "https://www.inaturalist.org/observations/102162617",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3468969729:0",
+     "species_id": "colaptes-pitius",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "377a5bb2ec55ba97f1d989efc67dab0f501e77d7c27ca59f6950bf928659d47c",
+     "license": "CC BY",
+     "author": "John G. Phillips",
+     "source_url": "https://www.inaturalist.org/observations/106359481",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3773573800:0",
+     "species_id": "pteroptochos-castaneus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "e8d37d5f0c97679c7e43b394dfda17ed90e311c87858673f5f9844f5de36e4e0",
+     "license": "CC0",
+     "author": "Hugo Hulsberg",
+     "source_url": "https://www.inaturalist.org/observations/115935249",
+     "extra_image_ids": [
+      "gbif:3773573800:1"
+     ]
+    },
+    {
+     "image_id": "gbif:6133312621:0",
+     "species_id": "pteroptochos-castaneus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "30ebc11084ae08c90a20b8cb3b257c7faca52f8da82c2b50ef85e52204166fbb",
+     "license": "CC BY",
+     "author": "Adrien Jailloux",
+     "source_url": "https://www.inaturalist.org/observations/337006472",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3079791067:0",
+     "species_id": "cistothorus-platensis",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "f82ecf9b4fca5f78719c3c7c2480ba826940a201c95560300821e273ed63a353",
+     "license": "CC BY",
+     "author": "Darío De la Fuente",
+     "source_url": "https://www.inaturalist.org/observations/67502152",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4137692414:0",
+     "species_id": "cistothorus-platensis",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "23ba0366effe1950b50784111ce03ecf29541f56083437ca43a2abcf6e7b492e",
+     "license": "CC BY",
+     "author": "Ben Lyle Bedard",
+     "source_url": "https://www.inaturalist.org/observations/80621039",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3759732382:0",
+     "species_id": "veniliornis-lignarius",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "a6ac23f87e071da6441fb79d7de4d54d6e6129de6ab78b59aab5d08f420db86a",
+     "license": "CC BY",
+     "author": "Jorge Herreros de Lartundo",
+     "source_url": "https://www.inaturalist.org/observations/110933809",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3859324955:0",
+     "species_id": "veniliornis-lignarius",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "34e7727c108174af08b90698ade1c94816e33ea5f1a8c74eb9dfd0fac9e4be28",
+     "license": "CC BY",
+     "author": "Lincayaren Trujillo Olivares",
+     "source_url": "https://www.inaturalist.org/observations/124315668",
+     "extra_image_ids": [
+      "gbif:3859324955:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3947407560:0",
+     "species_id": "veniliornis-lignarius",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "b800c5055a87d629e56316fac1524b07ac4b7068e531529fd1676fe261be84dc",
+     "license": "CC BY",
+     "author": "Franco Arenas",
+     "source_url": "https://www.inaturalist.org/observations/139806762",
+     "extra_image_ids": [
+      "gbif:3947407560:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5037226304:0",
+     "species_id": "dromiciops-gliroides",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "cc3f32c7136047446d1afc5f393f4935d7e5514b87687d88998e2745142c33f7",
+     "license": "CC BY",
+     "author": "Matias Thiele",
+     "source_url": "https://www.inaturalist.org/observations/253943878",
+     "extra_image_ids": [
+      "gbif:5037226304:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5938461271:0",
+     "species_id": "leopardus-guigna",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "ad6c52818739be840a5cf9033a5c94681cd70ca2041cf6b71bc35bdaa17ded65",
+     "license": "CC BY",
+     "author": "Orlando Fuenzalida",
+     "source_url": "https://www.inaturalist.org/observations/240834082",
+     "extra_image_ids": [
+      "gbif:5938461271:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3355023280:0",
+     "species_id": "puma-concolor",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "cf6b2d0b6286c978533ae648bd9d149463ff986d6795dd2703399638f9eb8ad7",
+     "license": "CC BY",
+     "author": "Jorge Herreros de Lartundo",
+     "source_url": "https://www.inaturalist.org/observations/93058775",
+     "extra_image_ids": []
+    }
+   ],
+   "test": [
+    {
+     "image_id": "gbif:1703181649:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "38d7b7090e811d102b06e6dbc86569c89e35042202fa477d7faaf646b49d858b",
+     "license": "CC BY",
+     "author": "melianie_max_and_asker",
+     "source_url": "https://www.inaturalist.org/observations/8860792",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3044657667:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "c1e5c0c931f1b28c47413fb1b3c51909a4ae19f7675fda95d3c1f95cd3e0aef5",
+     "license": "CC BY",
+     "author": "Lucas Illanes",
+     "source_url": "https://www.inaturalist.org/observations/69838042",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3044694607:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "dc8f67f18e0b4f9c842e547ce071e6a8f9b1cb1e4f3fec3d494d7a3c2f5f481e",
+     "license": "CC BY",
+     "author": "Lucas Illanes",
+     "source_url": "https://www.inaturalist.org/observations/69832407",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3058872941:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "6e4e49770b4e1829ec534decadbb8e2e9d6bb1f32ad90e7b1229b379c1bc0a30",
+     "license": "CC BY",
+     "author": "Jan Ebr & Ivana Ebrová",
+     "source_url": "https://www.inaturalist.org/observations/70334798",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3468848066:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "4d625e801a2b05add33b046bb4b4ad893ea2a56fe5337df2cdf085c7b851d6b6",
+     "license": "CC BY",
+     "author": "John G. Phillips",
+     "source_url": "https://www.inaturalist.org/observations/106411328",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3785185717:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b995425f6d74baaaf0ac10419a757729b12026b541774424292616d64878c7e2",
+     "license": "CC BY",
+     "author": "Víctor Vidal Echeverría",
+     "source_url": "https://www.inaturalist.org/observations/117655490",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4022335596:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "9379ad0b61dfc86e8b9690cc2d52995d0aee775120c8b10298c84009eb16f5e8",
+     "license": "CC BY",
+     "author": "Tristan Jobin",
+     "source_url": "https://www.inaturalist.org/observations/147114124",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4028765201:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "e3d1b9c3c823106472bcf40905c818afe51feb64bc5ae5a33e05ef24f6619392",
+     "license": "CC BY",
+     "author": "Sofía Rojas",
+     "source_url": "https://www.inaturalist.org/observations/147278875",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4126762519:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "33e325b7c58c3ca41c1290e57ece9180bace410cfa5f8c1c85aafce1d11f0932",
+     "license": "CC BY-SA",
+     "author": "Tony Rebelo",
+     "source_url": "https://www.inaturalist.org/observations/20142527",
+     "extra_image_ids": [
+      "gbif:4126762519:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4138017383:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "8dce8d67d563640680cd205b16fea5bfc69356c5834e5c2b81bb89a2401ad234",
+     "license": "CC BY",
+     "author": "Loren Cassin Sackett",
+     "source_url": "https://www.inaturalist.org/observations/168017425",
+     "extra_image_ids": [
+      "gbif:4138017383:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4138135545:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "3bd5b75f4f0e1ccd192bc988d925eb6d2ccdc7ef76030364e9ae77ba03504f93",
+     "license": "CC BY",
+     "author": "Loren Cassin Sackett",
+     "source_url": "https://www.inaturalist.org/observations/168017423",
+     "extra_image_ids": [
+      "gbif:4138135545:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4465508930:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ca08f623d0a3d32b71fe3b06a70f31cea91a2dd59763530b699e66a6408fdf90",
+     "license": "CC BY",
+     "author": "Pablo Silva",
+     "source_url": "https://www.inaturalist.org/observations/193668115",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4510164416:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ea02d547796f960bfc5a9f92d1eaf97e2cabc9098d95ddbd075bde2bb3d3b9be",
+     "license": "CC BY",
+     "author": "Rajan Rao",
+     "source_url": "https://www.inaturalist.org/observations/195848573",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4875421655:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "dba6aa77095575e8fcefd023ff4865b0e71bb0a62c92586c16efa3394b620fb1",
+     "license": "CC BY",
+     "author": "Christoph Moning",
+     "source_url": "https://www.inaturalist.org/observations/220228593",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4950160739:0",
+     "species_id": "enicognathus-leptorhynchus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "874a5584934026782418d6d8891e565f5e1ccf2026025a5232ce6115b0feaaaf",
+     "license": "CC BY",
+     "author": "Daniel Hermosilla",
+     "source_url": "https://www.inaturalist.org/observations/243006344",
+     "extra_image_ids": [
+      "gbif:4950160739:1"
+     ]
+    },
+    {
+     "image_id": "gbif:1978430068:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "cc3963ce6d6efc5b0f95ec358a62f2f172f7259b5e6eb8cc02aa23b8b8668c02",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/19016892",
+     "extra_image_ids": [
+      "gbif:1978430068:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3079734419:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "46d6cd02962666ecb108477c44122221c46023b494786d44f3922732d36257da",
+     "license": "CC BY",
+     "author": "Mark Wagner",
+     "source_url": "https://www.inaturalist.org/observations/12506699",
+     "extra_image_ids": [
+      "gbif:3079734419:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3456811063:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "3439fbc7466796a6da167ca91b79ecc2591933ea7c88cfbd2ae98bfb260d31f0",
+     "license": "CC BY-SA",
+     "author": "Nicolás Villaseca Merino",
+     "source_url": "https://www.inaturalist.org/observations/102078796",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3759590195:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b86d793c75f6900ca6aa4c04c5d4f19b040b0945364e23becda89fee8d4c5cb3",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/109782509",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3760373480:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "558bb023a9133db07c2bf5d5a76a6bed79f4ff2564fe8ea554de0b5df55dc841",
+     "license": "CC BY",
+     "author": "nmoorhatch",
+     "source_url": "https://www.inaturalist.org/observations/110973039",
+     "extra_image_ids": [
+      "gbif:3760373480:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3858254259:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "e07b815f6b07807fe286b306cccc3428239366ec76e8779c673dd5e83daeae92",
+     "license": "CC BY",
+     "author": "Jay Pruett",
+     "source_url": "https://www.inaturalist.org/observations/118930985",
+     "extra_image_ids": [
+      "gbif:3858254259:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4022158691:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "0a560755d674ad3f9b24755a82196bd4a813d732d65429479667e8b86d0c786a",
+     "license": "CC BY",
+     "author": "Franco Arenas",
+     "source_url": "https://www.inaturalist.org/observations/147162219",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4039540879:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "8d532bfaf50d4e52de418ff950e8529f5169f47a010f73648176af1e06788d4c",
+     "license": "CC BY",
+     "author": "Santiago Martín-Bravo",
+     "source_url": "https://www.inaturalist.org/observations/149334369",
+     "extra_image_ids": [
+      "gbif:4039540879:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4046757827:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "03da45b0475dcaa6466918f71e6caaebe9c4e615384c964d701e72f34d5e3855",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/149443269",
+     "extra_image_ids": [
+      "gbif:4046757827:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4080844620:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "7b8916c50b39f1ab597824c3d60e7a79b377bbaeb3d6f38ca1ea93e8dd1400df",
+     "license": "CC BY",
+     "author": "Charlie Barber",
+     "source_url": "https://www.inaturalist.org/observations/154400960",
+     "extra_image_ids": [
+      "gbif:4080844620:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4116242688:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "824c128325db1a42b1869c8df9335c768718f78ef9232b1516e33db73d86587d",
+     "license": "CC BY",
+     "author": "Claudio Cantú Muñiz",
+     "source_url": "https://www.inaturalist.org/observations/161499636",
+     "extra_image_ids": [
+      "gbif:4116242688:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4420812675:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "d076bd58cecd7d952293d7b29c1b477cd46f5ce08f83d003fbfa079e8ea24522",
+     "license": "CC0",
+     "author": "Nicolás Garcés",
+     "source_url": "https://www.inaturalist.org/observations/185509162",
+     "extra_image_ids": [
+      "gbif:4420812675:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4421220965:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "459857b962a2801d993657bbb8957c4829d52959175898862b8977846f1801ba",
+     "license": "CC0",
+     "author": "Nicolás Garcés",
+     "source_url": "https://www.inaturalist.org/observations/185510271",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4440682949:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "3bc6fc58f4f141be1c38216ec9c762591afa10932582dedf41f56a9272f1ab39",
+     "license": "CC BY",
+     "author": "Ben Lyle Bedard",
+     "source_url": "https://www.inaturalist.org/observations/190526839",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4507918677:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "1e98539807d5c6fe63f333d9726289c44085a61cc608b1732c9f6780fcc9b96c",
+     "license": "CC BY",
+     "author": "Pablo Silva",
+     "source_url": "https://www.inaturalist.org/observations/195331469",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4512275074:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "f2e8169e305a285286e87948a147e0a6b33b42c4a9a725a47800ef6546915839",
+     "license": "CC BY",
+     "author": "Jorge Herreros de Lartundo",
+     "source_url": "https://www.inaturalist.org/observations/196355115",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:1932346578:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "964c8ea7da98f732d86c042351641f3a87833e6a56dd3dedd6a049344815f34f",
+     "license": "CC0",
+     "author": "Diego Carús",
+     "source_url": "https://www.inaturalist.org/observations/17802293",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2006045478:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "f92204ac5b75bf6bf71bc19b575e9a38e633bc05f5fc07708b59dfffcef749a9",
+     "license": "CC0",
+     "author": "Diego Carús",
+     "source_url": "https://www.inaturalist.org/observations/20559253",
+     "extra_image_ids": [
+      "gbif:2006045478:1"
+     ]
+    },
+    {
+     "image_id": "gbif:2573909711:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "581a6f0c3891b73c6d3a2170dbc8ddd78e603e3fe0c69bc92a282e3e3cf4c6d0",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/19849661",
+     "extra_image_ids": [
+      "gbif:2573909711:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3070726220:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "a01c5f58bcfdb5c9065adf9df62ed1d392a0f24c0b3fc6fe9b85158c41439fab",
+     "license": "CC BY",
+     "author": "diego Hernan Perez",
+     "source_url": "https://www.inaturalist.org/observations/72411606",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3325580141:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "2f5dba70ebfe513c4d0a816a309e50ffbf364f2e476978c23cf1b5e7e82c8337",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/85828167",
+     "extra_image_ids": [
+      "gbif:3325580141:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3881635670:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "7cf559de9184963c555f4892e620d1263aa930a235e83051eb306bcc4c1346ac",
+     "license": "CC BY-SA",
+     "author": "Nicolás Villaseca Merino",
+     "source_url": "https://www.inaturalist.org/observations/129062519",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3881760013:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "1b60693e629f8c08f7d2b896cda577b85ab2ad4ed345583ff095c591f97c2f4f",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/128407574",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4014819127:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "c18d6ec8c5e4bd70242263d2c4953a751bb82b50d6bc03dead9808cbb67eb6b5",
+     "license": "CC BY",
+     "author": "Franco Arenas",
+     "source_url": "https://www.inaturalist.org/observations/146008491",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4018104918:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "483ef316257e54c6b963266503283c25143dd23405170d70045a8e73ceb8da79",
+     "license": "CC BY",
+     "author": "Karina Viera",
+     "source_url": "https://www.inaturalist.org/observations/146372045",
+     "extra_image_ids": [
+      "gbif:4018104918:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4022240336:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "c7599e7bc4326d1b9d13d2466ff3a99e68c940d07c06fecd1ea70e221c487808",
+     "license": "CC BY",
+     "author": "Tristan Jobin",
+     "source_url": "https://www.inaturalist.org/observations/147112324",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4029301019:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "cdb75dad2201359844f3672acea7d61a35d4c1dcd943c85f5050a162652beb4d",
+     "license": "CC BY",
+     "author": "Ezequiel Vera",
+     "source_url": "https://www.inaturalist.org/observations/147966995",
+     "extra_image_ids": [
+      "gbif:4029301019:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4046657881:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "23a9d237898eba940e9a56235e3c35fbe65fe8d81e761046bc9ae3b072e5ea0c",
+     "license": "CC BY",
+     "author": "Ezequiel Racker",
+     "source_url": "https://www.inaturalist.org/observations/149499485",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4054992525:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "d67f31a1dbbd4ab9607b7d53d6ec869820a9d31d0fc8bb85d6a92dae901e0c73",
+     "license": "CC BY",
+     "author": "Agustin Cifuentes Oportus",
+     "source_url": "https://www.inaturalist.org/observations/146710946",
+     "extra_image_ids": [
+      "gbif:4054992525:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4096526844:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "1f9bb3ff1e869d82e1204a13b4008ac49dca3ebf40eb834ad2087912ab0e6098",
+     "license": "CC BY",
+     "author": "Lauu",
+     "source_url": "https://www.inaturalist.org/observations/155636874",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4440940315:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "54bb26143cb801f4e669ab27e3294e7cdbfda035e19b8274714282a52c9f1b82",
+     "license": "CC BY",
+     "author": "Ariadna Tripaldi",
+     "source_url": "https://www.inaturalist.org/observations/190520402",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4442687303:0",
+     "species_id": "pteroptochos-tarnii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "61226292a3645c1dbafafff5e47442fbc13d963160127ab52c230f92e89a75ff",
+     "license": "CC BY",
+     "author": "miomorfo",
+     "source_url": "https://www.inaturalist.org/observations/190901682",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5007143316:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "e4b7d16a5f61f88bede658a5a4c45cb6ae7b6c43f661ac6cd1af0d18d3e5019e",
+     "license": "CC BY",
+     "author": "Lucas Illanes",
+     "source_url": "https://www.inaturalist.org/observations/257076632",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5087319517:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "d4f04b948bcfe5e84177cab99bc8c307272afe31714c4636bad9772cc3f9f4a7",
+     "license": "CC0",
+     "author": "Zoltán Stekkelpak",
+     "source_url": "https://www.inaturalist.org/observations/263262730",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5088164347:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "19512264424116b4af8c340ce83d742f808b2715218095d60629c39b947af1d9",
+     "license": "CC BY",
+     "author": "ignacio_diaz05",
+     "source_url": "https://www.inaturalist.org/observations/265444208",
+     "extra_image_ids": [
+      "gbif:5088164347:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5104545811:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "4fcf4ddb9145d936673920936555bfe1b1da34ff732c7942f5dca8d08d4224ad",
+     "license": "CC0",
+     "author": "Camila",
+     "source_url": "https://www.inaturalist.org/observations/266232473",
+     "extra_image_ids": [
+      "gbif:5104545811:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5108192839:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "bec34f335f9298cc5bbb0d693b296e00f2ace4ec1c365a0920c829f76f8cc4e9",
+     "license": "CC BY",
+     "author": "Ingvild Riska",
+     "source_url": "https://www.inaturalist.org/observations/267289331",
+     "extra_image_ids": [
+      "gbif:5108192839:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5206092562:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "c10f07e3bb8855f083bcc780d9f3acc1c5ac2c30a3c2234407cd011b6e5e8af5",
+     "license": "CC BY",
+     "author": "Álvaro Parra Valdivia",
+     "source_url": "https://www.inaturalist.org/observations/291929070",
+     "extra_image_ids": [
+      "gbif:5206092562:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5215830471:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b24ab3d81b18ba860d1fac4e24dd61a96e78d62c446b09ec4f5200b0c2bfbb1a",
+     "license": "CC BY",
+     "author": "Jan Ebr & Ivana Ebrová",
+     "source_url": "https://www.inaturalist.org/observations/293264805",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5760131554:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b37d00e8aca6bf4131b88116de736ee4ff5e6952aaf82452f286ffc1f7ce010e",
+     "license": "CC0",
+     "author": "Nicolás Garcés",
+     "source_url": "https://www.inaturalist.org/observations/308824880",
+     "extra_image_ids": [
+      "gbif:5760131554:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5760461456:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "1bcc158bf0bc455efdc9217fe61721cb3f83334dd6ecd5f7a1340a696b506516",
+     "license": "CC BY",
+     "author": "Darío De la Fuente",
+     "source_url": "https://www.inaturalist.org/observations/310358402",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5761103064:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "1bf0848792bac7db824d0bea03db374f4d424b2b4774507b7e28b0aaa28d7a66",
+     "license": "CC BY",
+     "author": "Darío De la Fuente",
+     "source_url": "https://www.inaturalist.org/observations/310358347",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5889266037:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ed709f011fcc4e49300c120e8fbd44266ddea67ed1e669eb3e7d705fe65cdca7",
+     "license": "CC BY",
+     "author": "Boris Valderrama",
+     "source_url": "https://www.inaturalist.org/observations/323268452",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:6130077131:0",
+     "species_id": "troglodytes-aedon",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "cbfc7c3fb0afb30e7467ca8cf353528837391657983009d973f39be4801b9148",
+     "license": "CC BY",
+     "author": "Rodrigo Castillo Tapia",
+     "source_url": "https://www.inaturalist.org/observations/307408090",
+     "extra_image_ids": [
+      "gbif:6130077131:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4011696176:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "f2d47317608dc0c5f9ec61d746fe2ab0b232f9c8531f9d45ed5c13253bcbd072",
+     "license": "CC BY",
+     "author": "Glynn Morris",
+     "source_url": "https://www.inaturalist.org/observations/145603024",
+     "extra_image_ids": [
+      "gbif:4011696176:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4014842152:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "86e056a875b6288febbfe5c717a66b90379586a9b808ee16d319234a01cc4994",
+     "license": "CC BY",
+     "author": "Franco Arenas",
+     "source_url": "https://www.inaturalist.org/observations/146027853",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4022200200:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "d8ac2b8c46ae19754d0aa231aefcbdf955fc17c8a82af5f8c84ff874c9623ccb",
+     "license": "CC BY",
+     "author": "Jorge Herreros de Lartundo",
+     "source_url": "https://www.inaturalist.org/observations/146889986",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4028729135:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "169b20eb0e43598a6e753f0d83f4f06d52e5518b23cf6414fdd67b1f99ffed46",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/147825240",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4034940313:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "5992175b0b4f46f1a82f9fbf798828f032370ea35ee95190c21bfeab9fa56fd4",
+     "license": "CC BY",
+     "author": "My-Lan Le",
+     "source_url": "https://www.inaturalist.org/observations/148536748",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4039528510:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "5a07f805ce2335613f49a7e939f107655be0c517aa0fe8eb4be6729ee81f7b66",
+     "license": "CC BY",
+     "author": "Santiago Martín-Bravo",
+     "source_url": "https://www.inaturalist.org/observations/149333768",
+     "extra_image_ids": [
+      "gbif:4039528510:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4080666818:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b9c08dd3dfdf37e13a02e43b7e7190109c19d836bc5155d5e6ff760bdbaa0696",
+     "license": "CC BY",
+     "author": "Álvaro Parra Valdivia",
+     "source_url": "https://www.inaturalist.org/observations/153649161",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4126862895:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "9534321f76aaa0c89f52aa7005c659e046b8d5e2b9920c983589dfdfc708e7c9",
+     "license": "CC BY",
+     "author": "ignacio_diaz05",
+     "source_url": "https://www.inaturalist.org/observations/163709382",
+     "extra_image_ids": [
+      "gbif:4126862895:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4126882175:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "35b8e48c73b6ad26ebe1bbe57aa5a56a6ce92da44e424af9a54dfb7381df72f5",
+     "license": "CC BY",
+     "author": "ivesklein",
+     "source_url": "https://www.inaturalist.org/observations/163722230",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4126915482:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "0f4679c827d553afc35e287eb63e47afee5f40571d829e1579a8c5e98d984ec5",
+     "license": "CC BY",
+     "author": "ignacio_diaz05",
+     "source_url": "https://www.inaturalist.org/observations/163927214",
+     "extra_image_ids": [
+      "gbif:4126915482:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4417021552:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "557a77ba3a6130c7fefb090cfb0abeff6dc258cf3230f2e15af042f01256cd55",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/184467656",
+     "extra_image_ids": [
+      "gbif:4417021552:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4430653179:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "10e494ff367897168d209f2e8724b6539eb097483152602ebe66db9e86af29b9",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/187912057",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4436414673:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "996ce28f499b6617b240cf0a2e3150ec88bf61801be4149ad1a2fa00812f4951",
+     "license": "CC BY",
+     "author": "Ben Lyle Bedard",
+     "source_url": "https://www.inaturalist.org/observations/189028252",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4440745453:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "e9fdefd7aa5b3b0f871bce0677e3f78dc308b8a7a20658ad2ea3237f4064cd6f",
+     "license": "CC BY",
+     "author": "Ben Lyle Bedard",
+     "source_url": "https://www.inaturalist.org/observations/190527136",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4465608989:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "2e671abc562c5a4867fde6a87f5bb80193cd1d052cb1c10e2252935c771abfbf",
+     "license": "CC0",
+     "author": "Victor Ahumada",
+     "source_url": "https://www.inaturalist.org/observations/173851150",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4510201458:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "07ae37bf459a2ddd13dedb0c82d00386696287e918081bd8c576205b920462a4",
+     "license": "CC BY",
+     "author": "Charlotte Kirchner",
+     "source_url": "https://www.inaturalist.org/observations/196166632",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4512331382:0",
+     "species_id": "theristicus-melanopis",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "9d9f097801e5957eb92947914e3e92e431b5b27cfc63aa0731bf624117620d29",
+     "license": "CC BY",
+     "author": "Pablo Silva",
+     "source_url": "https://www.inaturalist.org/observations/196606922",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2609333597:0",
+     "species_id": "enicognathus-ferrugineus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "4c6f7e7cb7edec376703b8d4d96d548408638615db688d1c055de7015184611b",
+     "license": "CC BY",
+     "author": "desertnaturalist",
+     "source_url": "https://www.inaturalist.org/observations/42416119",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3059092498:0",
+     "species_id": "enicognathus-ferrugineus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "376a5c789a0e484d8a61f85a3ad5b32374acb868f6c12930a7bd1132e2f82abc",
+     "license": "CC BY",
+     "author": "Jan Ebr & Ivana Ebrová",
+     "source_url": "https://www.inaturalist.org/observations/70405159",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3079511659:0",
+     "species_id": "enicognathus-ferrugineus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "98dbfd83be73be14ee98da2d2b9e46ffcbcb709fb4fc5321f130981e414334ca",
+     "license": "CC BY",
+     "author": "Darío De la Fuente",
+     "source_url": "https://www.inaturalist.org/observations/34147514",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:1990568067:0",
+     "species_id": "scelorchilus-rubecula",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "85f58136b25b2689cf8e46a2695bd9b419afc3033aea20816cfcef179f1c2857",
+     "license": "CC BY",
+     "author": "Steven Bodzin",
+     "source_url": "https://www.inaturalist.org/observations/19821476",
+     "extra_image_ids": [
+      "gbif:1990568067:1"
+     ]
+    },
+    {
+     "image_id": "gbif:2573837693:0",
+     "species_id": "scelorchilus-rubecula",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "6950cddf20edc87d94bca1e4cc31d7a5d4d254c5b413af2aef9be2f82ff2d0e5",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/19847929",
+     "extra_image_ids": [
+      "gbif:2573837693:1"
+     ]
+    },
+    {
+     "image_id": "gbif:2574309062:0",
+     "species_id": "scelorchilus-rubecula",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "5cc68eb6c709ce5eeb2186db03299bf7344a05160e026446dddf11064f291866",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/38635519",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3079789407:0",
+     "species_id": "scelorchilus-rubecula",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "b484a7dac33031ab40c03f9b759938345508727511591a5416154f4e515e9e2b",
+     "license": "CC BY",
+     "author": "Mark Wagner",
+     "source_url": "https://www.inaturalist.org/observations/10765099",
+     "extra_image_ids": [
+      "gbif:3079789407:1"
+     ]
+    },
+    {
+     "image_id": "gbif:1831184888:0",
+     "species_id": "colaptes-pitius",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "854ddcafadcaf882206db25ff8688ab067abcf2939788b142187b3830ef92d58",
+     "license": "CC BY",
+     "author": "Ezequiel Vera",
+     "source_url": "https://www.inaturalist.org/observations/9854936",
+     "extra_image_ids": [
+      "gbif:1831184888:1"
+     ]
+    },
+    {
+     "image_id": "gbif:2573919832:0",
+     "species_id": "colaptes-pitius",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "199c76b94a2c3c9173d5d3da1283f9f0a4eff1608b01b057ae3ef7382922ac46",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/23538455",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3058980152:0",
+     "species_id": "colaptes-pitius",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "73c113985630bf766af678f46cbff431ae02ffdea95c8ab50708b83364e2e095",
+     "license": "CC BY",
+     "author": "Jan Ebr & Ivana Ebrová",
+     "source_url": "https://www.inaturalist.org/observations/70405171",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3079660653:0",
+     "species_id": "colaptes-pitius",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "fe4f1a1e7a4a9b40703aa418940a35be4396bbefc45a11227fcbbe6244494b91",
+     "license": "CC BY",
+     "author": "Darío De la Fuente",
+     "source_url": "https://www.inaturalist.org/observations/32428633",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:1092876359:0",
+     "species_id": "pteroptochos-castaneus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "ff077642a3c6a413be9e7a3d976bf0d06f021a9a3876dfa171f31d373fda332d",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "http://www.inaturalist.org/observations/912715",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4022242202:0",
+     "species_id": "pteroptochos-castaneus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "ffc68612449239c0ce15831fbc5ec575b0c6c9c3e2c6eb63d19220e13310e49d",
+     "license": "CC BY",
+     "author": "Franco Arenas",
+     "source_url": "https://www.inaturalist.org/observations/147157999",
+     "extra_image_ids": [
+      "gbif:4022242202:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4852366821:0",
+     "species_id": "pteroptochos-castaneus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "f181ae6429fa0226b02a8364b7a29f187a631e27de6a0aa98aa45a934cd64946",
+     "license": "CC BY",
+     "author": "Christoph Moning",
+     "source_url": "https://www.inaturalist.org/observations/209227642",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4852370841:0",
+     "species_id": "pteroptochos-castaneus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "3e542f8af5f967a34e66543509809040043ea6863db626e93978a7701e0ddfca",
+     "license": "CC BY",
+     "author": "Christoph Moning",
+     "source_url": "https://www.inaturalist.org/observations/209227643",
+     "extra_image_ids": [
+      "gbif:4852370841:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3307429813:0",
+     "species_id": "theristicus-caudatus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "59852e791a5c0020b62f395863d6263c759a367b8416ebf1cc1e82051a8c14d1",
+     "license": "CC BY",
+     "author": "Gonzalo Martinez",
+     "source_url": "https://www.inaturalist.org/observations/82909956",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3398893668:0",
+     "species_id": "theristicus-caudatus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "31253ab369dcb205f389f279baceb6e6b03e7b3c856254355d1fb445c2c38b79",
+     "license": "CC BY",
+     "author": "Gonzalo Martinez",
+     "source_url": "https://www.inaturalist.org/observations/98903645",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3399383383:0",
+     "species_id": "theristicus-caudatus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "f63a7d90542850952d966a0cc46da6a5f0ea1fae4b0ca91f18dfa7efdb654769",
+     "license": "CC BY",
+     "author": "Matias Cabezas",
+     "source_url": "https://www.inaturalist.org/observations/99591333",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3773463174:0",
+     "species_id": "theristicus-caudatus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "685829f5e7a8b06eb7df93ad66da66b5fbc600364e34bae39026a1c0adc8e26a",
+     "license": "CC0",
+     "author": "Fede y Vani",
+     "source_url": "https://www.inaturalist.org/observations/116197947",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3802741699:0",
+     "species_id": "theristicus-caudatus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "14afebec0f94b946ac72e5617536b0713b18ba11f5a44b714984ff70de6ab818",
+     "license": "CC BY",
+     "author": "Sol Quipildor",
+     "source_url": "https://www.inaturalist.org/observations/118624852",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3859104679:0",
+     "species_id": "theristicus-caudatus",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "1382a185dc98d1cf2564b1e5462ddfd156fac9b9f1cd166a4e1c82f160464827",
+     "license": "CC BY",
+     "author": "Sol Quipildor",
+     "source_url": "https://www.inaturalist.org/observations/122874099",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4034608039:0",
+     "species_id": "cistothorus-platensis",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "e11e9fef75e275efecbfe6a4dc2f865ebd7f6849fc1c44c4fb1ff4ad87130ff6",
+     "license": "CC BY-SA",
+     "author": "Joseph Morlan",
+     "source_url": "https://www.inaturalist.org/observations/148365253",
+     "extra_image_ids": [
+      "gbif:4034608039:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4137765501:0",
+     "species_id": "cistothorus-platensis",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "5fc19133276ebfd7e2e3124fffcf8f8a3501a0c3dc4a1bb240c85840eb595411",
+     "license": "CC BY",
+     "author": "Ben Lyle Bedard",
+     "source_url": "https://www.inaturalist.org/observations/95442305",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4954343617:0",
+     "species_id": "cistothorus-platensis",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "51d9a45f8dd90f55c82eb7e8808f5226281f4df3577619b765e8fd94233bc9a3",
+     "license": "CC BY",
+     "author": "ignacio_diaz05",
+     "source_url": "https://www.inaturalist.org/observations/247202772",
+     "extra_image_ids": [
+      "gbif:4954343617:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4994194315:0",
+     "species_id": "cistothorus-platensis",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "11f4876cc8e530827d85082e7055153faab18e660cc12519a647d03c611e65ae",
+     "license": "CC BY",
+     "author": "nleiva",
+     "source_url": "https://www.inaturalist.org/observations/238498485",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3915624013:0",
+     "species_id": "veniliornis-lignarius",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "2346a77a995eb3094886502b036a6da9b738a87d07a17a550221b1f627816971",
+     "license": "CC BY",
+     "author": "Franco Arenas",
+     "source_url": "https://www.inaturalist.org/observations/136479442",
+     "extra_image_ids": [
+      "gbif:3915624013:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5063028281:0",
+     "species_id": "dromiciops-gliroides",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "2b1e440cafd4c8348ea32cc60f53b34526e0e60b4f7468eb0fc60716c6f60303",
+     "license": "CC BY",
+     "author": "Pablo Silva",
+     "source_url": "https://www.inaturalist.org/observations/258762979",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5909305078:0",
+     "species_id": "dromiciops-gliroides",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "0c18b6c185abc83caa36f0efca7d5028d018710d37ecbd5cedd0b6cf9d1eface",
+     "license": "CC BY",
+     "author": "Jan Ebr & Ivana Ebrová",
+     "source_url": "https://www.inaturalist.org/observations/329057095",
+     "extra_image_ids": [
+      "gbif:5909305078:1"
+     ]
+    },
+    {
+     "image_id": "gbif:6162932971:0",
+     "species_id": "dromiciops-gliroides",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "cd105ed951253e66c6c8d2f4a1b6b8603cc694e46d3a3a7b5cc9bdcb80c828ec",
+     "license": "CC BY",
+     "author": "Pablo Silva",
+     "source_url": "https://www.inaturalist.org/observations/339339378",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:6184758112:0",
+     "species_id": "dromiciops-gliroides",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "b6dc695b2094e6db1569f299d0564241c44c07900899c5e64a8168050c5053b1",
+     "license": "CC0",
+     "author": "Ricardo Barrientos",
+     "source_url": "https://www.inaturalist.org/observations/323472458",
+     "extra_image_ids": [
+      "gbif:6184758112:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3039197755:0",
+     "species_id": "leopardus-guigna",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "afafbd2e222751c971d4584a1be26851bab6451975f9409605002caee88fd098",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/66291895",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3079666652:0",
+     "species_id": "leopardus-guigna",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "904f6368082f4fb67b3473b71121e83dd347ec6e260489a6a9974d1a4dcd95d8",
+     "license": "CC BY",
+     "author": "Darío De la Fuente",
+     "source_url": "https://www.inaturalist.org/observations/33736614",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:6131339029:0",
+     "species_id": "leopardus-guigna",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "d628dc4c11f2e7974193e184ae6f9d037cbc4724857024d4d4dd2a750af83781",
+     "license": "CC BY",
+     "author": "Duban Espinoza",
+     "source_url": "https://www.inaturalist.org/observations/139528160",
+     "extra_image_ids": [
+      "gbif:6131339029:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3355085283:0",
+     "species_id": "puma-concolor",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "3b52939738f2aea8ececabd0ede488abf19a60055fa703cc13dc765d741b15a3",
+     "license": "CC BY",
+     "author": "Jorge Herreros de Lartundo",
+     "source_url": "https://www.inaturalist.org/observations/93058774",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3759210256:0",
+     "species_id": "puma-concolor",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "c321427a90ecf48993f88392b13d71e087fc4bb27a02040da847dbe0a0c272fb",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/109783877",
+     "extra_image_ids": [
+      "gbif:3759210256:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3759533282:0",
+     "species_id": "puma-concolor",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "56d2b319e38a958c55856ad15c8bb51f83941f5e7522ec8454185f48c5135378",
+     "license": "CC BY",
+     "author": "Nicolas Olejnik",
+     "source_url": "https://www.inaturalist.org/observations/109783883",
+     "extra_image_ids": [
+      "gbif:3759533282:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5006824689:0",
+     "species_id": "turdus-falcklandii",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "7cdc27e0ea0d92cf1a7101be76f5a28aba8383dae10232362d05aa46c401ed54",
+     "license": "CC BY",
+     "author": "Andrii Khokhlov",
+     "source_url": "https://www.inaturalist.org/observations/257524349",
+     "extra_image_ids": [
+      "gbif:5006824689:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5008441203:0",
+     "species_id": "turdus-falcklandii",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "bfe1a2e442ddcc11d36f195dcfa6f9a1ad3049581698a5bb5c90c3ea3f761824",
+     "license": "CC BY",
+     "author": "Andrii Khokhlov",
+     "source_url": "https://www.inaturalist.org/observations/257526708",
+     "extra_image_ids": [
+      "gbif:5008441203:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5063232167:0",
+     "species_id": "turdus-falcklandii",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "356f828338d33ce30b06c07a1e5b763828c3ee76ad391a4de85e95aa2beeec95",
+     "license": "CC0",
+     "author": "ferferrari",
+     "source_url": "https://www.inaturalist.org/observations/259218234",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5063243002:0",
+     "species_id": "turdus-falcklandii",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "bf81c645b4ab4eca87150dc90664efe3691e1b9f622ff18b4db476bdffcf5155",
+     "license": "CC0",
+     "author": "ferferrari",
+     "source_url": "https://www.inaturalist.org/observations/259183274",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5087594258:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "007b590b06998c08cc1d225bbd4087aa3469e72ae5ceea0fc7a15ea774ae82b1",
+     "license": "CC BY",
+     "author": "Eric Schmidt",
+     "source_url": "https://www.inaturalist.org/observations/264760566",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:138643139",
+     "species_id": "laureliopsis-philippiana",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "019a6c0073ae44b9bd704a04e7b06c3bdf558b0007f64bdf1bda0114b074df6e",
+     "license": "CC BY 4.0",
+     "author": "(c) Cristian Riquelme, some rights reserved (CC BY)",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Laureliopsis_philippiana,_Valdivia,_Los_R%C3%ADos,_Chile_62188473.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2573912505:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "024ae7164f1af5f9d1ce414bb9e1fb6762ae6c0f974a76ed306216021b5cce69",
+     "license": "CC BY",
+     "author": "Nolan Exe",
+     "source_url": "https://www.inaturalist.org/observations/37992744",
+     "extra_image_ids": [
+      "gbif:2573912505:2"
+     ]
+    },
+    {
+     "image_id": "commons:598273",
+     "species_id": "weinmannia-trichosperma",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "034516736bd89e93810e177477c0bb14437573486bc0573d921f064b3634f581",
+     "license": "CC BY-SA 3.0",
+     "author": "Franz Xaver",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Weinmannia_trichosperma.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2576249646:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "0358dc12b34c5d08d0332689c4d59442e3fe872f97ddcb7aee7ad48aa6b01229",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/39384889",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3764167088:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "04da595c0888da73b667054bd1c6f55999e7c1ae7bc39a0203373e0eace46201",
+     "license": "CC0",
+     "author": "Hugo Hulsberg",
+     "source_url": "https://www.inaturalist.org/observations/112964290",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3335562423:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "073b6e2d824e067a6be2b923088aa19ac9fe3df6ba93286660bf2ddca209bdf9",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/89909861",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4126934393:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "0751b5e386d1244f728183faeda1cb2d6b536109494a51a9a78b156b04b6539a",
+     "license": "CC BY",
+     "author": "La florifunga🌱",
+     "source_url": "https://www.inaturalist.org/observations/163480521",
+     "extra_image_ids": [
+      "gbif:4126934393:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5063720623:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "07f698b91f4edf4c736c2fcacdb4692b56aee22f76ef0b259a3b310d6c42dbb1",
+     "license": "CC BY",
+     "author": "Matt Berger",
+     "source_url": "https://www.inaturalist.org/observations/260344538",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3039475155:0",
+     "species_id": "eucryphia-cordifolia",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "0849d8c52a63370b3e51e611659f556253a317e4e3852e31c9e9f835efd24501",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/69434005",
+     "extra_image_ids": [
+      "gbif:3039475155:1"
+     ]
+    },
+    {
+     "image_id": "commons:52420104",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "9c7d99f288c119e39c8110b95a281e8fea75c0fb90d8e3ae8c7147efab004ca2",
+     "license": "CC BY-SA 3.0",
+     "author": "This image was created by user Jason Hollinger (jason) at Mushroom Observer, a source for mycological images.You can contact this user here.",
+     "source_url": "https://commons.wikimedia.org/wiki/File:2008-12-20_Pseudocyphellaria_glabra_(J.D._Hook._%26_Taylor)_Dodge_43353.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:52420041",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "1ce2abcd3e176275da994834545c44d2288553e8710b059b38c8f2c98adff2d8",
+     "license": "CC BY-SA 3.0",
+     "author": "This image was created by user Jason Hollinger (jason) at Mushroom Observer, a source for mycological images.You can contact this user here.",
+     "source_url": "https://commons.wikimedia.org/wiki/File:2008-12-24_Pseudocyphellaria_berberina_(G._Forster)_D._Galloway_%26_P._James_41430.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:49125976",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "936f823c65c0ba0a6edbea155eaf78f8fb8e2ce474c85cad33f655364c03d32a",
+     "license": "CC BY-SA 4.0",
+     "author": "Claudio Elias",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Anticura_-_Recepci%C3%B3n.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:24215887",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "b90c6f9735330be6149c2b8a89b4f3164e1384aed2fcac3d85758ca000314154",
+     "license": "CC BY 2.0",
+     "author": "Jason Hollinger",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Asteranthera_ovata_(3163923562).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:24215822",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "75a1a68a740616f5fb0d94be183c7ba5bd4f02e15c6ed2cec978ad4e481139d3",
+     "license": "CC BY 2.0",
+     "author": "Jason Hollinger",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Black-on-Black_Crustose_Lichen_(3164070570).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:24215834",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "57fff6809978985279590a646c5400217e1d272f24725af4c5fd1e60b5aace92",
+     "license": "CC BY 2.0",
+     "author": "Jason Hollinger",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Bunodophoron_(3164051842).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:79644461",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "6cee6809a64fe6ef47a55e814e5bf4650d59a2bd439b0d0ea1f055071face396",
+     "license": "CC BY-SA 4.0",
+     "author": "Natalia Reyes Escobar",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Camino_a_Lago_Constancia_Parque_Nacional_Puyehue_26.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:79644464",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "a5a56f663077e13321b4583b4f1efa89d613a7b7fafed514e856b307a8950e3c",
+     "license": "CC BY-SA 4.0",
+     "author": "Natalia Reyes Escobar",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Camino_a_Lago_Constancia_Parque_Nacional_Puyehue_27.jpg",
+     "extra_image_ids": []
+    }
+   ]
+  },
+  "fungi": {
+   "development": [
+    {
+     "image_id": "gbif:3399193162:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "45f03fc8d2e8bf07ad7384c674459c87433fbd51c271469b959f27ddb689addc",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/98415834",
+     "extra_image_ids": [
+      "gbif:3399193162:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3407968899:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "3fc9c241f890082e2b49293e8414786f2bab8717370b9e50e9c88f8ffee6ad8e",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/99911599",
+     "extra_image_ids": [
+      "gbif:3407968899:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3994263807:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "04a1207fd0a708a64396c4b6ddac74361fdcad10167155c2b2ff012db369770b",
+     "license": "CC BY",
+     "author": "Bob Walker",
+     "source_url": "https://www.inaturalist.org/observations/143957926",
+     "extra_image_ids": [
+      "gbif:3994263807:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4034858639:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "aed7ac6d5819e3a93dc4a33244327e8d258c0c55b4d9f89c611a19789e862a77",
+     "license": "CC BY",
+     "author": "Sebastián Fornés",
+     "source_url": "https://www.inaturalist.org/observations/148518091",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4034874595:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "60cde1db2e1d6afa17fb1ecf508401842354262d05ae8ccc95ea5997c60b1649",
+     "license": "CC BY",
+     "author": "Sebastián Fornés",
+     "source_url": "https://www.inaturalist.org/observations/148519053",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4091372077:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "418062248557b6327694fa85325c0ee44b487417e322b8c7186a4853cb6a4a0c",
+     "license": "CC BY",
+     "author": "Lauu",
+     "source_url": "https://www.inaturalist.org/observations/154882650",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3070351787:0",
+     "species_id": "cyttaria-darwinii",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "31958aae47418094343f0ab4e32a8a3d8da43a597c3875316b5d6453d906d2c7",
+     "license": "CC BY",
+     "author": "Sheelagh Halsey",
+     "source_url": "https://www.inaturalist.org/observations/38091840",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:1839263420:0",
+     "species_id": "amanita-muscaria",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "60afd00d0cc3d76d49b242b8108c584b4022b73502f99d550efe99ac0a7a03dc",
+     "license": "CC BY",
+     "author": "Francisco E. Fonturbel",
+     "source_url": "https://www.inaturalist.org/observations/11420252",
+     "extra_image_ids": [
+      "gbif:1839263420:1"
+     ]
+    },
+    {
+     "image_id": "gbif:2573778018:0",
+     "species_id": "amanita-muscaria",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "8b64fd3ec26449f87dbb19fa82a08464cc691835834c00d545b3ffc9d5278af5",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/10665723",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4080969612:0",
+     "species_id": "fistulina-antarctica",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "e43e72428d5479304498e5966c252a0df34978a8eb5811c414ffe27e80157c34",
+     "license": "CC BY",
+     "author": "Steven Bodzin",
+     "source_url": "https://www.inaturalist.org/observations/153257787",
+     "extra_image_ids": [
+      "gbif:4080969612:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4121405985:0",
+     "species_id": "fistulina-antarctica",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "5585344cd980b3cd27c0b8f61f1f6a038443b58989eb139ddca6c564bcc9e786",
+     "license": "CC BY",
+     "author": "La florifunga🌱",
+     "source_url": "https://www.inaturalist.org/observations/163328616",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4510311886:0",
+     "species_id": "fistulina-antarctica",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "706074be0be3201d73df90920b7a2077ddb245963fc3019832160ce93eb5e5c9",
+     "license": "CC BY",
+     "author": "Víctor Vidal Echeverría",
+     "source_url": "https://www.inaturalist.org/observations/160985697",
+     "extra_image_ids": []
+    }
+   ],
+   "test": [
+    {
+     "image_id": "gbif:2550114640:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b9f303a02dfebec98a67ff690661f5ddb8f54ee8e712c792e4f50fa1a0470507",
+     "license": "CC BY",
+     "author": "María Regina Silva",
+     "source_url": "https://www.inaturalist.org/observations/36807522",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2611071042:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "e8bbfbac48804e442ee0bdc4f2e5d9c5a5e8eb15de35cb7f2f5309d126ebcc9f",
+     "license": "CC BY",
+     "author": "María Regina Silva",
+     "source_url": "https://www.inaturalist.org/observations/43461254",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3333151325:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "b464436723b8c525f7440a637668d4baf8c7a0aad18cad22082e0997d3d3fef3",
+     "license": "CC BY",
+     "author": "Jorge Herreros de Lartundo",
+     "source_url": "https://www.inaturalist.org/observations/34915795",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3399148443:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "334c97af13895d5c7968ff68fa3eb3c12ce8e6ea3ca7f38e23c0335c9171eba4",
+     "license": "CC BY",
+     "author": "Romi Galeota Lencina",
+     "source_url": "https://www.inaturalist.org/observations/36100255",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3764167088:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "04da595c0888da73b667054bd1c6f55999e7c1ae7bc39a0203373e0eace46201",
+     "license": "CC0",
+     "author": "Hugo Hulsberg",
+     "source_url": "https://www.inaturalist.org/observations/112964290",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3772760298:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ac81e677e5d028a4a4e447868c078b15cda8308dc5f7d4cea0b71af9c1f36b38",
+     "license": "CC BY",
+     "author": "Pablo",
+     "source_url": "https://www.inaturalist.org/observations/114290913",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3784687384:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "ecfb62cedca12ae36d442d0efc66a3cc9acd2c0be67fadfe97765902148c3bcf",
+     "license": "CC BY",
+     "author": "Pablo",
+     "source_url": "https://www.inaturalist.org/observations/106088828",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3902241531:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "49016af1905d971869f6259ae75b0ddeca39069683acc3ce92f6bbc5d97d7f16",
+     "license": "CC BY",
+     "author": "Lokal_Profil",
+     "source_url": "https://www.inaturalist.org/observations/131503450",
+     "extra_image_ids": [
+      "gbif:3902241531:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3902475479:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "6f47ca76c3f9a0800c15d168251399776a2883fbf2482cc0ece89da0590f2d8f",
+     "license": "CC BY",
+     "author": "Lokal_Profil",
+     "source_url": "https://www.inaturalist.org/observations/131503444",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4018252513:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "e483f68e7e16c32b4798ab9f9b232322a9c9e4931e62a515c2efecc260976182",
+     "license": "CC BY",
+     "author": "Pablo Bombín",
+     "source_url": "https://www.inaturalist.org/observations/104895462",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4018256460:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "cad2772941c46c78a004fc93fa5e9ef12360a47d18e22d64cb8f0d8a19b19dbc",
+     "license": "CC BY",
+     "author": "Pablo Bombín",
+     "source_url": "https://www.inaturalist.org/observations/104895467",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4028632239:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "c5131f97d6748cbd0eae0c8f525c76b34b3b28d81e53025883fee4316a97b6d6",
+     "license": "CC BY",
+     "author": "Patrick Jackson",
+     "source_url": "https://www.inaturalist.org/observations/145534741",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4028856908:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "51b01d2a1231036c55c6c64613c8a67c73f981743f10cb2ad9541f2f134b180a",
+     "license": "CC0",
+     "author": "Patricio Gantzer",
+     "source_url": "https://www.inaturalist.org/observations/147729326",
+     "extra_image_ids": [
+      "gbif:4028856908:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4028891030:0",
+     "species_id": "cyttaria-hariotii",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "c8b3fbf7a66097c940d6df2fa439e526b08213719d162850e3e886214c2e1866",
+     "license": "CC0",
+     "author": "sofia_ce",
+     "source_url": "https://www.inaturalist.org/observations/147789077",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3335101318:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "504c30f90d8561485c01452c0017dc05a561bea9c59f4c62480ce874d9b884ae",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/16468637",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3355343310:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "96dd9a44015ef31f7bdfd854e3b3002f13ccaefd430a11e832f9ba67207f6392",
+     "license": "CC BY-SA",
+     "author": "Nicolás Villaseca Merino",
+     "source_url": "https://www.inaturalist.org/observations/93068235",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3384000138:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "1422248f0e7aff834fd31b863ebad6b414f82dbd9af6ed4d4d7955721b6d2d65",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/95085643",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3384728624:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "a64c7051c3f3f162d658a8a1cd8396b100585129f7a3ca8322016699bba0ccb9",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/96513592",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3408259307:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "325610e5ad697641183ac11ebaeb90b2afc3e11dbbfa10a2f085ee69b174224d",
+     "license": "CC BY",
+     "author": "Francisco E. Fonturbel",
+     "source_url": "https://www.inaturalist.org/observations/100224905",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3903227380:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "9cae776b73f07dcd19b6118919aad0682e84349b840e3f4fc21f5e6d8023db7e",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/134337351",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3985730285:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "5ee4ed1bff5e162cb4d94d691c9d9cb029152c2970f5b4040eb64ff246b7199c",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/142305136",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4126934393:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "0751b5e386d1244f728183faeda1cb2d6b536109494a51a9a78b156b04b6539a",
+     "license": "CC BY",
+     "author": "La florifunga🌱",
+     "source_url": "https://www.inaturalist.org/observations/163480521",
+     "extra_image_ids": [
+      "gbif:4126934393:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4177445816:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "31f0786819ca16b6c2041f9bbab7348740632fe22604582dd84978301f481452",
+     "license": "CC BY",
+     "author": "F. Bemmerlein-Lux",
+     "source_url": "https://www.inaturalist.org/observations/178320021",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4440711447:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "a9674fd46bcefce2137cffd17bda2ba4bd12c52075b7928eae666b46fcf2edc9",
+     "license": "CC BY",
+     "author": "Ben Lyle Bedard",
+     "source_url": "https://www.inaturalist.org/observations/190526851",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4936782963:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "e9b4ab12c88af2535d766e364bad969a125f3d4f191061512e9100fc0318411f",
+     "license": "CC BY",
+     "author": "Cesar Ormazabal",
+     "source_url": "https://www.inaturalist.org/observations/140826034",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5828582650:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "1c6a3b30fbc8077fb2582acd4975d376ba422c5edbd763d968d90202662b6e90",
+     "license": "CC BY",
+     "author": "S. Cortés",
+     "source_url": "https://www.inaturalist.org/observations/179282511",
+     "extra_image_ids": [
+      "gbif:5828582650:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5840343528:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "bbaf064a756849fca777da6e810669b48d2519c4e8b7e83150bf52620c799e87",
+     "license": "CC BY",
+     "author": "Diego González",
+     "source_url": "https://www.inaturalist.org/observations/318378797",
+     "extra_image_ids": [
+      "gbif:5840343528:1"
+     ]
+    },
+    {
+     "image_id": "gbif:5844033602:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "adf06a1fd5df457f9263852df35b6a138c2b7b0cb3c2a232891b5dfb70705a61",
+     "license": "CC0",
+     "author": "Matías Alvarez Figueroa",
+     "source_url": "https://www.inaturalist.org/observations/319937879",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5889753981:0",
+     "species_id": "cyttaria-espinosae",
+     "role": "catalog",
+     "organ": "unknown",
+     "sha256": "752da4ee4043c01efe70472f1ed62be5b7e62c62815b4500cdd348ce9116c38a",
+     "license": "CC BY",
+     "author": "Pablo Silva",
+     "source_url": "https://www.inaturalist.org/observations/323292964",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:1847626550:0",
+     "species_id": "cyttaria-darwinii",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "788bb276153b6e1728622c8686d507d8d8d65e0981be645b520d7bc7c2b29582",
+     "license": "CC BY",
+     "author": "Lera Miles",
+     "source_url": "http://www.inaturalist.org/observations/1959812",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2238782468:0",
+     "species_id": "cyttaria-darwinii",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "8753cf2a4908a245f3cc27635efbd26bbdf5cd81669be6569acb42a4627522c3",
+     "license": "CC BY",
+     "author": "John Brew",
+     "source_url": "https://www.inaturalist.org/observations/20502049",
+     "extra_image_ids": [
+      "gbif:2238782468:1"
+     ]
+    },
+    {
+     "image_id": "gbif:2459995664:0",
+     "species_id": "cyttaria-darwinii",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "81a0e937a085dd79b1767e8160ef60448414490f1c38037582c3c1b6a27dec75",
+     "license": "CC BY",
+     "author": "María Regina Silva",
+     "source_url": "https://www.inaturalist.org/observations/23841134",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2543028124:0",
+     "species_id": "cyttaria-darwinii",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "656add89c7838688ff9178521fdc64247f3d84f44393a5be6701447a1aed5a6b",
+     "license": "CC BY",
+     "author": "desertnaturalist",
+     "source_url": "https://www.inaturalist.org/observations/37006575",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2823350465:0",
+     "species_id": "cyttaria-darwinii",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "a1b877bdfb1f2b1f69d118c2a5843a2cd97daac6af4869e152ffe6a65c0b753e",
+     "license": "CC0",
+     "author": "Simon Tonge",
+     "source_url": "https://www.inaturalist.org/observations/53936700",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3031619607:0",
+     "species_id": "cyttaria-darwinii",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "72ae29b535522307ec694e69dce5340f295172ed5aa7551a3e0755057d77701a",
+     "license": "CC0",
+     "author": "Tabaré Barreto",
+     "source_url": "https://www.inaturalist.org/observations/38073700",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3039245266:0",
+     "species_id": "cyttaria-darwinii",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "219a6a522fb5ef0705d3077a1ee332e7779f7fca772174dad5cb5af2113dbbab",
+     "license": "CC BY",
+     "author": "Erasmo Macaya Horta",
+     "source_url": "https://www.inaturalist.org/observations/68968522",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3384616606:0",
+     "species_id": "cyttaria-darwinii",
+     "role": "hard",
+     "organ": "unknown",
+     "sha256": "881f71215766b4a87ae0ecef2104adf50c920d98ff475f43de2d1be2a991a944",
+     "license": "CC BY",
+     "author": "rosaceae_roberts",
+     "source_url": "https://www.inaturalist.org/observations/69029811",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2573778020:0",
+     "species_id": "amanita-muscaria",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "a0204584fc9078eb512017dce4f2913a4396d2f92e6025edf9a459450fb7c279",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/10665694",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3112518787:0",
+     "species_id": "amanita-muscaria",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "b77c58dc4f9ddd48c3f3ce1f042224703330bec375e568124f6ffebcec08bade",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/76003615",
+     "extra_image_ids": [
+      "gbif:3112518787:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3113635649:0",
+     "species_id": "amanita-muscaria",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "9e6263c1e22a956ef641ce5db5895dd90d88e63b829bac09a31e3117279a09b7",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/78396394",
+     "extra_image_ids": [
+      "gbif:3113635649:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4075876533:0",
+     "species_id": "fistulina-antarctica",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "5f8b0c5202302a9c811f79dcf505aea9e651a2c8c548e93b34fc23e0c36677b9",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/152295992",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4080570967:0",
+     "species_id": "fistulina-antarctica",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "7eb281b90297306f6b178f27a10820baf7498fe48aca57060a3fca3e94bf67d3",
+     "license": "CC BY",
+     "author": "Steven Bodzin",
+     "source_url": "https://www.inaturalist.org/observations/153795471",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2573781058:0",
+     "species_id": "aleurodiscus-vitellinus",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "bb268144d4db8501b86408c1674ad85b3ab3682f9d8dd774477b28b38d21defd",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/12606070",
+     "extra_image_ids": [
+      "gbif:2573781058:1"
+     ]
+    },
+    {
+     "image_id": "gbif:2574203947:0",
+     "species_id": "aleurodiscus-vitellinus",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "58bdddaf7b696525edb03aad2f70d68d1c1c54c6a1ee936e8643019998d4910c",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/24993747",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3859394024:0",
+     "species_id": "aleurodiscus-vitellinus",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "97e57a57a6739bd5733900eb7d45b9e638428325561de92b4d0bb0b80c20ce38",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/119806686",
+     "extra_image_ids": [
+      "gbif:3859394024:1"
+     ]
+    },
+    {
+     "image_id": "gbif:4116051923:0",
+     "species_id": "aleurodiscus-vitellinus",
+     "role": "general",
+     "organ": "unknown",
+     "sha256": "829ab72ca9d295f2c99494330459f53413607317bbd6f71c469b116a190af26c",
+     "license": "CC BY",
+     "author": "Víctor Vidal Echeverría",
+     "source_url": "https://www.inaturalist.org/observations/160985352",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5087594258:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "007b590b06998c08cc1d225bbd4087aa3469e72ae5ceea0fc7a15ea774ae82b1",
+     "license": "CC BY",
+     "author": "Eric Schmidt",
+     "source_url": "https://www.inaturalist.org/observations/264760566",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:138643139",
+     "species_id": "laureliopsis-philippiana",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "019a6c0073ae44b9bd704a04e7b06c3bdf558b0007f64bdf1bda0114b074df6e",
+     "license": "CC BY 4.0",
+     "author": "(c) Cristian Riquelme, some rights reserved (CC BY)",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Laureliopsis_philippiana,_Valdivia,_Los_R%C3%ADos,_Chile_62188473.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2573912505:0",
+     "species_id": "nothofagus-betuloides",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "024ae7164f1af5f9d1ce414bb9e1fb6762ae6c0f974a76ed306216021b5cce69",
+     "license": "CC BY",
+     "author": "Nolan Exe",
+     "source_url": "https://www.inaturalist.org/observations/37992744",
+     "extra_image_ids": [
+      "gbif:2573912505:2"
+     ]
+    },
+    {
+     "image_id": "commons:598273",
+     "species_id": "weinmannia-trichosperma",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "034516736bd89e93810e177477c0bb14437573486bc0573d921f064b3634f581",
+     "license": "CC BY-SA 3.0",
+     "author": "Franz Xaver",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Weinmannia_trichosperma.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:2576249646:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "0358dc12b34c5d08d0332689c4d59442e3fe872f97ddcb7aee7ad48aa6b01229",
+     "license": "CC BY",
+     "author": "Cristian Riquelme",
+     "source_url": "https://www.inaturalist.org/observations/39384889",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4046757827:0",
+     "species_id": "campephilus-magellanicus",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "03da45b0475dcaa6466918f71e6caaebe9c4e615384c964d701e72f34d5e3855",
+     "license": "CC BY",
+     "author": "nitsuga74",
+     "source_url": "https://www.inaturalist.org/observations/149443269",
+     "extra_image_ids": [
+      "gbif:4046757827:1"
+     ]
+    },
+    {
+     "image_id": "gbif:3335562423:0",
+     "species_id": "weinmannia-trichosperma",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "073b6e2d824e067a6be2b923088aa19ac9fe3df6ba93286660bf2ddca209bdf9",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/89909861",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:4510201458:0",
+     "species_id": "theristicus-melanopis",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "07ae37bf459a2ddd13dedb0c82d00386696287e918081bd8c576205b920462a4",
+     "license": "CC BY",
+     "author": "Charlotte Kirchner",
+     "source_url": "https://www.inaturalist.org/observations/196166632",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:5063720623:0",
+     "species_id": "aextoxicon-punctatum",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "07f698b91f4edf4c736c2fcacdb4692b56aee22f76ef0b259a3b310d6c42dbb1",
+     "license": "CC BY",
+     "author": "Matt Berger",
+     "source_url": "https://www.inaturalist.org/observations/260344538",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "gbif:3039475155:0",
+     "species_id": "eucryphia-cordifolia",
+     "role": "cross_kingdom",
+     "organ": "unknown",
+     "sha256": "0849d8c52a63370b3e51e611659f556253a317e4e3852e31c9e9f835efd24501",
+     "license": "CC BY",
+     "author": "Inao Vasquez",
+     "source_url": "https://www.inaturalist.org/observations/69434005",
+     "extra_image_ids": [
+      "gbif:3039475155:1"
+     ]
+    },
+    {
+     "image_id": "commons:52420104",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "9c7d99f288c119e39c8110b95a281e8fea75c0fb90d8e3ae8c7147efab004ca2",
+     "license": "CC BY-SA 3.0",
+     "author": "This image was created by user Jason Hollinger (jason) at Mushroom Observer, a source for mycological images.You can contact this user here.",
+     "source_url": "https://commons.wikimedia.org/wiki/File:2008-12-20_Pseudocyphellaria_glabra_(J.D._Hook._%26_Taylor)_Dodge_43353.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:52420041",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "1ce2abcd3e176275da994834545c44d2288553e8710b059b38c8f2c98adff2d8",
+     "license": "CC BY-SA 3.0",
+     "author": "This image was created by user Jason Hollinger (jason) at Mushroom Observer, a source for mycological images.You can contact this user here.",
+     "source_url": "https://commons.wikimedia.org/wiki/File:2008-12-24_Pseudocyphellaria_berberina_(G._Forster)_D._Galloway_%26_P._James_41430.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:49125976",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "936f823c65c0ba0a6edbea155eaf78f8fb8e2ce474c85cad33f655364c03d32a",
+     "license": "CC BY-SA 4.0",
+     "author": "Claudio Elias",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Anticura_-_Recepci%C3%B3n.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:24215887",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "b90c6f9735330be6149c2b8a89b4f3164e1384aed2fcac3d85758ca000314154",
+     "license": "CC BY 2.0",
+     "author": "Jason Hollinger",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Asteranthera_ovata_(3163923562).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:24215822",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "75a1a68a740616f5fb0d94be183c7ba5bd4f02e15c6ed2cec978ad4e481139d3",
+     "license": "CC BY 2.0",
+     "author": "Jason Hollinger",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Black-on-Black_Crustose_Lichen_(3164070570).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:24215834",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "57fff6809978985279590a646c5400217e1d272f24725af4c5fd1e60b5aace92",
+     "license": "CC BY 2.0",
+     "author": "Jason Hollinger",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Bunodophoron_(3164051842).jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:79644461",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "6cee6809a64fe6ef47a55e814e5bf4650d59a2bd439b0d0ea1f055071face396",
+     "license": "CC BY-SA 4.0",
+     "author": "Natalia Reyes Escobar",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Camino_a_Lago_Constancia_Parque_Nacional_Puyehue_26.jpg",
+     "extra_image_ids": []
+    },
+    {
+     "image_id": "commons:79644464",
+     "species_id": "environment",
+     "role": "environment",
+     "organ": "unknown",
+     "sha256": "a5a56f663077e13321b4583b4f1efa89d613a7b7fafed514e856b307a8950e3c",
+     "license": "CC BY-SA 4.0",
+     "author": "Natalia Reyes Escobar",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Camino_a_Lago_Constancia_Parque_Nacional_Puyehue_27.jpg",
+     "extra_image_ids": []
+    }
+   ]
+  }
+ }
+}
