@@ -1,7 +1,8 @@
 """Demo credentials and conservative, non-refundable daily PostgreSQL reservations."""
 
 import secrets
-from uuid import uuid4
+from pathlib import Path
+from uuid import UUID, uuid4
 
 import psycopg
 from fastapi import HTTPException
@@ -40,7 +41,9 @@ class ExecutionStore:
         config = self.config
         if owner == "sam-api-lab" and config.budget_lifetime_units > 1_000_000:
             raise HTTPException(503, "Campaña de investigación requiere fase explícita")
-        if owner == "sam-api-lab:I" and (credit_snapshot is None or owner_cap_units is None):
+        if owner == "sam-api-lab:I" and (
+            not isinstance(credit_snapshot, dict) or owner_cap_units is None
+        ):
             raise HTTPException(503, "Fase I requiere autorización vigente y límite de fase")
         if not config.database_url.get_secret_value():
             raise HTTPException(503, "Control global de consumo no configurado")
@@ -59,7 +62,46 @@ class ExecutionStore:
                 # Serialize admissions across workers; limits are shared by this database.
                 conn.execute("SELECT pg_advisory_xact_lock(78021931)")
                 if credit_snapshot is not None:
-                    checked_at, available_units = credit_snapshot
+                    if owner != "sam-api-lab:I" or set(credit_snapshot) != {
+                        "authorization_id",
+                        "authorization_file",
+                        "evidence_file",
+                        "campaign_id",
+                    }:
+                        raise HTTPException(503, "Referencia financiera inválida")
+                    try:
+                        from evaluations.sam_workers.schemas import financial_snapshot
+                        from tools.meta_sam_api_lab.media import digest, private_path
+
+                        auth_id = UUID(str(credit_snapshot["authorization_id"]))
+                        auth_file = private_path(Path(credit_snapshot["authorization_file"]))
+                        auth_hash = digest(auth_file)
+                        registered = conn.execute(
+                            "SELECT campaign_id,authorization_sha256,evidence_sha256,"
+                            "phase_cap_units "
+                            "FROM sam_financial_authorizations WHERE authorization_id=%s "
+                            "AND revoked_at IS NULL AND checked_at<=now() AND expires_at>now()",
+                            (auth_id,),
+                        ).fetchone()
+                        if (
+                            not registered
+                            or registered[0] != credit_snapshot["campaign_id"]
+                            or registered[1] != auth_hash
+                            or owner_cap_units > registered[3]
+                            or registered[2]
+                            != digest(private_path(Path(credit_snapshot["evidence_file"])))
+                        ):
+                            raise ValueError("Authorization record mismatch")
+                        checked_at, available_units = financial_snapshot(
+                            auth_file,
+                            credit_snapshot["evidence_file"],
+                            credit_snapshot["campaign_id"],
+                            owner_cap_units / 1_000_000,
+                        )
+                        if digest(auth_file) != auth_hash:
+                            raise ValueError("Authorization changed")
+                    except (KeyError, TypeError, ValueError, OSError):
+                        raise HTTPException(503, "Autorización financiera no verificable") from None
                     fresh = conn.execute(
                         "SELECT now() >= %s AND now() < %s + interval '24 hours'",
                         (checked_at, checked_at),
@@ -124,8 +166,17 @@ class ExecutionStore:
                         "INSERT INTO sam_job_reservations(job_id,attempt,reservation_id) "
                         "SELECT job_id,%s,%s FROM sam_experiment_jobs WHERE job_id=%s "
                         "AND lease_owner=%s AND status='running' AND attempt_count=%s "
-                        "AND lease_expires_at>now() RETURNING job_id",
-                        (attempt, identifier, job_id, lease_owner, attempt),
+                        "AND lease_expires_at>now() AND (%s::text IS NULL OR campaign_id=%s) "
+                        "RETURNING job_id",
+                        (
+                            attempt,
+                            identifier,
+                            job_id,
+                            lease_owner,
+                            attempt,
+                            credit_snapshot["campaign_id"] if credit_snapshot else None,
+                            credit_snapshot["campaign_id"] if credit_snapshot else None,
+                        ),
                     ).fetchone()
                     if link is None:
                         raise HTTPException(409, "Lease o intento no válido para reserva")

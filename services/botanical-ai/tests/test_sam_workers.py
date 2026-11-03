@@ -56,6 +56,9 @@ def test_worker_delegates_to_runner_and_preserves_result(tmp_path, monkeypatch):
             {sha: {"path": str(image), "external_processing_permission": "approved"}}
         )
     )
+    (tmp_path / "config").write_text(
+        json.dumps({"financial_authorization_id": str(uuid4())})
+    )
     job_id = uuid4()
     evidence = tmp_path / "billing-evidence"
     evidence.write_bytes(b"synthetic evidence")
@@ -349,6 +352,9 @@ def test_ten_offline_workers_persist_results_and_resume(queue, tmp_path, monkeyp
         )
     registry_file = tmp_path / "registry.json"
     registry_file.write_text(json.dumps(registry))
+    (tmp_path / "config").write_text(
+        json.dumps({"financial_authorization_id": str(uuid4())})
+    )
     evidence = tmp_path / "synthetic-billing"
     evidence.write_bytes(b"synthetic evidence")
     now = datetime.now(UTC)
@@ -430,6 +436,55 @@ def test_ten_offline_workers_persist_results_and_resume(queue, tmp_path, monkeyp
     for result in output.glob("*/result.json"):
         assert inspect(queue, result.parent.name, output)["evidence"] == "matching"
     assert len(list(output.glob("*/result.json"))) == 10
+
+    from bosque_ai.meta import MetaAPIError, MetaRetryableError
+
+    for index, error in enumerate(
+        (
+            MetaRetryableError("429", 429, 2),
+            MetaRetryableError("429", 429, None),
+            MetaRetryableError("503", 503, None),
+            MetaAPIError("timeout"),
+        )
+    ):
+        media = tmp_path / f"failed-{index}.jpg"
+        media.write_bytes(f"failed-image-{index}".encode())
+        sha = hashlib.sha256(media.read_bytes()).hexdigest()
+        registry[sha] = {
+            "path": str(media),
+            "external_processing_permission": "approved",
+        }
+        registry_file.write_text(json.dumps(registry))
+        assert queue.enqueue(
+            "offline-worker",
+            {
+                "media_sha256": sha,
+                "prompt": "fern",
+                "model_version": "1",
+                "protocol_version": "1",
+                "protocol_approved_by": "test",
+                "preprocessing_version": "1",
+            },
+        )
+        calls = []
+
+        async def failing_runner(*args, failure=error, recorder=calls, **kwargs):
+            recorder.append(1)
+            raise failure
+
+        monkeypatch.setattr(worker, "run_experiment", failing_runner)
+        with pytest.raises(type(error)):
+            worker.run_one(
+                Queue(queue.database_url),
+                tmp_path / "config",
+                registry_file,
+                output,
+                authorization,
+                evidence,
+            )
+        assert len(calls) == 1
+        assert queue.claim(uuid4(), campaign_id="offline-worker") is None
+    assert queue.status() == {"completed": 10, "reconciliation_required": 4}
 
 
 @pytest.mark.parametrize("command", ["drain", "stop", "crash"])

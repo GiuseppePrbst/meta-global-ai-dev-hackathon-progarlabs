@@ -17,6 +17,21 @@ CREATE TABLE IF NOT EXISTS sam_experiment_jobs (
 );
 CREATE INDEX IF NOT EXISTS sam_jobs_claim_idx ON sam_experiment_jobs (status, priority DESC, created_at);
 CREATE INDEX IF NOT EXISTS sam_jobs_lease_idx ON sam_experiment_jobs (lease_expires_at) WHERE status IN ('leased', 'running');
+CREATE TABLE IF NOT EXISTS sam_financial_authorizations (
+    authorization_id uuid PRIMARY KEY,
+    campaign_id text NOT NULL,
+    authorization_sha256 text NOT NULL CHECK (authorization_sha256 ~ '^[0-9a-f]{64}$'),
+    evidence_sha256 text NOT NULL CHECK (evidence_sha256 ~ '^[0-9a-f]{64}$'),
+    responsible text NOT NULL,
+    phase_cap_units bigint NOT NULL CHECK (phase_cap_units > 0),
+    checked_at timestamptz NOT NULL,
+    expires_at timestamptz NOT NULL,
+    registered_at timestamptz NOT NULL DEFAULT now(),
+    revoked_at timestamptz,
+    UNIQUE (authorization_sha256)
+);
+ALTER TABLE sam_financial_authorizations ADD COLUMN IF NOT EXISTS phase_cap_units bigint
+    CHECK (phase_cap_units > 0);
 CREATE TABLE IF NOT EXISTS sam_job_reservations (
     job_id uuid NOT NULL REFERENCES sam_experiment_jobs(job_id),
     attempt integer NOT NULL CHECK (attempt > 0),

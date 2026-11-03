@@ -183,12 +183,16 @@ def test_shared_phase_context_requires_current_evidence(tmp_path, monkeypatch):
         json.dumps(
             {
                 "campaign_id": "test",
+                "financial_authorization_id": "00000000-0000-0000-0000-000000000001",
                 "financial_authorization_file": str(authorization),
                 "financial_evidence_file": str(evidence),
             }
         )
     )
-    assert lab.admission_from_private(config, "I")["credit_snapshot"][1] == 128_400_000
+    assert (
+        lab.admission_from_private(config, "I")["credit_snapshot"]["campaign_id"]
+        == "test"
+    )
     data["expires_at"] = (now - timedelta(seconds=1)).isoformat()
     authorization.write_text(json.dumps(data))
     with pytest.raises(ValueError, match="expired"):

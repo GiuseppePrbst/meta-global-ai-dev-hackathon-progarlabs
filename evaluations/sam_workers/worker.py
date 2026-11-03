@@ -50,12 +50,21 @@ def run_one(
         or config.database_url.get_secret_value() != queue.database_url
     ):
         raise ValueError("Authorization does not match shared phase I ledger")
-    credit_snapshot = financial_snapshot(
+    financial_snapshot(
         authorization_file,
         evidence_file,
         auth.campaign_id,
         campaign.phase_caps_usd["I"],
     )
+    private_config = json.loads(
+        private_path(Path(config_file)).read_text(encoding="utf-8")
+    )
+    credit_snapshot = {
+        "authorization_id": private_config["financial_authorization_id"],
+        "authorization_file": str(authorization_file),
+        "evidence_file": str(evidence_file),
+        "campaign_id": auth.campaign_id,
+    }
     owner = uuid4()
     job = queue.claim(owner, campaign_id=auth.campaign_id)
     if not job:

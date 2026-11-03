@@ -43,6 +43,14 @@ def test_phase_i_without_phase_cap_fails_before_database_access():
     assert error.value.status_code == 503
 
 
+def test_phase_i_rejects_manually_constructed_snapshot_tuple():
+    with pytest.raises(HTTPException) as error:
+        ExecutionStore(Settings(_env_file=None)).reserve(
+            "sam-api-lab:I", "identify", 1000, credit_snapshot=("2026-11-03", 10**15)
+        )
+    assert error.value.status_code == 503
+
+
 def test_research_lab_cannot_use_legacy_owner_without_phase():
     settings = Settings(_env_file=None, budget_lifetime_units=2_000_000)
     with pytest.raises(HTTPException) as error:
@@ -54,6 +62,40 @@ def demo(**kwargs):
     return Settings(
         _env_file=None, service_mode="demo", demo_tokens={"alice": "test-alice"}, **kwargs
     )
+
+
+def synthetic_credit_authorization(tmp_path, queue, checked_at, observed_usd):
+    from datetime import timedelta
+
+    from evaluations.sam_workers.schemas import register_financial_authorization
+
+    evidence = tmp_path / "evidence"
+    evidence.write_bytes(b"synthetic evidence")
+    authorization = tmp_path / "authorization.json"
+    authorization.write_text(
+        json.dumps(
+            {
+                "campaign_id": "test",
+                "responsible": "owner",
+                "source_kind": "provider_verified",
+                "source": "synthetic evidence",
+                "evidence_sha256": hashlib.sha256(evidence.read_bytes()).hexdigest(),
+                "observed_usd": observed_usd,
+                "limit_usd": 0.001,
+                "margin_usd": 0,
+                "ledger_phase": "I",
+                "checked_at": checked_at.isoformat(),
+                "expires_at": (checked_at + timedelta(hours=1)).isoformat(),
+            }
+        )
+    )
+    identifier = register_financial_authorization(queue, authorization, evidence, "test", 0.001)
+    return {
+        "authorization_id": str(identifier),
+        "authorization_file": str(authorization),
+        "evidence_file": str(evidence),
+        "campaign_id": "test",
+    }
 
 
 def test_unauthorized_before_body_parsing_or_image_decode(monkeypatch):
@@ -388,7 +430,9 @@ def test_research_profile_skips_daily_counter_but_keeps_money_and_atomic_owner_c
 
 
 @pytest.mark.integration
-def test_credit_snapshot_caps_all_post_snapshot_reservations_atomically():
+def test_credit_snapshot_caps_all_post_snapshot_reservations_atomically(tmp_path):
+    from evaluations.sam_workers.queue import Queue
+
     url = os.getenv("TEST_DATABASE_URL")
     if not url:
         pytest.skip("TEST_DATABASE_URL required")
@@ -401,6 +445,8 @@ def test_credit_snapshot_caps_all_post_snapshot_reservations_atomically():
         with psycopg.connect(scoped) as conn:
             conn.execute((scripts / "001_init.sql").read_text())
             conn.execute((scripts / "003_execution.up.sql").read_text())
+        queue = Queue(scoped)
+        queue.migrate()
         config = demo(
             database_url=scoped,
             budget_units=10000,
@@ -415,11 +461,12 @@ def test_credit_snapshot_caps_all_post_snapshot_reservations_atomically():
         store.reserve("uncertain", "identify")
         with psycopg.connect(scoped) as conn:
             snapshot = conn.execute("SELECT clock_timestamp()").fetchone()[0]
+        admission = synthetic_credit_authorization(tmp_path, queue, snapshot, 0.0003)
         store.reserve("other", "identify")
 
         def reserve(_):
             try:
-                store.reserve("sam-api-lab:I", "identify", 1000, credit_snapshot=(snapshot, 300))
+                store.reserve("sam-api-lab:I", "identify", 1000, credit_snapshot=admission)
                 return "ok"
             except HTTPException as exc:
                 return exc.status_code
@@ -479,12 +526,38 @@ def test_reservation_link_is_atomic_and_finish_requires_a_reserved_row(tmp_path)
         store = ExecutionStore(config)
         with psycopg.connect(scoped) as conn:
             timestamp = conn.execute("SELECT now() - interval '1 minute'").fetchone()[0]
+        admission = synthetic_credit_authorization(tmp_path, queue, timestamp, 0.001)
+        with pytest.raises(HTTPException) as unregistered:
+            store.reserve(
+                "sam-api-lab:I",
+                "identify",
+                1000,
+                credit_snapshot=admission | {"authorization_id": str(uuid4())},
+            )
+        assert unregistered.value.status_code == 503
+        with pytest.raises(HTTPException) as excessive_cap:
+            store.reserve("sam-api-lab:I", "identify", 1001, credit_snapshot=admission)
+        assert excessive_cap.value.status_code == 503
+        with pytest.raises(HTTPException) as wrong_campaign:
+            store.reserve(
+                "sam-api-lab:I",
+                "identify",
+                1000,
+                credit_snapshot=admission | {"campaign_id": "other"},
+            )
+        assert wrong_campaign.value.status_code == 503
+        evidence_path = Path(admission["evidence_file"])
+        evidence_path.write_bytes(b"tampered")
+        with pytest.raises(HTTPException) as changed:
+            store.reserve("sam-api-lab:I", "identify", 1000, credit_snapshot=admission)
+        assert changed.value.status_code == 503
+        evidence_path.write_bytes(b"synthetic evidence")
         with pytest.raises(HTTPException) as invalid:
             store.reserve(
                 "sam-api-lab:I",
                 "identify",
                 1000,
-                credit_snapshot=(timestamp, 1000),
+                credit_snapshot=admission,
                 job_context=(job, uuid4(), 1),
             )
         assert invalid.value.status_code == 409
@@ -494,7 +567,7 @@ def test_reservation_link_is_atomic_and_finish_requires_a_reserved_row(tmp_path)
             "sam-api-lab:I",
             "identify",
             1000,
-            credit_snapshot=(timestamp, 1000),
+            credit_snapshot=admission,
             job_context=(job, owner, 1),
         )
         with psycopg.connect(scoped) as conn:
@@ -550,6 +623,14 @@ def test_reservation_link_is_atomic_and_finish_requires_a_reserved_row(tmp_path)
                 ).fetchone()["n"]
                 == 1
             )
+            conn.execute(
+                "UPDATE sam_financial_authorizations SET expires_at=now()-interval '1 second' "
+                "WHERE authorization_id=%s",
+                (admission["authorization_id"],),
+            )
+        with pytest.raises(HTTPException) as expired:
+            store.reserve("sam-api-lab:I", "identify", 1000, credit_snapshot=admission)
+        assert expired.value.status_code == 503
     finally:
         with psycopg.connect(url, autocommit=True) as conn:
             conn.execute(sql.SQL("DROP SCHEMA {} CASCADE").format(sql.Identifier(schema)))

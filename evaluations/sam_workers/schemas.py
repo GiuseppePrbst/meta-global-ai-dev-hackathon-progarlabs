@@ -56,6 +56,42 @@ def financial_snapshot(authorization_path, evidence_path, campaign_id, phase_cap
     return auth.checked_at, int(units.to_integral_value(rounding=ROUND_FLOOR))
 
 
+def register_financial_authorization(
+    queue, authorization_path, evidence_path, campaign_id, phase_cap_usd
+):
+    """Record a reviewed evidence reference; it does not authenticate Meta Billing."""
+    from uuid import uuid4
+
+    from tools.meta_sam_api_lab.media import digest, private_path
+
+    path = private_path(Path(authorization_path))
+    auth = FinancialAuthorization.model_validate_json(path.read_text(encoding="utf-8"))
+    financial_snapshot(path, evidence_path, campaign_id, phase_cap_usd)
+    authorization_id = uuid4()
+    with queue.connect() as conn:
+        row = conn.execute(
+            """INSERT INTO sam_financial_authorizations
+            (authorization_id,campaign_id,authorization_sha256,evidence_sha256,responsible,checked_at,expires_at,phase_cap_units)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT(authorization_sha256) DO NOTHING
+            RETURNING authorization_id""",
+            (
+                authorization_id,
+                campaign_id,
+                digest(path),
+                auth.evidence_sha256,
+                auth.responsible,
+                auth.checked_at,
+                auth.expires_at,
+                int(
+                    (Decimal(str(phase_cap_usd)) * 1_000_000).to_integral_value(
+                        rounding=ROUND_FLOOR
+                    )
+                ),
+            ),
+        ).fetchone()
+    return row["authorization_id"] if row else None
+
+
 class Experiment(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 

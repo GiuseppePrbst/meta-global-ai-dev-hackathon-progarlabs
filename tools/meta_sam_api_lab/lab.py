@@ -681,12 +681,18 @@ def admission_from_private(config_path: Path, phase: str | None) -> dict:
     if phase != "I":
         return context
     raw = json.loads(private_path(config_path).read_text(encoding="utf-8"))
-    context["credit_snapshot"] = financial_snapshot(
+    financial_snapshot(
         raw["financial_authorization_file"],
         raw["financial_evidence_file"],
         raw["campaign_id"],
         context["phase_cap_usd"],
     )
+    context["credit_snapshot"] = {
+        "authorization_id": raw["financial_authorization_id"],
+        "authorization_file": raw["financial_authorization_file"],
+        "evidence_file": raw["financial_evidence_file"],
+        "campaign_id": raw["campaign_id"],
+    }
     return context
 
 

@@ -30,6 +30,7 @@ def main():
             "stop",
             "drain",
             "resume",
+            "register-authorization",
         ],
     )
     parser.add_argument("--spec", type=Path)
@@ -95,7 +96,41 @@ def main():
     if not database:
         parser.error("SAM_WORKERS_DATABASE_URL is required")
     queue = Queue(database)
-    if args.action in ("start", "stop", "drain", "resume"):
+    if args.action == "register-authorization":
+        if not all((args.config, args.authorization, args.evidence, args.campaign)):
+            parser.error(
+                "--config, --authorization, --evidence and --campaign are required"
+            )
+        from evaluations.sam_workers.schemas import register_financial_authorization
+        from tools.meta_sam_api_lab.lab import (
+            campaign_from_private,
+            config_from_private,
+        )
+
+        config = config_from_private(args.config)
+        campaign = campaign_from_private(args.config)
+        if (
+            not campaign
+            or "I" not in campaign.phase_caps_usd
+            or config.database_url.get_secret_value() != database
+        ):
+            raise ValueError("Shared phase I ledger is required")
+        identifier = register_financial_authorization(
+            queue,
+            args.authorization,
+            args.evidence,
+            args.campaign,
+            campaign.phase_caps_usd["I"],
+        )
+        print(
+            json.dumps(
+                {
+                    "authorization_id": str(identifier) if identifier else None,
+                    "duplicate": identifier is None,
+                }
+            )
+        )
+    elif args.action in ("start", "stop", "drain", "resume"):
         if not args.campaign:
             parser.error("--campaign is required")
         from evaluations.sam_workers.control import serve, set_state
