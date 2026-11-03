@@ -240,3 +240,7 @@ independiente el contrato de créditos y fase I del laboratorio local preexisten
 una prueba adicional del límite de fase. Se reutilizan PostgreSQL y el ledger existentes;
 no se incorporaron datos ni dependencias. Trabajo asistido por Codex. La reconstrucción
 del plan privado encontró 430 resultados finales de imagen; no acredita validación experta.
+
+El 03-11 se agregó una cola experimental PostgreSQL y pruebas sintéticas de concurrencia
+con procesos aislados. El adaptador de imagen reutiliza el runner existente; la operación
+continua, importación histórica y adquisición de nuevos medios siguen pendientes.

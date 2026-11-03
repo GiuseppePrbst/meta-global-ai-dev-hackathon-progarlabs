@@ -263,4 +263,5 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
   después de reasignaciones. Las fases anteriores siguen disponibles.
 - La captura de créditos es histórica, no una consulta de saldo ni autorización de cargos.
   No se habilita ejecución automática: hay que verificar el saldo y los derechos antes
-  de cualquier llamada. No se ha implementado una cola ni un worker persistente.
+  de cualquier llamada. La cola experimental está en desarrollo y todavía no está
+  validada para operación continua; ver [SAM_WORKERS_WIP.md](SAM_WORKERS_WIP.md).
