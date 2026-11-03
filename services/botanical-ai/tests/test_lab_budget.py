@@ -61,7 +61,7 @@ def test_campaign_lifts_cumulative_cap_to_fifty_with_conservative_quotas(tmp_pat
 @pytest.mark.parametrize(
     ("budget", "overrides", "message"),
     [
-        (51, {"authorized_usd": 51}, "less than or equal"),
+        (51, {"authorized_usd": 51}, "needs an equal free-credit"),
         (50, {"phase_caps_usd": {**CAPS, "E": 11}}, "exceed"),
         (40, {}, "must equal"),
         (50, {"daily_requests": 500}, "less than or equal"),
@@ -78,6 +78,7 @@ def test_campaign_rejects_overruns_and_unknown_fields(
 
 def test_phase_admission_passes_an_atomic_cap_to_the_ledger():
     assert lab.phase_admission("A", 3) == ("sam-api-lab:A", 3_000_000)
+    assert lab.phase_admission("I", 130) == ("sam-api-lab:I", 130_000_000)
     assert lab.phase_admission(None, None) == (
         "sam-api-lab",
         None,
@@ -86,6 +87,63 @@ def test_phase_admission_passes_an_atomic_cap_to_the_ledger():
         lab.phase_admission("Z", 1)
     with pytest.raises(ValueError):
         lab.phase_admission("B", None)
+
+
+def test_phase_i_requires_credit_authorization_and_preserves_margin(tmp_path):
+    credit = {
+        "snapshot_usd": 140.86,
+        "snapshot_at": "2026-11-02",
+        "source": "owner billing snapshot",
+        "responsible": "owner",
+        "authorized_new_usd": 130,
+        "safety_margin_usd": 10.86,
+    }
+    settings = campaign(
+        authorized_usd=180,
+        phase_caps_usd={**CAPS, "I": 130},
+        credit_authorization=credit,
+    )
+    config = lab.config_from_private(write_config(tmp_path, 180, settings))
+    assert config.budget_lifetime_units == 180_000_000
+    assert (
+        lab.campaign_from_private(write_config(tmp_path, 180, settings)).phase_caps_usd[
+            "I"
+        ]
+        == 130
+    )
+    with pytest.raises(ValueError, match="safety margin"):
+        lab.config_from_private(
+            write_config(
+                tmp_path,
+                180,
+                settings | {"credit_authorization": credit | {"safety_margin_usd": 11}},
+            )
+        )
+    with pytest.raises(ValueError):
+        lab.config_from_private(
+            write_config(
+                tmp_path,
+                180,
+                settings
+                | {"credit_authorization": credit | {"paid_spend_authorized": True}},
+            )
+        )
+
+
+def test_phase_i_cannot_exceed_credit_authorization(tmp_path):
+    credit = {
+        "snapshot_usd": 140.86,
+        "snapshot_at": "2026-11-02",
+        "source": "owner billing snapshot",
+        "responsible": "owner",
+        "authorized_new_usd": 130,
+        "safety_margin_usd": 10.86,
+    }
+    settings = campaign(
+        authorized_usd=180, phase_caps_usd={"I": 131}, credit_authorization=credit
+    )
+    with pytest.raises(ValueError, match="Phase I exceeds"):
+        lab.campaign_from_private(write_config(tmp_path, 180, settings))
 
 
 def test_research_profile_can_disable_daily_counter_only_explicitly(tmp_path):

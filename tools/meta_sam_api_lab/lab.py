@@ -29,7 +29,7 @@ from meta_sam_parser import (
     video_segmentation_format,
 )
 from PIL import Image, ImageDraw, ImageFilter
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from tools.meta_sam_api_lab.media import command, digest, private_path, probe
 
@@ -478,17 +478,41 @@ async def cleanup_remote(client, manifest):
 
 LEGACY_CAP_USD = 1
 RESEARCH_CAP_USD = 50  # user authorization 2026-10-30; cumulative, history included
-# F: open-set 30-10; G: multikingdom 31-10; H: SAM visual showcase 02-11
-PHASES = ("A", "B", "C", "D", "E", "F", "G", "H")
+# F: open-set 30-10; G: multikingdom 31-10; H: SAM showcase 02-11; I: extended (credits)
+PHASES = ("A", "B", "C", "D", "E", "F", "G", "H", "I")
+
+
+class CreditAuthorization(BaseModel):
+    """Owner-approved research capacity backed by Meta free credits (02-11-2026).
+
+    A snapshot of the Billing panel supplied by the owner, not a live balance and not
+    an authorization of card charges. The new capacity plus the safety margin must
+    fit inside the snapshot; reservations (always >= tariff cost) enforce it.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+    snapshot_usd: float = Field(gt=0)
+    snapshot_at: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
+    source: str = Field(min_length=5, max_length=300)
+    responsible: str = Field(min_length=3, max_length=120)
+    authorized_new_usd: float = Field(gt=0)
+    safety_margin_usd: float = Field(ge=0)
+    paid_spend_authorized: Literal[False] = False
+
+    @model_validator(mode="after")
+    def fits_in_snapshot(self):
+        if self.authorized_new_usd + self.safety_margin_usd > self.snapshot_usd + 1e-9:
+            raise ValueError("Credit capacity plus safety margin exceeds the snapshot")
+        return self
 
 
 class Campaign(BaseModel):
     """Explicit private research campaign; only it may lift the USD 1 lab ceiling."""
 
     model_config = ConfigDict(extra="forbid")
-    authorized_usd: float = Field(gt=0, le=RESEARCH_CAP_USD)
+    authorized_usd: float = Field(gt=0)
     authorization_date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
-    phase_caps_usd: dict[Literal["A", "B", "C", "D", "E", "F", "G", "H"], float]
+    phase_caps_usd: dict[Literal["A", "B", "C", "D", "E", "F", "G", "H", "I"], float]
     # None disables the internal daily request counter (owner decision 2026-10-30);
     # it is a project control, not Meta's limit. Money caps always apply.
     daily_requests: int | None = Field(ge=1, le=200)
@@ -496,14 +520,28 @@ class Campaign(BaseModel):
     historical_reserved_usd: float = Field(ge=0)  # kept, never refunded
     concurrency: int = Field(default=1, ge=1, le=8)
     reallocations: list["Reallocation"] = Field(default_factory=list)
+    credit_authorization: CreditAuthorization | None = None
+
+    @model_validator(mode="after")
+    def within_authorized_ceiling(self):
+        extra = (
+            self.credit_authorization.authorized_new_usd
+            if self.credit_authorization
+            else 0
+        )
+        if self.authorized_usd > RESEARCH_CAP_USD + extra + 1e-9:
+            raise ValueError(
+                "Authorization above USD 50 needs an equal free-credit authorization"
+            )
+        return self
 
 
 class Reallocation(BaseModel):
     """Traceable move of unused phase capacity; the campaign total never changes."""
 
     model_config = ConfigDict(extra="forbid")
-    from_phase: Literal["A", "B", "C", "D", "E", "F", "G", "H"]
-    to_phase: Literal["A", "B", "C", "D", "E", "F", "G", "H"]
+    from_phase: Literal["A", "B", "C", "D", "E", "F", "G", "H", "I"]
+    to_phase: Literal["A", "B", "C", "D", "E", "F", "G", "H", "I"]
     usd: float = Field(gt=0)
     reason: str = Field(min_length=5, max_length=300)
     date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
@@ -522,6 +560,12 @@ def campaign_from_private(path: Path) -> Campaign | None:
             raise ValueError("Reallocation exceeds the source phase cap")
     # Effective caps; the ledger refuses a source phase already above its new cap.
     campaign = campaign.model_copy(update={"phase_caps_usd": caps})
+    if caps.get("I", 0) > (
+        campaign.credit_authorization.authorized_new_usd
+        if campaign.credit_authorization
+        else 0
+    ):
+        raise ValueError("Phase I exceeds free-credit authorization")
     new_capacity = campaign.authorized_usd - campaign.historical_reserved_usd
     if round(sum(campaign.phase_caps_usd.values()), 6) > round(new_capacity, 6):
         raise ValueError(
@@ -541,7 +585,9 @@ def config_from_private(path: Path):
     data = json.loads(private_path(path).read_text(encoding="utf-8"))
     budget = Decimal(str(data["budget_usd"]))
     campaign = campaign_from_private(path)
-    ceiling = Decimal(RESEARCH_CAP_USD if campaign else LEGACY_CAP_USD)
+    ceiling = (
+        Decimal(str(campaign.authorized_usd)) if campaign else Decimal(LEGACY_CAP_USD)
+    )
     if (
         not Decimal(0) < budget <= ceiling
         or not data["rights_confirmed"]
