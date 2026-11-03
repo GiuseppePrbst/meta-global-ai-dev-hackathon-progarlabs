@@ -6,8 +6,6 @@ const paths = {
   layers: "m12 3 10 6-10 6L2 9l10-6ZM2 14l10 6 10-6M2 18l10 6 10-6",
   tree: "m12 2 7 8h-4l6 7h-8v5h-2v-5H3l6-7H5l7-8Z",
   plus: "M12 5v14M5 12h14",
-  mic: "M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3ZM5 11a7 7 0 0 0 14 0M12 18v3",
-  stop: "M7 7h10v10H7z",
 };
 
 export function Icon({ name, className = "" }: { name: keyof typeof paths; className?: string }) {
