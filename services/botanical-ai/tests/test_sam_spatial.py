@@ -130,7 +130,14 @@ def test_plan_never_mixes_concept_and_spatial_and_images_stay_on_frame_zero():
     image = {"media": "image", "width": 640, "height": 360, "frames": 1, "fps": 1}
     video = {"media": "video", "width": 960, "height": 540, "frames": 50, "fps": 10}
     spatial = [obj(1, FrameSpec(frame=0, box=[0, 0, 5, 5]))]
-    for concept, objects in [("tree", spatial), (None, None), ("pine", None)]:
+    for concept, objects in [
+        ("tree", spatial),
+        (None, None),
+        ("tree, bird", None),  # lists return nothing on the provider
+        ("tree and bird", None),  # "and" segments only one concept
+        ("what is this?", None),
+        ("a" * 60, None),
+    ]:
         with pytest.raises(ValueError):
             lab.plan_request(image, concept, objects, None)
     with pytest.raises(ValueError):
@@ -474,3 +481,12 @@ def test_resolution_matrix_validates_widths_without_ffmpeg(tmp_path):
     with pytest.raises(ValueError, match="width"):
         media.prepare_clip(tmp_path / "x.mp4", tmp_path / "out", width=700)
     assert media.WIDTHS == (640, 960, 1280)
+
+
+def test_single_short_noun_phrases_including_scientific_names_are_valid():
+    from tools.meta_sam_api_lab.lab import valid_concept
+
+    for concept in ("fern frond", "Campephilus magellanicus", "bracket fungus", "pine"):
+        assert valid_concept(concept)
+    for concept in ("bird; fern", "bird + fern", "bird or fern", "", None):
+        assert not valid_concept(concept)

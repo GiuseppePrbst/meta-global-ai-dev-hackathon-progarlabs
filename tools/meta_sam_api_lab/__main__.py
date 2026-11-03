@@ -47,7 +47,7 @@ def main():
     parser.add_argument("--direction", choices=["both", "forward", "backward"])
     parser.add_argument("--confidence", action="store_true")
     parser.add_argument("--width", type=int, default=640)
-    parser.add_argument("--phase", choices=["A", "B", "C", "D", "E", "F"])
+    parser.add_argument("--phase", choices=["A", "B", "C", "D", "E", "F", "G", "H"])
     parser.add_argument(
         "--experiment-note", help="Hypothesis/decision, stored privately"
     )
@@ -57,6 +57,7 @@ def main():
     parser.add_argument("--authorize-meta", action="store_true")
     parser.add_argument("--start", type=float, default=5)
     parser.add_argument("--port", type=int, default=8876)
+    parser.add_argument("--showcase", type=Path, help="Private SAM showcase folder")
     args = parser.parse_args()
     try:
         if args.action == "serve":
@@ -65,7 +66,7 @@ def main():
             from tools.meta_sam_api_lab.viewer import create_viewer
 
             uvicorn.run(
-                create_viewer(args.output, args.config, args.port),
+                create_viewer(args.output, args.config, args.port, args.showcase),
                 host="127.0.0.1",
                 port=args.port,
                 access_log=False,

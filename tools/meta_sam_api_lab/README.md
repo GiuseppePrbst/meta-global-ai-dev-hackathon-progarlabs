@@ -125,3 +125,24 @@ CI usa datos sintéticos y MockTransport, nunca medios restringidos ni claves re
 La prueba de navegador necesita `npm ci` y Chromium de Playwright del proyecto.
 La prueba de ledger acumulado está en `services/api/tests/test_execution.py` y necesita
 `TEST_DATABASE_URL` de una base de pruebas. [Resultados reales y límites](../../docs/META_SAM_API_RESEARCH.md).
+
+## Vista `/showcase` y campaña de biodiversidad (02-11-2026)
+
+- **Visor.** `serve ... --showcase <carpeta privada>` añade `/showcase`, que es de solo
+  lectura: lista y abre resultados guardados, sin rutas POST.
+  - Modos: original, superposición, solo máscaras, fondo oscurecido, objeto aislado,
+    contornos, cajas e IDs y comparación A/B (Mayúsculas + clic sobre un segundo resultado).
+  - Línea de tiempo con reproducción, velocidad y avance frame a frame; curva de confianza por
+    objeto.
+  - Las etiquetas de SAM y los candidatos de Muse van en paneles separados.
+  - Solo sirve `frames/` y `masks/` de cada resultado.
+- **Conceptos.** Cualquier frase nominal corta (`valid_concept`), una por solicitud.
+- **Video.** Límite local de 30 s y 900 frames (la API admite 15.000).
+- **Campaña.**
+  - `evaluations/sam_showcase.py`: `plan`, `run`, `advise`, `run-muse`, `run-video` y
+    `summarize`. Es reanudable: nunca repite un resultado con estado terminal.
+  - `evaluations/sam_identify.py`: compara la foto original con el recorte SAM.
+- **Exportaciones.** `evaluations/sam_showcase_video.py` compone el video principal, el
+  vertical y los clips con `tools/meta_sam_api_lab/showcase.py`. Usa solo máscaras guardadas
+  y escribe `provenance.json`.
+- Informe: [docs/SAM31_BIODIVERSITY_VISUAL_EVALUATION.md](../../docs/SAM31_BIODIVERSITY_VISUAL_EVALUATION.md).

@@ -1,0 +1,523 @@
+[
+ {
+  "run": "birds-fauna-0--c-bird",
+  "variant": "original",
+  "platform_label": "campephilus-magellanicus",
+  "status": "completed",
+  "accepted": "campephilus-magellanicus",
+  "proposed": [
+   "campephilus-magellanicus"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   1024,
+   768
+  ],
+  "latency_ms": 7604,
+  "usage": {
+   "prompt_tokens": 1321,
+   "completion_tokens": 479,
+   "total_tokens": 1800
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "birds-fauna-0--c-bird",
+  "variant": "sam_crop",
+  "platform_label": "campephilus-magellanicus",
+  "status": "completed",
+  "accepted": "campephilus-magellanicus",
+  "proposed": [
+   "campephilus-magellanicus"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   725,
+   768
+  ],
+  "latency_ms": 5370,
+  "usage": {
+   "prompt_tokens": 1077,
+   "completion_tokens": 372,
+   "total_tokens": 1449
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "birds-fauna-7--c-bird",
+  "variant": "original",
+  "platform_label": "campephilus-magellanicus",
+  "status": "completed",
+  "accepted": "campephilus-magellanicus",
+  "proposed": [
+   "campephilus-magellanicus"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   852,
+   1024
+  ],
+  "latency_ms": 6837,
+  "usage": {
+   "prompt_tokens": 1429,
+   "completion_tokens": 411,
+   "total_tokens": 1840
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "birds-fauna-7--c-bird",
+  "variant": "sam_crop",
+  "platform_label": "campephilus-magellanicus",
+  "status": "completed",
+  "accepted": "campephilus-magellanicus",
+  "proposed": [
+   "campephilus-magellanicus"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   788,
+   959
+  ],
+  "latency_ms": 6299,
+  "usage": {
+   "prompt_tokens": 1301,
+   "completion_tokens": 357,
+   "total_tokens": 1658
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "birds-fauna-68--c-bird",
+  "variant": "original",
+  "platform_label": "enicognathus-ferrugineus",
+  "status": "completed",
+  "accepted": "enicognathus-leptorhynchus",
+  "proposed": [
+   "enicognathus-leptorhynchus"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   608,
+   1024
+  ],
+  "latency_ms": 11236,
+  "usage": {
+   "prompt_tokens": 1163,
+   "completion_tokens": 702,
+   "total_tokens": 1865
+  },
+  "agrees_with_platform_label": false
+ },
+ {
+  "run": "birds-fauna-68--c-bird",
+  "variant": "sam_crop",
+  "platform_label": "enicognathus-ferrugineus",
+  "status": "completed",
+  "accepted": "enicognathus-leptorhynchus",
+  "proposed": [
+   "enicognathus-leptorhynchus"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   327,
+   707
+  ],
+  "latency_ms": 7780,
+  "usage": {
+   "prompt_tokens": 661,
+   "completion_tokens": 540,
+   "total_tokens": 1201
+  },
+  "agrees_with_platform_label": false
+ },
+ {
+  "run": "birds-fauna-195--c-bird",
+  "variant": "original",
+  "platform_label": "theristicus-melanopis",
+  "status": "completed",
+  "accepted": "theristicus-melanopis",
+  "proposed": [
+   "theristicus-melanopis"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   1024,
+   768
+  ],
+  "latency_ms": 7326,
+  "usage": {
+   "prompt_tokens": 1321,
+   "completion_tokens": 426,
+   "total_tokens": 1747
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "birds-fauna-195--c-bird",
+  "variant": "sam_crop",
+  "platform_label": "theristicus-melanopis",
+  "status": "completed",
+  "accepted": "theristicus-melanopis",
+  "proposed": [
+   "theristicus-melanopis"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   459,
+   222
+  ],
+  "latency_ms": 5871,
+  "usage": {
+   "prompt_tokens": 485,
+   "completion_tokens": 372,
+   "total_tokens": 857
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "birds-fauna-176--c-bird",
+  "variant": "original",
+  "platform_label": "scelorchilus-rubecula",
+  "status": "completed",
+  "accepted": "pteroptochos-tarnii",
+  "proposed": [
+   "pteroptochos-tarnii"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   1024,
+   1024
+  ],
+  "latency_ms": 7888,
+  "usage": {
+   "prompt_tokens": 1718,
+   "completion_tokens": 540,
+   "total_tokens": 2258
+  },
+  "agrees_with_platform_label": false
+ },
+ {
+  "run": "birds-fauna-176--c-bird",
+  "variant": "sam_crop",
+  "platform_label": "scelorchilus-rubecula",
+  "status": "completed",
+  "accepted": "pteroptochos-tarnii",
+  "proposed": [
+   "pteroptochos-tarnii"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   684,
+   502
+  ],
+  "latency_ms": 10266,
+  "usage": {
+   "prompt_tokens": 799,
+   "completion_tokens": 680,
+   "total_tokens": 1479
+  },
+  "agrees_with_platform_label": false
+ },
+ {
+  "run": "birds-fauna-95--c-bird",
+  "variant": "original",
+  "platform_label": "enicognathus-leptorhynchus",
+  "status": "completed",
+  "accepted": "enicognathus-leptorhynchus",
+  "proposed": [
+   "enicognathus-leptorhynchus"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   1024,
+   994
+  ],
+  "latency_ms": 6977,
+  "usage": {
+   "prompt_tokens": 1609,
+   "completion_tokens": 496,
+   "total_tokens": 2105
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "birds-fauna-95--c-bird",
+  "variant": "sam_crop",
+  "platform_label": "enicognathus-leptorhynchus",
+  "status": "completed",
+  "accepted": "enicognathus-leptorhynchus",
+  "proposed": [
+   "enicognathus-leptorhynchus"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   108,
+   245
+  ],
+  "latency_ms": 10847,
+  "usage": {
+   "prompt_tokens": 385,
+   "completion_tokens": 790,
+   "total_tokens": 1175
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "fungi-fungi-63--c-mushroom",
+  "variant": "original",
+  "platform_label": "cyttaria-hariotii",
+  "status": "completed",
+  "accepted": "cyttaria-hariotii",
+  "proposed": [
+   "cyttaria-hariotii"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   768,
+   1024
+  ],
+  "latency_ms": 11999,
+  "usage": {
+   "prompt_tokens": 1278,
+   "completion_tokens": 821,
+   "total_tokens": 2099
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "fungi-fungi-63--c-mushroom",
+  "variant": "sam_crop",
+  "platform_label": "cyttaria-hariotii",
+  "status": "completed",
+  "accepted": "cyttaria-hariotii",
+  "proposed": [
+   "cyttaria-hariotii",
+   "cyttaria-espinosae"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   333,
+   336
+  ],
+  "latency_ms": 9532,
+  "usage": {
+   "prompt_tokens": 450,
+   "completion_tokens": 671,
+   "total_tokens": 1121
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "fungi-fungi-20--box",
+  "variant": "original",
+  "platform_label": "cyttaria-darwinii",
+  "status": "completed",
+  "accepted": "cyttaria-hariotii",
+  "proposed": [
+   "cyttaria-hariotii"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   1024,
+   838
+  ],
+  "latency_ms": 7081,
+  "usage": {
+   "prompt_tokens": 1416,
+   "completion_tokens": 478,
+   "total_tokens": 1894
+  },
+  "agrees_with_platform_label": false
+ },
+ {
+  "run": "fungi-fungi-20--box",
+  "variant": "sam_crop",
+  "platform_label": "cyttaria-darwinii",
+  "status": "completed",
+  "accepted": "cyttaria-hariotii",
+  "proposed": [
+   "cyttaria-hariotii"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   422,
+   446
+  ],
+  "latency_ms": 10522,
+  "usage": {
+   "prompt_tokens": 546,
+   "completion_tokens": 480,
+   "total_tokens": 1026
+  },
+  "agrees_with_platform_label": false
+ },
+ {
+  "run": "fungi-fungi-36--box",
+  "variant": "original",
+  "platform_label": "cyttaria-espinosae",
+  "status": "completed",
+  "accepted": "cyttaria-espinosae",
+  "proposed": [
+   "cyttaria-espinosae"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   1024,
+   918
+  ],
+  "latency_ms": 8357,
+  "usage": {
+   "prompt_tokens": 1527,
+   "completion_tokens": 579,
+   "total_tokens": 2106
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "fungi-fungi-36--box",
+  "variant": "sam_crop",
+  "platform_label": "cyttaria-espinosae",
+  "status": "completed",
+  "accepted": "cyttaria-hariotii",
+  "proposed": [
+   "cyttaria-hariotii"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   330,
+   425
+  ],
+  "latency_ms": 7879,
+  "usage": {
+   "prompt_tokens": 486,
+   "completion_tokens": 564,
+   "total_tokens": 1050
+  },
+  "agrees_with_platform_label": false
+ },
+ {
+  "run": "fungi-fungi-57--box",
+  "variant": "original",
+  "platform_label": "cyttaria-hariotii",
+  "status": "completed",
+  "accepted": "cyttaria-hariotii",
+  "proposed": [
+   "cyttaria-hariotii"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   954,
+   1024
+  ],
+  "latency_ms": 8302,
+  "usage": {
+   "prompt_tokens": 1530,
+   "completion_tokens": 519,
+   "total_tokens": 2049
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "fungi-fungi-57--box",
+  "variant": "sam_crop",
+  "platform_label": "cyttaria-hariotii",
+  "status": "completed",
+  "accepted": "cyttaria-hariotii",
+  "proposed": [
+   "cyttaria-hariotii"
+  ],
+  "catalog_assessment": "supported_candidate",
+  "crop_size": [
+   268,
+   276
+  ],
+  "latency_ms": 9146,
+  "usage": {
+   "prompt_tokens": 406,
+   "completion_tokens": 583,
+   "total_tokens": 989
+  },
+  "agrees_with_platform_label": true
+ },
+ {
+  "run": "trees-flora-220--box",
+  "variant": "original",
+  "platform_label": "podocarpus-nubigenus",
+  "status": "completed",
+  "accepted": null,
+  "proposed": [],
+  "catalog_assessment": "non_diagnostic_photo",
+  "crop_size": [
+   640,
+   1024
+  ],
+  "latency_ms": 7122,
+  "usage": {
+   "prompt_tokens": 1370,
+   "completion_tokens": 459,
+   "total_tokens": 1829
+  },
+  "agrees_with_platform_label": null
+ },
+ {
+  "run": "trees-flora-220--box",
+  "variant": "sam_crop",
+  "platform_label": "podocarpus-nubigenus",
+  "status": "completed",
+  "accepted": null,
+  "proposed": [],
+  "catalog_assessment": "non_diagnostic_photo",
+  "crop_size": [
+   640,
+   1024
+  ],
+  "latency_ms": 8096,
+  "usage": {
+   "prompt_tokens": 1370,
+   "completion_tokens": 552,
+   "total_tokens": 1922
+  },
+  "agrees_with_platform_label": null
+ },
+ {
+  "run": "plants-flora-45--c-flower",
+  "variant": "original",
+  "platform_label": "embothrium-coccineum",
+  "status": "completed",
+  "accepted": null,
+  "proposed": [],
+  "catalog_assessment": "out_of_catalog_suspected",
+  "crop_size": [
+   506,
+   900
+  ],
+  "latency_ms": 9996,
+  "usage": {
+   "prompt_tokens": 1095,
+   "completion_tokens": 611,
+   "total_tokens": 1706
+  },
+  "agrees_with_platform_label": null
+ },
+ {
+  "run": "plants-flora-45--c-flower",
+  "variant": "sam_crop",
+  "platform_label": "embothrium-coccineum",
+  "status": "completed",
+  "accepted": null,
+  "proposed": [],
+  "catalog_assessment": "out_of_catalog_suspected",
+  "crop_size": [
+   243,
+   247
+  ],
+  "latency_ms": 7952,
+  "usage": {
+   "prompt_tokens": 583,
+   "completion_tokens": 489,
+   "total_tokens": 1072
+  },
+  "agrees_with_platform_label": null
+ }
+]

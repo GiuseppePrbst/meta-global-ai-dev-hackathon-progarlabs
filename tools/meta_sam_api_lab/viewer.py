@@ -42,7 +42,7 @@ class RunRequest(BaseModel):
     include_confidence: bool = False
     parent_experiment_id: str | None = Field(default=None, max_length=64)
     correction_reason: str | None = Field(default=None, max_length=300)
-    phase: Literal["A", "B", "C", "D", "E", "F"] | None = None
+    phase: Literal["A", "B", "C", "D", "E", "F", "G", "H"] | None = None
     experiment_note: str | None = Field(default=None, max_length=1000)
 
 
@@ -96,8 +96,11 @@ RESULT_FIELDS = {
 }
 
 
-def create_viewer(root: Path, config_file: Path, port: int = 8876):
+def create_viewer(
+    root: Path, config_file: Path, port: int = 8876, showcase_root: Path | None = None
+):
     root = private_path(root)
+    showcase_root = private_path(showcase_root) if showcase_root else None
     static = Path(__file__).parent
     app = FastAPI(docs_url=None, redoc_url=None, openapi_url=None)
     tasks = set()
@@ -177,9 +180,101 @@ def create_viewer(root: Path, config_file: Path, port: int = 8876):
 
     @app.get("/{name}.js")
     def javascript(name: str):
-        if name not in {"viewer", "geometry"}:
+        if name not in {"viewer", "geometry", "showcase", "showcase-core"}:
             raise HTTPException(404, "Not found")
         return FileResponse(static / f"{name}.js", media_type="text/javascript")
+
+    @app.get("/showcase")
+    def showcase_page():
+        return FileResponse(static / "showcase.html")
+
+    def showcase_run(identifier: str) -> Path:
+        if showcase_root is None or not SAFE_ID.fullmatch(identifier.replace(".", "_")):
+            raise HTTPException(404, "Result not found")
+        path = (showcase_root / "runs" / identifier).resolve()
+        if (
+            not path.is_relative_to(showcase_root / "runs")
+            or not (path / "result.json").is_file()
+        ):
+            raise HTTPException(404, "Result not found")
+        return path
+
+    def showcase_scenes() -> dict:
+        path = showcase_root / "scenes.json" if showcase_root else None
+        if not path or not path.is_file():
+            return {}
+        return {s["scene_id"]: s for s in json.loads(path.read_text("utf-8"))}
+
+    @app.get("/api/showcase/runs")
+    def showcase_runs():
+        """Saved results only; listing or opening one never calls Meta."""
+        if showcase_root is None:
+            return {"runs": []}
+        scenes = showcase_scenes()
+        runs = []
+        for manifest in sorted((showcase_root / "runs").glob("*/result.json")):
+            data = json.loads(manifest.read_text(encoding="utf-8"))
+            scene = scenes.get(data.get("source_ref"), {})
+            runs.append(
+                {
+                    "id": manifest.parent.name,
+                    "label": manifest.parent.name.replace("--", " · "),
+                    "domain": scene.get("domain")
+                    or data.get("source_ref", "video").split("-")[0],
+                    "status": data["status"],
+                    "masks": data.get("masks", 0),
+                    "media": data["media"],
+                }
+            )
+        return {"runs": runs}
+
+    @app.get("/api/showcase/run/{identifier}")
+    def showcase_detail(identifier: str):
+        path = showcase_run(identifier)
+        data = json.loads((path / "result.json").read_text("utf-8"))
+        scene = showcase_scenes().get(data.get("source_ref"), {})
+        muse_file = showcase_root / "identification.json"
+        muse = None
+        if muse_file.is_file():
+            muse = json.loads(muse_file.read_text("utf-8")).get(identifier)
+        keep = {
+            "model",
+            "parser",
+            "prompt_mode",
+            "prompt",
+            "prepared_size",
+            "no_mask_frames",
+            "status",
+            "latency_ms",
+            "estimated_usd",
+            "fps",
+            "media",
+            "direction",
+            "tracks",
+        }
+        return {
+            "id": identifier,
+            "scene": data.get("source_ref"),
+            "domain": scene.get("domain"),
+            "license": scene.get("license"),
+            "author": scene.get("author"),
+            **{k: v for k, v in data.items() if k in keep},
+            "frames": data.get("frames", []),
+            "muse": muse,
+        }
+
+    @app.get("/showcase-assets/{identifier}/{path:path}")
+    def showcase_asset(identifier: str, path: str):
+        run = showcase_run(identifier)
+        resolved = (run / path).resolve()
+        if (
+            not resolved.is_relative_to(run)
+            or not resolved.is_file()
+            or resolved.suffix.lower() not in {".jpg", ".jpeg", ".png"}
+            or resolved.parent.name not in {"frames", "masks"}
+        ):
+            raise HTTPException(404, "Media not found")
+        return FileResponse(resolved)
 
     @app.get("/assets/{path:path}")
     def media(path: str):

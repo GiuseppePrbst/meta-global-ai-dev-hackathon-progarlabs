@@ -184,8 +184,8 @@ WIDTHS = (640, 960, 1280)  # 1920 source; larger only once smaller ones justify 
 def prepare_clip(
     source: Path, output: Path, *, start=0.0, seconds=5.0, fps=10, width=640
 ) -> dict:
-    if not 0 <= start or not 0 < seconds <= 10 or not 1 <= fps <= 30:
-        raise ValueError("Clip limit: 10 seconds, 1–30 FPS")
+    if not 0 <= start or not 0 < seconds <= 30 or not 1 <= fps <= 30:
+        raise ValueError("Clip limit: 30 seconds, 1–30 FPS")
     if width not in WIDTHS:
         raise ValueError(f"Prepared width must be one of {WIDTHS}")
     output = private_path(output)
@@ -242,7 +242,7 @@ def prepare_clip(
     )
     prepared = probe(clip)
     actual_frames = len(list(frames.glob("*.png")))
-    if actual_frames > 300 or actual_frames != prepared["frames"]:
+    if actual_frames > 900 or actual_frames != prepared["frames"]:
         raise ValueError("Frame correspondence mismatch")
     manifest = {
         "classification": "RESTRICTED",
