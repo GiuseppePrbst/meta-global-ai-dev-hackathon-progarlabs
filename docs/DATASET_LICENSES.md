@@ -230,3 +230,11 @@ para entrenar.
 Las fotos propias no entran en ninguna colección de evaluación ni de benchmark. Ver
 [CONTENT_ENRICHMENT_REPORT.md](CONTENT_ENRICHMENT_REPORT.md) y
 [SAM_MEDIA_HANDOFF.md](SAM_MEDIA_HANDOFF.md).
+
+## Atlas nacional de parques CONAF — 03-11-2026
+
+| Recurso | Uso | Derechos | ¿Redistribuido? | Validación |
+| --- | --- | --- | --- | --- |
+| 46 fichas CONAF de parques nacionales | Campos factuales breves (superficie, provincias, comunas, horarios, acceso, senderos) en `data/public/conaf/` | Sitio público CONAF, atribución; no se copian descripciones, fotos ni mapas | Sí, solo hechos estructurados y oraciones cortas de condiciones; correos y teléfonos eliminados | Extracción revisada por un agente contra cada ficha; no es verificación en terreno |
+| BCN SNASPE (`Snaspe.zip`) | Encuadre WGS84 por parque (`park_bbox_bcn.json`) | Libre uso con atribución BCN; referencial | Solo bbox de geometrías válidas; polígonos no | 33/46 parques; edición anterior a parques recientes |
+| parquenacionalpuyehue.cl, parquesnacionaleschilenos.cl | Candidatos y conflictos (`secondary_sources.json`) | Sin términos publicados; «© 2026» | Solo hechos breves y enlaces | Fuente turística independiente, nunca sobre CONAF |
