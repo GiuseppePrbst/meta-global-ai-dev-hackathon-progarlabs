@@ -61,7 +61,7 @@ def test_campaign_lifts_cumulative_cap_to_fifty_with_conservative_quotas(tmp_pat
 @pytest.mark.parametrize(
     ("budget", "overrides", "message"),
     [
-        (51, {"authorized_usd": 51}, "less than or equal"),
+        (51, {"authorized_usd": 51}, "needs an equal free-credit"),
         (50, {"phase_caps_usd": {**CAPS, "E": 11}}, "exceed"),
         (40, {}, "must equal"),
         (50, {"daily_requests": 500}, "less than or equal"),

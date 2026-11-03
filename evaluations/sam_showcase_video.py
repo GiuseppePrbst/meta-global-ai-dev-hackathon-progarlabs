@@ -21,6 +21,12 @@ from tools.meta_sam_api_lab import showcase as sc
 FPS = 30
 
 
+def concept_of(run) -> str:
+    """Label source: the concept text, never a raw spatial prompt."""
+    result = run["result"]
+    return result.get("prompt") if result.get("prompt_mode") == "concept" else "objeto"
+
+
 def shrink(image, objects, max_side=1280):
     """Downscale photo and masks together to on-screen size (nearest for masks)."""
     import numpy as np
@@ -42,7 +48,7 @@ def shrink(image, objects, max_side=1280):
 def image_block(block, root: Path, size, vertical=False):
     run = sc.load_run(root / block["run"])
     image, objs = shrink(sc.frame_image(run, 0), sc.masks_for(run, 0))
-    concept = block.get("concept_label", run["result"].get("prompt") or "objeto")
+    concept = block.get("concept_label") or concept_of(run)
     labels = {o["id"]: f"SAM · {concept} #{i + 1}" for i, o in enumerate(objs)}
     if len(objs) > 8:  # dense scenes: one count chip instead of overlapping labels
         largest = max(objs, key=lambda o: o["array"].sum())
@@ -91,10 +97,13 @@ def video_block(block, root: Path, size, vertical=False):
     run = sc.load_run(root / block["run"])
     count = len(run["result"]["frames"])
     fps = run["result"].get("fps", 10)
-    concept = block.get("concept_label", run["result"].get("prompt") or "objeto")
+    concept = block.get("concept_label") or concept_of(run)
     cache = {}
     loops = block.get("loops", 1)
-    for k in range(int(count / fps * FPS * loops)):
+    total = int(count / fps * FPS * loops)
+    if block.get("max_seconds"):  # cut the clip short; never stretch it
+        total = min(total, int(block["max_seconds"] * FPS))
+    for k in range(total):
         index = math.floor((k / FPS) * fps + 1e-9) % count  # nearest earlier inference
         if index not in cache:
             objs = sc.masks_for(run, index)
@@ -143,6 +152,35 @@ def muse_block(block, root: Path, size, vertical=False):
         yield frame
 
 
+def bars_block(block, root: Path, size, vertical=False):
+    """Metric slide drawn from published numbers (no model output is drawn here)."""
+    from PIL import ImageDraw
+
+    w, h = (1100, 640) if not vertical else (960, 900)
+    chart = Image.new("RGB", (w, h), sc.BG)
+    d = ImageDraw.Draw(chart)
+    items = block["items"]
+    top = max(v for _, v, _ in items) or 1
+    row = (h - 40) // len(items)
+    for i, (label, value, text) in enumerate(items):
+        y = 20 + i * row
+        d.text((10, y + row // 2 - 14), label, font=sc.font(26), fill=(220, 225, 220))
+        x0 = 330
+        length = int((w - x0 - 170) * value / top)
+        d.rounded_rectangle(
+            (x0, y + 8, x0 + max(length, 4), y + row - 8), 8, fill=sc.color(i)
+        )
+        d.text(
+            (x0 + length + 12, y + row // 2 - 14),
+            text,
+            font=sc.font(26),
+            fill=(240, 240, 235),
+        )
+    frame = layout(chart, block, size, vertical)
+    for _ in range(int(block.get("seconds", 5) * FPS)):
+        yield frame
+
+
 def title_block(block, root: Path, size, vertical=False):
     frame = sc.title_card(block["title"], block["subtitle"], size)
     for _ in range(int(block.get("seconds", 3) * FPS)):
@@ -182,6 +220,7 @@ def layout(media, block, size, vertical):
 
 
 KINDS = {
+    "bars": bars_block,
     "title": title_block,
     "image": image_block,
     "compare": compare_block,
@@ -253,18 +292,33 @@ def main():
         "videos": {},
         "sources": spec["sources"],
     }
-    main_file = out / "BOSQUE_VIVO_SAM31_SHOWCASE.mp4"
-    manifest["videos"][main_file.name] = render(
-        spec["blocks"], args.root, main_file, (1920, 1080)
-    )
-    vertical = out / "BOSQUE_VIVO_SAM31_SHOWCASE_vertical.mp4"
-    manifest["videos"][vertical.name] = render(
-        spec["blocks"], args.root, vertical, (1080, 1920), vertical=True
-    )
-    for clip, ids in spec.get("clips", {}).items():
-        blocks = [b for b in spec["blocks"] if b.get("id") in ids]
-        manifest["videos"][f"clip-{clip}.mp4"] = render(
-            blocks, args.root, out / f"clip-{clip}.mp4", (1920, 1080)
+    # "cuts": [{"name", "blocks": ids|null, "vertical": bool}]; default = v1 layout.
+    cuts = spec.get("cuts") or [
+        {"name": "BOSQUE_VIVO_SAM31_SHOWCASE.mp4", "blocks": None},
+        {
+            "name": "BOSQUE_VIVO_SAM31_SHOWCASE_vertical.mp4",
+            "blocks": None,
+            "vertical": True,
+        },
+        *(
+            {"name": f"clip-{clip}.mp4", "blocks": ids}
+            for clip, ids in spec.get("clips", {}).items()
+        ),
+    ]
+    by_id = {b.get("id"): b for b in spec["blocks"]}
+    for cut in cuts:
+        blocks = (
+            spec["blocks"]
+            if cut["blocks"] is None
+            else [by_id[i] for i in cut["blocks"]]
+        )
+        vertical = bool(cut.get("vertical"))
+        manifest["videos"][cut["name"]] = render(
+            blocks,
+            args.root,
+            out / cut["name"],
+            (1080, 1920) if vertical else (1920, 1080),
+            vertical,
         )
     manifest["blocks"] = [
         {

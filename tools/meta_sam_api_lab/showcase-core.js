@@ -38,5 +38,20 @@
     }));
   }
 
-  return { PALETTE, colorMap, frameAt, labels, tracks };
+  // Mask metrics against agent-reviewed references: always labelled with their status.
+  function metricRows(m) {
+    const fmt = v => (v == null ? '—' : typeof v === 'number' ? v.toFixed(3) : String(v));
+    const rows = {
+      'Referencia': `${m.reference_status} (${m.reference_complete ? 'completa' : 'parcial'})`,
+      'Instancias acertadas': `${m.matched}/${m.reference_instances}`,
+      'Omisiones': fmt(m.missed),
+      'Falsos positivos': m.false_positives == null ? 'no medible (referencia parcial)' : fmt(m.false_positives),
+      'IoU de máscara (media)': fmt(m.mean_mask_iou),
+      'Dice (media)': fmt(m.mean_dice),
+      'Boundary F1': fmt(m.boundary_f1),
+    };
+    return rows;
+  }
+
+  return { PALETTE, colorMap, frameAt, labels, tracks, metricRows };
 });

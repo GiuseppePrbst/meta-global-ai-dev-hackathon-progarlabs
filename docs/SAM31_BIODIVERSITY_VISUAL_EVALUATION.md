@@ -242,3 +242,15 @@ No se superó el techo. La capacidad restante no alcanza para otra campaña equi
 - Pocos clips de video y ninguno de Puyehue.
 - El clip de hongos es de una especie no chilena (parecida a *Macrolepiota*) y no es *Cyttaria*.
 - Una sola corrida por experimento: no se midió la variabilidad entre llamadas.
+
+## Actualización 03-11-2026
+
+La segunda campaña ([informe ampliado](SAM31_EXTENDED_RESEARCH_REPORT.md)) corrige dos
+conclusiones de este documento:
+
+- **`fern`.** No falla en general: acierta 7/9 en fotos nítidas de helechos. El 0 de esta
+  campaña se debe al material, un muro lejano y desenfocado.
+- **Métricas.** Ya existen métricas a nivel de máscara frente a referencias GrabCut revisadas
+  por el agente.
+
+Las cifras de esta página no se modifican.

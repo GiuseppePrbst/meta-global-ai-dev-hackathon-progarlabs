@@ -47,7 +47,9 @@ def main():
     parser.add_argument("--direction", choices=["both", "forward", "backward"])
     parser.add_argument("--confidence", action="store_true")
     parser.add_argument("--width", type=int, default=640)
-    parser.add_argument("--phase", choices=["A", "B", "C", "D", "E", "F", "G", "H"])
+    parser.add_argument(
+        "--phase", choices=["A", "B", "C", "D", "E", "F", "G", "H", "I"]
+    )
     parser.add_argument(
         "--experiment-note", help="Hypothesis/decision, stored privately"
     )
@@ -89,6 +91,7 @@ def main():
                 config_from_private(args.config),
                 campaign.authorized_usd if campaign else 1,
                 private_path(args.output),
+                credit=campaign.credit_authorization if campaign else None,
             )
             write_json(private_path(args.output) / "cost-report.json", report)
             print(json.dumps(report, indent=2, default=str))
