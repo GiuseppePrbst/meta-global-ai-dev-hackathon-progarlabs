@@ -518,3 +518,7 @@ Reglas para la UI:
 - un concepto por solicitud (sin listas) y los prompts espaciales nunca mezclados con texto;
 - coordenadas en píxeles del medio preparado;
 - un resultado guardado se vuelve a mostrar sin repetir la inferencia.
+
+Ver también los requisitos de medios y la evidencia ampliada de SAM:
+[SAM31_EXTENDED_RESEARCH_REPORT.md](SAM31_EXTENDED_RESEARCH_REPORT.md) y
+[SAM31_MEDIA_REQUIREMENTS.md](SAM31_MEDIA_REQUIREMENTS.md) (03-11-2026).
