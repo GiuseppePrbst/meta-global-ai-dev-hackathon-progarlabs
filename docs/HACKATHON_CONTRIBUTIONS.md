@@ -286,3 +286,7 @@ la adaptación de rutas antiguas y la reconciliación completa.
 La continuación del 03-11, asistida por Codex, añadió contexto financiero compartido,
 vínculo transaccional de nuevas reservas con jobs, una resolución auditada y pruebas
 de interrupción con PostgreSQL aislado. No se enviaron nuevas solicitudes a Meta.
+
+Otra continuación asistida por Codex añadió autorización financiera registrada y
+verificada al reservar, más pruebas de errores simulados. No se comprobó Billing ni
+se enviaron solicitudes nuevas al proveedor.

@@ -66,7 +66,16 @@ y OpenCV. El importador reconoció 466 resultados terminales: 442 existentes y 2
 adicionales; una segunda pasada reconoció 466 sin insertar. El proveedor fue simulado.
 
 El helper compartido valida autorización privada para la CLI, el visor, la campaña
-SAM y los callers Muse adaptados. Falta demostrar que todos los accesos directos al
-ledger no puedan construir manualmente un snapshot sin evidencia; la etiqueta del
-proveedor y el hash siguen requiriendo revisión humana. Permanecen pendientes las
+SAM y los callers Muse adaptados. El ledger rechaza tuplas financieras arbitrarias y
+requiere una autorización registrada, evidencia y hashes coincidentes para fase I.
+La etiqueta del proveedor y el hash siguen requiriendo revisión humana. Permanecen pendientes las
 pruebas integrales de timeout y respuestas 429/503 durante ejecución y recuperación.
+
+Continuación: el registro de autorización conserva campaña, responsable, vigencia,
+hashes y techo de fase. El ledger contrasta el registro con los archivos al reservar,
+bajo el bloqueo de admisión. En el worker simulado, 429 con y sin Retry-After, 503 y
+timeout terminan en reconciliación y no se reenvían automáticamente; esto no prueba
+esperas, reintentos seguros ni fallos en cada etapa de SSE, descarga o limpieza.
+Servicios: 297 aprobadas y 25 omitidas. Pruebas focalizadas con PostgreSQL aislado:
+67 aprobadas y dos omitidas por OpenCV. Los 466 manifiestos permanecieron sin cambios
+en una nueva comprobación de hashes y la importación no insertó registros.

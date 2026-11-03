@@ -5,7 +5,7 @@ no se consulta automáticamente. El propietario debe revisar la evidencia financ
 antes de operar; faltan pruebas de recuperación y reconciliación con el ledger.
 El ledger rechaza fase I sin un snapshot de crédito explícito: las rutas de campaña,
 Muse y CLI del laboratorio obtienen ahora ese contexto desde configuración privada.
-Fase I requiere `campaign_id`, `financial_authorization_file` y
+Fase I requiere `campaign_id`, `financial_authorization_id`, `financial_authorization_file` y
 `financial_evidence_file`; la evidencia y autorización deben estar fuera de Git.
 Su hash no verifica automáticamente el saldo de Meta. Las fases A–H conservan su
 admisión anterior. Sin evidencia vigente la ejecución se bloquea.
@@ -17,6 +17,7 @@ python -m evaluations.sam_workers migrate
 python -m evaluations.sam_workers status
 python -m evaluations.sam_workers doctor
 python -m evaluations.sam_workers report
+python -m evaluations.sam_workers register-authorization --campaign <id> --config <config_privada> --authorization <autorizacion_privada> --evidence <evidencia_privada>
 python -m evaluations.sam_workers dry-run --spec <archivo_privado> --registry <registro_privado>
 python -m evaluations.sam_workers import-history --root <directorio_privado> --campaign <id>
 python -m evaluations.sam_workers reconcile --root <salidas_privadas> --job <uuid>
@@ -38,3 +39,7 @@ al ledger real sin completar la validación de la infraestructura.
 solicitan que termine el trabajo activo sin tomar otro. `resume` solo cambia la intención;
 el operador debe iniciar otro proceso. No se instala ningún servicio. La simulación
 exige una base denominada `sam_workers_offline_test` y no realiza reservas ni red Meta.
+El registro de autorización guarda hash, campaña, responsable, vigencia y techo de fase
+en el PostgreSQL compartido. Su identificador se incorpora a la configuración privada;
+el ledger verifica el registro y los archivos al reservar. La migración debe revisarse
+antes de aplicarla al ledger real y el registro no verifica la autenticidad del saldo.
