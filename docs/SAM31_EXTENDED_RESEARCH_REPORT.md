@@ -212,13 +212,20 @@ de los hongos se rechazaron por inconsistentes entre frames.
 
 ## Material de Codex
 
-- **Rama y worktree.** A esta fecha no existen `feat/biodiversity-content-media-enrichment`
-  ni `D:\repos\meta-global-ai-dev-hackathon-progarlabs-content`.
-- **Lo que no se usó:**
-  - ni `docs/SAM_MEDIA_HANDOFF.md` ni el manifiesto de escenas;
-  - ni las 83 fotos y 2 videos de Osorno y Lago Ranco, que tienen GPS en EXIF.
-- **Pendiente:** queda descrito en [SAM31_MEDIA_REQUIREMENTS.md](SAM31_MEDIA_REQUIREMENTS.md).
-  Su incorporación será un incremento separado.
+- **Handoff disponible.** Codex fusionó su trabajo de contenidos (PR #29, 03-11-2026) con
+  [SAM_MEDIA_HANDOFF.md](SAM_MEDIA_HANDOFF.md).
+  - Contenido: 15 escenas sin EXIF (helechos, árboles, vegetación) y 9 clips verticales de
+    los videos propios.
+  - Sin fauna ni hongos.
+- **No se procesó.** El handoff declara que el procesamiento externo en Meta Model API **no
+  está confirmado por el titular** e indica no enviar. Ninguna de estas escenas se mandó a
+  Meta. La autorización Hepta no las cubre.
+- **Siguiente paso.** Cuando el titular lo confirme por escrito, se suman como incremento
+  separado con referencias propias y sin tocar los originales ni el manifiesto de Codex
+  ([requisitos](SAM31_MEDIA_REQUIREMENTS.md)).
+- **Otro trabajo concurrente.** El PR #30 (borrador, `feat/meta-sam-dataset-workers`) modifica
+  `lab.py`, `costs.py` y la admisión de la fase I. Este PR añade `CreditAuthorization` en los
+  mismos archivos: hay que coordinar cuál se integra primero y reconciliar después.
 
 ## Limitaciones
 

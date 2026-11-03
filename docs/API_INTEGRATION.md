@@ -519,6 +519,16 @@ Reglas para la UI:
 - coordenadas en píxeles del medio preparado;
 - un resultado guardado se vuelve a mostrar sin repetir la inferencia.
 
+## Medios por taxón (aditivo, 02-11-2026)
+
+- `GET /taxa/{taxon_id}/media`: `MediaPage` con `items`, `total`, `limit`, `offset`. Filtros
+  `media_type` (`image`, `video`) y `visual_role`. Taxón desconocido → 404.
+- `GET /media/{asset_id}`: `MediaAsset` con URL pública, atribución, licencia, fuente y estado
+  de revisión. Medio no aprobado o inexistente → 404.
+
+Ambos son solo lectura y no exponen rutas locales, coordenadas ni metadatos privados. Los
+campos existentes de `Taxon` no cambian. Ver [MEDIA_LIBRARY_ARCHITECTURE.md](MEDIA_LIBRARY_ARCHITECTURE.md).
+
 Ver también los requisitos de medios y la evidencia ampliada de SAM:
 [SAM31_EXTENDED_RESEARCH_REPORT.md](SAM31_EXTENDED_RESEARCH_REPORT.md) y
 [SAM31_MEDIA_REQUIREMENTS.md](SAM31_MEDIA_REQUIREMENTS.md) (03-11-2026).

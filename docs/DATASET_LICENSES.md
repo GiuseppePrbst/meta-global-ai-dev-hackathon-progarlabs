@@ -218,3 +218,15 @@ eBird y Macaulay Library no se usaron como fuente de medios porque sus licencias
 reutilizarlos en volumen. Las fotos de la campaña se guardan solo en
 `D:/data/bosque-vivo/biodiversity-originals`, fuera de Git. Ninguna se publica ni se usa
 para entrenar.
+
+## Biblioteca multimedia — 02-11-2026
+
+| Recurso | Fuente y procesamiento | Derechos y redistribución | Validación y límites |
+| --- | --- | --- | --- |
+| Fotografías y videos propios (ZIP de iCloud aportado por el usuario: 83 fotos y 2 videos) | Archivo local del titular, sin descarga de red. Lectura, SHA-256, EXIF, miniaturas, escenas normalizadas, clips sin audio y sin metadatos (`evaluations/content_library_ingest.py`, `content_library_prepare.py`). | Sin licencia pública. Declarado por el usuario: uso de prueba y de presentación. **Sin permiso de publicación ni de procesamiento externo confirmado.** Autoría pendiente de confirmación: no se atribuye a ningún participante. | Revisión visual del agente, no de especialista. Ningún medio se sirve ni se versiona. Originales, EXIF/GPS y derivados solo en almacenamiento privado fuera de Git. |
+| Enlaces externos ya en `taxa.json` (45 registros) | Wikimedia Commons, GBIF/iNaturalist; sin descarga nueva. | CC0, CC BY, CC BY 2.0/4.0 y CC BY-SA por registro; autor y atribución conservados. Ninguno NC ni ND. | Se sirven enlazados con atribución visible; licencia y autor validados por prueba. |
+| Polígono simplificado del Parque Nacional Puyehue (referencia BCN SNASPE, privado) | Solo análisis local de ubicación de las fotos propias. | Mismo régimen que la entrada BCN de este documento. No se redistribuye. | Estimación; no es verificación oficial. |
+
+Las fotos propias no entran en ninguna colección de evaluación ni de benchmark. Ver
+[CONTENT_ENRICHMENT_REPORT.md](CONTENT_ENRICHMENT_REPORT.md) y
+[SAM_MEDIA_HANDOFF.md](SAM_MEDIA_HANDOFF.md).

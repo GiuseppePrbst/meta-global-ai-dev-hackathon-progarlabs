@@ -1,8 +1,9 @@
 # SAM 3.1 — requisitos de material audiovisual, 03-11-2026
 
 Pedido de Opus (Meta Visual Intelligence) a Codex (Content & Media Intelligence). Opus
-**consume** el manifiesto de escenas de Codex (`docs/SAM_MEDIA_HANDOFF.md`, que todavía no
-existe) y no lo reescribe.
+**consume** el manifiesto de escenas de Codex ([SAM_MEDIA_HANDOFF.md](SAM_MEDIA_HANDOFF.md),
+fusionado el 03-11-2026) y no lo reescribe. Bloqueo actual: el titular todavía no confirmó el
+procesamiento externo de ese material. Hasta entonces no se envía a Meta.
 
 ## Reglas para cada medio
 
