@@ -50,6 +50,24 @@ def test_zip_inventory_extract_crc_duplicates_and_overwrite(tmp_path):
         media.private_path(Path(__file__))
 
 
+async def test_scene_advisory_blocks_phase_i_without_snapshot(tmp_path, monkeypatch):
+    from fastapi import HTTPException
+
+    source = tmp_path / "synthetic.png"
+    Image.new("RGB", (4, 4), "green").save(source)
+    config = Settings(
+        _env_file=None, meta_enabled=True, budget_lifetime_units=1_000_000
+    )
+    monkeypatch.setattr(
+        lab, "MetaResponsesClient", lambda *args: pytest.fail("provider contacted")
+    )
+    with pytest.raises(HTTPException) as error:
+        await lab.scene_advisory(
+            config, [source], tmp_path / "output", phase="I", phase_cap_usd=130
+        )
+    assert error.value.status_code == 503
+
+
 async def test_video_wire_cleanup_even_when_provider_fails(tmp_path, monkeypatch):
     source = tmp_path / "synthetic.mp4"
     source.write_bytes(b"SYNTHETIC")

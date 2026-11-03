@@ -338,8 +338,25 @@ async def scene_advisory(
     *,
     phase=None,
     phase_cap_usd=None,
+    credit_snapshot=None,
+    financial_config_path: Path | None = None,
     task="scene",
 ):
+    if phase == "I":
+        if financial_config_path is None:
+            raise HTTPException(503, "Fase I requiere configuración financiera privada")
+        try:
+            admission = admission_from_private(financial_config_path, phase)
+            validated_config = config_from_private(financial_config_path)
+        except (ValueError, KeyError, OSError):
+            raise HTTPException(503, "Autorización de fase I no disponible") from None
+        if (
+            validated_config.database_url.get_secret_value()
+            != config.database_url.get_secret_value()
+        ):
+            raise HTTPException(503, "Ledger de investigación incompatible")
+        phase_cap_usd = admission["phase_cap_usd"]
+        credit_snapshot = admission["credit_snapshot"]
     if (
         not 1 <= len(sources) <= 3
         or not config.meta_enabled
@@ -363,7 +380,11 @@ async def scene_advisory(
     ledger = ExecutionStore(config)
     owner, cap = phase_admission(phase, phase_cap_usd)
     reservation = await asyncio.to_thread(
-        ledger.reserve, owner, "identify", *(() if cap is None else (cap,))
+        ledger.reserve,
+        owner,
+        "identify",
+        *(() if cap is None else (cap,)),
+        **({"credit_snapshot": credit_snapshot} if credit_snapshot is not None else {}),
     )
     client = MetaResponsesClient(config.model_api_key, config.meta_timeout_seconds)
     status = "provider_error"
@@ -560,6 +581,12 @@ def campaign_from_private(path: Path) -> Campaign | None:
             raise ValueError("Reallocation exceeds the source phase cap")
     # Effective caps; the ledger refuses a source phase already above its new cap.
     campaign = campaign.model_copy(update={"phase_caps_usd": caps})
+    if caps.get("I", 0) > (
+        campaign.credit_authorization.authorized_new_usd
+        if campaign.credit_authorization
+        else 0
+    ):
+        raise ValueError("Phase I exceeds free-credit authorization")
     new_capacity = campaign.authorized_usd - campaign.historical_reserved_usd
     if round(sum(campaign.phase_caps_usd.values()), 6) > round(new_capacity, 6):
         raise ValueError(
@@ -633,6 +660,40 @@ def phase_admission(phase: str | None, cap_usd: float | None) -> tuple[str, int 
     if cap_usd is None:
         raise ValueError("A campaign phase needs its cap")
     return owner, round(cap_usd * 1_000_000)
+
+
+def admission_from_private(config_path: Path, phase: str | None) -> dict:
+    """Build one phase context from private authorization; never infer live Billing."""
+    from evaluations.sam_workers.schemas import financial_snapshot
+
+    campaign = campaign_from_private(config_path)
+    if campaign and phase is None:
+        raise ValueError("Research campaign requires an explicit phase")
+    if phase is None:
+        return {"phase": None, "phase_cap_usd": None, "credit_snapshot": None}
+    if not campaign or phase not in campaign.phase_caps_usd:
+        raise ValueError("Unknown or unauthorized research phase")
+    context = {
+        "phase": phase,
+        "phase_cap_usd": campaign.phase_caps_usd[phase],
+        "credit_snapshot": None,
+    }
+    if phase != "I":
+        return context
+    raw = json.loads(private_path(config_path).read_text(encoding="utf-8"))
+    financial_snapshot(
+        raw["financial_authorization_file"],
+        raw["financial_evidence_file"],
+        raw["campaign_id"],
+        context["phase_cap_usd"],
+    )
+    context["credit_snapshot"] = {
+        "authorization_id": raw["financial_authorization_id"],
+        "authorization_file": raw["financial_authorization_file"],
+        "evidence_file": raw["financial_evidence_file"],
+        "campaign_id": raw["campaign_id"],
+    }
+    return context
 
 
 def write_json(path: Path, data):
@@ -845,6 +906,9 @@ async def run_experiment(
     phase: str | None = None,
     phase_cap_usd: float | None = None,
     experiment_note: str | None = None,
+    credit_snapshot=None,
+    job_context=None,
+    experiment_fingerprint=None,
 ) -> dict:
     if not authorized:
         raise ValueError("Explicit external-processing authorization required")
@@ -884,6 +948,9 @@ async def run_experiment(
         "experiment_note": experiment_note,
         "created_at": datetime.now(UTC).isoformat(timespec="seconds"),
         "source_sha256": digest(source),
+        "experiment_fingerprint": experiment_fingerprint,
+        "job_id": str(job_context[0]) if job_context else None,
+        "job_attempt": job_context[2] if job_context else None,
     }
 
     def state(status):
@@ -919,8 +986,19 @@ async def run_experiment(
         owner, cap = phase_admission(phase, phase_cap_usd)
         manifest["campaign_phase"] = phase
         reservation = await asyncio.to_thread(
-            ledger.reserve, owner, "identify", *(() if cap is None else (cap,))
+            ledger.reserve,
+            owner,
+            "identify",
+            *(() if cap is None else (cap,)),
+            **(
+                {"credit_snapshot": credit_snapshot}
+                if credit_snapshot is not None
+                else {}
+            ),
+            **({"job_context": job_context} if job_context is not None else {}),
         )
+        manifest["reservation_id"] = str(reservation)
+        write_json(output / "result.json", manifest)
     except HTTPException as exc:
         state("budget_exhausted" if exc.status_code == 429 else "provider_error")
         raise

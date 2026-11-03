@@ -78,6 +78,7 @@ def test_campaign_rejects_overruns_and_unknown_fields(
 
 def test_phase_admission_passes_an_atomic_cap_to_the_ledger():
     assert lab.phase_admission("A", 3) == ("sam-api-lab:A", 3_000_000)
+    assert lab.phase_admission("I", 130) == ("sam-api-lab:I", 130_000_000)
     assert lab.phase_admission(None, None) == (
         "sam-api-lab",
         None,
@@ -86,6 +87,156 @@ def test_phase_admission_passes_an_atomic_cap_to_the_ledger():
         lab.phase_admission("Z", 1)
     with pytest.raises(ValueError):
         lab.phase_admission("B", None)
+
+
+def test_phase_i_requires_credit_authorization_and_preserves_margin(tmp_path):
+    credit = {
+        "snapshot_usd": 140.86,
+        "snapshot_at": "2026-11-02",
+        "source": "owner billing snapshot",
+        "responsible": "owner",
+        "authorized_new_usd": 130,
+        "safety_margin_usd": 10.86,
+    }
+    settings = campaign(
+        authorized_usd=180,
+        phase_caps_usd={**CAPS, "I": 130},
+        credit_authorization=credit,
+    )
+    config = lab.config_from_private(write_config(tmp_path, 180, settings))
+    assert config.budget_lifetime_units == 180_000_000
+    assert (
+        lab.campaign_from_private(write_config(tmp_path, 180, settings)).phase_caps_usd[
+            "I"
+        ]
+        == 130
+    )
+    with pytest.raises(ValueError, match="safety margin"):
+        lab.config_from_private(
+            write_config(
+                tmp_path,
+                180,
+                settings | {"credit_authorization": credit | {"safety_margin_usd": 11}},
+            )
+        )
+    with pytest.raises(ValueError):
+        lab.config_from_private(
+            write_config(
+                tmp_path,
+                180,
+                settings
+                | {"credit_authorization": credit | {"paid_spend_authorized": True}},
+            )
+        )
+
+
+def test_phase_i_cannot_exceed_credit_authorization(tmp_path):
+    credit = {
+        "snapshot_usd": 140.86,
+        "snapshot_at": "2026-11-02",
+        "source": "owner billing snapshot",
+        "responsible": "owner",
+        "authorized_new_usd": 130,
+        "safety_margin_usd": 10.86,
+    }
+    settings = campaign(
+        authorized_usd=180, phase_caps_usd={"I": 131}, credit_authorization=credit
+    )
+    with pytest.raises(ValueError, match="Phase I exceeds"):
+        lab.campaign_from_private(write_config(tmp_path, 180, settings))
+
+
+def test_shared_phase_context_requires_current_evidence(tmp_path, monkeypatch):
+    import hashlib
+    from datetime import UTC, datetime, timedelta
+    from types import SimpleNamespace
+
+    monkeypatch.setattr(
+        lab,
+        "campaign_from_private",
+        lambda _: SimpleNamespace(phase_caps_usd={"H": 10, "I": 130}),
+    )
+    config = tmp_path / "config.json"
+    config.write_text("{}")
+    assert lab.admission_from_private(config, "H")["credit_snapshot"] is None
+    with pytest.raises(KeyError):
+        lab.admission_from_private(config, "I")
+    evidence = tmp_path / "evidence"
+    evidence.write_bytes(b"synthetic evidence")
+    now = datetime.now(UTC)
+    authorization = tmp_path / "authorization.json"
+    data = {
+        "campaign_id": "test",
+        "responsible": "owner",
+        "source_kind": "provider_verified",
+        "source": "synthetic evidence",
+        "evidence_sha256": hashlib.sha256(evidence.read_bytes()).hexdigest(),
+        "observed_usd": 139.26,
+        "limit_usd": 130,
+        "margin_usd": 10.86,
+        "ledger_phase": "I",
+        "checked_at": now.isoformat(),
+        "expires_at": (now + timedelta(hours=1)).isoformat(),
+    }
+    authorization.write_text(json.dumps(data))
+    config.write_text(
+        json.dumps(
+            {
+                "campaign_id": "test",
+                "financial_authorization_id": "00000000-0000-0000-0000-000000000001",
+                "financial_authorization_file": str(authorization),
+                "financial_evidence_file": str(evidence),
+            }
+        )
+    )
+    assert (
+        lab.admission_from_private(config, "I")["credit_snapshot"]["campaign_id"]
+        == "test"
+    )
+    data["expires_at"] = (now - timedelta(seconds=1)).isoformat()
+    authorization.write_text(json.dumps(data))
+    with pytest.raises(ValueError, match="expired"):
+        lab.admission_from_private(config, "I")
+    with pytest.raises(ValueError, match="explicit phase"):
+        lab.admission_from_private(config, None)
+
+
+def test_lab_cli_blocks_phase_i_without_evidence_before_runner(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+
+    from tools.meta_sam_api_lab import __main__ as cli
+
+    config = tmp_path / "config.json"
+    config.write_text("{}")
+    monkeypatch.setattr(
+        lab,
+        "campaign_from_private",
+        lambda _: SimpleNamespace(phase_caps_usd={"I": 130}),
+    )
+    monkeypatch.setattr(cli, "config_from_private", lambda _: object())
+    monkeypatch.setattr(
+        cli, "run_experiment", lambda *args, **kwargs: pytest.fail("runner invoked")
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "lab",
+            "image",
+            "--source",
+            str(tmp_path / "x.png"),
+            "--output",
+            str(tmp_path / "out"),
+            "--config",
+            str(config),
+            "--phase",
+            "I",
+            "--authorize-meta",
+        ],
+    )
+    with pytest.raises(SystemExit) as error:
+        cli.main()
+    assert error.value.code == 1
 
 
 def test_research_profile_can_disable_daily_counter_only_explicitly(tmp_path):

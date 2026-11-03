@@ -233,6 +233,29 @@ Asistencia: sesión de Claude Code con el modelo Claude Haiku 5.5 (Anthropic), i
 responsable del trabajo en esta rama. La decisión de alcance y la autorización de cada uso
 quedan a cargo del titular de los datos.
 
+## Recuperación del laboratorio — 03-11-2026
+
+Se preservó la corrección local de autenticación multimedia y se adaptó en una rama
+independiente el contrato de créditos y fase I del laboratorio local preexistente, con
+una prueba adicional del límite de fase. Se reutilizan PostgreSQL y el ledger existentes;
+no se incorporaron datos ni dependencias. Trabajo asistido por Codex. La reconstrucción
+del plan privado encontró 430 resultados finales de imagen; no acredita validación experta.
+
+El 03-11 se agregó una cola experimental PostgreSQL y pruebas sintéticas de concurrencia
+con procesos aislados. El adaptador de imagen reutiliza el runner existente; la operación
+continua y adquisición de nuevos medios siguen pendientes.
+
+En una continuación asistida por Codex se añadió importación histórica idempotente e
+inspección de evidencia. En PostgreSQL de pruebas se importaron 442 resultados finales
+sin reconstruir su identidad experimental; no se ejecutaron inferencias nuevas.
+
+Una continuación asistida por Codex añadió un límite de snapshot al ledger existente,
+comandos de inspección y una prueba de diez trabajos con runner simulado y PostgreSQL
+aislado. No se verificó el snapshot de créditos comunicado por el propietario.
+
+Otra continuación asistida por Codex añadió comandos de control en primer plano,
+una demostración CLI simulada y un manifiesto histórico privado. El sistema aún no
+se declara listo para operación continua ni se ejecutaron solicitudes Meta nuevas.
 ### 03-11-2026: investigación ampliada de SAM 3.1 (rama `feat/sam31-extended-validation`)
 
 **Código nuevo durante el evento:**
@@ -255,3 +278,15 @@ Intelligence). Este incremento no modifica archivos de Codex.
 
 Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe. Las
 referencias son del agente, no de un especialista.
+
+Integración posterior asistida por Codex: se preservaron ambos conjuntos de cambios y
+se bloqueó la admisión de fase I sin snapshot y límite. En ese punto quedaban pendientes
+la adaptación de rutas antiguas y la reconciliación completa.
+
+La continuación del 03-11, asistida por Codex, añadió contexto financiero compartido,
+vínculo transaccional de nuevas reservas con jobs, una resolución auditada y pruebas
+de interrupción con PostgreSQL aislado. No se enviaron nuevas solicitudes a Meta.
+
+Otra continuación asistida por Codex añadió autorización financiera registrada y
+verificada al reservar, más pruebas de errores simulados. No se comprobó Billing ni
+se enviaron solicitudes nuevas al proveedor.

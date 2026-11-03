@@ -285,6 +285,7 @@ async def run_images(
     phase: str = "H",
 ):
     from tools.meta_sam_api_lab.lab import (
+        admission_from_private,
         campaign_from_private,
         config_from_private,
         describe_media,
@@ -296,6 +297,7 @@ async def run_images(
     gate = asyncio.Semaphore(limit)
 
     async def one(exp):
+        admission = admission_from_private(config_path, phase)
         out = root / exp["exp_id"]
         done = out / "result.json"
         if (
@@ -326,6 +328,7 @@ async def run_images(
                         source_ref=exp["scene"],
                         phase=phase,
                         phase_cap_usd=cap,
+                        credit_snapshot=admission["credit_snapshot"],
                         experiment_note=json.dumps(
                             {k: exp[k] for k in ("mode", "family") if k in exp}
                         ),
@@ -457,6 +460,7 @@ async def advise_failures(
     from bosque_api.images import prepare_image
 
     from tools.meta_sam_api_lab.lab import (
+        admission_from_private,
         campaign_from_private,
         config_from_private,
         phase_admission,
@@ -483,7 +487,14 @@ async def advise_failures(
             "(forma, color, textura), sin nombres científicos ni listas."
         )
         client = MetaResponsesClient(config.model_api_key, config.meta_timeout_seconds)
-        reservation = await asyncio.to_thread(ledger.reserve, owner, "identify", cap)
+        admission = admission_from_private(config_path, "I")
+        reservation = await asyncio.to_thread(
+            ledger.reserve,
+            owner,
+            "identify",
+            cap,
+            credit_snapshot=admission["credit_snapshot"],
+        )
         status, row = "provider_error", {}
         try:
             image = prepare_image(Path(scenes[sid]["file"]).read_bytes(), "image/jpeg")
@@ -757,6 +768,7 @@ async def run_videos(
     from tools.meta_sam_api_lab.lab import (
         FrameSpec,
         ObjectSpec,
+        admission_from_private,
         campaign_from_private,
         config_from_private,
         run_experiment,
@@ -765,6 +777,7 @@ async def run_videos(
     config = config_from_private(config_path)
     cap = campaign_from_private(config_path).phase_caps_usd[phase]
     for exp_id, clip, spec in plan or VIDEO_PLAN:
+        admission = admission_from_private(config_path, phase)
         if only and not any(exp_id.startswith(p) for p in only):
             continue
         out = root / exp_id
@@ -813,6 +826,7 @@ async def run_videos(
                     source_ref=clip,
                     phase=phase,
                     phase_cap_usd=cap,
+                    credit_snapshot=admission["credit_snapshot"],
                     experiment_note=json.dumps(
                         {
                             "clip": clip,
