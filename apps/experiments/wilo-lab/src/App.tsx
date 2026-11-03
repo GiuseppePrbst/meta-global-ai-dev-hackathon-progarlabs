@@ -1,0 +1,66 @@
+import { useState } from "react";
+import { SpeciesLab } from "./components/SpeciesLab";
+import { WiloChat } from "./components/WiloChat";
+
+type View = "inicio" | "wilo" | "especies";
+
+export default function App() {
+  const [view, setView] = useState<View>("inicio");
+  const [savedToken] = useState(() => {
+    try { return sessionStorage.getItem("wilo-lab-token"); }
+    catch { return null; }
+  });
+  const [token, setToken] = useState(savedToken ?? "");
+  const [remember, setRemember] = useState(savedToken !== null);
+
+  function saveToken(value: string, keep: boolean) {
+    setToken(value); setRemember(keep);
+    try {
+      if (keep) sessionStorage.setItem("wilo-lab-token", value);
+      else sessionStorage.removeItem("wilo-lab-token");
+    } catch { /* solo memoria */ }
+  }
+
+  return (
+    <div className="shell">
+      <header className="topbar">
+        <div className="brand"><span className="mark">BV</span><span>Wilo Lab<small>LABORATORIO EXPERIMENTAL · NO ES EL FRONTEND OFICIAL</small></span></div>
+        <nav aria-label="Modulos del laboratorio">
+          <button type="button" className={view === "inicio" ? "nav on" : "nav"} onClick={() => setView("inicio")}>Inicio</button>
+          <button type="button" className={view === "wilo" ? "nav on" : "nav"} onClick={() => setView("wilo")}>Habla con Wilo</button>
+          <button type="button" className={view === "especies" ? "nav on" : "nav"} onClick={() => setView("especies")}>Explora una especie</button>
+        </nav>
+      </header>
+      <main>
+        {view === "inicio" && (
+          <>
+            <section className="hero">
+              <p className="kicker">BOSQUE VIVO CHILE · LABORATORIO</p>
+              <h1>Dos capacidades reales, un solo laboratorio.</h1>
+              <p>App independiente del frontend oficial: conversa con Wilo por voz o texto y prueba el reconocimiento
+                visual de especies contra las APIs reales. En modo mock todo se etiqueta como mock.</p>
+              <label className="token">Token demo del backend (nunca la clave Meta)
+                <input type="password" autoComplete="off" value={token} onChange={(e) => saveToken(e.target.value, remember)}
+                  placeholder="Requerido por /guide/* en la API" aria-label="Token demo del backend" />
+              </label>
+              <label className="check"><input type="checkbox" checked={remember} onChange={(e) => saveToken(token, e.target.checked)} /> Recordar solo en esta sesion</label>
+            </section>
+            <section className="choices">
+              <button type="button" className="choice" onClick={() => setView("wilo")}>
+                <span className="kicker">MODULO A</span><strong>Habla con Wilo</strong>
+                <span>Voz WAV, transcripcion corregible, respuestas con fuentes del Atlas e historial de sesion.</span>
+              </button>
+              <button type="button" className="choice" onClick={() => setView("especies")}>
+                <span className="kicker">MODULO B</span><strong>Explora una especie</strong>
+                <span>Foto de un arbol, candidatos con evidencia y abstencion honesta fuera del catalogo de 8 especies.</span>
+              </button>
+            </section>
+          </>
+        )}
+        {view === "wilo" && <WiloChat token={token} />}
+        {view === "especies" && <SpeciesLab token={token} />}
+      </main>
+      <footer className="footer">Wilo Lab · ProGarLabs · Sin credenciales Meta en el navegador · La API oficial de Bosque Vivo no se modifica desde aqui.</footer>
+    </div>
+  );
+}
