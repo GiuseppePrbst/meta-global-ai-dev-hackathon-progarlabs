@@ -35,6 +35,14 @@ def test_phase_i_without_snapshot_fails_before_database_access():
     assert error.value.status_code == 503
 
 
+def test_phase_i_without_phase_cap_fails_before_database_access():
+    with pytest.raises(HTTPException) as error:
+        ExecutionStore(Settings(_env_file=None)).reserve(
+            "sam-api-lab:I", "identify", credit_snapshot=(None, 1000)
+        )
+    assert error.value.status_code == 503
+
+
 def test_research_lab_cannot_use_legacy_owner_without_phase():
     settings = Settings(_env_file=None, budget_lifetime_units=2_000_000)
     with pytest.raises(HTTPException) as error:

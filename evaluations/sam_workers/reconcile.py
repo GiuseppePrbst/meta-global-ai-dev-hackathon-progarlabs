@@ -35,6 +35,8 @@ def inspect(queue, job_id, output_root):
     )
     reservation = data.get("reservation_id")
     ledger = "missing_reservation_id"
+    ledger_state = None
+    reserved_units = None
     if data.get("simulated") is True:
         ledger = "not_applicable_synthetic"
     elif reservation:
@@ -49,11 +51,14 @@ def inspect(queue, job_id, output_root):
                 "missing"
                 if not row
                 else (
-                    "matching"
+                    "phase_matches_unlinked"
                     if row["identity_id"] == "sam-api-lab:I"
                     else "identity_mismatch"
                 )
             )
+            if row:
+                ledger_state = row["status"]
+                reserved_units = row["reserved_units"]
         except (TypeError, ValueError):
             ledger = "invalid_reservation_id"
     return {
@@ -62,5 +67,10 @@ def inspect(queue, job_id, output_root):
         "result_status": data.get("status"),
         "cleanup": data.get("cleanup"),
         "ledger": ledger,
+        "ledger_status": ledger_state,
+        "reserved_units": reserved_units,
+        "estimated_usd": data.get("estimated_usd"),
+        "fingerprint": job.get("experiment_fingerprint"),
+        "identity_complete": False,
         "action": "manual_review",
     }

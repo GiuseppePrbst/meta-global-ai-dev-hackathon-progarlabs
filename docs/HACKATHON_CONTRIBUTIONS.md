@@ -278,3 +278,7 @@ Intelligence). Este incremento no modifica archivos de Codex.
 
 Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe. Las
 referencias son del agente, no de un especialista.
+
+Integración posterior asistida por Codex: se preservaron ambos conjuntos de cambios y
+se bloqueó la admisión de fase I sin snapshot y límite. Quedan pendientes la adaptación
+de rutas antiguas, la reconciliación completa y la autorización financiera vigente.

@@ -35,3 +35,12 @@ encolado, `start --simulated`, `drain`, `resume`, segundo `start`, `reconcile` y
 reiniciar. El ledger no estaba presente en esa base y no se realizó ninguna reserva.
 `drain` se invocó tras completar el lote; aún falta probarlo durante una inferencia.
 La consulta del ledger informa explícitamente `missing_reservation_id` cuando falta.
+
+## Integración del PR #31
+
+En la rama combinada: 289 pruebas de servicios aprobadas y 24 omitidas; 58 pruebas
+focalizadas aprobadas y 2 omitidas con PostgreSQL aislado; test JavaScript del visor
+aprobado. La CLI de workers procesó diez trabajos sintéticos y un reinicio no agregó
+trabajos. Las rutas antiguas que llaman fase I sin snapshot ahora fallan antes de
+reservar: todavía necesitan una integración de autorización para poder ejecutarse.
+Una coincidencia de fase de la reserva en reconciliación no prueba vínculo con el job.
