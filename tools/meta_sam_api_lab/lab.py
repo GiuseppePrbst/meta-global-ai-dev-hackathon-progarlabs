@@ -33,7 +33,30 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from tools.meta_sam_api_lab.media import command, digest, private_path, probe
 
-CONCEPTS = {"tree", "tree crown", "vegetation", "bush", "branches"}
+# Suggested concepts for the viewer; any single short noun phrase is accepted.
+CONCEPTS = {
+    "tree",
+    "tree crown",
+    "vegetation",
+    "bush",
+    "branches",
+    "trunk",
+    "plant",
+    "fern",
+    "leaf",
+    "flower",
+    "bird",
+    "woodpecker",
+    "parrot",
+    "animal",
+    "mushroom",
+    "fungus",
+    "bracket fungus",
+}
+# One noun phrase per request (dev.meta.ai/docs/sam/segmenting, 2026-11-02): lists with
+# comma/semicolon/plus return nothing and "and" segments only one concept.
+CONCEPT_PATTERN = re.compile(r"[A-Za-z][A-Za-z' -]{0,47}")
+MAX_VIDEO_SECONDS, MAX_VIDEO_FRAMES = 30, 900  # local safety limit; API allows 15,000
 DIRECTIONS = {"both", "forward", "backward"}
 MAX_OBJECTS = 16  # dev.meta.ai/docs/sam/segmenting, consulted 2026-10-30
 IMAGE_USD, FRAME_USD, MIN_FRAMES = 0.0025, 0.0002, 50  # Standard tariff, same source
@@ -140,19 +163,28 @@ def estimate_usd(video: bool, processed: int) -> float:
     return max(MIN_FRAMES, processed) * FRAME_USD if video else IMAGE_USD
 
 
+def valid_concept(concept: str | None) -> bool:
+    """A single short noun phrase: no lists, conjunctions, questions or long text."""
+    if not concept or not CONCEPT_PATTERN.fullmatch(concept):
+        return False
+    words = concept.lower().split()
+    return len(words) <= 5 and "and" not in words and "or" not in words
+
+
 def describe_media(source: Path, video: bool) -> dict:
     """Prepared-media facts every prompt coordinate refers to. No network, no ledger."""
     if video:
         info = probe(source)
         if (
             info["codec"] != "h264"
-            or info["duration_seconds"] > 10
-            or info["frames"] > 300
-            or source.stat().st_size > 20 * 1024**2
+            or info["duration_seconds"] > MAX_VIDEO_SECONDS
+            or info["frames"] > MAX_VIDEO_FRAMES
+            or source.stat().st_size > 60 * 1024**2
             or max(info["width"], info["height"]) > 1920
         ):
             raise ValueError(
-                "Prepare MP4/H.264 <=10 seconds, 300 frames, 20 MiB, 1920 pixels"
+                f"Prepare MP4/H.264 <={MAX_VIDEO_SECONDS} s, {MAX_VIDEO_FRAMES} frames, "
+                "60 MiB, 1920 pixels"
             )
         if info.get("rotation", 0):
             raise ValueError(
@@ -201,8 +233,8 @@ def plan_request(
             direction or "both",
         )
     else:
-        if concept not in CONCEPTS or direction:
-            raise ValueError("One allowed concept, without propagation direction")
+        if not valid_concept(concept) or direction:
+            raise ValueError("One short noun phrase, without propagation direction")
         prompt, normalized, earliest = concept, None, 0
     processed = frames_processed(info["frames"], earliest, direction) if video else 1
     return {
@@ -446,7 +478,8 @@ async def cleanup_remote(client, manifest):
 
 LEGACY_CAP_USD = 1
 RESEARCH_CAP_USD = 50  # user authorization 2026-10-30; cumulative, history included
-PHASES = ("A", "B", "C", "D", "E", "F", "G")  # F: open-set 30-10; G: multikingdom 31-10
+# F: open-set 30-10; G: multikingdom 31-10; H: SAM visual showcase 02-11
+PHASES = ("A", "B", "C", "D", "E", "F", "G", "H")
 
 
 class Campaign(BaseModel):
@@ -455,7 +488,7 @@ class Campaign(BaseModel):
     model_config = ConfigDict(extra="forbid")
     authorized_usd: float = Field(gt=0, le=RESEARCH_CAP_USD)
     authorization_date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
-    phase_caps_usd: dict[Literal["A", "B", "C", "D", "E", "F", "G"], float]
+    phase_caps_usd: dict[Literal["A", "B", "C", "D", "E", "F", "G", "H"], float]
     # None disables the internal daily request counter (owner decision 2026-10-30);
     # it is a project control, not Meta's limit. Money caps always apply.
     daily_requests: int | None = Field(ge=1, le=200)
@@ -469,8 +502,8 @@ class Reallocation(BaseModel):
     """Traceable move of unused phase capacity; the campaign total never changes."""
 
     model_config = ConfigDict(extra="forbid")
-    from_phase: Literal["A", "B", "C", "D", "E", "F", "G"]
-    to_phase: Literal["A", "B", "C", "D", "E", "F", "G"]
+    from_phase: Literal["A", "B", "C", "D", "E", "F", "G", "H"]
+    to_phase: Literal["A", "B", "C", "D", "E", "F", "G", "H"]
     usd: float = Field(gt=0)
     reason: str = Field(min_length=5, max_length=300)
     date: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")

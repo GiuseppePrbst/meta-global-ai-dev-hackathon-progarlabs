@@ -1,0 +1,7719 @@
+[
+ {
+  "exp_id": "trees-flora-127--c-tree",
+  "scene": "trees-flora-127",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9375000596046448
+  ],
+  "mask_area_fraction": [
+   0.4975
+  ],
+  "latency_ms": 22934,
+  "reference_count": 1,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.94
+  }
+ },
+ {
+  "exp_id": "trees-flora-127--c-tree_crown",
+  "scene": "trees-flora-127",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1399,
+  "reference_count": 1,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-127--c-broadleaf_tree",
+  "scene": "trees-flora-127",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "broadleaf tree",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8048780560493469
+  ],
+  "mask_area_fraction": [
+   0.5022
+  ],
+  "latency_ms": 18238,
+  "reference_count": 1,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.938
+  }
+ },
+ {
+  "exp_id": "trees-flora-127--box",
+  "scene": "trees-flora-127",
+  "domain": "trees",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.87109375
+  ],
+  "mask_area_fraction": [
+   0.5289
+  ],
+  "latency_ms": 13807,
+  "reference_count": 1,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.942
+  }
+ },
+ {
+  "exp_id": "trees-flora-127--pt",
+  "scene": "trees-flora-127",
+  "domain": "trees",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9374997615814209
+  ],
+  "mask_area_fraction": [
+   0.5093
+  ],
+  "latency_ms": 45819,
+  "reference_count": 1,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.924
+  }
+ },
+ {
+  "exp_id": "trees-flora-127--ptneg",
+  "scene": "trees-flora-127",
+  "domain": "trees",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8828116655349731
+  ],
+  "mask_area_fraction": [
+   0.4978
+  ],
+  "latency_ms": 18956,
+  "reference_count": 1,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.922
+  }
+ },
+ {
+  "exp_id": "trees-flora-141--c-tree",
+  "scene": "trees-flora-141",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.7387754917144775,
+   0.9064327478408813
+  ],
+  "mask_area_fraction": [
+   0.0354,
+   0.4332
+  ],
+  "latency_ms": 14025,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-141--c-tree_crown",
+  "scene": "trees-flora-141",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 23778,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-141--c-broadleaf_tree",
+  "scene": "trees-flora-141",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "broadleaf tree",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8128654956817627
+  ],
+  "mask_area_fraction": [
+   0.4429
+  ],
+  "latency_ms": 16543,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-142--c-tree",
+  "scene": "trees-flora-142",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.6683937907218933,
+   0.9259259104728699
+  ],
+  "mask_area_fraction": [
+   0.0195,
+   0.2421
+  ],
+  "latency_ms": 12424,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.867
+  }
+ },
+ {
+  "exp_id": "trees-flora-142--c-tree_crown",
+  "scene": "trees-flora-142",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1242,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "trees-flora-142--c-broadleaf_tree",
+  "scene": "trees-flora-142",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "broadleaf tree",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8552036285400391
+  ],
+  "mask_area_fraction": [
+   0.2467
+  ],
+  "latency_ms": 21213,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.865
+  }
+ },
+ {
+  "exp_id": "trees-flora-142--sci",
+  "scene": "trees-flora-142",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Nothofagus pumilio",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 9940,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "trees-flora-142--box",
+  "scene": "trees-flora-142",
+  "domain": "trees",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.85546875
+  ],
+  "mask_area_fraction": [
+   0.2478
+  ],
+  "latency_ms": 10635,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.92
+  }
+ },
+ {
+  "exp_id": "trees-flora-142--pt",
+  "scene": "trees-flora-142",
+  "domain": "trees",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.236328125
+  ],
+  "mask_area_fraction": [
+   0.0896
+  ],
+  "latency_ms": 7877,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "trees-flora-142--ptneg",
+  "scene": "trees-flora-142",
+  "domain": "trees",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.08056640625
+  ],
+  "mask_area_fraction": [
+   0.0065
+  ],
+  "latency_ms": 14172,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "trees-flora-154--c-tree",
+  "scene": "trees-flora-154",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.5897435545921326,
+   0.518796980381012,
+   0.6800000071525574,
+   0.5704697966575623
+  ],
+  "mask_area_fraction": [
+   0.0835,
+   0.0439,
+   0.0567,
+   0.2062
+  ],
+  "latency_ms": 13832,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-154--c-tree_crown",
+  "scene": "trees-flora-154",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 12890,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-154--c-broadleaf_tree",
+  "scene": "trees-flora-154",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "broadleaf tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 12670,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-156--c-tree",
+  "scene": "trees-flora-156",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "completed",
+  "masks": 3,
+  "confidence": [
+   0.8241757750511169,
+   0.6908212304115295,
+   0.6604774594306946
+  ],
+  "mask_area_fraction": [
+   0.0031,
+   0.0778,
+   0.2697
+  ],
+  "latency_ms": 12858,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-156--c-tree_crown",
+  "scene": "trees-flora-156",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 12967,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-156--c-broadleaf_tree",
+  "scene": "trees-flora-156",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "broadleaf tree",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.5038759708404541,
+   0.5816993117332458
+  ],
+  "mask_area_fraction": [
+   0.0815,
+   0.2668
+  ],
+  "latency_ms": 7016,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-158--c-tree",
+  "scene": "trees-flora-158",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 12894,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-158--c-tree_crown",
+  "scene": "trees-flora-158",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 790,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-158--c-tree_trunk",
+  "scene": "trees-flora-158",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "tree trunk",
+  "status": "completed",
+  "masks": 3,
+  "confidence": [
+   0.6167664527893066,
+   0.5540069937705994,
+   0.5897435545921326
+  ],
+  "mask_area_fraction": [
+   0.0102,
+   0.0352,
+   0.0021
+  ],
+  "latency_ms": 7651,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 3,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "trees-flora-158--box",
+  "scene": "trees-flora-158",
+  "domain": "trees",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.81640625
+  ],
+  "mask_area_fraction": [
+   0.2822
+  ],
+  "latency_ms": 4415,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.934
+  }
+ },
+ {
+  "exp_id": "trees-flora-158--pt",
+  "scene": "trees-flora-158",
+  "domain": "trees",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5195311307907104
+  ],
+  "mask_area_fraction": [
+   0.2922
+  ],
+  "latency_ms": 5329,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.939
+  }
+ },
+ {
+  "exp_id": "trees-flora-158--ptneg",
+  "scene": "trees-flora-158",
+  "domain": "trees",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.30663836002349854
+  ],
+  "mask_area_fraction": [
+   0.1076
+  ],
+  "latency_ms": 6263,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.728
+  }
+ },
+ {
+  "exp_id": "trees-flora-160--c-tree",
+  "scene": "trees-flora-160",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "completed",
+  "masks": 3,
+  "confidence": [
+   0.7104072570800781,
+   0.6800000071525574,
+   0.7968254089355469
+  ],
+  "mask_area_fraction": [
+   0.0078,
+   0.1231,
+   0.4538
+  ],
+  "latency_ms": 15201,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-160--c-tree_crown",
+  "scene": "trees-flora-160",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1575,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-160--c-broadleaf_tree",
+  "scene": "trees-flora-160",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "broadleaf tree",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.6831682920455933
+  ],
+  "mask_area_fraction": [
+   0.4966
+  ],
+  "latency_ms": 23798,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-183--c-tree",
+  "scene": "trees-flora-183",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 29359,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-183--c-tree_crown",
+  "scene": "trees-flora-183",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 2921,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-183--c-broadleaf_tree",
+  "scene": "trees-flora-183",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "broadleaf tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1568,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-187--c-tree",
+  "scene": "trees-flora-187",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 768,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-187--c-tree_crown",
+  "scene": "trees-flora-187",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1584,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-187--c-broadleaf_tree",
+  "scene": "trees-flora-187",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "broadleaf tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1425,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-213--c-tree",
+  "scene": "trees-flora-213",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.6952381134033203,
+   0.8012422323226929
+  ],
+  "mask_area_fraction": [
+   0.0112,
+   0.3698
+  ],
+  "latency_ms": 7725,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.732
+  }
+ },
+ {
+  "exp_id": "trees-flora-213--c-tree_crown",
+  "scene": "trees-flora-213",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 11075,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-213--c-conifer_tree",
+  "scene": "trees-flora-213",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "conifer tree",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.6213017702102661
+  ],
+  "mask_area_fraction": [
+   0.3724
+  ],
+  "latency_ms": 10159,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.73
+  }
+ },
+ {
+  "exp_id": "trees-flora-213--sci",
+  "scene": "trees-flora-213",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Podocarpus nubigenus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 37689,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-213--box",
+  "scene": "trees-flora-213",
+  "domain": "trees",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.88671875
+  ],
+  "mask_area_fraction": [
+   0.3843
+  ],
+  "latency_ms": 20704,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.953
+  }
+ },
+ {
+  "exp_id": "trees-flora-213--pt",
+  "scene": "trees-flora-213",
+  "domain": "trees",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.84375
+  ],
+  "mask_area_fraction": [
+   0.5226
+  ],
+  "latency_ms": 12619,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.683
+  }
+ },
+ {
+  "exp_id": "trees-flora-213--ptneg",
+  "scene": "trees-flora-213",
+  "domain": "trees",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8359373211860657
+  ],
+  "mask_area_fraction": [
+   0.3703
+  ],
+  "latency_ms": 17290,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.76
+  }
+ },
+ {
+  "exp_id": "trees-flora-214--c-tree",
+  "scene": "trees-flora-214",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.6167664527893066,
+   0.5460992455482483
+  ],
+  "mask_area_fraction": [
+   0.135,
+   0.4211
+  ],
+  "latency_ms": 12749,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.561
+  }
+ },
+ {
+  "exp_id": "trees-flora-214--c-tree_crown",
+  "scene": "trees-flora-214",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1030,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-214--c-conifer_tree",
+  "scene": "trees-flora-214",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "conifer tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1399,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-214--box",
+  "scene": "trees-flora-214",
+  "domain": "trees",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.75390625
+  ],
+  "mask_area_fraction": [
+   0.2182
+  ],
+  "latency_ms": 10794,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.944
+  }
+ },
+ {
+  "exp_id": "trees-flora-214--pt",
+  "scene": "trees-flora-214",
+  "domain": "trees",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5
+  ],
+  "mask_area_fraction": [
+   0.4724
+  ],
+  "latency_ms": 15588,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.524
+  }
+ },
+ {
+  "exp_id": "trees-flora-214--ptneg",
+  "scene": "trees-flora-214",
+  "domain": "trees",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.48828125
+  ],
+  "mask_area_fraction": [
+   0.4565
+  ],
+  "latency_ms": 31401,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.522
+  }
+ },
+ {
+  "exp_id": "trees-flora-220--c-tree",
+  "scene": "trees-flora-220",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.5428571701049805,
+   0.7852349281311035
+  ],
+  "mask_area_fraction": [
+   0.0568,
+   0.3614
+  ],
+  "latency_ms": 8859,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.927
+  }
+ },
+ {
+  "exp_id": "trees-flora-220--c-tree_crown",
+  "scene": "trees-flora-220",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 16809,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-220--c-conifer_tree",
+  "scene": "trees-flora-220",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "conifer tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 16633,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-220--sci",
+  "scene": "trees-flora-220",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Podocarpus nubigenus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 2032,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-220--box",
+  "scene": "trees-flora-220",
+  "domain": "trees",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.91796875
+  ],
+  "mask_area_fraction": [
+   0.3605
+  ],
+  "latency_ms": 5534,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.957
+  }
+ },
+ {
+  "exp_id": "trees-flora-220--pt",
+  "scene": "trees-flora-220",
+  "domain": "trees",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.294921875
+  ],
+  "mask_area_fraction": [
+   0.0213
+  ],
+  "latency_ms": 8907,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "trees-flora-220--ptneg",
+  "scene": "trees-flora-220",
+  "domain": "trees",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.31445303559303284
+  ],
+  "mask_area_fraction": [
+   0.0211
+  ],
+  "latency_ms": 1494,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "trees-flora-200--c-tree",
+  "scene": "trees-flora-200",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9298245906829834
+  ],
+  "mask_area_fraction": [
+   0.4145
+  ],
+  "latency_ms": 33044,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-200--c-tree_crown",
+  "scene": "trees-flora-200",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1470,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-200--c-broadleaf_tree",
+  "scene": "trees-flora-200",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "broadleaf tree",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8552036285400391
+  ],
+  "mask_area_fraction": [
+   0.4156
+  ],
+  "latency_ms": 17792,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-219--c-tree",
+  "scene": "trees-flora-219",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8709677457809448
+  ],
+  "mask_area_fraction": [
+   0.6949
+  ],
+  "latency_ms": 23824,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-219--c-tree_crown",
+  "scene": "trees-flora-219",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 7286,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-219--c-conifer_tree",
+  "scene": "trees-flora-219",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "conifer tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 6394,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-66--c-bird",
+  "scene": "birds-fauna-66",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8750000596046448
+  ],
+  "mask_area_fraction": [
+   0.1198
+  ],
+  "latency_ms": 2477,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-66--c-animal",
+  "scene": "birds-fauna-66",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.6012461185455322
+  ],
+  "mask_area_fraction": [
+   0.1184
+  ],
+  "latency_ms": 5017,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-66--c-parrot",
+  "scene": "birds-fauna-66",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "parrot",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8827838897705078
+  ],
+  "mask_area_fraction": [
+   0.1187
+  ],
+  "latency_ms": 10664,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-67--c-bird",
+  "scene": "birds-fauna-67",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.6878048777580261,
+   0.7104072570800781
+  ],
+  "mask_area_fraction": [
+   0.0382,
+   0.0614
+  ],
+  "latency_ms": 5161,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-67--c-animal",
+  "scene": "birds-fauna-67",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 10359,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-67--c-parrot",
+  "scene": "birds-fauna-67",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "parrot",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.9024390578269958,
+   0.9298245906829834
+  ],
+  "mask_area_fraction": [
+   0.038,
+   0.0614
+  ],
+  "latency_ms": 7021,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-68--c-bird",
+  "scene": "birds-fauna-68",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.9024390578269958,
+   0.8904109597206116
+  ],
+  "mask_area_fraction": [
+   0.0751,
+   0.0814
+  ],
+  "latency_ms": 7954,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.828
+  }
+ },
+ {
+  "exp_id": "birds-fauna-68--c-animal",
+  "scene": "birds-fauna-68",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 9440,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 2,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "birds-fauna-68--c-parrot",
+  "scene": "birds-fauna-68",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "parrot",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.8241757750511169,
+   0.8160918951034546
+  ],
+  "mask_area_fraction": [
+   0.075,
+   0.0812
+  ],
+  "latency_ms": 6390,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.828
+  }
+ },
+ {
+  "exp_id": "birds-fauna-68--box",
+  "scene": "birds-fauna-68",
+  "domain": "birds",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.93359375,
+   0.94921875
+  ],
+  "mask_area_fraction": [
+   0.0815,
+   0.075
+  ],
+  "latency_ms": 4786,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.845
+  }
+ },
+ {
+  "exp_id": "birds-fauna-68--pt",
+  "scene": "birds-fauna-68",
+  "domain": "birds",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.1083984375
+  ],
+  "mask_area_fraction": [
+   0.0011
+  ],
+  "latency_ms": 4574,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 2,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "birds-fauna-68--ptneg",
+  "scene": "birds-fauna-68",
+  "domain": "birds",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.17578120529651642
+  ],
+  "mask_area_fraction": [
+   0.0544
+  ],
+  "latency_ms": 2290,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 2,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "birds-fauna-72--c-bird",
+  "scene": "birds-fauna-72",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 5,
+  "confidence": [
+   0.5540069937705994,
+   0.7815700173377991,
+   0.7575758099555969,
+   0.6800000071525574,
+   0.7928802371025085
+  ],
+  "mask_area_fraction": [
+   0.0219,
+   0.019,
+   0.0094,
+   0.0155,
+   0.0187
+  ],
+  "latency_ms": 4669,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-72--c-animal",
+  "scene": "birds-fauna-72",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1124,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-72--c-parrot",
+  "scene": "birds-fauna-72",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "parrot",
+  "status": "completed",
+  "masks": 5,
+  "confidence": [
+   0.6908212304115295,
+   0.9259259104728699,
+   0.9101123809814453,
+   0.7887788414955139,
+   0.9336099624633789
+  ],
+  "mask_area_fraction": [
+   0.0211,
+   0.019,
+   0.0093,
+   0.0155,
+   0.0187
+  ],
+  "latency_ms": 5122,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-73--c-bird",
+  "scene": "birds-fauna-73",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.8048780560493469,
+   0.8128654956817627,
+   0.8128654956817627,
+   0.8012422323226929
+  ],
+  "mask_area_fraction": [
+   0.0137,
+   0.011,
+   0.012,
+   0.0116
+  ],
+  "latency_ms": 5780,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-73--c-animal",
+  "scene": "birds-fauna-73",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 5694,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-73--c-parrot",
+  "scene": "birds-fauna-73",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "parrot",
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.9298245906829834,
+   0.941605806350708,
+   0.9375000596046448,
+   0.9259259104728699
+  ],
+  "mask_area_fraction": [
+   0.0136,
+   0.011,
+   0.012,
+   0.0116
+  ],
+  "latency_ms": 4742,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-95--c-bird",
+  "scene": "birds-fauna-95",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 8,
+  "confidence": [
+   0.5276752710342407,
+   0.5276752710342407,
+   0.507692277431488,
+   0.5151515007019043,
+   0.5345454812049866,
+   0.5311355590820312,
+   0.5114504098892212,
+   0.5151515007019043
+  ],
+  "mask_area_fraction": [
+   0.0051,
+   0.0053,
+   0.0066,
+   0.0064,
+   0.0065,
+   0.0058,
+   0.0054,
+   0.0041
+  ],
+  "latency_ms": 5540,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-95--c-animal",
+  "scene": "birds-fauna-95",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 4582,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-95--c-parrot",
+  "scene": "birds-fauna-95",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "parrot",
+  "status": "completed",
+  "masks": 17,
+  "confidence": [
+   0.8750000596046448,
+   0.827957034111023,
+   0.8476190567016602,
+   0.7968254089355469,
+   0.8827838897705078,
+   0.7387754917144775,
+   0.8083832263946533,
+   0.7815700173377991,
+   0.8632478713989258,
+   0.859649121761322,
+   0.8987342119216919,
+   0.8827838897705078,
+   0.8083832263946533,
+   0.8518518805503845,
+   0.8672199249267578,
+   0.827957034111023,
+   0.7037037014961243
+  ],
+  "mask_area_fraction": [
+   0.0051,
+   0.0057,
+   0.0062,
+   0.0039,
+   0.0053,
+   0.004,
+   0.0027,
+   0.0048,
+   0.0066,
+   0.0064,
+   0.0065,
+   0.0058,
+   0.005,
+   0.0053,
+   0.0041,
+   0.0052,
+   0.004
+  ],
+  "latency_ms": 2150,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-95--sci",
+  "scene": "birds-fauna-95",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Enicognathus leptorhynchus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 4591,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-195--c-bird",
+  "scene": "birds-fauna-195",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.9298245906829834,
+   0.9336099624633789
+  ],
+  "mask_area_fraction": [
+   0.0219,
+   0.0196
+  ],
+  "latency_ms": 5535,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.567
+  }
+ },
+ {
+  "exp_id": "birds-fauna-195--c-animal",
+  "scene": "birds-fauna-195",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.7887788414955139,
+   0.7928802371025085
+  ],
+  "mask_area_fraction": [
+   0.0217,
+   0.0195
+  ],
+  "latency_ms": 3065,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.565
+  }
+ },
+ {
+  "exp_id": "birds-fauna-195--c-ibis",
+  "scene": "birds-fauna-195",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "ibis",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.7852349281311035,
+   0.7852349281311035
+  ],
+  "mask_area_fraction": [
+   0.0217,
+   0.0193
+  ],
+  "latency_ms": 5048,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.565
+  }
+ },
+ {
+  "exp_id": "birds-fauna-195--sci",
+  "scene": "birds-fauna-195",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Theristicus melanopis",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 6464,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 2,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "birds-fauna-195--box",
+  "scene": "birds-fauna-195",
+  "domain": "birds",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.8828125,
+   0.93359375
+  ],
+  "mask_area_fraction": [
+   0.0201,
+   0.0221
+  ],
+  "latency_ms": 2282,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.574
+  }
+ },
+ {
+  "exp_id": "birds-fauna-195--pt",
+  "scene": "birds-fauna-195",
+  "domain": "birds",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.10253904014825821
+  ],
+  "mask_area_fraction": [
+   0.0001
+  ],
+  "latency_ms": 1462,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 2,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "birds-fauna-195--ptneg",
+  "scene": "birds-fauna-195",
+  "domain": "birds",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.09423821419477463
+  ],
+  "mask_area_fraction": [
+   0.0001
+  ],
+  "latency_ms": 2806,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 2,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "birds-fauna-209--c-bird",
+  "scene": "birds-fauna-209",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.949367105960846,
+   0.96875,
+   0.9609756469726562,
+   0.9609756469726562
+  ],
+  "mask_area_fraction": [
+   0.0039,
+   0.0086,
+   0.0064,
+   0.0066
+  ],
+  "latency_ms": 2211,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 4,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.801
+  }
+ },
+ {
+  "exp_id": "birds-fauna-209--c-animal",
+  "scene": "birds-fauna-209",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.7730495929718018,
+   0.7968254089355469,
+   0.7887788414955139,
+   0.7815700173377991
+  ],
+  "mask_area_fraction": [
+   0.0038,
+   0.0085,
+   0.0063,
+   0.0065
+  ],
+  "latency_ms": 1583,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 4,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.801
+  }
+ },
+ {
+  "exp_id": "birds-fauna-209--c-ibis",
+  "scene": "birds-fauna-209",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "ibis",
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.7500000596046448,
+   0.7730495929718018,
+   0.7697842121124268,
+   0.7655677795410156
+  ],
+  "mask_area_fraction": [
+   0.0038,
+   0.0085,
+   0.0063,
+   0.0065
+  ],
+  "latency_ms": 3948,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 4,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.802
+  }
+ },
+ {
+  "exp_id": "birds-fauna-209--box",
+  "scene": "birds-fauna-209",
+  "domain": "birds",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.94921875,
+   0.9453125,
+   0.9453125,
+   0.953125
+  ],
+  "mask_area_fraction": [
+   0.0087,
+   0.0065,
+   0.0065,
+   0.004
+  ],
+  "latency_ms": 2927,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 4,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.803
+  }
+ },
+ {
+  "exp_id": "birds-fauna-209--pt",
+  "scene": "birds-fauna-209",
+  "domain": "birds",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.95703125
+  ],
+  "mask_area_fraction": [
+   0.0088
+  ],
+  "latency_ms": 1866,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 3,
+   "mean_matched_iou": 0.861
+  }
+ },
+ {
+  "exp_id": "birds-fauna-209--ptneg",
+  "scene": "birds-fauna-209",
+  "domain": "birds",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.94140625
+  ],
+  "mask_area_fraction": [
+   0.0084
+  ],
+  "latency_ms": 4493,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 3,
+   "mean_matched_iou": 0.848
+  }
+ },
+ {
+  "exp_id": "birds-fauna-215--c-bird",
+  "scene": "birds-fauna-215",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.9726027250289917,
+   0.9649122953414917
+  ],
+  "mask_area_fraction": [
+   0.0461,
+   0.0379
+  ],
+  "latency_ms": 6025,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-215--c-animal",
+  "scene": "birds-fauna-215",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.8083832263946533,
+   0.8012422323226929
+  ],
+  "mask_area_fraction": [
+   0.0457,
+   0.0376
+  ],
+  "latency_ms": 2809,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-215--c-ibis",
+  "scene": "birds-fauna-215",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "ibis",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.6683937907218933,
+   0.6640419960021973
+  ],
+  "mask_area_fraction": [
+   0.0456,
+   0.0376
+  ],
+  "latency_ms": 8690,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-0--c-bird",
+  "scene": "birds-fauna-0",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9139785170555115
+  ],
+  "mask_area_fraction": [
+   0.1309
+  ],
+  "latency_ms": 8675,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.954
+  }
+ },
+ {
+  "exp_id": "birds-fauna-0--c-animal",
+  "scene": "birds-fauna-0",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 10921,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "birds-fauna-0--c-woodpecker",
+  "scene": "birds-fauna-0",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "woodpecker",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5586206912994385
+  ],
+  "mask_area_fraction": [
+   0.1284
+  ],
+  "latency_ms": 10976,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.952
+  }
+ },
+ {
+  "exp_id": "birds-fauna-0--sci",
+  "scene": "birds-fauna-0",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Campephilus magellanicus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 13195,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "birds-fauna-0--box",
+  "scene": "birds-fauna-0",
+  "domain": "birds",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.87109375
+  ],
+  "mask_area_fraction": [
+   0.136
+  ],
+  "latency_ms": 10527,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.96
+  }
+ },
+ {
+  "exp_id": "birds-fauna-0--pt",
+  "scene": "birds-fauna-0",
+  "domain": "birds",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9101558327674866
+  ],
+  "mask_area_fraction": [
+   0.1416
+  ],
+  "latency_ms": 7769,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.963
+  }
+ },
+ {
+  "exp_id": "birds-fauna-0--ptneg",
+  "scene": "birds-fauna-0",
+  "domain": "birds",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8789055943489075
+  ],
+  "mask_area_fraction": [
+   0.1294
+  ],
+  "latency_ms": 13253,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.957
+  }
+ },
+ {
+  "exp_id": "birds-fauna-7--c-bird",
+  "scene": "birds-fauna-7",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9259259104728699
+  ],
+  "mask_area_fraction": [
+   0.1406
+  ],
+  "latency_ms": 9138,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.84
+  }
+ },
+ {
+  "exp_id": "birds-fauna-7--c-animal",
+  "scene": "birds-fauna-7",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5345454812049866
+  ],
+  "mask_area_fraction": [
+   0.1391
+  ],
+  "latency_ms": 15196,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.838
+  }
+ },
+ {
+  "exp_id": "birds-fauna-7--c-woodpecker",
+  "scene": "birds-fauna-7",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "woodpecker",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9569892287254333
+  ],
+  "mask_area_fraction": [
+   0.1387
+  ],
+  "latency_ms": 11950,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.838
+  }
+ },
+ {
+  "exp_id": "birds-fauna-7--sci",
+  "scene": "birds-fauna-7",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Campephilus magellanicus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 14966,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "birds-fauna-7--box",
+  "scene": "birds-fauna-7",
+  "domain": "birds",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9375
+  ],
+  "mask_area_fraction": [
+   0.1417
+  ],
+  "latency_ms": 19304,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.846
+  }
+ },
+ {
+  "exp_id": "birds-fauna-7--pt",
+  "scene": "birds-fauna-7",
+  "domain": "birds",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.95703125
+  ],
+  "mask_area_fraction": [
+   0.1401
+  ],
+  "latency_ms": 16177,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.843
+  }
+ },
+ {
+  "exp_id": "birds-fauna-7--ptneg",
+  "scene": "birds-fauna-7",
+  "domain": "birds",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8984375
+  ],
+  "mask_area_fraction": [
+   0.1319
+  ],
+  "latency_ms": 13397,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.838
+  }
+ },
+ {
+  "exp_id": "birds-fauna-30--c-bird",
+  "scene": "birds-fauna-30",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.9532163739204407,
+   0.9569892287254333
+  ],
+  "mask_area_fraction": [
+   0.0965,
+   0.1678
+  ],
+  "latency_ms": 10922,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-30--c-animal",
+  "scene": "birds-fauna-30",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.5395683646202087,
+   0.5395683646202087
+  ],
+  "mask_area_fraction": [
+   0.0958,
+   0.1669
+  ],
+  "latency_ms": 8082,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-30--c-woodpecker",
+  "scene": "birds-fauna-30",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "woodpecker",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.9452055096626282,
+   0.949367105960846
+  ],
+  "mask_area_fraction": [
+   0.0955,
+   0.1667
+  ],
+  "latency_ms": 13058,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-176--c-bird",
+  "scene": "birds-fauna-176",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.96875
+  ],
+  "mask_area_fraction": [
+   0.0614
+  ],
+  "latency_ms": 11661,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.881
+  }
+ },
+ {
+  "exp_id": "birds-fauna-176--c-animal",
+  "scene": "birds-fauna-176",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8827838897705078
+  ],
+  "mask_area_fraction": [
+   0.0611
+  ],
+  "latency_ms": 10281,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.873
+  }
+ },
+ {
+  "exp_id": "birds-fauna-176--c-brown_bird",
+  "scene": "birds-fauna-176",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "brown bird",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8439024686813354
+  ],
+  "mask_area_fraction": [
+   0.061
+  ],
+  "latency_ms": 4889,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.871
+  }
+ },
+ {
+  "exp_id": "birds-fauna-176--box",
+  "scene": "birds-fauna-176",
+  "domain": "birds",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9765625
+  ],
+  "mask_area_fraction": [
+   0.0622
+  ],
+  "latency_ms": 8009,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.896
+  }
+ },
+ {
+  "exp_id": "birds-fauna-176--pt",
+  "scene": "birds-fauna-176",
+  "domain": "birds",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9765622615814209
+  ],
+  "mask_area_fraction": [
+   0.062
+  ],
+  "latency_ms": 6533,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.876
+  }
+ },
+ {
+  "exp_id": "birds-fauna-176--ptneg",
+  "scene": "birds-fauna-176",
+  "domain": "birds",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9609372615814209
+  ],
+  "mask_area_fraction": [
+   0.0618
+  ],
+  "latency_ms": 10587,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.868
+  }
+ },
+ {
+  "exp_id": "birds-fauna-246--c-bird",
+  "scene": "birds-fauna-246",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8987342119216919
+  ],
+  "mask_area_fraction": [
+   0.0755
+  ],
+  "latency_ms": 7254,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-246--c-animal",
+  "scene": "birds-fauna-246",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 8600,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-246--c-small_bird",
+  "scene": "birds-fauna-246",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "small bird",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.921951174736023
+  ],
+  "mask_area_fraction": [
+   0.0746
+  ],
+  "latency_ms": 5793,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-125--c-bird",
+  "scene": "birds-fauna-125",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.941605806350708
+  ],
+  "mask_area_fraction": [
+   0.1646
+  ],
+  "latency_ms": 8476,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-125--c-animal",
+  "scene": "birds-fauna-125",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8476190567016602
+  ],
+  "mask_area_fraction": [
+   0.1638
+  ],
+  "latency_ms": 10504,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-125--c-brown_bird",
+  "scene": "birds-fauna-125",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "brown bird",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.921951174736023
+  ],
+  "mask_area_fraction": [
+   0.1633
+  ],
+  "latency_ms": 7019,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-212--c-bird",
+  "scene": "birds-fauna-212",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "bird",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9804878830909729
+  ],
+  "mask_area_fraction": [
+   0.0808
+  ],
+  "latency_ms": 9277,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-212--c-animal",
+  "scene": "birds-fauna-212",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "animal",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9259259104728699
+  ],
+  "mask_area_fraction": [
+   0.0804
+  ],
+  "latency_ms": 12625,
+  "reference_count": null
+ },
+ {
+  "exp_id": "birds-fauna-212--c-ibis",
+  "scene": "birds-fauna-212",
+  "domain": "birds",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "ibis",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9064327478408813
+  ],
+  "mask_area_fraction": [
+   0.0803
+  ],
+  "latency_ms": 3350,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-15--c-mushroom",
+  "scene": "fungi-fungi-15",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1476,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-15--c-fungus",
+  "scene": "fungi-fungi-15",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1581,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-15--c-orange_fungus",
+  "scene": "fungi-fungi-15",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "orange fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1281,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-18--c-mushroom",
+  "scene": "fungi-fungi-18",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 2734,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-18--c-fungus",
+  "scene": "fungi-fungi-18",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 2421,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-18--c-orange_fungus",
+  "scene": "fungi-fungi-18",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "orange fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 2644,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-20--c-mushroom",
+  "scene": "fungi-fungi-20",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1947,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 4,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-20--c-fungus",
+  "scene": "fungi-fungi-20",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1242,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 4,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-20--c-orange_fungus",
+  "scene": "fungi-fungi-20",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "orange fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1222,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 4,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-20--sci",
+  "scene": "fungi-fungi-20",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Cyttaria darwinii",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1228,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 4,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-20--box",
+  "scene": "fungi-fungi-20",
+  "domain": "fungi",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.95703125,
+   0.984375,
+   0.96875,
+   0.984375
+  ],
+  "mask_area_fraction": [
+   0.0164,
+   0.0874,
+   0.0298,
+   0.0755
+  ],
+  "latency_ms": 4032,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 4,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.814
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-20--pt",
+  "scene": "fungi-fungi-20",
+  "domain": "fungi",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.96875
+  ],
+  "mask_area_fraction": [
+   0.0875
+  ],
+  "latency_ms": 6914,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 3,
+   "mean_matched_iou": 0.893
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-20--ptneg",
+  "scene": "fungi-fungi-20",
+  "domain": "fungi",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.921875
+  ],
+  "mask_area_fraction": [
+   0.0867
+  ],
+  "latency_ms": 2888,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 3,
+   "mean_matched_iou": 0.891
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-21--c-mushroom",
+  "scene": "fungi-fungi-21",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 6444,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-21--c-fungus",
+  "scene": "fungi-fungi-21",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "completed",
+  "masks": 95,
+  "confidence": [
+   0.5775577425956726,
+   0.6831682920455933,
+   0.5586206912994385,
+   0.604938268661499,
+   0.5460992455482483,
+   0.5428571701049805,
+   0.6640419960021973,
+   0.6483516097068787,
+   0.6332378387451172,
+   0.5775577425956726,
+   0.604938268661499,
+   0.6332378387451172,
+   0.6332378387451172,
+   0.6289855241775513,
+   0.5038759708404541,
+   0.604938268661499,
+   0.6132930517196655,
+   0.597484290599823,
+   0.6640419960021973,
+   0.6097560524940491,
+   0.6640419960021973,
+   0.6559139490127563,
+   0.5704697966575623,
+   0.6640419960021973,
+   0.6332378387451172,
+   0.6213017702102661,
+   0.5395683646202087,
+   0.5936508178710938,
+   0.5936508178710938,
+   0.6332378387451172,
+   0.5936508178710938,
+   0.6332378387451172,
+   0.6444444060325623,
+   0.6604774594306946,
+   0.6213017702102661,
+   0.5428571701049805,
+   0.5241636037826538,
+   0.6404494643211365,
+   0.6213017702102661,
+   0.6483516097068787,
+   0.518796980381012,
+   0.6483516097068787,
+   0.6908212304115295,
+   0.5775577425956726,
+   0.6878048777580261,
+   0.6213017702102661,
+   0.6604774594306946,
+   0.6289855241775513,
+   0.6878048777580261,
+   0.5897435545921326,
+   0.5395683646202087,
+   0.6132930517196655,
+   0.5936508178710938,
+   0.6640419960021973,
+   0.6363636255264282,
+   0.604938268661499,
+   0.6246334314346313,
+   0.5936508178710938,
+   0.5936508178710938,
+   0.6640419960021973,
+   0.6167664527893066,
+   0.5936508178710938,
+   0.5704697966575623,
+   0.6213017702102661,
+   0.5775577425956726,
+   0.5936508178710938,
+   0.6246334314346313,
+   0.5775577425956726,
+   0.5345454812049866,
+   0.5857605338096619,
+   0.6289855241775513,
+   0.675126850605011,
+   0.5395683646202087,
+   0.6167664527893066,
+   0.6483516097068787,
+   0.5816993117332458,
+   0.5345454812049866,
+   0.6332378387451172,
+   0.5661016702651978,
+   0.6404494643211365,
+   0.5661016702651978,
+   0.604938268661499,
+   0.5936508178710938,
+   0.6717948913574219,
+   0.507692277431488,
+   0.6483516097068787,
+   0.6097560524940491,
+   0.5661016702651978,
+   0.5114504098892212,
+   0.6289855241775513,
+   0.6012461185455322,
+   0.5586206912994385,
+   0.507692277431488,
+   0.5936508178710938,
+   0.5241636037826538
+  ],
+  "mask_area_fraction": [
+   0.0011,
+   0.0019,
+   0.0006,
+   0.0007,
+   0.0014,
+   0.001,
+   0.001,
+   0.0017,
+   0.0013,
+   0.0015,
+   0.0008,
+   0.0013,
+   0.0008,
+   0.0018,
+   0.0008,
+   0.0011,
+   0.0009,
+   0.0013,
+   0.0033,
+   0.0015,
+   0.0028,
+   0.0032,
+   0.0005,
+   0.0033,
+   0.0012,
+   0.0013,
+   0.0005,
+   0.0009,
+   0.0007,
+   0.0016,
+   0.0008,
+   0.0018,
+   0.0018,
+   0.0019,
+   0.0011,
+   0.0016,
+   0.0007,
+   0.0021,
+   0.0009,
+   0.0015,
+   0.0011,
+   0.0025,
+   0.0018,
+   0.001,
+   0.0038,
+   0.0021,
+   0.0014,
+   0.0031,
+   0.0026,
+   0.0012,
+   0.0011,
+   0.0008,
+   0.0012,
+   0.002,
+   0.0012,
+   0.0016,
+   0.0017,
+   0.0005,
+   0.0006,
+   0.0021,
+   0.002,
+   0.0017,
+   0.0008,
+   0.0008,
+   0.0009,
+   0.0007,
+   0.0021,
+   0.001,
+   0.0005,
+   0.0009,
+   0.0013,
+   0.005,
+   0.0011,
+   0.0014,
+   0.0021,
+   0.0007,
+   0.0003,
+   0.0013,
+   0.001,
+   0.0015,
+   0.0011,
+   0.0015,
+   0.0016,
+   0.002,
+   0.0006,
+   0.0014,
+   0.0008,
+   0.0009,
+   0.0008,
+   0.0008,
+   0.0012,
+   0.0006,
+   0.0004,
+   0.0018,
+   0.001
+  ],
+  "latency_ms": 4425,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-21--c-orange_fungus",
+  "scene": "fungi-fungi-21",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "orange fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1218,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-24--c-mushroom",
+  "scene": "fungi-fungi-24",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 7834,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-24--c-fungus",
+  "scene": "fungi-fungi-24",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "completed",
+  "masks": 30,
+  "confidence": [
+   0.5460992455482483,
+   0.6559139490127563,
+   0.6167664527893066,
+   0.5897435545921326,
+   0.6559139490127563,
+   0.507692277431488,
+   0.6559139490127563,
+   0.5540069937705994,
+   0.5747508406639099,
+   0.6132930517196655,
+   0.6683937907218933,
+   0.6640419960021973,
+   0.6559139490127563,
+   0.6246334314346313,
+   0.6132930517196655,
+   0.6717948913574219,
+   0.6444444060325623,
+   0.6800000071525574,
+   0.5345454812049866,
+   0.5345454812049866,
+   0.6363636255264282,
+   0.6683937907218933,
+   0.675126850605011,
+   0.5631399154663086,
+   0.6604774594306946,
+   0.6683937907218933,
+   0.6363636255264282,
+   0.5936508178710938,
+   0.6444444060325623,
+   0.6559139490127563
+  ],
+  "mask_area_fraction": [
+   0.0009,
+   0.0022,
+   0.0012,
+   0.0026,
+   0.0028,
+   0.0012,
+   0.0032,
+   0.0003,
+   0.0005,
+   0.0016,
+   0.0014,
+   0.0024,
+   0.0016,
+   0.0014,
+   0.0014,
+   0.0023,
+   0.0021,
+   0.0058,
+   0.0007,
+   0.0029,
+   0.0008,
+   0.0019,
+   0.0045,
+   0.0006,
+   0.0032,
+   0.0027,
+   0.0005,
+   0.0009,
+   0.0025,
+   0.0012
+  ],
+  "latency_ms": 2123,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 30,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-24--c-orange_fungus",
+  "scene": "fungi-fungi-24",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "orange fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 5408,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-24--box",
+  "scene": "fungi-fungi-24",
+  "domain": "fungi",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.875
+  ],
+  "mask_area_fraction": [
+   0.0887
+  ],
+  "latency_ms": 2465,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.884
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-24--pt",
+  "scene": "fungi-fungi-24",
+  "domain": "fungi",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.95703125
+  ],
+  "mask_area_fraction": [
+   0.0046
+  ],
+  "latency_ms": 3354,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-24--ptneg",
+  "scene": "fungi-fungi-24",
+  "domain": "fungi",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.94921875
+  ],
+  "mask_area_fraction": [
+   0.0046
+  ],
+  "latency_ms": 3002,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-25--c-mushroom",
+  "scene": "fungi-fungi-25",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "completed",
+  "masks": 5,
+  "confidence": [
+   0.604938268661499,
+   0.604938268661499,
+   0.6167664527893066,
+   0.6097560524940491,
+   0.5395683646202087
+  ],
+  "mask_area_fraction": [
+   0.0231,
+   0.0115,
+   0.0131,
+   0.0248,
+   0.0156
+  ],
+  "latency_ms": 2684,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-25--c-fungus",
+  "scene": "fungi-fungi-25",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1134,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-25--c-orange_fungus",
+  "scene": "fungi-fungi-25",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "orange fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1210,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-36--c-mushroom",
+  "scene": "fungi-fungi-36",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1308,
+  "reference_count": 5,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 5,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-36--c-fungus",
+  "scene": "fungi-fungi-36",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 3255,
+  "reference_count": 5,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 5,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-36--c-orange_fungus",
+  "scene": "fungi-fungi-36",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "orange fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1588,
+  "reference_count": 5,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 5,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-36--sci",
+  "scene": "fungi-fungi-36",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Cyttaria espinosae",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1212,
+  "reference_count": 5,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 5,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-36--box",
+  "scene": "fungi-fungi-36",
+  "domain": "fungi",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 5,
+  "confidence": [
+   0.8359375,
+   0.92578125,
+   0.828125,
+   0.84375,
+   0.86328125
+  ],
+  "mask_area_fraction": [
+   0.0295,
+   0.0373,
+   0.023,
+   0.0113,
+   0.0471
+  ],
+  "latency_ms": 4055,
+  "reference_count": 5,
+  "box_agreement": {
+   "tp": 4,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": 0.729
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-36--pt",
+  "scene": "fungi-fungi-36",
+  "domain": "fungi",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.95703125
+  ],
+  "mask_area_fraction": [
+   0.0338
+  ],
+  "latency_ms": 3338,
+  "reference_count": 5,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 4,
+   "mean_matched_iou": 0.629
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-36--ptneg",
+  "scene": "fungi-fungi-36",
+  "domain": "fungi",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.890625
+  ],
+  "mask_area_fraction": [
+   0.0333
+  ],
+  "latency_ms": 5715,
+  "reference_count": 5,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 5,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-42--c-mushroom",
+  "scene": "fungi-fungi-42",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "completed",
+  "masks": 8,
+  "confidence": [
+   0.5311355590820312,
+   0.5114504098892212,
+   0.5038759708404541,
+   0.5276752710342407,
+   0.5114504098892212,
+   0.507692277431488,
+   0.5311355590820312,
+   0.5114504098892212
+  ],
+  "mask_area_fraction": [
+   0.0244,
+   0.0117,
+   0.013,
+   0.0232,
+   0.0102,
+   0.0062,
+   0.0231,
+   0.0099
+  ],
+  "latency_ms": 4370,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-42--c-fungus",
+  "scene": "fungi-fungi-42",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 5791,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-42--c-orange_fungus",
+  "scene": "fungi-fungi-42",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "orange fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1350,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-57--c-mushroom",
+  "scene": "fungi-fungi-57",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1439,
+  "reference_count": 13,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-57--c-fungus",
+  "scene": "fungi-fungi-57",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1648,
+  "reference_count": 13,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-57--c-orange_fungus",
+  "scene": "fungi-fungi-57",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "orange fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1328,
+  "reference_count": 13,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-57--sci",
+  "scene": "fungi-fungi-57",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Cyttaria hariotii",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1526,
+  "reference_count": 13,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-57--box",
+  "scene": "fungi-fungi-57",
+  "domain": "fungi",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 7,
+  "confidence": [
+   0.875,
+   0.98046875,
+   0.46875,
+   0.2177734375,
+   0.97265625,
+   0.9375,
+   0.9765625
+  ],
+  "mask_area_fraction": [
+   0.009,
+   0.0228,
+   0.0105,
+   0.024,
+   0.0107,
+   0.0161,
+   0.03
+  ],
+  "latency_ms": 4513,
+  "reference_count": 13,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 6,
+   "fn": 0,
+   "mean_matched_iou": 0.523
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-57--pt",
+  "scene": "fungi-fungi-57",
+  "domain": "fungi",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.97265625
+  ],
+  "mask_area_fraction": [
+   0.0176
+  ],
+  "latency_ms": 1646,
+  "reference_count": 13,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-57--ptneg",
+  "scene": "fungi-fungi-57",
+  "domain": "fungi",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.95703125
+  ],
+  "mask_area_fraction": [
+   0.0173
+  ],
+  "latency_ms": 2308,
+  "reference_count": 13,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-63--c-mushroom",
+  "scene": "fungi-fungi-63",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "completed",
+  "masks": 7,
+  "confidence": [
+   0.8787879347801208,
+   0.7770034670829773,
+   0.8865247964859009,
+   0.8709677457809448,
+   0.8787879347801208,
+   0.8827838897705078,
+   0.8787879347801208
+  ],
+  "mask_area_fraction": [
+   0.0233,
+   0.003,
+   0.0431,
+   0.0336,
+   0.0528,
+   0.0494,
+   0.0128
+  ],
+  "latency_ms": 12571,
+  "reference_count": 6,
+  "box_agreement": {
+   "tp": 6,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.859
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-63--c-fungus",
+  "scene": "fungi-fungi-63",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "completed",
+  "masks": 7,
+  "confidence": [
+   0.8672199249267578,
+   0.7620818018913269,
+   0.8750000596046448,
+   0.8552036285400391,
+   0.8632478713989258,
+   0.8709677457809448,
+   0.8552036285400391
+  ],
+  "mask_area_fraction": [
+   0.023,
+   0.003,
+   0.043,
+   0.0336,
+   0.0528,
+   0.0493,
+   0.0128
+  ],
+  "latency_ms": 5175,
+  "reference_count": 6,
+  "box_agreement": {
+   "tp": 6,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.859
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-63--c-orange_fungus",
+  "scene": "fungi-fungi-63",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "orange fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 7503,
+  "reference_count": 6,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 6,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-63--sci",
+  "scene": "fungi-fungi-63",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Cyttaria hariotii",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 9627,
+  "reference_count": 6,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 6,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-63--box",
+  "scene": "fungi-fungi-63",
+  "domain": "fungi",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 6,
+  "confidence": [
+   0.98046875,
+   0.9609375,
+   0.96484375,
+   0.984375,
+   0.984375,
+   0.96484375
+  ],
+  "mask_area_fraction": [
+   0.0531,
+   0.0129,
+   0.034,
+   0.0436,
+   0.0502,
+   0.0237
+  ],
+  "latency_ms": 4993,
+  "reference_count": 6,
+  "box_agreement": {
+   "tp": 6,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.863
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-63--pt",
+  "scene": "fungi-fungi-63",
+  "domain": "fungi",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.98046875
+  ],
+  "mask_area_fraction": [
+   0.053
+  ],
+  "latency_ms": 7071,
+  "reference_count": 6,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 5,
+   "mean_matched_iou": 0.914
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-63--ptneg",
+  "scene": "fungi-fungi-63",
+  "domain": "fungi",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.96875
+  ],
+  "mask_area_fraction": [
+   0.0526
+  ],
+  "latency_ms": 7572,
+  "reference_count": 6,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 5,
+   "mean_matched_iou": 0.914
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-7--c-mushroom",
+  "scene": "fungi-fungi-7",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9569892287254333
+  ],
+  "mask_area_fraction": [
+   0.1266
+  ],
+  "latency_ms": 8050,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.896
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-7--c-fungus",
+  "scene": "fungi-fungi-7",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.7655677795410156
+  ],
+  "mask_area_fraction": [
+   0.1241
+  ],
+  "latency_ms": 9282,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.885
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-7--c-red_mushroom",
+  "scene": "fungi-fungi-7",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "red mushroom",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8439024686813354
+  ],
+  "mask_area_fraction": [
+   0.1262
+  ],
+  "latency_ms": 6348,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.892
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-7--sci",
+  "scene": "fungi-fungi-7",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Amanita muscaria",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.976608157157898
+  ],
+  "mask_area_fraction": [
+   0.1266
+  ],
+  "latency_ms": 10659,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.896
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-7--box",
+  "scene": "fungi-fungi-7",
+  "domain": "fungi",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.96875
+  ],
+  "mask_area_fraction": [
+   0.1298
+  ],
+  "latency_ms": 7677,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.908
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-7--pt",
+  "scene": "fungi-fungi-7",
+  "domain": "fungi",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.439453125
+  ],
+  "mask_area_fraction": [
+   0.1279
+  ],
+  "latency_ms": 6232,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.905
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-7--ptneg",
+  "scene": "fungi-fungi-7",
+  "domain": "fungi",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.349609375
+  ],
+  "mask_area_fraction": [
+   0.1219
+  ],
+  "latency_ms": 4108,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.896
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-13--c-mushroom",
+  "scene": "fungi-fungi-13",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.6404494643211365
+  ],
+  "mask_area_fraction": [
+   0.0227
+  ],
+  "latency_ms": 5824,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-13--c-fungus",
+  "scene": "fungi-fungi-13",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 800,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-13--c-red_mushroom",
+  "scene": "fungi-fungi-13",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "red mushroom",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9101123809814453
+  ],
+  "mask_area_fraction": [
+   0.0227
+  ],
+  "latency_ms": 6383,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-77--c-mushroom",
+  "scene": "fungi-fungi-77",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9649122953414917
+  ],
+  "mask_area_fraction": [
+   0.1474
+  ],
+  "latency_ms": 4151,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-77--c-fungus",
+  "scene": "fungi-fungi-77",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9532163739204407
+  ],
+  "mask_area_fraction": [
+   0.1473
+  ],
+  "latency_ms": 3270,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-77--c-bracket_fungus",
+  "scene": "fungi-fungi-77",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "bracket fungus",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.96875
+  ],
+  "mask_area_fraction": [
+   0.1473
+  ],
+  "latency_ms": 4866,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-2--c-mushroom",
+  "scene": "fungi-fungi-2",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 678,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-2--c-fungus",
+  "scene": "fungi-fungi-2",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "completed",
+  "masks": 8,
+  "confidence": [
+   0.6404494643211365,
+   0.7037037014961243,
+   0.5661016702651978,
+   0.6800000071525574,
+   0.6604774594306946,
+   0.6012461185455322,
+   0.6831682920455933,
+   0.6683937907218933
+  ],
+  "mask_area_fraction": [
+   0.0015,
+   0.0019,
+   0.0008,
+   0.0019,
+   0.004,
+   0.0027,
+   0.0057,
+   0.0031
+  ],
+  "latency_ms": 4795,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-2--c-orange_fungus",
+  "scene": "fungi-fungi-2",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "orange fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 805,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-16--c-mushroom",
+  "scene": "fungi-fungi-16",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1441,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-16--c-fungus",
+  "scene": "fungi-fungi-16",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5540069937705994
+  ],
+  "mask_area_fraction": [
+   0.4327
+  ],
+  "latency_ms": 9697,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-fungi-16--c-tree_burl",
+  "scene": "fungi-fungi-16",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "tree burl",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5661016702651978
+  ],
+  "mask_area_fraction": [
+   0.4378
+  ],
+  "latency_ms": 14069,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-flora-40--c-flower",
+  "scene": "plants-flora-40",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "flower",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 17999,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "plants-flora-40--c-plant",
+  "scene": "plants-flora-40",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "plant",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 6490,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "plants-flora-40--c-white_flower",
+  "scene": "plants-flora-40",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "white flower",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1497,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "plants-flora-40--box",
+  "scene": "plants-flora-40",
+  "domain": "plants",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.83984375
+  ],
+  "mask_area_fraction": [
+   0.0332
+  ],
+  "latency_ms": 2224,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.864
+  }
+ },
+ {
+  "exp_id": "plants-flora-40--pt",
+  "scene": "plants-flora-40",
+  "domain": "plants",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.2197265625
+  ],
+  "mask_area_fraction": [
+   0.0018
+  ],
+  "latency_ms": 2774,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-40--ptneg",
+  "scene": "plants-flora-40",
+  "domain": "plants",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.80078125
+  ],
+  "mask_area_fraction": [
+   0.0018
+  ],
+  "latency_ms": 10563,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-41--c-flower",
+  "scene": "plants-flora-41",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "flower",
+  "status": "completed",
+  "masks": 26,
+  "confidence": [
+   0.5661016702651978,
+   0.6444444060325623,
+   0.6683937907218933,
+   0.604938268661499,
+   0.7142857313156128,
+   0.6363636255264282,
+   0.6483516097068787,
+   0.5936508178710938,
+   0.604938268661499,
+   0.7264957427978516,
+   0.5151515007019043,
+   0.597484290599823,
+   0.6559139490127563,
+   0.6878048777580261,
+   0.518796980381012,
+   0.7104072570800781,
+   0.6483516097068787,
+   0.6167664527893066,
+   0.7500000596046448,
+   0.6213017702102661,
+   0.7460317611694336,
+   0.5311355590820312,
+   0.7264957427978516,
+   0.7064220309257507,
+   0.6908212304115295,
+   0.6483516097068787
+  ],
+  "mask_area_fraction": [
+   0.0037,
+   0.0053,
+   0.0073,
+   0.0063,
+   0.0106,
+   0.0031,
+   0.0059,
+   0.0028,
+   0.0049,
+   0.0029,
+   0.0019,
+   0.0022,
+   0.0179,
+   0.0175,
+   0.0016,
+   0.0075,
+   0.0018,
+   0.0031,
+   0.0054,
+   0.0023,
+   0.0038,
+   0.0036,
+   0.0088,
+   0.0047,
+   0.0016,
+   0.0072
+  ],
+  "latency_ms": 5523,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-flora-41--c-plant",
+  "scene": "plants-flora-41",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "plant",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 9386,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-flora-41--c-white_flower",
+  "scene": "plants-flora-41",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "white flower",
+  "status": "completed",
+  "masks": 28,
+  "confidence": [
+   0.6800000071525574,
+   0.6332378387451172,
+   0.7037037014961243,
+   0.6717948913574219,
+   0.7142857313156128,
+   0.6640419960021973,
+   0.7730495929718018,
+   0.6952381134033203,
+   0.7037037014961243,
+   0.5345454812049866,
+   0.6800000071525574,
+   0.7770034670829773,
+   0.5704697966575623,
+   0.6559139490127563,
+   0.7104072570800781,
+   0.6559139490127563,
+   0.8012422323226929,
+   0.7460317611694336,
+   0.5936508178710938,
+   0.7655677795410156,
+   0.6995305418968201,
+   0.5345454812049866,
+   0.7968254089355469,
+   0.5816993117332458,
+   0.7815700173377991,
+   0.7575758099555969,
+   0.7575758099555969,
+   0.6908212304115295
+  ],
+  "mask_area_fraction": [
+   0.0023,
+   0.0037,
+   0.0052,
+   0.0031,
+   0.0073,
+   0.0061,
+   0.0106,
+   0.0031,
+   0.0059,
+   0.0016,
+   0.0028,
+   0.0029,
+   0.0019,
+   0.0022,
+   0.0176,
+   0.0049,
+   0.0054,
+   0.0174,
+   0.0016,
+   0.0075,
+   0.0018,
+   0.0015,
+   0.0038,
+   0.0034,
+   0.0089,
+   0.0047,
+   0.0016,
+   0.0071
+  ],
+  "latency_ms": 9676,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-flora-45--c-flower",
+  "scene": "plants-flora-45",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "flower",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.859649121761322
+  ],
+  "mask_area_fraction": [
+   0.0219
+  ],
+  "latency_ms": 1748,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.824
+  }
+ },
+ {
+  "exp_id": "plants-flora-45--c-plant",
+  "scene": "plants-flora-45",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "plant",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5114504098892212
+  ],
+  "mask_area_fraction": [
+   0.1613
+  ],
+  "latency_ms": 4485,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-45--c-red_flower",
+  "scene": "plants-flora-45",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "red flower",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.6908212304115295
+  ],
+  "mask_area_fraction": [
+   0.0213
+  ],
+  "latency_ms": 1969,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.828
+  }
+ },
+ {
+  "exp_id": "plants-flora-45--sci",
+  "scene": "plants-flora-45",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Embothrium coccineum",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 5960,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-45--box",
+  "scene": "plants-flora-45",
+  "domain": "plants",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.859375
+  ],
+  "mask_area_fraction": [
+   0.0269
+  ],
+  "latency_ms": 4586,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.891
+  }
+ },
+ {
+  "exp_id": "plants-flora-45--pt",
+  "scene": "plants-flora-45",
+  "domain": "plants",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8359375
+  ],
+  "mask_area_fraction": [
+   0.0227
+  ],
+  "latency_ms": 2447,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.882
+  }
+ },
+ {
+  "exp_id": "plants-flora-45--ptneg",
+  "scene": "plants-flora-45",
+  "domain": "plants",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.75390625
+  ],
+  "mask_area_fraction": [
+   0.0204
+  ],
+  "latency_ms": 4162,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.876
+  }
+ },
+ {
+  "exp_id": "plants-flora-47--c-flower",
+  "scene": "plants-flora-47",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "flower",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.7460317611694336,
+   0.8160918951034546
+  ],
+  "mask_area_fraction": [
+   0.0088,
+   0.0601
+  ],
+  "latency_ms": 2921,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.804
+  }
+ },
+ {
+  "exp_id": "plants-flora-47--c-plant",
+  "scene": "plants-flora-47",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "plant",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 4123,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "plants-flora-47--c-red_flower",
+  "scene": "plants-flora-47",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "red flower",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.597484290599823,
+   0.6559139490127563
+  ],
+  "mask_area_fraction": [
+   0.0086,
+   0.0579
+  ],
+  "latency_ms": 3161,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.803
+  }
+ },
+ {
+  "exp_id": "plants-flora-47--box",
+  "scene": "plants-flora-47",
+  "domain": "plants",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.87109375
+  ],
+  "mask_area_fraction": [
+   0.0593
+  ],
+  "latency_ms": 4834,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.86
+  }
+ },
+ {
+  "exp_id": "plants-flora-47--pt",
+  "scene": "plants-flora-47",
+  "domain": "plants",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.7578125
+  ],
+  "mask_area_fraction": [
+   0.0631
+  ],
+  "latency_ms": 4020,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.814
+  }
+ },
+ {
+  "exp_id": "plants-flora-47--ptneg",
+  "scene": "plants-flora-47",
+  "domain": "plants",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.7734375
+  ],
+  "mask_area_fraction": [
+   0.062
+  ],
+  "latency_ms": 1664,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.809
+  }
+ },
+ {
+  "exp_id": "plants-flora-36--c-flower",
+  "scene": "plants-flora-36",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "flower",
+  "status": "completed",
+  "masks": 5,
+  "confidence": [
+   0.5276752710342407,
+   0.6167664527893066,
+   0.5897435545921326,
+   0.6559139490127563,
+   0.604938268661499
+  ],
+  "mask_area_fraction": [
+   0.015,
+   0.0262,
+   0.0139,
+   0.0121,
+   0.0318
+  ],
+  "latency_ms": 3906,
+  "reference_count": 4,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 4,
+   "fn": 0,
+   "mean_matched_iou": 0.664
+  }
+ },
+ {
+  "exp_id": "plants-flora-36--c-plant",
+  "scene": "plants-flora-36",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "plant",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 5470,
+  "reference_count": 4,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "plants-flora-36--c-white_flower",
+  "scene": "plants-flora-36",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "white flower",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.518796980381012
+  ],
+  "mask_area_fraction": [
+   0.012
+  ],
+  "latency_ms": 2325,
+  "reference_count": 4,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-36--box",
+  "scene": "plants-flora-36",
+  "domain": "plants",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.91015625,
+   0.86328125,
+   0.2734375,
+   0.9140625
+  ],
+  "mask_area_fraction": [
+   0.0352,
+   0.0428,
+   0.0103,
+   0.0124
+  ],
+  "latency_ms": 7865,
+  "reference_count": 4,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 3,
+   "fn": 0,
+   "mean_matched_iou": 0.766
+  }
+ },
+ {
+  "exp_id": "plants-flora-36--pt",
+  "scene": "plants-flora-36",
+  "domain": "plants",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.177734375
+  ],
+  "mask_area_fraction": [
+   0.0635
+  ],
+  "latency_ms": 6337,
+  "reference_count": 4,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-36--ptneg",
+  "scene": "plants-flora-36",
+  "domain": "plants",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.50390625
+  ],
+  "mask_area_fraction": [
+   0.0702
+  ],
+  "latency_ms": 10000,
+  "reference_count": 4,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-105--c-flower",
+  "scene": "plants-flora-105",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "flower",
+  "status": "completed",
+  "masks": 26,
+  "confidence": [
+   0.6404494643211365,
+   0.6483516097068787,
+   0.5816993117332458,
+   0.6444444060325623,
+   0.6167664527893066,
+   0.6097560524940491,
+   0.6683937907218933,
+   0.6097560524940491,
+   0.675126850605011,
+   0.7064220309257507,
+   0.5661016702651978,
+   0.5936508178710938,
+   0.7419355511665344,
+   0.5936508178710938,
+   0.7655677795410156,
+   0.6012461185455322,
+   0.5311355590820312,
+   0.5114504098892212,
+   0.5586206912994385,
+   0.5508772134780884,
+   0.7299578189849854,
+   0.7460317611694336,
+   0.6444444060325623,
+   0.5460992455482483,
+   0.7037037014961243,
+   0.6683937907218933
+  ],
+  "mask_area_fraction": [
+   0.0031,
+   0.0051,
+   0.0012,
+   0.0018,
+   0.0034,
+   0.0022,
+   0.008,
+   0.0015,
+   0.0039,
+   0.0039,
+   0.0018,
+   0.0084,
+   0.0043,
+   0.002,
+   0.0106,
+   0.0021,
+   0.001,
+   0.0026,
+   0.0063,
+   0.0021,
+   0.0063,
+   0.0062,
+   0.0045,
+   0.0021,
+   0.0069,
+   0.004
+  ],
+  "latency_ms": 11520,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 26,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-105--c-plant",
+  "scene": "plants-flora-105",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "plant",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 5171,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "plants-flora-105--c-white_flower",
+  "scene": "plants-flora-105",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "white flower",
+  "status": "completed",
+  "masks": 25,
+  "confidence": [
+   0.7887788414955139,
+   0.6289855241775513,
+   0.6640419960021973,
+   0.6559139490127563,
+   0.5631399154663086,
+   0.6521739363670349,
+   0.5345454812049866,
+   0.6952381134033203,
+   0.6404494643211365,
+   0.5661016702651978,
+   0.6213017702102661,
+   0.6404494643211365,
+   0.6213017702102661,
+   0.5897435545921326,
+   0.5276752710342407,
+   0.5395683646202087,
+   0.6132930517196655,
+   0.6404494643211365,
+   0.7697842121124268,
+   0.7538461089134216,
+   0.7697842121124268,
+   0.5857605338096619,
+   0.7229437232017517,
+   0.5114504098892212,
+   0.6952381134033203
+  ],
+  "mask_area_fraction": [
+   0.0106,
+   0.002,
+   0.0052,
+   0.0018,
+   0.001,
+   0.0022,
+   0.0026,
+   0.0079,
+   0.0015,
+   0.0039,
+   0.0012,
+   0.0033,
+   0.0082,
+   0.002,
+   0.0023,
+   0.0062,
+   0.0021,
+   0.0039,
+   0.0043,
+   0.0062,
+   0.0062,
+   0.002,
+   0.0068,
+   0.0045,
+   0.0039
+  ],
+  "latency_ms": 1730,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 25,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-105--box",
+  "scene": "plants-flora-105",
+  "domain": "plants",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.70703125
+  ],
+  "mask_area_fraction": [
+   0.0127
+  ],
+  "latency_ms": 4260,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.792
+  }
+ },
+ {
+  "exp_id": "plants-flora-105--pt",
+  "scene": "plants-flora-105",
+  "domain": "plants",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.85546875
+  ],
+  "mask_area_fraction": [
+   0.0077
+  ],
+  "latency_ms": 4638,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-105--ptneg",
+  "scene": "plants-flora-105",
+  "domain": "plants",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8515625
+  ],
+  "mask_area_fraction": [
+   0.0075
+  ],
+  "latency_ms": 18899,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-246--c-flower",
+  "scene": "plants-flora-246",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "flower",
+  "status": "completed",
+  "masks": 12,
+  "confidence": [
+   0.5936508178710938,
+   0.5661016702651978,
+   0.5897435545921326,
+   0.5540069937705994,
+   0.6952381134033203,
+   0.6559139490127563,
+   0.6363636255264282,
+   0.5857605338096619,
+   0.518796980381012,
+   0.5897435545921326,
+   0.6683937907218933,
+   0.5508772134780884
+  ],
+  "mask_area_fraction": [
+   0.0085,
+   0.0162,
+   0.0131,
+   0.0185,
+   0.0101,
+   0.01,
+   0.0108,
+   0.0142,
+   0.0112,
+   0.013,
+   0.0093,
+   0.0125
+  ],
+  "latency_ms": 19116,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 12,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-246--c-plant",
+  "scene": "plants-flora-246",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "plant",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8750000596046448
+  ],
+  "mask_area_fraction": [
+   0.5165
+  ],
+  "latency_ms": 13339,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-246--c-red_flower",
+  "scene": "plants-flora-246",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "red flower",
+  "status": "completed",
+  "masks": 12,
+  "confidence": [
+   0.6132930517196655,
+   0.5936508178710938,
+   0.6167664527893066,
+   0.5747508406639099,
+   0.7142857313156128,
+   0.6831682920455933,
+   0.6640419960021973,
+   0.604938268661499,
+   0.5395683646202087,
+   0.604938268661499,
+   0.6908212304115295,
+   0.5704697966575623
+  ],
+  "mask_area_fraction": [
+   0.0085,
+   0.0161,
+   0.0129,
+   0.0185,
+   0.01,
+   0.01,
+   0.0108,
+   0.0141,
+   0.0111,
+   0.0128,
+   0.0093,
+   0.0124
+  ],
+  "latency_ms": 25205,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 12,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-246--sci",
+  "scene": "plants-flora-246",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Weinmannia trichosperma",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 7589,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "plants-flora-246--box",
+  "scene": "plants-flora-246",
+  "domain": "plants",
+  "mode": "box",
+  "family": "spatial_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.69921875
+  ],
+  "mask_area_fraction": [
+   0.2628
+  ],
+  "latency_ms": 7854,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.58
+  }
+ },
+ {
+  "exp_id": "plants-flora-246--pt",
+  "scene": "plants-flora-246",
+  "domain": "plants",
+  "mode": "points",
+  "family": "spatial_point_pos",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.82421875
+  ],
+  "mask_area_fraction": [
+   0.0149
+  ],
+  "latency_ms": 1311,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-246--ptneg",
+  "scene": "plants-flora-246",
+  "domain": "plants",
+  "mode": "points",
+  "family": "spatial_point_posneg",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.77734375
+  ],
+  "mask_area_fraction": [
+   0.0138
+  ],
+  "latency_ms": 14675,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-250--c-flower",
+  "scene": "plants-flora-250",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "flower",
+  "status": "completed",
+  "masks": 3,
+  "confidence": [
+   0.5241636037826538,
+   0.5428571701049805,
+   0.5038759708404541
+  ],
+  "mask_area_fraction": [
+   0.0207,
+   0.0694,
+   0.0459
+  ],
+  "latency_ms": 13415,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-flora-250--c-plant",
+  "scene": "plants-flora-250",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "plant",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5540069937705994
+  ],
+  "mask_area_fraction": [
+   0.3622
+  ],
+  "latency_ms": 7142,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-flora-250--c-white_flower",
+  "scene": "plants-flora-250",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "white flower",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 707,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-flora-24--c-flower",
+  "scene": "plants-flora-24",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "flower",
+  "status": "completed",
+  "masks": 5,
+  "confidence": [
+   0.518796980381012,
+   0.518796980381012,
+   0.5428571701049805,
+   0.5428571701049805,
+   0.6521739363670349
+  ],
+  "mask_area_fraction": [
+   0.0068,
+   0.0138,
+   0.0086,
+   0.0361,
+   0.0717
+  ],
+  "latency_ms": 11250,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-flora-24--c-plant",
+  "scene": "plants-flora-24",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "plant",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 10771,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-flora-24--c-yellow_flower",
+  "scene": "plants-flora-24",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "yellow flower",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5775577425956726
+  ],
+  "mask_area_fraction": [
+   0.0715
+  ],
+  "latency_ms": 5625,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-asteranthera--c-flower",
+  "scene": "plants-asteranthera",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "flower",
+  "status": "completed",
+  "masks": 21,
+  "confidence": [
+   0.7064220309257507,
+   0.6683937907218933,
+   0.6559139490127563,
+   0.604938268661499,
+   0.6289855241775513,
+   0.6444444060325623,
+   0.6604774594306946,
+   0.6404494643211365,
+   0.6995305418968201,
+   0.6683937907218933,
+   0.6640419960021973,
+   0.5114504098892212,
+   0.7460317611694336,
+   0.6683937907218933,
+   0.6012461185455322,
+   0.7064220309257507,
+   0.6012461185455322,
+   0.6683937907218933,
+   0.6404494643211365,
+   0.6444444060325623,
+   0.6952381134033203
+  ],
+  "mask_area_fraction": [
+   0.0048,
+   0.001,
+   0.0047,
+   0.005,
+   0.0035,
+   0.0068,
+   0.0058,
+   0.0028,
+   0.0058,
+   0.001,
+   0.0047,
+   0.0051,
+   0.0057,
+   0.0037,
+   0.0063,
+   0.0052,
+   0.0028,
+   0.0077,
+   0.0045,
+   0.0013,
+   0.0043
+  ],
+  "latency_ms": 7052,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-asteranthera--c-plant",
+  "scene": "plants-asteranthera",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "plant",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 6657,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-asteranthera--c-red_flower",
+  "scene": "plants-asteranthera",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "red flower",
+  "status": "completed",
+  "masks": 22,
+  "confidence": [
+   0.7037037014961243,
+   0.6683937907218933,
+   0.675126850605011,
+   0.6363636255264282,
+   0.6483516097068787,
+   0.6683937907218933,
+   0.6363636255264282,
+   0.6995305418968201,
+   0.6640419960021973,
+   0.6604774594306946,
+   0.507692277431488,
+   0.7460317611694336,
+   0.5428571701049805,
+   0.6683937907218933,
+   0.6132930517196655,
+   0.6246334314346313,
+   0.7142857313156128,
+   0.6097560524940491,
+   0.6831682920455933,
+   0.6444444060325623,
+   0.6444444060325623,
+   0.6995305418968201
+  ],
+  "mask_area_fraction": [
+   0.0047,
+   0.001,
+   0.0047,
+   0.0035,
+   0.0067,
+   0.0058,
+   0.0027,
+   0.0058,
+   0.001,
+   0.0047,
+   0.005,
+   0.0057,
+   0.0083,
+   0.0037,
+   0.005,
+   0.0064,
+   0.0052,
+   0.0028,
+   0.0076,
+   0.0045,
+   0.0013,
+   0.0043
+  ],
+  "latency_ms": 5609,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-asteranthera--sci",
+  "scene": "plants-asteranthera",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "scientific",
+  "prompt": "Asteranthera ovata",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 13660,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-lichen-bunodophoron--c-mushroom",
+  "scene": "fungi-lichen-bunodophoron",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1050,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-lichen-bunodophoron--c-fungus",
+  "scene": "fungi-lichen-bunodophoron",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 13920,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-lichen-bunodophoron--c-lichen",
+  "scene": "fungi-lichen-bunodophoron",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "lichen",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 14145,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-lichen-pseudocyphellaria--c-mushroom",
+  "scene": "fungi-lichen-pseudocyphellaria",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "mushroom",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1205,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-lichen-pseudocyphellaria--c-fungus",
+  "scene": "fungi-lichen-pseudocyphellaria",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1456,
+  "reference_count": null
+ },
+ {
+  "exp_id": "fungi-lichen-pseudocyphellaria--c-lichen",
+  "scene": "fungi-lichen-pseudocyphellaria",
+  "domain": "fungi",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "lichen",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.6831682920455933,
+   0.6831682920455933
+  ],
+  "mask_area_fraction": [
+   0.2268,
+   0.1894
+  ],
+  "latency_ms": 7559,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-puyehue-landscape--c-tree",
+  "scene": "trees-puyehue-landscape",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 14813,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-puyehue-landscape--c-tree_crown",
+  "scene": "trees-puyehue-landscape",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "tree crown",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 7811,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-puyehue-landscape--c-shrub",
+  "scene": "trees-puyehue-landscape",
+  "domain": "trees",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "shrub",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5276752710342407
+  ],
+  "mask_area_fraction": [
+   0.0193
+  ],
+  "latency_ms": 1817,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-fern-a--c-flower",
+  "scene": "plants-fern-a",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "flower",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1362,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-fern-a--c-plant",
+  "scene": "plants-fern-a",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "plant",
+  "status": "completed",
+  "masks": 5,
+  "confidence": [
+   0.675126850605011,
+   0.6640419960021973,
+   0.5460992455482483,
+   0.5816993117332458,
+   0.5936508178710938
+  ],
+  "mask_area_fraction": [
+   0.0028,
+   0.1119,
+   0.0727,
+   0.2221,
+   0.0019
+  ],
+  "latency_ms": 7854,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-fern-a--c-fern",
+  "scene": "plants-fern-a",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "fern",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 11557,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-fern-a--c-fern_frond",
+  "scene": "plants-fern-a",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "fern frond",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1213,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-fern-b--c-flower",
+  "scene": "plants-fern-b",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "flower",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1294,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-fern-b--c-plant",
+  "scene": "plants-fern-b",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "broad",
+  "prompt": "plant",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.6831682920455933
+  ],
+  "mask_area_fraction": [
+   0.1091
+  ],
+  "latency_ms": 4628,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-fern-b--c-fern",
+  "scene": "plants-fern-b",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "fern",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.604938268661499
+  ],
+  "mask_area_fraction": [
+   0.1069
+  ],
+  "latency_ms": 8938,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-fern-b--c-fern_frond",
+  "scene": "plants-fern-b",
+  "domain": "plants",
+  "mode": "concept",
+  "family": "specific",
+  "prompt": "fern frond",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 3622,
+  "reference_count": null
+ },
+ {
+  "exp_id": "trees-flora-127--muse-c",
+  "scene": "trees-flora-127",
+  "domain": "trees",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "windswept tree",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9139785170555115
+  ],
+  "mask_area_fraction": [
+   0.4977
+  ],
+  "latency_ms": 22321,
+  "reference_count": 1,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.938
+  }
+ },
+ {
+  "exp_id": "trees-flora-127--muse-box",
+  "scene": "trees-flora-127",
+  "domain": "trees",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.86328125,
+   0.89453125
+  ],
+  "mask_area_fraction": [
+   0.5289,
+   0.0743
+  ],
+  "latency_ms": 12960,
+  "reference_count": 1,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.952
+  }
+ },
+ {
+  "exp_id": "trees-flora-142--muse-c",
+  "scene": "trees-flora-142",
+  "domain": "trees",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "windswept tree",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8947368264198303
+  ],
+  "mask_area_fraction": [
+   0.2425
+  ],
+  "latency_ms": 18681,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.866
+  }
+ },
+ {
+  "exp_id": "trees-flora-142--muse-box",
+  "scene": "trees-flora-142",
+  "domain": "trees",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.875,
+   0.55078125,
+   0.74609375,
+   0.80859375
+  ],
+  "mask_area_fraction": [
+   0.2394,
+   0.0635,
+   0.0067,
+   0.0257
+  ],
+  "latency_ms": 7870,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 3,
+   "fn": 0,
+   "mean_matched_iou": 0.858
+  }
+ },
+ {
+  "exp_id": "trees-flora-158--muse-c",
+  "scene": "trees-flora-158",
+  "domain": "trees",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "arching large tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 14384,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-158--muse-box",
+  "scene": "trees-flora-158",
+  "domain": "trees",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.54296875,
+   0.25,
+   0.87890625,
+   0.7890625
+  ],
+  "mask_area_fraction": [
+   0.3596,
+   0.0172,
+   0.0731,
+   0.0739
+  ],
+  "latency_ms": 14379,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 4,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "trees-flora-213--muse-c",
+  "scene": "trees-flora-213",
+  "domain": "trees",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "tall conifer tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 1337,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-213--muse-box",
+  "scene": "trees-flora-213",
+  "domain": "trees",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.94140625,
+   0.7734375,
+   0.890625,
+   0.7109375
+  ],
+  "mask_area_fraction": [
+   0.3914,
+   0.1799,
+   0.0121,
+   0.0135
+  ],
+  "latency_ms": 6637,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 3,
+   "fn": 0,
+   "mean_matched_iou": 0.732
+  }
+ },
+ {
+  "exp_id": "trees-flora-214--muse-c",
+  "scene": "trees-flora-214",
+  "domain": "trees",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "evergreen tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 11781,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-214--muse-box",
+  "scene": "trees-flora-214",
+  "domain": "trees",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.76953125,
+   0.87890625,
+   0.90625,
+   0.494140625
+  ],
+  "mask_area_fraction": [
+   0.3842,
+   0.115,
+   0.0753,
+   0.0442
+  ],
+  "latency_ms": 20910,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 3,
+   "fn": 0,
+   "mean_matched_iou": 0.636
+  }
+ },
+ {
+  "exp_id": "trees-flora-220--muse-c",
+  "scene": "trees-flora-220",
+  "domain": "trees",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "conifer tree",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 882,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "trees-flora-220--muse-box",
+  "scene": "trees-flora-220",
+  "domain": "trees",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.90234375,
+   0.9375,
+   0.734375,
+   0.546875
+  ],
+  "mask_area_fraction": [
+   0.3595,
+   0.0948,
+   0.1738,
+   0.0061
+  ],
+  "latency_ms": 20131,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 3,
+   "fn": 0,
+   "mean_matched_iou": 0.93
+  }
+ },
+ {
+  "exp_id": "birds-fauna-68--muse-c",
+  "scene": "birds-fauna-68",
+  "domain": "birds",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "perched parrot",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.8324607610702515,
+   0.8241757750511169
+  ],
+  "mask_area_fraction": [
+   0.0746,
+   0.0807
+  ],
+  "latency_ms": 26950,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 2,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.83
+  }
+ },
+ {
+  "exp_id": "birds-fauna-68--muse-box",
+  "scene": "birds-fauna-68",
+  "domain": "birds",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 3,
+  "confidence": [
+   0.9296875,
+   0.94140625,
+   0.90625
+  ],
+  "mask_area_fraction": [
+   0.0811,
+   0.0733,
+   0.0541
+  ],
+  "latency_ms": 6383,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 2,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.845
+  }
+ },
+ {
+  "exp_id": "birds-fauna-195--muse-c",
+  "scene": "birds-fauna-195",
+  "domain": "birds",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "curved-bill bird",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 6182,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 2,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "birds-fauna-195--muse-box",
+  "scene": "birds-fauna-195",
+  "domain": "birds",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.8984375,
+   0.953125,
+   0.94921875,
+   0.93359375
+  ],
+  "mask_area_fraction": [
+   0.0199,
+   0.022,
+   0.4027,
+   0.0818
+  ],
+  "latency_ms": 5799,
+  "reference_count": 2,
+  "box_agreement": {
+   "tp": 2,
+   "fp": 2,
+   "fn": 0,
+   "mean_matched_iou": 0.571
+  }
+ },
+ {
+  "exp_id": "birds-fauna-209--muse-c",
+  "scene": "birds-fauna-209",
+  "domain": "birds",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "wading bird",
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.7770034670829773,
+   0.7968254089355469,
+   0.7968254089355469,
+   0.7928802371025085
+  ],
+  "mask_area_fraction": [
+   0.0038,
+   0.0085,
+   0.0063,
+   0.0065
+  ],
+  "latency_ms": 11020,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 4,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.804
+  }
+ },
+ {
+  "exp_id": "birds-fauna-209--muse-box",
+  "scene": "birds-fauna-209",
+  "domain": "birds",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.9453125,
+   0.9140625,
+   0.94921875,
+   0.94921875
+  ],
+  "mask_area_fraction": [
+   0.0087,
+   0.0063,
+   0.0065,
+   0.004
+  ],
+  "latency_ms": 10329,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 4,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.753
+  }
+ },
+ {
+  "exp_id": "birds-fauna-0--muse-c",
+  "scene": "birds-fauna-0",
+  "domain": "birds",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "red headed woodpecker",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5460992455482483
+  ],
+  "mask_area_fraction": [
+   0.1242
+  ],
+  "latency_ms": 11752,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.95
+  }
+ },
+ {
+  "exp_id": "birds-fauna-0--muse-box",
+  "scene": "birds-fauna-0",
+  "domain": "birds",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 3,
+  "confidence": [
+   0.87890625,
+   0.89453125,
+   0.875
+  ],
+  "mask_area_fraction": [
+   0.1321,
+   0.347,
+   0.0543
+  ],
+  "latency_ms": 16883,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 2,
+   "fn": 0,
+   "mean_matched_iou": 0.861
+  }
+ },
+ {
+  "exp_id": "birds-fauna-7--muse-c",
+  "scene": "birds-fauna-7",
+  "domain": "birds",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "red-headed woodpecker",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.7620818018913269
+  ],
+  "mask_area_fraction": [
+   0.1385
+  ],
+  "latency_ms": 14080,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.836
+  }
+ },
+ {
+  "exp_id": "birds-fauna-7--muse-box",
+  "scene": "birds-fauna-7",
+  "domain": "birds",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.9375,
+   0.921875,
+   0.86328125,
+   0.419921875
+  ],
+  "mask_area_fraction": [
+   0.1425,
+   0.5279,
+   0.1057,
+   0.0002
+  ],
+  "latency_ms": 21325,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 3,
+   "fn": 0,
+   "mean_matched_iou": 0.845
+  }
+ },
+ {
+  "exp_id": "birds-fauna-176--muse-c",
+  "scene": "birds-fauna-176",
+  "domain": "birds",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "small brown bird",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8987342119216919
+  ],
+  "mask_area_fraction": [
+   0.0609
+  ],
+  "latency_ms": 30473,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.871
+  }
+ },
+ {
+  "exp_id": "birds-fauna-176--muse-box",
+  "scene": "birds-fauna-176",
+  "domain": "birds",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.96484375,
+   0.9765625,
+   0.921875,
+   0.765625
+  ],
+  "mask_area_fraction": [
+   0.0627,
+   0.91,
+   0.0068,
+   0.0007
+  ],
+  "latency_ms": 31527,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 3,
+   "fn": 0,
+   "mean_matched_iou": 0.902
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-20--muse-c",
+  "scene": "fungi-fungi-20",
+  "domain": "fungi",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "orange bumpy sphere",
+  "status": "completed",
+  "masks": 6,
+  "confidence": [
+   0.9569892287254333,
+   0.9452055096626282,
+   0.9452055096626282,
+   0.827957034111023,
+   0.9452055096626282,
+   0.8750000596046448
+  ],
+  "mask_area_fraction": [
+   0.0747,
+   0.0866,
+   0.0293,
+   0.0084,
+   0.0163,
+   0.0071
+  ],
+  "latency_ms": 11094,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 4,
+   "fp": 2,
+   "fn": 0,
+   "mean_matched_iou": 0.806
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-20--muse-box",
+  "scene": "fungi-fungi-20",
+  "domain": "fungi",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.9375,
+   0.94921875
+  ],
+  "mask_area_fraction": [
+   0.2308,
+   0.7164
+  ],
+  "latency_ms": 13720,
+  "reference_count": 4,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 2,
+   "fn": 4,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-24--muse-c",
+  "scene": "fungi-fungi-24",
+  "domain": "fungi",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "orange globular fungus",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 13408,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-24--muse-box",
+  "scene": "fungi-fungi-24",
+  "domain": "fungi",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 6,
+  "confidence": [
+   0.84765625,
+   0.9140625,
+   0.7421875,
+   0.828125,
+   0.7890625,
+   0.5078125
+  ],
+  "mask_area_fraction": [
+   0.0865,
+   0.1098,
+   0.0002,
+   0.0223,
+   0.1096,
+   0.0145
+  ],
+  "latency_ms": 20742,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 5,
+   "fn": 0,
+   "mean_matched_iou": 0.721
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-36--muse-c",
+  "scene": "fungi-fungi-36",
+  "domain": "fungi",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "honeycomb yellow sphere",
+  "status": "completed",
+  "masks": 5,
+  "confidence": [
+   0.9101123809814453,
+   0.8865247964859009,
+   0.5540069937705994,
+   0.6908212304115295,
+   0.9139785170555115
+  ],
+  "mask_area_fraction": [
+   0.0582,
+   0.0358,
+   0.0108,
+   0.0229,
+   0.0335
+  ],
+  "latency_ms": 18421,
+  "reference_count": 5,
+  "box_agreement": {
+   "tp": 3,
+   "fp": 2,
+   "fn": 2,
+   "mean_matched_iou": 0.653
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-36--muse-box",
+  "scene": "fungi-fungi-36",
+  "domain": "fungi",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 7,
+  "confidence": [
+   0.96484375,
+   0.96875,
+   0.734375,
+   0.609375,
+   0.96875,
+   0.796875,
+   0.71875
+  ],
+  "mask_area_fraction": [
+   0.0336,
+   0.0586,
+   0.0335,
+   0.02,
+   0.0439,
+   0.0632,
+   0.006
+  ],
+  "latency_ms": 12134,
+  "reference_count": 5,
+  "box_agreement": {
+   "tp": 4,
+   "fp": 3,
+   "fn": 1,
+   "mean_matched_iou": 0.606
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-57--muse-c",
+  "scene": "fungi-fungi-57",
+  "domain": "fungi",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "orange spherical fungus",
+  "status": "completed",
+  "masks": 15,
+  "confidence": [
+   0.8750000596046448,
+   0.8439024686813354,
+   0.9336099624633789,
+   0.9452055096626282,
+   0.7852349281311035,
+   0.8865247964859009,
+   0.9259259104728699,
+   0.921951174736023,
+   0.941605806350708,
+   0.9259259104728699,
+   0.9259259104728699,
+   0.9298245906829834,
+   0.5816993117332458,
+   0.9064327478408813,
+   0.9298245906829834
+  ],
+  "mask_area_fraction": [
+   0.0063,
+   0.0044,
+   0.0348,
+   0.0298,
+   0.0023,
+   0.0046,
+   0.0246,
+   0.016,
+   0.0226,
+   0.0229,
+   0.0123,
+   0.0175,
+   0.0006,
+   0.0115,
+   0.0107
+  ],
+  "latency_ms": 15853,
+  "reference_count": 13,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 15,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-57--muse-box",
+  "scene": "fungi-fungi-57",
+  "domain": "fungi",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 3,
+  "confidence": [
+   0.94921875,
+   0.91796875,
+   0.326171875
+  ],
+  "mask_area_fraction": [
+   0.231,
+   0.3017,
+   0.0001
+  ],
+  "latency_ms": 10278,
+  "reference_count": 13,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 3,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-63--muse-c",
+  "scene": "fungi-fungi-63",
+  "domain": "fungi",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "orange porous fungus",
+  "status": "completed",
+  "masks": 7,
+  "confidence": [
+   0.8518518805503845,
+   0.7419355511665344,
+   0.8827838897705078,
+   0.8632478713989258,
+   0.8750000596046448,
+   0.8709677457809448,
+   0.8632478713989258
+  ],
+  "mask_area_fraction": [
+   0.0227,
+   0.003,
+   0.043,
+   0.0335,
+   0.0527,
+   0.0492,
+   0.0128
+  ],
+  "latency_ms": 19448,
+  "reference_count": 6,
+  "box_agreement": {
+   "tp": 6,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.859
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-63--muse-box",
+  "scene": "fungi-fungi-63",
+  "domain": "fungi",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 5,
+  "confidence": [
+   0.9375,
+   0.96484375,
+   0.953125,
+   0.6875,
+   0.62890625
+  ],
+  "mask_area_fraction": [
+   0.2138,
+   0.1164,
+   0.0396,
+   0.1795,
+   0.012
+  ],
+  "latency_ms": 15303,
+  "reference_count": 6,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 5,
+   "fn": 6,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-7--muse-c",
+  "scene": "fungi-fungi-7",
+  "domain": "fungi",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "red spotted mushroom",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9179486632347107
+  ],
+  "mask_area_fraction": [
+   0.1266
+  ],
+  "latency_ms": 12002,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.894
+  }
+ },
+ {
+  "exp_id": "fungi-fungi-7--muse-box",
+  "scene": "fungi-fungi-7",
+  "domain": "fungi",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.96875,
+   0.71875
+  ],
+  "mask_area_fraction": [
+   0.1294,
+   0.002
+  ],
+  "latency_ms": 13666,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.907
+  }
+ },
+ {
+  "exp_id": "plants-flora-40--muse-c",
+  "scene": "plants-flora-40",
+  "domain": "plants",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "flowering tree",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9064327478408813
+  ],
+  "mask_area_fraction": [
+   0.9859
+  ],
+  "latency_ms": 16936,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-40--muse-box",
+  "scene": "plants-flora-40",
+  "domain": "plants",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9882810115814209
+  ],
+  "mask_area_fraction": [
+   0.9933
+  ],
+  "latency_ms": 11591,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-45--muse-c",
+  "scene": "plants-flora-45",
+  "domain": "plants",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "flowering branch",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 22316,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-45--muse-box",
+  "scene": "plants-flora-45",
+  "domain": "plants",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.87109375,
+   0.734375,
+   0.859375,
+   0.7265625
+  ],
+  "mask_area_fraction": [
+   0.1614,
+   0.3181,
+   0.0655,
+   0.0478
+  ],
+  "latency_ms": 10828,
+  "reference_count": 1,
+  "box_agreement": {
+   "tp": 0,
+   "fp": 4,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-47--muse-c",
+  "scene": "plants-flora-47",
+  "domain": "plants",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "flowering shrub",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5395683646202087
+  ],
+  "mask_area_fraction": [
+   0.0602
+  ],
+  "latency_ms": 15093,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "mean_matched_iou": 0.804
+  }
+ },
+ {
+  "exp_id": "plants-flora-47--muse-box",
+  "scene": "plants-flora-47",
+  "domain": "plants",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.95703125,
+   0.8671875
+  ],
+  "mask_area_fraction": [
+   0.9854,
+   0.0032
+  ],
+  "latency_ms": 15762,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 1,
+   "fp": 1,
+   "fn": 0,
+   "mean_matched_iou": 0.807
+  }
+ },
+ {
+  "exp_id": "plants-flora-36--muse-c",
+  "scene": "plants-flora-36",
+  "domain": "plants",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "flowering shrub",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5038759708404541
+  ],
+  "mask_area_fraction": [
+   0.1392
+  ],
+  "latency_ms": 10666,
+  "reference_count": 4,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-36--muse-box",
+  "scene": "plants-flora-36",
+  "domain": "plants",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.94921875,
+   0.494140625,
+   0.72265625,
+   0.5546875
+  ],
+  "mask_area_fraction": [
+   0.9453,
+   0.0013,
+   0.0022,
+   0.0001
+  ],
+  "latency_ms": 13222,
+  "reference_count": 4,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 4,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-105--muse-c",
+  "scene": "plants-flora-105",
+  "domain": "plants",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "white flowering shrub",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 21035,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 0,
+   "fn": 1
+  }
+ },
+ {
+  "exp_id": "plants-flora-105--muse-box",
+  "scene": "plants-flora-105",
+  "domain": "plants",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.9140625
+  ],
+  "mask_area_fraction": [
+   0.9726
+  ],
+  "latency_ms": 11922,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-246--muse-c",
+  "scene": "plants-flora-246",
+  "domain": "plants",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "flowering branch",
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.5704697966575623
+  ],
+  "mask_area_fraction": [
+   0.0061
+  ],
+  "latency_ms": 22845,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-flora-246--muse-box",
+  "scene": "plants-flora-246",
+  "domain": "plants",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.96875
+  ],
+  "mask_area_fraction": [
+   0.5332
+  ],
+  "latency_ms": 17532,
+  "reference_count": null,
+  "box_agreement_main": {
+   "tp": 0,
+   "fp": 1,
+   "fn": 1,
+   "mean_matched_iou": null
+  }
+ },
+ {
+  "exp_id": "plants-asteranthera--muse-c",
+  "scene": "plants-asteranthera",
+  "domain": "plants",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "red tubular flower",
+  "status": "completed",
+  "masks": 26,
+  "confidence": [
+   0.8128654956817627,
+   0.8048780560493469,
+   0.6167664527893066,
+   0.7730495929718018,
+   0.5775577425956726,
+   0.7460317611694336,
+   0.7500000596046448,
+   0.7730495929718018,
+   0.7419355511665344,
+   0.5428571701049805,
+   0.8048780560493469,
+   0.7815700173377991,
+   0.7770034670829773,
+   0.5460992455482483,
+   0.8672199249267578,
+   0.5775577425956726,
+   0.7852349281311035,
+   0.7104072570800781,
+   0.719298243522644,
+   0.827957034111023,
+   0.6332378387451172,
+   0.7064220309257507,
+   0.7815700173377991,
+   0.7538461089134216,
+   0.7655677795410156,
+   0.8241757750511169
+  ],
+  "mask_area_fraction": [
+   0.0048,
+   0.001,
+   0.0062,
+   0.0047,
+   0.0043,
+   0.0035,
+   0.0067,
+   0.0058,
+   0.0025,
+   0.0011,
+   0.0058,
+   0.001,
+   0.0047,
+   0.0035,
+   0.0057,
+   0.0019,
+   0.0037,
+   0.0049,
+   0.0064,
+   0.0052,
+   0.005,
+   0.0028,
+   0.0076,
+   0.0047,
+   0.0013,
+   0.0043
+  ],
+  "latency_ms": 22317,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-asteranthera--muse-box",
+  "scene": "plants-asteranthera",
+  "domain": "plants",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.80859375,
+   0.890625,
+   0.734375,
+   0.72265625
+  ],
+  "mask_area_fraction": [
+   0.183,
+   0.0051,
+   0.342,
+   0.0
+  ],
+  "latency_ms": 14635,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-fern-a--muse-c",
+  "scene": "plants-fern-a",
+  "domain": "plants",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "dense fern wall",
+  "status": "completed",
+  "masks": 2,
+  "confidence": [
+   0.6404494643211365,
+   0.7887788414955139
+  ],
+  "mask_area_fraction": [
+   0.0752,
+   0.2207
+  ],
+  "latency_ms": 31825,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-fern-a--muse-box",
+  "scene": "plants-fern-a",
+  "domain": "plants",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 4,
+  "confidence": [
+   0.921875,
+   0.91796875,
+   0.87890625,
+   0.87890625
+  ],
+  "mask_area_fraction": [
+   0.2173,
+   0.1307,
+   0.0029,
+   0.0823
+  ],
+  "latency_ms": 6880,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-fern-b--muse-c",
+  "scene": "plants-fern-b",
+  "domain": "plants",
+  "mode": "muse_concept",
+  "family": "muse_concept",
+  "prompt": "green fern fronds",
+  "status": "no_matches",
+  "masks": 0,
+  "confidence": [],
+  "mask_area_fraction": [],
+  "latency_ms": 6717,
+  "reference_count": null
+ },
+ {
+  "exp_id": "plants-fern-b--muse-box",
+  "scene": "plants-fern-b",
+  "domain": "plants",
+  "mode": "muse_box",
+  "family": "muse_box",
+  "prompt": null,
+  "status": "completed",
+  "masks": 1,
+  "confidence": [
+   0.8828125
+  ],
+  "mask_area_fraction": [
+   0.1104
+  ],
+  "latency_ms": 5372,
+  "reference_count": null
+ }
+]

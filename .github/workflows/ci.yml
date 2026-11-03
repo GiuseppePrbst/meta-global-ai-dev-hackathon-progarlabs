@@ -31,6 +31,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
       - run: node tools/meta_sam_api_lab/viewer.test.cjs
+      - run: node tools/meta_sam_api_lab/showcase.test.cjs
 
   api:
     runs-on: ubuntu-latest

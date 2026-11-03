@@ -1,0 +1,608 @@
+[
+ {
+  "exp_id": "vid-vanellus--c-bird",
+  "clip": "vanellus-640",
+  "prompt_mode": "concept",
+  "prompt": "bird",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 116,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   },
+   {
+    "id": "4",
+    "first_frame": 84,
+    "last_frame": 99,
+    "visible_frames": 16,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 45879,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.938
+ },
+ {
+  "exp_id": "vid-vanellus--c-lapwing",
+  "clip": "vanellus-640",
+  "prompt_mode": "concept",
+  "prompt": "lapwing",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 47,
+  "no_mask_frames": 53,
+  "tracks": [
+   {
+    "id": "2",
+    "first_frame": 53,
+    "last_frame": 99,
+    "visible_frames": 47,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 28032,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.719
+ },
+ {
+  "exp_id": "vid-vanellus--box-f0",
+  "clip": "vanellus-640",
+  "prompt_mode": "spatial",
+  "prompt": null,
+  "direction": "forward",
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 100,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 46574,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.972
+ },
+ {
+  "exp_id": "vid-vanellus--box-f50-both",
+  "clip": "vanellus-640",
+  "prompt_mode": "spatial",
+  "prompt": null,
+  "direction": "both",
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 100,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 46625,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.972
+ },
+ {
+  "exp_id": "vid-sanderlings640--c-bird",
+  "clip": "sanderlings/w640",
+  "prompt_mode": "concept",
+  "prompt": "bird",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 200,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "0",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   },
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 10156,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.852
+ },
+ {
+  "exp_id": "vid-sanderlings960--c-bird",
+  "clip": "sanderlings/w960",
+  "prompt_mode": "concept",
+  "prompt": "bird",
+  "direction": null,
+  "prepared_size": [
+   960,
+   540
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 200,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "0",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   },
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 9954,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.883
+ },
+ {
+  "exp_id": "vid-sanderlings1280--c-bird",
+  "clip": "sanderlings/w1280",
+  "prompt_mode": "concept",
+  "prompt": "bird",
+  "direction": null,
+  "prepared_size": [
+   1280,
+   720
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 200,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "0",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   },
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 12084,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.881
+ },
+ {
+  "exp_id": "vid-sanderlings640--box2",
+  "clip": "sanderlings/w640",
+  "prompt_mode": "spatial",
+  "prompt": null,
+  "direction": "forward",
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 173,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 89,
+    "visible_frames": 73,
+    "gaps": 2
+   },
+   {
+    "id": "2",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 15594,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.85
+ },
+ {
+  "exp_id": "vid-teros--c-bird",
+  "clip": "teros-640",
+  "prompt_mode": "concept",
+  "prompt": "bird",
+  "direction": null,
+  "prepared_size": [
+   640,
+   1164
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 198,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "0",
+    "first_frame": 0,
+    "last_frame": 33,
+    "visible_frames": 34,
+    "gaps": 0
+   },
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   },
+   {
+    "id": "2",
+    "first_frame": 0,
+    "last_frame": 45,
+    "visible_frames": 46,
+    "gaps": 0
+   },
+   {
+    "id": "3",
+    "first_frame": 82,
+    "last_frame": 99,
+    "visible_frames": 18,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 22553,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.896
+ },
+ {
+  "exp_id": "vid-fungi--c-mushroom",
+  "clip": "fungi-640",
+  "prompt_mode": "concept",
+  "prompt": "mushroom",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 200,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "0",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   },
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 30132,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.951
+ },
+ {
+  "exp_id": "vid-fungi--c-parasol",
+  "clip": "fungi-640",
+  "prompt_mode": "concept",
+  "prompt": "parasol mushroom",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "no_matches",
+  "masks": 0,
+  "no_mask_frames": 100,
+  "tracks": [],
+  "latency_ms": 7653,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": null
+ },
+ {
+  "exp_id": "vid-fungi--box2",
+  "clip": "fungi-640",
+  "prompt_mode": "spatial",
+  "prompt": null,
+  "direction": "forward",
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 200,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   },
+   {
+    "id": "2",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 30710,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.95
+ },
+ {
+  "exp_id": "vid-fern--c-fern",
+  "clip": "fern-640",
+  "prompt_mode": "concept",
+  "prompt": "fern",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "no_matches",
+  "masks": 0,
+  "no_mask_frames": 100,
+  "tracks": [],
+  "latency_ms": 9082,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": null
+ },
+ {
+  "exp_id": "vid-fern--c-plant",
+  "clip": "fern-640",
+  "prompt_mode": "concept",
+  "prompt": "plant",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 43,
+  "no_mask_frames": 70,
+  "tracks": [
+   {
+    "id": "0",
+    "first_frame": 70,
+    "last_frame": 86,
+    "visible_frames": 17,
+    "gaps": 0
+   },
+   {
+    "id": "1",
+    "first_frame": 74,
+    "last_frame": 99,
+    "visible_frames": 26,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 22282,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.716
+ },
+ {
+  "exp_id": "vid-fern--c-log",
+  "clip": "fern-640",
+  "prompt_mode": "concept",
+  "prompt": "fallen log",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 298,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "0",
+    "first_frame": 0,
+    "last_frame": 67,
+    "visible_frames": 68,
+    "gaps": 0
+   },
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   },
+   {
+    "id": "2",
+    "first_frame": 0,
+    "last_frame": 84,
+    "visible_frames": 85,
+    "gaps": 0
+   },
+   {
+    "id": "3",
+    "first_frame": 66,
+    "last_frame": 82,
+    "visible_frames": 17,
+    "gaps": 0
+   },
+   {
+    "id": "4",
+    "first_frame": 76,
+    "last_frame": 99,
+    "visible_frames": 24,
+    "gaps": 0
+   },
+   {
+    "id": "5",
+    "first_frame": 96,
+    "last_frame": 99,
+    "visible_frames": 4,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 15044,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.814
+ }
+]

@@ -1,0 +1,1583 @@
+{
+ "annotation_note": "reference_boxes are agent_visual_review (normalized 0-1), not expert ground truth",
+ "images": [
+  {
+   "scene_id": "trees-flora-127",
+   "domain": "trees",
+   "image_id": "gbif:3337889451:0",
+   "species_label": "nothofagus-betuloides",
+   "license": "CC BY",
+   "author": "aacocucci",
+   "source_url": "https://www.inaturalist.org/observations/63532948",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "broadleaf tree"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.02,
+     0.0,
+     0.98,
+     0.85
+    ]
+   ],
+   "reference_count": 1,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "trees-flora-141",
+   "domain": "trees",
+   "image_id": "gbif:4171634060:0",
+   "species_label": "nothofagus-betuloides",
+   "license": "CC BY",
+   "author": "F. Bemmerlein-Lux",
+   "source_url": "https://www.inaturalist.org/observations/175340587",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "broadleaf tree"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "trees-flora-142",
+   "domain": "trees",
+   "image_id": "gbif:4171685925:0",
+   "species_label": "nothofagus-betuloides",
+   "license": "CC BY",
+   "author": "F. Bemmerlein-Lux",
+   "source_url": "https://www.inaturalist.org/observations/175340588",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "broadleaf tree"
+   ],
+   "scientific": "Nothofagus pumilio",
+   "reference_boxes": [
+    [
+     0.07,
+     0.08,
+     0.98,
+     0.93
+    ]
+   ],
+   "reference_count": 1,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "trees-flora-154",
+   "domain": "trees",
+   "image_id": "commons:115460750",
+   "species_label": "nothofagus-dombeyi",
+   "license": "CC BY-SA 4.0",
+   "author": "LBM1948",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bariloche,_varios_1994_06.jpg",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "broadleaf tree"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "trees-flora-156",
+   "domain": "trees",
+   "image_id": "commons:1236316",
+   "species_label": "nothofagus-dombeyi",
+   "license": "CC BY-SA 3.0",
+   "author": "Lin linao",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi-dos.JPG",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "broadleaf tree"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "trees-flora-158",
+   "domain": "trees",
+   "image_id": "commons:124480551",
+   "species_label": "nothofagus-dombeyi",
+   "license": "CC BY 4.0",
+   "author": "Romi Galeota Lencina",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi_26804715.jpg",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "tree trunk"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.48,
+     0.0,
+     1.0,
+     0.95
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "trees-flora-160",
+   "domain": "trees",
+   "image_id": "commons:1360358",
+   "species_label": "nothofagus-dombeyi",
+   "license": "CC BY-SA 3.0",
+   "author": "Luis Ibarra (Sativo)",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Coihue_adulto.jpg",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "broadleaf tree"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "trees-flora-183",
+   "domain": "trees",
+   "image_id": "commons:1217020",
+   "species_label": "nothofagus-pumilio",
+   "license": "Public domain",
+   "author": "No machine-readable author provided. Rufus1961 assumed (based on copyright claims).",
+   "source_url": "https://commons.wikimedia.org/wiki/File:BosqLenga1.jpg",
+   "redistribution": "yes",
+   "media": "image",
+   "specific": [
+    "broadleaf tree"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "trees-flora-187",
+   "domain": "trees",
+   "image_id": "commons:186360470",
+   "species_label": "nothofagus-pumilio",
+   "license": "CC BY 4.0",
+   "author": "Krzysztof Ziarnek, Kenraiz",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_pumilio_kz03.jpg",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "broadleaf tree"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "trees-flora-213",
+   "domain": "trees",
+   "image_id": "gbif:4126690513:1",
+   "species_label": "podocarpus-nubigenus",
+   "license": "CC BY-SA",
+   "author": "Tony Rebelo",
+   "source_url": "https://www.inaturalist.org/observations/20142206",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "conifer tree"
+   ],
+   "scientific": "Podocarpus nubigenus",
+   "reference_boxes": [
+    [
+     0.1,
+     0.05,
+     0.85,
+     0.9
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "trees-flora-214",
+   "domain": "trees",
+   "image_id": "gbif:4126707586:0",
+   "species_label": "podocarpus-nubigenus",
+   "license": "CC BY-SA",
+   "author": "Tony Rebelo",
+   "source_url": "https://www.inaturalist.org/observations/20150120",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "conifer tree"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.28,
+     0.08,
+     0.85,
+     0.75
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "trees-flora-220",
+   "domain": "trees",
+   "image_id": "gbif:5062705572:0",
+   "species_label": "podocarpus-nubigenus",
+   "license": "CC BY",
+   "author": "Christoph Moning",
+   "source_url": "https://www.inaturalist.org/observations/200448745",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "conifer tree"
+   ],
+   "scientific": "Podocarpus nubigenus",
+   "reference_boxes": [
+    [
+     0.05,
+     0.1,
+     0.98,
+     0.97
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "trees-flora-200",
+   "domain": "trees",
+   "image_id": "commons:77618175",
+   "species_label": "nothofagus-pumilio",
+   "license": "CC BY-SA 3.0",
+   "author": "Gagea",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_pumilio-general_view_(cropped).jpg",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "broadleaf tree"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "trees-flora-219",
+   "domain": "trees",
+   "image_id": "gbif:4936301069:0",
+   "species_label": "podocarpus-nubigenus",
+   "license": "CC BY",
+   "author": "Cesar Ormazabal",
+   "source_url": "https://www.inaturalist.org/observations/107448587",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "conifer tree"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "birds-fauna-66",
+   "domain": "birds",
+   "image_id": "gbif:1890049485:0",
+   "species_label": "enicognathus-ferrugineus",
+   "license": "CC BY",
+   "author": "Miguel Vieira",
+   "source_url": "https://www.inaturalist.org/observations/14830427",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "parrot"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "birds-fauna-67",
+   "domain": "birds",
+   "image_id": "gbif:2603322291:0",
+   "species_label": "enicognathus-ferrugineus",
+   "license": "CC BY",
+   "author": "Jorge Herreros de Lartundo",
+   "source_url": "https://www.inaturalist.org/observations/41976775",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "parrot"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "birds-fauna-68",
+   "domain": "birds",
+   "image_id": "gbif:2609333597:0",
+   "species_label": "enicognathus-ferrugineus",
+   "license": "CC BY",
+   "author": "desertnaturalist",
+   "source_url": "https://www.inaturalist.org/observations/42416119",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "parrot"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.2,
+     0.2,
+     0.57,
+     0.75
+    ],
+    [
+     0.52,
+     0.22,
+     0.8,
+     0.75
+    ]
+   ],
+   "reference_count": 2,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "birds-fauna-72",
+   "domain": "birds",
+   "image_id": "gbif:3398904441:0",
+   "species_label": "enicognathus-ferrugineus",
+   "license": "CC BY",
+   "author": "Paul Asman and Jill Lenoble",
+   "source_url": "https://www.inaturalist.org/observations/98608190",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "parrot"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "birds-fauna-73",
+   "domain": "birds",
+   "image_id": "gbif:3398904441:1",
+   "species_label": "enicognathus-ferrugineus",
+   "license": "CC BY",
+   "author": "Paul Asman and Jill Lenoble",
+   "source_url": "https://www.inaturalist.org/observations/98608190",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "parrot"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "birds-fauna-95",
+   "domain": "birds",
+   "image_id": "gbif:4440674562:0",
+   "species_label": "enicognathus-leptorhynchus",
+   "license": "CC BY",
+   "author": "Ben Lyle Bedard",
+   "source_url": "https://www.inaturalist.org/observations/190526201",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "parrot"
+   ],
+   "scientific": "Enicognathus leptorhynchus",
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "birds-fauna-195",
+   "domain": "birds",
+   "image_id": "gbif:4011696176:0",
+   "species_label": "theristicus-melanopis",
+   "license": "CC BY",
+   "author": "Glynn Morris",
+   "source_url": "https://www.inaturalist.org/observations/145603024",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "ibis"
+   ],
+   "scientific": "Theristicus melanopis",
+   "reference_boxes": [
+    [
+     0.34,
+     0.42,
+     0.62,
+     0.78
+    ],
+    [
+     0.52,
+     0.4,
+     0.83,
+     0.76
+    ]
+   ],
+   "reference_count": 2,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "birds-fauna-209",
+   "domain": "birds",
+   "image_id": "gbif:4126915482:0",
+   "species_label": "theristicus-melanopis",
+   "license": "CC BY",
+   "author": "ignacio_diaz05",
+   "source_url": "https://www.inaturalist.org/observations/163927214",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "ibis"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.18,
+     0.53,
+     0.39,
+     0.68
+    ],
+    [
+     0.36,
+     0.5,
+     0.5,
+     0.64
+    ],
+    [
+     0.5,
+     0.53,
+     0.69,
+     0.64
+    ],
+    [
+     0.92,
+     0.56,
+     1.0,
+     0.65
+    ]
+   ],
+   "reference_count": 4,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "birds-fauna-215",
+   "domain": "birds",
+   "image_id": "gbif:4424550464:0",
+   "species_label": "theristicus-melanopis",
+   "license": "CC BY",
+   "author": "SebaArosZ",
+   "source_url": "https://www.inaturalist.org/observations/186800259",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "ibis"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "birds-fauna-0",
+   "domain": "birds",
+   "image_id": "gbif:1978430068:0",
+   "species_label": "campephilus-magellanicus",
+   "license": "CC BY",
+   "author": "Nicolas Olejnik",
+   "source_url": "https://www.inaturalist.org/observations/19016892",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "woodpecker"
+   ],
+   "scientific": "Campephilus magellanicus",
+   "reference_boxes": [
+    [
+     0.3,
+     0.1,
+     0.82,
+     1.0
+    ]
+   ],
+   "reference_count": 1,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "birds-fauna-7",
+   "domain": "birds",
+   "image_id": "gbif:3760373480:0",
+   "species_label": "campephilus-magellanicus",
+   "license": "CC BY",
+   "author": "nmoorhatch",
+   "source_url": "https://www.inaturalist.org/observations/110973039",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "woodpecker"
+   ],
+   "scientific": "Campephilus magellanicus",
+   "reference_boxes": [
+    [
+     0.15,
+     0.22,
+     0.85,
+     0.97
+    ]
+   ],
+   "reference_count": 1,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "birds-fauna-30",
+   "domain": "birds",
+   "image_id": "gbif:4440682949:0",
+   "species_label": "campephilus-magellanicus",
+   "license": "CC BY",
+   "author": "Ben Lyle Bedard",
+   "source_url": "https://www.inaturalist.org/observations/190526839",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "woodpecker"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "birds-fauna-176",
+   "domain": "birds",
+   "image_id": "gbif:2573837693:0",
+   "species_label": "scelorchilus-rubecula",
+   "license": "CC BY",
+   "author": "Cristian Riquelme",
+   "source_url": "https://www.inaturalist.org/observations/19847929",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "brown bird"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.27,
+     0.31,
+     0.77,
+     0.69
+    ]
+   ],
+   "reference_count": 1,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "birds-fauna-246",
+   "domain": "birds",
+   "image_id": "gbif:5205922585:0",
+   "species_label": "troglodytes-aedon",
+   "license": "CC BY",
+   "author": "Álvaro Parra Valdivia",
+   "source_url": "https://www.inaturalist.org/observations/291929421",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "small bird"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "birds-fauna-125",
+   "domain": "birds",
+   "image_id": "gbif:1932346578:0",
+   "species_label": "pteroptochos-tarnii",
+   "license": "CC0",
+   "author": "Diego Carús",
+   "source_url": "https://www.inaturalist.org/observations/17802293",
+   "redistribution": "yes",
+   "media": "image",
+   "specific": [
+    "brown bird"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "birds-fauna-212",
+   "domain": "birds",
+   "image_id": "gbif:4172252278:0",
+   "species_label": "theristicus-melanopis",
+   "license": "CC BY",
+   "author": "Fabrício Mil Homens Riella",
+   "source_url": "https://www.inaturalist.org/observations/177327933",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "ibis"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "fungi-fungi-15",
+   "domain": "fungi",
+   "image_id": "gbif:1847626550:0",
+   "species_label": "cyttaria-darwinii",
+   "license": "CC BY",
+   "author": "Lera Miles",
+   "source_url": "http://www.inaturalist.org/observations/1959812",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "fungi-fungi-18",
+   "domain": "fungi",
+   "image_id": "gbif:2459995664:0",
+   "species_label": "cyttaria-darwinii",
+   "license": "CC BY",
+   "author": "María Regina Silva",
+   "source_url": "https://www.inaturalist.org/observations/23841134",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "fungi-fungi-20",
+   "domain": "fungi",
+   "image_id": "gbif:2543028124:0",
+   "species_label": "cyttaria-darwinii",
+   "license": "CC BY",
+   "author": "desertnaturalist",
+   "source_url": "https://www.inaturalist.org/observations/37006575",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": "Cyttaria darwinii",
+   "reference_boxes": [
+    [
+     0.32,
+     0.14,
+     0.55,
+     0.4
+    ],
+    [
+     0.28,
+     0.27,
+     0.58,
+     0.62
+    ],
+    [
+     0.2,
+     0.42,
+     0.45,
+     0.75
+    ],
+    [
+     0.48,
+     0.48,
+     0.77,
+     0.85
+    ]
+   ],
+   "reference_count": 4,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "fungi-fungi-21",
+   "domain": "fungi",
+   "image_id": "gbif:2823350465:0",
+   "species_label": "cyttaria-darwinii",
+   "license": "CC0",
+   "author": "Simon Tonge",
+   "source_url": "https://www.inaturalist.org/observations/53936700",
+   "redistribution": "yes",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "fungi-fungi-24",
+   "domain": "fungi",
+   "image_id": "gbif:3070351787:0",
+   "species_label": "cyttaria-darwinii",
+   "license": "CC BY",
+   "author": "Sheelagh Halsey",
+   "source_url": "https://www.inaturalist.org/observations/38091840",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.33,
+     0.2,
+     0.63,
+     0.68
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "fungi-fungi-25",
+   "domain": "fungi",
+   "image_id": "gbif:3384616606:0",
+   "species_label": "cyttaria-darwinii",
+   "license": "CC BY",
+   "author": "rosaceae_roberts",
+   "source_url": "https://www.inaturalist.org/observations/69029811",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "fungi-fungi-36",
+   "domain": "fungi",
+   "image_id": "gbif:4440711447:0",
+   "species_label": "cyttaria-espinosae",
+   "license": "CC BY",
+   "author": "Ben Lyle Bedard",
+   "source_url": "https://www.inaturalist.org/observations/190526851",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": "Cyttaria espinosae",
+   "reference_boxes": [
+    [
+     0.5,
+     0.17,
+     0.72,
+     0.47
+    ],
+    [
+     0.33,
+     0.38,
+     0.57,
+     0.67
+    ],
+    [
+     0.45,
+     0.6,
+     0.62,
+     0.85
+    ],
+    [
+     0.62,
+     0.55,
+     0.87,
+     0.82
+    ],
+    [
+     0.73,
+     0.32,
+     1.0,
+     0.68
+    ]
+   ],
+   "reference_count": 5,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "fungi-fungi-42",
+   "domain": "fungi",
+   "image_id": "gbif:5844033602:0",
+   "species_label": "cyttaria-espinosae",
+   "license": "CC0",
+   "author": "Matías Alvarez Figueroa",
+   "source_url": "https://www.inaturalist.org/observations/319937879",
+   "redistribution": "yes",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "fungi-fungi-57",
+   "domain": "fungi",
+   "image_id": "gbif:3764167088:0",
+   "species_label": "cyttaria-hariotii",
+   "license": "CC0",
+   "author": "Hugo Hulsberg",
+   "source_url": "https://www.inaturalist.org/observations/112964290",
+   "redistribution": "yes",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": "Cyttaria hariotii",
+   "reference_boxes": [
+    [
+     0.4,
+     0.18,
+     0.6,
+     0.33
+    ],
+    [
+     0.58,
+     0.18,
+     0.75,
+     0.35
+    ],
+    [
+     0.4,
+     0.3,
+     0.6,
+     0.46
+    ],
+    [
+     0.4,
+     0.43,
+     0.62,
+     0.62
+    ],
+    [
+     0.53,
+     0.5,
+     0.66,
+     0.62
+    ],
+    [
+     0.17,
+     0.5,
+     0.45,
+     0.72
+    ],
+    [
+     0.42,
+     0.73,
+     0.66,
+     0.92
+    ]
+   ],
+   "reference_count": 13,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "fungi-fungi-63",
+   "domain": "fungi",
+   "image_id": "gbif:3994263807:0",
+   "species_label": "cyttaria-hariotii",
+   "license": "CC BY",
+   "author": "Bob Walker",
+   "source_url": "https://www.inaturalist.org/observations/143957926",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": "Cyttaria hariotii",
+   "reference_boxes": [
+    [
+     0.27,
+     0.22,
+     0.58,
+     0.47
+    ],
+    [
+     0.5,
+     0.18,
+     0.66,
+     0.32
+    ],
+    [
+     0.62,
+     0.17,
+     0.91,
+     0.38
+    ],
+    [
+     0.51,
+     0.33,
+     0.79,
+     0.52
+    ],
+    [
+     0.31,
+     0.44,
+     0.62,
+     0.66
+    ],
+    [
+     0.7,
+     0.52,
+     0.9,
+     0.67
+    ]
+   ],
+   "reference_count": 6,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "fungi-fungi-7",
+   "domain": "fungi",
+   "image_id": "gbif:1839263420:0",
+   "species_label": "amanita-muscaria",
+   "license": "CC BY",
+   "author": "Francisco E. Fonturbel",
+   "source_url": "https://www.inaturalist.org/observations/11420252",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "red mushroom"
+   ],
+   "scientific": "Amanita muscaria",
+   "reference_boxes": [
+    [
+     0.18,
+     0.27,
+     0.79,
+     0.72
+    ]
+   ],
+   "reference_count": 1,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "fungi-fungi-13",
+   "domain": "fungi",
+   "image_id": "gbif:3113635649:0",
+   "species_label": "amanita-muscaria",
+   "license": "CC BY",
+   "author": "nitsuga74",
+   "source_url": "https://www.inaturalist.org/observations/78396394",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "red mushroom"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "fungi-fungi-77",
+   "domain": "fungi",
+   "image_id": "gbif:4080969612:0",
+   "species_label": "fistulina-antarctica",
+   "license": "CC BY",
+   "author": "Steven Bodzin",
+   "source_url": "https://www.inaturalist.org/observations/153257787",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "bracket fungus"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "fungi-fungi-2",
+   "domain": "fungi",
+   "image_id": "gbif:2573781058:2",
+   "species_label": "aleurodiscus-vitellinus",
+   "license": "CC BY",
+   "author": "Cristian Riquelme",
+   "source_url": "https://www.inaturalist.org/observations/12606070",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "fungi-fungi-16",
+   "domain": "fungi",
+   "image_id": "gbif:2238782468:0",
+   "species_label": "cyttaria-darwinii",
+   "license": "CC BY",
+   "author": "John Brew",
+   "source_url": "https://www.inaturalist.org/observations/20502049",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "tree burl"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "plants-flora-40",
+   "domain": "plants",
+   "image_id": "gbif:3997797381:0",
+   "species_label": "drimys-winteri",
+   "license": "cc-by-sa",
+   "author": "Vallejos Duque Sergio",
+   "source_url": "https://bs.plantnet.org/image/o/0387a31dc05f83a6d0fbf7dd1e4d681898501d4b",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "white flower"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.28,
+     0.2,
+     0.62,
+     0.4
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "plants-flora-41",
+   "domain": "plants",
+   "image_id": "gbif:3997860901:0",
+   "species_label": "drimys-winteri",
+   "license": "cc-by-sa",
+   "author": "dassori paul",
+   "source_url": "https://bs.plantnet.org/image/o/7d6787fad98d5c65ecebc4a514ab5ff31377990f",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "white flower"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "plants-flora-45",
+   "domain": "plants",
+   "image_id": "gbif:3949038899:0",
+   "species_label": "embothrium-coccineum",
+   "license": "cc-by-sa",
+   "author": "Contreras Viviana",
+   "source_url": "https://bs.plantnet.org/image/o/b9ac94a69f2a50b13f50d7ead61a3169f96e5412",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "red flower"
+   ],
+   "scientific": "Embothrium coccineum",
+   "reference_boxes": [
+    [
+     0.55,
+     0.48,
+     0.92,
+     0.68
+    ]
+   ],
+   "reference_count": 1,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "plants-flora-47",
+   "domain": "plants",
+   "image_id": "gbif:3949638500:0",
+   "species_label": "embothrium-coccineum",
+   "license": "cc-by-sa",
+   "author": "guilles",
+   "source_url": "https://bs.plantnet.org/image/o/c6a3ad7a39ac86e865effabc65bb53148be41b65",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "red flower"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.2,
+     0.5,
+     0.75,
+     0.8
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "plants-flora-36",
+   "domain": "plants",
+   "image_id": "gbif:3039165777:0",
+   "species_label": "caldcluvia-paniculata",
+   "license": "CC BY",
+   "author": "Inao Vasquez",
+   "source_url": "https://www.inaturalist.org/observations/67301252",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "white flower"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.42,
+     0.2,
+     0.75,
+     0.42
+    ],
+    [
+     0.42,
+     0.35,
+     0.78,
+     0.62
+    ],
+    [
+     0.58,
+     0.65,
+     0.95,
+     0.92
+    ],
+    [
+     0.32,
+     0.33,
+     0.5,
+     0.45
+    ]
+   ],
+   "reference_count": 4,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "plants-flora-105",
+   "domain": "plants",
+   "image_id": "gbif:4528383488:0",
+   "species_label": "luma-apiculata",
+   "license": "CC BY",
+   "author": "F. Bemmerlein-Lux",
+   "source_url": "https://www.inaturalist.org/observations/200651407",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "white flower"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.2,
+     0.48,
+     0.42,
+     0.62
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "plants-flora-246",
+   "domain": "plants",
+   "image_id": "commons:50659995",
+   "species_label": "weinmannia-trichosperma",
+   "license": "CC BY 2.0",
+   "author": "Dick Culbert from Gibsons, B.C., Canada",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Weinmannia_trichosperma_-_Flickr_-_Dick_Culbert.jpg",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "red flower"
+   ],
+   "scientific": "Weinmannia trichosperma",
+   "reference_boxes": [
+    [
+     0.28,
+     0.18,
+     0.8,
+     0.9
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": true
+  },
+  {
+   "scene_id": "plants-flora-250",
+   "domain": "plants",
+   "image_id": "gbif:2563569930:0",
+   "species_label": "weinmannia-trichosperma",
+   "license": "CC BY",
+   "author": "Nolan Exe",
+   "source_url": "https://www.inaturalist.org/observations/37897821",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "white flower"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "plants-flora-24",
+   "domain": "plants",
+   "image_id": "gbif:5231622760:0",
+   "species_label": "aextoxicon-punctatum",
+   "license": "CC BY",
+   "author": "Bruno Avilez",
+   "source_url": "https://www.inaturalist.org/observations/289373263",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "yellow flower"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "plants-asteranthera",
+   "domain": "plants",
+   "image_id": "commons:24215887",
+   "species_label": null,
+   "license": "CC BY 2.0",
+   "author": "Jason Hollinger",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Asteranthera_ovata_(3163923562).jpg",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "red flower"
+   ],
+   "scientific": "Asteranthera ovata",
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": true
+  },
+  {
+   "scene_id": "fungi-lichen-bunodophoron",
+   "domain": "fungi",
+   "image_id": "commons:24215834",
+   "species_label": null,
+   "license": "CC BY 2.0",
+   "author": "Jason Hollinger",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bunodophoron_(3164051842).jpg",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "lichen"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "fungi-lichen-pseudocyphellaria",
+   "domain": "fungi",
+   "image_id": "commons:52420104",
+   "species_label": null,
+   "license": "CC BY-SA 3.0",
+   "author": "Commons user (see source)",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Pseudocyphellaria_glabra_(J.D._Hook._%26_Taylor)_Dodge_43353.jpg",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "lichen"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "trees-puyehue-landscape",
+   "domain": "trees",
+   "image_id": "commons:79644464",
+   "species_label": null,
+   "license": "CC BY-SA 4.0",
+   "author": "Natalia Reyes Escobar",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Camino_a_Lago_Constancia_Parque_Nacional_Puyehue_27.jpg",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "shrub"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": false
+  },
+  {
+   "scene_id": "plants-fern-a",
+   "domain": "plants",
+   "image_id": "commons-video:fern-canyon@5s",
+   "species_label": null,
+   "license": "CC0",
+   "author": "Commons (Fern Canyon video)",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Fern_Canyon_in_Prairie_Creek_Redwoods_State_Park.webm",
+   "redistribution": "yes",
+   "media": "image",
+   "specific": [
+    "fern",
+    "fern frond"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": true
+  },
+  {
+   "scene_id": "plants-fern-b",
+   "domain": "plants",
+   "image_id": "commons-video:fern-canyon@18s",
+   "species_label": null,
+   "license": "CC0",
+   "author": "Commons (Fern Canyon video)",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Fern_Canyon_in_Prairie_Creek_Redwoods_State_Park.webm",
+   "redistribution": "yes",
+   "media": "image",
+   "specific": [
+    "fern",
+    "fern frond"
+   ],
+   "scientific": null,
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null,
+   "muse": true
+  }
+ ],
+ "videos": [
+  {
+   "video_id": "fauna-vanellus",
+   "title": "File:Vanellus chilensis Southern Lapwing. video.webm",
+   "license": "CC BY 2.0",
+   "description_url": "https://commons.wikimedia.org/wiki/File:Vanellus_chilensis_Southern_Lapwing._video.webm",
+   "sha256": "59a1040937f3d1847ea02431cd44c98c6d9e7040637fd48cddc260d27a8f022f",
+   "duration_s": 13.967,
+   "public_showcase": true,
+   "note": null
+  },
+  {
+   "video_id": "fauna-teros-nest",
+   "title": "File:Teros (Venellus chilensis) con huevos. .ogv",
+   "license": "CC BY-SA 4.0",
+   "description_url": "https://commons.wikimedia.org/wiki/File:Teros_(Venellus_chilensis)_con_huevos._.ogv",
+   "sha256": "dd62e2feb7d52b8775ff9199b2db6ae3e5f3a45568fec89d24a5a56c3a313c21",
+   "duration_s": 25.265578231292515,
+   "public_showcase": false,
+   "note": "Nido visible: solo experimento privado"
+  },
+  {
+   "video_id": "fauna-sanderlings",
+   "title": "File:Sanderlings-1014334, Dingle Peninsula, Co. Kerry, Ireland.webm",
+   "license": "CC BY-SA 4.0",
+   "description_url": "https://commons.wikimedia.org/wiki/File:Sanderlings-1014334,_Dingle_Peninsula,_Co._Kerry,_Ireland.webm",
+   "sha256": "1519debceb30138cf93b7ce793a58942d162d12c9d4f40634c70dff89bb5ff8f",
+   "duration_s": 20.808,
+   "public_showcase": true,
+   "note": null
+  },
+  {
+   "video_id": "fungi-forest",
+   "title": "File:Mushroom forest video.webm",
+   "license": "CC BY-SA 4.0",
+   "description_url": "https://commons.wikimedia.org/wiki/File:Mushroom_forest_video.webm",
+   "sha256": "312c7dca20fb116dac6508636dba2619bf71b3192a207ff909a8e8c11a58cff3",
+   "duration_s": 58.376,
+   "public_showcase": true,
+   "note": null
+  },
+  {
+   "video_id": "flora-fern-canyon",
+   "title": "File:Fern Canyon in Prairie Creek Redwoods State Park.webm",
+   "license": "CC0",
+   "description_url": "https://commons.wikimedia.org/wiki/File:Fern_Canyon_in_Prairie_Creek_Redwoods_State_Park.webm",
+   "sha256": "4561e748c55a1c95b3d12f15055b3b4ea0504475614f6cfa12021ffce7f96c64",
+   "duration_s": 30.228,
+   "public_showcase": true,
+   "note": null
+  }
+ ]
+}

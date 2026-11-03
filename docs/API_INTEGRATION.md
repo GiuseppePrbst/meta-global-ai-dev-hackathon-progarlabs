@@ -495,3 +495,26 @@ GET son en vivo y la identificación y la captura son fixtures marcados como tal
 **No hay endpoint.** `bosque_ai.multikingdom` solo se usa en la evaluación
 ([informe](MULTIKINGDOM_AI_EVALUATION.md)). La UI registra el hallazgo como captura sin
 taxón, con el flujo actual.
+
+## Propuesta — percepción visual con SAM 3.1, 02-11-2026
+
+Base experimental: [evaluación visual de SAM 3.1](SAM31_BIODIVERSITY_VISUAL_EVALUATION.md).
+**Ninguna de estas rutas existe todavía.** El laboratorio privado (`tools/meta_sam_api_lab`,
+vista `/showcase`) demuestra las capacidades con resultados guardados. Las apps oficiales no
+cambian en este incremento.
+
+| Capacidad futura | Entrada | Salida | Separación obligatoria en UI | Estado |
+| --- | --- | --- | --- | --- |
+| Selección de objeto en una captura | Foto + toque (punto) o arrastre (caja) del usuario | Máscara, caja e `object_id` de SAM | «Objeto seleccionado (SAM)»; nunca nombre de especie | Experimental. Una caja da máscaras estables; un punto derivado del centro de la caja falló en varias escenas |
+| Resaltado de organismo | Foto + concepto corto (`bird`, `mushroom`, `fern`, `tree`) | Máscaras por instancia y confianza del modelo | La confianza de SAM no es certeza taxonómica | Experimental. Los conceptos amplios funcionan mejor que los nombres científicos |
+| Segmentación de instancias | Foto + concepto | Hasta 16 máscaras con IDs | Recuento exploratorio, no inventario ni abundancia | Experimental |
+| Seguimiento en video | Clip MP4 de hasta 15.000 frames (límite del laboratorio: 30 s / 900 frames) + concepto o caja en un frame | Máscaras por frame con ID estable dentro de la respuesta | Mostrar los frames sin máscara; no interpolar | Experimental |
+| Identificación candidata | Foto original + recorte SAM con contexto | Resultado `/identify` (flora) o pipeline multirreino (fauna y hongos, sin endpoint) | «Muse (candidato)» y estado «experimental, no verificado», separados de la máscara | Flora con `verify`; fauna y hongos solo en evaluación |
+| Estado de incertidumbre | Respuesta Muse | `catalog_assessment`, `acceptance`, `exploratory_candidates` | Mostrar la abstención como resultado válido | Implementado en `/identify` (flora) |
+| Captura georreferenciada con objeto | Captura actual + `object_id` y caja | Captura privada con referencia a la máscara | Ubicación privada; especies sensibles sin coordenadas | Propuesta |
+
+Reglas para la UI:
+
+- un concepto por solicitud (sin listas) y los prompts espaciales nunca mezclados con texto;
+- coordenadas en píxeles del medio preparado;
+- un resultado guardado se vuelve a mostrar sin repetir la inferencia.
