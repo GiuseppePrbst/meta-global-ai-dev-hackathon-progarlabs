@@ -1,0 +1,671 @@
+{
+  "schema_version": "1.0.0",
+  "source_organization": "Corporación Nacional Forestal (CONAF), Chile",
+  "source_catalog": "https://www.conaf.cl/parques-nacionales/",
+  "source_park_archive": [
+    "https://www.conaf.cl/tipo_parque/parque-nacional/",
+    "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+    "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+    "https://www.conaf.cl/tipo_parque/parque-nacional/page/4/"
+  ],
+  "compiled_date": "2026-11-03",
+  "park_count": 46,
+  "scope": "Parques nacionales, excluye reservas nacionales y monumentos naturales",
+  "usage_notes": [
+    "El índice oficial y las fichas pueden actualizarse: comprobar vigencia, acceso y horarios antes de visitar.",
+    "Las regiones son referencias administrativas; revisar las fichas oficiales y sus actualizaciones.",
+    "La ausencia de senderos en el catálogo de senderos no demuestra que un parque carezca de ellos.",
+    "Sin geometría oficial licenciada no deben dibujarse recorridos en mapas ni anunciarse rutas habilitadas."
+  ],
+  "parks": [
+    {
+      "id": "melimoyu",
+      "name": "Melimoyu",
+      "category": "parque_nacional",
+      "regions": [
+        "Aysén"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-melimoyu/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "yendegaia",
+      "name": "Yendegaia",
+      "category": "parque_nacional",
+      "regions": [
+        "Magallanes y de la Antártica Chilena"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-yendegaia/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "glaciares-de-santiago",
+      "name": "Glaciares de Santiago",
+      "category": "parque_nacional",
+      "regions": [
+        "Metropolitana de Santiago"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-glaciares-de-santiago/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "desierto-florido",
+      "name": "Desierto Florido",
+      "category": "parque_nacional",
+      "regions": [
+        "Atacama"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-desierto-florido/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "torres-del-paine",
+      "name": "Torres del Paine",
+      "category": "parque_nacional",
+      "regions": [
+        "Magallanes y de la Antártica Chilena"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-torres-del-paine/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "alberto-de-agostini",
+      "name": "Alberto de Agostini",
+      "category": "parque_nacional",
+      "regions": [
+        "Magallanes y de la Antártica Chilena"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-alberto-de-agostini/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "cabo-de-hornos",
+      "name": "Cabo de Hornos",
+      "category": "parque_nacional",
+      "regions": [
+        "Magallanes y de la Antártica Chilena"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-cabo-de-hornos/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "pali-aike",
+      "name": "Pali Aike",
+      "category": "parque_nacional",
+      "regions": [
+        "Magallanes y de la Antártica Chilena"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-pali-aike/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "kawesqar",
+      "name": "Kawésqar",
+      "category": "parque_nacional",
+      "regions": [
+        "Magallanes y de la Antártica Chilena"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-kawesqar/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "isla-magdalena",
+      "name": "Isla Magdalena",
+      "category": "parque_nacional",
+      "regions": [
+        "Aysén"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-isla-magdalena/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "bernardo-ohiggins",
+      "name": "Bernardo O’Higgins",
+      "category": "parque_nacional",
+      "regions": [
+        "Aysén",
+        "Magallanes y de la Antártica Chilena"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-bernardo-ohiggins/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "laguna-san-rafael",
+      "name": "Laguna San Rafael",
+      "category": "parque_nacional",
+      "regions": [
+        "Aysén"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-laguna-san-rafael/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "queulat",
+      "name": "Queulat",
+      "category": "parque_nacional",
+      "regions": [
+        "Aysén"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-queulat/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "isla-guamblin",
+      "name": "Isla Guamblin",
+      "category": "parque_nacional",
+      "regions": [
+        "Aysén"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-isla-guamblin/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "patagonia",
+      "name": "Patagonia",
+      "category": "parque_nacional",
+      "regions": [
+        "Aysén"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-patagonia/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "cerro-castillo",
+      "name": "Cerro Castillo",
+      "category": "parque_nacional",
+      "regions": [
+        "Aysén"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-cerro-castillo/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "hornopiren",
+      "name": "Hornopirén",
+      "category": "parque_nacional",
+      "regions": [
+        "Los Lagos"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-hornopiren/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "alerce-andino",
+      "name": "Alerce Andino",
+      "category": "parque_nacional",
+      "regions": [
+        "Los Lagos"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-alerce-andino/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "chiloe",
+      "name": "Chiloé",
+      "category": "parque_nacional",
+      "regions": [
+        "Los Lagos"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-chiloe/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "corcovado",
+      "name": "Corcovado",
+      "category": "parque_nacional",
+      "regions": [
+        "Los Lagos"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-corcovado/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "puyehue",
+      "name": "Puyehue",
+      "category": "parque_nacional",
+      "regions": [
+        "Los Lagos",
+        "Los Ríos"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "vicente-perez-rosales",
+      "name": "Vicente Pérez Rosales",
+      "category": "parque_nacional",
+      "regions": [
+        "Los Lagos"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-vicente-perez-rosales/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "pumalin-douglas-tompkins",
+      "name": "Pumalín Douglas Tompkins",
+      "category": "parque_nacional",
+      "regions": [
+        "Los Lagos"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-pumalin-douglas-tompkins/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "alerce-costero",
+      "name": "Alerce Costero",
+      "category": "parque_nacional",
+      "regions": [
+        "Los Ríos"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-alerce-costero/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/2/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "conguillio",
+      "name": "Conguillío",
+      "category": "parque_nacional",
+      "regions": [
+        "La Araucanía"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "villarrica",
+      "name": "Villarrica",
+      "category": "parque_nacional",
+      "regions": [
+        "La Araucanía",
+        "Los Ríos"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-villarrica/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "huerquehue",
+      "name": "Huerquehue",
+      "category": "parque_nacional",
+      "regions": [
+        "La Araucanía"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-huerquehue/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "nahuelbuta",
+      "name": "Nahuelbuta",
+      "category": "parque_nacional",
+      "regions": [
+        "La Araucanía",
+        "Biobío"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-nahuelbuta/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "tolhuaca",
+      "name": "Tolhuaca",
+      "category": "parque_nacional",
+      "regions": [
+        "La Araucanía"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-tolhuaca/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "nonguen",
+      "name": "Nonguén",
+      "category": "parque_nacional",
+      "regions": [
+        "Biobío"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-nonguen/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "laguna-del-laja",
+      "name": "Laguna del Laja",
+      "category": "parque_nacional",
+      "regions": [
+        "Biobío"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-laguna-del-laja/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "radal-siete-tazas",
+      "name": "Radal Siete Tazas",
+      "category": "parque_nacional",
+      "regions": [
+        "Maule"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-radal-siete-tazas/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "las-palmas-de-cocalan",
+      "name": "Las Palmas de Cocalán",
+      "category": "parque_nacional",
+      "regions": [
+        "Libertador General Bernardo O’Higgins"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-las-palmas-de-cocalan/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "rapa-nui",
+      "name": "Rapa Nui",
+      "category": "parque_nacional",
+      "regions": [
+        "Valparaíso"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-rapa-nui/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "archipielago-juan-fernandez",
+      "name": "Archipiélago Juan Fernández",
+      "category": "parque_nacional",
+      "regions": [
+        "Valparaíso"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-archipielago-juan-fernandez/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "llanos-de-challe",
+      "name": "Llanos de Challe",
+      "category": "parque_nacional",
+      "regions": [
+        "Atacama"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-llanos-de-challe/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/3/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "nevado-de-tres-cruces",
+      "name": "Nevado de Tres Cruces",
+      "category": "parque_nacional",
+      "regions": [
+        "Atacama"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-nevado-de-tres-cruces/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/4/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "morro-moreno",
+      "name": "Morro Moreno",
+      "category": "parque_nacional",
+      "regions": [
+        "Antofagasta"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-morro-moreno/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/4/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "salar-del-huasco",
+      "name": "Salar del Huasco",
+      "category": "parque_nacional",
+      "regions": [
+        "Tarapacá"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-salar-del-huasco/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/4/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "rio-clarillo",
+      "name": "Río Clarillo",
+      "category": "parque_nacional",
+      "regions": [
+        "Metropolitana de Santiago"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-rio-clarillo/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/4/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "la-campana",
+      "name": "La Campana",
+      "category": "parque_nacional",
+      "regions": [
+        "Valparaíso"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-la-campana/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/4/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "bosque-fray-jorge",
+      "name": "Bosque Fray Jorge",
+      "category": "parque_nacional",
+      "regions": [
+        "Coquimbo"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-bosque-fray-jorge/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/4/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "pan-de-azucar",
+      "name": "Pan de Azúcar",
+      "category": "parque_nacional",
+      "regions": [
+        "Antofagasta",
+        "Atacama"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-pan-de-azucar/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/4/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "llullaillaco",
+      "name": "Llullaillaco",
+      "category": "parque_nacional",
+      "regions": [
+        "Antofagasta"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-llullaillaco/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/4/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "volcan-isluga",
+      "name": "Volcán Isluga",
+      "category": "parque_nacional",
+      "regions": [
+        "Tarapacá"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-volcan-isluga/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/4/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    },
+    {
+      "id": "lauca",
+      "name": "Lauca",
+      "category": "parque_nacional",
+      "regions": [
+        "Arica y Parinacota"
+      ],
+      "official_profile_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-lauca/",
+      "archive_url": "https://www.conaf.cl/tipo_parque/parque-nacional/page/4/",
+      "trail_data_status": "see_trails_catalog",
+      "trail_geometry_available": false,
+      "live_open_status": "not_verified",
+      "geometry": null
+    }
+  ]
+}
