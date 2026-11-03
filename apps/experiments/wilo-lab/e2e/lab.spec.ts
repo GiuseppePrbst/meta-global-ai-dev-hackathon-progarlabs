@@ -83,7 +83,7 @@ test("especies: el mock se abstiene y nunca inventa candidatos ni puntajes", asy
   await expect(analyze).toBeDisabled();
   await page.getByLabel("Seleccionar o capturar fotografia").setInputFiles({
     name: "hoja.png", mimeType: "image/png",
-    buffer: Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j4i8AAAAASUVORK5CYII=", "base64"),
+    buffer: Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAFElEQVR4nGPUqLBhwAaYsIoOWgkAsRwA7P2qqMgAAAAASUVORK5CYII=", "base64"),
   });
   await page.getByLabel("Soy mayor de 18 anos.").check();
   await page.getByLabel(/Tengo derecho a usar esta imagen/).check();

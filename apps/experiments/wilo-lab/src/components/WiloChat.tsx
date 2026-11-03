@@ -81,7 +81,8 @@ export function WiloChat({ token }: { token: string }) {
       else setPhase("error-proveedor");
       return;
     }
-    setError(err instanceof Error ? err.message : "No fue posible conectar con la API.");
+    // fetch() rejects with a bare TypeError ("Failed to fetch") when the API is unreachable.
+    setError(err instanceof Error && !(err instanceof TypeError) ? err.message : "No fue posible conectar con la API. Revisa que el backend este activo.");
     setPhase("error-proveedor");
   }
   async function loadPark(parkId: string) {
