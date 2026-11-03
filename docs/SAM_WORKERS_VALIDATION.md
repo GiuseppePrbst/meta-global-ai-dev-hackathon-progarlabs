@@ -12,3 +12,17 @@
 
 La etiqueta `provider_verified` y el hash de un archivo son una declaración trazable,
 no prueba automática de saldo o de autenticidad ante el proveedor.
+
+## Continuación — prueba offline
+
+Diez trabajos sintéticos pasaron por `run_one` con adaptador simulado, PostgreSQL
+aislado y diez archivos de resultado; una instancia nueva no encontró más trabajos y
+la inspección reconoció las diez evidencias. No hubo solicitudes Meta ni reservas reales.
+La prueba se ejecutó directamente desde pytest, no desde una CLI supervisada.
+
+El límite de snapshot descuenta reservas de todas las identidades desde la fecha de
+observación dentro del advisory lock del ledger, sin restar reservas anteriores dos
+veces si están finalizadas. Para cubrir cargos aún inciertos también descuenta
+reservas anteriores pendientes o vencidas; esa parte puede ser conservadora en exceso.
+No garantiza que otros consumidores fuera del ledger, ni procesos que no usen
+este control, respeten el mismo límite. No es autorización para activar inferencias.

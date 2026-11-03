@@ -851,6 +851,7 @@ async def run_experiment(
     phase: str | None = None,
     phase_cap_usd: float | None = None,
     experiment_note: str | None = None,
+    credit_snapshot=None,
 ) -> dict:
     if not authorized:
         raise ValueError("Explicit external-processing authorization required")
@@ -925,7 +926,15 @@ async def run_experiment(
         owner, cap = phase_admission(phase, phase_cap_usd)
         manifest["campaign_phase"] = phase
         reservation = await asyncio.to_thread(
-            ledger.reserve, owner, "identify", *(() if cap is None else (cap,))
+            ledger.reserve,
+            owner,
+            "identify",
+            *(() if cap is None else (cap,)),
+            **(
+                {"credit_snapshot": credit_snapshot}
+                if credit_snapshot is not None
+                else {}
+            ),
         )
     except HTTPException as exc:
         state("budget_exhausted" if exc.status_code == 429 else "provider_error")

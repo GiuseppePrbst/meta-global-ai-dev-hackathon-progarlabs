@@ -295,3 +295,110 @@ def test_ten_offline_jobs_finish_once(queue):
         assert queue.finish(job["job_id"], owner, "completed")
     assert queue.claim(owner, campaign_id="offline-ten") is None
     assert queue.status() == {"completed": 10}
+
+
+def test_ten_offline_workers_persist_results_and_resume(queue, tmp_path, monkeypatch):
+    import hashlib
+    import json
+    from datetime import UTC, datetime, timedelta
+    from types import SimpleNamespace
+
+    from evaluations.sam_workers import worker
+    from evaluations.sam_workers.reconcile import inspect
+
+    registry = {}
+    for index in range(10):
+        media = tmp_path / f"synthetic-{index}.jpg"
+        media.write_bytes(f"synthetic-{index}".encode())
+        sha = hashlib.sha256(media.read_bytes()).hexdigest()
+        registry[sha] = {
+            "path": str(media),
+            "external_processing_permission": "approved",
+        }
+        assert queue.enqueue(
+            "offline-worker",
+            {
+                "media_sha256": sha,
+                "prompt": "fern",
+                "model_version": "1",
+                "protocol_version": "1",
+                "protocol_approved_by": "test",
+                "preprocessing_version": "1",
+            },
+        )
+    registry_file = tmp_path / "registry.json"
+    registry_file.write_text(json.dumps(registry))
+    evidence = tmp_path / "synthetic-billing"
+    evidence.write_bytes(b"synthetic evidence")
+    now = datetime.now(UTC)
+    authorization = tmp_path / "authorization.json"
+    authorization.write_text(
+        json.dumps(
+            {
+                "campaign_id": "offline-worker",
+                "responsible": "test",
+                "source_kind": "provider_verified",
+                "source": "synthetic evidence",
+                "evidence_sha256": hashlib.sha256(evidence.read_bytes()).hexdigest(),
+                "observed_usd": 139.26,
+                "limit_usd": 130,
+                "margin_usd": 10.86,
+                "ledger_phase": "I",
+                "checked_at": now.isoformat(),
+                "expires_at": (now + timedelta(hours=1)).isoformat(),
+            }
+        )
+    )
+    monkeypatch.setattr(
+        worker,
+        "campaign_from_private",
+        lambda _: SimpleNamespace(phase_caps_usd={"I": 130}),
+    )
+    monkeypatch.setattr(
+        worker,
+        "config_from_private",
+        lambda _: SimpleNamespace(
+            database_url=SimpleNamespace(get_secret_value=lambda: queue.database_url)
+        ),
+    )
+
+    async def fake_runner(config, source, output, prompt, **kwargs):
+        output.mkdir(parents=True)
+        result = {
+            "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
+            "model": "sam-3.1",
+            "status": "completed",
+            "cleanup": "not_uploaded",
+        }
+        (output / "result.json").write_text(json.dumps(result))
+        return result
+
+    monkeypatch.setattr(worker, "run_experiment", fake_runner)
+    output = tmp_path / "outputs"
+    for _ in range(10):
+        assert (
+            worker.run_one(
+                Queue(queue.database_url),
+                tmp_path / "config",
+                registry_file,
+                output,
+                authorization,
+                evidence,
+            )
+            == "completed"
+        )
+    assert (
+        worker.run_one(
+            Queue(queue.database_url),
+            tmp_path / "config",
+            registry_file,
+            output,
+            authorization,
+            evidence,
+        )
+        is False
+    )
+    assert queue.status() == {"completed": 10}
+    for result in output.glob("*/result.json"):
+        assert inspect(queue, result.parent.name, output)["evidence"] == "matching"
+    assert len(list(output.glob("*/result.json"))) == 10

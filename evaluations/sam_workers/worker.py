@@ -3,6 +3,7 @@
 import asyncio
 import json
 import threading
+from decimal import ROUND_FLOOR, Decimal
 from pathlib import Path
 from uuid import uuid4
 
@@ -96,6 +97,18 @@ def run_one(
                 authorized=True,
                 phase="I",
                 phase_cap_usd=campaign.phase_caps_usd["I"],
+                credit_snapshot=(
+                    auth.checked_at,
+                    int(
+                        (
+                            (
+                                Decimal(str(auth.observed_usd))
+                                - Decimal(str(auth.margin_usd))
+                            )
+                            * 1_000_000
+                        ).to_integral_value(rounding=ROUND_FLOOR)
+                    ),
+                ),
             )
         )
         if result.get("status") in ("completed", "no_matches"):

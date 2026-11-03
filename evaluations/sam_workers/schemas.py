@@ -30,7 +30,7 @@ class FinancialAuthorization(BaseModel):
             or not self.checked_at <= now < self.expires_at
             or (self.expires_at - self.checked_at).total_seconds() > 86400
             or self.campaign_id != campaign_id
-            or self.limit_usd + self.margin_usd > self.observed_usd
+            or self.margin_usd >= self.observed_usd
         ):
             raise ValueError("Invalid or expired financial authorization")
 

@@ -248,3 +248,7 @@ continua y adquisición de nuevos medios siguen pendientes.
 En una continuación asistida por Codex se añadió importación histórica idempotente e
 inspección de evidencia. En PostgreSQL de pruebas se importaron 442 resultados finales
 sin reconstruir su identidad experimental; no se ejecutaron inferencias nuevas.
+
+Una continuación asistida por Codex añadió un límite de snapshot al ledger existente,
+comandos de inspección y una prueba de diez trabajos con runner simulado y PostgreSQL
+aislado. No se verificó el snapshot de créditos comunicado por el propietario.

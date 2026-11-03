@@ -23,7 +23,14 @@ class ExecutionStore:
     def __init__(self, config: Settings):
         self.config = config
 
-    def reserve(self, owner: str, operation: str, owner_cap_units: int | None = None):
+    def reserve(
+        self,
+        owner: str,
+        operation: str,
+        owner_cap_units: int | None = None,
+        *,
+        credit_snapshot=None,
+    ):
         """Reserve under one advisory lock: lifetime, owner cap, daily and concurrency.
 
         owner_cap_units bounds all reservations of this identity (research phases);
@@ -46,6 +53,15 @@ class ExecutionStore:
                 conn.execute("SET LOCAL statement_timeout = '3000ms'")
                 # Serialize admissions across workers; limits are shared by this database.
                 conn.execute("SELECT pg_advisory_xact_lock(78021931)")
+                if credit_snapshot is not None:
+                    checked_at, available_units = credit_snapshot
+                    since = conn.execute(
+                        "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations "
+                        "WHERE created_at >= %s OR status IN ('reserved', 'expired')",
+                        (checked_at,),
+                    ).fetchone()[0]
+                    if since + units > available_units:
+                        raise HTTPException(429, "Créditos del snapshot insuficientes")
                 if config.budget_lifetime_units:
                     lifetime = conn.execute(
                         "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations"

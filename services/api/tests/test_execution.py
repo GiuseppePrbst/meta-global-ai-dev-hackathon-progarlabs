@@ -364,3 +364,48 @@ def test_research_profile_skips_daily_counter_but_keeps_money_and_atomic_owner_c
     finally:
         with psycopg.connect(url, autocommit=True) as conn:
             conn.execute(sql.SQL("DROP SCHEMA {} CASCADE").format(sql.Identifier(schema)))
+
+
+@pytest.mark.integration
+def test_credit_snapshot_caps_all_post_snapshot_reservations_atomically():
+    url = os.getenv("TEST_DATABASE_URL")
+    if not url:
+        pytest.skip("TEST_DATABASE_URL required")
+    schema = "execution_test_" + uuid4().hex
+    scripts = Path(__file__).parents[1] / "sql"
+    with psycopg.connect(url, autocommit=True) as conn:
+        conn.execute(sql.SQL("CREATE SCHEMA {}").format(sql.Identifier(schema)))
+    scoped = make_conninfo(url, options=f"-csearch_path={schema},public")
+    try:
+        with psycopg.connect(scoped) as conn:
+            conn.execute((scripts / "001_init.sql").read_text())
+            conn.execute((scripts / "003_execution.up.sql").read_text())
+        config = demo(
+            database_url=scoped,
+            budget_units=10000,
+            budget_lifetime_units=10000,
+            meta_reservation_units=100,
+            budget_concurrency=8,
+            budget_daily_requests_enabled=False,
+        )
+        store = ExecutionStore(config)
+        historical = store.reserve("historical", "identify")
+        store.finish(historical, "completed", {})
+        store.reserve("uncertain", "identify")
+        with psycopg.connect(scoped) as conn:
+            snapshot = conn.execute("SELECT clock_timestamp()").fetchone()[0]
+        store.reserve("other", "identify")
+
+        def reserve(_):
+            try:
+                store.reserve("sam-api-lab:I", "identify", 1000, credit_snapshot=(snapshot, 300))
+                return "ok"
+            except HTTPException as exc:
+                return exc.status_code
+
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            results = list(pool.map(reserve, range(2)))
+        assert sorted(map(str, results)) == ["429", "ok"]
+    finally:
+        with psycopg.connect(url, autocommit=True) as conn:
+            conn.execute(sql.SQL("DROP SCHEMA {} CASCADE").format(sql.Identifier(schema)))

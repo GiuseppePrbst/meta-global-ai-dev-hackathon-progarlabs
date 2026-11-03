@@ -9,6 +9,9 @@ Con `SAM_WORKERS_DATABASE_URL` configurada para una base autorizada y aislada:
 ```text
 python -m evaluations.sam_workers migrate
 python -m evaluations.sam_workers status
+python -m evaluations.sam_workers doctor
+python -m evaluations.sam_workers report
+python -m evaluations.sam_workers dry-run --spec <archivo_privado> --registry <registro_privado>
 python -m evaluations.sam_workers import-history --root <directorio_privado> --campaign <id>
 python -m evaluations.sam_workers reconcile --root <salidas_privadas> --job <uuid>
 ```
