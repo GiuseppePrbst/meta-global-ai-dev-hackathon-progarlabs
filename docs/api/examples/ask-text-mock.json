@@ -1,0 +1,29 @@
+{
+ "body": {
+  "answer": "Modo mock: no se consultó Muse ni se generó respuesta botánica.",
+  "answer_model": null,
+  "claims": [],
+  "entities": [],
+  "insufficient_evidence": true,
+  "knowledge_version": "sha256:4d03d6936730fd20685fb5d096548ecb6eb7bdec5deb97f9597830a766d08962",
+  "language_hint": "auto",
+  "latency_ms": {
+   "generation": null,
+   "retrieval": null,
+   "transcription": null
+  },
+  "limitations": [],
+  "map": null,
+  "prompt_version": "wilo-guide-v3",
+  "provider": "mock",
+  "sources": [],
+  "speech_text": null,
+  "status": "mock",
+  "tools_used": [],
+  "transcript": null,
+  "transcription_model": null
+ },
+ "kind": "generated_mock_mode",
+ "request": "POST /guide/ask",
+ "status": 200
+}

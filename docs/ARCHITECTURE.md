@@ -1,5 +1,19 @@
 # Arquitectura y decisiones
 
+## Estado vigente (04-11-2026)
+
+- **Mapa del sistema:** [PROJECT_INTEGRATION_MAP.md](PROJECT_INTEGRATION_MAP.md), con capas y fronteras de privacidad. **Estado por funcionalidad:** [PROJECT_DELIVERY_STATUS.md](PROJECT_DELIVERY_STATUS.md).
+- **Backend.** FastAPI ofrece rutas de dominio, Wilo (`/guide/*`, con WebSocket), el Knowledge Atlas (`/parks`, `/trails`, `/knowledge`) y el catálogo multirreino con elegibilidad para la demo. Usa PostGIS para capturas, contexto y ledger.
+- **Conocimiento.** Es un snapshot versionado y offline (`resources/knowledge-atlas.json`). No hay base vectorial ni entrenamiento de modelos. La jerarquía de fuentes es CONAF/SBAP, SIG gubernamental, ciencia, operadores, turismo y plataformas colaborativas.
+- **Meta.** Solo se llama desde el backend, y cada etapa reserva presupuesto en el ledger (`execution_reservations`).
+- **Investigación.** El laboratorio SAM 3.1 (`tools/`, `evaluations/`) está fuera de la ruta productiva. La infraestructura de workers (PR #30) **no está en `main`**.
+- **Contrato.** El OpenAPI generado se guarda en [api/openapi.json](api/openapi.json) y la CI comprueba que siga coincidiendo con el código.
+- **Interfaz.** La web (Next.js) consume `/species`, `/identify` y `/forest/sources`. La app móvil (Expo) usa datos locales. La UI de Wilo está pendiente.
+
+---
+
+> **Registro histórico.** Lo que sigue documenta decisiones y estados anteriores, en orden cronológico. Si contradice el bloque «Estado vigente», manda el bloque.
+
 ## Estructura
 
 | Área | Responsabilidad | Límite |

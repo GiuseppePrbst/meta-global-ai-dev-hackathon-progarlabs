@@ -280,3 +280,12 @@ Evaluación:
 Dependencia nueva: `websockets==15.0.1`.
 
 Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe. Las auditorías y referencias son del agente, no de un especialista.
+
+## Consolidación de la entrega — 04-11-2026
+
+- **Integración.** PR #32 (CONAF) y #33 (Wilo y Atlas) fusionados en `main`. PR #30 (workers, Codex) queda fuera por sus propias garantías pendientes.
+- **Código nuevo.** `scripts/export_openapi.py` (OpenAPI y ejemplos deterministas), `scripts/frontend_contract_smoke.py` (consumo externo) y `test_openapi_contract.py`.
+- **Documentación.** README rediseñado, `PROJECT_INTEGRATION_MAP`, `PROJECT_DELIVERY_STATUS`, `FRONTEND_HANDOFF` y `RELEASE_READINESS_2026-11-04`, más los bloques de estado vigente en los documentos anteriores.
+- **Consumo de Meta.** Sin llamadas nuevas.
+- **Asistencia.** Claude (Anthropic) en una sesión local de Giuseppe.
+

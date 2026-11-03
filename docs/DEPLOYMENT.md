@@ -1,5 +1,21 @@
 # Ejecución y despliegue
 
+## Estado vigente (04-11-2026)
+
+- **No hay despliegue público.** Funciona en desarrollo local, con Docker Compose en loopback y en CI.
+- **Wilo con Meta real** requiere en el backend:
+  - `AI_PROVIDER=meta`, `META_ENABLED=true` y `MODEL_API_KEY`;
+  - `DATABASE_URL` con las migraciones 001–004;
+  - `BUDGET_UNITS`, `VOICE_RESERVATION_UNITS` y `GUIDE_RESERVATION_UNITS`;
+  - `DEMO_TOKENS` y `META_TIMEOUT_SECONDS=90`.
+- **Verificación sin Meta.** Para comprobar un despliegue local hay dos recursos:
+  - `scripts/frontend_contract_smoke.py`, un recorrido de consumo externo;
+  - `scripts/export_openapi.py --check`, que confirma que el contrato no cambió.
+
+---
+
+> **Registro histórico.** Lo que sigue documenta decisiones y estados anteriores, en orden cronológico. Si contradice el bloque «Estado vigente», manda el bloque.
+
 El bootstrap prepara desarrollo local y CI. No se ha desplegado a producción. Node 24 LTS, npm 10 o superior, Python 3.12 y uv 0.12.3 son las referencias del proyecto; `package-lock.json` y `services/api/uv.lock` fijan las dependencias. No se requieren claves Meta para arrancar.
 
 ## Desarrollo sin Docker

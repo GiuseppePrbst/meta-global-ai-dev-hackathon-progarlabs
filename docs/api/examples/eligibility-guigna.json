@@ -1,0 +1,20 @@
+{
+ "body": {
+  "collectible": false,
+  "declared": "educational_only",
+  "missing": [],
+  "reason": "Ficha MMA oficial suficiente para contenido educativo; categoría RCE distinta por región; sin ubicaciones.",
+  "recognition": "recognition_restricted",
+  "restrictions": [
+   "Especie sensible: sin ubicaciones ni incentivo a buscarla; no es coleccionable.",
+   "La identificación por foto no es confiable para este taxón."
+  ],
+  "reviewed_at": "2026-11-03",
+  "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+  "status": "educational_only",
+  "taxon_id": "leopardus-guigna"
+ },
+ "kind": "generated_mock_mode",
+ "request": "GET /taxa/leopardus-guigna/eligibility",
+ "status": 200
+}

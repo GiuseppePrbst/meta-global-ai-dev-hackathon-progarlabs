@@ -1,0 +1,107 @@
+{
+ "body": {
+  "classification": {
+   "class_name": "Mammalia",
+   "family": "Felidae",
+   "genus": "Leopardus",
+   "kingdom": "Animalia",
+   "order": "Carnivora",
+   "phylum": "Chordata"
+  },
+  "common_names": [
+   "Güiña"
+  ],
+  "group": "mammal",
+  "id": "leopardus-guigna",
+  "identification": {
+   "evaluated_at": "2026-10-31",
+   "evaluation": null,
+   "level": 0,
+   "notes": "Mamífero sensible: sin reconocimiento por política (no incentivar su búsqueda); sus fotos solo se usaron como negativos fuera del catálogo.",
+   "pipeline": null,
+   "status": "recognition_restricted"
+  },
+  "media": [
+   {
+    "attribution": "Orlando Fuenzalida, iNaturalist (CC BY)",
+    "author": "Orlando Fuenzalida",
+    "license": "CC BY",
+    "media_id": "gbif:5938461271:0",
+    "media_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/429129448/medium.jpeg",
+    "redistribution": "with_attribution",
+    "review_status": "agent_visual_check",
+    "source_url": "https://www.inaturalist.org/observations/240834082"
+   }
+  ],
+  "park_evidence": [
+   {
+    "evidence_type": "official_park_presence",
+    "observed_date": null,
+    "park_id": "puyehue",
+    "precision": "park_scale_no_coordinates",
+    "restrictions": [
+     "Escala de parque: no implica presencia en Anticura ni en un sendero.",
+     "Especie sensible: sin coordenadas públicas, nidos, madrigueras ni incentivo a buscarla."
+    ],
+    "review_status": "source_checked",
+    "scale": "park",
+    "source": {
+     "accessed_at": "2026-10-31",
+     "kind": "official",
+     "license": null,
+     "notes": null,
+     "title": "CONAF, ficha Parque Nacional Puyehue",
+     "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/"
+    }
+   }
+  ],
+  "profile": {
+   "description": "El felino más pequeño de Sudamérica (1,8 a 2,5 kg), solitario y de hábitos más bien nocturnos; pasa bastante tiempo en los árboles.",
+   "distribution": "En Chile, desde Coquimbo hasta unos 70 km al sur de Cochrane (Aysén), del nivel del mar al límite de la vegetación arbórea.",
+   "ecology": "Se alimenta de roedores, aves y reptiles.",
+   "habitat": "Bosques húmedos templados con bambú nativo, en especial bosque valdiviano y de araucaria; tolera bosques secundarios si quedan corredores de vegetación.",
+   "limitations": [
+    "Categoría RCE distinta en Los Ríos (VU) y Los Lagos (NT).",
+    "Contenido educativo general: sin ubicaciones, rastros, madrigueras ni orientación para buscarla.",
+    "La ficha MMA es de 2019; la categoría aplicable se consulta por región en el RCE."
+   ],
+   "review_status": "draft_sourced",
+   "sources": [
+    {
+     "accessed_at": "2026-11-03",
+     "kind": "official",
+     "license": null,
+     "notes": "Ficha publicada en 2019; no reemplaza la categoría vigente del RCE.",
+     "title": "MMA, ficha de especie clasificada (RCE), «Leopardus guigna»",
+     "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Leopardus_guigna_P07.pdf"
+    }
+   ],
+   "trait_validation_status": "source_checked",
+   "traits": [
+    "Pelaje café a café amarillento con pequeñas manchas circulares hasta el vientre; hay individuos melánicos.",
+    "Cola muy corta y gruesa, con anillos oscuros."
+   ]
+  },
+  "puyehue_status": "documented_in_park",
+  "scientific_name": "Leopardus guigna",
+  "sensitivity": "location_sensitive",
+  "species_ref": null,
+  "taxonomy": {
+   "accepted_name": "Leopardus guigna",
+   "accessed_at": "2026-10-31",
+   "authorship": "(Molina, 1782)",
+   "checklist": "Catalogue of Life eXtended Release vía GBIF (checklist 7ddf754f-d193-4cc9-b351-99906754a03b)",
+   "col_xr_key": "3T789",
+   "gbif_backbone_id": null,
+   "notes": null,
+   "status": "source_checked",
+   "synonyms_reviewed": [
+    "Oncifelis guigna",
+    "Felis guigna"
+   ]
+  }
+ },
+ "kind": "generated_mock_mode",
+ "request": "GET /taxa/leopardus-guigna",
+ "status": 200
+}

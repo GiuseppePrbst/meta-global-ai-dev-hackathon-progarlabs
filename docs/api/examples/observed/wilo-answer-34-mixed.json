@@ -1,0 +1,103 @@
+{
+ "request": "POST /guide/ask (multipart: file=<WAV real>, adult_confirmed, rights_confirmed, external_processing_confirmed)",
+ "status": 200,
+ "kind": "observed_real_meta_2026-11-03",
+ "note": "Respuesta real (caso 34-MIXED, audio real). transcript sustituido por el texto del guion; session_id y knowledge_version anonimizados; fuentes resumidas a id/url/type/scope.",
+ "body": {
+  "session_id": "00000000-0000-4000-8000-000000000034",
+  "transcript": "Hey Wilo, ¿qué senderos hay en Puyehue National Park? Please answer in English.",
+  "answer": "Great pick for exploring the southern forest! In Puyehue National Park CONAF names three trails: El Indio, La Princesa and Repucura. I don't have live verification of opening status, distances or conditions, so please check the current CONAF notice before your visit.",
+  "speech_text": "Great pick! In Puyehue National Park, CONAF names El Indio, La Princesa and Repucura. Opening status is not verified, so check the current CONAF notice before visiting.",
+  "provider": "meta",
+  "transcription_model": "muse-voice-transcribe-1.0",
+  "answer_model": "muse-spark-1.3",
+  "status": "completed",
+  "insufficient_evidence": false,
+  "knowledge_version": "sha256:observed-2026-11-03",
+  "sources": [
+   {
+    "id": "atlas:puyehue-el-indio",
+    "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+    "type": "official",
+    "scope": "Trail"
+   },
+   {
+    "id": "atlas:puyehue-la-princesa",
+    "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+    "type": "official",
+    "scope": "Trail"
+   },
+   {
+    "id": "atlas:puyehue-repucura",
+    "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+    "type": "official",
+    "scope": "Trail"
+   }
+  ],
+  "claims": [
+   {
+    "text": "CONAF names El Indio as a trail in Puyehue National Park.",
+    "source_ids": [
+     "atlas:puyehue-el-indio"
+    ]
+   },
+   {
+    "text": "CONAF names La Princesa as a trail in Puyehue National Park.",
+    "source_ids": [
+     "atlas:puyehue-la-princesa"
+    ]
+   },
+   {
+    "text": "CONAF names Repucura as a trail in Puyehue National Park.",
+    "source_ids": [
+     "atlas:puyehue-repucura"
+    ]
+   },
+   {
+    "text": "Opening status for these trails is not verified, so check the current CONAF notice.",
+    "source_ids": [
+     "atlas:puyehue-el-indio",
+     "atlas:puyehue-la-princesa",
+     "atlas:puyehue-repucura"
+    ]
+   }
+  ],
+  "entities": [
+   {
+    "type": "park",
+    "id": "puyehue"
+   },
+   {
+    "type": "trail",
+    "id": "puyehue-el-indio"
+   },
+   {
+    "type": "trail",
+    "id": "puyehue-la-princesa"
+   },
+   {
+    "type": "trail",
+    "id": "puyehue-repucura"
+   }
+  ],
+  "map": {
+   "park_id": "puyehue",
+   "geometry_available": false
+  },
+  "tools_used": [
+   "get_park_trails"
+  ],
+  "latency_ms": {
+   "transcription": 2823.2,
+   "retrieval": 0.4,
+   "generation": 22595.4
+  },
+  "limitations": [
+   "Respuesta asistida desde el snapshot del Knowledge Atlas; sin verificación en vivo.",
+   "No confirma presencia ni identifica individuos."
+  ],
+  "language_hint": "auto",
+  "prompt_version": "wilo-guide-v3",
+  "correlation_id": null
+ }
+}

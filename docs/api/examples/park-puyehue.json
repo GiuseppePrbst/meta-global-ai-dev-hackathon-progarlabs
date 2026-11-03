@@ -1,0 +1,130 @@
+{
+ "body": {
+  "access_text": "Se accede a través de la Ruta Internacional 215-CH, que une las ciudades de Osorno (Chile) y Bariloche (Argentina), la que se encuentra asfaltada en su totalidad. En el km 76 de la ruta se encuentra la variante U-485 que se dirige al sector de Aguas Calientes y Antillanca.",
+  "area_ha": 112755.0,
+  "area_source_text": "112.755",
+  "communes": "Río Bueno, Lago Ranco, Puyehue y Puerto Octay",
+  "conflicts": [
+   {
+    "field": "area_ha",
+    "id": "puyehue-area-ha",
+    "official": {
+     "source": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+     "text": "112.755",
+     "type": "official",
+     "value": 112755
+    },
+    "park_id": "puyehue",
+    "public_answer": "Superficie según CONAF: 112.755 ha. La cifra de una guía turística no se incorpora.",
+    "resolution": "official_preferred",
+    "secondary": {
+     "source": "https://parquenacionalpuyehue.cl/",
+     "text": "112 hectáreas",
+     "type": "independent_tourism",
+     "value": 112
+    }
+   },
+   {
+    "field": "area_ha",
+    "id": "puyehue-area-simbio",
+    "official": {
+     "source": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+     "text": "112.755",
+     "type": "official",
+     "value": 112755
+    },
+    "park_id": "puyehue",
+    "public_answer": "CONAF publica 112.755 ha; SIMBIO registra 102.521,7 ha de 1994. Se informa la cifra CONAF y se menciona la diferencia.",
+    "resolution": "official_preferred",
+    "secondary": {
+     "source": "https://simbio.mma.gob.cl/CbaAP/Details/971",
+     "text": "102.521,7 ha (1994)",
+     "type": "government_registry_older",
+     "value": 102521.7
+    }
+   },
+   {
+    "field": "difficulty",
+    "id": "puyehue-volcan-difficulty",
+    "official": null,
+    "park_id": "puyehue",
+    "public_answer": "La fuente secundaria se contradice; no se informa una dificultad única.",
+    "resolution": "unresolved_internal_contradiction",
+    "secondary": {
+     "source": "https://parquenacionalpuyehue.cl/actividades-experiencia/",
+     "type": "independent_tourism",
+     "value": "difícil / moderada"
+    }
+   },
+   {
+    "field": "trail_page",
+    "id": "secondary-senderos-page",
+    "official": null,
+    "park_id": "puyehue",
+    "public_answer": "Página descartada por contenido de otro parque.",
+    "resolution": "secondary_page_discarded",
+    "secondary": {
+     "source": "https://parquenacionalpuyehue.cl/senderos/",
+     "type": "independent_tourism",
+     "value": "https://parquenacionalpuyehue.cl/senderos/ describe un sendero de Tolhuaca"
+    }
+   }
+  ],
+  "id": "puyehue",
+  "knowledge_version": "sha256:4d03d6936730fd20685fb5d096548ecb6eb7bdec5deb97f9597830a766d08962",
+  "limitations": [
+   "Datos de la ficha a la fecha de consulta; horarios y accesos pueden cambiar.",
+   "Sin estado de apertura en vivo.",
+   "Región del índice curado; la ficha cita provincias de dos regiones."
+  ],
+  "linked_taxa": [
+   "aextoxicon-punctatum",
+   "campephilus-magellanicus",
+   "dromiciops-gliroides",
+   "enicognathus-leptorhynchus",
+   "eucryphia-cordifolia",
+   "laureliopsis-philippiana",
+   "leopardus-guigna",
+   "nothofagus-betuloides",
+   "nothofagus-dombeyi",
+   "nothofagus-pumilio",
+   "podocarpus-nubigenus",
+   "pteroptochos-tarnii",
+   "puma-concolor",
+   "theristicus-melanopis",
+   "troglodytes-aedon",
+   "weinmannia-trichosperma"
+  ],
+  "live_status": "not_verified",
+  "name": "Parque Nacional Puyehue",
+  "official_url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+  "provinces": "Valdivia y Osorno",
+  "regions": [
+   "los-lagos",
+   "los-rios"
+  ],
+  "sectors": [
+   "Antillanca",
+   "Anticura",
+   "Aguas Calientes"
+  ],
+  "sources": [
+   {
+    "accessed_at": "2026-11-03",
+    "confidence": "official",
+    "id": "atlas:puyehue",
+    "review_status": "extracted_from_official_profile",
+    "title": "CONAF, ficha Parque Nacional Puyehue",
+    "type": "official",
+    "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+    "version": "73b7a07a7ca2342a80f00042ed5f26ba6a871dfc32b1ee1dbacfb00fcc03de1b"
+   }
+  ],
+  "trail_count": 3,
+  "trail_section_status": "not_listed",
+  "visit_notice": "Parque abierto de lunes a domingo, de 9:00 a 17:30. No contamos con sistema de reservas, el ingreso a los senderos es gratuito exceptuando los senderos concesionados como El Indio, Repucura y La Princesa. Observaciones: para recorrer senderos de largo aliento, debe solicitar autorización con el administrador del parque al correo: [correo omitido] AVISO: Chile experimenta un brote de influenza aviar de alta patogenicidad (IAAP). Conoce aquí medidas de prevención para evitar contagios y la expansión de la enfermedad ."
+ },
+ "kind": "generated_mock_mode",
+ "request": "GET /parks/puyehue",
+ "status": 200
+}

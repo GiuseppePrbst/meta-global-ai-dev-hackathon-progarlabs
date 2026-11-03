@@ -1,0 +1,28 @@
+{
+ "body": {
+  "built_from_data_of": "2026-11-03",
+  "counts": {
+   "ConservationAssessment": 11,
+   "DocumentPassage": 108,
+   "KnowledgeSource": 4,
+   "MapResource": 79,
+   "Park": 46,
+   "ParkSector": 9,
+   "ParkTaxonEvidence": 163,
+   "Taxon": 20,
+   "Trail": 199,
+   "TrailGeometry": 0
+  },
+  "knowledge_version": "sha256:4d03d6936730fd20685fb5d096548ecb6eb7bdec5deb97f9597830a766d08962",
+  "limitations": [
+   "Snapshot offline: no consulta páginas web al responder.",
+   "No es un catálogo exhaustivo de senderos ni de biodiversidad de Chile."
+  ],
+  "rebuild": "uv run --project services/api python -m bosque_api.atlas_build",
+  "schema_version": "1.0.0",
+  "stale_after_days": 30
+ },
+ "kind": "generated_mock_mode",
+ "request": "GET /knowledge/status",
+ "status": 200
+}

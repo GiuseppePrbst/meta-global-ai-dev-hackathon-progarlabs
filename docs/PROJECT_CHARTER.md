@@ -1,5 +1,13 @@
 # Acta de proyecto
 
+## Estado vigente (04-11-2026)
+
+El alcance entregado incluye flora, fauna y hongos (20 taxones), el Atlas nacional de 46 parques CONAF y Wilo, el guía bilingüe por voz. El piloto sigue siendo Puyehue. El inventario está en [PROJECT_DELIVERY_STATUS.md](PROJECT_DELIVERY_STATUS.md).
+
+---
+
+> **Registro histórico.** Lo que sigue documenta decisiones y estados anteriores, en orden cronológico. Si contradice el bloque «Estado vigente», manda el bloque.
+
 > **Nota del 31-10-2026.** Documento del bootstrap (27-10-2026), centrado en árboles y
 > conservado como registro. La definición vigente amplía el alcance a flora, fauna y hongos,
 > con gemelo digital y piloto Puyehue: [visión de ecosistema](PRODUCT_VISION_ECOSYSTEM.md).
