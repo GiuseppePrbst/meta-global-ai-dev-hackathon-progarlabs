@@ -44,6 +44,9 @@ def image_block(block, root: Path, size, vertical=False):
     image, objs = shrink(sc.frame_image(run, 0), sc.masks_for(run, 0))
     concept = block.get("concept_label", run["result"].get("prompt") or "objeto")
     labels = {o["id"]: f"SAM · {concept} #{i + 1}" for i, o in enumerate(objs)}
+    if len(objs) > 8:  # dense scenes: one count chip instead of overlapping labels
+        largest = max(objs, key=lambda o: o["array"].sum())
+        labels = {largest["id"]: f"SAM · {concept} · {len(objs)} instancias"}
     seconds = block.get("seconds", 4)
     frame = None
     for k in range(int(seconds * FPS)):

@@ -161,9 +161,10 @@ def draw_masks(
 
 
 def fit(image: Image.Image, size: tuple[int, int]) -> Image.Image:
-    copy = image.copy()
-    copy.thumbnail(size, Image.Resampling.LANCZOS)
-    return copy
+    """Scale up or down to fit the box, keeping aspect (presentation only)."""
+    scale = min(size[0] / image.width, size[1] / image.height)
+    target = (max(1, round(image.width * scale)), max(1, round(image.height * scale)))
+    return image.resize(target, Image.Resampling.LANCZOS)
 
 
 def slide(
