@@ -1,0 +1,145 @@
+{
+ "schema_version": "1.0.0",
+ "source": "GBIF species API, vernacularNames (language=eng)",
+ "accessed_at": "2026-11-03",
+ "use": "search_and_asr_vocabulary_only",
+ "taxa": {
+  "nothofagus-dombeyi": {
+   "names": [
+    "coigue"
+   ],
+   "gbif_key": 2874895,
+   "source_url": "https://www.gbif.org/species/2874895"
+  },
+  "eucryphia-cordifolia": {
+   "names": [
+    "ulmo"
+   ],
+   "gbif_key": 3920287,
+   "source_url": "https://www.gbif.org/species/3920287"
+  },
+  "aextoxicon-punctatum": {
+   "names": [],
+   "gbif_key": 4195638,
+   "source_url": "https://www.gbif.org/species/4195638"
+  },
+  "weinmannia-trichosperma": {
+   "names": [],
+   "gbif_key": 3613680,
+   "source_url": "https://www.gbif.org/species/3613680"
+  },
+  "laureliopsis-philippiana": {
+   "names": [],
+   "gbif_key": 3783047,
+   "source_url": "https://www.gbif.org/species/3783047"
+  },
+  "podocarpus-nubigenus": {
+   "names": [
+    "Chilean podocarp",
+    "Chilean totara",
+    "cloud podocarp"
+   ],
+   "gbif_key": 5285976,
+   "source_url": "https://www.gbif.org/species/5285976"
+  },
+  "nothofagus-betuloides": {
+   "names": [
+    "Magellan's Beech"
+   ],
+   "gbif_key": 2874949,
+   "source_url": "https://www.gbif.org/species/2874949"
+  },
+  "nothofagus-pumilio": {
+   "names": [
+    "Lenga Beech"
+   ],
+   "gbif_key": 2874907,
+   "source_url": "https://www.gbif.org/species/2874907"
+  },
+  "enicognathus-leptorhynchus": {
+   "names": [
+    "Slender-billed Conure",
+    "Slender-billed Parakeet"
+   ],
+   "gbif_key": 5229097,
+   "source_url": "https://www.gbif.org/species/5229097"
+  },
+  "campephilus-magellanicus": {
+   "names": [
+    "Magellanic Woodpecker"
+   ],
+   "gbif_key": 2478578,
+   "source_url": "https://www.gbif.org/species/2478578"
+  },
+  "pteroptochos-tarnii": {
+   "names": [
+    "Black-throated Huet-huet"
+   ],
+   "gbif_key": 2491019,
+   "source_url": "https://www.gbif.org/species/2491019"
+  },
+  "troglodytes-aedon": {
+   "names": [
+    "House Wren",
+    "House Wren (Brown-throated)",
+    "House Wren (Northern)"
+   ],
+   "gbif_key": 5231459,
+   "source_url": "https://www.gbif.org/species/5231459"
+  },
+  "theristicus-melanopis": {
+   "names": [
+    "Black-faced Ibis"
+   ],
+   "gbif_key": 2480786,
+   "source_url": "https://www.gbif.org/species/2480786"
+  },
+  "dromiciops-gliroides": {
+   "names": [
+    "Chilean Opossum",
+    "Colocolo Opossum",
+    "Mondaca's Monito del Monte"
+   ],
+   "gbif_key": 2433393,
+   "source_url": "https://www.gbif.org/species/2433393"
+  },
+  "leopardus-guigna": {
+   "names": [
+    "Chilean Cat",
+    "Guina",
+    "Guiña"
+   ],
+   "gbif_key": 2434923,
+   "source_url": "https://www.gbif.org/species/2434923"
+  },
+  "puma-concolor": {
+   "names": [
+    "American Lion",
+    "Catamount",
+    "Catamount, Panther"
+   ],
+   "gbif_key": 2435099,
+   "source_url": "https://www.gbif.org/species/2435099"
+  },
+  "cyttaria-hariotii": {
+   "names": [],
+   "gbif_key": 2580227,
+   "source_url": "https://www.gbif.org/species/2580227"
+  },
+  "cyttaria-espinosae": {
+   "names": [],
+   "gbif_key": 2580236,
+   "source_url": "https://www.gbif.org/species/2580236"
+  },
+  "boletus-chilensis": {
+   "names": [],
+   "gbif_key": 6015268,
+   "source_url": "https://www.gbif.org/species/6015268"
+  },
+  "amanita-gayana": {
+   "names": [],
+   "gbif_key": null,
+   "note": "Sin coincidencia exacta en GBIF"
+  }
+ }
+}

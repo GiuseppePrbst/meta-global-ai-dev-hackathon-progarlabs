@@ -76,7 +76,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             and request.method != "OPTIONS"
             and (
                 request.url.path not in public
-                and not request.url.path.startswith(("/species/", "/taxa", "/parks/", "/media"))
+                and not request.url.path.startswith(
+                    ("/species/", "/taxa", "/parks", "/trails/", "/knowledge/", "/media")
+                )
             )
         ):
             try:
@@ -587,12 +589,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return schema
 
     app.openapi = openapi
+    from bosque_api.atlas import register_atlas_routes
     from bosque_api.biodiversity import register_biodiversity_routes
     from bosque_api.expedition_routes import register_routes
     from bosque_api.media import register_media_routes
 
     register_routes(app, config, landscape_context)
     register_biodiversity_routes(app)
+    register_atlas_routes(app)
     register_media_routes(app)
     return app
 
