@@ -46,6 +46,16 @@ y `not_verified` nunca se presenta como abierto.
 - Web (Node 24): lint, typecheck, Vitest 10/10, build OK (ruta `/wilo`), Playwright 12/12.
 - PostGIS y Gitleaks: no ejecutados localmente (sin Docker ni binario); los cubre la CI.
 
+## Incompatibilidad detectada y corregida (verificacion en navegador real)
+
+La pasada en navegador contra el backend real (no con rutas simuladas) encontro que el
+`Retry-After` de los 429 era ilegible desde el frontend: `wilo.py` lo envia y el handoff
+pide mostrarlo, pero `CORSMiddleware` solo exponia `X-Correlation-ID`. Correccion
+compatible en el backend: `expose_headers=["X-Correlation-ID", "Retry-After"]`, con test en
+`test_api.py::test_openapi_and_cors` (51 pruebas de API + Wilo en verde). Sin ese cambio la
+UI degradaba con elegancia (mensaje sin segundos). Relacionado: la demo debe abrirse como
+`http://localhost:3000`, porque `CORS_ORIGINS` por defecto no incluye `127.0.0.1:3000`.
+
 ## Limites
 
 Sin despliegue público; la demo real exige backend en modo Meta con ledger y token.
