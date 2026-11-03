@@ -53,5 +53,8 @@ describe("Identificacion sin puntajes inventados", () => {
     expect(r.provider).toBe("mock");
     expect(r.candidates).toEqual([]);
     expect(assessmentLabel("out_of_catalog_suspected")).toContain("fuera del catalogo");
+    await identifyPhoto(new File([new Uint8Array([1])], "hoja.png", { type: "image/png" }), { token: "demo" });
+    const [, demoInit] = fetchMock.mock.calls[1] as unknown as [string, RequestInit];
+    expect((demoInit.headers as Record<string, string>).Authorization).toBe("Bearer demo");
   });
 });

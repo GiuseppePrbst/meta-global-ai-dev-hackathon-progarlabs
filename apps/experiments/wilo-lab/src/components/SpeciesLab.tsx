@@ -5,7 +5,8 @@ import {
   type Identification, type SpeciesInfo,
 } from "../lib/identify";
 
-export function SpeciesLab() {
+export function SpeciesLab({ token = "" }: { token?: string }) {
+  const [demoMode, setDemoMode] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
   const [adult, setAdult] = useState(false);
@@ -32,7 +33,7 @@ export function SpeciesLab() {
     setBusy(true); setError(""); setResult(null);
     const c = new AbortController(); abortRef.current = c;
     try {
-      const r = await identifyPhoto(file, { signal: c.signal });
+      const r = await identifyPhoto(file, { signal: c.signal, token: demoMode ? token : "" });
       setResult(r);
       const ids = [...r.candidates, ...r.exploratory_candidates].map((x) => x.species_id);
       const links: Record<string, boolean> = {};
@@ -82,6 +83,7 @@ export function SpeciesLab() {
           <figcaption className="small">{file?.name} · {file ? (file.size / 1024 / 1024).toFixed(2) : "0"} MiB</figcaption></figure>}
         <label className="check"><input type="checkbox" checked={adult} onChange={(e) => setAdult(e.target.checked)} /> Soy mayor de 18 anos.</label>
         <label className="check"><input type="checkbox" checked={rights} onChange={(e) => setRights(e.target.checked)} /> Tengo derecho a usar esta imagen; sin personas ni datos restringidos.</label>
+        <label className="check"><input type="checkbox" checked={demoMode} disabled={!token.trim()} onChange={(e) => setDemoMode(e.target.checked)} /> Backend en SERVICE_MODE=demo: enviar mi token (la reserva queda en el ledger por identidad).</label>
         <div className="row">
           <button className="btn" type="submit" disabled={!file || !adult || !rights || busy}>{busy ? "Analizando…" : "Analizar fotografia"}</button>
           <button className="btn alt" type="button" onClick={reset}>Probar con otra imagen</button>

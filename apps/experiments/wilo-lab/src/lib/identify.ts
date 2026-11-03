@@ -1,4 +1,4 @@
-import { apiUrl, parseLabError } from "./api";
+import { apiUrl, bearer, parseLabError } from "./api";
 
 // Contrato real de POST /identify (services/api + bosque_ai/contracts.py).
 // El pipeline NO emite puntajes numericos ni probabilidades: emite candidatos
@@ -34,16 +34,17 @@ export function validatePhoto(file: Pick<File, "type" | "size">): string | null 
   return null;
 }
 
-// Sin Authorization, como el cliente oficial: en modo local con token el backend
-// intenta guardar evidencia privada y exige PostGIS (migracion 004). El token demo
-// es solo para /guide/*. En modo demo /identify requiere identidad + PostGIS.
-export async function identifyPhoto(file: File, opts: { signal?: AbortSignal } = {}): Promise<Identification> {
+// Sin Authorization por defecto, como el cliente oficial: en modo local con token el
+// backend intenta guardar evidencia privada y exige PostGIS (migracion 004). Solo en
+// SERVICE_MODE=demo se envia el token, porque alli /identify reserva en el ledger por
+// identidad (local+Meta exige META_ACCESS_TOKEN y no reserva en el ledger).
+export async function identifyPhoto(file: File, opts: { signal?: AbortSignal; token?: string } = {}): Promise<Identification> {
   const form = new FormData();
   form.append("file", file);
   form.append("adult_confirmed", "true");
   form.append("rights_confirmed", "true");
   const response = await fetch(`${apiUrl}/identify`, {
-    method: "POST", body: form,
+    method: "POST", body: form, headers: bearer(opts.token ?? ""),
     signal: opts.signal ?? AbortSignal.timeout(95000),
   });
   if (!response.ok) throw await parseLabError(response);

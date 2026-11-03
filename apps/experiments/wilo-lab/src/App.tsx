@@ -58,7 +58,7 @@ export default function App() {
           </>
         )}
         {view === "wilo" && <WiloChat token={token} />}
-        {view === "especies" && <SpeciesLab />}
+        {view === "especies" && <SpeciesLab token={token} />}
       </main>
       <footer className="footer">Wilo Lab · ProGarLabs · Sin credenciales Meta en el navegador · La API oficial de Bosque Vivo no se modifica desde aqui.</footer>
     </div>
