@@ -33,7 +33,14 @@ def prepare_image(content: bytes, mime: str) -> bytes:
                 if len(result) > MAX_IMAGE_BYTES:
                     raise HTTPException(413, "Imagen preparada supera 10 MiB")
                 return result
-    except (UnidentifiedImageError, OSError, ValueError, Image.DecompressionBombError, Warning):
+    except (
+        UnidentifiedImageError,
+        OSError,
+        ValueError,
+        SyntaxError,
+        Image.DecompressionBombError,
+        Warning,
+    ):
         raise HTTPException(422, "Imagen inválida o demasiado grande para decodificar") from None
 
 

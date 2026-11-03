@@ -94,6 +94,21 @@ def test_identify_validates_uploaded_content(client, content, mime, status):
     assert response.status_code == status
 
 
+def test_identify_broken_png_is_422_not_500(client):
+    # PNG con cabecera valida pero IDAT corrupto: PIL verify() levanta SyntaxError.
+    import base64
+
+    broken = base64.b64decode(
+        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j4i8AAAAASUVORK5CYII="
+    )
+    response = client.post(
+        "/identify",
+        files={"file": ("tree.png", broken, "image/png")},
+        data={"adult_confirmed": "true", "rights_confirmed": "true"},
+    )
+    assert response.status_code == 422
+
+
 @pytest.mark.parametrize("key,status", [("", 503), ("test-placeholder", 501)])
 def test_meta_mode_does_not_pretend_pipeline_is_implemented(key, status):
     client = TestClient(create_app(Settings(_env_file=None, ai_provider="meta", model_api_key=key)))
