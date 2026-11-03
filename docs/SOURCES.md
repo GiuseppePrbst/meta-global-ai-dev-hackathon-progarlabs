@@ -172,3 +172,16 @@ límites en DATASET_LICENSES/DATA_GOVERNANCE; resultados agregados en META_SAM_A
 | [Portal RCE](https://clasificacionespecies.mma.gob.cl/) y [DS 54/2025](https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2026/03/DS_54_2025_MMA_oficializa_20_RCE-DO_5_3_2026.pdf) | Nómina, 20.º proceso, publicación en el DO el 05-03-2026 | Discrepancias de fecha registradas en [RCE](RCE_CONSERVATION_2026.md#versionado-y-discrepancias) |
 | [Ficha 14.º proceso](https://clasificacionespecies.mma.gob.cl/procesos-de-clasificacion/14o-proceso-de-clasificacion-de-especies-2017-2018/listado-de-especies-y-fichas-finales-14o-proceso-rce/) | Olivillo VU norte / LC sur | — |
 | [mycoBaseCL](https://doi.org/10.32942/X20T2N) | Catálogo de hongos de Chile, preprint v1 | Sin revisión por pares; licencia del dataset |
+
+## Biblioteca multimedia — 02-11-2026
+
+- **Wikimedia Commons** (medios enlazados en `taxa.json`): licencia por archivo, autor y URL
+  de fuente conservados en cada registro. Consulta de licencias previa a la incorporación.
+- **GBIF / iNaturalist** (medios enlazados en `taxa.json`): licencia del medio, no del registro;
+  los registros NC o ND quedan fuera.
+- **FFmpeg 8.1.1** (herramienta local, no redistribuida): normalización de rotación, clips sin
+  audio y sin metadatos. Documentación de opciones: <https://ffmpeg.org/documentation.html>.
+- **Pillow** (dependencia ya presente en `services/api`): lectura EXIF, orientación y escritura
+  de derivados sin metadatos. Documentación: <https://pillow.readthedocs.io/>.
+- **BCN SNASPE** (polígono simplificado, privado): comparación de ubicación para las fotos
+  propias; sin redistribución.

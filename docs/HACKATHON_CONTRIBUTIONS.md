@@ -209,3 +209,26 @@ observaciones, los recorridos y la guía son datos sintéticos; no son registros
 
 Diseño e implementación con asistencia de Claude (Anthropic) en una sesión local de José,
 quien fijó la dirección visual y el alcance. Sin verificación en Android físico en esta sesión.
+
+## Biblioteca multimedia y medios propios — 02-11-2026
+
+Trabajo nuevo en esta rama (`feat/biodiversity-content-media-enrichment`):
+
+- contrato público de medios (`services/api/src/bosque_api/media.py`), dos endpoints y pruebas
+  (`services/api/tests/test_media.py`);
+- scripts privados de ingesta y preparación (`evaluations/content_library_ingest.py`,
+  `evaluations/content_library_prepare.py`);
+- documentación de arquitectura, matriz de contenido, contrato para el laboratorio SAM y
+  lista de planos de demostración.
+
+Preexistente y reutilizado: 20 taxones, 45 enlaces externos con licencia en `taxa.json`, la
+nómina RCE y el polígono BCN. No se añadieron dependencias nuevas.
+
+Medios propios: el ZIP de fotos aportado por el usuario tiene 83 fotografías y 2 videos. No
+se publica ninguno. La autoría no está confirmada y **no se atribuye a ningún participante**
+(la participación de quien aparece en el nombre del archivo no está confirmada). Las
+inspecciones visuales son del agente; no son validación de especialista.
+
+Asistencia: sesión de Claude Code con el modelo Claude Haiku 5.5 (Anthropic), iniciada por el
+responsable del trabajo en esta rama. La decisión de alcance y la autorización de cada uso
+quedan a cargo del titular de los datos.
