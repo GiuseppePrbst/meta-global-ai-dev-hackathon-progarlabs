@@ -252,3 +252,7 @@ sin reconstruir su identidad experimental; no se ejecutaron inferencias nuevas.
 Una continuación asistida por Codex añadió un límite de snapshot al ledger existente,
 comandos de inspección y una prueba de diez trabajos con runner simulado y PostgreSQL
 aislado. No se verificó el snapshot de créditos comunicado por el propietario.
+
+Otra continuación asistida por Codex añadió comandos de control en primer plano,
+una demostración CLI simulada y un manifiesto histórico privado. El sistema aún no
+se declara listo para operación continua ni se ejecutaron solicitudes Meta nuevas.

@@ -26,3 +26,12 @@ veces si están finalizadas. Para cubrir cargos aún inciertos también descuent
 reservas anteriores pendientes o vencidas; esa parte puede ser conservadora en exceso.
 No garantiza que otros consumidores fuera del ledger, ni procesos que no usen
 este control, respeten el mismo límite. No es autorización para activar inferencias.
+
+## Demostración CLI
+
+En PostgreSQL 18 aislado se migró la cola, se ejecutaron `doctor`, `plan`, `dry-run`,
+encolado, `start --simulated`, `drain`, `resume`, segundo `start`, `reconcile` y
+`report`: diez trabajos, diez resultados privados y ninguna ejecución adicional tras
+reiniciar. El ledger no estaba presente en esa base y no se realizó ninguna reserva.
+`drain` se invocó tras completar el lote; aún falta probarlo durante una inferencia.
+La consulta del ledger informa explícitamente `missing_reservation_id` cuando falta.

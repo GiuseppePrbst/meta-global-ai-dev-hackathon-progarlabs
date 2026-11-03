@@ -143,6 +143,6 @@ class Queue:
     def get(self, job_id):
         with self.connect() as conn:
             return conn.execute(
-                "SELECT job_id,status,specification FROM sam_experiment_jobs WHERE job_id=%s",
+                "SELECT job_id,status,specification,experiment_fingerprint FROM sam_experiment_jobs WHERE job_id=%s",
                 (job_id,),
             ).fetchone()

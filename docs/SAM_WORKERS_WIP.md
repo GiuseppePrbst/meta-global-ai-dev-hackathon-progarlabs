@@ -11,7 +11,8 @@ requiere fuente, responsable, vigencia, montos y hash de evidencia privada. La e
 de fuente y el hash no autentican automáticamente la evidencia ante Meta: siguen
 necesitando revisión humana, no son una consulta de Billing. Existe importación
 histórica idempotente y una inspección de evidencia que requiere revisión manual.
-No hay supervisión, reconciliación automática, control RPM ni CLI de ejecución;
+Hay ejecución en primer plano y controles básicos, pero no hay supervisión con reinicio,
+reconciliación automática ni control RPM;
 no se deben ejecutar llamadas reales hasta completar y validar esos controles.
 
 Para usar la cola con una base de pruebas aislada, configurar `SAM_WORKERS_DATABASE_URL`

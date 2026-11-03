@@ -936,6 +936,8 @@ async def run_experiment(
                 else {}
             ),
         )
+        manifest["reservation_id"] = str(reservation)
+        write_json(output / "result.json", manifest)
     except HTTPException as exc:
         state("budget_exhausted" if exc.status_code == 429 else "provider_error")
         raise

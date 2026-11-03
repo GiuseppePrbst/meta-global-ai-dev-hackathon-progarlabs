@@ -13,3 +13,7 @@ pendientes. No se publican medios, máscaras ni rutas privadas.
 El propietario comunicó un snapshot posterior de USD 139,26; no se encontró el archivo
 en los adjuntos disponibles y no se ha calculado un hash. Es una declaración, no una
 comprobación independiente ni un saldo actualizado automáticamente.
+
+Se creó un manifiesto privado de interoperabilidad con 442 resultados históricos; las
+licencias y derechos de publicación se señalan como no reconstruidos. No representa
+un nuevo lote ni acredita que los resultados hayan sido revisados por especialistas.

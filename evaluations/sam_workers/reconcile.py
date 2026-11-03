@@ -30,11 +30,37 @@ def inspect(queue, job_id, output_root):
     matches = (
         data.get("source_sha256") == job["specification"]["media_sha256"]
         and data.get("model") == job["specification"]["model"]
+        and bool(job["specification"].get("prompt"))
+        and data.get("concept") == job["specification"].get("prompt")
     )
+    reservation = data.get("reservation_id")
+    ledger = "missing_reservation_id"
+    if data.get("simulated") is True:
+        ledger = "not_applicable_synthetic"
+    elif reservation:
+        try:
+            reservation_id = UUID(reservation)
+            with queue.connect() as conn:
+                row = conn.execute(
+                    "SELECT identity_id,status,reserved_units,reported_usage FROM execution_reservations WHERE id=%s",
+                    (reservation_id,),
+                ).fetchone()
+            ledger = (
+                "missing"
+                if not row
+                else (
+                    "matching"
+                    if row["identity_id"] == "sam-api-lab:I"
+                    else "identity_mismatch"
+                )
+            )
+        except (TypeError, ValueError):
+            ledger = "invalid_reservation_id"
     return {
         "job_status": job["status"],
         "evidence": "matching" if matches else "mismatch",
         "result_status": data.get("status"),
         "cleanup": data.get("cleanup"),
+        "ledger": ledger,
         "action": "manual_review",
     }

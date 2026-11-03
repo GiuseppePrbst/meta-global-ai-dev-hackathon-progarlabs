@@ -104,7 +104,17 @@ def test_worker_delegates_to_runner_and_preserves_result(tmp_path, monkeypatch):
 
     async def runner(config, source, output, prompt, **kwargs):
         assert source == image and not output.exists() and kwargs["phase"] == "I"
-        return {"status": "no_matches"}
+        output.mkdir(parents=True)
+        result = {
+            "status": "no_matches",
+            "source_sha256": sha,
+            "model": "sam-3.1",
+            "concept": prompt,
+            "cleanup": "not_uploaded",
+            "reservation_id": str(uuid4()),
+        }
+        (output / "result.json").write_text(json.dumps(result))
+        return result
 
     monkeypatch.setattr(
         worker,
@@ -119,6 +129,7 @@ def test_worker_delegates_to_runner_and_preserves_result(tmp_path, monkeypatch):
         ),
     )
     monkeypatch.setattr(worker, "run_experiment", runner)
+    monkeypatch.setattr(worker, "ledger_completed", lambda *_: True)
     queue = FakeQueue()
     assert (
         worker.run_one(
@@ -258,7 +269,11 @@ def test_reconcile_inspects_evidence_without_changing_job(tmp_path):
             return {
                 "job_id": identifier,
                 "status": "reconciliation_required",
-                "specification": {"media_sha256": "a" * 64, "model": "sam-3.1"},
+                "specification": {
+                    "media_sha256": "a" * 64,
+                    "model": "sam-3.1",
+                    "prompt": "fern",
+                },
             }
 
     result = tmp_path / str(job_id) / "result.json"
@@ -268,6 +283,7 @@ def test_reconcile_inspects_evidence_without_changing_job(tmp_path):
             {
                 "source_sha256": "a" * 64,
                 "model": "sam-3.1",
+                "concept": "fern",
                 "status": "completed",
                 "cleanup": "not_uploaded",
             }
@@ -367,13 +383,17 @@ def test_ten_offline_workers_persist_results_and_resume(queue, tmp_path, monkeyp
         result = {
             "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
             "model": "sam-3.1",
+            "concept": prompt,
             "status": "completed",
             "cleanup": "not_uploaded",
+            "reservation_id": str(uuid4()),
+            "simulated": True,
         }
         (output / "result.json").write_text(json.dumps(result))
         return result
 
     monkeypatch.setattr(worker, "run_experiment", fake_runner)
+    monkeypatch.setattr(worker, "ledger_completed", lambda *_: True)
     output = tmp_path / "outputs"
     for _ in range(10):
         assert (

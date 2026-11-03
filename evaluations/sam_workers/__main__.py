@@ -25,6 +25,10 @@ def main():
             "doctor",
             "dry-run",
             "report",
+            "start",
+            "stop",
+            "drain",
+            "resume",
         ],
     )
     parser.add_argument("--spec", type=Path)
@@ -32,6 +36,10 @@ def main():
     parser.add_argument("--root", type=Path)
     parser.add_argument("--job")
     parser.add_argument("--registry", type=Path)
+    parser.add_argument("--config", type=Path)
+    parser.add_argument("--authorization", type=Path)
+    parser.add_argument("--evidence", type=Path)
+    parser.add_argument("--simulated", action="store_true")
     args = parser.parse_args()
     if args.action in ("plan", "enqueue", "dry-run"):
         if not args.spec:
@@ -83,7 +91,38 @@ def main():
     if not database:
         parser.error("SAM_WORKERS_DATABASE_URL is required")
     queue = Queue(database)
-    if args.action == "migrate":
+    if args.action in ("start", "stop", "drain", "resume"):
+        if not args.campaign:
+            parser.error("--campaign is required")
+        from evaluations.sam_workers.control import serve, set_state
+
+        if args.action == "start":
+            if not args.registry or not args.root:
+                parser.error("--registry and --root are required")
+            if not args.simulated and not all(
+                (args.config, args.authorization, args.evidence)
+            ):
+                parser.error("--config, --authorization and --evidence are required")
+            serve(
+                queue,
+                args.campaign,
+                args.registry,
+                args.root,
+                simulated=args.simulated,
+                config=args.config,
+                authorization=args.authorization,
+                evidence=args.evidence,
+            )
+        else:
+            set_state(
+                queue,
+                args.campaign,
+                {"stop": "stopped", "drain": "draining", "resume": "running"}[
+                    args.action
+                ],
+            )
+            print(json.dumps({"campaign": args.campaign, "command": args.action}))
+    elif args.action == "migrate":
         queue.migrate()
     elif args.action == "status":
         print(json.dumps(queue.status()))

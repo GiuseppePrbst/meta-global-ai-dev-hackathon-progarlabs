@@ -17,6 +17,13 @@ CREATE TABLE IF NOT EXISTS sam_experiment_jobs (
 );
 CREATE INDEX IF NOT EXISTS sam_jobs_claim_idx ON sam_experiment_jobs (status, priority DESC, created_at);
 CREATE INDEX IF NOT EXISTS sam_jobs_lease_idx ON sam_experiment_jobs (lease_expires_at) WHERE status IN ('leased', 'running');
+CREATE TABLE IF NOT EXISTS sam_worker_controls (
+    campaign_id text PRIMARY KEY,
+    desired_state text NOT NULL CHECK (desired_state IN ('running', 'draining', 'stopped')),
+    worker_id uuid,
+    process_id integer,
+    updated_at timestamptz NOT NULL DEFAULT now()
+);
 CREATE TABLE IF NOT EXISTS sam_historical_results (
     evidence_sha256 text PRIMARY KEY CHECK (evidence_sha256 ~ '^[0-9a-f]{64}$'),
     historical_id text NOT NULL,

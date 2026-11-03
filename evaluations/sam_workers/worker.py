@@ -22,6 +22,17 @@ class PersistenceUnconfirmed(RuntimeError):
     """The private result may exist; reconcile it before any retry."""
 
 
+def ledger_completed(queue, reservation_id):
+    with queue.connect() as conn:
+        row = conn.execute(
+            "SELECT identity_id, status FROM execution_reservations WHERE id=%s",
+            (reservation_id,),
+        ).fetchone()
+    return bool(
+        row and row["identity_id"] == "sam-api-lab:I" and row["status"] == "completed"
+    )
+
+
 def run_one(
     queue, config_file, registry_file, output_root, authorization_file, evidence_file
 ):
@@ -112,7 +123,23 @@ def run_one(
             )
         )
         if result.get("status") in ("completed", "no_matches"):
-            final = result["status"]
+            persisted = json.loads((output / "result.json").read_text(encoding="utf-8"))
+            try:
+                from uuid import UUID
+
+                reservation_id = UUID(persisted.get("reservation_id", ""))
+                evidence_complete = (
+                    persisted.get("source_sha256") == spec["media_sha256"]
+                    and persisted.get("model") == spec["model"]
+                    and persisted.get("concept") == spec["prompt"]
+                    and persisted.get("status") == result["status"]
+                    and persisted.get("cleanup") in ("not_uploaded", "deleted")
+                    and ledger_completed(queue, reservation_id)
+                )
+            except (ValueError, TypeError):
+                evidence_complete = False
+            if evidence_complete:
+                final = result["status"]
     finally:
         stop.set()
         thread.join()
