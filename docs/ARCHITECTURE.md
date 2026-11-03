@@ -246,3 +246,12 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
 - **Sin migraciones.** El catálogo es de solo lectura y vive en archivos versionados. La región
   se declara como parámetro: resolverla desde coordenadas con PostGIS requiere límites
   regionales oficiales que todavía no se han integrado.
+
+## Biblioteca multimedia — decisión del 02-11-2026
+
+- `MediaAsset` (Pydantic, campos cerrados) es el único contrato de medios servidos. Solo
+  admite `publication_status: public_approved`; los campos de coordenadas o rutas se rechazan.
+- El catálogo público se forma con los enlaces externos de `taxa.json` y con
+  `resources/media-assets.json`, que empieza vacío hasta aprobar derechos.
+- Los binarios y el material privado viven fuera de Git y de PostgreSQL. Detalle en
+  [MEDIA_LIBRARY_ARCHITECTURE.md](MEDIA_LIBRARY_ARCHITECTURE.md).
