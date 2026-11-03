@@ -1,0 +1,282 @@
+[
+ {
+  "exp_id": "vid-vanellus--c-bird",
+  "annotated_frame_instances": 9,
+  "matched": 9,
+  "mean_iou_matched": 0.8943,
+  "mean_iou_all": 0.8943,
+  "id_switches": 0,
+  "ids_per_instance": {
+   "0": [
+    "1"
+   ]
+  },
+  "per_frame": [
+   {
+    "frame": 10,
+    "instance": 0,
+    "iou": 0.8552,
+    "matched": true
+   },
+   {
+    "frame": 20,
+    "instance": 0,
+    "iou": 0.9524,
+    "matched": true
+   },
+   {
+    "frame": 30,
+    "instance": 0,
+    "iou": 0.8831,
+    "matched": true
+   },
+   {
+    "frame": 40,
+    "instance": 0,
+    "iou": 0.898,
+    "matched": true
+   },
+   {
+    "frame": 50,
+    "instance": 0,
+    "iou": 0.766,
+    "matched": true
+   },
+   {
+    "frame": 60,
+    "instance": 0,
+    "iou": 0.9352,
+    "matched": true
+   },
+   {
+    "frame": 70,
+    "instance": 0,
+    "iou": 0.9234,
+    "matched": true
+   },
+   {
+    "frame": 80,
+    "instance": 0,
+    "iou": 0.9208,
+    "matched": true
+   },
+   {
+    "frame": 90,
+    "instance": 0,
+    "iou": 0.9144,
+    "matched": true
+   }
+  ],
+  "reference_status": "agent_grabcut_reviewed"
+ },
+ {
+  "exp_id": "vid-vanellus--c-lapwing",
+  "annotated_frame_instances": 9,
+  "matched": 4,
+  "mean_iou_matched": 0.9259,
+  "mean_iou_all": 0.4115,
+  "id_switches": 0,
+  "ids_per_instance": {
+   "0": [
+    "2"
+   ]
+  },
+  "per_frame": [
+   {
+    "frame": 10,
+    "instance": 0,
+    "iou": 0.0,
+    "matched": false
+   },
+   {
+    "frame": 20,
+    "instance": 0,
+    "iou": 0.0,
+    "matched": false
+   },
+   {
+    "frame": 30,
+    "instance": 0,
+    "iou": 0.0,
+    "matched": false
+   },
+   {
+    "frame": 40,
+    "instance": 0,
+    "iou": 0.0,
+    "matched": false
+   },
+   {
+    "frame": 50,
+    "instance": 0,
+    "iou": 0.0,
+    "matched": false
+   },
+   {
+    "frame": 60,
+    "instance": 0,
+    "iou": 0.938,
+    "matched": true
+   },
+   {
+    "frame": 70,
+    "instance": 0,
+    "iou": 0.9228,
+    "matched": true
+   },
+   {
+    "frame": 80,
+    "instance": 0,
+    "iou": 0.9207,
+    "matched": true
+   },
+   {
+    "frame": 90,
+    "instance": 0,
+    "iou": 0.9223,
+    "matched": true
+   }
+  ],
+  "reference_status": "agent_grabcut_reviewed"
+ },
+ {
+  "exp_id": "vid-vanellus--box-f0",
+  "annotated_frame_instances": 9,
+  "matched": 9,
+  "mean_iou_matched": 0.8945,
+  "mean_iou_all": 0.8945,
+  "id_switches": 0,
+  "ids_per_instance": {
+   "0": [
+    "1"
+   ]
+  },
+  "per_frame": [
+   {
+    "frame": 10,
+    "instance": 0,
+    "iou": 0.8548,
+    "matched": true
+   },
+   {
+    "frame": 20,
+    "instance": 0,
+    "iou": 0.9502,
+    "matched": true
+   },
+   {
+    "frame": 30,
+    "instance": 0,
+    "iou": 0.8855,
+    "matched": true
+   },
+   {
+    "frame": 40,
+    "instance": 0,
+    "iou": 0.8975,
+    "matched": true
+   },
+   {
+    "frame": 50,
+    "instance": 0,
+    "iou": 0.7651,
+    "matched": true
+   },
+   {
+    "frame": 60,
+    "instance": 0,
+    "iou": 0.9368,
+    "matched": true
+   },
+   {
+    "frame": 70,
+    "instance": 0,
+    "iou": 0.9265,
+    "matched": true
+   },
+   {
+    "frame": 80,
+    "instance": 0,
+    "iou": 0.9197,
+    "matched": true
+   },
+   {
+    "frame": 90,
+    "instance": 0,
+    "iou": 0.9141,
+    "matched": true
+   }
+  ],
+  "reference_status": "agent_grabcut_reviewed"
+ },
+ {
+  "exp_id": "vid-vanellus--box-f50-both",
+  "annotated_frame_instances": 9,
+  "matched": 9,
+  "mean_iou_matched": 0.8943,
+  "mean_iou_all": 0.8943,
+  "id_switches": 0,
+  "ids_per_instance": {
+   "0": [
+    "1"
+   ]
+  },
+  "per_frame": [
+   {
+    "frame": 10,
+    "instance": 0,
+    "iou": 0.8544,
+    "matched": true
+   },
+   {
+    "frame": 20,
+    "instance": 0,
+    "iou": 0.9506,
+    "matched": true
+   },
+   {
+    "frame": 30,
+    "instance": 0,
+    "iou": 0.8843,
+    "matched": true
+   },
+   {
+    "frame": 40,
+    "instance": 0,
+    "iou": 0.8979,
+    "matched": true
+   },
+   {
+    "frame": 50,
+    "instance": 0,
+    "iou": 0.7632,
+    "matched": true
+   },
+   {
+    "frame": 60,
+    "instance": 0,
+    "iou": 0.9368,
+    "matched": true
+   },
+   {
+    "frame": 70,
+    "instance": 0,
+    "iou": 0.9284,
+    "matched": true
+   },
+   {
+    "frame": 80,
+    "instance": 0,
+    "iou": 0.9192,
+    "matched": true
+   },
+   {
+    "frame": 90,
+    "instance": 0,
+    "iou": 0.9139,
+    "matched": true
+   }
+  ],
+  "reference_status": "agent_grabcut_reviewed"
+ }
+]

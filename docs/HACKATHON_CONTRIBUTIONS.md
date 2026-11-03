@@ -256,3 +256,25 @@ aislado. No se verificó el snapshot de créditos comunicado por el propietario.
 Otra continuación asistida por Codex añadió comandos de control en primer plano,
 una demostración CLI simulada y un manifiesto histórico privado. El sistema aún no
 se declara listo para operación continua ni se ejecutaron solicitudes Meta nuevas.
+### 03-11-2026: investigación ampliada de SAM 3.1 (rama `feat/sam31-extended-validation`)
+
+**Código nuevo durante el evento:**
+
+- autorización de créditos gratuitos en el ledger;
+- referencias de máscara (GrabCut revisado) con métricas de máscara y de tracking;
+- campaña v2 por hipótesis;
+- asesor de fallos de Muse;
+- correcciones de video;
+- panel de métricas y galería editorial del visor;
+- compositor con varios cortes.
+
+**Inferencias reales** con créditos gratuitos de Meta, dentro de la autorización del
+propietario.
+
+**Medios:** solo públicos con licencia de Commons e iNaturalist.
+
+**División del trabajo:** Opus (Meta Visual Intelligence) y Codex (Content & Media
+Intelligence). Este incremento no modifica archivos de Codex.
+
+Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe. Las
+referencias son del agente, no de un especialista.

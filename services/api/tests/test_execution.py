@@ -29,6 +29,19 @@ def photo():
     return output.getvalue()
 
 
+def test_phase_i_without_snapshot_fails_before_database_access():
+    with pytest.raises(HTTPException) as error:
+        ExecutionStore(Settings(_env_file=None)).reserve("sam-api-lab:I", "identify", 1000)
+    assert error.value.status_code == 503
+
+
+def test_research_lab_cannot_use_legacy_owner_without_phase():
+    settings = Settings(_env_file=None, budget_lifetime_units=2_000_000)
+    with pytest.raises(HTTPException) as error:
+        ExecutionStore(settings).reserve("sam-api-lab", "identify")
+    assert error.value.status_code == 503
+
+
 def demo(**kwargs):
     return Settings(
         _env_file=None, service_mode="demo", demo_tokens={"alice": "test-alice"}, **kwargs

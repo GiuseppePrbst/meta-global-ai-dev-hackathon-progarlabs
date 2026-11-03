@@ -1,0 +1,2402 @@
+{
+ "annotation_note": "reference_boxes are agent_visual_review; reference masks are GrabCut initialised from those boxes and reviewed by the agent (agent_grabcut_reviewed), not expert ground truth",
+ "images": [
+  {
+   "scene_id": "birds-fauna-30-v2",
+   "domain": "birds",
+   "image_id": "gbif:4440682949:0",
+   "species_label": "campephilus-magellanicus",
+   "license": "CC BY",
+   "author": "Ben Lyle Bedard",
+   "source_url": "https://www.inaturalist.org/observations/190526839",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "woodpecker"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.2,
+     0.33,
+     0.75,
+     0.95
+    ],
+    [
+     0.45,
+     0.12,
+     0.95,
+     0.62
+    ]
+   ],
+   "reference_count": 2,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "birds-fauna-30"
+  },
+  {
+   "scene_id": "birds-fauna-66-v2",
+   "domain": "birds",
+   "image_id": "gbif:1890049485:0",
+   "species_label": "enicognathus-ferrugineus",
+   "license": "CC BY",
+   "author": "Miguel Vieira",
+   "source_url": "https://www.inaturalist.org/observations/14830427",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "parrot"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.1,
+     0.35,
+     0.72,
+     0.75
+    ]
+   ],
+   "reference_count": 1,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "birds-fauna-66"
+  },
+  {
+   "scene_id": "birds-fauna-72-v2",
+   "domain": "birds",
+   "image_id": "gbif:3398904441:0",
+   "species_label": "enicognathus-ferrugineus",
+   "license": "CC BY",
+   "author": "Paul Asman and Jill Lenoble",
+   "source_url": "https://www.inaturalist.org/observations/98608190",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "parrot"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.6,
+     0.1,
+     0.78,
+     0.38
+    ],
+    [
+     0.48,
+     0.27,
+     0.67,
+     0.55
+    ],
+    [
+     0.56,
+     0.47,
+     0.72,
+     0.58
+    ],
+    [
+     0.17,
+     0.72,
+     0.35,
+     0.95
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "birds-fauna-72"
+  },
+  {
+   "scene_id": "birds-fauna-125-v2",
+   "domain": "birds",
+   "image_id": "gbif:1932346578:0",
+   "species_label": "pteroptochos-tarnii",
+   "license": "CC0",
+   "author": "Diego Carús",
+   "source_url": "https://www.inaturalist.org/observations/17802293",
+   "redistribution": "yes",
+   "media": "image",
+   "specific": [
+    "brown bird"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.2,
+     0.38,
+     0.8,
+     0.82
+    ]
+   ],
+   "reference_count": 1,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "birds-fauna-125"
+  },
+  {
+   "scene_id": "birds-fauna-215-v2",
+   "domain": "birds",
+   "image_id": "gbif:4424550464:0",
+   "species_label": "theristicus-melanopis",
+   "license": "CC BY",
+   "author": "SebaArosZ",
+   "source_url": "https://www.inaturalist.org/observations/186800259",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "ibis"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.08,
+     0.4,
+     0.58,
+     0.73
+    ],
+    [
+     0.38,
+     0.37,
+     0.95,
+     0.71
+    ]
+   ],
+   "reference_count": 2,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "birds-fauna-215"
+  },
+  {
+   "scene_id": "birds-fauna-246-v2",
+   "domain": "birds",
+   "image_id": "gbif:5205922585:0",
+   "species_label": "troglodytes-aedon",
+   "license": "CC BY",
+   "author": "Álvaro Parra Valdivia",
+   "source_url": "https://www.inaturalist.org/observations/291929421",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "small bird"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.25,
+     0.22,
+     0.6,
+     0.88
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "birds-fauna-246"
+  },
+  {
+   "scene_id": "fungi-fungi-13-v2",
+   "domain": "fungi",
+   "image_id": "gbif:3113635649:0",
+   "species_label": "amanita-muscaria",
+   "license": "CC BY",
+   "author": "nitsuga74",
+   "source_url": "https://www.inaturalist.org/observations/78396394",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "red mushroom"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.38,
+     0.33,
+     0.6,
+     0.47
+    ]
+   ],
+   "reference_count": 1,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "fungi-fungi-13"
+  },
+  {
+   "scene_id": "fungi-fungi-15-v2",
+   "domain": "fungi",
+   "image_id": "gbif:1847626550:0",
+   "species_label": "cyttaria-darwinii",
+   "license": "CC BY",
+   "author": "Lera Miles",
+   "source_url": "http://www.inaturalist.org/observations/1959812",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.37,
+     0.38,
+     0.57,
+     0.48
+    ],
+    [
+     0.6,
+     0.42,
+     0.75,
+     0.55
+    ],
+    [
+     0.27,
+     0.52,
+     0.42,
+     0.65
+    ],
+    [
+     0.5,
+     0.52,
+     0.7,
+     0.67
+    ]
+   ],
+   "reference_count": 4,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "fungi-fungi-15"
+  },
+  {
+   "scene_id": "fungi-fungi-25-v2",
+   "domain": "fungi",
+   "image_id": "gbif:3384616606:0",
+   "species_label": "cyttaria-darwinii",
+   "license": "CC BY",
+   "author": "rosaceae_roberts",
+   "source_url": "https://www.inaturalist.org/observations/69029811",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "orange fungus"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.3,
+     0.27,
+     0.45,
+     0.43
+    ],
+    [
+     0.4,
+     0.2,
+     0.55,
+     0.36
+    ],
+    [
+     0.42,
+     0.37,
+     0.59,
+     0.57
+    ],
+    [
+     0.54,
+     0.5,
+     0.7,
+     0.72
+    ],
+    [
+     0.47,
+     0.67,
+     0.6,
+     0.82
+    ]
+   ],
+   "reference_count": 5,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "fungi-fungi-25"
+  },
+  {
+   "scene_id": "fungi-fungi-77-v2",
+   "domain": "fungi",
+   "image_id": "gbif:4080969612:0",
+   "species_label": "fistulina-antarctica",
+   "license": "CC BY",
+   "author": "Steven Bodzin",
+   "source_url": "https://www.inaturalist.org/observations/153257787",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "bracket fungus"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.1,
+     0.4,
+     0.85,
+     0.66
+    ]
+   ],
+   "reference_count": 1,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "fungi-fungi-77"
+  },
+  {
+   "scene_id": "trees-flora-200-v2",
+   "domain": "trees",
+   "image_id": "commons:77618175",
+   "species_label": "nothofagus-pumilio",
+   "license": "CC BY-SA 3.0",
+   "author": "Gagea",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_pumilio-general_view_(cropped).jpg",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "broadleaf tree"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.05,
+     0.08,
+     0.98,
+     0.95
+    ]
+   ],
+   "reference_count": 1,
+   "reference_complete": true,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "trees-flora-200"
+  },
+  {
+   "scene_id": "trees-flora-156-v2",
+   "domain": "trees",
+   "image_id": "commons:1236316",
+   "species_label": "nothofagus-dombeyi",
+   "license": "CC BY-SA 3.0",
+   "author": "Lin linao",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Nothofagus_dombeyi-dos.JPG",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "specific": [
+    "broadleaf tree"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.05,
+     0.2,
+     0.55,
+     0.82
+    ],
+    [
+     0.4,
+     0.22,
+     0.95,
+     0.82
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "trees-flora-156"
+  },
+  {
+   "scene_id": "plants-flora-24-v2",
+   "domain": "plants",
+   "image_id": "gbif:5231622760:0",
+   "species_label": "aextoxicon-punctatum",
+   "license": "CC BY",
+   "author": "Bruno Avilez",
+   "source_url": "https://www.inaturalist.org/observations/289373263",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "specific": [
+    "yellow flower"
+   ],
+   "scientific": null,
+   "reference_boxes": [
+    [
+     0.3,
+     0.15,
+     0.9,
+     1.0
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review",
+   "muse": false,
+   "base_scene": "plants-flora-24"
+  },
+  {
+   "scene_id": "ferns-c0",
+   "domain": "plants",
+   "image_id": "commons:File:Blechnum chilense kz01.jpg",
+   "species_label": null,
+   "category": "Blechnum chilense",
+   "license": "CC BY 4.0",
+   "author": "Krzysztof Ziarnek, Kenraiz",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Blechnum_chilense_kz01.jpg",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "reference_boxes": [
+    [
+     0.15,
+     0.15,
+     0.45,
+     0.6
+    ],
+    [
+     0.45,
+     0.1,
+     0.6,
+     0.45
+    ],
+    [
+     0.52,
+     0.42,
+     0.85,
+     0.66
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review"
+  },
+  {
+   "scene_id": "ferns-c1",
+   "domain": "plants",
+   "image_id": "commons:File:Blechnum chilense kz02.jpg",
+   "species_label": null,
+   "category": "Blechnum chilense",
+   "license": "CC BY 4.0",
+   "author": "Krzysztof Ziarnek, Kenraiz",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Blechnum_chilense_kz02.jpg",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "reference_boxes": [
+    [
+     0.1,
+     0.08,
+     0.92,
+     1.0
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review"
+  },
+  {
+   "scene_id": "ferns-c2",
+   "domain": "plants",
+   "image_id": "commons:File:Blechnum chilense kz03.jpg",
+   "species_label": null,
+   "category": "Blechnum chilense",
+   "license": "CC BY 4.0",
+   "author": "Krzysztof Ziarnek, Kenraiz",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Blechnum_chilense_kz03.jpg",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "reference_boxes": [
+    [
+     0.15,
+     0.33,
+     0.4,
+     0.72
+    ],
+    [
+     0.38,
+     0.15,
+     0.68,
+     0.72
+    ],
+    [
+     0.62,
+     0.4,
+     0.8,
+     0.75
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review"
+  },
+  {
+   "scene_id": "ferns-c3",
+   "domain": "plants",
+   "image_id": "commons:File:Blechnum chilense kz04.jpg",
+   "species_label": null,
+   "category": "Blechnum chilense",
+   "license": "CC BY 4.0",
+   "author": "Krzysztof Ziarnek, Kenraiz",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Blechnum_chilense_kz04.jpg",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null
+  },
+  {
+   "scene_id": "ferns-c4",
+   "domain": "plants",
+   "image_id": "commons:File:Ampe en Chanquín - Lophosoria quadripinnata.jpg",
+   "species_label": null,
+   "category": "Lophosoria quadripinnata",
+   "license": "CC BY-SA 4.0",
+   "author": "Lin linao",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Ampe_en_Chanqu%C3%ADn_-_Lophosoria_quadripinnata.jpg",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "reference_boxes": [
+    [
+     0.38,
+     0.38,
+     0.6,
+     0.62
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review"
+  },
+  {
+   "scene_id": "ferns-c5",
+   "domain": "plants",
+   "image_id": "commons:File:Lophosoria quadripinnata (1).JPG",
+   "species_label": null,
+   "category": "Lophosoria quadripinnata",
+   "license": "CC BY-SA 4.0",
+   "author": "Klein Benjamin",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Lophosoria_quadripinnata_(1).JPG",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null
+  },
+  {
+   "scene_id": "ferns-c6",
+   "domain": "plants",
+   "image_id": "commons:File:Lophosoria quadripinnata (2).JPG",
+   "species_label": null,
+   "category": "Lophosoria quadripinnata",
+   "license": "CC BY-SA 4.0",
+   "author": "Klein Benjamin",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Lophosoria_quadripinnata_(2).JPG",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null
+  },
+  {
+   "scene_id": "ferns-c12",
+   "domain": "plants",
+   "image_id": "commons:File:Chilean Shield Fern (3440015676).jpg",
+   "species_label": null,
+   "category": "Polystichum chilense",
+   "license": "CC BY 2.0",
+   "author": "Jason Hollinger",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Chilean_Shield_Fern_(3440015676).jpg",
+   "redistribution": "with_attribution",
+   "media": "image",
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null
+  },
+  {
+   "scene_id": "ferns-c13",
+   "domain": "plants",
+   "image_id": "commons:File:0005Ca. Botanical Garden of Peter the Great in St. Petersburg.jpg",
+   "species_label": null,
+   "category": "Dicksonia",
+   "license": "CC BY-SA 4.0",
+   "author": "Александровы АГ",
+   "source_url": "https://commons.wikimedia.org/wiki/File:0005Ca._Botanical_Garden_of_Peter_the_Great_in_St._Petersburg.jpg",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "reference_boxes": [
+    [
+     0.4,
+     0.0,
+     1.0,
+     0.82
+    ]
+   ],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": "agent_visual_review"
+  },
+  {
+   "scene_id": "ferns-c14",
+   "domain": "plants",
+   "image_id": "commons:File:Detail of Penelope and Harry Seidler House.jpg",
+   "species_label": null,
+   "category": "Dicksonia",
+   "license": "CC BY-SA 4.0",
+   "author": "Matt Stone",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Detail_of_Penelope_and_Harry_Seidler_House.jpg",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null
+  },
+  {
+   "scene_id": "ferns-c15",
+   "domain": "plants",
+   "image_id": "commons:File:Reserva Particular do Patrimônio Natural Papagaio-de-Altitude - Liu Idárraga Orozco (23).jpg",
+   "species_label": null,
+   "category": "Dicksonia",
+   "license": "CC BY-SA 4.0",
+   "author": "Liu Idárraga Orozco",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Reserva_Particular_do_Patrim%C3%B4nio_Natural_Papagaio-de-Altitude_-_Liu_Id%C3%A1rraga_Orozco_(23).jpg",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null
+  },
+  {
+   "scene_id": "ferns-c16",
+   "domain": "plants",
+   "image_id": "commons:File:Trilha na Serra do Brigadeiro (DSC04068).jpg",
+   "species_label": null,
+   "category": "Dicksonia",
+   "license": "CC BY-SA 4.0",
+   "author": "Mateus S. Figueiredo",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Trilha_na_Serra_do_Brigadeiro_(DSC04068).jpg",
+   "redistribution": "share_alike_with_attribution",
+   "media": "image",
+   "reference_boxes": [],
+   "reference_count": null,
+   "reference_complete": false,
+   "annotation": null
+  }
+ ],
+ "reference_reviews": [
+  {
+   "scene_id": "trees-flora-127",
+   "size": [
+    1024,
+    686
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "fuga rectangular al cielo",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      20,
+      0,
+      1004,
+      583
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "trees-flora-142",
+   "size": [
+    669,
+    1024
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "fuga rectangular al agua",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      47,
+      82,
+      656,
+      952
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "trees-flora-158",
+   "size": [
+    720,
+    405
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "máscara vacía",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      346,
+      0,
+      720,
+      385
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "trees-flora-213",
+   "size": [
+    683,
+    1024
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      68,
+      51,
+      581,
+      922
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "trees-flora-214",
+   "size": [
+    683,
+    1024
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      191,
+      82,
+      581,
+      768
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "trees-flora-220",
+   "size": [
+    640,
+    1024
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      32,
+      102,
+      627,
+      993
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "birds-fauna-68",
+   "size": [
+    608,
+    1024
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      122,
+      205,
+      347,
+      768
+     ],
+     "accepted": true
+    },
+    {
+     "index": 1,
+     "box": [
+      316,
+      225,
+      486,
+      768
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "birds-fauna-195",
+   "size": [
+    1024,
+    768
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      348,
+      323,
+      635,
+      599
+     ],
+     "accepted": true
+    },
+    {
+     "index": 1,
+     "box": [
+      532,
+      307,
+      850,
+      584
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "birds-fauna-209",
+   "size": [
+    683,
+    1024
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      123,
+      543,
+      266,
+      696
+     ],
+     "accepted": true
+    },
+    {
+     "index": 1,
+     "box": [
+      246,
+      512,
+      342,
+      655
+     ],
+     "accepted": true
+    },
+    {
+     "index": 2,
+     "box": [
+      342,
+      543,
+      471,
+      655
+     ],
+     "accepted": true
+    },
+    {
+     "index": 3,
+     "box": [
+      628,
+      573,
+      683,
+      666
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "birds-fauna-0",
+   "size": [
+    1024,
+    768
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "fondo de hojas y cielo incluido",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      307,
+      77,
+      840,
+      768
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "birds-fauna-7",
+   "size": [
+    852,
+    1024
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "corteza incluida",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      128,
+      225,
+      724,
+      993
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "birds-fauna-176",
+   "size": [
+    1024,
+    1024
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      276,
+      317,
+      788,
+      707
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "fungi-fungi-20",
+   "size": [
+    1024,
+    838
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "algunas instancias superpuestas o con fuga",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      328,
+      117,
+      563,
+      335
+     ],
+     "accepted": false
+    },
+    {
+     "index": 1,
+     "box": [
+      287,
+      226,
+      594,
+      520
+     ],
+     "accepted": false
+    },
+    {
+     "index": 2,
+     "box": [
+      205,
+      352,
+      461,
+      628
+     ],
+     "accepted": false
+    },
+    {
+     "index": 3,
+     "box": [
+      492,
+      402,
+      788,
+      712
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "fungi-fungi-24",
+   "size": [
+    1024,
+    683
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      338,
+      137,
+      645,
+      464
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "fungi-fungi-36",
+   "size": [
+    1024,
+    918
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "algunas instancias superpuestas o con fuga",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      512,
+      156,
+      737,
+      431
+     ],
+     "accepted": true
+    },
+    {
+     "index": 1,
+     "box": [
+      338,
+      349,
+      584,
+      615
+     ],
+     "accepted": true
+    },
+    {
+     "index": 2,
+     "box": [
+      461,
+      551,
+      635,
+      780
+     ],
+     "accepted": false
+    },
+    {
+     "index": 3,
+     "box": [
+      635,
+      505,
+      891,
+      753
+     ],
+     "accepted": false
+    },
+    {
+     "index": 4,
+     "box": [
+      748,
+      294,
+      1024,
+      624
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "fungi-fungi-57",
+   "size": [
+    954,
+    1024
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "instancias superpuestas y rectangulares",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      382,
+      184,
+      572,
+      338
+     ],
+     "accepted": false
+    },
+    {
+     "index": 1,
+     "box": [
+      553,
+      184,
+      716,
+      358
+     ],
+     "accepted": false
+    },
+    {
+     "index": 2,
+     "box": [
+      382,
+      307,
+      572,
+      471
+     ],
+     "accepted": false
+    },
+    {
+     "index": 3,
+     "box": [
+      382,
+      440,
+      591,
+      635
+     ],
+     "accepted": false
+    },
+    {
+     "index": 4,
+     "box": [
+      506,
+      512,
+      630,
+      635
+     ],
+     "accepted": false
+    },
+    {
+     "index": 5,
+     "box": [
+      162,
+      512,
+      429,
+      737
+     ],
+     "accepted": false
+    },
+    {
+     "index": 6,
+     "box": [
+      401,
+      748,
+      630,
+      942
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "fungi-fungi-63",
+   "size": [
+    768,
+    1024
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      207,
+      225,
+      445,
+      481
+     ],
+     "accepted": true
+    },
+    {
+     "index": 1,
+     "box": [
+      384,
+      184,
+      507,
+      328
+     ],
+     "accepted": true
+    },
+    {
+     "index": 2,
+     "box": [
+      476,
+      174,
+      699,
+      389
+     ],
+     "accepted": true
+    },
+    {
+     "index": 3,
+     "box": [
+      392,
+      338,
+      607,
+      532
+     ],
+     "accepted": true
+    },
+    {
+     "index": 4,
+     "box": [
+      238,
+      451,
+      476,
+      676
+     ],
+     "accepted": true
+    },
+    {
+     "index": 5,
+     "box": [
+      538,
+      532,
+      691,
+      686
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "fungi-fungi-7",
+   "size": [
+    768,
+    1024
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      138,
+      276,
+      607,
+      737
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "plants-flora-40",
+   "size": [
+    800,
+    1067
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "región equivocada",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      224,
+      213,
+      496,
+      427
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "plants-flora-45",
+   "size": [
+    506,
+    900
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "toma hojas, no la flor",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      278,
+      432,
+      466,
+      612
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "plants-flora-47",
+   "size": [
+    675,
+    900
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "toma hojas, no la flor",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      135,
+      450,
+      506,
+      720
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "plants-flora-36",
+   "size": [
+    1024,
+    1024
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      430,
+      205,
+      768,
+      430
+     ],
+     "accepted": true
+    },
+    {
+     "index": 1,
+     "box": [
+      430,
+      358,
+      799,
+      635
+     ],
+     "accepted": true
+    },
+    {
+     "index": 2,
+     "box": [
+      594,
+      666,
+      973,
+      942
+     ],
+     "accepted": true
+    },
+    {
+     "index": 3,
+     "box": [
+      328,
+      338,
+      512,
+      461
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "plants-flora-105",
+   "size": [
+    768,
+    1024
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "región equivocada",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      154,
+      492,
+      323,
+      635
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "plants-flora-246",
+   "size": [
+    1280,
+    1893
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "toma hojas, no inflorescencias",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      358,
+      341,
+      1024,
+      1704
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "birds-fauna-30-v2",
+   "size": [
+    624,
+    1024
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "artefacto rectangular entre aves",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      125,
+      338,
+      468,
+      973
+     ],
+     "accepted": false
+    },
+    {
+     "index": 1,
+     "box": [
+      281,
+      123,
+      593,
+      635
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "birds-fauna-66-v2",
+   "size": [
+    1024,
+    686
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      102,
+      240,
+      737,
+      514
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "birds-fauna-72-v2",
+   "size": [
+    683,
+    1024
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "instancias parciales",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      410,
+      102,
+      533,
+      389
+     ],
+     "accepted": true
+    },
+    {
+     "index": 1,
+     "box": [
+      328,
+      276,
+      458,
+      563
+     ],
+     "accepted": true
+    },
+    {
+     "index": 2,
+     "box": [
+      382,
+      481,
+      492,
+      594
+     ],
+     "accepted": false
+    },
+    {
+     "index": 3,
+     "box": [
+      116,
+      737,
+      239,
+      973
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "birds-fauna-125-v2",
+   "size": [
+    1024,
+    766
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "fuga al suelo",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      205,
+      291,
+      819,
+      628
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "birds-fauna-215-v2",
+   "size": [
+    683,
+    1024
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      55,
+      410,
+      396,
+      748
+     ],
+     "accepted": true
+    },
+    {
+     "index": 1,
+     "box": [
+      260,
+      379,
+      649,
+      727
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "birds-fauna-246-v2",
+   "size": [
+    1024,
+    768
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      256,
+      169,
+      614,
+      676
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "fungi-fungi-13-v2",
+   "size": [
+    768,
+    1024
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      292,
+      338,
+      461,
+      481
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "fungi-fungi-15-v2",
+   "size": [
+    768,
+    1024
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      284,
+      389,
+      438,
+      492
+     ],
+     "accepted": true
+    },
+    {
+     "index": 1,
+     "box": [
+      461,
+      430,
+      576,
+      563
+     ],
+     "accepted": true
+    },
+    {
+     "index": 2,
+     "box": [
+      207,
+      532,
+      323,
+      666
+     ],
+     "accepted": true
+    },
+    {
+     "index": 3,
+     "box": [
+      384,
+      532,
+      538,
+      686
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "fungi-fungi-25-v2",
+   "size": [
+    1024,
+    768
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      307,
+      207,
+      461,
+      330
+     ],
+     "accepted": true
+    },
+    {
+     "index": 1,
+     "box": [
+      410,
+      154,
+      563,
+      276
+     ],
+     "accepted": true
+    },
+    {
+     "index": 2,
+     "box": [
+      430,
+      284,
+      604,
+      438
+     ],
+     "accepted": true
+    },
+    {
+     "index": 3,
+     "box": [
+      553,
+      384,
+      717,
+      553
+     ],
+     "accepted": true
+    },
+    {
+     "index": 4,
+     "box": [
+      481,
+      515,
+      614,
+      630
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "fungi-fungi-77-v2",
+   "size": [
+    461,
+    1024
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      46,
+      410,
+      392,
+      676
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "trees-flora-200-v2",
+   "size": [
+    1280,
+    960
+   ],
+   "complete": true,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "fuga al agua y roca",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      64,
+      77,
+      1254,
+      912
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "trees-flora-156-v2",
+   "size": [
+    960,
+    1280
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "fuga rectangular al cielo",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      48,
+      256,
+      528,
+      1050
+     ],
+     "accepted": false
+    },
+    {
+     "index": 1,
+     "box": [
+      384,
+      282,
+      912,
+      1050
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "plants-flora-24-v2",
+   "size": [
+    1024,
+    768
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "fondo verde incluido",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      307,
+      115,
+      922,
+      768
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "ferns-c0",
+   "size": [
+    1280,
+    960
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      192,
+      144,
+      576,
+      576
+     ],
+     "accepted": true
+    },
+    {
+     "index": 1,
+     "box": [
+      576,
+      96,
+      768,
+      432
+     ],
+     "accepted": true
+    },
+    {
+     "index": 2,
+     "box": [
+      666,
+      403,
+      1088,
+      634
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "ferns-c1",
+   "size": [
+    1280,
+    960
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "manchas de fondo",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      128,
+      77,
+      1178,
+      960
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "ferns-c2",
+   "size": [
+    1280,
+    960
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      192,
+      317,
+      512,
+      691
+     ],
+     "accepted": true
+    },
+    {
+     "index": 1,
+     "box": [
+      486,
+      144,
+      870,
+      691
+     ],
+     "accepted": true
+    },
+    {
+     "index": 2,
+     "box": [
+      794,
+      384,
+      1024,
+      720
+     ],
+     "accepted": true
+    }
+   ]
+  },
+  {
+   "scene_id": "ferns-c4",
+   "size": [
+    1280,
+    960
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": "región ambigua en bosque denso",
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      486,
+      365,
+      768,
+      595
+     ],
+     "accepted": false
+    }
+   ]
+  },
+  {
+   "scene_id": "ferns-c13",
+   "size": [
+    1280,
+    1707
+   ],
+   "complete": false,
+   "status": "reviewed",
+   "reviewer": "claude-opus-5.5 (agent visual review of GrabCut overlays; not specialist)",
+   "rejection_reason": null,
+   "instances": [
+    {
+     "index": 0,
+     "box": [
+      512,
+      0,
+      1280,
+      1400
+     ],
+     "accepted": true
+    }
+   ]
+  }
+ ],
+ "muse_failure_advice": [
+  {
+   "scene": "birds-fauna-66",
+   "status": "completed",
+   "failed": [
+    "black bird"
+   ],
+   "alternative_concept": "green parrot"
+  },
+  {
+   "scene": "birds-fauna-72",
+   "status": "completed",
+   "failed": [
+    "animal",
+    "black bird"
+   ],
+   "alternative_concept": "green parrot"
+  },
+  {
+   "scene": "ferns-c13",
+   "status": "completed",
+   "failed": [
+    "compound leaf",
+    "fern leaf",
+    "frond",
+    "green frond",
+    "leaf cluster"
+   ],
+   "alternative_concept": "tall canopy tree"
+  },
+  {
+   "scene": "ferns-c15",
+   "status": "completed",
+   "failed": [
+    "branch",
+    "canopy",
+    "conifer",
+    "leaves",
+    "shrub",
+    "tree",
+    "tree trunk"
+   ],
+   "alternative_concept": "feathery green fronds"
+  },
+  {
+   "scene": "ferns-c16",
+   "status": "completed",
+   "failed": [
+    "branch",
+    "canopy",
+    "conifer",
+    "leaves",
+    "shrub"
+   ],
+   "alternative_concept": "large feathery fronds"
+  },
+  {
+   "scene": "ferns-c2",
+   "status": "completed",
+   "failed": [
+    "compound leaf",
+    "fern",
+    "fern leaf",
+    "frond",
+    "green frond",
+    "leaf cluster",
+    "tree fern"
+   ],
+   "alternative_concept": "thick finger-like green leaves"
+  },
+  {
+   "scene": "ferns-c3",
+   "status": "completed",
+   "failed": [
+    "compound leaf",
+    "green plant",
+    "leaf cluster"
+   ],
+   "alternative_concept": "green fern fronds"
+  },
+  {
+   "scene": "ferns-c4",
+   "status": "completed",
+   "failed": [
+    "branch",
+    "canopy",
+    "conifer",
+    "leaves",
+    "shrub"
+   ],
+   "alternative_concept": "feathery green fern fronds"
+  },
+  {
+   "scene": "ferns-c6",
+   "status": "completed",
+   "failed": [
+    "compound leaf",
+    "leaf cluster"
+   ],
+   "alternative_concept": "green feathery fern frond"
+  },
+  {
+   "scene": "fungi-fungi-15",
+   "status": "completed",
+   "failed": [
+    "fungal fruiting body",
+    "fungus",
+    "mushroom",
+    "mushroom cap",
+    "orange fungus",
+    "round fungus"
+   ],
+   "alternative_concept": "round pale orange balls"
+  },
+  {
+   "scene": "fungi-fungi-21",
+   "status": "completed",
+   "failed": [
+    "mushroom",
+    "mushroom cap",
+    "orange ball",
+    "orange fungus",
+    "yellow honeycomb sphere"
+   ],
+   "alternative_concept": "bumpy orange spheres"
+  },
+  {
+   "scene": "fungi-fungi-24",
+   "status": "completed",
+   "failed": [
+    "mushroom",
+    "orange ball",
+    "orange fungus",
+    "orange globular fungus",
+    "yellow honeycomb sphere"
+   ],
+   "alternative_concept": "pale pitted round growths"
+  },
+  {
+   "scene": "fungi-fungi-25",
+   "status": "completed",
+   "failed": [
+    "fungus",
+    "mushroom cap",
+    "orange ball",
+    "orange bumpy sphere",
+    "orange fungus",
+    "yellow honeycomb sphere"
+   ],
+   "alternative_concept": "white smooth balls"
+  },
+  {
+   "scene": "fungi-fungi-57",
+   "status": "completed",
+   "failed": [
+    "Cyttaria hariotii",
+    "fungal fruiting body",
+    "fungus",
+    "mushroom",
+    "mushroom cap",
+    "orange fungus",
+    "round fungus",
+    "yellow honeycomb sphere"
+   ],
+   "alternative_concept": "clustered orange balls"
+  },
+  {
+   "scene": "plants-fern-a",
+   "status": "completed",
+   "failed": [
+    "compound leaf",
+    "fern",
+    "fern frond",
+    "fern leaf",
+    "flower",
+    "frond",
+    "green frond",
+    "leaf cluster",
+    "tree fern"
+   ],
+   "alternative_concept": "mossy canyon wall"
+  },
+  {
+   "scene": "plants-fern-b",
+   "status": "completed",
+   "failed": [
+    "compound leaf",
+    "fern frond",
+    "fern leaf",
+    "flower",
+    "frond",
+    "green fern fronds",
+    "green frond",
+    "leaf cluster"
+   ],
+   "alternative_concept": "blurry green edge foliage"
+  },
+  {
+   "scene": "plants-flora-105",
+   "status": "completed",
+   "failed": [
+    "plant",
+    "white flowering shrub"
+   ],
+   "alternative_concept": "small white flowers"
+  },
+  {
+   "scene": "plants-flora-40",
+   "status": "completed",
+   "failed": [
+    "flower",
+    "plant",
+    "white flower"
+   ],
+   "alternative_concept": "flowering tree canopy"
+  },
+  {
+   "scene": "trees-flora-156",
+   "status": "completed",
+   "failed": [
+    "branch",
+    "canopy",
+    "conifer",
+    "forest",
+    "leaves",
+    "shrub",
+    "tree crown"
+   ],
+   "alternative_concept": "large backlit spreading tree"
+  },
+  {
+   "scene": "trees-flora-158",
+   "status": "completed",
+   "failed": [
+    "arching large tree",
+    "canopy",
+    "conifer",
+    "leaves",
+    "tree",
+    "tree crown"
+   ],
+   "alternative_concept": "curved thick trunk"
+  },
+  {
+   "scene": "trees-flora-200",
+   "status": "completed",
+   "failed": [
+    "branch",
+    "canopy",
+    "conifer",
+    "forest",
+    "leaves",
+    "shrub",
+    "tree crown",
+    "tree trunk"
+   ],
+   "alternative_concept": "windswept solitary tree"
+  },
+  {
+   "scene": "trees-flora-214",
+   "status": "completed",
+   "failed": [
+    "branch",
+    "canopy",
+    "conifer",
+    "conifer tree",
+    "evergreen tree",
+    "leaves",
+    "shrub",
+    "tree crown",
+    "tree trunk"
+   ],
+   "alternative_concept": "dense feathery green foliage"
+  },
+  {
+   "scene": "trees-flora-219",
+   "status": "completed",
+   "failed": [
+    "branch",
+    "canopy",
+    "conifer",
+    "conifer tree",
+    "forest",
+    "leaves",
+    "shrub",
+    "tree crown",
+    "tree trunk"
+   ],
+   "alternative_concept": "tall mossy evergreen tree"
+  },
+  {
+   "scene": "trees-puyehue-landscape",
+   "status": "completed",
+   "failed": [
+    "branch",
+    "canopy",
+    "conifer",
+    "forest",
+    "leaves",
+    "tree",
+    "tree crown",
+    "tree trunk"
+   ],
+   "alternative_concept": "low green groundcover"
+  }
+ ]
+}

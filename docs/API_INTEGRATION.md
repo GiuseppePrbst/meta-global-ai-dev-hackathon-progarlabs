@@ -528,3 +528,7 @@ Reglas para la UI:
 
 Ambos son solo lectura y no exponen rutas locales, coordenadas ni metadatos privados. Los
 campos existentes de `Taxon` no cambian. Ver [MEDIA_LIBRARY_ARCHITECTURE.md](MEDIA_LIBRARY_ARCHITECTURE.md).
+
+Ver también los requisitos de medios y la evidencia ampliada de SAM:
+[SAM31_EXTENDED_RESEARCH_REPORT.md](SAM31_EXTENDED_RESEARCH_REPORT.md) y
+[SAM31_MEDIA_REQUIREMENTS.md](SAM31_MEDIA_REQUIREMENTS.md) (03-11-2026).

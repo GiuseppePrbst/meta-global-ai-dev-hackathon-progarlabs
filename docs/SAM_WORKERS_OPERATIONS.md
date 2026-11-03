@@ -3,6 +3,9 @@
 Estado: **no habilitado para operación continua ni llamadas reales**. El saldo de Meta
 no se consulta automáticamente. El propietario debe revisar la evidencia financiera
 antes de operar; faltan pruebas de recuperación y reconciliación con el ledger.
+El ledger rechaza fase I sin un snapshot de crédito explícito: las rutas de campaña,
+Muse y CLI del laboratorio que aún no lo transmiten quedan bloqueadas, no adaptadas.
+Las fases A–H conservan su admisión anterior.
 
 Con `SAM_WORKERS_DATABASE_URL` configurada para una base autorizada y aislada:
 

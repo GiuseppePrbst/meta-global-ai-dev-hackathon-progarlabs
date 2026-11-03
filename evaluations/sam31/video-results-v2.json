@@ -1,0 +1,442 @@
+[
+ {
+  "exp_id": "v2vid-sand640--box2-corr80",
+  "clip": "sanderlings/w640",
+  "prompt_mode": "spatial",
+  "prompt": null,
+  "direction": "both",
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 199,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 99,
+    "gaps": 1
+   },
+   {
+    "id": "2",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 12932,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.857
+ },
+ {
+  "exp_id": "v2vid-sand20s--c-bird",
+  "clip": "sanderlings-20s",
+  "prompt_mode": "concept",
+  "prompt": "bird",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 200,
+  "status": "completed",
+  "masks": 403,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "0",
+    "first_frame": 0,
+    "last_frame": 199,
+    "visible_frames": 200,
+    "gaps": 0
+   },
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 199,
+    "visible_frames": 200,
+    "gaps": 0
+   },
+   {
+    "id": "2",
+    "first_frame": 195,
+    "last_frame": 197,
+    "visible_frames": 3,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 12504,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 200
+  },
+  "estimated_usd": 0.04,
+  "cleanup": "deleted",
+  "confidence_mean": 0.849
+ },
+ {
+  "exp_id": "v2vid-sand20s--box2-corr149",
+  "clip": "sanderlings-20s",
+  "prompt_mode": "spatial",
+  "prompt": null,
+  "direction": "both",
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 200,
+  "status": "completed",
+  "masks": 349,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 199,
+    "visible_frames": 149,
+    "gaps": 7
+   },
+   {
+    "id": "2",
+    "first_frame": 0,
+    "last_frame": 199,
+    "visible_frames": 200,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 22898,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 200
+  },
+  "estimated_usd": 0.04,
+  "cleanup": "deleted",
+  "confidence_mean": 0.849
+ },
+ {
+  "exp_id": "v2vid-van15--c-bird",
+  "clip": "vanellus-15fps",
+  "prompt_mode": "concept",
+  "prompt": "bird",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 208,
+  "status": "completed",
+  "masks": 291,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 207,
+    "visible_frames": 208,
+    "gaps": 0
+   },
+   {
+    "id": "3",
+    "first_frame": 125,
+    "last_frame": 207,
+    "visible_frames": 83,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 99615,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 208
+  },
+  "estimated_usd": 0.041600000000000005,
+  "cleanup": "deleted",
+  "confidence_mean": 0.905
+ },
+ {
+  "exp_id": "v2vid-van15--box-f0",
+  "clip": "vanellus-15fps",
+  "prompt_mode": "spatial",
+  "prompt": null,
+  "direction": "forward",
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 208,
+  "status": "completed",
+  "masks": 208,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 207,
+    "visible_frames": 208,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 92097,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 208
+  },
+  "estimated_usd": 0.041600000000000005,
+  "cleanup": "deleted",
+  "confidence_mean": 0.972
+ },
+ {
+  "exp_id": "v2vid-fernlong--c-green_plant",
+  "clip": "fern-long",
+  "prompt_mode": "concept",
+  "prompt": "green plant",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 250,
+  "status": "completed",
+  "masks": 278,
+  "no_mask_frames": 62,
+  "tracks": [
+   {
+    "id": "0",
+    "first_frame": 41,
+    "last_frame": 228,
+    "visible_frames": 123,
+    "gaps": 1
+   },
+   {
+    "id": "1",
+    "first_frame": 74,
+    "last_frame": 228,
+    "visible_frames": 155,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 94328,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 250
+  },
+  "estimated_usd": 0.05,
+  "cleanup": "deleted",
+  "confidence_mean": 0.704
+ },
+ {
+  "exp_id": "v2vid-fernlong--c-frond",
+  "clip": "fern-long",
+  "prompt_mode": "concept",
+  "prompt": "frond",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 250,
+  "status": "no_matches",
+  "masks": 0,
+  "no_mask_frames": 250,
+  "tracks": [],
+  "latency_ms": 12241,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 250
+  },
+  "estimated_usd": 0.05,
+  "cleanup": "deleted",
+  "confidence_mean": null
+ },
+ {
+  "exp_id": "v2vid-fernlong--c-tree_fern",
+  "clip": "fern-long",
+  "prompt_mode": "concept",
+  "prompt": "tree fern",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 250,
+  "status": "no_matches",
+  "masks": 0,
+  "no_mask_frames": 250,
+  "tracks": [],
+  "latency_ms": 13329,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 250
+  },
+  "estimated_usd": 0.05,
+  "cleanup": "deleted",
+  "confidence_mean": null
+ },
+ {
+  "exp_id": "v2vid-fernlong--c-leaf_cluster",
+  "clip": "fern-long",
+  "prompt_mode": "concept",
+  "prompt": "leaf cluster",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 250,
+  "status": "no_matches",
+  "masks": 0,
+  "no_mask_frames": 250,
+  "tracks": [],
+  "latency_ms": 12569,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 250
+  },
+  "estimated_usd": 0.05,
+  "cleanup": "deleted",
+  "confidence_mean": null
+ },
+ {
+  "exp_id": "v2vid-fungilong--c-mushroom",
+  "clip": "fungi-long",
+  "prompt_mode": "concept",
+  "prompt": "mushroom",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 300,
+  "status": "completed",
+  "masks": 600,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "0",
+    "first_frame": 0,
+    "last_frame": 299,
+    "visible_frames": 300,
+    "gaps": 0
+   },
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 299,
+    "visible_frames": 300,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 80722,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 300
+  },
+  "estimated_usd": 0.060000000000000005,
+  "cleanup": "deleted",
+  "confidence_mean": 0.928
+ },
+ {
+  "exp_id": "v2vid-fungilong--c-white_mushroom",
+  "clip": "fungi-long",
+  "prompt_mode": "concept",
+  "prompt": "white mushroom",
+  "direction": null,
+  "prepared_size": [
+   640,
+   360
+  ],
+  "frames": 300,
+  "status": "completed",
+  "masks": 422,
+  "no_mask_frames": 89,
+  "tracks": [
+   {
+    "id": "0",
+    "first_frame": 89,
+    "last_frame": 299,
+    "visible_frames": 211,
+    "gaps": 0
+   },
+   {
+    "id": "1",
+    "first_frame": 89,
+    "last_frame": 299,
+    "visible_frames": 211,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 39848,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 300
+  },
+  "estimated_usd": 0.060000000000000005,
+  "cleanup": "deleted",
+  "confidence_mean": 0.71
+ },
+ {
+  "exp_id": "v2vid-teros--box-f0",
+  "clip": "teros-640",
+  "prompt_mode": "spatial",
+  "prompt": null,
+  "direction": "both",
+  "prepared_size": [
+   640,
+   1164
+  ],
+  "frames": 100,
+  "status": "completed",
+  "masks": 100,
+  "no_mask_frames": 0,
+  "tracks": [
+   {
+    "id": "1",
+    "first_frame": 0,
+    "last_frame": 99,
+    "visible_frames": 100,
+    "gaps": 0
+   }
+  ],
+  "latency_ms": 20529,
+  "usage": {
+   "total_tokens": 0,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "video_frames_processed": 100
+  },
+  "estimated_usd": 0.02,
+  "cleanup": "deleted",
+  "confidence_mean": 0.961
+ }
+]

@@ -91,3 +91,9 @@ Abrir un resultado nunca vuelve a llamar a Meta.
    *C. espinosae*, recorte *C. hariotii*, conclusión «no concluyente».
 5. **Cierre.** SAM localiza y delimita; Muse sugiere; Bosque Vivo verifica y declara la
    incertidumbre.
+
+## Actualización 03-11-2026
+
+Las nuevas piezas (pitch, principal ampliado, técnico y vertical) y el guion narrativo están
+en [SAM31_FINAL_DEMO_PRODUCTION.md](SAM31_FINAL_DEMO_PRODUCTION.md). Las exportaciones de
+esta página no cambian.

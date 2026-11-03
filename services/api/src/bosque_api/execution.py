@@ -37,6 +37,10 @@ class ExecutionStore:
         it is checked in the same transaction, so concurrent callers cannot overrun it.
         """
         config = self.config
+        if owner == "sam-api-lab" and config.budget_lifetime_units > 1_000_000:
+            raise HTTPException(503, "Campaña de investigación requiere fase explícita")
+        if owner == "sam-api-lab:I" and (credit_snapshot is None or owner_cap_units is None):
+            raise HTTPException(503, "Fase I requiere autorización vigente y límite de fase")
         if not config.database_url.get_secret_value():
             raise HTTPException(503, "Control global de consumo no configurado")
         units = {

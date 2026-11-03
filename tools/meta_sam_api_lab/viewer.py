@@ -42,7 +42,7 @@ class RunRequest(BaseModel):
     include_confidence: bool = False
     parent_experiment_id: str | None = Field(default=None, max_length=64)
     correction_reason: str | None = Field(default=None, max_length=300)
-    phase: Literal["A", "B", "C", "D", "E", "F", "G", "H"] | None = None
+    phase: Literal["A", "B", "C", "D", "E", "F", "G", "H", "I"] | None = None
     experiment_note: str | None = Field(default=None, max_length=1000)
 
 
@@ -212,6 +212,12 @@ def create_viewer(
             return {"runs": []}
         scenes = showcase_scenes()
         runs = []
+        gallery_file = showcase_root / "gallery.json"
+        gallery = (
+            json.loads(gallery_file.read_text("utf-8"))
+            if gallery_file.is_file()
+            else {}
+        )
         for manifest in sorted((showcase_root / "runs").glob("*/result.json")):
             data = json.loads(manifest.read_text(encoding="utf-8"))
             scene = scenes.get(data.get("source_ref"), {})
@@ -224,6 +230,7 @@ def create_viewer(
                     "status": data["status"],
                     "masks": data.get("masks", 0),
                     "media": data["media"],
+                    "tag": (gallery.get(manifest.parent.name) or {}).get("tag"),
                 }
             )
         return {"runs": runs}
@@ -233,6 +240,16 @@ def create_viewer(
         path = showcase_run(identifier)
         data = json.loads((path / "result.json").read_text("utf-8"))
         scene = showcase_scenes().get(data.get("source_ref"), {})
+
+        def lookup(name):  # private campaign files written by the summarizers
+            path = showcase_root / name
+            return (
+                json.loads(path.read_text("utf-8")).get(identifier)
+                if path.is_file()
+                else None
+            )
+
+        metrics, editorial = lookup("metrics.json"), lookup("gallery.json")
         muse_file = showcase_root / "identification.json"
         muse = None
         if muse_file.is_file():
@@ -261,6 +278,8 @@ def create_viewer(
             **{k: v for k, v in data.items() if k in keep},
             "frames": data.get("frames", []),
             "muse": muse,
+            "metrics": metrics,
+            "editorial": editorial,
         }
 
     @app.get("/showcase-assets/{identifier}/{path:path}")
