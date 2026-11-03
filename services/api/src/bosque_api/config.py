@@ -37,3 +37,6 @@ class Settings(BaseSettings):
     observation_retention_days: int = Field(default=30, ge=1, le=365)
     raster_timeout_seconds: float = Field(default=15, gt=0, le=60)
     cors_origins: list[str] = ["http://localhost:3000"]
+    # When set (cloud), every request except /health must carry X-Bosque-Origin with this
+    # value. Only the Cloudflare Worker adds it, so the public run.app URL cannot bypass it.
+    origin_auth_token: SecretStr = Field(default=SecretStr(""), repr=False)

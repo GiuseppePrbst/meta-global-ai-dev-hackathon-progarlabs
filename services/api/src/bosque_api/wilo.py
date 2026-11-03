@@ -8,6 +8,7 @@ handshake frame, as the Meta realtime contract requires.
 
 import asyncio
 import json
+import secrets
 from functools import partial
 from time import perf_counter
 from typing import Annotated, Literal
@@ -388,6 +389,12 @@ def register_wilo_routes(app, config, landscape_context, repository, meta_client
     @app.websocket("/guide/voice/stream")
     async def voice_stream(ws: WebSocket):
         """Realtime push-to-talk proxy. Protocol in docs/WILO_API_CONTRACT.md."""
+        origin_token = config.origin_auth_token.get_secret_value()
+        if origin_token and not secrets.compare_digest(
+            ws.headers.get("x-bosque-origin", "").encode(), origin_token.encode()
+        ):
+            await ws.close(1008)
+            return
         await ws.accept()
         session = uuid4()
         correlation = str(uuid4())

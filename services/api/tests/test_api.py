@@ -181,3 +181,31 @@ def test_openapi_and_cors(client):
         headers={"Origin": "https://untrusted.example", "Access-Control-Request-Method": "POST"},
     )
     assert "access-control-allow-origin" not in response.headers
+
+
+def test_origin_token_blocks_direct_access_but_keeps_health_for_probes():
+    from fastapi.testclient import TestClient
+
+    from bosque_api.config import Settings
+    from bosque_api.main import create_app
+
+    client = TestClient(create_app(Settings(_env_file=None, origin_auth_token="worker-secret")))
+    assert client.get("/health").status_code == 200
+    assert client.get("/parks").status_code == 403
+    assert client.get("/parks", headers={"X-Bosque-Origin": "wrong"}).status_code == 403
+    assert client.get("/parks", headers={"X-Bosque-Origin": "worker-secret"}).status_code == 200
+    open_client = TestClient(create_app(Settings(_env_file=None)))
+    assert open_client.get("/parks").status_code == 200
+
+
+def test_origin_token_also_guards_the_websocket():
+    import pytest
+    from fastapi.testclient import TestClient
+    from starlette.websockets import WebSocketDisconnect
+
+    from bosque_api.config import Settings
+    from bosque_api.main import create_app
+
+    client = TestClient(create_app(Settings(_env_file=None, origin_auth_token="worker-secret")))
+    with pytest.raises(WebSocketDisconnect), client.websocket_connect("/guide/voice/stream") as ws:
+        ws.receive_json()
