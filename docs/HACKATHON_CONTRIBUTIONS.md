@@ -289,3 +289,14 @@ Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe
 - **Consumo de Meta.** Sin llamadas nuevas.
 - **Asistencia.** Claude (Anthropic) en una sesión local de Giuseppe.
 
+
+## Despliegue cloud: 03-11-2026 (rama `infra/bosque-vivo-gcp-cloudflare`)
+
+- **Código nuevo:**
+  - Dockerfile compatible con Cloud Run (`PORT`, `exec`);
+  - guardia `ORIGIN_AUTH_TOKEN` para HTTP y WebSocket, con 2 tests;
+  - Cloudflare Worker;
+  - `infra/gcp` (script, configuración de Cloud Build y variables no secretas).
+- **Cherry-picks de PR #35:** exposición de `Retry-After` en CORS y 422 ante PNG corrupto.
+- **Infraestructura creada** en el proyecto GCP `nice-carving-513619-t4`, con la cuenta de prueba gratuita: Cloud Run, Cloud SQL, VPC, secretos y presupuestos. En Cloudflare se agregaron solo el subdominio `api-bosquevivo` y una regla de límite de tasa para ese host.
+- **Asistencia:** agente Claude Code (Opus 5.5), bajo la supervisión de GiuseppePrbst. No se hicieron llamadas pagadas a Meta.

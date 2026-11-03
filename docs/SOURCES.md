@@ -201,3 +201,9 @@ límites en DATASET_LICENSES/DATA_GOVERNANCE; resultados agregados en META_SAM_A
 - [GBIF species API, nombres vernáculos en inglés](https://api.gbif.org/v1/species/): solo vocabulario de búsqueda y ASR (`resources/vernacular-en.json`).
 - [Commons 156105289](https://commons.wikimedia.org/wiki/File:Digue%C3%B1e_con_apotecios_formados.jpg) (digüeñe, CC BY-SA 4.0).
 - Meta: [speech-to-text](https://dev.meta.ai/docs/speech-to-text), [schemas](https://dev.meta.ai/docs/api-reference/voice/schemas), [transcribe](https://dev.meta.ai/docs/api-reference/voice/transcribe) y [pricing](https://dev.meta.ai/docs/pricing-rate-limits), consultados el 03-11. Límites observados en la API real: keywords de 30 caracteres o menos y 500 como máximo (ver [WILO_ASR_REAL_EVALUATION.md](WILO_ASR_REAL_EVALUATION.md)).
+
+## Despliegue cloud: consulta del 03-11-2026
+
+- Precios: Cloud Billing Catalog API (`cloudbilling.googleapis.com/v1/services/*/skus`, moneda CLP), con los SKU de Cloud SQL para PostgreSQL y de Cloud Run en `southamerica-west1` (Santiago).
+- Capacidades: tiers de Cloud SQL (`gcloud sql tiers list`) y políticas efectivas de la organización (`gcloud resource-manager org-policies describe --effective`).
+- Herramientas: Cloudflare Workers con dominios personalizados y reglas de límite de tasa (fase `http_ratelimit`, plan Free), desplegados con wrangler 4.146.0.
