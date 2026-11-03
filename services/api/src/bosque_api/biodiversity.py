@@ -409,6 +409,8 @@ class TaxonSummary(BaseModel):
     identification_status: CapabilityStatus
     sensitivity: Literal["none", "location_sensitive"]
     rce_park_regions: dict[str, str | None]
+    demo_status: str
+    collectible: bool
 
 
 class TaxonPage(BaseModel):
@@ -432,7 +434,12 @@ class ParkBiodiversity(BaseModel):
 
 
 def summary(taxon: Taxon) -> TaxonSummary:
+    from bosque_api.demo import eligibility
+
+    demo = eligibility(taxon)
     return TaxonSummary(
+        demo_status=demo.status,
+        collectible=demo.collectible,
         id=taxon.id,
         scientific_name=taxon.scientific_name,
         common_names=taxon.common_names,
@@ -451,6 +458,8 @@ def register_biodiversity_routes(app):
 
     from fastapi import HTTPException, Query
 
+    from bosque_api.demo import DemoEligibility, eligibility
+
     def find(taxon_id: str) -> Taxon:
         taxon = next((t for t in get_taxa() if t.id == taxon_id), None)
         if taxon is None:
@@ -465,6 +474,7 @@ def register_biodiversity_routes(app):
         evidence_type: EvidenceType | None = None,
         identification_status: CapabilityStatus | None = None,
         rce_category: Annotated[str | None, Query(pattern=r"^[A-Z]{2}$")] = None,
+        demo_only: bool = False,
         limit: Annotated[int, Query(ge=1, le=100)] = 50,
         offset: Annotated[int, Query(ge=0, le=10000)] = 0,
     ):
@@ -480,6 +490,7 @@ def register_biodiversity_routes(app):
             and (evidence_type is None or evidence_type in s.evidence_types)
             and (identification_status is None or s.identification_status == identification_status)
             and (rce_category is None or rce_category in s.rce_park_regions.values())
+            and (not demo_only or s.demo_status == "demo_ready")
         ]
         return TaxonPage(
             items=items[offset : offset + limit], total=len(items), limit=limit, offset=offset
@@ -488,6 +499,11 @@ def register_biodiversity_routes(app):
     @app.get("/taxa/{taxon_id}", response_model=Taxon)
     def taxon_detail(taxon_id: str):
         return find(taxon_id)
+
+    @app.get("/taxa/{taxon_id}/eligibility", response_model=DemoEligibility)
+    def taxon_eligibility(taxon_id: str):
+        """Demo layer: `demo_ready` only when the minimum profile requirements hold."""
+        return eligibility(find(taxon_id))
 
     @app.get("/taxa/{taxon_id}/conservation", response_model=RegionalConservation)
     def taxon_conservation(taxon_id: str, region: Region | None = None):

@@ -193,3 +193,11 @@ límites en DATASET_LICENSES/DATA_GOVERNANCE; resultados agregados en META_SAM_A
 - [SIT CONAF](https://sit.conaf.cl/): sin capa de senderos documentada; «todos los derechos reservados».
 - [IDE MMA Biodiversidad](https://arcgis.mma.gob.cl/server/rest/services/IDE/Biodiversidad_IDE/MapServer): requiere token; no usado.
 - Secundarias: [parquenacionalpuyehue.cl](https://parquenacionalpuyehue.cl/actividades-experiencia/) (seis candidatos de sendero, conflicto de superficie) y [parquesnacionaleschilenos.cl](https://parquesnacionaleschilenos.cl/) (directorio).
+
+## Wilo y enriquecimiento del catálogo — consulta 03-11-2026
+
+- Fichas MMA de especie clasificada (RCE), PDF de 2019: [*Dromiciops gliroides*](https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Dromiciops_glirioides_P07.pdf), [*Leopardus guigna*](https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Leopardus_guigna_P07.pdf) y [*Puma concolor*](https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Puma_concolor_P07.pdf).
+- [Fundación R. A. Philippi, catálogo de flora](https://fundacionphilippi.cl/catalogo/) (ulmo, olivillo, tineo, tepa, mañío y coigüe de Magallanes), [UdeC Flora y fauna](https://florayfauna.udec.cl/nothofagus-dombeyi-mirb-oerst/) y [SIB Argentina](https://sib.gob.ar/especies/nothofagus-pumilio).
+- [GBIF species API, nombres vernáculos en inglés](https://api.gbif.org/v1/species/): solo vocabulario de búsqueda y ASR (`resources/vernacular-en.json`).
+- [Commons 156105289](https://commons.wikimedia.org/wiki/File:Digue%C3%B1e_con_apotecios_formados.jpg) (digüeñe, CC BY-SA 4.0).
+- Meta: [speech-to-text](https://dev.meta.ai/docs/speech-to-text), [schemas](https://dev.meta.ai/docs/api-reference/voice/schemas), [transcribe](https://dev.meta.ai/docs/api-reference/voice/transcribe) y [pricing](https://dev.meta.ai/docs/pricing-rate-limits), consultados el 03-11. Límites observados en la API real: keywords de 30 caracteres o menos y 500 como máximo (ver [WILO_ASR_REAL_EVALUATION.md](WILO_ASR_REAL_EVALUATION.md)).

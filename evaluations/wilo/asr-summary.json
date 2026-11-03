@@ -1,0 +1,386 @@
+{
+ "schema_version": "1.0.0",
+ "model": "muse-voice-transcribe-1.0",
+ "audio": "synthetic TTS (Windows Helena es-ES, Sabina es-MX)",
+ "requests": 208,
+ "audio_seconds": 743.1,
+ "estimated_cost_usd": 0.0371,
+ "conditions": {
+  "helena_kw_es": {
+   "requests": 28,
+   "completed": 28,
+   "errors": 0,
+   "wer_mean": 0.0609,
+   "cer_mean": 0.0463,
+   "term_accuracy_loose": 0.9583,
+   "term_accuracy_exact": 0.8958,
+   "latency_ms_median": 1800.3,
+   "audio_seconds": 97.2,
+   "turns": null,
+   "first_partial_ms_median": null,
+   "final_after_end_ms_median": null
+  },
+  "helena_kw_nobias": {
+   "requests": 28,
+   "completed": 28,
+   "errors": 0,
+   "wer_mean": 0.0704,
+   "cer_mean": 0.0357,
+   "term_accuracy_loose": 0.9167,
+   "term_accuracy_exact": 0.8542,
+   "latency_ms_median": 1765.4,
+   "audio_seconds": 97.2,
+   "turns": null,
+   "first_partial_ms_median": null,
+   "final_after_end_ms_median": null
+  },
+  "helena_noise10_kw_es": {
+   "requests": 28,
+   "completed": 28,
+   "errors": 0,
+   "wer_mean": 0.0626,
+   "cer_mean": 0.0407,
+   "term_accuracy_loose": 0.8958,
+   "term_accuracy_exact": 0.8333,
+   "latency_ms_median": 1884.2,
+   "audio_seconds": 97.2,
+   "turns": null,
+   "first_partial_ms_median": null,
+   "final_after_end_ms_median": null
+  },
+  "helena_noise10_nokw_es": {
+   "requests": 28,
+   "completed": 28,
+   "errors": 0,
+   "wer_mean": 0.2231,
+   "cer_mean": 0.0888,
+   "term_accuracy_loose": 0.5208,
+   "term_accuracy_exact": 0.4167,
+   "latency_ms_median": 1700.8,
+   "audio_seconds": 97.2,
+   "turns": null,
+   "first_partial_ms_median": null,
+   "final_after_end_ms_median": null
+  },
+  "helena_nokw_es": {
+   "requests": 28,
+   "completed": 28,
+   "errors": 0,
+   "wer_mean": 0.1828,
+   "cer_mean": 0.0762,
+   "term_accuracy_loose": 0.625,
+   "term_accuracy_exact": 0.5,
+   "latency_ms_median": 1771.2,
+   "audio_seconds": 97.2,
+   "turns": null,
+   "first_partial_ms_median": null,
+   "final_after_end_ms_median": null
+  },
+  "helena_nokw_nobias": {
+   "requests": 28,
+   "completed": 28,
+   "errors": 0,
+   "wer_mean": 0.1701,
+   "cer_mean": 0.0702,
+   "term_accuracy_loose": 0.5833,
+   "term_accuracy_exact": 0.4583,
+   "latency_ms_median": 1758.6,
+   "audio_seconds": 97.2,
+   "turns": null,
+   "first_partial_ms_median": null,
+   "final_after_end_ms_median": null
+  },
+  "pauses_endpointing": {
+   "requests": 1,
+   "completed": 1,
+   "errors": 0,
+   "wer_mean": 0.1111,
+   "cer_mean": 0.075,
+   "term_accuracy_loose": 1.0,
+   "term_accuracy_exact": 1.0,
+   "latency_ms_median": 2475.4,
+   "audio_seconds": 5.9,
+   "turns": [
+    2
+   ],
+   "first_partial_ms_median": null,
+   "final_after_end_ms_median": null
+  },
+  "pauses_push_to_talk": {
+   "requests": 1,
+   "completed": 1,
+   "errors": 0,
+   "wer_mean": 0.0,
+   "cer_mean": 0.0,
+   "term_accuracy_loose": 1.0,
+   "term_accuracy_exact": 1.0,
+   "latency_ms_median": 2321.4,
+   "audio_seconds": 5.9,
+   "turns": [
+    0
+   ],
+   "first_partial_ms_median": null,
+   "final_after_end_ms_median": null
+  },
+  "realtime_kw_es": {
+   "requests": 8,
+   "completed": 8,
+   "errors": 0,
+   "wer_mean": 0.0208,
+   "cer_mean": 0.0,
+   "term_accuracy_loose": 0.9286,
+   "term_accuracy_exact": 0.8571,
+   "latency_ms_median": null,
+   "audio_seconds": 30.4,
+   "turns": null,
+   "first_partial_ms_median": 1303.4,
+   "final_after_end_ms_median": 192.2
+  },
+  "sabina_kw_es": {
+   "requests": 28,
+   "completed": 28,
+   "errors": 0,
+   "wer_mean": 0.0863,
+   "cer_mean": 0.0578,
+   "term_accuracy_loose": 0.875,
+   "term_accuracy_exact": 0.8333,
+   "latency_ms_median": 1811.3,
+   "audio_seconds": 100.3,
+   "turns": null,
+   "first_partial_ms_median": null,
+   "final_after_end_ms_median": null
+  },
+  "two_turns_endpointing": {
+   "requests": 1,
+   "completed": 1,
+   "errors": 0,
+   "wer_mean": 0.1333,
+   "cer_mean": 0.125,
+   "term_accuracy_loose": 0.6667,
+   "term_accuracy_exact": 0.6667,
+   "latency_ms_median": 3014.9,
+   "audio_seconds": 8.7,
+   "turns": [
+    2
+   ],
+   "first_partial_ms_median": null,
+   "final_after_end_ms_median": null
+  },
+  "two_turns_push_to_talk": {
+   "requests": 1,
+   "completed": 1,
+   "errors": 0,
+   "wer_mean": 0.0,
+   "cer_mean": 0.0,
+   "term_accuracy_loose": 1.0,
+   "term_accuracy_exact": 1.0,
+   "latency_ms_median": 2257.5,
+   "audio_seconds": 8.7,
+   "turns": [
+    0
+   ],
+   "first_partial_ms_median": null,
+   "final_after_end_ms_median": null
+  }
+ },
+ "wer_by_category_helena_kw_es": {
+  "chilean": 0.0,
+  "conservation": 0.0,
+  "fungi": 0.3333,
+  "long": 0.1024,
+  "map": 0.0,
+  "multi_species": 0.0833,
+  "pauses_correction": 0.0,
+  "regional_names": 0.1667,
+  "scientific": 0.0903,
+  "sensitive": 0.1818,
+  "simple": 0.0,
+  "trail": 0.0312,
+  "trail_status": 0.0
+ },
+ "missed_terms_kw_es": {
+  "hued-hued": 2,
+  "tepas": 2,
+  "llao-llao": 1,
+  "tineos": 1,
+  "mañíos": 1,
+  "Villarrica": 1
+ },
+ "examples": [
+  {
+   "phrase": "p01",
+   "condition": "helena_nokw_es",
+   "reference": "Hola Wilo, ¿qué árboles puedo encontrar en Puyehue?",
+   "transcript": "Hola Willow, ¿qué árboles puedo encontrar en Pueye?",
+   "wer": 0.25
+  },
+  {
+   "phrase": "p01",
+   "condition": "helena_nokw_nobias",
+   "reference": "Hola Wilo, ¿qué árboles puedo encontrar en Puyehue?",
+   "transcript": "Hola Willow, qué árboles puedo encontrar en Puebla?",
+   "wer": 0.25
+  },
+  {
+   "phrase": "p01",
+   "condition": "helena_noise10_nokw_es",
+   "reference": "Hola Wilo, ¿qué árboles puedo encontrar en Puyehue?",
+   "transcript": "Hola Willow, ¿qué árboles puedo encontrar en Cuyehue?",
+   "wer": 0.25
+  },
+  {
+   "phrase": "p04",
+   "condition": "helena_nokw_es",
+   "reference": "Muéstrame un mapa del Parque Nacional Conguillío.",
+   "transcript": "Muéstrame un mapa del Parque Nacional con guillío.",
+   "wer": 0.2857142857142857
+  },
+  {
+   "phrase": "p04",
+   "condition": "helena_nokw_nobias",
+   "reference": "Muéstrame un mapa del Parque Nacional Conguillío.",
+   "transcript": "Muéstrame un mapa del Parque Nacional con guillo.",
+   "wer": 0.2857142857142857
+  },
+  {
+   "phrase": "p04",
+   "condition": "helena_noise10_nokw_es",
+   "reference": "Muéstrame un mapa del Parque Nacional Conguillío.",
+   "transcript": "Muéstrame un un mapa del parque nacional con",
+   "wer": 0.2857142857142857
+  },
+  {
+   "phrase": "p06",
+   "condition": "helena_kw_es",
+   "reference": "¿Qué es el hongo llao-llao?",
+   "transcript": "qué es el hongo Llaollao? llaollao",
+   "wer": 0.3333333333333333
+  },
+  {
+   "phrase": "p06",
+   "condition": "helena_nokw_es",
+   "reference": "¿Qué es el hongo llao-llao?",
+   "transcript": "¿Qué es el hongo yao yao?",
+   "wer": 0.3333333333333333
+  },
+  {
+   "phrase": "p06",
+   "condition": "sabina_kw_es",
+   "reference": "¿Qué es el hongo llao-llao?",
+   "transcript": "que es el hongo llaollao",
+   "wer": 0.3333333333333333
+  },
+  {
+   "phrase": "p06",
+   "condition": "helena_kw_nobias",
+   "reference": "¿Qué es el hongo llao-llao?",
+   "transcript": "¿Qué es el hongo Llaollao?",
+   "wer": 0.3333333333333333
+  },
+  {
+   "phrase": "p06",
+   "condition": "helena_nokw_nobias",
+   "reference": "¿Qué es el hongo llao-llao?",
+   "transcript": "¿Qué es el hongo yao yao?",
+   "wer": 0.3333333333333333
+  },
+  {
+   "phrase": "p06",
+   "condition": "helena_noise10_kw_es",
+   "reference": "¿Qué es el hongo llao-llao?",
+   "transcript": "qué es el Hongo de Gay?",
+   "wer": 0.3333333333333333
+  },
+  {
+   "phrase": "p06",
+   "condition": "helena_noise10_nokw_es",
+   "reference": "¿Qué es el hongo llao-llao?",
+   "transcript": "¿Qué es el hongo yao yao?",
+   "wer": 0.3333333333333333
+  },
+  {
+   "phrase": "p12",
+   "condition": "helena_kw_es",
+   "reference": "¿Qué es Nothofagus dombeyi?",
+   "transcript": "¿Qué es Nothofagus dombeyi? dombeyi?",
+   "wer": 0.25
+  },
+  {
+   "phrase": "p12",
+   "condition": "helena_nokw_es",
+   "reference": "¿Qué es Nothofagus dombeyi?",
+   "transcript": "¿Qué es Notophagus don belli?",
+   "wer": 0.75
+  },
+  {
+   "phrase": "p12",
+   "condition": "helena_nokw_nobias",
+   "reference": "¿Qué es Nothofagus dombeyi?",
+   "transcript": "¿Qué es Notophagus Don Veggi?",
+   "wer": 0.75
+  },
+  {
+   "phrase": "p12",
+   "condition": "helena_noise10_nokw_es",
+   "reference": "¿Qué es Nothofagus dombeyi?",
+   "transcript": "¿Qué es noto fabus don baby?",
+   "wer": 1.0
+  },
+  {
+   "phrase": "p13",
+   "condition": "helena_nokw_es",
+   "reference": "¿Dónde crece Laureliopsis philippiana?",
+   "transcript": "donde crece el aureliopsis filippiana.",
+   "wer": 0.75
+  },
+  {
+   "phrase": "p13",
+   "condition": "helena_kw_nobias",
+   "reference": "¿Dónde crece Laureliopsis philippiana?",
+   "transcript": "donde crece el Laureliopsis philippiana.",
+   "wer": 0.25
+  },
+  {
+   "phrase": "p13",
+   "condition": "helena_nokw_nobias",
+   "reference": "¿Dónde crece Laureliopsis philippiana?",
+   "transcript": "donde crece la Aureliopsis philippiana.",
+   "wer": 0.5
+  },
+  {
+   "phrase": "p13",
+   "condition": "helena_noise10_nokw_es",
+   "reference": "¿Dónde crece Laureliopsis philippiana?",
+   "transcript": "¿Dónde crece el el aureliopsis filiciana?",
+   "wer": 1.0
+  },
+  {
+   "phrase": "p15",
+   "condition": "helena_noise10_kw_es",
+   "reference": "¿Qué aves viven en Antillanca y Aguas Calientes?",
+   "transcript": "Cada vez viven en Antillanca y Aguas Calientes.",
+   "wer": 0.25
+  },
+  {
+   "phrase": "p15",
+   "condition": "helena_noise10_nokw_es",
+   "reference": "¿Qué aves viven en Antillanca y Aguas Calientes?",
+   "transcript": "que a veces viven en Antillanca y Aguascalientes.",
+   "wer": 0.5
+  },
+  {
+   "phrase": "p16",
+   "condition": "helena_nokw_es",
+   "reference": "Wilo, ¿el chercán y el hued-hued viven en el mismo bosque?",
+   "transcript": "Willow el cercan y el viven en el mismo bosque.",
+   "wer": 0.3333333333333333
+  },
+  {
+   "phrase": "p16",
+   "condition": "helena_kw_nobias",
+   "reference": "Wilo, ¿el chercán y el hued-hued viven en el mismo bosque?",
+   "transcript": "Wilo, el chercán y el Huedhued viven en el mismo bosque. bosque.",
+   "wer": 0.25
+  }
+ ]
+}

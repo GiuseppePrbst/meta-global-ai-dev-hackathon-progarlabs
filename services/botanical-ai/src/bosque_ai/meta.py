@@ -294,6 +294,16 @@ class MetaResponsesClient:
                     raise TypeError("Invalid envelope")
                 self.record_usage(body.get("usage"))
                 return body
+        except httpx.HTTPStatusError as exc:
+            status = exc.response.status_code
+            if status in (429, 500, 503):
+                retry = exc.response.headers.get("retry-after", "")
+                raise MetaRetryableError(
+                    "Proveedor Meta saturado o no disponible",
+                    status,
+                    float(retry) if retry.replace(".", "", 1).isdigit() else None,
+                ) from None
+            raise MetaAPIError("Proveedor Meta rechazó la solicitud") from None
         except (httpx.HTTPError, TimeoutError, ValueError, TypeError):
             raise MetaAPIError(
                 "Proveedor Meta no disponible o respuesta inválida"

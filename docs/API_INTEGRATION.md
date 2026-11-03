@@ -532,3 +532,24 @@ campos existentes de `Taxon` no cambian. Ver [MEDIA_LIBRARY_ARCHITECTURE.md](MED
 Ver también los requisitos de medios y la evidencia ampliada de SAM:
 [SAM31_EXTENDED_RESEARCH_REPORT.md](SAM31_EXTENDED_RESEARCH_REPORT.md) y
 [SAM31_MEDIA_REQUIREMENTS.md](SAM31_MEDIA_REQUIREMENTS.md) (03-11-2026).
+
+## Wilo: voz bilingüe, Knowledge Atlas y parques (03-11-2026)
+
+Todo es aditivo; `GET /parks/puyehue/biodiversity` y las rutas de guía existentes se conservan.
+
+- **Nuevas rutas.**
+  - `POST /guide/ask` (audio o texto).
+  - `WS /guide/voice/stream`.
+  - `GET /parks`, `/parks/{id}`, `/parks/{id}/trails`, `/parks/{id}/map`.
+  - `GET /trails/{id}`, `/knowledge/status`, `/knowledge/search`.
+  - `GET /taxa/{id}/eligibility`.
+- **Parámetros nuevos.**
+  - `language_hint` en `/guide/transcribe` y `/guide/ask`.
+  - `demo_only` en `/taxa`.
+- **Campos aditivos.**
+  - `GuideAnswer`: `claims`, `speech_text`, `entities`, `map` y `knowledge_version`.
+  - `TaxonSummary`: `demo_status` y `collectible`.
+- **Herramientas.** `get_park_context` (solo Puyehue), `get_verified_trail_information` (stub) y `get_public_species_observations` (stub) se reemplazan por herramientas del Atlas; ver [WILO_KNOWLEDGE_ARCHITECTURE.md](WILO_KNOWLEDGE_ARCHITECTURE.md).
+- **Configuración.** `META_TIMEOUT_SECONDS=90`, porque las respuestas de Wilo tardan 20–37 s.
+
+Contrato completo para José: [WILO_VOICE_API_HANDOFF.md](WILO_VOICE_API_HANDOFF.md). Evaluación: [WILO_ASR_REAL_EVALUATION.md](WILO_ASR_REAL_EVALUATION.md), [WILO_DEMO_SCENARIOS.md](WILO_DEMO_SCENARIOS.md) y [WILO_VOICE_TEST_REPORT.md](WILO_VOICE_TEST_REPORT.md).

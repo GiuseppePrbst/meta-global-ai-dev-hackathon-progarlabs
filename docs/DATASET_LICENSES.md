@@ -238,3 +238,13 @@ Las fotos propias no entran en ninguna colección de evaluación ni de benchmark
 | 46 fichas CONAF de parques nacionales | Campos factuales breves (superficie, provincias, comunas, horarios, acceso, senderos) en `data/public/conaf/` | Sitio público CONAF, atribución; no se copian descripciones, fotos ni mapas | Sí, solo hechos estructurados y oraciones cortas de condiciones; correos y teléfonos eliminados | Extracción revisada por un agente contra cada ficha; no es verificación en terreno |
 | BCN SNASPE (`Snaspe.zip`) | Encuadre WGS84 por parque (`park_bbox_bcn.json`) | Libre uso con atribución BCN; referencial | Solo bbox de geometrías válidas; polígonos no | 33/46 parques; edición anterior a parques recientes |
 | parquenacionalpuyehue.cl, parquesnacionaleschilenos.cl | Candidatos y conflictos (`secondary_sources.json`) | Sin términos publicados; «© 2026» | Solo hechos breves y enlaces | Fuente turística independiente, nunca sobre CONAF |
+
+## Wilo — 03-11-2026
+
+| Recurso | Uso | Derechos | ¿Redistribuido? | Validación |
+| --- | --- | --- | --- | --- |
+| Fichas MMA, Philippi, UdeC y SIB | Resúmenes breves redactados por el agente en `taxa.json`, con su URL | Sitios públicos, con atribución | Solo hechos breves con enlace | Revisión del agente; no es validación de especialista |
+| Nombres vernáculos GBIF | Términos de búsqueda y ASR | Datos abiertos de GBIF, según su fuente | Sí, como lista de nombres | No se muestran como datos validados |
+| Commons 156105289 | Foto del digüeñe | CC BY-SA 4.0, Nanilution | Enlace y atribución | Revisión visual del agente |
+| 79 grabaciones reales de voz (paquete privado del 03-11) | Evaluación de ASR y de extremo a extremo con Meta | Voces propias o con consentimiento; el propietario aprobó el envío a Meta en el chat del 03-11 | **No.** Ni audios, ni transcripciones por clip, ni la hoja de alineación | Solo se versionan métricas agregadas |
+| Audio TTS sintético (voces de Windows) | Base de comparación | Generado localmente; frases sin datos personales | No | — |

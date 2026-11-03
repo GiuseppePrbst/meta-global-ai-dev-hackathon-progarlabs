@@ -148,7 +148,7 @@ def test_mock_voice_is_explicit_and_never_invents_transcription():
     [
         ("delete_observations", {}),
         ("get_user_capture_progress", {"user_id": "bob"}),
-        ("get_species_profile", {"species_id": "invented"}),
+        ("get_taxon_profile", {"taxon_id": "invented"}),
         ("get_forest_context", {"area_id": "arbitrary-private-area"}),
     ],
 )
@@ -159,7 +159,7 @@ def test_tool_allowlist_and_identity_arguments(name, args):
 
 def test_new_meta_operations_require_budget_before_audio_decode(monkeypatch):
     monkeypatch.setattr(
-        "bosque_api.expedition_routes.prepare_audio",
+        "bosque_api.wilo.prepare_audio",
         lambda *a: pytest.fail("Decoded without budget"),
     )
     client = TestClient(
@@ -490,8 +490,8 @@ def test_voice_guide_http_with_real_ledger_and_mocked_meta(database, monkeypatch
                         "id": "one",
                         "type": "function",
                         "function": {
-                            "name": "get_species_profile",
-                            "arguments": '{"species_id":"nothofagus-dombeyi"}',
+                            "name": "get_taxon_profile",
+                            "arguments": '{"taxon_id":"nothofagus-dombeyi"}',
                         },
                     }
                 ]
@@ -502,7 +502,14 @@ def test_voice_guide_http_with_real_ledger_and_mocked_meta(database, monkeypatch
                 "content": json.dumps(
                     {
                         "answer": "Nombre: Nothofagus dombeyi.",
-                        "source_ids": ["species:nothofagus-dombeyi"],
+                        "speech_text": "Nombre: Nothofagus dombeyi.",
+                        "claims": [
+                            {
+                                "text": "Nombre: Nothofagus dombeyi.",
+                                "source_ids": ["taxon:nothofagus-dombeyi:0"],
+                            }
+                        ],
+                        "source_ids": ["taxon:nothofagus-dombeyi:0"],
                         "insufficient_evidence": False,
                     }
                 )
@@ -556,8 +563,8 @@ def test_voice_guide_http_with_real_ledger_and_mocked_meta(database, monkeypatch
         },
     )
     assert answer.status_code == 200, answer.text
-    assert answer.json()["tools_used"] == ["get_species_profile"]
-    assert answer.json()["sources"][0]["scope"] == "taxonomy_only"
+    assert answer.json()["tools_used"] == ["get_taxon_profile"]
+    assert answer.json()["sources"][0]["scope"] == "official"
     assert len(requests) == 3
     with pytest.raises(HTTPException) as budget:
         ExecutionStore(settings).reserve("alice", "guide")
