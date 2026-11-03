@@ -1,0 +1,126 @@
+{
+ "schema_version": "1.0.0",
+ "note": "Capa de elegibilidad para la demo; no modifica registros científicos ni RCE.",
+ "taxa": {
+  "nothofagus-dombeyi": {
+   "decision": "demo_ready",
+   "reason": "Ficha completa: taxonomía GBIF/COL, rasgos con fuente, descripción y distribución de ficha botánica, fotos con licencia. Reconocimiento por foto sigue experimental o candidato.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "eucryphia-cordifolia": {
+   "decision": "demo_ready",
+   "reason": "Ficha completa: taxonomía GBIF/COL, rasgos con fuente, descripción y distribución de ficha botánica, fotos con licencia. Reconocimiento por foto sigue experimental o candidato.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "aextoxicon-punctatum": {
+   "decision": "demo_ready",
+   "reason": "Ficha completa: taxonomía GBIF/COL, rasgos con fuente, descripción y distribución de ficha botánica, fotos con licencia. Reconocimiento por foto sigue experimental o candidato.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "weinmannia-trichosperma": {
+   "decision": "demo_ready",
+   "reason": "Ficha completa: taxonomía GBIF/COL, rasgos con fuente, descripción y distribución de ficha botánica, fotos con licencia. Reconocimiento por foto sigue experimental o candidato.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "laureliopsis-philippiana": {
+   "decision": "demo_ready",
+   "reason": "Ficha completa: taxonomía GBIF/COL, rasgos con fuente, descripción y distribución de ficha botánica, fotos con licencia. Reconocimiento por foto sigue experimental o candidato.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "podocarpus-nubigenus": {
+   "decision": "demo_ready",
+   "reason": "Ficha completa: taxonomía GBIF/COL, rasgos con fuente, descripción y distribución de ficha botánica, fotos con licencia. Reconocimiento por foto sigue experimental o candidato.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "nothofagus-betuloides": {
+   "decision": "demo_ready",
+   "reason": "Ficha completa: taxonomía GBIF/COL, rasgos con fuente, descripción y distribución de ficha botánica, fotos con licencia. Reconocimiento por foto sigue experimental o candidato.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "nothofagus-pumilio": {
+   "decision": "demo_ready",
+   "reason": "Ficha completa: taxonomía GBIF/COL, rasgos con fuente, descripción y distribución de ficha botánica, fotos con licencia. Reconocimiento por foto sigue experimental o candidato.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "enicognathus-leptorhynchus": {
+   "decision": "demo_ready",
+   "reason": "Descripción, hábitat, distribución y rasgos de fuente secundaria; presencia oficial en Puyehue; fotos con licencia.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "campephilus-magellanicus": {
+   "decision": "demo_ready",
+   "reason": "Ficha completa; especie sensible por nidos: visible pero no coleccionable ni con ubicaciones.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "pteroptochos-tarnii": {
+   "decision": "demo_ready",
+   "reason": "Ficha completa de fuente secundaria; presencia oficial en Puyehue.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "troglodytes-aedon": {
+   "decision": "demo_ready",
+   "reason": "Ficha completa; discrepancia taxonómica T. aedon / T. musculus documentada y mostrada como limitación.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "theristicus-melanopis": {
+   "decision": "demo_ready",
+   "reason": "Ficha completa; CONAF escribe T. caudatus y el RCE lo trata como sinónimo: discrepancia documentada.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "dromiciops-gliroides": {
+   "decision": "educational_only",
+   "reason": "Ficha MMA oficial suficiente para contenido educativo; especie sensible: nunca objetivo de captura ni reconocimiento.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "leopardus-guigna": {
+   "decision": "educational_only",
+   "reason": "Ficha MMA oficial suficiente para contenido educativo; categoría RCE distinta por región; sin ubicaciones.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "puma-concolor": {
+   "decision": "educational_only",
+   "reason": "Ficha MMA oficial suficiente para contenido educativo; sin ubicaciones ni orientación de búsqueda.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "cyttaria-hariotii": {
+   "decision": "educational_only",
+   "reason": "Fuentes secundarias y separación visual de C. darwinii no confiable: ficha educativa, sin consejos de consumo.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "cyttaria-espinosae": {
+   "decision": "educational_only",
+   "reason": "Fuente secundaria; identificación entre especies de Cyttaria no fiable (campaña SAM/Muse 02-11); sin consejos de consumo.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "boletus-chilensis": {
+   "decision": "excluded_from_demo",
+   "reason": "Sin descripción, hábitat, rasgos, fuentes revisadas ni fotos: no alcanza una ficha honesta.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  },
+  "amanita-gayana": {
+   "decision": "excluded_from_demo",
+   "reason": "Taxonomía no resuelta (COL XR solo resuelve el género) y sin perfil ni fotos.",
+   "reviewed_by": "Claude Opus 5.5 (agente) para Giuseppe Proboste; no es validación de especialista",
+   "reviewed_at": "2026-11-03"
+  }
+ }
+}

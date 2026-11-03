@@ -16,7 +16,7 @@
    "notes": "Nombre, familia, género, sinonimia y rasgos se derivan de species.json (sin duplicar)."
   },
   "profile": {
-   "description": null,
+   "description": "Árbol siempreverde de la familia Nothofagaceae que puede alcanzar unos 40 m de altura; nativo de Chile y Argentina.",
    "habitat": "Ambiente en Puyehue según CONAF: Bajo y alto; domina en altura.",
    "ecology": null,
    "distribution": null,
@@ -26,11 +26,17 @@
      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
      "accessed_at": "2026-10-31",
      "kind": "official"
+    },
+    {
+     "title": "Universidad de Concepción, Flora y fauna, «Nothofagus dombeyi»",
+     "url": "https://florayfauna.udec.cl/nothofagus-dombeyi-mirb-oerst/",
+     "accessed_at": "2026-11-03",
+     "kind": "scientific"
     }
    ],
    "limitations": [
-    "Descripción y ecología pendientes de fuente revisada.",
-    "El ambiente no ubica individuos."
+    "El ambiente no ubica individuos.",
+    "Descripción y distribución de una ficha botánica general; no ubican individuos."
    ],
    "review_status": "draft_sourced"
   },
@@ -113,21 +119,27 @@
    "notes": "Nombre, familia, género, sinonimia y rasgos se derivan de species.json (sin duplicar)."
   },
   "profile": {
-   "description": null,
+   "description": "Árbol de hasta 25 m, de hojas coriáceas opuestas y flores blancas solitarias que aparecen entre enero y marzo.",
    "habitat": "Ambiente en Puyehue según CONAF: Sectores bajos.",
-   "ecology": null,
-   "distribution": null,
+   "ecology": "Muy melífero; no forma bosques puros. Su cápsula leñosa tarda unos 14 meses en madurar.",
+   "distribution": "Regiones del Biobío, La Araucanía, Los Ríos y Los Lagos.",
    "sources": [
     {
      "title": "CONAF, ficha Parque Nacional Puyehue",
      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
      "accessed_at": "2026-10-31",
      "kind": "official"
+    },
+    {
+     "title": "Fundación R. A. Philippi, catálogo de flora nativa, «Eucryphia cordifolia»",
+     "url": "https://fundacionphilippi.cl/catalogo/eucryphia-cordifolia/",
+     "accessed_at": "2026-11-03",
+     "kind": "secondary"
     }
    ],
    "limitations": [
-    "Descripción y ecología pendientes de fuente revisada.",
-    "El ambiente no ubica individuos."
+    "El ambiente no ubica individuos.",
+    "Descripción y distribución de una ficha botánica general; no ubican individuos."
    ],
    "review_status": "draft_sourced"
   },
@@ -210,21 +222,27 @@
    "notes": "Nombre, familia, género, sinonimia y rasgos se derivan de species.json (sin duplicar)."
   },
   "profile": {
-   "description": null,
-   "habitat": "Ambiente en Puyehue según CONAF: Sectores bajos.",
-   "ecology": null,
-   "distribution": null,
+   "description": "Árbol siempreverde y dioico de unos 20 m, de tronco grueso y corteza casi lisa.",
+   "habitat": "Ambiente en Puyehue según CONAF: Sectores bajos. General: Desde la costa hasta la precordillera andina.",
+   "ecology": "Florece en otoño; su fruto es una drupa violácea de unos 10 mm. En el norte de su distribución forma bosques relictos.",
+   "distribution": "De la Región de Coquimbo a la de Los Lagos.",
    "sources": [
     {
      "title": "CONAF, ficha Parque Nacional Puyehue",
      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
      "accessed_at": "2026-10-31",
      "kind": "official"
+    },
+    {
+     "title": "Fundación R. A. Philippi, catálogo de flora nativa, «Aextoxicon punctatum»",
+     "url": "https://fundacionphilippi.cl/catalogo/aextoxicon-punctatum/",
+     "accessed_at": "2026-11-03",
+     "kind": "secondary"
     }
    ],
    "limitations": [
-    "Descripción y ecología pendientes de fuente revisada.",
-    "El ambiente no ubica individuos."
+    "El ambiente no ubica individuos.",
+    "Descripción y distribución de una ficha botánica general; no ubican individuos."
    ],
    "review_status": "draft_sourced"
   },
@@ -307,21 +325,27 @@
    "notes": "Nombre, familia, género, sinonimia y rasgos se derivan de species.json (sin duplicar)."
   },
   "profile": {
-   "description": null,
-   "habitat": "Ambiente en Puyehue según CONAF: Sectores bajos.",
-   "ecology": null,
-   "distribution": null,
+   "description": "Árbol nativo de Chile de hasta 30 m, de hojas perennes y brillantes; florece profusamente en primavera.",
+   "habitat": "Ambiente en Puyehue según CONAF: Sectores bajos. General: Lugares húmedos, desde la costa hasta la precordillera.",
+   "ecology": "Su fruto, una cápsula roja, madura en verano.",
+   "distribution": "De la Región del Maule a Magallanes; más abundante en el sur.",
    "sources": [
     {
      "title": "CONAF, ficha Parque Nacional Puyehue",
      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
      "accessed_at": "2026-10-31",
      "kind": "official"
+    },
+    {
+     "title": "Fundación R. A. Philippi, catálogo de flora nativa, «Weinmannia trichosperma»",
+     "url": "https://fundacionphilippi.cl/catalogo/weinmannia-trichosperma/",
+     "accessed_at": "2026-11-03",
+     "kind": "secondary"
     }
    ],
    "limitations": [
-    "Descripción y ecología pendientes de fuente revisada.",
-    "El ambiente no ubica individuos."
+    "El ambiente no ubica individuos.",
+    "Descripción y distribución de una ficha botánica general; no ubican individuos."
    ],
    "review_status": "draft_sourced"
   },
@@ -404,21 +428,27 @@
    "notes": "Nombre, familia, género, sinonimia y rasgos se derivan de species.json (sin duplicar)."
   },
   "profile": {
-   "description": null,
-   "habitat": "Ambiente en Puyehue según CONAF: Sectores altos.",
+   "description": "Árbol siempreverde nativo de Chile, de hasta 20 m.",
+   "habitat": "Ambiente en Puyehue según CONAF: Sectores altos. General: Lugares húmedos y suelos profundos.",
    "ecology": null,
-   "distribution": null,
+   "distribution": "Del Biobío a Aysén; especialmente común en Llanquihue y Chiloé.",
    "sources": [
     {
      "title": "CONAF, ficha Parque Nacional Puyehue",
      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
      "accessed_at": "2026-10-31",
      "kind": "official"
+    },
+    {
+     "title": "Fundación R. A. Philippi, catálogo de flora nativa, «Laureliopsis philippiana»",
+     "url": "https://fundacionphilippi.cl/catalogo/laureliopsis-philippiana/",
+     "accessed_at": "2026-11-03",
+     "kind": "secondary"
     }
    ],
    "limitations": [
-    "Descripción y ecología pendientes de fuente revisada.",
-    "El ambiente no ubica individuos."
+    "El ambiente no ubica individuos.",
+    "Descripción y distribución de una ficha botánica general; no ubican individuos."
    ],
    "review_status": "draft_sourced"
   },
@@ -501,21 +531,27 @@
    "notes": "Nombre, familia, género, sinonimia y rasgos se derivan de species.json (sin duplicar)."
   },
   "profile": {
-   "description": null,
-   "habitat": "Ambiente en Puyehue según CONAF: Sectores altos.",
+   "description": "Conífera dioica de unos 25 m, con hojas aciculares amarillentas de ápice punzante y corteza estriada a lo largo.",
+   "habitat": "Ambiente en Puyehue según CONAF: Sectores altos. General: Suelos húmedos, junto a Nothofagus nitida.",
    "ecology": null,
-   "distribution": null,
+   "distribution": "De La Araucanía a Magallanes.",
    "sources": [
     {
      "title": "CONAF, ficha Parque Nacional Puyehue",
      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
      "accessed_at": "2026-10-31",
      "kind": "official"
+    },
+    {
+     "title": "Fundación R. A. Philippi, catálogo de flora nativa, «Podocarpus nubigenus»",
+     "url": "https://fundacionphilippi.cl/catalogo/podocarpus-nubigenus/",
+     "accessed_at": "2026-11-03",
+     "kind": "secondary"
     }
    ],
    "limitations": [
-    "Descripción y ecología pendientes de fuente revisada.",
-    "El ambiente no ubica individuos."
+    "El ambiente no ubica individuos.",
+    "Descripción y distribución de una ficha botánica general; no ubican individuos."
    ],
    "review_status": "draft_sourced"
   },
@@ -598,21 +634,27 @@
    "notes": "Nombre, familia, género, sinonimia y rasgos se derivan de species.json (sin duplicar)."
   },
   "profile": {
-   "description": null,
-   "habitat": "Ambiente en Puyehue según CONAF: Cerca del límite arbóreo.",
+   "description": "Árbol siempreverde de hasta 25 m que tolera bajas temperaturas, viento y nieve.",
+   "habitat": "Ambiente en Puyehue según CONAF: Cerca del límite arbóreo. General: Especie predominante del bosque lluvioso magallánico.",
    "ecology": null,
-   "distribution": null,
+   "distribution": "Regiones de Los Lagos, Aysén y Magallanes.",
    "sources": [
     {
      "title": "CONAF, ficha Parque Nacional Puyehue",
      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
      "accessed_at": "2026-10-31",
      "kind": "official"
+    },
+    {
+     "title": "Fundación R. A. Philippi, catálogo de flora nativa, «Nothofagus betuloides»",
+     "url": "https://fundacionphilippi.cl/catalogo/nothofagus-betuloides/",
+     "accessed_at": "2026-11-03",
+     "kind": "secondary"
     }
    ],
    "limitations": [
-    "Descripción y ecología pendientes de fuente revisada.",
-    "El ambiente no ubica individuos."
+    "El ambiente no ubica individuos.",
+    "Descripción y distribución de una ficha botánica general; no ubican individuos."
    ],
    "review_status": "draft_sourced"
   },
@@ -695,21 +737,27 @@
    "notes": "Nombre, familia, género, sinonimia y rasgos se derivan de species.json (sin duplicar)."
   },
   "profile": {
-   "description": null,
-   "habitat": "Ambiente en Puyehue según CONAF: Cerca del límite arbóreo.",
-   "ecology": null,
-   "distribution": null,
+   "description": "Árbol caducifolio de hasta 30 m; su follaje enrojece en otoño y en sitios altos y ventosos crece achaparrado.",
+   "habitat": "Ambiente en Puyehue según CONAF: Cerca del límite arbóreo. General: Entre 0 y 1.500 m; en el norte forma el límite superior del bosque y en el sur llega al nivel del mar.",
+   "ecology": "Florece de octubre a noviembre y fructifica de marzo a abril.",
+   "distribution": "En Chile, del Maule a Tierra del Fuego (regiones VII a XII); también en Argentina.",
    "sources": [
     {
      "title": "CONAF, ficha Parque Nacional Puyehue",
      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
      "accessed_at": "2026-10-31",
      "kind": "official"
+    },
+    {
+     "title": "Sistema de Información de Biodiversidad (Argentina), «Nothofagus pumilio»",
+     "url": "https://sib.gob.ar/especies/nothofagus-pumilio",
+     "accessed_at": "2026-11-03",
+     "kind": "official"
     }
    ],
    "limitations": [
-    "Descripción y ecología pendientes de fuente revisada.",
-    "El ambiente no ubica individuos."
+    "El ambiente no ubica individuos.",
+    "Descripción y distribución de una ficha botánica general; no ubican individuos."
    ],
    "review_status": "draft_sourced"
   },
@@ -1391,18 +1439,29 @@
    "accessed_at": "2026-10-31"
   },
   "profile": {
-   "description": null,
-   "habitat": null,
-   "ecology": null,
-   "distribution": null,
-   "traits": [],
-   "trait_validation_status": "pending",
-   "sources": [],
-   "limitations": [
-    "Rasgos de fuente secundaria; revisión de especialista pendiente.",
-    "Descripción, hábitat y rasgos pendientes de fuente revisada."
+   "description": "Marsupial arbóreo endémico de los bosques templados lluviosos de Chile y Argentina, único representante vivo del orden Microbiotheria. Los adultos miden hasta 26 cm y la cola es casi la mitad del largo total.",
+   "habitat": "Bosques nativos húmedos de la cordillera de la Costa, la depresión intermedia y los Andes hasta 1.840 m, siempre con abundante sotobosque.",
+   "ecology": "Omnívoro (insectos, huevos y frutos carnosos). Dispersa las semillas del quintral, planta clave del bosque templado. Hiberna usando la grasa acumulada en la cola.",
+   "distribution": "En Chile, desde la Reserva Nacional Los Queules hasta Chiloé; también en Argentina.",
+   "traits": [
+    "Ojos grandes con una máscara oscura alrededor; orejas cortas y redondeadas.",
+    "Cola larga, prensil y peluda, más gruesa en la base."
    ],
-   "review_status": "pending"
+   "trait_validation_status": "source_checked",
+   "sources": [
+    {
+     "title": "MMA, ficha de especie clasificada (RCE), «Dromiciops gliroides»",
+     "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Dromiciops_glirioides_P07.pdf",
+     "accessed_at": "2026-11-03",
+     "kind": "official",
+     "notes": "Ficha publicada en 2019; no reemplaza la categoría vigente del RCE."
+    }
+   ],
+   "limitations": [
+    "Contenido educativo general: sin ubicaciones, rastros, madrigueras ni orientación para buscarla.",
+    "La ficha MMA es de 2019; la categoría aplicable se consulta por región en el RCE."
+   ],
+   "review_status": "draft_sourced"
   },
   "park_evidence": [
    {
@@ -1476,19 +1535,30 @@
    "accessed_at": "2026-10-31"
   },
   "profile": {
-   "description": null,
-   "habitat": null,
-   "ecology": null,
-   "distribution": null,
-   "traits": [],
-   "trait_validation_status": "pending",
-   "sources": [],
-   "limitations": [
-    "Rasgos de fuente secundaria; revisión de especialista pendiente.",
-    "Categoría RCE distinta en Los Ríos (VU) y Los Lagos (NT).",
-    "Descripción pendiente de fuente revisada."
+   "description": "El felino más pequeño de Sudamérica (1,8 a 2,5 kg), solitario y de hábitos más bien nocturnos; pasa bastante tiempo en los árboles.",
+   "habitat": "Bosques húmedos templados con bambú nativo, en especial bosque valdiviano y de araucaria; tolera bosques secundarios si quedan corredores de vegetación.",
+   "ecology": "Se alimenta de roedores, aves y reptiles.",
+   "distribution": "En Chile, desde Coquimbo hasta unos 70 km al sur de Cochrane (Aysén), del nivel del mar al límite de la vegetación arbórea.",
+   "traits": [
+    "Pelaje café a café amarillento con pequeñas manchas circulares hasta el vientre; hay individuos melánicos.",
+    "Cola muy corta y gruesa, con anillos oscuros."
    ],
-   "review_status": "pending"
+   "trait_validation_status": "source_checked",
+   "sources": [
+    {
+     "title": "MMA, ficha de especie clasificada (RCE), «Leopardus guigna»",
+     "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Leopardus_guigna_P07.pdf",
+     "accessed_at": "2026-11-03",
+     "kind": "official",
+     "notes": "Ficha publicada en 2019; no reemplaza la categoría vigente del RCE."
+    }
+   ],
+   "limitations": [
+    "Categoría RCE distinta en Los Ríos (VU) y Los Lagos (NT).",
+    "Contenido educativo general: sin ubicaciones, rastros, madrigueras ni orientación para buscarla.",
+    "La ficha MMA es de 2019; la categoría aplicable se consulta por región en el RCE."
+   ],
+   "review_status": "draft_sourced"
   },
   "park_evidence": [
    {
@@ -1561,18 +1631,29 @@
    "accessed_at": "2026-10-31"
   },
   "profile": {
-   "description": null,
-   "habitat": null,
+   "description": "El carnívoro terrestre más grande de Chile; territorial, solitario y crepuscular o nocturno, aunque también activo de día.",
+   "habitat": "Gran diversidad de ambientes: desierto, estepa, montaña, matorral y bosques.",
    "ecology": null,
-   "distribution": null,
-   "traits": [],
-   "trait_validation_status": "pending",
-   "sources": [],
-   "limitations": [
-    "Rasgos de fuente secundaria; revisión de especialista pendiente.",
-    "Descripción pendiente de fuente revisada."
+   "distribution": "En Chile, desde el límite con Perú hasta el estrecho de Magallanes, excepto la isla Grande de Chiloé y las islas de los canales.",
+   "traits": [
+    "Coloración uniforme de gris a pardo rojizo, con blanco alrededor de la boca.",
+    "Las crías tienen manchas que persisten hasta unos tres meses."
    ],
-   "review_status": "pending"
+   "trait_validation_status": "source_checked",
+   "sources": [
+    {
+     "title": "MMA, ficha de especie clasificada (RCE), «Puma concolor»",
+     "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2019/10/Puma_concolor_P07.pdf",
+     "accessed_at": "2026-11-03",
+     "kind": "official",
+     "notes": "Ficha publicada en 2019; no reemplaza la categoría vigente del RCE."
+    }
+   ],
+   "limitations": [
+    "Contenido educativo general: sin ubicaciones, rastros, madrigueras ni orientación para buscarla.",
+    "La ficha MMA es de 2019; la categoría aplicable se consulta por región en el RCE."
+   ],
+   "review_status": "draft_sourced"
   },
   "park_evidence": [
    {
@@ -1644,7 +1725,7 @@
   },
   "profile": {
    "description": "Hongo parásito de Nothofagus que forma nudos o tumores globosos en ramas y troncos.",
-   "habitat": null,
+   "habitat": "Ramas y troncos de Nothofagus, donde forma nudos o tumores globosos.",
    "ecology": null,
    "distribution": null,
    "traits": [
@@ -1748,7 +1829,7 @@
   },
   "profile": {
    "description": "Hongo parásito de Nothofagus, principalmente N. obliqua, que forma agallas en ramas.",
-   "habitat": null,
+   "habitat": "Ramas de Nothofagus, principalmente N. obliqua (roble).",
    "ecology": null,
    "distribution": null,
    "traits": [
@@ -1785,7 +1866,18 @@
    "evaluated_at": "2026-10-31",
    "notes": "1/15 con candidatos y 12/15 con conocimiento; inestable entre estrategias."
   },
-  "media": []
+  "media": [
+   {
+    "media_id": "commons:156105289",
+    "media_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/41/Digue%C3%B1e_con_apotecios_formados.jpg/960px-Digue%C3%B1e_con_apotecios_formados.jpg",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Digue%C3%B1e_con_apotecios_formados.jpg",
+    "author": "Nanilution",
+    "license": "CC BY-SA 4.0",
+    "attribution": "Nanilution, Wikimedia Commons (CC BY-SA 4.0)",
+    "redistribution": "share_alike_with_attribution",
+    "review_status": "agent_visual_check"
+   }
+  ]
  },
  {
   "id": "boletus-chilensis",

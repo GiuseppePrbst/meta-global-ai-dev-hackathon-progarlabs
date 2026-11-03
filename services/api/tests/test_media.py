@@ -45,7 +45,7 @@ def asset_payload(**overrides):
 def test_external_assets_mirror_taxon_media_once():
     external = [a for a in get_media() if a.source_type == "external"]
     recorded = sum(len(t.media) for t in get_taxa())
-    assert len(external) == recorded == 45
+    assert len(external) == recorded == 46
     assert all(a.taxon_id and a.license and a.attribution for a in external)
     assert not any("NC" in a.license or "ND" in a.license for a in external)
 
