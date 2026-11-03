@@ -232,3 +232,11 @@ inspecciones visuales son del agente; no son validación de especialista.
 Asistencia: sesión de Claude Code con el modelo Claude Haiku 5.5 (Anthropic), iniciada por el
 responsable del trabajo en esta rama. La decisión de alcance y la autorización de cada uso
 quedan a cargo del titular de los datos.
+
+## Recuperación del laboratorio — 03-11-2026
+
+Se preservó la corrección local de autenticación multimedia y se adaptó en una rama
+independiente el contrato de créditos y fase I del laboratorio local preexistente, con
+una prueba adicional del límite de fase. Se reutilizan PostgreSQL y el ledger existentes;
+no se incorporaron datos ni dependencias. Trabajo asistido por Codex. La reconstrucción
+del plan privado encontró 430 resultados finales de imagen; no acredita validación experta.

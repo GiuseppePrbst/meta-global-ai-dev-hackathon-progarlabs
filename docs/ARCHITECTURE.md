@@ -255,3 +255,12 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
   `resources/media-assets.json`, que empieza vacío hasta aprobar derechos.
 - Los binarios y el material privado viven fuera de Git y de PostgreSQL. Detalle en
   [MEDIA_LIBRARY_ARCHITECTURE.md](MEDIA_LIBRARY_ARCHITECTURE.md).
+
+## Recuperación de fase I — 03-11-2026
+
+- El laboratorio conserva `ExecutionStore` y su ledger compartido; fase I requiere una
+  autorización privada de créditos y no puede exceder su capacidad autorizada, incluso
+  después de reasignaciones. Las fases anteriores siguen disponibles.
+- La captura de créditos es histórica, no una consulta de saldo ni autorización de cargos.
+  No se habilita ejecución automática: hay que verificar el saldo y los derechos antes
+  de cualquier llamada. No se ha implementado una cola ni un worker persistente.
