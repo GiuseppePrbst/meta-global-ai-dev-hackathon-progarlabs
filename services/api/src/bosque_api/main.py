@@ -67,7 +67,16 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     async def demo_access(request: Request, call_next):
         correlation = str(uuid4())
         request.state.identity = None
-        public = {"/health", "/species", "/forest/sources", "/openapi.json", "/docs", "/redoc"}
+        public = {
+            "/health",
+            "/species",
+            "/taxa",
+            "/parks",
+            "/forest/sources",
+            "/openapi.json",
+            "/docs",
+            "/redoc",
+        }
         if (
             (
                 config.service_mode == "demo"
@@ -77,7 +86,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             and (
                 request.url.path not in public
                 and not request.url.path.startswith(
-                    ("/species/", "/taxa", "/parks", "/trails/", "/knowledge/", "/media")
+                    # Trailing slashes: "/parksX" or "/mediaX" never skip identity.
+                    ("/species/", "/taxa/", "/parks/", "/trails/", "/knowledge/", "/media/")
                 )
             )
         ):

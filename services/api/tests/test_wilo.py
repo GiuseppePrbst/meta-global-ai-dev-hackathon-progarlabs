@@ -531,3 +531,9 @@ def test_language_hint_maps_to_accepted_bias_values(meta_app):
         data={**form, "language_hint": "klingon"},
     )
     assert bad.status_code == 422
+
+
+def test_public_prefixes_do_not_exempt_lookalike_private_paths(client):
+    assert client.get("/parks").status_code == 200 and client.get("/taxa").status_code == 200
+    for path in ("/parksadmin", "/taxaexport", "/mediafoo", "/knowledgex"):
+        assert client.get(path).status_code == 401, path

@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0.0",
- "knowledge_version": "sha256:8f09e79a955b6406160323a1d0372ff4442e579ab9f50fb65b3bc9ce61fe44d1",
+ "knowledge_version": "sha256:4d03d6936730fd20685fb5d096548ecb6eb7bdec5deb97f9597830a766d08962",
  "snapshot": {
   "id": "knowledge-atlas",
   "type": "KnowledgeSnapshot",
@@ -12,7 +12,7 @@
   },
   "accessed_at": "2026-11-03",
   "updated_at": null,
-  "version": "sha256:8f09e79a955b6406160323a1d0372ff4442e579ab9f50fb65b3bc9ce61fe44d1",
+  "version": "sha256:4d03d6936730fd20685fb5d096548ecb6eb7bdec5deb97f9597830a766d08962",
   "license": "Ver cada entidad",
   "review_status": "built_offline",
   "confidence": "mixed",
@@ -25,7 +25,7 @@
   "data": {
    "counts": {
     "ConservationAssessment": 11,
-    "DocumentPassage": 106,
+    "DocumentPassage": 108,
     "KnowledgeSource": 4,
     "MapResource": 79,
     "Park": 46,
@@ -55,7 +55,7 @@
     "valparaiso"
    ]
   },
-  "content_sha256": "sha256:7145fd48f753c49109f4cff8971b4909540daf9256451523b08eaa5f8539b460"
+  "content_sha256": "sha256:ca534ecbbdbbaf31153efa1ea28f52d6e122685dbed1f2a48a3315e3cb796db5"
  },
  "entities": [
   {
@@ -1446,6 +1446,35 @@
     "text": "| Recurso | Uso | Derechos | ¿Redistribuido? | Validación | | --- | --- | --- | --- | --- | | 46 fichas CONAF de parques nacionales | Campos factuales breves (superficie, provincias, comunas, horarios, acceso, senderos) en `data/public/conaf/` | Sitio público CONAF, atribución; no se copian descripciones, fotos ni mapas | Sí, solo hechos estructurados y oraciones cortas de condiciones; correos y teléfonos eliminados | Extracción revisada por un agente contra cada ficha; no es verificación en terreno | | BCN SNASPE (`Snaspe.zip`) | Encuadre WGS84 por parque (`park_bbox_bcn.json`) | Libre uso con atribución BCN; referencial | Solo bbox de geometrías válidas; polígonos no | 33/46 parques; edici"
    },
    "content_sha256": "sha256:c33507da47d86a2ff44674d8d6fe1d91672bb258db0734ea1d8c5ed1da06d099"
+  },
+  {
+   "id": "doc--dataset_licenses--15",
+   "type": "DocumentPassage",
+   "name": "Registro de recursos y licencias: Wilo — 03-11-2026",
+   "source": {
+    "title": "Registro de recursos y licencias",
+    "url": "docs/DATASET_LICENSES.md",
+    "kind": "repository"
+   },
+   "accessed_at": "2026-11-03",
+   "updated_at": null,
+   "version": null,
+   "license": "Documentación del repositorio",
+   "review_status": "repository_document",
+   "confidence": "repository_curated",
+   "coverage": {},
+   "limitations": [
+    "Extracto de documentación técnica; ver el documento completo."
+   ],
+   "search_terms": [
+    "Wilo — 03-11-2026"
+   ],
+   "data": {
+    "document": "docs/DATASET_LICENSES.md",
+    "heading": "Wilo — 03-11-2026",
+    "text": "| Recurso | Uso | Derechos | ¿Redistribuido? | Validación | | --- | --- | --- | --- | --- | | Fichas MMA, Philippi, UdeC y SIB | Resúmenes breves redactados por el agente en `taxa.json`, con su URL | Sitios públicos, con atribución | Solo hechos breves con enlace | Revisión del agente; no es validación de especialista | | Nombres vernáculos GBIF | Términos de búsqueda y ASR | Datos abiertos de GBIF, según su fuente | Sí, como lista de nombres | No se muestran como datos validados | | Commons 156105289 | Foto del digüeñe | CC BY-SA 4.0, Nanilution | Enlace y atribución | Revisión visual del agente | | 79 grabaciones reales de voz (paquete privado del 03-11) | Evaluación de ASR y de extremo a "
+   },
+   "content_sha256": "sha256:a1f54a285ff3b9d6dbb490eb2a061077f0c7db01193b1508eb631f79a68fb9bb"
   },
   {
    "id": "doc--dataset_licenses--2",
@@ -3505,6 +3534,35 @@
     "text": "- [Archivo CONAF de parques nacionales](http[omitido]) y sus 46 fichas: superficie, provincias, comunas, avisos de visita, accesos y 190 senderos de 23 fichas. Detalle y matriz en [data/public/conaf/README.md](../data/public/conaf/README.md). - [BCN Mapoteca SNASPE](http[omitido]): encuadres por parque. - [SIT CONAF](http[omitido]): sin capa de senderos documentada; «todos los derechos reservados». - [IDE MMA Biodiversidad](http[omitido]): requiere token; no usado. - Secundarias: [parquenacionalpuyehue.cl](http[omitido]) (seis candidatos de sendero, conflicto de superficie) y [parquesnacionaleschilenos.cl](http[omitido]) (directorio)."
    },
    "content_sha256": "sha256:ac3ad6ca1211206be3064985fcb6e6e584dc983fa50e1e7e58ab3eac861a6706"
+  },
+  {
+   "id": "doc--sources--12",
+   "type": "DocumentPassage",
+   "name": "Fuentes, verificación y decisiones pendientes: Wilo y enriquecimiento del catálogo — consulta 03-11-2026",
+   "source": {
+    "title": "Fuentes, verificación y decisiones pendientes",
+    "url": "docs/SOURCES.md",
+    "kind": "repository"
+   },
+   "accessed_at": "2026-11-03",
+   "updated_at": null,
+   "version": null,
+   "license": "Documentación del repositorio",
+   "review_status": "repository_document",
+   "confidence": "repository_curated",
+   "coverage": {},
+   "limitations": [
+    "Extracto de documentación técnica; ver el documento completo."
+   ],
+   "search_terms": [
+    "Wilo y enriquecimiento del catálogo — consulta 03-11-2026"
+   ],
+   "data": {
+    "document": "docs/SOURCES.md",
+    "heading": "Wilo y enriquecimiento del catálogo — consulta 03-11-2026",
+    "text": "- Fichas MMA de especie clasificada (RCE), PDF de 2019: [*Dromiciops gliroides*](http[omitido]), [*Leopardus guigna*](http[omitido]) y [*Puma concolor*](http[omitido]). - [Fundación R. A. Philippi, catálogo de flora](http[omitido]) (ulmo, olivillo, tineo, tepa, mañío y coigüe de Magallanes), [UdeC Flora y fauna](http[omitido]) y [SIB Argentina](http[omitido]). - [GBIF species API, nombres vernáculos en inglés](http[omitido]): solo vocabulario de búsqueda y ASR (`resources/vernacular-en.json`). - [Commons 156105289](http[omitido]) (digüeñe, CC BY-SA 4.0). - Meta: [speech-to-text](http[omitido]), [schemas](http[omitido]), [transcribe](http[omitido]) y [pricing](http[omitido]), consultados el 0"
+   },
+   "content_sha256": "sha256:067e7ab5fed83105a26524d932c478de7dec92c55d72966a6bc5127b26041acb"
   },
   {
    "id": "doc--sources--2",
