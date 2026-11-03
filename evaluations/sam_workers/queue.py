@@ -43,6 +43,16 @@ class Queue:
             {k: v for k, v in specification.items() if k != "protocol_approved_by"}
         )
         with self.connect() as conn:
+            if (
+                specification["replica"] == 0
+                and conn.execute(
+                    "SELECT 1 FROM sam_historical_results WHERE media_sha256=%s LIMIT 1",
+                    (specification["media_sha256"],),
+                ).fetchone()
+            ):
+                raise ValueError(
+                    "Historical media requires manual experimental reconciliation"
+                )
             row = conn.execute(
                 """INSERT INTO sam_experiment_jobs
                 (job_id,campaign_id,experiment_fingerprint,specification,status,priority,max_attempts)
@@ -65,16 +75,17 @@ class Queue:
                 THEN 'queued' ELSE 'reconciliation_required' END, lease_owner=NULL,
                 lease_expires_at=NULL WHERE status IN ('leased','running') AND lease_expires_at < now()""")
 
-    def claim(self, owner, lease_seconds=120):
+    def claim(self, owner, lease_seconds=120, campaign_id=None):
         with self.connect() as conn:
             return conn.execute(
                 """WITH candidate AS (
                 SELECT job_id FROM sam_experiment_jobs WHERE status='queued' AND attempt_count < max_attempts
+                AND (%s::text IS NULL OR campaign_id=%s)
                 ORDER BY priority DESC,created_at FOR UPDATE SKIP LOCKED LIMIT 1)
                 UPDATE sam_experiment_jobs j SET status='leased', lease_owner=%s,
                 lease_expires_at=now()+(%s * interval '1 second'), heartbeat_at=now()
                 FROM candidate WHERE j.job_id=candidate.job_id RETURNING j.*""",
-                (owner, lease_seconds),
+                (campaign_id, campaign_id, owner, lease_seconds),
             ).fetchone()
 
     def start(self, job_id, owner):
@@ -128,3 +139,10 @@ class Queue:
                     "SELECT status,count(*) FROM sam_experiment_jobs GROUP BY status"
                 )
             }
+
+    def get(self, job_id):
+        with self.connect() as conn:
+            return conn.execute(
+                "SELECT job_id,status,specification FROM sam_experiment_jobs WHERE job_id=%s",
+                (job_id,),
+            ).fetchone()

@@ -13,10 +13,21 @@ from tools.meta_sam_api_lab.media import private_path
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "action", choices=["migrate", "status", "plan", "enqueue", "recover"]
+        "action",
+        choices=[
+            "migrate",
+            "status",
+            "plan",
+            "enqueue",
+            "recover",
+            "import-history",
+            "reconcile",
+        ],
     )
     parser.add_argument("--spec", type=Path)
     parser.add_argument("--campaign")
+    parser.add_argument("--root", type=Path)
+    parser.add_argument("--job")
     args = parser.parse_args()
     if args.action in ("plan", "enqueue"):
         if not args.spec:
@@ -50,6 +61,18 @@ def main():
         print(json.dumps(queue.status()))
     elif args.action == "recover":
         queue.recover()
+    elif args.action == "reconcile":
+        if not args.root or not args.job:
+            parser.error("--root and --job are required")
+        from evaluations.sam_workers.reconcile import inspect
+
+        print(json.dumps(inspect(queue, args.job, args.root)))
+    elif args.action == "import-history":
+        if not args.root or not args.campaign:
+            parser.error("--root and --campaign are required")
+        from evaluations.sam_workers.history import import_history
+
+        print(json.dumps(import_history(queue, args.root, args.campaign)))
     elif args.action == "enqueue":
         if not args.campaign:
             parser.error("--campaign is required")

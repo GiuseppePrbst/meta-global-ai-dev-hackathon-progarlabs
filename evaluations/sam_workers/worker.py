@@ -8,6 +8,7 @@ from uuid import uuid4
 
 import psycopg
 
+from evaluations.sam_workers.schemas import FinancialAuthorization
 from tools.meta_sam_api_lab.lab import (
     campaign_from_private,
     config_from_private,
@@ -16,14 +17,34 @@ from tools.meta_sam_api_lab.lab import (
 from tools.meta_sam_api_lab.media import digest, private_path
 
 
-def run_one(queue, config_file, registry_file, output_root, *, billing_verified=False):
-    """The caller must first independently verify current free-credit availability."""
-    if not billing_verified:
-        raise ValueError(
-            "Current free-credit balance must be verified before execution"
-        )
+class PersistenceUnconfirmed(RuntimeError):
+    """The private result may exist; reconcile it before any retry."""
+
+
+def run_one(
+    queue, config_file, registry_file, output_root, authorization_file, evidence_file
+):
+    """Execute one job only with current, independently recorded provider evidence."""
+    auth = FinancialAuthorization.model_validate_json(
+        private_path(Path(authorization_file)).read_text(encoding="utf-8")
+    )
+    auth.validate_current(auth.campaign_id)
+    if (
+        auth.source_kind != "provider_verified"
+        or digest(private_path(Path(evidence_file))) != auth.evidence_sha256
+    ):
+        raise ValueError("Current provider billing evidence is required")
+    campaign = campaign_from_private(Path(config_file))
+    config = config_from_private(Path(config_file))
+    if (
+        not campaign
+        or "I" not in campaign.phase_caps_usd
+        or campaign.phase_caps_usd["I"] > auth.limit_usd
+        or config.database_url.get_secret_value() != queue.database_url
+    ):
+        raise ValueError("Authorization does not match shared phase I ledger")
     owner = uuid4()
-    job = queue.claim(owner)
+    job = queue.claim(owner, campaign_id=auth.campaign_id)
     if not job:
         return False
     job_id = job["job_id"]
@@ -50,11 +71,11 @@ def run_one(queue, config_file, registry_file, output_root, *, billing_verified=
         entry = registry[spec["media_sha256"]]
         if entry.get("external_processing_permission") != "approved":
             final = "rights_blocked"
-            return True
+            return final
         source = private_path(Path(entry["path"]))
         if digest(source) != spec["media_sha256"]:
             final = "permanent_failure"
-            return True
+            return final
         if (
             spec.get("model") != "sam-3.1"
             or spec.get("mode") != "concept"
@@ -62,18 +83,10 @@ def run_one(queue, config_file, registry_file, output_root, *, billing_verified=
             or spec.get("parameters")
         ):
             final = "permanent_failure"
-            return True
-        campaign = campaign_from_private(Path(config_file))
-        if not campaign or "I" not in campaign.phase_caps_usd:
-            final = "budget_blocked"
-            return True
-        config = config_from_private(Path(config_file))
-        if config.database_url.get_secret_value() != queue.database_url:
-            final = "budget_blocked"
-            return True
+            return final
         output = private_path(Path(output_root)) / str(job_id)
         if output.exists():
-            return True
+            return final
         result = asyncio.run(
             run_experiment(
                 config,
@@ -87,8 +100,17 @@ def run_one(queue, config_file, registry_file, output_root, *, billing_verified=
         )
         if result.get("status") in ("completed", "no_matches"):
             final = result["status"]
-        return True
     finally:
         stop.set()
         thread.join()
-        queue.finish(job_id, owner, final)
+        try:
+            confirmed = queue.finish(job_id, owner, final)
+        except psycopg.Error as exc:
+            raise PersistenceUnconfirmed(
+                "Final state not persisted; reconcile private evidence"
+            ) from exc
+        if not confirmed:
+            raise PersistenceUnconfirmed(
+                "Lease lost; reconcile private evidence before retry"
+            )
+    return final

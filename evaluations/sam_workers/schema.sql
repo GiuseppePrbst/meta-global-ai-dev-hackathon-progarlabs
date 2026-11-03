@@ -17,3 +17,15 @@ CREATE TABLE IF NOT EXISTS sam_experiment_jobs (
 );
 CREATE INDEX IF NOT EXISTS sam_jobs_claim_idx ON sam_experiment_jobs (status, priority DESC, created_at);
 CREATE INDEX IF NOT EXISTS sam_jobs_lease_idx ON sam_experiment_jobs (lease_expires_at) WHERE status IN ('leased', 'running');
+CREATE TABLE IF NOT EXISTS sam_historical_results (
+    evidence_sha256 text PRIMARY KEY CHECK (evidence_sha256 ~ '^[0-9a-f]{64}$'),
+    historical_id text NOT NULL,
+    campaign_id text NOT NULL,
+    media_sha256 text,
+    model text,
+    prompt text,
+    result_status text NOT NULL,
+    created_at text,
+    identity_reconstructed boolean NOT NULL DEFAULT false,
+    UNIQUE (campaign_id, historical_id)
+);

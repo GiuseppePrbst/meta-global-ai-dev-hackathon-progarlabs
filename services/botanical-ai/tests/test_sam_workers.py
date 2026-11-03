@@ -17,16 +17,32 @@ def test_fingerprint_is_canonical_and_sensitive_to_parameters():
     assert fingerprint({"prompt": "fern"}) != fingerprint({"prompt": "tree"})
 
 
-def test_worker_requires_verified_billing_before_claim():
-    from evaluations.sam_workers.worker import run_one
+def test_expired_financial_authorization_is_rejected():
+    from evaluations.sam_workers.schemas import FinancialAuthorization
 
-    with pytest.raises(ValueError, match="balance must be verified"):
-        run_one(None, None, None, None)
+    auth = FinancialAuthorization.model_validate(
+        {
+            "campaign_id": "test",
+            "responsible": "owner",
+            "source_kind": "owner_declared",
+            "source": "billing snapshot",
+            "evidence_sha256": "a" * 64,
+            "observed_usd": 140,
+            "limit_usd": 130,
+            "margin_usd": 10,
+            "ledger_phase": "I",
+            "checked_at": "2026-01-01T00:00:00Z",
+            "expires_at": "2026-01-02T00:00:00Z",
+        }
+    )
+    with pytest.raises(ValueError, match="expired"):
+        auth.validate_current("test")
 
 
 def test_worker_delegates_to_runner_and_preserves_result(tmp_path, monkeypatch):
     import hashlib
     import json
+    from datetime import UTC, datetime, timedelta
     from types import SimpleNamespace
 
     from evaluations.sam_workers import worker
@@ -41,11 +57,33 @@ def test_worker_delegates_to_runner_and_preserves_result(tmp_path, monkeypatch):
         )
     )
     job_id = uuid4()
+    evidence = tmp_path / "billing-evidence"
+    evidence.write_bytes(b"synthetic evidence")
+    now = datetime.now(UTC)
+    authorization = tmp_path / "authorization.json"
+    authorization.write_text(
+        json.dumps(
+            {
+                "campaign_id": "test",
+                "responsible": "owner",
+                "source_kind": "provider_verified",
+                "source": "billing snapshot",
+                "evidence_sha256": hashlib.sha256(evidence.read_bytes()).hexdigest(),
+                "observed_usd": 140,
+                "limit_usd": 130,
+                "margin_usd": 10,
+                "ledger_phase": "I",
+                "checked_at": now.isoformat(),
+                "expires_at": (now + timedelta(hours=1)).isoformat(),
+            }
+        )
+    )
 
     class FakeQueue:
         database_url = "synthetic"
 
-        def claim(self, owner):
+        def claim(self, owner, campaign_id=None):
+            assert campaign_id == "test"
             return {
                 "job_id": job_id,
                 "specification": {
@@ -62,6 +100,7 @@ def test_worker_delegates_to_runner_and_preserves_result(tmp_path, monkeypatch):
 
         def finish(self, job, owner, status):
             self.result = status
+            return True
 
     async def runner(config, source, output, prompt, **kwargs):
         assert source == image and not output.exists() and kwargs["phase"] == "I"
@@ -81,14 +120,28 @@ def test_worker_delegates_to_runner_and_preserves_result(tmp_path, monkeypatch):
     )
     monkeypatch.setattr(worker, "run_experiment", runner)
     queue = FakeQueue()
-    assert worker.run_one(
-        queue,
-        tmp_path / "config",
-        registry,
-        tmp_path / "results",
-        billing_verified=True,
+    assert (
+        worker.run_one(
+            queue,
+            tmp_path / "config",
+            registry,
+            tmp_path / "results",
+            authorization,
+            evidence,
+        )
+        == "no_matches"
     )
     assert queue.result == "no_matches"
+    monkeypatch.setattr(queue, "finish", lambda *args: False)
+    with pytest.raises(worker.PersistenceUnconfirmed, match="Lease lost"):
+        worker.run_one(
+            queue,
+            tmp_path / "config",
+            registry,
+            tmp_path / "results",
+            authorization,
+            evidence,
+        )
 
 
 @pytest.fixture
@@ -171,3 +224,74 @@ def test_priority_expired_lease_and_terminal_no_matches(queue):
     assert queue.start(high, owner)
     assert queue.finish(high, owner, "no_matches")
     assert queue.claim(owner)["job_id"] == low
+
+
+def test_history_import_twice_preserves_evidence(queue, tmp_path):
+    from evaluations.sam_workers.history import import_history
+
+    directory = tmp_path / ("v2-test-" + uuid4().hex)
+    directory.mkdir()
+    result = directory / "result.json"
+    content = (
+        '{"status":"completed","source_sha256":"' + "c" * 64 + '","model":"sam-3.1"}'
+    )
+    result.write_text(content, encoding="utf-8")
+    campaign = "test-" + uuid4().hex
+    assert import_history(queue, tmp_path, campaign)["inserted"] == 1
+    assert import_history(queue, tmp_path, campaign)["existing"] == 1
+    assert result.read_text(encoding="utf-8") == content
+    with queue.connect() as conn:
+        conn.execute(
+            "DELETE FROM sam_historical_results WHERE campaign_id=%s", (campaign,)
+        )
+
+
+def test_reconcile_inspects_evidence_without_changing_job(tmp_path):
+    import json
+
+    from evaluations.sam_workers.reconcile import inspect
+
+    job_id = uuid4()
+
+    class FakeQueue:
+        def get(self, identifier):
+            return {
+                "job_id": identifier,
+                "status": "reconciliation_required",
+                "specification": {"media_sha256": "a" * 64, "model": "sam-3.1"},
+            }
+
+    result = tmp_path / str(job_id) / "result.json"
+    result.parent.mkdir()
+    result.write_text(
+        json.dumps(
+            {
+                "source_sha256": "a" * 64,
+                "model": "sam-3.1",
+                "status": "completed",
+                "cleanup": "not_uploaded",
+            }
+        )
+    )
+    report = inspect(FakeQueue(), job_id, tmp_path)
+    assert report["evidence"] == "matching" and report["action"] == "manual_review"
+
+
+def test_ten_offline_jobs_finish_once(queue):
+    owner = uuid4()
+    for index in range(10):
+        spec = {
+            "media_sha256": f"{index + 1:064x}",
+            "prompt": "fern",
+            "model_version": "1",
+            "protocol_version": "1",
+            "protocol_approved_by": "test",
+            "preprocessing_version": "1",
+        }
+        assert queue.enqueue("offline-ten", spec)
+    for _ in range(10):
+        job = queue.claim(owner, campaign_id="offline-ten")
+        assert queue.start(job["job_id"], owner)
+        assert queue.finish(job["job_id"], owner, "completed")
+    assert queue.claim(owner, campaign_id="offline-ten") is None
+    assert queue.status() == {"completed": 10}
