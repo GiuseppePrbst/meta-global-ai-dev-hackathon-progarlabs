@@ -1,0 +1,99 @@
+{
+  "reviewer": "Claude Opus 5.5 (agente de desarrollo) para Giuseppe Proboste",
+  "reviewed_at": "2026-11-03",
+  "method": "Lectura completa de la sección 'Senderos habilitados' de cada ficha y comparación campo a campo con la extracción (nombre, sector, longitud, duración, base, dificultad, cierre publicado). Conteo de etiquetas 'Longitud:' igual a senderos extraídos. No es verificación en terreno ni de apertura.",
+  "parks": {
+    "torres-del-paine": {
+      "source_sha256_html": "9ee303555a176cdf669b3c04485e756f323edd730911df3c6d0d22d5d25cf9d7",
+      "trails": 16
+    },
+    "cabo-de-hornos": {
+      "source_sha256_html": "b6301e733e8961a6ac7fb53573e988dd6ef8da7b08fc00b9028efaa189c850d6",
+      "trails": 1
+    },
+    "pali-aike": {
+      "source_sha256_html": "dfb12c655bbb36e28918037231d3400a867ddc69053c848231adc6ddf4217f24",
+      "trails": 3
+    },
+    "bernardo-ohiggins": {
+      "source_sha256_html": "32b42a579ba8bd27262816ebdeaeee2686f47f4231f776d1a0936a4e47a16a93",
+      "trails": 2
+    },
+    "laguna-san-rafael": {
+      "source_sha256_html": "91e8f136f20e496e25d8e6671842f7b596bace9a23aa29eae6dc2c9d634e0007",
+      "trails": 4
+    },
+    "queulat": {
+      "source_sha256_html": "8eb788dda04905b9f003f1f9cbf7d865e2ab45dbe1649d22f48adb0d84464670",
+      "trails": 12
+    },
+    "patagonia": {
+      "source_sha256_html": "1311a659aff50e12c712866dd48b80aacc3e9e4022ef39a081e32b06cb496ffb",
+      "trails": 27
+    },
+    "cerro-castillo": {
+      "source_sha256_html": "b0d5e8496445d808aed994f28e1defda79017bbb2da76f54fea36c63589806e9",
+      "trails": 4
+    },
+    "alerce-costero": {
+      "source_sha256_html": "a5ca7ea4a28f2f493f56161dc6cd6983a4e88b40f6ec8b4813d0e14eacf701f1",
+      "trails": 11
+    },
+    "conguillio": {
+      "source_sha256_html": "1d2349b5fdb5d89606279fb3367a2e156d8492e6ff30c7822679ef3a862ad13a",
+      "trails": 14
+    },
+    "villarrica": {
+      "source_sha256_html": "563b2b8f02a27625bdd30fb6416d42e14f646219edc6b41a50fd4d0335fe5936",
+      "trails": 18
+    },
+    "huerquehue": {
+      "source_sha256_html": "8297bcd9acbefd38d1de7b851dd6f276033ea36be41437bb57984431384e0201",
+      "trails": 5
+    },
+    "nahuelbuta": {
+      "source_sha256_html": "e2ff58d66082a9547b81a1f6d6bcd3629cd36b3591a281711a0fd7d9399271c7",
+      "trails": 5
+    },
+    "tolhuaca": {
+      "source_sha256_html": "b79a72651e69e5e43adb1f33e3b44259e4c458dfc1b60ceb52193a499a6b1786",
+      "trails": 6
+    },
+    "nonguen": {
+      "source_sha256_html": "3f1cd1be2612f0b194f3830945c48c51ac12a967b15ea97534e67a86e24cc4d3",
+      "trails": 5
+    },
+    "laguna-del-laja": {
+      "source_sha256_html": "475e73090a59aa6c94cfb6228cdc1e2d91badebe838d0d4455b5a1d2be6f3aaf",
+      "trails": 5
+    },
+    "radal-siete-tazas": {
+      "source_sha256_html": "2c030f55d1d9f8890694d81d7cd6f59aa2c32f46db555b9233690a9edd4ebb2e",
+      "trails": 6
+    },
+    "archipielago-juan-fernandez": {
+      "source_sha256_html": "6213260fbefdadc334ae3cbfb6c5f8b3783451718628530cc35fd3d1f1f42a26",
+      "trails": 12
+    },
+    "rio-clarillo": {
+      "source_sha256_html": "59593c38d46a31e21cabd2fad95c937f77d660862ba02bf71c8c962da6e2b8a3",
+      "trails": 8
+    },
+    "la-campana": {
+      "source_sha256_html": "f12d481412bd0ea12fbc4106caaca937ecf6c27f42e804e5bb1158c4120f6a52",
+      "trails": 16
+    },
+    "bosque-fray-jorge": {
+      "source_sha256_html": "466e3a5822b3bc2bf50806fca92edc092089d6e3e59b0822bfd109ca41a50fa7",
+      "trails": 4
+    },
+    "volcan-isluga": {
+      "source_sha256_html": "a1bead12ac653f715b5efead3226fe3ebc6456341973f2c92bd8a024b54c1d3e",
+      "trails": 3
+    },
+    "lauca": {
+      "source_sha256_html": "f7840159db84b3f3c5836f1832a8ee29cc7c7b0f320eb0425d96e3639ac46119",
+      "trails": 3
+    }
+  }
+}

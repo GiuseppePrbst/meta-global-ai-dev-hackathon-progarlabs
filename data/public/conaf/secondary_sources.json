@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0.0",
+  "compiled_date": "2026-11-03",
+  "authority_order": [
+    "official (CONAF/SBAP)",
+    "government_gis",
+    "scientific",
+    "operator_or_concessionaire",
+    "independent_tourism",
+    "collaborative"
+  ],
+  "sources": [
+    {
+      "id": "parquenacionalpuyehue-cl",
+      "url": "https://parquenacionalpuyehue.cl/",
+      "type": "independent_tourism",
+      "operator": "No identificado en el sitio (pie: '© 2026'); sin términos de uso publicados",
+      "accessed_at": "2026-11-03",
+      "reuse": "Solo hechos breves y enlaces; no se copian textos, imágenes ni mapas"
+    },
+    {
+      "id": "parquesnacionaleschilenos-cl",
+      "url": "https://parquesnacionaleschilenos.cl/",
+      "type": "independent_tourism",
+      "operator": "Parques Nacionales Chilenos (difusión); sin relación formal declarada con CONAF",
+      "accessed_at": "2026-11-03",
+      "reuse": "Directorio de enlaces por región; no aporta senderos ni mapas propios"
+    }
+  ],
+  "trail_candidates": [
+    {
+      "id": "puyehue-rio-anticura",
+      "park_id": "puyehue",
+      "name": "Río Anticura",
+      "sector_text": "Detrás de la caseta CONAF (Anticura, según la fuente)",
+      "distance_m": 200,
+      "distance_basis": null,
+      "difficulty_text": "fácil",
+      "kind": "walking",
+      "source_url": "https://parquenacionalpuyehue.cl/actividades-experiencia/",
+      "source_type": "secondary",
+      "accessed_at": "2026-11-03",
+      "decision": "candidate_not_official",
+      "official_match": null,
+      "opening_status": "not_verified",
+      "geometry": null,
+      "geometry_available": false,
+      "notes": "Sin duración ni estado operativo publicados."
+    },
+    {
+      "id": "puyehue-antillanca-ruta",
+      "park_id": "puyehue",
+      "name": "Antillanca",
+      "sector_text": "Camino al centro de esquí Antillanca (volcán Casablanca)",
+      "distance_m": 18000,
+      "distance_basis": null,
+      "difficulty_text": "fácil",
+      "kind": "vehicle_route",
+      "source_url": "https://parquenacionalpuyehue.cl/actividades-experiencia/",
+      "source_type": "secondary",
+      "accessed_at": "2026-11-03",
+      "decision": "candidate_not_official",
+      "official_match": null,
+      "opening_status": "not_verified",
+      "geometry": null,
+      "geometry_available": false,
+      "notes": "La fuente la describe como camino de ripio con miradores: ruta vehicular, no sendero peatonal."
+    },
+    {
+      "id": "puyehue-anticura-catrue",
+      "park_id": "puyehue",
+      "name": "Anticura Catrué",
+      "sector_text": "Centro turístico Anticura (concesión)",
+      "distance_m": 3700,
+      "distance_basis": "loop",
+      "difficulty_text": "fácil",
+      "kind": "walking",
+      "source_url": "https://parquenacionalpuyehue.cl/actividades-experiencia/",
+      "source_type": "secondary",
+      "accessed_at": "2026-11-03",
+      "decision": "candidate_not_official",
+      "official_match": null,
+      "opening_status": "not_verified",
+      "geometry": null,
+      "geometry_available": false,
+      "notes": "Vinculado a concesión; CONAF solo nombra senderos concesionados El Indio, Repucura y La Princesa."
+    },
+    {
+      "id": "puyehue-salto-del-pudu",
+      "park_id": "puyehue",
+      "name": "Salto del Pudú",
+      "sector_text": null,
+      "distance_m": 2600,
+      "distance_basis": null,
+      "difficulty_text": "moderada",
+      "kind": "walking",
+      "source_url": "https://parquenacionalpuyehue.cl/actividades-experiencia/",
+      "source_type": "secondary",
+      "accessed_at": "2026-11-03",
+      "decision": "candidate_not_official",
+      "official_match": null,
+      "opening_status": "not_verified",
+      "geometry": null,
+      "geometry_available": false,
+      "notes": "Sin sector, duración ni estado publicados; no hay confirmación de apertura actual."
+    },
+    {
+      "id": "puyehue-volcan-puyehue",
+      "park_id": "puyehue",
+      "name": "Volcán Puyehue",
+      "sector_text": null,
+      "distance_m": 16000,
+      "distance_basis": "round_trip",
+      "difficulty_text": "difícil / moderada (la fuente se contradice)",
+      "kind": "walking",
+      "source_url": "https://parquenacionalpuyehue.cl/actividades-experiencia/",
+      "source_type": "secondary",
+      "accessed_at": "2026-11-03",
+      "decision": "candidate_not_official",
+      "official_match": null,
+      "opening_status": "not_verified",
+      "geometry": null,
+      "geometry_available": false,
+      "notes": "Ascenso de largo aliento: CONAF exige autorización del administrador para senderos de largo aliento."
+    },
+    {
+      "id": "puyehue-crater-raihuen-casablanca",
+      "park_id": "puyehue",
+      "name": "Cráter Raihuén – Volcán Casablanca",
+      "sector_text": "Antillanca",
+      "distance_m": 7400,
+      "distance_basis": "round_trip",
+      "difficulty_text": "difícil",
+      "kind": "walking",
+      "source_url": "https://parquenacionalpuyehue.cl/actividades-experiencia/",
+      "source_type": "secondary",
+      "accessed_at": "2026-11-03",
+      "decision": "candidate_not_official",
+      "official_match": null,
+      "opening_status": "not_verified",
+      "geometry": null,
+      "geometry_available": false,
+      "notes": "Desnivel publicado 726 m; tramo final con nieve y roca."
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "puyehue-area-ha",
+      "park_id": "puyehue",
+      "field": "area_ha",
+      "official": {
+        "value": 112755,
+        "text": "112.755",
+        "source": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+        "type": "official"
+      },
+      "secondary": {
+        "value": 112,
+        "text": "112 hectáreas",
+        "source": "https://parquenacionalpuyehue.cl/",
+        "type": "independent_tourism"
+      },
+      "resolution": "official_preferred",
+      "public_answer": "Superficie según CONAF: 112.755 ha. La cifra de una guía turística no se incorpora."
+    },
+    {
+      "id": "puyehue-area-simbio",
+      "park_id": "puyehue",
+      "field": "area_ha",
+      "official": {
+        "value": 112755,
+        "text": "112.755",
+        "source": "https://www.conaf.cl/parque_nacionales/parque-nacional-puyehue/",
+        "type": "official"
+      },
+      "secondary": {
+        "value": 102521.7,
+        "text": "102.521,7 ha (1994)",
+        "source": "https://simbio.mma.gob.cl/CbaAP/Details/971",
+        "type": "government_registry_older"
+      },
+      "resolution": "official_preferred",
+      "public_answer": "CONAF publica 112.755 ha; SIMBIO registra 102.521,7 ha de 1994. Se informa la cifra CONAF y se menciona la diferencia."
+    },
+    {
+      "id": "puyehue-volcan-difficulty",
+      "park_id": "puyehue",
+      "field": "difficulty",
+      "official": null,
+      "secondary": {
+        "value": "difícil / moderada",
+        "source": "https://parquenacionalpuyehue.cl/actividades-experiencia/",
+        "type": "independent_tourism"
+      },
+      "resolution": "unresolved_internal_contradiction",
+      "public_answer": "La fuente secundaria se contradice; no se informa una dificultad única."
+    },
+    {
+      "id": "secondary-senderos-page",
+      "park_id": "puyehue",
+      "field": "trail_page",
+      "official": null,
+      "secondary": {
+        "value": "https://parquenacionalpuyehue.cl/senderos/ describe un sendero de Tolhuaca",
+        "source": "https://parquenacionalpuyehue.cl/senderos/",
+        "type": "independent_tourism"
+      },
+      "resolution": "secondary_page_discarded",
+      "public_answer": "Página descartada por contenido de otro parque."
+    }
+  ]
+}

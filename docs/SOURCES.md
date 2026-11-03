@@ -185,3 +185,11 @@ límites en DATASET_LICENSES/DATA_GOVERNANCE; resultados agregados en META_SAM_A
   de derivados sin metadatos. Documentación: <https://pillow.readthedocs.io/>.
 - **BCN SNASPE** (polígono simplificado, privado): comparación de ubicación para las fotos
   propias; sin redistribución.
+
+## Atlas nacional de parques y senderos — consulta 03-11-2026
+
+- [Archivo CONAF de parques nacionales](https://www.conaf.cl/tipo_parque/parque-nacional/) y sus 46 fichas: superficie, provincias, comunas, avisos de visita, accesos y 190 senderos de 23 fichas. Detalle y matriz en [data/public/conaf/README.md](../data/public/conaf/README.md).
+- [BCN Mapoteca SNASPE](https://www.bcn.cl/siit/mapas_vectoriales/index_html): encuadres por parque.
+- [SIT CONAF](https://sit.conaf.cl/): sin capa de senderos documentada; «todos los derechos reservados».
+- [IDE MMA Biodiversidad](https://arcgis.mma.gob.cl/server/rest/services/IDE/Biodiversidad_IDE/MapServer): requiere token; no usado.
+- Secundarias: [parquenacionalpuyehue.cl](https://parquenacionalpuyehue.cl/actividades-experiencia/) (seis candidatos de sendero, conflicto de superficie) y [parquesnacionaleschilenos.cl](https://parquesnacionaleschilenos.cl/) (directorio).

@@ -1,0 +1,369 @@
+{
+  "schema_version": "1.0.0",
+  "source": "BCN Mapoteca, Snaspe.zip (Sistema Integrado de Información Territorial)",
+  "source_url": "https://www.bcn.cl/obtienearchivo?id=repositorio%2F10221%2F10404%2F2%2FSnaspe.zip",
+  "source_sha256": "f3fa0c6f96d98bd4ab5039aaaa34b98486c309568d1b9891964cbed2b98f9d64",
+  "source_crs": "EPSG:3857",
+  "crs": "EPSG:4326",
+  "license": "BCN: libre uso con atribución; cartografía referencial, no legal ni geodésica",
+  "computed_at": "2026-11-03",
+  "method": "Unión de los bounds de geometrías válidas (shapely is_valid) con nombre 'P.N.<parque>'; inválidas excluidas sin reparar.",
+  "limitations": [
+    "Edición BCN anterior a parques creados recientemente; esos parques no tienen bbox.",
+    "Solo encuadre de mapa: no es límite oficial, no sirve para decidir si un punto está dentro del parque.",
+    "La geometría poligonal no se redistribuye."
+  ],
+  "parks": {
+    "yendegaia": {
+      "bbox": [
+        -69.15204,
+        -54.9675,
+        -68.59548,
+        -54.58187
+      ],
+      "records": 2,
+      "valid_records": 2
+    },
+    "torres-del-paine": {
+      "bbox": [
+        -73.49919,
+        -51.33296,
+        -72.58638,
+        -50.73659
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "alberto-de-agostini": {
+      "bbox": null,
+      "reason": "geometrías BCN inválidas; sin reparar"
+    },
+    "cabo-de-hornos": {
+      "bbox": [
+        -67.91358,
+        -55.98,
+        -67.06461,
+        -55.47327
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "pali-aike": {
+      "bbox": [
+        -69.82238,
+        -52.1379,
+        -69.63377,
+        -52.06117
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "isla-magdalena": {
+      "bbox": [
+        -73.4529,
+        -44.93747,
+        -72.86169,
+        -44.29945
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "bernardo-ohiggins": {
+      "bbox": [
+        -73.39484,
+        -51.64542,
+        -73.27178,
+        -51.59156
+      ],
+      "records": 3,
+      "valid_records": 2
+    },
+    "laguna-san-rafael": {
+      "bbox": null,
+      "reason": "geometrías BCN inválidas; sin reparar"
+    },
+    "queulat": {
+      "bbox": [
+        -72.63755,
+        -44.72776,
+        -72.05063,
+        -44.02917
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "isla-guamblin": {
+      "bbox": [
+        -75.2019,
+        -44.92769,
+        -75.02283,
+        -44.76574
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "hornopiren": {
+      "bbox": [
+        -72.44432,
+        -42.03886,
+        -72.15994,
+        -41.79395
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "alerce-andino": {
+      "bbox": [
+        -72.65366,
+        -41.71019,
+        -72.36269,
+        -41.43681
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "chiloe": {
+      "bbox": [
+        -74.19112,
+        -42.64031,
+        -73.92995,
+        -42.13087
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "corcovado": {
+      "bbox": [
+        -73.09132,
+        -43.7968,
+        -72.34493,
+        -43.11376
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "puyehue": {
+      "bbox": [
+        -72.33529,
+        -40.95645,
+        -71.8252,
+        -40.40676
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "vicente-perez-rosales": {
+      "bbox": [
+        -72.58286,
+        -41.38673,
+        -71.82015,
+        -40.73229
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "alerce-costero": {
+      "bbox": [
+        -73.56941,
+        -40.21326,
+        -73.24399,
+        -39.9324
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "conguillio": {
+      "bbox": [
+        -71.89065,
+        -38.81194,
+        -71.49166,
+        -38.49524
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "villarrica": {
+      "bbox": [
+        -72.0111,
+        -39.63686,
+        -71.46076,
+        -39.31442
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "huerquehue": {
+      "bbox": [
+        -71.75247,
+        -39.20648,
+        -71.59537,
+        -39.06261
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "nahuelbuta": {
+      "bbox": [
+        -73.05507,
+        -37.84684,
+        -72.92188,
+        -37.72969
+      ],
+      "records": 2,
+      "valid_records": 2
+    },
+    "tolhuaca": {
+      "bbox": [
+        -71.92741,
+        -38.24072,
+        -71.68603,
+        -38.17035
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "laguna-del-laja": {
+      "bbox": [
+        -71.45619,
+        -37.51106,
+        -71.27097,
+        -37.36691
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "radal-siete-tazas": {
+      "bbox": [
+        -71.05712,
+        -35.5022,
+        -70.82592,
+        -35.41301
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "las-palmas-de-cocalan": {
+      "bbox": [
+        -71.17869,
+        -34.24692,
+        -71.07148,
+        -34.15938
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "archipielago-juan-fernandez": {
+      "bbox": [
+        -80.83785,
+        -33.81602,
+        -78.76897,
+        -33.60546
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "llanos-de-challe": {
+      "bbox": [
+        -71.17019,
+        -28.28237,
+        -70.89603,
+        -28.02002
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "nevado-de-tres-cruces": {
+      "bbox": [
+        -69.27829,
+        -27.51694,
+        -68.95006,
+        -26.95058
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "morro-moreno": {
+      "bbox": [
+        -70.62893,
+        -23.5384,
+        -70.52684,
+        -23.43182
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "la-campana": {
+      "bbox": [
+        -71.1426,
+        -33.01094,
+        -71.00722,
+        -32.91293
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "bosque-fray-jorge": {
+      "bbox": [
+        -71.71636,
+        -30.73121,
+        -71.60885,
+        -30.62638
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "pan-de-azucar": {
+      "bbox": [
+        -70.66749,
+        -26.23449,
+        -70.4944,
+        -25.89162
+      ],
+      "records": 4,
+      "valid_records": 4
+    },
+    "llullaillaco": {
+      "bbox": [
+        -69.24677,
+        -25.21252,
+        -68.48668,
+        -24.5175
+      ],
+      "records": 1,
+      "valid_records": 1
+    },
+    "volcan-isluga": {
+      "bbox": [
+        -69.36364,
+        -19.60882,
+        -68.67744,
+        -19.06062
+      ],
+      "records": 3,
+      "valid_records": 3
+    },
+    "lauca": {
+      "bbox": [
+        -69.66139,
+        -18.46937,
+        -69.03844,
+        -18.05687
+      ],
+      "records": 1,
+      "valid_records": 1
+    }
+  },
+  "not_in_source": [
+    "melimoyu",
+    "glaciares-de-santiago",
+    "desierto-florido",
+    "kawesqar",
+    "patagonia",
+    "cerro-castillo",
+    "pumalin-douglas-tompkins",
+    "nonguen",
+    "rapa-nui",
+    "salar-del-huasco",
+    "rio-clarillo"
+  ]
+}
