@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0.0",
- "knowledge_version": "sha256:4d03d6936730fd20685fb5d096548ecb6eb7bdec5deb97f9597830a766d08962",
+ "knowledge_version": "sha256:be3d94518ec8ef421ffbe639e6775e362e2a5e195a12b5d364155080d04bb4d4",
  "snapshot": {
   "id": "knowledge-atlas",
   "type": "KnowledgeSnapshot",
@@ -12,7 +12,7 @@
   },
   "accessed_at": "2026-11-03",
   "updated_at": null,
-  "version": "sha256:4d03d6936730fd20685fb5d096548ecb6eb7bdec5deb97f9597830a766d08962",
+  "version": "sha256:be3d94518ec8ef421ffbe639e6775e362e2a5e195a12b5d364155080d04bb4d4",
   "license": "Ver cada entidad",
   "review_status": "built_offline",
   "confidence": "mixed",
@@ -25,7 +25,7 @@
   "data": {
    "counts": {
     "ConservationAssessment": 11,
-    "DocumentPassage": 108,
+    "DocumentPassage": 109,
     "KnowledgeSource": 4,
     "MapResource": 79,
     "Park": 46,
@@ -55,7 +55,7 @@
     "valparaiso"
    ]
   },
-  "content_sha256": "sha256:ca534ecbbdbbaf31153efa1ea28f52d6e122685dbed1f2a48a3315e3cb796db5"
+  "content_sha256": "sha256:c146a2522a558a08bcfa414f7f9c93a72406dc925eacb8bc98b1dee6935e12f1"
  },
  "entities": [
   {
@@ -3563,6 +3563,35 @@
     "text": "- Fichas MMA de especie clasificada (RCE), PDF de 2019: [*Dromiciops gliroides*](http[omitido]), [*Leopardus guigna*](http[omitido]) y [*Puma concolor*](http[omitido]). - [Fundación R. A. Philippi, catálogo de flora](http[omitido]) (ulmo, olivillo, tineo, tepa, mañío y coigüe de Magallanes), [UdeC Flora y fauna](http[omitido]) y [SIB Argentina](http[omitido]). - [GBIF species API, nombres vernáculos en inglés](http[omitido]): solo vocabulario de búsqueda y ASR (`resources/vernacular-en.json`). - [Commons 156105289](http[omitido]) (digüeñe, CC BY-SA 4.0). - Meta: [speech-to-text](http[omitido]), [schemas](http[omitido]), [transcribe](http[omitido]) y [pricing](http[omitido]), consultados el 0"
    },
    "content_sha256": "sha256:067e7ab5fed83105a26524d932c478de7dec92c55d72966a6bc5127b26041acb"
+  },
+  {
+   "id": "doc--sources--13",
+   "type": "DocumentPassage",
+   "name": "Fuentes, verificación y decisiones pendientes: Despliegue cloud: consulta del 03-11-2026",
+   "source": {
+    "title": "Fuentes, verificación y decisiones pendientes",
+    "url": "docs/SOURCES.md",
+    "kind": "repository"
+   },
+   "accessed_at": "2026-11-03",
+   "updated_at": null,
+   "version": null,
+   "license": "Documentación del repositorio",
+   "review_status": "repository_document",
+   "confidence": "repository_curated",
+   "coverage": {},
+   "limitations": [
+    "Extracto de documentación técnica; ver el documento completo."
+   ],
+   "search_terms": [
+    "Despliegue cloud: consulta del 03-11-2026"
+   ],
+   "data": {
+    "document": "docs/SOURCES.md",
+    "heading": "Despliegue cloud: consulta del 03-11-2026",
+    "text": "- Precios: Cloud Billing Catalog API (`cloudbilling.googleapis.com/v1/services/*/skus`, moneda CLP), con los SKU de Cloud SQL para PostgreSQL y de Cloud Run en `southamerica-west1` (Santiago). - Capacidades: tiers de Cloud SQL (`gcloud sql tiers list`) y políticas efectivas de la organización (`gcloud resource-manager org-policies describe --effective`). - Herramientas: Cloudflare Workers con dominios personalizados y reglas de límite de tasa (fase `http_ratelimit`, plan Free), desplegados con wrangler 4.146.0."
+   },
+   "content_sha256": "sha256:e1677c4a94c7c083b5124f832083287445a3a6d999588e088979cfda47f3e6e8"
   },
   {
    "id": "doc--sources--2",

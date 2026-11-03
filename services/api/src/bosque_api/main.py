@@ -67,6 +67,19 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     async def demo_access(request: Request, call_next):
         correlation = str(uuid4())
         request.state.identity = None
+        origin_token = config.origin_auth_token.get_secret_value()
+        if (
+            origin_token
+            and request.url.path != "/health"
+            and not secrets.compare_digest(
+                request.headers.get("x-bosque-origin", "").encode(), origin_token.encode()
+            )
+        ):
+            return JSONResponse(
+                status_code=403,
+                content={"detail": "Acceso solo a través de api-bosquevivo.progarlabs.com"},
+                headers={"X-Correlation-ID": correlation},
+            )
         public = {
             "/health",
             "/species",

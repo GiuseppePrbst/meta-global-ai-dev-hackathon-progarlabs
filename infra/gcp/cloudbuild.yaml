@@ -1,0 +1,11 @@
+# gcloud builds submit --region=southamerica-west1 --config=infra/gcp/cloudbuild.yaml \
+#   --substitutions=_TAG=$(git rev-parse --short=12 HEAD) .
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-f", "services/api/Dockerfile", "-t", "${_IMAGE}:${_TAG}", "."]
+images: ["${_IMAGE}:${_TAG}"]
+substitutions:
+  _IMAGE: southamerica-west1-docker.pkg.dev/nice-carving-513619-t4/bosque-vivo/api
+options:
+  logging: CLOUD_LOGGING_ONLY
+timeout: 900s

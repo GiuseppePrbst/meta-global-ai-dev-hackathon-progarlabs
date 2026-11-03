@@ -70,6 +70,10 @@ uv run --project services/api --extra dev --frozen pytest -c services/api/pyproj
 
 Las pruebas Playwright se ejecutan con `npm run test:e2e`, requieren Chromium (`npx playwright install chromium`) y `npm run build` previo; levantan el servidor de producción. El README y el [reporte](BOOTSTRAP_REPORT.md) especifican los comandos realmente ejecutados y las limitaciones. Para PostGIS real, configurar `TEST_DATABASE_URL` con una base de pruebas y seguir la prueba de integración; crea y elimina un esquema UUID propio. No apuntar tests a una base productiva.
 
+## Despliegue cloud vigente
+
+La API demo está publicada en https://api-bosquevivo.progarlabs.com (Cloud Run + Cloud SQL + Cloudflare). Recursos, costos, operación, rollback y plan al 02-02-2027: [infra/gcp/README.md](../infra/gcp/README.md).
+
 ## Antes de un despliegue público
 
 Elegir proveedor y presupuesto; añadir HTTPS, autenticación/autorización de observaciones, límites de petición, CORS exacto, gestión de secretos, consentimiento/retención/borrado y backups con prueba de restauración. Ver [SECURITY.md](SECURITY.md). Verificar licencias del mapa base y datasets y no publicar fixtures como terreno real.

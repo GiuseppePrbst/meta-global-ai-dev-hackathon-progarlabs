@@ -1,0 +1,12 @@
+# Cloud Build uploads only what services/api/Dockerfile copies.
+/*
+!/services/
+/services/*
+!/services/api/
+!/services/botanical-ai/
+!/services/geospatial/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+**/*.egg-info/

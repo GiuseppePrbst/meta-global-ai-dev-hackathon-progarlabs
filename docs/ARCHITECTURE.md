@@ -277,3 +277,14 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
 - **Elegibilidad para la demo.** Es una capa aparte (`demo.py`, `demo-eligibility.json`) que no modifica el catálogo.
 - **Nueva dependencia `websockets==15.0.1`.** Habilita WebSocket en uvicorn y el cliente del tiempo real de Meta.
 - **Ledger.** Cada etapa (`transcribe`, `guide`) reserva por separado. Las campañas de evaluación usan la identidad `wilo-voice-lab`, con un tope atómico de USD 5 dentro del presupuesto de laboratorio existente. No es un presupuesto nuevo.
+
+## Decisión 2026-11-03: despliegue cloud (GCP + Cloudflare)
+
+- **Cómputo y base:** Cloud Run en `southamerica-west1` y Cloud SQL PostgreSQL 16 con PostGIS, `db-f1-micro`, con IP privada y TLS obligatorio. Cloud Run sale a la VPC por Direct VPC egress (`private-ranges-only`).
+  - El ledger cloud es un entorno independiente, sin reservas heredadas del laboratorio local.
+- **Entrada pública:** un Cloudflare Worker con origen fijo, en lugar de un balanceador HTTPS de GCP, que tendría un cargo fijo.
+- **Protección del origen:**
+  - La organización prohíbe `allUsers` y las claves de cuentas de servicio, así que Cloud Run usa `--no-invoker-iam-check`.
+  - El backend exige `X-Bosque-Origin` (`ORIGIN_AUTH_TOKEN`) en todo salvo `/health`, también en el WebSocket.
+- **Meta:** queda deshabilitado (`META_ENABLED=false`, `BUDGET_UNITS=0`) hasta que haya autorización de gasto.
+- **Detalle y operación:** [infra/gcp/README.md](../infra/gcp/README.md).
