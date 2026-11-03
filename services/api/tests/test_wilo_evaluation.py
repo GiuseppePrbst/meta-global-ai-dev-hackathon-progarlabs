@@ -172,9 +172,8 @@ def test_summary_only_scores_aligned_clips_and_splits_languages(tmp_path, monkey
     )
     auto = summary["conditions"]["kw_auto"]
     assert auto["scored_clips"] == 2  # the pending clip is transcribed but never scored
-    assert (
-        auto["by_language"]["es"]["wer_mean"] == 0 and auto["by_language"]["en"]["wer_mean"] == 0.1667
-    )
+    assert auto["by_language"]["es"]["wer_mean"] == 0
+    assert auto["by_language"]["en"]["wer_mean"] == 0.1667
     assert summary["conditions"]["kw_es"]["errors"] == 1
     assert "texto privado" not in json.dumps(summary) and "Willow" not in json.dumps(summary)
 
