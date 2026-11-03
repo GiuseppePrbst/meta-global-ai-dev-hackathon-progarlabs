@@ -124,7 +124,7 @@ futuras consultas, pero no se generó contenido educativo nuevo para Wilo en est
 - EXIF y GPS: retirados de todos los derivados; el GPS vive solo en el manifiesto privado.
 - Ninguna coordenada, ruta local, hash de archivo propio ni identificador de archivo aparece
   en el repositorio ni en las respuestas de la API. Hay pruebas que lo verifican.
-- Escáner de secretos sobre los archivos del PR: ver sección M.
+- Revisión de secretos y datos personales sobre el diff del PR: ver sección M.
 - Personas: no se publican fotografías con personas identificables.
 
 ## M. Validación
@@ -136,6 +136,10 @@ Comandos ejecutados en el worktree de contenido:
 - `uv run --project services/api --extra dev --frozen pytest -c services/api/pyproject.toml services -q` → 271 pasaron, 21 omitidas (requieren PostgreSQL/PostGIS; no ejecutadas aquí).
 - `services/api/tests/test_media.py` → 16 pruebas nuevas, todas pasan.
 - Clips y escenas verificados con ffprobe y PIL: orientación, sin audio, sin EXIF.
+- `python scripts/check_repository.py` → rutas publicables y enlaces Markdown correctos.
+- Revisión del diff: búsqueda de patrones de claves, tokens, coordenadas, nombres del titular
+  y rutas locales. No hay un escáner de secretos dedicado en el repositorio; esta
+  revisión es manual y por patrones, no sustituye a una herramienta de escaneo.
 
 No ejecutado: `npm run lint`, `typecheck`, `build` y Playwright. El PR no cambia `apps/web` ni
 `apps/mobile`. No hay llamadas a Meta ni a servicios externos en CI.
