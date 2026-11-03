@@ -102,6 +102,14 @@ def test_asset_detail_is_public_and_unknown_ids_fail(client):
     assert client.get("/media/..%2Fsecret").status_code == 404
 
 
+def test_media_prefix_does_not_exempt_private_routes():
+    app = create_app(Settings(_env_file=None, service_mode="demo", demo_tokens={"a": "test"}))
+    app.add_api_route("/media-private", lambda: {"private": True})
+    client = TestClient(app)
+    assert client.get("/media-private").status_code == 401
+    assert client.get("/media-private", headers={"Authorization": "Bearer test"}).status_code == 200
+
+
 def test_media_responses_expose_no_local_paths_or_coordinates(client):
     text = client.get("/taxa/nothofagus-dombeyi/media").text
     for marker in ("D:/", "D:\\", "C:\\", "gps", "lat", "lon", "originals", "sha256"):

@@ -76,7 +76,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             and request.method != "OPTIONS"
             and (
                 request.url.path not in public
-                and not request.url.path.startswith(("/species/", "/taxa", "/parks/", "/media"))
+                and not request.url.path.startswith(("/species/", "/taxa", "/parks/", "/media/"))
             )
         ):
             try:
