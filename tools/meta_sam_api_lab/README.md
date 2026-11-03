@@ -27,6 +27,7 @@ Archivo privado `config.json`, nunca versionado:
   "database_url": "<DSN_PRIVADO_CON_SEARCH_PATH_EXCLUSIVO>",
   "key_file": "<ARCHIVO_LOCAL_CON_UNA_CLAVE>",
   "budget_usd": 1,
+  "_comment": "Sin research_campaign el techo es USD 1; ver Presupuesto vigente",
   "rights_confirmed": true,
   "external_processing_authorized": true
 }
@@ -34,8 +35,14 @@ Archivo privado `config.json`, nunca versionado:
 
 Las banderas representan permisos realmente obtenidos, no los conceden. La clave solo
 se lee en backend y no llega al navegador. Standard Mode; no variantes contributor.
-El techo acumulado máximo admitido es USD 1. Las reservas son conservadoras y no
-reembolsables, incluso ante errores. No significan un cargo del proveedor.
+**Presupuesto vigente.** Sin `research_campaign` el techo es USD 1. Con una
+`research_campaign` privada el techo es `authorized_usd`. Ese techo puede llegar a USD 50
+(autorización del 30-10-2026) más el `credit_authorization.authorized_new_usd` de una
+autorización de créditos gratuitos (02-11-2026: USD 130 sobre un snapshot de USD 140,86,
+con un margen de USD 10,86; nunca autoriza cargos en tarjeta). El reporte `costs` separa el
+histórico, la campaña nueva, el snapshot y el uso sin reconciliar. Las reservas son
+conservadoras y no reembolsables, incluso ante errores; no significan un cargo del
+proveedor.
 
 ## CLI
 
@@ -56,15 +63,21 @@ serve --output <PRIVATE_ROOT> --config <CONFIG> --port 8876
 
 `prepare` extrae el primer MP4 del ZIP validado y genera cinco segundos, ancho `--width` (640, 960 o 1280; 640 por defecto),
 10 FPS, H.264, sin audio/telemetría; no sobrescribe. `inventory` no extrae. Para otro
-clip usa `media.prepare_clip(source, output, start=..., seconds=...)`, máximo diez segundos.
+clip usa `media.prepare_clip(source, output, start=..., seconds=..., fps=...)`, máximo 30 segundos
+y 900 frames (límite local; la API admite 15.000 frames).
 Consulta `preparation.json` para transformación, orientación y tiempos relativos.
 No hay georreferenciación ni correspondencia entre píxeles y distancias físicas.
 
 Imagen: hasta 10 MiB, formato real validado y EXIF eliminado por la preparación existente.
-Video: MP4/H.264 preparado, hasta diez segundos, 300 frames, 20 MiB y 1920 píxeles
-por dimensión. El prompt conceptual es uno de `tree`, `tree crown`, `vegetation`,
-`bush`, `branches`. La caja reemplaza el concepto, usa píxeles preparados y se valida
-con el constructor oficial **antes de reservar o subir**; bordes enteros floor/ceil.
+Video: MP4/H.264 preparado, hasta 30 segundos, 900 frames, 60 MiB y 1920 píxeles por
+dimensión.
+
+El prompt conceptual es **una sola frase nominal corta** (`lab.valid_concept`): se rechazan
+listas, «and», «or» y preguntas. `lab.CONCEPTS` es solo una lista de sugerencias para el
+visor.
+
+La caja reemplaza el concepto, usa píxeles preparados y se valida con el constructor
+oficial **antes de reservar o subir**; los bordes se redondean a enteros con floor/ceil.
 
 El helper explícito `lab.scene_advisory(config, sources, output)` admite hasta tres
 imágenes y Muse 1.3 con JSON Schema y esfuerzo `minimal`; reserva presupuesto y nunca

@@ -28,4 +28,9 @@ assert.ok(!both.sam.includes('Carpintero'), 'species never enters the SAM label'
 assert.equal(both.status, 'experimental, no verificado');
 
 assert.deepEqual(C.tracks(frames).find(t => t.id === '1'), { id: '1', first: 0, last: 2, visible: 2, gaps: 1 });
+const mr = C.metricRows({ reference_status: 'agent_grabcut_reviewed', reference_complete: false, matched: 2,
+  reference_instances: 3, missed: 1, false_positives: null, mean_mask_iou: 0.8, mean_dice: 0.88, boundary_f1: null });
+assert.ok(mr['Referencia'].startsWith('agent_grabcut_reviewed'), 'reference status always shown');
+assert.equal(mr['Falsos positivos'], 'no medible (referencia parcial)');
+assert.equal(mr['Instancias acertadas'], '2/3');
 console.log('showcase core OK');

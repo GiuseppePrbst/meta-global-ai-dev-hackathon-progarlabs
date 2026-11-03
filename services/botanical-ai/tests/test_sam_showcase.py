@@ -158,6 +158,14 @@ def viewer(tmp_path):
     (show / "scenes.json").write_text(
         json.dumps([scene(license="CC BY 4.0")]), encoding="utf-8"
     )
+    (show / "metrics.json").write_text(
+        json.dumps({"birds-x--c-bird": {"reference_status": "agent_grabcut_reviewed"}}),
+        encoding="utf-8",
+    )
+    (show / "gallery.json").write_text(
+        json.dumps({"birds-x--c-bird": {"tag": "Multiinstancia", "note": "dos aves"}}),
+        encoding="utf-8",
+    )
     app = create_viewer(root, tmp_path / "missing.json", 8876, show)
     return TestClient(app, base_url="http://127.0.0.1:8876")
 
@@ -171,6 +179,8 @@ def test_showcase_routes_are_read_only_and_confined(viewer):
         and detail["prompt"] == "bird"
         and detail["muse"] is None
     )
+    assert detail["metrics"]["reference_status"] == "agent_grabcut_reviewed"
+    assert detail["editorial"]["tag"] == runs[0]["tag"] == "Multiinstancia"
     assert (
         viewer.get("/showcase-assets/birds-x--c-bird/masks/f000000-o0.png").status_code
         == 200
@@ -189,3 +199,107 @@ def test_showcase_routes_are_read_only_and_confined(viewer):
     )
     assert viewer.get("/showcase").status_code == 200
     assert viewer.get("/showcase-core.js").status_code == 200
+
+
+def credit(**extra):
+    from tools.meta_sam_api_lab.lab import CreditAuthorization
+
+    data = {
+        "snapshot_usd": 140.86,
+        "snapshot_at": "2026-11-02",
+        "source": "owner billing screenshot",
+        "responsible": "owner",
+        "authorized_new_usd": 130,
+        "safety_margin_usd": 10.86,
+        **extra,
+    }
+    return CreditAuthorization(**data)
+
+
+def test_free_credit_capacity_must_fit_inside_snapshot_and_never_authorizes_card_spend():
+    from pydantic import ValidationError
+
+    assert credit().paid_spend_authorized is False
+    with pytest.raises(ValidationError):
+        credit(authorized_new_usd=135)  # 135 + 10.86 > 140.86
+    with pytest.raises(ValidationError):
+        credit(paid_spend_authorized=True)
+
+
+def test_campaign_above_usd_50_requires_matching_credit_authorization():
+    from pydantic import ValidationError
+
+    from tools.meta_sam_api_lab.lab import Campaign
+
+    base = {
+        "authorization_date": "2026-11-02",
+        "phase_caps_usd": {"I": 130},
+        "daily_requests": None,
+        "reservation_usd": 0.01,
+        "historical_reserved_usd": 1,
+    }
+    with pytest.raises(ValidationError):
+        Campaign(authorized_usd=180, **base)
+    assert (
+        Campaign(
+            authorized_usd=180, credit_authorization=credit(), **base
+        ).authorized_usd
+        == 180
+    )
+    with pytest.raises(ValidationError):
+        Campaign(authorized_usd=181, credit_authorization=credit(), **base)
+
+
+def test_credit_view_keeps_history_apart_and_bounds_remaining_credit():
+    from tools.meta_sam_api_lab.costs import credit_view
+
+    report = {
+        "reserved_usd": {"total": 60.0, "by_identity": {"sam-api-lab:I": 11.0}},
+        "estimated_usd": {"total": 12.0, "by_identity": {"sam-api-lab:I": 2.5}},
+    }
+    view = credit_view(report, credit(), "I")
+    assert (
+        view["historical_reserved_usd"] == 49.0
+        and view["new_campaign_reserved_usd"] == 11.0
+    )
+    assert view["historical_estimated_cost_usd"] == 9.5
+    assert (
+        view["provider_credit_remaining_estimate_usd"] == 129.86
+    )  # snapshot - reservations
+    assert view["paid_spend_verified_usd"] is None
+
+
+def square(size, x0, y0, x1, y1):
+    m = np.zeros(size, bool)
+    m[y0:y1, x0:x1] = True
+    return m
+
+
+def test_mask_metrics_match_instances_and_respect_partial_references():
+    pytest.importorskip("cv2")
+    from evaluations.sam_references import evaluate
+
+    refs = [square((60, 80), 5, 5, 25, 25), square((60, 80), 40, 30, 70, 55)]
+    pred = [square((60, 80), 6, 6, 25, 25), square((60, 80), 0, 40, 4, 44)]
+    full = evaluate(pred, refs, complete=True, tolerance=2)
+    assert (full["matched"], full["missed"], full["false_positives"]) == (1, 1, 1)
+    assert 0.85 < full["mean_mask_iou"] < 1 and full["boundary_f1"] > 0.9
+    partial = evaluate(pred, refs, complete=False, tolerance=2)
+    assert partial["false_positives"] is None and partial["pixel_precision"] is None
+
+
+def test_fragmented_reference_is_counted():
+    pytest.importorskip("cv2")
+    from evaluations.sam_references import evaluate
+
+    ref = [square((40, 40), 0, 0, 40, 20)]
+    pred = [square((40, 40), 0, 0, 20, 20), square((40, 40), 20, 0, 40, 20)]
+    assert evaluate(pred, ref, complete=True, tolerance=1)["fragmented_references"] == 1
+
+
+def test_iou_and_boundary_helpers():
+    from evaluations.sam_references import boundary, iou
+
+    a = square((10, 10), 0, 0, 5, 5)
+    assert iou(a, a) == 1.0 and iou(a, ~a) == 0.0
+    assert boundary(a).sum() == 16  # ring of a 5x5 square

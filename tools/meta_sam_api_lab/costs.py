@@ -98,7 +98,9 @@ def remote_files(root: Path) -> dict:
     return counts
 
 
-def cost_report(config, authorized_usd: float, root: Path) -> dict:
+def cost_report(
+    config, authorized_usd: float, root: Path, credit=None, credit_phase: str = "I"
+) -> dict:
     import psycopg
 
     with psycopg.connect(
@@ -110,7 +112,39 @@ def cost_report(config, authorized_usd: float, root: Path) -> dict:
         )
         names = [c.name for c in cursor.description]
         rows = [dict(zip(names, r, strict=True)) for r in cursor.fetchall()]
-    return {
+    report = {
         **summarize_rows(rows, authorized_usd, "sam-api-lab"),
         "remote_files": remote_files(root),
+    }
+    if credit is not None:
+        report["credit"] = credit_view(report, credit, credit_phase)
+    return report
+
+
+def credit_view(report: dict, credit, phase: str) -> dict:
+    """Free-credit accounting kept apart from history; nothing here is billing data."""
+    owner = f"sam-api-lab:{phase}"
+    new_reserved = report["reserved_usd"]["by_identity"].get(owner, 0.0)
+    new_estimated = report["estimated_usd"]["by_identity"].get(owner, 0.0)
+    total_estimated = report["estimated_usd"]["total"]
+    return {
+        "historical_reserved_usd": round(
+            report["reserved_usd"]["total"] - new_reserved, 6
+        ),
+        "historical_estimated_cost_usd": round(total_estimated - new_estimated, 6),
+        "new_campaign_reserved_usd": new_reserved,
+        "new_campaign_estimated_cost_usd": round(new_estimated, 6),
+        "provider_billing_snapshot_usd": credit.snapshot_usd,
+        "credit_snapshot_at": credit.snapshot_at,
+        "credit_source": credit.source,
+        # Upper bound: reservations are never below the tariff cost of a call.
+        "provider_credit_remaining_estimate_usd": round(
+            credit.snapshot_usd - new_reserved, 6
+        ),
+        "safety_margin_usd": credit.safety_margin_usd,
+        "estimated_total_usage_usd": round(total_estimated, 6),
+        "paid_spend_verified_usd": None,
+        "unreconciled_usage_usd": round(new_estimated, 6),
+        "note": "Snapshot supplied by the owner; Meta documents no balance API. Usage since "
+        "the snapshot stays unreconciled until the Billing panel is checked again.",
     }

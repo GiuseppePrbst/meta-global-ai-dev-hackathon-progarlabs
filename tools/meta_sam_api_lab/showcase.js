@@ -14,7 +14,8 @@ const img = src => new Promise((ok, ko) => { const i = new Image(); i.onload = (
 async function load() {
   const data = await (await fetch('/api/showcase/runs')).json();
   state.runs = data.runs;
-  const domains = ['todos', ...new Set(data.runs.map(r => r.domain))];
+  const tags = [...new Set(data.runs.map(r => r.tag).filter(Boolean))].map(t => 'galería: ' + t);
+  const domains = ['todos', ...tags, ...new Set(data.runs.map(r => r.domain))];
   $('domains').innerHTML = domains.map(d => `<button data-d="${d}">${d}</button>`).join('');
   $('domains').onclick = e => { if (e.target.dataset.d) { state.domain = e.target.dataset.d; list(); } };
   $('modes').innerHTML = MODES.map(([k, l]) => `<button data-m="${k}">${l}</button>`).join('');
@@ -28,7 +29,8 @@ function marks() {
 }
 
 function list() {
-  const runs = state.runs.filter(r => state.domain === 'todos' || r.domain === state.domain);
+  const runs = state.runs.filter(r => state.domain === 'todos' || r.domain === state.domain
+    || state.domain === 'galería: ' + r.tag);
   $('runs').innerHTML = runs.map(r => `<div class="run" data-id="${r.id}">${r.label}<small>${r.status} · ${r.masks} máscaras · ${r.media}</small></div>`).join('');
   $('runs').onclick = e => { const el = e.target.closest('.run'); if (el) open(el.dataset.id, e.shiftKey); };
   marks();
@@ -57,6 +59,8 @@ function meta() {
     ['Estado', r.status], ['Latencia', r.latency_ms ? `${Math.round(r.latency_ms)} ms` : '—'],
     ['Costo estimado', r.estimated_usd != null ? `USD ${r.estimated_usd}` : '—'],
     ['Fuente / licencia', `${r.license || '—'} · ${r.author || ''}`]];
+  if (r.editorial) rows.unshift(['Galería', `${r.editorial.tag} — ${r.editorial.note || ''}`]);
+  if (r.metrics) for (const [k, v] of Object.entries(C.metricRows(r.metrics))) rows.push([k, v]);
   $('meta').innerHTML = `<table>${rows.map(([k, v]) => `<tr><td>${k}</td><td>${v ?? '—'}</td></tr>`).join('')}</table>
     <p class="muted">La confianza de SAM es del modelo sobre la máscara; no es certeza taxonómica.</p>`;
 }
