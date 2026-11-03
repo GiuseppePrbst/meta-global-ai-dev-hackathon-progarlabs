@@ -1,6 +1,11 @@
-# Wilo Lab: preparación para inferencia real de Meta (03-11-2026)
+# Wilo Lab: inferencia real de Meta (03-11-2026)
 
-Estado: **bloqueado antes de cualquier gasto.** Este documento lista qué falta, sin rodeos. Ninguna prueba de este incremento llamó a Meta. El ledger tiene USD 65,575 reservados, ninguna reserva abierta y ningún movimiento posterior a la campaña Wilo del 03-11.
+Estado: **la campaña mínima de 4 llamadas se ejecutó con autorización del propietario** el 03-11, a través de la interfaz de Wilo Lab (3002), con el backend en `SERVICE_MODE=demo` (8001) y Meta real. Los resultados están en la sección «Resultados de la campaña real», al final.
+
+Antes de la campaña:
+
+- Se aplicó la migración 004, de forma aditiva, al esquema del ledger del laboratorio. Antes y después había 2803 reservas por USD 65,575, sin filas modificadas.
+- Se creó la identidad `wilo-lab-demo`, que empezó en USD 0.
 
 ## Configuración que exige el backend (código actual)
 
@@ -58,3 +63,20 @@ Para cada llamada hay que registrar proveedor, modelo, respuesta, latencia, `cor
   - el 404 de consola era `/favicon.ico`, ya corregido;
   - el fixture PNG de las pruebas e2e tenía un CRC inválido, ya reemplazado.
 - **Móvil:** los recorridos se repiten en el proyecto Playwright `mobile`, con un iPhone 13 emulado en Chromium. Falta probarlo en un dispositivo y con un micrófono físicos.
+
+
+## Resultados de la campaña real (03-11-2026, identidad `wilo-lab-demo`)
+
+| # | Prueba | Proveedor y modelo | Resultado | Latencia del backend | Reserva | Consumo |
+| --- | --- | --- | --- | ---: | ---: | --- |
+| 1 | Wilo por texto: «¿Qué senderos tiene el Parque Nacional Puyehue?» | meta · muse-spark-1.3 | ✅ Respuesta con fuentes: CONAF nombra El Indio, La Princesa y Repucura, y advierte que no hay apertura verificada. Cita 3 fuentes `atlas:*`, devuelve las entidades park y trail, y `map.geometry_available=false` | 18,7 s | USD 0,04 | 6.224 tokens de entrada y 2.102 de salida |
+| 2 | Transcripción: WAV del navegador, micrófono simulado reproduciendo TTS sintético | meta · muse-voice-transcribe-1.0 | ✅ «Háblame del Parque Nacional Puyehue.», texto exacto | 2,4 s | USD 0,005 | 3,76 s de audio |
+| 3 | Positivo: [Aextoxicon punctatum](https://commons.wikimedia.org/wiki/File:Aextoxicon_punctatum_(53136865463).jpg) (olivillo) | meta · muse-spark-1.3, estrategia `verify` | ❌ **Falso positivo.** Aceptó *Eucryphia cordifolia* (ulmo) como «candidata apoyada». Pidió una foto del envés y advirtió que no veía pelos en el envés | 15,4 s | USD 0,03 | 8.585 tokens de entrada y 921 de salida |
+| 4 | Negativo: [Araucaria araucana kz10](https://commons.wikimedia.org/wiki/File:Araucaria_araucana_kz10.jpg) | meta · muse-spark-1.3, estrategia `verify` | ✅ `out_of_catalog_suspected` y `not_accepted`, con *Araucaria araucana* como similar fuera del catálogo | 6,3 s | USD 0,03 | 4.372 tokens de entrada y 426 de salida |
+
+- **Costo.** Se reservaron USD 0,105. El costo estimado por tarifa es de unos USD 0,039. No hay gasto verificado, porque Meta no ofrece una API de saldo.
+- **Trazabilidad.** Las 4 reservas terminaron en `completed`. Las 2 identificaciones quedaron guardadas en `identifications`, ligadas a la identidad.
+- **Lectura.** La voz y la guía funcionaron de punta a punta con Meta real. El reconocimiento rechazó bien la especie fuera del catálogo, pero **confundió olivillo con ulmo**: las dos especies tienen hojas simples, coriáceas y oblongas, y el rasgo decisivo, el envés grisáceo con escamas del olivillo, no se ve en la foto.
+- **Límites de la muestra.** Es un solo caso, así que no es una tasa de error. Muestra que una «candidata apoyada» puede ser incorrecta incluso con la estrategia `verify`.
+- **Cómo lo presenta la interfaz.** El laboratorio lo muestra como «Aceptada para presentación (no verificada)», con limitaciones y la foto siguiente que se recomienda.
+- **Datos privados.** Las capturas y las respuestas completas se guardaron en `D:/data/bosque-vivo/wilo-lab-live/`, fuera de Git.
