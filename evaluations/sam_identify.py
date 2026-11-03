@@ -63,6 +63,7 @@ async def identify(
 
     from evaluations.multikingdom_campaign import panel_config
     from tools.meta_sam_api_lab.lab import (
+        admission_from_private,
         campaign_from_private,
         config_from_private,
         phase_admission,
@@ -80,11 +81,22 @@ async def identify(
         image = crop_with_context(original, largest["box"])
     data = prepare_image(jpeg(image), "image/jpeg")
     config = config_from_private(config_path)
+    admission = admission_from_private(config_path, phase)
     owner, cap = phase_admission(
         phase, campaign_from_private(config_path).phase_caps_usd[phase]
     )
     ledger = ExecutionStore(config)
-    reservation = await asyncio.to_thread(ledger.reserve, owner, "identify", cap)
+    reservation = await asyncio.to_thread(
+        ledger.reserve,
+        owner,
+        "identify",
+        cap,
+        **(
+            {"credit_snapshot": admission["credit_snapshot"]}
+            if admission["credit_snapshot"]
+            else {}
+        ),
+    )
     client = MetaResponsesClient(config.model_api_key, config.meta_timeout_seconds)
     status, row, started = "provider_error", {}, perf_counter()
     try:

@@ -1,6 +1,8 @@
 """Canonical experiment identity; private locations are stored separately."""
 
 from datetime import UTC, datetime
+from decimal import ROUND_FLOOR, Decimal
+from pathlib import Path
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
@@ -33,6 +35,25 @@ class FinancialAuthorization(BaseModel):
             or self.margin_usd >= self.observed_usd
         ):
             raise ValueError("Invalid or expired financial authorization")
+
+
+def financial_snapshot(authorization_path, evidence_path, campaign_id, phase_cap_usd):
+    from tools.meta_sam_api_lab.media import digest, private_path
+
+    auth = FinancialAuthorization.model_validate_json(
+        private_path(Path(authorization_path)).read_text(encoding="utf-8")
+    )
+    auth.validate_current(campaign_id)
+    if (
+        auth.source_kind != "provider_verified"
+        or auth.limit_usd < phase_cap_usd
+        or digest(private_path(Path(evidence_path))) != auth.evidence_sha256
+    ):
+        raise ValueError("Current provider billing evidence is required")
+    units = (
+        Decimal(str(auth.observed_usd)) - Decimal(str(auth.margin_usd))
+    ) * 1_000_000
+    return auth.checked_at, int(units.to_integral_value(rounding=ROUND_FLOOR))
 
 
 class Experiment(BaseModel):

@@ -41,6 +41,32 @@ La consulta del ledger informa explícitamente `missing_reservation_id` cuando f
 En la rama combinada: 289 pruebas de servicios aprobadas y 24 omitidas; 58 pruebas
 focalizadas aprobadas y 2 omitidas con PostgreSQL aislado; test JavaScript del visor
 aprobado. La CLI de workers procesó diez trabajos sintéticos y un reinicio no agregó
-trabajos. Las rutas antiguas que llaman fase I sin snapshot ahora fallan antes de
-reservar: todavía necesitan una integración de autorización para poder ejecutarse.
+trabajos. En esa etapa las rutas antiguas sin snapshot fallaban antes de reservar;
+su adaptación se describe abajo.
 Una coincidencia de fase de la reserva en reconciliación no prueba vínculo con el job.
+
+## Continuación: vínculos y recuperación
+
+Las nuevas reservas de worker se vinculan a job e intento en la misma transacción;
+si el lease no coincide, se revierte la reserva. La finalización de cero filas ahora
+devuelve error. Una resolución de resultado terminal exige evidencia y crea un registro
+de auditoría; una segunda resolución se rechaza. No se fabrican vínculos históricos.
+
+Pruebas PostgreSQL multiproceso con proveedor simulado comprobaron `stop` y `drain`
+durante un job activo, y terminación abrupta seguida de lease vencido y recuperación:
+el trabajo incierto permanece en reconciliación y solo se procesa el pendiente. Quedan
+pendientes pruebas integrales de timeout y 429/503, uso real de Meta y supervisión
+continua. La fase I no está autorizada sin evidencia vigente del propietario.
+
+Validación adicional del 03-11: suite de servicios 296 aprobadas y 25 omitidas;
+pruebas focalizadas 66 aprobadas y 2 omitidas por falta de OpenCV. La suite completa
+omitió PostGIS y pruebas que requieren `TEST_DATABASE_URL` (las pruebas focalizadas
+del ledger se ejecutaron por separado en PostgreSQL 18 aislado), además de extras GIS
+y OpenCV. El importador reconoció 466 resultados terminales: 442 existentes y 24
+adicionales; una segunda pasada reconoció 466 sin insertar. El proveedor fue simulado.
+
+El helper compartido valida autorización privada para la CLI, el visor, la campaña
+SAM y los callers Muse adaptados. Falta demostrar que todos los accesos directos al
+ledger no puedan construir manualmente un snapshot sin evidencia; la etiqueta del
+proveedor y el hash siguen requiriendo revisión humana. Permanecen pendientes las
+pruebas integrales de timeout y respuestas 429/503 durante ejecución y recuperación.

@@ -430,3 +430,126 @@ def test_credit_snapshot_caps_all_post_snapshot_reservations_atomically():
     finally:
         with psycopg.connect(url, autocommit=True) as conn:
             conn.execute(sql.SQL("DROP SCHEMA {} CASCADE").format(sql.Identifier(schema)))
+
+
+@pytest.mark.integration
+def test_reservation_link_is_atomic_and_finish_requires_a_reserved_row(tmp_path):
+    from evaluations.sam_workers.queue import Queue
+    from evaluations.sam_workers.reconcile import inspect, resolve
+
+    url = os.getenv("TEST_DATABASE_URL")
+    if not url:
+        pytest.skip("TEST_DATABASE_URL required")
+    schema = "execution_test_" + uuid4().hex
+    scripts = Path(__file__).parents[1] / "sql"
+    with psycopg.connect(url, autocommit=True) as conn:
+        conn.execute(sql.SQL("CREATE SCHEMA {}").format(sql.Identifier(schema)))
+    scoped = make_conninfo(url, options=f"-csearch_path={schema},public")
+    try:
+        with psycopg.connect(scoped) as conn:
+            conn.execute((scripts / "001_init.sql").read_text())
+            conn.execute((scripts / "003_execution.up.sql").read_text())
+        queue = Queue(scoped)
+        queue.migrate()
+        with queue.connect() as conn:
+            assert conn.execute(
+                "SELECT 1 FROM pg_constraint WHERE conrelid='sam_job_reservations'::regclass "
+                "AND conname='sam_job_reservations_ledger_fk'"
+            ).fetchone()
+        spec = {
+            "media_sha256": "d" * 64,
+            "prompt": "fern",
+            "model_version": "1",
+            "protocol_version": "1",
+            "protocol_approved_by": "test",
+            "preprocessing_version": "1",
+        }
+        job = queue.enqueue("test", spec)
+        owner = uuid4()
+        assert queue.claim(owner)["job_id"] == job
+        assert queue.start(job, owner)
+        config = demo(
+            database_url=scoped,
+            budget_units=10000,
+            budget_lifetime_units=10000,
+            meta_reservation_units=100,
+            budget_concurrency=8,
+            budget_daily_requests_enabled=False,
+        )
+        store = ExecutionStore(config)
+        with psycopg.connect(scoped) as conn:
+            timestamp = conn.execute("SELECT now() - interval '1 minute'").fetchone()[0]
+        with pytest.raises(HTTPException) as invalid:
+            store.reserve(
+                "sam-api-lab:I",
+                "identify",
+                1000,
+                credit_snapshot=(timestamp, 1000),
+                job_context=(job, uuid4(), 1),
+            )
+        assert invalid.value.status_code == 409
+        with psycopg.connect(scoped) as conn:
+            assert conn.execute("SELECT count(*) FROM execution_reservations").fetchone()[0] == 0
+        reservation = store.reserve(
+            "sam-api-lab:I",
+            "identify",
+            1000,
+            credit_snapshot=(timestamp, 1000),
+            job_context=(job, owner, 1),
+        )
+        with psycopg.connect(scoped) as conn:
+            assert conn.execute(
+                "SELECT job_id,attempt FROM sam_job_reservations WHERE reservation_id=%s",
+                (reservation,),
+            ).fetchone() == (job, 1)
+        store.finish(reservation, "completed", {})
+        with pytest.raises(HTTPException) as repeated:
+            store.finish(reservation, "completed", {})
+        assert repeated.value.status_code == 409
+        with queue.connect() as conn:
+            conn.execute(
+                "UPDATE sam_experiment_jobs SET lease_expires_at=now()-interval '1 second' "
+                "WHERE job_id=%s",
+                (job,),
+            )
+        queue.recover()
+        output = tmp_path / str(job)
+        output.mkdir()
+        result_file = output / "result.json"
+        result_file.write_text(
+            json.dumps(
+                {
+                    "source_sha256": spec["media_sha256"],
+                    "model": "sam-3.1",
+                    "concept": "fern",
+                    "job_id": str(job),
+                    "job_attempt": 1,
+                    "experiment_fingerprint": queue.get(job)["experiment_fingerprint"],
+                    "reservation_id": str(reservation),
+                    "status": "completed",
+                    "cleanup": "pending",
+                }
+            )
+        )
+        assert inspect(queue, job, tmp_path)["identity_complete"]
+        with pytest.raises(ValueError, match="cleanup"):
+            resolve(queue, job, tmp_path, "completed", "reviewer", "checked evidence")
+        evidence = json.loads(result_file.read_text())
+        evidence["cleanup"] = "not_uploaded"
+        result_file.write_text(json.dumps(evidence))
+        assert (
+            resolve(queue, job, tmp_path, "completed", "reviewer", "checked evidence")["job_status"]
+            == "completed"
+        )
+        with pytest.raises(ValueError, match="not eligible"):
+            resolve(queue, job, tmp_path, "completed", "reviewer", "checked evidence")
+        with queue.connect() as conn:
+            assert (
+                conn.execute(
+                    "SELECT count(*) AS n FROM sam_reconciliation_audit WHERE job_id=%s", (job,)
+                ).fetchone()["n"]
+                == 1
+            )
+    finally:
+        with psycopg.connect(url, autocommit=True) as conn:
+            conn.execute(sql.SQL("DROP SCHEMA {} CASCADE").format(sql.Identifier(schema)))

@@ -146,6 +146,95 @@ def test_phase_i_cannot_exceed_credit_authorization(tmp_path):
         lab.campaign_from_private(write_config(tmp_path, 180, settings))
 
 
+def test_shared_phase_context_requires_current_evidence(tmp_path, monkeypatch):
+    import hashlib
+    from datetime import UTC, datetime, timedelta
+    from types import SimpleNamespace
+
+    monkeypatch.setattr(
+        lab,
+        "campaign_from_private",
+        lambda _: SimpleNamespace(phase_caps_usd={"H": 10, "I": 130}),
+    )
+    config = tmp_path / "config.json"
+    config.write_text("{}")
+    assert lab.admission_from_private(config, "H")["credit_snapshot"] is None
+    with pytest.raises(KeyError):
+        lab.admission_from_private(config, "I")
+    evidence = tmp_path / "evidence"
+    evidence.write_bytes(b"synthetic evidence")
+    now = datetime.now(UTC)
+    authorization = tmp_path / "authorization.json"
+    data = {
+        "campaign_id": "test",
+        "responsible": "owner",
+        "source_kind": "provider_verified",
+        "source": "synthetic evidence",
+        "evidence_sha256": hashlib.sha256(evidence.read_bytes()).hexdigest(),
+        "observed_usd": 139.26,
+        "limit_usd": 130,
+        "margin_usd": 10.86,
+        "ledger_phase": "I",
+        "checked_at": now.isoformat(),
+        "expires_at": (now + timedelta(hours=1)).isoformat(),
+    }
+    authorization.write_text(json.dumps(data))
+    config.write_text(
+        json.dumps(
+            {
+                "campaign_id": "test",
+                "financial_authorization_file": str(authorization),
+                "financial_evidence_file": str(evidence),
+            }
+        )
+    )
+    assert lab.admission_from_private(config, "I")["credit_snapshot"][1] == 128_400_000
+    data["expires_at"] = (now - timedelta(seconds=1)).isoformat()
+    authorization.write_text(json.dumps(data))
+    with pytest.raises(ValueError, match="expired"):
+        lab.admission_from_private(config, "I")
+    with pytest.raises(ValueError, match="explicit phase"):
+        lab.admission_from_private(config, None)
+
+
+def test_lab_cli_blocks_phase_i_without_evidence_before_runner(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+
+    from tools.meta_sam_api_lab import __main__ as cli
+
+    config = tmp_path / "config.json"
+    config.write_text("{}")
+    monkeypatch.setattr(
+        lab,
+        "campaign_from_private",
+        lambda _: SimpleNamespace(phase_caps_usd={"I": 130}),
+    )
+    monkeypatch.setattr(cli, "config_from_private", lambda _: object())
+    monkeypatch.setattr(
+        cli, "run_experiment", lambda *args, **kwargs: pytest.fail("runner invoked")
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "lab",
+            "image",
+            "--source",
+            str(tmp_path / "x.png"),
+            "--output",
+            str(tmp_path / "out"),
+            "--config",
+            str(config),
+            "--phase",
+            "I",
+            "--authorize-meta",
+        ],
+    )
+    with pytest.raises(SystemExit) as error:
+        cli.main()
+    assert error.value.code == 1
+
+
 def test_research_profile_can_disable_daily_counter_only_explicitly(tmp_path):
     normal = lab.config_from_private(write_config(tmp_path, 1))
     assert normal.budget_daily_requests_enabled and normal.budget_requests == 10

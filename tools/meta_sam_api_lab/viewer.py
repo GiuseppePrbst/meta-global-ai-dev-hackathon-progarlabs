@@ -17,6 +17,7 @@ from tools.meta_sam_api_lab.lab import (
     CONCEPTS,
     SAFE_ID,
     ObjectSpec,
+    admission_from_private,
     campaign_from_private,
     config_from_private,
     describe_media,
@@ -465,6 +466,12 @@ def create_viewer(
         campaign = campaign_from_private(config_file)
         if campaign and item.phase is None:
             raise HTTPException(422, "Research campaign requires a phase")
+        try:
+            admission_from_private(config_file, item.phase)
+        except (ValueError, KeyError, OSError):
+            raise HTTPException(
+                503, "Autorización de investigación no disponible"
+            ) from None
         cap = campaign.phase_caps_usd[item.phase] if campaign and item.phase else None
         identifier = uuid4().hex
         output = root / "outputs" / identifier
@@ -472,6 +479,7 @@ def create_viewer(
         async def work():
             async with semaphore:
                 try:
+                    admission = admission_from_private(config_file, item.phase)
                     await run_experiment(
                         config,
                         source,
@@ -487,6 +495,7 @@ def create_viewer(
                         source_ref=item.source,
                         phase=item.phase,
                         phase_cap_usd=cap,
+                        credit_snapshot=admission["credit_snapshot"],
                         experiment_note=item.experiment_note,
                     )
                 except Exception as exc:  # noqa: BLE001 - private worker boundary

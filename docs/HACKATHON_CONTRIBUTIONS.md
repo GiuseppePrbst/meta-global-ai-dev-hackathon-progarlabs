@@ -280,5 +280,9 @@ Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe
 referencias son del agente, no de un especialista.
 
 Integración posterior asistida por Codex: se preservaron ambos conjuntos de cambios y
-se bloqueó la admisión de fase I sin snapshot y límite. Quedan pendientes la adaptación
-de rutas antiguas, la reconciliación completa y la autorización financiera vigente.
+se bloqueó la admisión de fase I sin snapshot y límite. En ese punto quedaban pendientes
+la adaptación de rutas antiguas y la reconciliación completa.
+
+La continuación del 03-11, asistida por Codex, añadió contexto financiero compartido,
+vínculo transaccional de nuevas reservas con jobs, una resolución auditada y pruebas
+de interrupción con PostgreSQL aislado. No se enviaron nuevas solicitudes a Meta.

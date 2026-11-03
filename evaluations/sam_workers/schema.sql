@@ -17,6 +17,33 @@ CREATE TABLE IF NOT EXISTS sam_experiment_jobs (
 );
 CREATE INDEX IF NOT EXISTS sam_jobs_claim_idx ON sam_experiment_jobs (status, priority DESC, created_at);
 CREATE INDEX IF NOT EXISTS sam_jobs_lease_idx ON sam_experiment_jobs (lease_expires_at) WHERE status IN ('leased', 'running');
+CREATE TABLE IF NOT EXISTS sam_job_reservations (
+    job_id uuid NOT NULL REFERENCES sam_experiment_jobs(job_id),
+    attempt integer NOT NULL CHECK (attempt > 0),
+    reservation_id uuid NOT NULL UNIQUE,
+    created_at timestamptz NOT NULL DEFAULT now(),
+    PRIMARY KEY(job_id, attempt)
+);
+DO $$
+BEGIN
+    IF to_regclass('execution_reservations') IS NOT NULL AND NOT EXISTS (
+        SELECT 1 FROM pg_constraint WHERE conrelid='sam_job_reservations'::regclass
+        AND conname='sam_job_reservations_ledger_fk'
+    ) THEN
+        ALTER TABLE sam_job_reservations ADD CONSTRAINT sam_job_reservations_ledger_fk
+        FOREIGN KEY (reservation_id) REFERENCES execution_reservations(id) NOT VALID;
+    END IF;
+END $$;
+CREATE TABLE IF NOT EXISTS sam_reconciliation_audit (
+    audit_id uuid PRIMARY KEY,
+    job_id uuid NOT NULL REFERENCES sam_experiment_jobs(job_id),
+    previous_status text NOT NULL,
+    new_status text NOT NULL,
+    reviewer text NOT NULL,
+    reason text NOT NULL,
+    evidence_sha256 text NOT NULL,
+    created_at timestamptz NOT NULL DEFAULT now()
+);
 CREATE TABLE IF NOT EXISTS sam_worker_controls (
     campaign_id text PRIMARY KEY,
     desired_state text NOT NULL CHECK (desired_state IN ('running', 'draining', 'stopped')),

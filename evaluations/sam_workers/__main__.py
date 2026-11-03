@@ -22,6 +22,7 @@ def main():
             "recover",
             "import-history",
             "reconcile",
+            "resolve",
             "doctor",
             "dry-run",
             "report",
@@ -35,6 +36,9 @@ def main():
     parser.add_argument("--campaign")
     parser.add_argument("--root", type=Path)
     parser.add_argument("--job")
+    parser.add_argument("--decision", choices=["completed", "no_matches"])
+    parser.add_argument("--reviewer")
+    parser.add_argument("--reason")
     parser.add_argument("--registry", type=Path)
     parser.add_argument("--config", type=Path)
     parser.add_argument("--authorization", type=Path)
@@ -163,6 +167,25 @@ def main():
         from evaluations.sam_workers.reconcile import inspect
 
         print(json.dumps(inspect(queue, args.job, args.root)))
+    elif args.action == "resolve":
+        if not all((args.root, args.job, args.decision, args.reviewer, args.reason)):
+            parser.error(
+                "--root, --job, --decision, --reviewer and --reason are required"
+            )
+        from evaluations.sam_workers.reconcile import resolve
+
+        print(
+            json.dumps(
+                resolve(
+                    queue,
+                    args.job,
+                    args.root,
+                    args.decision,
+                    args.reviewer,
+                    args.reason,
+                )
+            )
+        )
     elif args.action == "import-history":
         if not args.root or not args.campaign:
             parser.error("--root and --campaign are required")

@@ -14,6 +14,9 @@ El propietario comunicó un snapshot posterior de USD 139,26; no se encontró el
 en los adjuntos disponibles y no se ha calculado un hash. Es una declaración, no una
 comprobación independiente ni un saldo actualizado automáticamente.
 
+El 03-11 la lectura del ledger registró USD 60,59 reservados en total, USD 11,26 en
+fase I y USD 12,55929125 estimados. Facturación del proveedor no verificada.
+
 Se creó un manifiesto privado de interoperabilidad con 442 resultados históricos; las
 licencias y derechos de publicación se señalan como no reconstruidos. No representa
 un nuevo lote ni acredita que los resultados hayan sido revisados por especialistas.

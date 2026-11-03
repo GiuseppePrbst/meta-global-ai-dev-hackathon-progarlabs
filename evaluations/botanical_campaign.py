@@ -211,6 +211,7 @@ async def run_cases(
     from PIL import Image
 
     from tools.meta_sam_api_lab.lab import (
+        admission_from_private,
         campaign_from_private,
         config_from_private,
         phase_admission,
@@ -232,11 +233,20 @@ async def run_cases(
     gate = asyncio.Semaphore(config.budget_concurrency)
 
     async def one(case):
+        admission = admission_from_private(cfg, phase)
         client = MetaResponsesClient(config.model_api_key, config.meta_timeout_seconds)
         adapter = MuseSparkAdapter(client, model)  # per case: usage never mixes
         owner, cap = phase_admission(phase, campaign.phase_caps_usd[phase])
         reservation = await asyncio.to_thread(
-            ledger.reserve, owner, "identify", *(() if cap is None else (cap,))
+            ledger.reserve,
+            owner,
+            "identify",
+            *(() if cap is None else (cap,)),
+            **(
+                {"credit_snapshot": admission["credit_snapshot"]}
+                if admission["credit_snapshot"]
+                else {}
+            ),
         )
         status, row = "provider_error", {}
         started = perf_counter()

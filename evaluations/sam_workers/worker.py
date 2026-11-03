@@ -3,13 +3,12 @@
 import asyncio
 import json
 import threading
-from decimal import ROUND_FLOOR, Decimal
 from pathlib import Path
 from uuid import uuid4
 
 import psycopg
 
-from evaluations.sam_workers.schemas import FinancialAuthorization
+from evaluations.sam_workers.schemas import FinancialAuthorization, financial_snapshot
 from tools.meta_sam_api_lab.lab import (
     campaign_from_private,
     config_from_private,
@@ -22,11 +21,13 @@ class PersistenceUnconfirmed(RuntimeError):
     """The private result may exist; reconcile it before any retry."""
 
 
-def ledger_completed(queue, reservation_id):
+def ledger_completed(queue, reservation_id, job_id, attempt):
     with queue.connect() as conn:
         row = conn.execute(
-            "SELECT identity_id, status FROM execution_reservations WHERE id=%s",
-            (reservation_id,),
+            "SELECT r.identity_id, r.status FROM execution_reservations r "
+            "JOIN sam_job_reservations l ON l.reservation_id=r.id "
+            "WHERE r.id=%s AND l.job_id=%s AND l.attempt=%s",
+            (reservation_id, job_id, attempt),
         ).fetchone()
     return bool(
         row and row["identity_id"] == "sam-api-lab:I" and row["status"] == "completed"
@@ -40,12 +41,6 @@ def run_one(
     auth = FinancialAuthorization.model_validate_json(
         private_path(Path(authorization_file)).read_text(encoding="utf-8")
     )
-    auth.validate_current(auth.campaign_id)
-    if (
-        auth.source_kind != "provider_verified"
-        or digest(private_path(Path(evidence_file))) != auth.evidence_sha256
-    ):
-        raise ValueError("Current provider billing evidence is required")
     campaign = campaign_from_private(Path(config_file))
     config = config_from_private(Path(config_file))
     if (
@@ -55,6 +50,12 @@ def run_one(
         or config.database_url.get_secret_value() != queue.database_url
     ):
         raise ValueError("Authorization does not match shared phase I ledger")
+    credit_snapshot = financial_snapshot(
+        authorization_file,
+        evidence_file,
+        auth.campaign_id,
+        campaign.phase_caps_usd["I"],
+    )
     owner = uuid4()
     job = queue.claim(owner, campaign_id=auth.campaign_id)
     if not job:
@@ -108,18 +109,9 @@ def run_one(
                 authorized=True,
                 phase="I",
                 phase_cap_usd=campaign.phase_caps_usd["I"],
-                credit_snapshot=(
-                    auth.checked_at,
-                    int(
-                        (
-                            (
-                                Decimal(str(auth.observed_usd))
-                                - Decimal(str(auth.margin_usd))
-                            )
-                            * 1_000_000
-                        ).to_integral_value(rounding=ROUND_FLOOR)
-                    ),
-                ),
+                job_context=(job_id, owner, job["attempt_count"] + 1),
+                experiment_fingerprint=job["experiment_fingerprint"],
+                credit_snapshot=credit_snapshot,
             )
         )
         if result.get("status") in ("completed", "no_matches"):
@@ -133,8 +125,14 @@ def run_one(
                     and persisted.get("model") == spec["model"]
                     and persisted.get("concept") == spec["prompt"]
                     and persisted.get("status") == result["status"]
+                    and persisted.get("experiment_fingerprint")
+                    == job["experiment_fingerprint"]
+                    and persisted.get("job_id") == str(job_id)
+                    and persisted.get("job_attempt") == job["attempt_count"] + 1
                     and persisted.get("cleanup") in ("not_uploaded", "deleted")
-                    and ledger_completed(queue, reservation_id)
+                    and ledger_completed(
+                        queue, reservation_id, job_id, job["attempt_count"] + 1
+                    )
                 )
             except (ValueError, TypeError):
                 evidence_complete = False

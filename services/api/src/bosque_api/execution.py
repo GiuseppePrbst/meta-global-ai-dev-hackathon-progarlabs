@@ -30,6 +30,7 @@ class ExecutionStore:
         owner_cap_units: int | None = None,
         *,
         credit_snapshot=None,
+        job_context=None,
     ):
         """Reserve under one advisory lock: lifetime, owner cap, daily and concurrency.
 
@@ -59,6 +60,12 @@ class ExecutionStore:
                 conn.execute("SELECT pg_advisory_xact_lock(78021931)")
                 if credit_snapshot is not None:
                     checked_at, available_units = credit_snapshot
+                    fresh = conn.execute(
+                        "SELECT now() >= %s AND now() < %s + interval '24 hours'",
+                        (checked_at, checked_at),
+                    ).fetchone()[0]
+                    if not fresh or available_units <= 0:
+                        raise HTTPException(503, "Snapshot de créditos no vigente")
                     since = conn.execute(
                         "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations "
                         "WHERE created_at >= %s OR status IN ('reserved', 'expired')",
@@ -111,6 +118,17 @@ class ExecutionStore:
                     "VALUES (%s,%s,%s,%s)",
                     (identifier, owner, operation, units),
                 )
+                if job_context is not None:
+                    job_id, lease_owner, attempt = job_context
+                    link = conn.execute(
+                        "INSERT INTO sam_job_reservations(job_id,attempt,reservation_id) "
+                        "SELECT job_id,%s,%s FROM sam_experiment_jobs WHERE job_id=%s "
+                        "AND lease_owner=%s AND status='running' AND attempt_count=%s "
+                        "AND lease_expires_at>now() RETURNING job_id",
+                        (attempt, identifier, job_id, lease_owner, attempt),
+                    ).fetchone()
+                    if link is None:
+                        raise HTTPException(409, "Lease o intento no válido para reserva")
         except psycopg.Error:
             raise HTTPException(503, "Control global de consumo no disponible") from None
         return identifier
@@ -123,11 +141,13 @@ class ExecutionStore:
                 self.config.database_url.get_secret_value(), connect_timeout=3
             ) as conn:
                 conn.execute("SET LOCAL statement_timeout = '3000ms'")
-                conn.execute(
+                updated = conn.execute(
                     "UPDATE execution_reservations SET status=%s,reported_usage=%s "
-                    "WHERE id=%s AND status='reserved'",
+                    "WHERE id=%s AND status='reserved' RETURNING id",
                     (status, Jsonb(usage), identifier),
-                )
+                ).fetchone()
+                if updated is None:
+                    raise HTTPException(409, "Reserva no disponible para finalizar")
         except psycopg.Error:
             # Reservation remains charged; expiration recovers only the concurrency slot.
             raise HTTPException(503, "No se pudo confirmar el registro de ejecución") from None

@@ -86,6 +86,8 @@ def test_worker_delegates_to_runner_and_preserves_result(tmp_path, monkeypatch):
             assert campaign_id == "test"
             return {
                 "job_id": job_id,
+                "attempt_count": 0,
+                "experiment_fingerprint": "f" * 64,
                 "specification": {
                     "media_sha256": sha,
                     "model": "sam-3.1",
@@ -112,6 +114,9 @@ def test_worker_delegates_to_runner_and_preserves_result(tmp_path, monkeypatch):
             "concept": prompt,
             "cleanup": "not_uploaded",
             "reservation_id": str(uuid4()),
+            "experiment_fingerprint": kwargs["experiment_fingerprint"],
+            "job_id": str(kwargs["job_context"][0]),
+            "job_attempt": kwargs["job_context"][2],
         }
         (output / "result.json").write_text(json.dumps(result))
         return result
@@ -387,6 +392,9 @@ def test_ten_offline_workers_persist_results_and_resume(queue, tmp_path, monkeyp
             "status": "completed",
             "cleanup": "not_uploaded",
             "reservation_id": str(uuid4()),
+            "experiment_fingerprint": kwargs["experiment_fingerprint"],
+            "job_id": str(kwargs["job_context"][0]),
+            "job_attempt": kwargs["job_context"][2],
             "simulated": True,
         }
         (output / "result.json").write_text(json.dumps(result))
@@ -422,3 +430,150 @@ def test_ten_offline_workers_persist_results_and_resume(queue, tmp_path, monkeyp
     for result in output.glob("*/result.json"):
         assert inspect(queue, result.parent.name, output)["evidence"] == "matching"
     assert len(list(output.glob("*/result.json"))) == 10
+
+
+@pytest.mark.parametrize("command", ["drain", "stop", "crash"])
+def test_cli_stop_drain_and_crash_during_active_job_and_resume(tmp_path, command):
+    import hashlib
+    import json
+    import time
+
+    import psycopg
+    from psycopg import sql
+    from psycopg.conninfo import make_conninfo
+
+    url = os.getenv("SAM_WORKERS_CONTROL_TEST_DATABASE_URL")
+    if not url:
+        pytest.skip("isolated sam_workers_offline_test database required")
+    schema = "worker_test_" + uuid4().hex
+    with psycopg.connect(url, autocommit=True) as conn:
+        conn.execute(sql.SQL("CREATE SCHEMA {}").format(sql.Identifier(schema)))
+    scoped = make_conninfo(url, options=f"-csearch_path={schema},public")
+    queue = Queue(scoped)
+    try:
+        queue.migrate()
+        registry = {}
+        for index in range(2):
+            media = tmp_path / f"synthetic-{index}.jpg"
+            media.write_bytes(f"fake-image-{index}".encode())
+            sha = hashlib.sha256(media.read_bytes()).hexdigest()
+            registry[sha] = {
+                "path": str(media),
+                "external_processing_permission": "approved",
+            }
+            assert queue.enqueue(
+                "drain-test",
+                {
+                    "media_sha256": sha,
+                    "model_version": "1",
+                    "protocol_version": "1",
+                    "protocol_approved_by": "test",
+                    "preprocessing_version": "1",
+                    "prompt": "fern",
+                },
+            )
+        registry_file = tmp_path / "registry.json"
+        registry_file.write_text(json.dumps(registry))
+        sentinel = tmp_path / "active"
+        script = (
+            "import sys,time; from pathlib import Path; import evaluations.sam_workers.control as c; "
+            "old=c.simulate_one; "
+            "exec('def delayed(q,*a,**k):\\n original=q.start\\n def start(*args):\\n  value=original(*args)\\n  Path(sys.argv[1]).write_text(\"active\")\\n  time.sleep(3)\\n  return value\\n q.start=start\\n return old(q,*a,**k)'); "
+            "c.simulate_one=delayed; c.serve(c.Queue(sys.argv[2]),'drain-test',sys.argv[3],sys.argv[4],simulated=True)"
+        )
+        script = script.replace(
+            "c.Queue(",
+            "__import__('evaluations.sam_workers.queue',fromlist=['Queue']).Queue(",
+        )
+        process = subprocess.Popen(
+            [
+                sys.executable,
+                "-c",
+                script,
+                str(sentinel),
+                scoped,
+                str(registry_file),
+                str(tmp_path / "out"),
+            ]
+        )
+        deadline = time.monotonic() + 15
+        while (
+            not sentinel.exists()
+            and time.monotonic() < deadline
+            and process.poll() is None
+        ):
+            time.sleep(0.05)
+        assert sentinel.exists(), "worker did not enter the simulated operation"
+        assert queue.status() == {"running": 1, "queued": 1}
+        env = dict(os.environ, SAM_WORKERS_DATABASE_URL=scoped)
+        if command == "crash":
+            process.terminate()
+            process.wait(timeout=15)
+            with queue.connect() as conn:
+                conn.execute(
+                    "UPDATE sam_experiment_jobs SET lease_expires_at=now()-interval '1 second' "
+                    "WHERE status='running'"
+                )
+            queue.recover()
+            assert queue.status() == {"reconciliation_required": 1, "queued": 1}
+        else:
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "evaluations.sam_workers",
+                    command,
+                    "--campaign",
+                    "drain-test",
+                ],
+                env=env,
+                check=True,
+                capture_output=True,
+            )
+            assert process.wait(timeout=15) == 0
+            assert queue.status() == {"completed": 1, "queued": 1}
+        subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "evaluations.sam_workers",
+                "resume",
+                "--campaign",
+                "drain-test",
+            ],
+            env=env,
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "evaluations.sam_workers",
+                "start",
+                "--simulated",
+                "--campaign",
+                "drain-test",
+                "--registry",
+                str(registry_file),
+                "--root",
+                str(tmp_path / "out"),
+            ],
+            env=env,
+            check=True,
+            capture_output=True,
+        )
+        expected = (
+            {"completed": 1, "reconciliation_required": 1}
+            if command == "crash"
+            else {"completed": 2}
+        )
+        assert queue.status() == expected
+    finally:
+        if "process" in locals() and process.poll() is None:
+            process.terminate()
+            process.wait(timeout=10)
+        with psycopg.connect(url, autocommit=True) as conn:
+            conn.execute(
+                sql.SQL("DROP SCHEMA {} CASCADE").format(sql.Identifier(schema))
+            )

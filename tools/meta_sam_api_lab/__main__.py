@@ -7,6 +7,7 @@ from bosque_ai.meta import MetaResponsesClient
 
 from tools.meta_sam_api_lab.lab import (
     ObjectSpec,
+    admission_from_private,
     campaign_from_private,
     cleanup_remote,
     config_from_private,
@@ -140,12 +141,7 @@ def main():
                     objects=objects,
                     direction=args.direction,
                     include_confidence=args.confidence,
-                    phase=args.phase,
-                    phase_cap_usd=(
-                        campaign_from_private(args.config).phase_caps_usd[args.phase]
-                        if args.phase
-                        else None
-                    ),
+                    **admission_from_private(args.config, args.phase),
                     experiment_note=args.experiment_note,
                 )
             )
