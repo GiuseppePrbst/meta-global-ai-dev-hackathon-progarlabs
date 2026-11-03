@@ -119,7 +119,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         allow_origins=config.cors_origins,
         allow_methods=["GET", "POST", "DELETE"],
         allow_headers=["Content-Type", "Authorization"],
-        expose_headers=["X-Correlation-ID"],
+        expose_headers=["X-Correlation-ID", "Retry-After"],
     )
 
     def store() -> ObservationStore:

@@ -156,6 +156,11 @@ def test_openapi_and_cors(client):
         },
     )
     assert response.headers["access-control-allow-origin"] == "http://localhost:3000"
+    # El frontend lee Retry-After en los 429 de /guide/* (FRONTEND_HANDOFF, seccion H):
+    # sin exponerla, el navegador la filtra aunque el backend la envie.
+    health = client.get("/health", headers={"Origin": "http://localhost:3000"})
+    exposed = health.headers["access-control-expose-headers"].lower()
+    assert "retry-after" in exposed and "x-correlation-id" in exposed
     response = client.options(
         "/identify",
         headers={"Origin": "https://untrusted.example", "Access-Control-Request-Method": "POST"},
