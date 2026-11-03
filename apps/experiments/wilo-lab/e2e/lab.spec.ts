@@ -1,5 +1,36 @@
 import { expect, test } from "@playwright/test";
 
+test("recuerda el token solo durante la sesion", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("Token demo del backend").fill("token-de-prueba");
+  await page.getByLabel("Recordar solo en esta sesion").check();
+  await page.reload();
+  await expect(page.getByLabel("Token demo del backend")).toHaveValue("token-de-prueba");
+  await expect(page.getByLabel("Recordar solo en esta sesion")).toBeChecked();
+  await page.getByLabel("Recordar solo en esta sesion").uncheck();
+  await page.reload();
+  await expect(page.getByLabel("Token demo del backend")).toHaveValue("");
+});
+
+test("libera el microfono al salir de Wilo durante la grabacion", async ({ page }) => {
+  await page.addInitScript(() => {
+    navigator.mediaDevices.getUserMedia = async () => {
+      const stream = new AudioContext().createMediaStreamDestination().stream;
+      Object.assign(window, { testStream: stream });
+      return stream;
+    };
+  });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Habla con Wilo", exact: true }).click();
+  await page.getByLabel("Soy mayor de 18 anos.").check();
+  await page.getByLabel("Tengo derecho a usar mi voz.").check();
+  await page.getByLabel(/Acepto que el backend envie audio/).check();
+  await page.getByRole("button", { name: "Grabar en WAV 16 kHz" }).click();
+  await expect(page.getByRole("button", { name: /Detener y transcribir/ })).toBeVisible();
+  await page.getByRole("button", { name: "Inicio", exact: true }).click();
+  expect(await page.evaluate(() => (window as unknown as { testStream: MediaStream }).testStream.getTracks()[0].readyState)).toBe("ended");
+});
+
 const mockAnswer = {
   answer: "Modo mock: no se consultó Muse ni se generó respuesta botánica.", provider: "mock", model: null,
   insufficient_evidence: true, sources: [], claims: [], entities: [{ type: "park", id: "puyehue" }],

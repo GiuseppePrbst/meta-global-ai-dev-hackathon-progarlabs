@@ -6,8 +6,12 @@ type View = "inicio" | "wilo" | "especies";
 
 export default function App() {
   const [view, setView] = useState<View>("inicio");
-  const [token, setToken] = useState("");
-  const [remember, setRemember] = useState(false);
+  const [savedToken] = useState(() => {
+    try { return sessionStorage.getItem("wilo-lab-token"); }
+    catch { return null; }
+  });
+  const [token, setToken] = useState(savedToken ?? "");
+  const [remember, setRemember] = useState(savedToken !== null);
 
   function saveToken(value: string, keep: boolean) {
     setToken(value); setRemember(keep);

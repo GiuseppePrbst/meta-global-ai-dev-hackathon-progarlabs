@@ -40,6 +40,17 @@ export function WiloChat({ token }: { token: string }) {
   const [atlasNote, setAtlasNote] = useState("Cargando Atlas…");
   const abortRef = useRef<AbortController | null>(null);
   const mediaRef = useRef<{ stop: () => void; cancel: () => void } | null>(null);
+  const mountedRef = useRef(true);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      abortRef.current?.abort();
+      mediaRef.current?.cancel();
+      window.speechSynthesis?.cancel();
+    };
+  }, []);
 
   useEffect(() => {
     const c = new AbortController();
@@ -84,6 +95,7 @@ export function WiloChat({ token }: { token: string }) {
     if (!adult || !rights || !external) { setError("Confirma los tres permisos para grabar."); return; }
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (!mountedRef.current) { stream.getTracks().forEach((t) => t.stop()); return; }
       const context = new AudioContext();
       const source = context.createMediaStreamSource(stream);
       const processor = context.createScriptProcessor(4096, 1, 1);
@@ -93,13 +105,14 @@ export function WiloChat({ token }: { token: string }) {
       const cleanup = () => { processor.disconnect(); source.disconnect(); stream.getTracks().forEach((t) => t.stop()); };
       mediaRef.current = {
         stop: () => {
+          mediaRef.current = null;
           cleanup(); const rate = context.sampleRate; void context.close();
           const total = chunks.reduce((n, c) => n + c.length, 0);
           const merged = new Float32Array(total); let off = 0;
           chunks.forEach((c) => { merged.set(c, off); off += c.length; });
           void sendTranscription(encodeWavPcm16(resampleTo16k(merged, rate)));
         },
-        cancel: () => { cleanup(); void context.close(); },
+        cancel: () => { mediaRef.current = null; cleanup(); void context.close(); },
       };
       setRecordSeconds(0); setPhase("grabando");
     } catch { setError("No se pudo usar el microfono. Escribe tu pregunta."); setPhase("inicial"); }
