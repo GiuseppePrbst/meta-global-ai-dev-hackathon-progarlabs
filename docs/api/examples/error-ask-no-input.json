@@ -1,0 +1,8 @@
+{
+ "body": {
+  "detail": "Enviar exactamente uno: audio WAV o pregunta de texto"
+ },
+ "kind": "generated_mock_mode",
+ "request": "POST /guide/ask",
+ "status": 422
+}

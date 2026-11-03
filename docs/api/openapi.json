@@ -1,0 +1,6981 @@
+{
+ "components": {
+  "schemas": {
+   "Body_ask_guide_ask_post": {
+    "properties": {
+     "adult_confirmed": {
+      "title": "Adult Confirmed",
+      "type": "boolean"
+     },
+     "capture_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Capture Id"
+     },
+     "external_processing_confirmed": {
+      "default": false,
+      "title": "External Processing Confirmed",
+      "type": "boolean"
+     },
+     "file": {
+      "anyOf": [
+       {
+        "contentMediaType": "application/octet-stream",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "File"
+     },
+     "language_hint": {
+      "default": "auto",
+      "enum": [
+       "auto",
+       "es",
+       "en",
+       "mixed"
+      ],
+      "title": "Language Hint",
+      "type": "string"
+     },
+     "question": {
+      "anyOf": [
+       {
+        "maxLength": 2000,
+        "minLength": 1,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Question"
+     },
+     "rights_confirmed": {
+      "default": false,
+      "title": "Rights Confirmed",
+      "type": "boolean"
+     },
+     "session_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Session Id"
+     }
+    },
+    "required": [
+     "adult_confirmed"
+    ],
+    "title": "Body_ask_guide_ask_post",
+    "type": "object"
+   },
+   "Body_identify_identify_post": {
+    "properties": {
+     "additional_files": {
+      "anyOf": [
+       {
+        "items": {
+         "contentMediaType": "application/octet-stream",
+         "type": "string"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Hasta dos vistas adicionales del MISMO ejemplar; máximo total 20 MiB",
+      "title": "Additional Files"
+     },
+     "adult_confirmed": {
+      "title": "Adult Confirmed",
+      "type": "boolean"
+     },
+     "file": {
+      "contentMediaType": "application/octet-stream",
+      "description": "JPEG, PNG o WebP, máximo 10 MiB",
+      "title": "File",
+      "type": "string"
+     },
+     "rights_confirmed": {
+      "title": "Rights Confirmed",
+      "type": "boolean"
+     },
+     "use_segmentation": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Use Segmentation"
+     },
+     "views": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "string"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "description": "Tipos en orden: whole_tree, leaf, bark, flower, fruit, unspecified",
+      "title": "Views"
+     }
+    },
+    "required": [
+     "file",
+     "adult_confirmed",
+     "rights_confirmed"
+    ],
+    "title": "Body_identify_identify_post",
+    "type": "object"
+   },
+   "Body_transcribe_guide_transcribe_post": {
+    "properties": {
+     "adult_confirmed": {
+      "title": "Adult Confirmed",
+      "type": "boolean"
+     },
+     "external_processing_confirmed": {
+      "default": false,
+      "title": "External Processing Confirmed",
+      "type": "boolean"
+     },
+     "file": {
+      "contentMediaType": "application/octet-stream",
+      "title": "File",
+      "type": "string"
+     },
+     "language_hint": {
+      "default": "auto",
+      "enum": [
+       "auto",
+       "es",
+       "en",
+       "mixed"
+      ],
+      "title": "Language Hint",
+      "type": "string"
+     },
+     "rights_confirmed": {
+      "title": "Rights Confirmed",
+      "type": "boolean"
+     }
+    },
+    "required": [
+     "file",
+     "adult_confirmed",
+     "rights_confirmed"
+    ],
+    "title": "Body_transcribe_guide_transcribe_post",
+    "type": "object"
+   },
+   "Candidate": {
+    "additionalProperties": false,
+    "properties": {
+     "contradictory_evidence": {
+      "items": {
+       "type": "string"
+      },
+      "maxItems": 10,
+      "title": "Contradictory Evidence",
+      "type": "array"
+     },
+     "evidence": {
+      "maxLength": 1000,
+      "minLength": 1,
+      "title": "Evidence",
+      "type": "string"
+     },
+     "species_id": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Species Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "species_id",
+     "evidence"
+    ],
+    "title": "Candidate",
+    "type": "object"
+   },
+   "CanopyStatistics": {
+    "properties": {
+     "coverage_area_m2": {
+      "exclusiveMinimum": 0.0,
+      "title": "Coverage Area M2",
+      "type": "number"
+     },
+     "estimated": {
+      "const": true,
+      "default": true,
+      "title": "Estimated",
+      "type": "boolean"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "max_height_m": {
+      "minimum": 0.0,
+      "title": "Max Height M",
+      "type": "number"
+     },
+     "mean_height_m": {
+      "minimum": 0.0,
+      "title": "Mean Height M",
+      "type": "number"
+     },
+     "min_height_m": {
+      "minimum": 0.0,
+      "title": "Min Height M",
+      "type": "number"
+     },
+     "period": {
+      "title": "Period",
+      "type": "string"
+     },
+     "queried_area_m2": {
+      "exclusiveMinimum": 0.0,
+      "title": "Queried Area M2",
+      "type": "number"
+     },
+     "source_crs": {
+      "title": "Source Crs",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "source_version": {
+      "default": "v2",
+      "title": "Source Version",
+      "type": "string"
+     },
+     "unit": {
+      "const": "m",
+      "default": "m",
+      "title": "Unit",
+      "type": "string"
+     },
+     "valid_pixels": {
+      "minimum": 1.0,
+      "title": "Valid Pixels",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "source_id",
+     "valid_pixels",
+     "mean_height_m",
+     "min_height_m",
+     "max_height_m",
+     "queried_area_m2",
+     "coverage_area_m2",
+     "source_crs",
+     "period",
+     "limitations"
+    ],
+    "title": "CanopyStatistics",
+    "type": "object"
+   },
+   "Capture": {
+    "properties": {
+     "accuracy_m": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Accuracy M"
+     },
+     "capture_id": {
+      "format": "uuid",
+      "title": "Capture Id",
+      "type": "string"
+     },
+     "capture_status": {
+      "enum": [
+       "registered",
+       "identification_suggested"
+      ],
+      "title": "Capture Status",
+      "type": "string"
+     },
+     "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+     },
+     "evidence": {
+      "additionalProperties": true,
+      "title": "Evidence",
+      "type": "object"
+     },
+     "expedition_id": {
+      "title": "Expedition Id",
+      "type": "string"
+     },
+     "identification_id": {
+      "format": "uuid",
+      "title": "Identification Id",
+      "type": "string"
+     },
+     "image_reference": {
+      "title": "Image Reference",
+      "type": "null"
+     },
+     "location": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/Point"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "location_visibility": {
+      "const": "private",
+      "default": "private",
+      "title": "Location Visibility",
+      "type": "string"
+     },
+     "observation_id": {
+      "format": "uuid",
+      "title": "Observation Id",
+      "type": "string"
+     },
+     "observed_at": {
+      "format": "date-time",
+      "title": "Observed At",
+      "type": "string"
+     },
+     "owner_id": {
+      "title": "Owner Id",
+      "type": "string"
+     },
+     "quality_flags": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Quality Flags",
+      "type": "array"
+     },
+     "spatial_status": {
+      "enum": [
+       "not_provided",
+       "not_checked",
+       "inside_reference",
+       "outside_reference"
+      ],
+      "title": "Spatial Status",
+      "type": "string"
+     },
+     "species_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Species Id"
+     },
+     "taxonomic_verification_status": {
+      "const": "unverified",
+      "default": "unverified",
+      "title": "Taxonomic Verification Status",
+      "type": "string"
+     },
+     "updated_at": {
+      "format": "date-time",
+      "title": "Updated At",
+      "type": "string"
+     }
+    },
+    "required": [
+     "capture_id",
+     "observation_id",
+     "owner_id",
+     "expedition_id",
+     "identification_id",
+     "species_id",
+     "capture_status",
+     "observed_at",
+     "location",
+     "accuracy_m",
+     "evidence",
+     "spatial_status",
+     "created_at",
+     "updated_at"
+    ],
+    "title": "Capture",
+    "type": "object"
+   },
+   "CaptureAttempt": {
+    "additionalProperties": false,
+    "properties": {
+     "accuracy_m": {
+      "anyOf": [
+       {
+        "maximum": 200.0,
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Accuracy M"
+     },
+     "expedition_id": {
+      "const": "puyehue",
+      "default": "puyehue",
+      "title": "Expedition Id",
+      "type": "string"
+     },
+     "idempotency_key": {
+      "maxLength": 100,
+      "minLength": 8,
+      "pattern": "^[A-Za-z0-9_-]+$",
+      "title": "Idempotency Key",
+      "type": "string"
+     },
+     "identification_id": {
+      "format": "uuid",
+      "title": "Identification Id",
+      "type": "string"
+     },
+     "location": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/Point"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "location_consent": {
+      "default": false,
+      "title": "Location Consent",
+      "type": "boolean"
+     },
+     "observed_at": {
+      "format": "date-time",
+      "title": "Observed At",
+      "type": "string"
+     },
+     "species_id": {
+      "anyOf": [
+       {
+        "maxLength": 80,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Species Id"
+     }
+    },
+    "required": [
+     "identification_id",
+     "idempotency_key",
+     "observed_at"
+    ],
+    "title": "CaptureAttempt",
+    "type": "object"
+   },
+   "Classification": {
+    "additionalProperties": false,
+    "properties": {
+     "class_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Class Name"
+     },
+     "family": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Family"
+     },
+     "genus": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Genus"
+     },
+     "kingdom": {
+      "enum": [
+       "Plantae",
+       "Animalia",
+       "Fungi"
+      ],
+      "title": "Kingdom",
+      "type": "string"
+     },
+     "order": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Order"
+     },
+     "phylum": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Phylum"
+     }
+    },
+    "required": [
+     "kingdom"
+    ],
+    "title": "Classification",
+    "type": "object"
+   },
+   "Collection": {
+    "properties": {
+     "captures": {
+      "items": {
+       "$ref": "#/components/schemas/Capture"
+      },
+      "title": "Captures",
+      "type": "array"
+     },
+     "educational_progress": {
+      "title": "Educational Progress",
+      "type": "string"
+     },
+     "limit": {
+      "title": "Limit",
+      "type": "integer"
+     },
+     "offset": {
+      "title": "Offset",
+      "type": "integer"
+     },
+     "species_recorded": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Species Recorded",
+      "type": "array"
+     },
+     "suggested_species_count": {
+      "title": "Suggested Species Count",
+      "type": "integer"
+     },
+     "total_captures": {
+      "title": "Total Captures",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "captures",
+     "total_captures",
+     "species_recorded",
+     "suggested_species_count",
+     "educational_progress",
+     "limit",
+     "offset"
+    ],
+    "title": "Collection",
+    "type": "object"
+   },
+   "ConservationScope": {
+    "additionalProperties": false,
+    "properties": {
+     "category": {
+      "title": "Category",
+      "type": "string"
+     },
+     "regions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Regions",
+      "type": "array"
+     },
+     "scope_text": {
+      "title": "Scope Text",
+      "type": "string"
+     }
+    },
+    "required": [
+     "category",
+     "regions",
+     "scope_text"
+    ],
+    "title": "ConservationScope",
+    "type": "object"
+   },
+   "ConservationSource": {
+    "additionalProperties": false,
+    "properties": {
+     "accessed_at": {
+      "title": "Accessed At",
+      "type": "string"
+     },
+     "file_name": {
+      "title": "File Name",
+      "type": "string"
+     },
+     "redistribution": {
+      "title": "Redistribution",
+      "type": "string"
+     },
+     "review_status": {
+      "const": "imported_unreviewed",
+      "title": "Review Status",
+      "type": "string"
+     },
+     "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Sha256",
+      "type": "string"
+     },
+     "title": {
+      "title": "Title",
+      "type": "string"
+     },
+     "url": {
+      "title": "Url",
+      "type": "string"
+     },
+     "version_text": {
+      "title": "Version Text",
+      "type": "string"
+     }
+    },
+    "required": [
+     "title",
+     "url",
+     "file_name",
+     "sha256",
+     "version_text",
+     "accessed_at",
+     "redistribution",
+     "review_status"
+    ],
+    "title": "ConservationSource",
+    "type": "object"
+   },
+   "ContextAreaRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "area": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/Polygon"
+       },
+       {
+        "$ref": "#/components/schemas/MultiPolygon"
+       }
+      ],
+      "title": "Area"
+     }
+    },
+    "required": [
+     "area"
+    ],
+    "title": "ContextAreaRequest",
+    "type": "object"
+   },
+   "ContextLayer": {
+    "additionalProperties": false,
+    "properties": {
+     "accessed_at": {
+      "title": "Accessed At",
+      "type": "string"
+     },
+     "attribution": {
+      "title": "Attribution",
+      "type": "string"
+     },
+     "content_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Content Sha256",
+      "type": "string"
+     },
+     "distributor": {
+      "title": "Distributor",
+      "type": "string"
+     },
+     "geometry_status": {
+      "const": "pilot_checked",
+      "title": "Geometry Status",
+      "type": "string"
+     },
+     "id": {
+      "pattern": "^[a-z0-9_-]+$",
+      "title": "Id",
+      "type": "string"
+     },
+     "kind": {
+      "enum": [
+       "forest",
+       "protected"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "license": {
+      "title": "License",
+      "type": "string"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "producer": {
+      "title": "Producer",
+      "type": "string"
+     },
+     "rights_status": {
+      "enum": [
+       "source_terms_checked",
+       "redistribution_pending"
+      ],
+      "title": "Rights Status",
+      "type": "string"
+     },
+     "source_crs": {
+      "title": "Source Crs",
+      "type": "string"
+     },
+     "source_url": {
+      "title": "Source Url",
+      "type": "string"
+     },
+     "status": {
+      "const": "ready",
+      "default": "ready",
+      "title": "Status",
+      "type": "string"
+     },
+     "storage_crs": {
+      "const": "EPSG:4326",
+      "default": "EPSG:4326",
+      "title": "Storage Crs",
+      "type": "string"
+     },
+     "taxonomy_status": {
+      "enum": [
+       "partial",
+       "not_applicable"
+      ],
+      "title": "Taxonomy Status",
+      "type": "string"
+     },
+     "version": {
+      "title": "Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "kind",
+     "producer",
+     "distributor",
+     "source_url",
+     "version",
+     "accessed_at",
+     "source_crs",
+     "license",
+     "attribution",
+     "rights_status",
+     "geometry_status",
+     "taxonomy_status",
+     "content_sha256",
+     "limitations"
+    ],
+    "title": "ContextLayer",
+    "type": "object"
+   },
+   "ContextMatch": {
+    "properties": {
+     "attributes": {
+      "additionalProperties": true,
+      "title": "Attributes",
+      "type": "object"
+     },
+     "attributes_raw": {
+      "additionalProperties": true,
+      "title": "Attributes Raw",
+      "type": "object"
+     },
+     "feature_id": {
+      "title": "Feature Id",
+      "type": "string"
+     },
+     "fraction_of_aoi": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Fraction Of Aoi"
+     },
+     "intersection_area_m2": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Intersection Area M2"
+     },
+     "point_on_boundary": {
+      "default": false,
+      "title": "Point On Boundary",
+      "type": "boolean"
+     },
+     "predominant_species": {
+      "items": {
+       "$ref": "#/components/schemas/PredominantSpecies"
+      },
+      "title": "Predominant Species",
+      "type": "array"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "source_id",
+     "feature_id",
+     "attributes_raw",
+     "attributes",
+     "predominant_species"
+    ],
+    "title": "ContextMatch",
+    "type": "object"
+   },
+   "ContextPointRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "accuracy_m": {
+      "anyOf": [
+       {
+        "maximum": 200.0,
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Accuracy M"
+     },
+     "location": {
+      "$ref": "#/components/schemas/Point"
+     }
+    },
+    "required": [
+     "location"
+    ],
+    "title": "ContextPointRequest",
+    "type": "object"
+   },
+   "ContextResponse": {
+    "properties": {
+     "accuracy_m": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Accuracy M"
+     },
+     "analysis_crs": {
+      "const": "EPSG:32718",
+      "default": "EPSG:32718",
+      "title": "Analysis Crs",
+      "type": "string"
+     },
+     "coverage": {
+      "items": {
+       "$ref": "#/components/schemas/Coverage"
+      },
+      "title": "Coverage",
+      "type": "array"
+     },
+     "forest_context": {
+      "items": {
+       "$ref": "#/components/schemas/ContextMatch"
+      },
+      "title": "Forest Context",
+      "type": "array"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "protected_context": {
+      "items": {
+       "$ref": "#/components/schemas/ContextMatch"
+      },
+      "title": "Protected Context",
+      "type": "array"
+     },
+     "quality_flags": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Quality Flags",
+      "type": "array"
+     },
+     "query_area_m2": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Query Area M2"
+     },
+     "source_refs": {
+      "items": {
+       "$ref": "#/components/schemas/ContextLayer"
+      },
+      "title": "Source Refs",
+      "type": "array"
+     },
+     "status": {
+      "enum": [
+       "matched",
+       "no_coverage"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "taxonomy_version": {
+      "title": "Taxonomy Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "status",
+     "forest_context",
+     "protected_context",
+     "source_refs",
+     "coverage",
+     "quality_flags",
+     "limitations",
+     "taxonomy_version"
+    ],
+    "title": "ContextResponse",
+    "type": "object"
+   },
+   "Coverage": {
+    "properties": {
+     "fraction": {
+      "title": "Fraction",
+      "type": "number"
+     },
+     "overlap_excess_m2": {
+      "title": "Overlap Excess M2",
+      "type": "number"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "union_area_m2": {
+      "title": "Union Area M2",
+      "type": "number"
+     }
+    },
+    "required": [
+     "source_id",
+     "union_area_m2",
+     "fraction",
+     "overlap_excess_m2"
+    ],
+    "title": "Coverage",
+    "type": "object"
+   },
+   "DemoEligibility": {
+    "properties": {
+     "collectible": {
+      "title": "Collectible",
+      "type": "boolean"
+     },
+     "declared": {
+      "enum": [
+       "demo_ready",
+       "educational_only",
+       "needs_review",
+       "excluded_from_demo"
+      ],
+      "title": "Declared",
+      "type": "string"
+     },
+     "missing": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Missing",
+      "type": "array"
+     },
+     "reason": {
+      "title": "Reason",
+      "type": "string"
+     },
+     "recognition": {
+      "title": "Recognition",
+      "type": "string"
+     },
+     "restrictions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Restrictions",
+      "type": "array"
+     },
+     "reviewed_at": {
+      "title": "Reviewed At",
+      "type": "string"
+     },
+     "reviewed_by": {
+      "title": "Reviewed By",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "demo_ready",
+       "educational_only",
+       "needs_review",
+       "excluded_from_demo"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "taxon_id": {
+      "title": "Taxon Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "taxon_id",
+     "status",
+     "declared",
+     "collectible",
+     "recognition",
+     "missing",
+     "reason",
+     "reviewed_by",
+     "reviewed_at",
+     "restrictions"
+    ],
+    "title": "DemoEligibility",
+    "type": "object"
+   },
+   "Expedition": {
+    "properties": {
+     "access_conditions": {
+      "default": "Consultar al administrador antes de visitar; acceso actual no verificado",
+      "title": "Access Conditions",
+      "type": "string"
+     },
+     "completion_criteria": {
+      "default": "Un registro personal; no requiere especie ni ubicación",
+      "title": "Completion Criteria",
+      "type": "string"
+     },
+     "id": {
+      "default": "puyehue",
+      "title": "Id",
+      "type": "string"
+     },
+     "name": {
+      "default": "Puyehue: exploración botánica de referencia",
+      "title": "Name",
+      "type": "string"
+     },
+     "objectives": {
+      "default": [
+       "Aprender a observar rasgos sin dañar plantas",
+       "Registrar hallazgos personales sin confirmar especies por IA"
+      ],
+      "items": {
+       "type": "string"
+      },
+      "title": "Objectives",
+      "type": "array"
+     },
+     "reference_area": {
+      "default": "BCN Snaspe, registro 2826; límites referenciales, no legales",
+      "title": "Reference Area",
+      "type": "string"
+     },
+     "safety_rules": {
+      "default": [
+       "Respetar cierres y senderos habilitados por el administrador",
+       "No recolectar, manipular ni dañar organismos"
+      ],
+      "items": {
+       "type": "string"
+      },
+      "title": "Safety Rules",
+      "type": "array"
+     },
+     "sources": {
+      "default": [
+       "https://www.bcn.cl/obtienearchivo?id=repositorio%2F10221%2F10404%2F2%2FSnaspe.zip"
+      ],
+      "items": {
+       "type": "string"
+      },
+      "title": "Sources",
+      "type": "array"
+     },
+     "species_of_interest": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Species Of Interest",
+      "type": "array"
+     },
+     "territory": {
+      "default": "Parque Nacional Puyehue y entorno; referencia, no ruta habilitada",
+      "title": "Territory",
+      "type": "string"
+     },
+     "valid_from": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Valid From"
+     },
+     "valid_until": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Valid Until"
+     },
+     "validation_status": {
+      "const": "reference_only",
+      "default": "reference_only",
+      "title": "Validation Status",
+      "type": "string"
+     },
+     "verified_trails": {
+      "default": [],
+      "items": {
+       "type": "string"
+      },
+      "title": "Verified Trails",
+      "type": "array"
+     }
+    },
+    "title": "Expedition",
+    "type": "object"
+   },
+   "ForestRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "area": {
+      "$ref": "#/components/schemas/Polygon"
+     },
+     "source_id": {
+      "const": "chmv2",
+      "title": "Source Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "source_id",
+     "area"
+    ],
+    "title": "ForestRequest",
+    "type": "object"
+   },
+   "ForestSource": {
+    "properties": {
+     "accessed_at": {
+      "title": "Accessed At",
+      "type": "string"
+     },
+     "attribution": {
+      "title": "Attribution",
+      "type": "string"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "interpretation": {
+      "title": "Interpretation",
+      "type": "string"
+     },
+     "license": {
+      "title": "License",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "processing": {
+      "title": "Processing",
+      "type": "string"
+     },
+     "redistribution": {
+      "title": "Redistribution",
+      "type": "string"
+     },
+     "source_url": {
+      "title": "Source Url",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "not_configured",
+       "ready"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "validation_owner": {
+      "title": "Validation Owner",
+      "type": "string"
+     },
+     "version": {
+      "title": "Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "source_url",
+     "version",
+     "license",
+     "attribution",
+     "accessed_at",
+     "redistribution",
+     "processing",
+     "validation_owner",
+     "status",
+     "interpretation"
+    ],
+    "title": "ForestSource",
+    "type": "object"
+   },
+   "GuideAnswer": {
+    "properties": {
+     "answer": {
+      "title": "Answer",
+      "type": "string"
+     },
+     "claims": {
+      "items": {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      "title": "Claims",
+      "type": "array"
+     },
+     "correlation_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Correlation Id"
+     },
+     "entities": {
+      "items": {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      "title": "Entities",
+      "type": "array"
+     },
+     "execution_status": {
+      "enum": [
+       "mock",
+       "completed"
+      ],
+      "title": "Execution Status",
+      "type": "string"
+     },
+     "insufficient_evidence": {
+      "default": true,
+      "title": "Insufficient Evidence",
+      "type": "boolean"
+     },
+     "knowledge_version": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Knowledge Version"
+     },
+     "latency_ms": {
+      "default": 0,
+      "title": "Latency Ms",
+      "type": "number"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "map": {
+      "anyOf": [
+       {
+        "additionalProperties": true,
+        "type": "object"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Map"
+     },
+     "model": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Model"
+     },
+     "prompt_version": {
+      "default": "wilo-guide-v3",
+      "title": "Prompt Version",
+      "type": "string"
+     },
+     "provider": {
+      "enum": [
+       "mock",
+       "meta"
+      ],
+      "title": "Provider",
+      "type": "string"
+     },
+     "sources": {
+      "items": {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      "title": "Sources",
+      "type": "array"
+     },
+     "speech_text": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Speech Text"
+     },
+     "tools_used": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Tools Used",
+      "type": "array"
+     },
+     "usage": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Usage",
+      "type": "object"
+     }
+    },
+    "required": [
+     "answer",
+     "provider",
+     "execution_status"
+    ],
+    "title": "GuideAnswer",
+    "type": "object"
+   },
+   "GuideQuery": {
+    "additionalProperties": false,
+    "properties": {
+     "adult_confirmed": {
+      "title": "Adult Confirmed",
+      "type": "boolean"
+     },
+     "capture_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Capture Id"
+     },
+     "external_processing_confirmed": {
+      "default": false,
+      "title": "External Processing Confirmed",
+      "type": "boolean"
+     },
+     "question": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Question",
+      "type": "string"
+     }
+    },
+    "required": [
+     "question",
+     "adult_confirmed"
+    ],
+    "title": "GuideQuery",
+    "type": "object"
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "title": "Detail",
+      "type": "array"
+     }
+    },
+    "title": "HTTPValidationError",
+    "type": "object"
+   },
+   "Identification": {
+    "additionalProperties": false,
+    "properties": {
+     "acceptance": {
+      "default": "not_applicable",
+      "enum": [
+       "accepted",
+       "not_accepted",
+       "not_applicable"
+      ],
+      "title": "Acceptance",
+      "type": "string"
+     },
+     "accepted_species_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Accepted Species Id"
+     },
+     "candidates": {
+      "items": {
+       "$ref": "#/components/schemas/Candidate"
+      },
+      "maxItems": 3,
+      "title": "Candidates",
+      "type": "array"
+     },
+     "catalog_assessment": {
+      "default": "not_assessed",
+      "enum": [
+       "supported_candidate",
+       "insufficient_evidence",
+       "out_of_catalog_suspected",
+       "non_diagnostic_photo",
+       "not_assessed"
+      ],
+      "title": "Catalog Assessment",
+      "type": "string"
+     },
+     "correlation_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Correlation Id"
+     },
+     "evidence_status": {
+      "default": "insufficient_evidence",
+      "enum": [
+       "candidates",
+       "insufficient_evidence",
+       "additional_photo_requested"
+      ],
+      "title": "Evidence Status",
+      "type": "string"
+     },
+     "execution_status": {
+      "default": "mock",
+      "enum": [
+       "mock",
+       "completed"
+      ],
+      "title": "Execution Status",
+      "type": "string"
+     },
+     "exploratory_candidates": {
+      "items": {
+       "$ref": "#/components/schemas/Candidate"
+      },
+      "maxItems": 3,
+      "title": "Exploratory Candidates",
+      "type": "array"
+     },
+     "identification_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Identification Id"
+     },
+     "latency_ms": {
+      "anyOf": [
+       {
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Latency Ms"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "maxItems": 10,
+      "title": "Limitations",
+      "type": "array"
+     },
+     "message": {
+      "title": "Message",
+      "type": "string"
+     },
+     "missing_traits": {
+      "items": {
+       "type": "string"
+      },
+      "maxItems": 10,
+      "title": "Missing Traits",
+      "type": "array"
+     },
+     "model": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Model"
+     },
+     "observed_traits": {
+      "items": {
+       "type": "string"
+      },
+      "maxItems": 10,
+      "title": "Observed Traits",
+      "type": "array"
+     },
+     "prompt_version": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Prompt Version"
+     },
+     "provider": {
+      "enum": [
+       "mock",
+       "meta"
+      ],
+      "title": "Provider",
+      "type": "string"
+     },
+     "recommended_next_photo": {
+      "anyOf": [
+       {
+        "enum": [
+         "leaf_underside",
+         "bark",
+         "complete_leaf",
+         "flowers_or_fruit_if_present",
+         "closer_view"
+        ],
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Recommended Next Photo"
+     },
+     "segmentation_status": {
+      "default": "disabled",
+      "enum": [
+       "disabled",
+       "completed",
+       "no_matches",
+       "error"
+      ],
+      "title": "Segmentation Status",
+      "type": "string"
+     },
+     "similar_out_of_catalog": {
+      "items": {
+       "type": "string"
+      },
+      "maxItems": 3,
+      "title": "Similar Out Of Catalog",
+      "type": "array"
+     },
+     "sources": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Sources",
+      "type": "array"
+     },
+     "stage_latency_ms": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "title": "Stage Latency Ms",
+      "type": "object"
+     },
+     "stage_usage": {
+      "additionalProperties": {
+       "additionalProperties": {
+        "type": "integer"
+       },
+       "type": "object"
+      },
+      "title": "Stage Usage",
+      "type": "object"
+     },
+     "status": {
+      "enum": [
+       "candidates",
+       "insufficient_evidence"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "strategy": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Strategy"
+     },
+     "usage": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Usage",
+      "type": "object"
+     }
+    },
+    "required": [
+     "status",
+     "provider",
+     "message"
+    ],
+    "title": "Identification",
+    "type": "object"
+   },
+   "IdentificationCapability": {
+    "additionalProperties": false,
+    "properties": {
+     "evaluated_at": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Evaluated At"
+     },
+     "evaluation": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Evaluation"
+     },
+     "level": {
+      "maximum": 3.0,
+      "minimum": 0.0,
+      "title": "Level",
+      "type": "integer"
+     },
+     "notes": {
+      "title": "Notes",
+      "type": "string"
+     },
+     "pipeline": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Pipeline"
+     },
+     "status": {
+      "enum": [
+       "educational_catalog",
+       "recognition_not_evaluated",
+       "recognition_experimental",
+       "recognition_candidate",
+       "recognition_enabled",
+       "recognition_restricted"
+      ],
+      "title": "Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "status",
+     "level",
+     "notes"
+    ],
+    "title": "IdentificationCapability",
+    "type": "object"
+   },
+   "KnowledgeStatus": {
+    "properties": {
+     "age_days": {
+      "title": "Age Days",
+      "type": "integer"
+     },
+     "built_from_data_of": {
+      "title": "Built From Data Of",
+      "type": "string"
+     },
+     "counts": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Counts",
+      "type": "object"
+     },
+     "knowledge_version": {
+      "title": "Knowledge Version",
+      "type": "string"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "rebuild": {
+      "title": "Rebuild",
+      "type": "string"
+     },
+     "schema_version": {
+      "title": "Schema Version",
+      "type": "string"
+     },
+     "stale": {
+      "title": "Stale",
+      "type": "boolean"
+     },
+     "stale_after_days": {
+      "title": "Stale After Days",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "knowledge_version",
+     "schema_version",
+     "built_from_data_of",
+     "age_days",
+     "stale",
+     "stale_after_days",
+     "counts",
+     "limitations",
+     "rebuild"
+    ],
+    "title": "KnowledgeStatus",
+    "type": "object"
+   },
+   "MapResourceOut": {
+    "properties": {
+     "bbox": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "number"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bbox"
+     },
+     "crs": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Crs"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "kind": {
+      "title": "Kind",
+      "type": "string"
+     },
+     "redistribution": {
+      "title": "Redistribution",
+      "type": "string"
+     },
+     "source": {
+      "$ref": "#/components/schemas/SourceOut"
+     },
+     "url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Url"
+     }
+    },
+    "required": [
+     "id",
+     "kind",
+     "redistribution",
+     "source"
+    ],
+    "title": "MapResourceOut",
+    "type": "object"
+   },
+   "MediaAsset": {
+    "additionalProperties": false,
+    "description": "A served asset. Unknown fields fail: coordinates, paths and private IDs cannot leak.",
+    "properties": {
+     "alt_text": {
+      "minLength": 10,
+      "title": "Alt Text",
+      "type": "string"
+     },
+     "asset_id": {
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "title": "Asset Id",
+      "type": "string"
+     },
+     "attribution": {
+      "minLength": 10,
+      "title": "Attribution",
+      "type": "string"
+     },
+     "caption": {
+      "minLength": 3,
+      "title": "Caption",
+      "type": "string"
+     },
+     "creator": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Creator"
+     },
+     "duration_seconds": {
+      "anyOf": [
+       {
+        "exclusiveMinimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Duration Seconds"
+     },
+     "fps": {
+      "anyOf": [
+       {
+        "exclusiveMinimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Fps"
+     },
+     "height": {
+      "anyOf": [
+       {
+        "exclusiveMinimum": 0.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Height"
+     },
+     "license": {
+      "minLength": 3,
+      "title": "License",
+      "type": "string"
+     },
+     "location_scope": {
+      "default": "undisclosed",
+      "enum": [
+       "undisclosed",
+       "general_region"
+      ],
+      "title": "Location Scope",
+      "type": "string"
+     },
+     "media_type": {
+      "enum": [
+       "image",
+       "video"
+      ],
+      "title": "Media Type",
+      "type": "string"
+     },
+     "public_url": {
+      "pattern": "^https://",
+      "title": "Public Url",
+      "type": "string"
+     },
+     "publication_status": {
+      "const": "public_approved",
+      "title": "Publication Status",
+      "type": "string"
+     },
+     "redistribution": {
+      "enum": [
+       "yes",
+       "with_attribution",
+       "share_alike_with_attribution"
+      ],
+      "title": "Redistribution",
+      "type": "string"
+     },
+     "review_status": {
+      "enum": [
+       "platform_label_only",
+       "agent_visual_check",
+       "specialist_validated"
+      ],
+      "title": "Review Status",
+      "type": "string"
+     },
+     "source_type": {
+      "enum": [
+       "external",
+       "owner"
+      ],
+      "title": "Source Type",
+      "type": "string"
+     },
+     "source_url": {
+      "pattern": "^https://",
+      "title": "Source Url",
+      "type": "string"
+     },
+     "taxon_id": {
+      "anyOf": [
+       {
+        "pattern": "^[a-z]+(?:-[a-z]+)+$",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Taxon Id"
+     },
+     "thumbnail_url": {
+      "anyOf": [
+       {
+        "pattern": "^https://",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Thumbnail Url"
+     },
+     "title": {
+      "minLength": 3,
+      "title": "Title",
+      "type": "string"
+     },
+     "visual_role": {
+      "enum": [
+       "arbol_completo",
+       "copa",
+       "tronco",
+       "corteza",
+       "rama",
+       "hoja",
+       "enves",
+       "flor",
+       "fruto",
+       "helecho",
+       "arbusto",
+       "sotobosque",
+       "hongo",
+       "animal",
+       "habitat",
+       "paisaje",
+       "sin_organismo",
+       "no_evaluado"
+      ],
+      "title": "Visual Role",
+      "type": "string"
+     },
+     "width": {
+      "anyOf": [
+       {
+        "exclusiveMinimum": 0.0,
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Width"
+     }
+    },
+    "required": [
+     "asset_id",
+     "media_type",
+     "visual_role",
+     "title",
+     "alt_text",
+     "caption",
+     "source_type",
+     "source_url",
+     "public_url",
+     "license",
+     "attribution",
+     "redistribution",
+     "review_status",
+     "publication_status"
+    ],
+    "title": "MediaAsset",
+    "type": "object"
+   },
+   "MediaPage": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/MediaAsset"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "limit": {
+      "title": "Limit",
+      "type": "integer"
+     },
+     "offset": {
+      "title": "Offset",
+      "type": "integer"
+     },
+     "total": {
+      "title": "Total",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "items",
+     "total",
+     "limit",
+     "offset"
+    ],
+    "title": "MediaPage",
+    "type": "object"
+   },
+   "MultiPolygon": {
+    "additionalProperties": false,
+    "properties": {
+     "coordinates": {
+      "items": {
+       "items": {
+        "items": {
+         "maxItems": 2,
+         "minItems": 2,
+         "prefixItems": [
+          {
+           "maximum": 180.0,
+           "minimum": -180.0,
+           "type": "number"
+          },
+          {
+           "maximum": 90.0,
+           "minimum": -90.0,
+           "type": "number"
+          }
+         ],
+         "type": "array"
+        },
+        "type": "array"
+       },
+       "type": "array"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Coordinates",
+      "type": "array"
+     },
+     "type": {
+      "const": "MultiPolygon",
+      "default": "MultiPolygon",
+      "title": "Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "coordinates"
+    ],
+    "title": "MultiPolygon",
+    "type": "object"
+   },
+   "Observation": {
+    "additionalProperties": false,
+    "properties": {
+     "accuracy_m": {
+      "anyOf": [
+       {
+        "maximum": 200.0,
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Accuracy M"
+     },
+     "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+     },
+     "id": {
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+     },
+     "location": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/Point"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "notes": {
+      "default": "",
+      "maxLength": 2000,
+      "title": "Notes",
+      "type": "string"
+     },
+     "species_id": {
+      "anyOf": [
+       {
+        "maxLength": 80,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Species Id"
+     },
+     "verification_status": {
+      "const": "unverified",
+      "default": "unverified",
+      "title": "Verification Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "created_at"
+    ],
+    "title": "Observation",
+    "type": "object"
+   },
+   "ObservationCreate": {
+    "additionalProperties": false,
+    "properties": {
+     "accuracy_m": {
+      "anyOf": [
+       {
+        "maximum": 200.0,
+        "minimum": 0.0,
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Accuracy M"
+     },
+     "location": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/Point"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "notes": {
+      "default": "",
+      "maxLength": 2000,
+      "title": "Notes",
+      "type": "string"
+     },
+     "species_id": {
+      "anyOf": [
+       {
+        "maxLength": 80,
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Species Id"
+     }
+    },
+    "title": "ObservationCreate",
+    "type": "object"
+   },
+   "ParkBiodiversity": {
+    "properties": {
+     "boundary": {
+      "default": "Sin geometría oficial integrada; la referencia BCN 2826 se usa solo para el estado espacial de capturas. No hay senderos ni sectores verificados.",
+      "title": "Boundary",
+      "type": "string"
+     },
+     "counts": {
+      "additionalProperties": {
+       "additionalProperties": {
+        "type": "integer"
+       },
+       "type": "object"
+      },
+      "title": "Counts",
+      "type": "object"
+     },
+     "name": {
+      "default": "Parque Nacional Puyehue",
+      "title": "Name",
+      "type": "string"
+     },
+     "notes": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+     },
+     "park_id": {
+      "const": "puyehue",
+      "default": "puyehue",
+      "title": "Park Id",
+      "type": "string"
+     },
+     "regions": {
+      "default": [
+       "los-rios",
+       "los-lagos"
+      ],
+      "items": {
+       "type": "string"
+      },
+      "title": "Regions",
+      "type": "array"
+     },
+     "taxa": {
+      "items": {
+       "$ref": "#/components/schemas/TaxonSummary"
+      },
+      "title": "Taxa",
+      "type": "array"
+     }
+    },
+    "required": [
+     "counts",
+     "taxa",
+     "notes"
+    ],
+    "title": "ParkBiodiversity",
+    "type": "object"
+   },
+   "ParkMap": {
+    "properties": {
+     "bbox": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "number"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bbox"
+     },
+     "bbox_source": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/SourceOut"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "boundary_geometry": {
+      "title": "Boundary Geometry",
+      "type": "null"
+     },
+     "boundary_source": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Boundary Source"
+     },
+     "boundary_unavailable_reason": {
+      "title": "Boundary Unavailable Reason",
+      "type": "string"
+     },
+     "crs": {
+      "title": "Crs",
+      "type": "string"
+     },
+     "geometry_status": {
+      "enum": [
+       "bbox_only",
+       "unavailable"
+      ],
+      "title": "Geometry Status",
+      "type": "string"
+     },
+     "knowledge_version": {
+      "title": "Knowledge Version",
+      "type": "string"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "map_resources": {
+      "items": {
+       "$ref": "#/components/schemas/MapResourceOut"
+      },
+      "title": "Map Resources",
+      "type": "array"
+     },
+     "park_id": {
+      "title": "Park Id",
+      "type": "string"
+     },
+     "source_status": {
+      "title": "Source Status",
+      "type": "string"
+     },
+     "trails": {
+      "items": {
+       "$ref": "#/components/schemas/TrailOut"
+      },
+      "title": "Trails",
+      "type": "array"
+     }
+    },
+    "required": [
+     "park_id",
+     "boundary_source",
+     "boundary_unavailable_reason",
+     "crs",
+     "bbox",
+     "bbox_source",
+     "trails",
+     "map_resources",
+     "geometry_status",
+     "source_status",
+     "limitations",
+     "knowledge_version"
+    ],
+    "title": "ParkMap",
+    "type": "object"
+   },
+   "ParkOut": {
+    "properties": {
+     "access_text": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Access Text"
+     },
+     "area_ha": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Area Ha"
+     },
+     "area_source_text": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Area Source Text"
+     },
+     "communes": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Communes"
+     },
+     "conflicts": {
+      "items": {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      "title": "Conflicts",
+      "type": "array"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "knowledge_version": {
+      "title": "Knowledge Version",
+      "type": "string"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "linked_taxa": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Linked Taxa",
+      "type": "array"
+     },
+     "live_status": {
+      "const": "not_verified",
+      "default": "not_verified",
+      "title": "Live Status",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "official_url": {
+      "title": "Official Url",
+      "type": "string"
+     },
+     "provinces": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Provinces"
+     },
+     "regions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Regions",
+      "type": "array"
+     },
+     "sectors": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Sectors",
+      "type": "array"
+     },
+     "sources": {
+      "items": {
+       "$ref": "#/components/schemas/SourceOut"
+      },
+      "title": "Sources",
+      "type": "array"
+     },
+     "trail_count": {
+      "title": "Trail Count",
+      "type": "integer"
+     },
+     "trail_section_status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Trail Section Status"
+     },
+     "visit_notice": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Visit Notice"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "regions",
+     "provinces",
+     "communes",
+     "area_ha",
+     "area_source_text",
+     "sectors",
+     "visit_notice",
+     "access_text",
+     "trail_count",
+     "trail_section_status",
+     "official_url",
+     "linked_taxa",
+     "conflicts",
+     "sources",
+     "limitations",
+     "knowledge_version"
+    ],
+    "title": "ParkOut",
+    "type": "object"
+   },
+   "ParkPage": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/ParkSummary"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "knowledge_version": {
+      "title": "Knowledge Version",
+      "type": "string"
+     },
+     "limit": {
+      "title": "Limit",
+      "type": "integer"
+     },
+     "offset": {
+      "title": "Offset",
+      "type": "integer"
+     },
+     "total": {
+      "title": "Total",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "items",
+     "total",
+     "limit",
+     "offset",
+     "knowledge_version"
+    ],
+    "title": "ParkPage",
+    "type": "object"
+   },
+   "ParkSummary": {
+    "properties": {
+     "area_ha": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Area Ha"
+     },
+     "has_bbox": {
+      "title": "Has Bbox",
+      "type": "boolean"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "regions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Regions",
+      "type": "array"
+     },
+     "trail_count": {
+      "title": "Trail Count",
+      "type": "integer"
+     },
+     "trail_section_status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Trail Section Status"
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "regions",
+     "area_ha",
+     "trail_count",
+     "trail_section_status",
+     "has_bbox"
+    ],
+    "title": "ParkSummary",
+    "type": "object"
+   },
+   "ParkTaxonEvidence": {
+    "additionalProperties": false,
+    "properties": {
+     "evidence_type": {
+      "enum": [
+       "official_park_presence",
+       "scientific_georeferenced",
+       "citizen_validated",
+       "personal_pending_review",
+       "potential_habitat",
+       "documented_ecological_association",
+       "ai_identification_hypothesis"
+      ],
+      "title": "Evidence Type",
+      "type": "string"
+     },
+     "observed_date": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Observed Date"
+     },
+     "park_id": {
+      "const": "puyehue",
+      "title": "Park Id",
+      "type": "string"
+     },
+     "precision": {
+      "enum": [
+       "park_scale_no_coordinates",
+       "generalized"
+      ],
+      "title": "Precision",
+      "type": "string"
+     },
+     "restrictions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Restrictions",
+      "type": "array"
+     },
+     "review_status": {
+      "enum": [
+       "source_checked",
+       "pending_review"
+      ],
+      "title": "Review Status",
+      "type": "string"
+     },
+     "scale": {
+      "enum": [
+       "park",
+       "sector"
+      ],
+      "title": "Scale",
+      "type": "string"
+     },
+     "source": {
+      "$ref": "#/components/schemas/SourceRef"
+     }
+    },
+    "required": [
+     "park_id",
+     "evidence_type",
+     "scale",
+     "source",
+     "precision",
+     "review_status"
+    ],
+    "title": "ParkTaxonEvidence",
+    "type": "object"
+   },
+   "Point": {
+    "additionalProperties": false,
+    "properties": {
+     "coordinates": {
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+       {
+        "maximum": 180.0,
+        "minimum": -180.0,
+        "type": "number"
+       },
+       {
+        "maximum": 90.0,
+        "minimum": -90.0,
+        "type": "number"
+       }
+      ],
+      "title": "Coordinates",
+      "type": "array"
+     },
+     "type": {
+      "const": "Point",
+      "default": "Point",
+      "title": "Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "coordinates"
+    ],
+    "title": "Point",
+    "type": "object"
+   },
+   "Polygon": {
+    "additionalProperties": false,
+    "properties": {
+     "coordinates": {
+      "items": {
+       "items": {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+         {
+          "maximum": 180.0,
+          "minimum": -180.0,
+          "type": "number"
+         },
+         {
+          "maximum": 90.0,
+          "minimum": -90.0,
+          "type": "number"
+         }
+        ],
+        "type": "array"
+       },
+       "type": "array"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Coordinates",
+      "type": "array"
+     },
+     "type": {
+      "const": "Polygon",
+      "default": "Polygon",
+      "title": "Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "coordinates"
+    ],
+    "title": "Polygon",
+    "type": "object"
+   },
+   "PredominantSpecies": {
+    "properties": {
+     "accepted_taxon_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Accepted Taxon Id"
+     },
+     "resolution": {
+      "enum": [
+       "catalog_match",
+       "unresolved"
+      ],
+      "title": "Resolution",
+      "type": "string"
+     },
+     "scientific_name_raw": {
+      "title": "Scientific Name Raw",
+      "type": "string"
+     }
+    },
+    "required": [
+     "scientific_name_raw",
+     "accepted_taxon_id",
+     "resolution"
+    ],
+    "title": "PredominantSpecies",
+    "type": "object"
+   },
+   "Provenance": {
+    "properties": {
+     "accessed_at": {
+      "title": "Accessed At",
+      "type": "string"
+     },
+     "attribution": {
+      "title": "Attribution",
+      "type": "string"
+     },
+     "license": {
+      "title": "License",
+      "type": "string"
+     },
+     "processing": {
+      "title": "Processing",
+      "type": "string"
+     },
+     "redistribution": {
+      "title": "Redistribution",
+      "type": "string"
+     },
+     "source_name": {
+      "title": "Source Name",
+      "type": "string"
+     },
+     "source_url": {
+      "title": "Source Url",
+      "type": "string"
+     },
+     "status": {
+      "const": "pending_validation",
+      "title": "Status",
+      "type": "string"
+     },
+     "validation_owner": {
+      "title": "Validation Owner",
+      "type": "string"
+     },
+     "version": {
+      "title": "Version",
+      "type": "string"
+     }
+    },
+    "required": [
+     "source_name",
+     "source_url",
+     "accessed_at",
+     "version",
+     "license",
+     "attribution",
+     "redistribution",
+     "processing",
+     "validation_owner",
+     "status"
+    ],
+    "title": "Provenance",
+    "type": "object"
+   },
+   "RegionalConservation": {
+    "description": "Category applicable to a region; without region it stays indeterminate.",
+    "properties": {
+     "applicable_category": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Applicable Category"
+     },
+     "applicable_scope": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Applicable Scope"
+     },
+     "criteria": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Criteria"
+     },
+     "decree": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Decree"
+     },
+     "notes": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+     },
+     "park_regions": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "title": "Park Regions",
+      "type": "object"
+     },
+     "process": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Process"
+     },
+     "record_status": {
+      "enum": [
+       "found",
+       "no_rce_record_found"
+      ],
+      "title": "Record Status",
+      "type": "string"
+     },
+     "region": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Region"
+     },
+     "regional_status": {
+      "enum": [
+       "determined",
+       "indeterminate",
+       "region_not_covered",
+       "not_applicable"
+      ],
+      "title": "Regional Status",
+      "type": "string"
+     },
+     "scopes": {
+      "items": {
+       "$ref": "#/components/schemas/ConservationScope"
+      },
+      "title": "Scopes",
+      "type": "array"
+     },
+     "source": {
+      "$ref": "#/components/schemas/ConservationSource"
+     },
+     "system": {
+      "const": "RCE",
+      "default": "RCE",
+      "title": "System",
+      "type": "string"
+     },
+     "taxon_id": {
+      "title": "Taxon Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "taxon_id",
+     "record_status",
+     "region",
+     "regional_status",
+     "applicable_category",
+     "applicable_scope",
+     "scopes",
+     "park_regions",
+     "source",
+     "notes"
+    ],
+    "title": "RegionalConservation",
+    "type": "object"
+   },
+   "SearchHit": {
+    "properties": {
+     "confidence": {
+      "title": "Confidence",
+      "type": "string"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "park_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Park Id"
+     },
+     "source": {
+      "$ref": "#/components/schemas/SourceOut"
+     },
+     "type": {
+      "title": "Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "type",
+     "name",
+     "park_id",
+     "confidence",
+     "source"
+    ],
+    "title": "SearchHit",
+    "type": "object"
+   },
+   "SourceOut": {
+    "properties": {
+     "accessed_at": {
+      "title": "Accessed At",
+      "type": "string"
+     },
+     "confidence": {
+      "title": "Confidence",
+      "type": "string"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "review_status": {
+      "title": "Review Status",
+      "type": "string"
+     },
+     "title": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Title"
+     },
+     "type": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Type"
+     },
+     "url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Url"
+     },
+     "version": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Version"
+     }
+    },
+    "required": [
+     "id",
+     "title",
+     "url",
+     "type",
+     "accessed_at",
+     "confidence",
+     "review_status"
+    ],
+    "title": "SourceOut",
+    "type": "object"
+   },
+   "SourceRef": {
+    "additionalProperties": false,
+    "properties": {
+     "accessed_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "title": "Accessed At",
+      "type": "string"
+     },
+     "kind": {
+      "enum": [
+       "official",
+       "scientific",
+       "secondary",
+       "platform"
+      ],
+      "title": "Kind",
+      "type": "string"
+     },
+     "license": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "License"
+     },
+     "notes": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Notes"
+     },
+     "title": {
+      "minLength": 3,
+      "title": "Title",
+      "type": "string"
+     },
+     "url": {
+      "pattern": "^https://",
+      "title": "Url",
+      "type": "string"
+     }
+    },
+    "required": [
+     "title",
+     "url",
+     "accessed_at",
+     "kind"
+    ],
+    "title": "SourceRef",
+    "type": "object"
+   },
+   "Species": {
+    "additionalProperties": false,
+    "properties": {
+     "accepted_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Accepted Name"
+     },
+     "common_name": {
+      "minLength": 1,
+      "title": "Common Name",
+      "type": "string"
+     },
+     "conservation_status": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Conservation Status"
+     },
+     "family": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Family"
+     },
+     "genus": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Genus"
+     },
+     "id": {
+      "pattern": "^[a-z]+(?:-[a-z]+)+$",
+      "title": "Id",
+      "type": "string"
+     },
+     "morphology": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Morphology",
+      "type": "array"
+     },
+     "native_status": {
+      "const": "pending",
+      "default": "pending",
+      "title": "Native Status",
+      "type": "string"
+     },
+     "provenance": {
+      "$ref": "#/components/schemas/Provenance"
+     },
+     "scientific_name": {
+      "pattern": "^[A-Z][a-z]+ [a-z]+$",
+      "title": "Scientific Name",
+      "type": "string"
+     },
+     "synonym_review": {
+      "items": {
+       "$ref": "#/components/schemas/SynonymReview"
+      },
+      "title": "Synonym Review",
+      "type": "array"
+     },
+     "synonyms": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Synonyms",
+      "type": "array"
+     },
+     "taxonomic_status": {
+      "const": "provisional",
+      "title": "Taxonomic Status",
+      "type": "string"
+     },
+     "taxonomy": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/Taxonomy"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "trait_source_accessed_at": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Trait Source Accessed At"
+     },
+     "trait_sources": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Trait Sources",
+      "type": "array"
+     },
+     "trait_validation_status": {
+      "default": "pending",
+      "enum": [
+       "pending",
+       "source_checked"
+      ],
+      "title": "Trait Validation Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "scientific_name",
+     "common_name",
+     "taxonomic_status",
+     "provenance"
+    ],
+    "title": "Species",
+    "type": "object"
+   },
+   "SynonymReview": {
+    "additionalProperties": false,
+    "description": "Auditable decision on a catalog synonym; the name is never silently dropped.",
+    "properties": {
+     "decision": {
+      "enum": [
+       "removed_incorrect",
+       "disputed_excluded",
+       "verified"
+      ],
+      "title": "Decision",
+      "type": "string"
+     },
+     "evidence": {
+      "items": {
+       "type": "string"
+      },
+      "minItems": 1,
+      "title": "Evidence",
+      "type": "array"
+     },
+     "name": {
+      "minLength": 3,
+      "title": "Name",
+      "type": "string"
+     },
+     "reviewed_at": {
+      "title": "Reviewed At",
+      "type": "string"
+     },
+     "reviewer": {
+      "title": "Reviewer",
+      "type": "string"
+     }
+    },
+    "required": [
+     "name",
+     "decision",
+     "evidence",
+     "reviewed_at",
+     "reviewer"
+    ],
+    "title": "SynonymReview",
+    "type": "object"
+   },
+   "Taxon": {
+    "additionalProperties": false,
+    "properties": {
+     "classification": {
+      "$ref": "#/components/schemas/Classification"
+     },
+     "common_names": {
+      "items": {
+       "type": "string"
+      },
+      "minItems": 1,
+      "title": "Common Names",
+      "type": "array"
+     },
+     "group": {
+      "enum": [
+       "tree",
+       "bird",
+       "mammal",
+       "fungus"
+      ],
+      "title": "Group",
+      "type": "string"
+     },
+     "id": {
+      "pattern": "^[a-z]+(?:-[a-z]+)+$",
+      "title": "Id",
+      "type": "string"
+     },
+     "identification": {
+      "$ref": "#/components/schemas/IdentificationCapability"
+     },
+     "media": {
+      "items": {
+       "$ref": "#/components/schemas/TaxonMedia"
+      },
+      "maxItems": 6,
+      "title": "Media",
+      "type": "array"
+     },
+     "park_evidence": {
+      "items": {
+       "$ref": "#/components/schemas/ParkTaxonEvidence"
+      },
+      "title": "Park Evidence",
+      "type": "array"
+     },
+     "profile": {
+      "$ref": "#/components/schemas/TaxonProfile"
+     },
+     "puyehue_status": {
+      "enum": [
+       "documented_in_park",
+       "regional_candidate",
+       "not_assessed"
+      ],
+      "title": "Puyehue Status",
+      "type": "string"
+     },
+     "scientific_name": {
+      "title": "Scientific Name",
+      "type": "string"
+     },
+     "sensitivity": {
+      "enum": [
+       "none",
+       "location_sensitive"
+      ],
+      "title": "Sensitivity",
+      "type": "string"
+     },
+     "species_ref": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Species Ref"
+     },
+     "taxonomy": {
+      "$ref": "#/components/schemas/TaxonTaxonomy"
+     }
+    },
+    "required": [
+     "id",
+     "scientific_name",
+     "common_names",
+     "group",
+     "classification",
+     "taxonomy",
+     "profile",
+     "puyehue_status",
+     "sensitivity",
+     "identification"
+    ],
+    "title": "Taxon",
+    "type": "object"
+   },
+   "TaxonMedia": {
+    "additionalProperties": false,
+    "properties": {
+     "attribution": {
+      "title": "Attribution",
+      "type": "string"
+     },
+     "author": {
+      "title": "Author",
+      "type": "string"
+     },
+     "license": {
+      "title": "License",
+      "type": "string"
+     },
+     "media_id": {
+      "title": "Media Id",
+      "type": "string"
+     },
+     "media_url": {
+      "pattern": "^https://",
+      "title": "Media Url",
+      "type": "string"
+     },
+     "redistribution": {
+      "enum": [
+       "yes",
+       "with_attribution",
+       "share_alike_with_attribution"
+      ],
+      "title": "Redistribution",
+      "type": "string"
+     },
+     "review_status": {
+      "enum": [
+       "platform_label_only",
+       "agent_visual_check"
+      ],
+      "title": "Review Status",
+      "type": "string"
+     },
+     "source_url": {
+      "pattern": "^https://",
+      "title": "Source Url",
+      "type": "string"
+     }
+    },
+    "required": [
+     "media_id",
+     "media_url",
+     "source_url",
+     "author",
+     "license",
+     "attribution",
+     "redistribution",
+     "review_status"
+    ],
+    "title": "TaxonMedia",
+    "type": "object"
+   },
+   "TaxonPage": {
+    "properties": {
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/TaxonSummary"
+      },
+      "title": "Items",
+      "type": "array"
+     },
+     "limit": {
+      "title": "Limit",
+      "type": "integer"
+     },
+     "offset": {
+      "title": "Offset",
+      "type": "integer"
+     },
+     "total": {
+      "title": "Total",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "items",
+     "total",
+     "limit",
+     "offset"
+    ],
+    "title": "TaxonPage",
+    "type": "object"
+   },
+   "TaxonProfile": {
+    "additionalProperties": false,
+    "description": "Unknown fields stay null; nothing is filled in by a model.",
+    "properties": {
+     "description": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "distribution": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Distribution"
+     },
+     "ecology": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Ecology"
+     },
+     "habitat": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Habitat"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "review_status": {
+      "enum": [
+       "draft_sourced",
+       "pending"
+      ],
+      "title": "Review Status",
+      "type": "string"
+     },
+     "sources": {
+      "items": {
+       "$ref": "#/components/schemas/SourceRef"
+      },
+      "title": "Sources",
+      "type": "array"
+     },
+     "trait_validation_status": {
+      "enum": [
+       "source_checked",
+       "secondary_source",
+       "pending"
+      ],
+      "title": "Trait Validation Status",
+      "type": "string"
+     },
+     "traits": {
+      "items": {
+       "type": "string"
+      },
+      "maxItems": 8,
+      "title": "Traits",
+      "type": "array"
+     }
+    },
+    "required": [
+     "trait_validation_status",
+     "review_status"
+    ],
+    "title": "TaxonProfile",
+    "type": "object"
+   },
+   "TaxonSummary": {
+    "properties": {
+     "collectible": {
+      "title": "Collectible",
+      "type": "boolean"
+     },
+     "common_names": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Common Names",
+      "type": "array"
+     },
+     "demo_status": {
+      "title": "Demo Status",
+      "type": "string"
+     },
+     "evidence_types": {
+      "items": {
+       "enum": [
+        "official_park_presence",
+        "scientific_georeferenced",
+        "citizen_validated",
+        "personal_pending_review",
+        "potential_habitat",
+        "documented_ecological_association",
+        "ai_identification_hypothesis"
+       ],
+       "type": "string"
+      },
+      "title": "Evidence Types",
+      "type": "array"
+     },
+     "group": {
+      "enum": [
+       "tree",
+       "bird",
+       "mammal",
+       "fungus"
+      ],
+      "title": "Group",
+      "type": "string"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "identification_status": {
+      "enum": [
+       "educational_catalog",
+       "recognition_not_evaluated",
+       "recognition_experimental",
+       "recognition_candidate",
+       "recognition_enabled",
+       "recognition_restricted"
+      ],
+      "title": "Identification Status",
+      "type": "string"
+     },
+     "kingdom": {
+      "enum": [
+       "Plantae",
+       "Animalia",
+       "Fungi"
+      ],
+      "title": "Kingdom",
+      "type": "string"
+     },
+     "puyehue_status": {
+      "enum": [
+       "documented_in_park",
+       "regional_candidate",
+       "not_assessed"
+      ],
+      "title": "Puyehue Status",
+      "type": "string"
+     },
+     "rce_park_regions": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "title": "Rce Park Regions",
+      "type": "object"
+     },
+     "scientific_name": {
+      "title": "Scientific Name",
+      "type": "string"
+     },
+     "sensitivity": {
+      "enum": [
+       "none",
+       "location_sensitive"
+      ],
+      "title": "Sensitivity",
+      "type": "string"
+     }
+    },
+    "required": [
+     "id",
+     "scientific_name",
+     "common_names",
+     "kingdom",
+     "group",
+     "puyehue_status",
+     "evidence_types",
+     "identification_status",
+     "sensitivity",
+     "rce_park_regions",
+     "demo_status",
+     "collectible"
+    ],
+    "title": "TaxonSummary",
+    "type": "object"
+   },
+   "TaxonTaxonomy": {
+    "additionalProperties": false,
+    "properties": {
+     "accepted_name": {
+      "title": "Accepted Name",
+      "type": "string"
+     },
+     "accessed_at": {
+      "title": "Accessed At",
+      "type": "string"
+     },
+     "authorship": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Authorship"
+     },
+     "checklist": {
+      "title": "Checklist",
+      "type": "string"
+     },
+     "col_xr_key": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Col Xr Key"
+     },
+     "gbif_backbone_id": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Gbif Backbone Id"
+     },
+     "notes": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Notes"
+     },
+     "status": {
+      "enum": [
+       "source_checked",
+       "name_discrepancy",
+       "unresolved"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "synonyms_reviewed": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Synonyms Reviewed",
+      "type": "array"
+     }
+    },
+    "required": [
+     "checklist",
+     "accepted_name",
+     "status",
+     "accessed_at"
+    ],
+    "title": "TaxonTaxonomy",
+    "type": "object"
+   },
+   "Taxonomy": {
+    "additionalProperties": false,
+    "properties": {
+     "accessed_at": {
+      "title": "Accessed At",
+      "type": "string"
+     },
+     "attribution": {
+      "title": "Attribution",
+      "type": "string"
+     },
+     "gbif_id": {
+      "exclusiveMinimum": 0.0,
+      "title": "Gbif Id",
+      "type": "integer"
+     },
+     "license": {
+      "const": "CC-BY-4.0",
+      "title": "License",
+      "type": "string"
+     },
+     "source_url": {
+      "title": "Source Url",
+      "type": "string"
+     },
+     "source_version": {
+      "title": "Source Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "ACCEPTED",
+       "SYNONYM"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "verification_status": {
+      "const": "source_checked",
+      "title": "Verification Status",
+      "type": "string"
+     }
+    },
+    "required": [
+     "source_url",
+     "source_version",
+     "accessed_at",
+     "gbif_id",
+     "status",
+     "verification_status",
+     "license",
+     "attribution"
+    ],
+    "title": "Taxonomy",
+    "type": "object"
+   },
+   "TrailOut": {
+    "properties": {
+     "conditions": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Conditions",
+      "type": "array"
+     },
+     "difficulty": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Difficulty"
+     },
+     "distance_basis": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Distance Basis"
+     },
+     "distance_m": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Distance M"
+     },
+     "duration_basis": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Duration Basis"
+     },
+     "duration_max_minutes": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Duration Max Minutes"
+     },
+     "duration_min_minutes": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Duration Min Minutes"
+     },
+     "duration_minutes": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Duration Minutes"
+     },
+     "geometry": {
+      "title": "Geometry",
+      "type": "null"
+     },
+     "geometry_available": {
+      "const": false,
+      "default": false,
+      "title": "Geometry Available",
+      "type": "boolean"
+     },
+     "id": {
+      "title": "Id",
+      "type": "string"
+     },
+     "kind": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Kind"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "name": {
+      "title": "Name",
+      "type": "string"
+     },
+     "opening_status": {
+      "enum": [
+       "not_verified",
+       "published_closure"
+      ],
+      "title": "Opening Status",
+      "type": "string"
+     },
+     "park_id": {
+      "title": "Park Id",
+      "type": "string"
+     },
+     "published_closure": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Published Closure"
+     },
+     "risks": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Risks"
+     },
+     "sector": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sector"
+     },
+     "source_status": {
+      "enum": [
+       "official_reviewed",
+       "official_named_only",
+       "secondary_reference"
+      ],
+      "title": "Source Status",
+      "type": "string"
+     },
+     "sources": {
+      "items": {
+       "$ref": "#/components/schemas/SourceOut"
+      },
+      "title": "Sources",
+      "type": "array"
+     },
+     "winter_difficulty": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Winter Difficulty"
+     }
+    },
+    "required": [
+     "id",
+     "park_id",
+     "name",
+     "sector",
+     "kind",
+     "distance_m",
+     "duration_minutes",
+     "difficulty",
+     "source_status",
+     "opening_status",
+     "sources",
+     "limitations"
+    ],
+    "title": "TrailOut",
+    "type": "object"
+   },
+   "Transcription": {
+    "properties": {
+     "audio_duration_ms": {
+      "maximum": 60000.0,
+      "minimum": 0.0,
+      "title": "Audio Duration Ms",
+      "type": "number"
+     },
+     "correlation_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Correlation Id"
+     },
+     "execution_status": {
+      "enum": [
+       "mock",
+       "completed"
+      ],
+      "title": "Execution Status",
+      "type": "string"
+     },
+     "latency_ms": {
+      "minimum": 0.0,
+      "title": "Latency Ms",
+      "type": "number"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "model": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Model"
+     },
+     "provider": {
+      "enum": [
+       "mock",
+       "meta"
+      ],
+      "title": "Provider",
+      "type": "string"
+     },
+     "provider_session_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Provider Session Id"
+     },
+     "transcript": {
+      "maxLength": 8000,
+      "title": "Transcript",
+      "type": "string"
+     },
+     "turns": {
+      "items": {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      "title": "Turns",
+      "type": "array"
+     },
+     "usage": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "title": "Usage",
+      "type": "object"
+     }
+    },
+    "required": [
+     "transcript",
+     "provider",
+     "execution_status",
+     "audio_duration_ms",
+     "latency_ms"
+    ],
+    "title": "Transcription",
+    "type": "object"
+   },
+   "ValidationError": {
+    "properties": {
+     "ctx": {
+      "title": "Context",
+      "type": "object"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "title": "Location",
+      "type": "array"
+     },
+     "msg": {
+      "title": "Message",
+      "type": "string"
+     },
+     "type": {
+      "title": "Error Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError",
+    "type": "object"
+   },
+   "WeightedForestRequest": {
+    "additionalProperties": false,
+    "properties": {
+     "area": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/Polygon"
+       },
+       {
+        "$ref": "#/components/schemas/MultiPolygon"
+       }
+      ],
+      "title": "Area"
+     },
+     "source_id": {
+      "const": "chmv2",
+      "title": "Source Id",
+      "type": "string"
+     }
+    },
+    "required": [
+     "area",
+     "source_id"
+    ],
+    "title": "WeightedForestRequest",
+    "type": "object"
+   },
+   "WeightedStatistics": {
+    "properties": {
+     "acquisition_reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Acquisition Reason"
+     },
+     "ambiguous_fraction": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Ambiguous Fraction"
+     },
+     "ambiguous_fraction_denominator": {
+      "const": "raster_intersection_area_m2",
+      "default": "raster_intersection_area_m2",
+      "title": "Ambiguous Fraction Denominator",
+      "type": "string"
+     },
+     "ambiguous_zero_area_m2": {
+      "title": "Ambiguous Zero Area M2",
+      "type": "number"
+     },
+     "analysis_crs": {
+      "const": "EPSG:32718",
+      "default": "EPSG:32718",
+      "title": "Analysis Crs",
+      "type": "string"
+     },
+     "aoi_area_m2": {
+      "title": "Aoi Area M2",
+      "type": "number"
+     },
+     "coverage_fraction": {
+      "title": "Coverage Fraction",
+      "type": "number"
+     },
+     "estimated": {
+      "const": true,
+      "default": true,
+      "title": "Estimated",
+      "type": "boolean"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "max_height_m": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Max Height M"
+     },
+     "mean_height_m": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Mean Height M"
+     },
+     "method": {
+      "const": "pixel_footprint_area",
+      "default": "pixel_footprint_area",
+      "title": "Method",
+      "type": "string"
+     },
+     "min_height_m": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Min Height M"
+     },
+     "nodata_area_m2": {
+      "title": "Nodata Area M2",
+      "type": "number"
+     },
+     "raster_intersection_area_m2": {
+      "title": "Raster Intersection Area M2",
+      "type": "number"
+     },
+     "source_acquisition_end": {
+      "anyOf": [
+       {
+        "format": "date",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Source Acquisition End"
+     },
+     "source_acquisition_start": {
+      "anyOf": [
+       {
+        "format": "date",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Source Acquisition Start"
+     },
+     "source_crs": {
+      "title": "Source Crs",
+      "type": "string"
+     },
+     "source_id": {
+      "title": "Source Id",
+      "type": "string"
+     },
+     "source_version": {
+      "title": "Source Version",
+      "type": "string"
+     },
+     "status": {
+      "enum": [
+       "ok",
+       "no_coverage",
+       "no_valid_data"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "unit": {
+      "const": "m",
+      "default": "m",
+      "title": "Unit",
+      "type": "string"
+     },
+     "valid_area_m2": {
+      "title": "Valid Area M2",
+      "type": "number"
+     },
+     "valid_pixels": {
+      "title": "Valid Pixels",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "status",
+     "source_id",
+     "source_version",
+     "source_crs",
+     "aoi_area_m2",
+     "raster_intersection_area_m2",
+     "valid_area_m2",
+     "ambiguous_zero_area_m2",
+     "nodata_area_m2",
+     "coverage_fraction",
+     "ambiguous_fraction",
+     "valid_pixels",
+     "mean_height_m",
+     "min_height_m",
+     "max_height_m",
+     "source_acquisition_start",
+     "source_acquisition_end",
+     "acquisition_reason",
+     "limitations"
+    ],
+    "title": "WeightedStatistics",
+    "type": "object"
+   },
+   "WiloAnswer": {
+    "properties": {
+     "answer": {
+      "title": "Answer",
+      "type": "string"
+     },
+     "answer_model": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Answer Model"
+     },
+     "claims": {
+      "items": {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      "title": "Claims",
+      "type": "array"
+     },
+     "correlation_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Correlation Id"
+     },
+     "entities": {
+      "items": {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      "title": "Entities",
+      "type": "array"
+     },
+     "insufficient_evidence": {
+      "title": "Insufficient Evidence",
+      "type": "boolean"
+     },
+     "knowledge_version": {
+      "title": "Knowledge Version",
+      "type": "string"
+     },
+     "language_hint": {
+      "default": "auto",
+      "title": "Language Hint",
+      "type": "string"
+     },
+     "latency_ms": {
+      "additionalProperties": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "title": "Latency Ms",
+      "type": "object"
+     },
+     "limitations": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+     },
+     "map": {
+      "anyOf": [
+       {
+        "additionalProperties": true,
+        "type": "object"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Map"
+     },
+     "prompt_version": {
+      "default": "wilo-guide-v3",
+      "title": "Prompt Version",
+      "type": "string"
+     },
+     "provider": {
+      "enum": [
+       "mock",
+       "meta"
+      ],
+      "title": "Provider",
+      "type": "string"
+     },
+     "session_id": {
+      "format": "uuid",
+      "title": "Session Id",
+      "type": "string"
+     },
+     "sources": {
+      "items": {
+       "additionalProperties": true,
+       "type": "object"
+      },
+      "title": "Sources",
+      "type": "array"
+     },
+     "speech_text": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Speech Text"
+     },
+     "status": {
+      "enum": [
+       "completed",
+       "insufficient_evidence",
+       "mock"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "tools_used": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Tools Used",
+      "type": "array"
+     },
+     "transcript": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Transcript"
+     },
+     "transcription_model": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Transcription Model"
+     }
+    },
+    "required": [
+     "session_id",
+     "transcript",
+     "answer",
+     "speech_text",
+     "provider",
+     "transcription_model",
+     "answer_model",
+     "status",
+     "insufficient_evidence",
+     "knowledge_version",
+     "sources",
+     "claims",
+     "entities",
+     "map",
+     "tools_used",
+     "latency_ms",
+     "limitations"
+    ],
+    "title": "WiloAnswer",
+    "type": "object"
+   }
+  },
+  "securitySchemes": {
+   "DemoBearer": {
+    "description": "Credencial individual revocable de demo; no es login productivo. SERVICE_MODE=local permite desarrollo aislado sin esta credencial.",
+    "scheme": "bearer",
+    "type": "http"
+   }
+  }
+ },
+ "info": {
+  "description": "API botánica y forestal con procedencia, incertidumbre y modos local/demo.",
+  "title": "Bosque Vivo Chile API",
+  "version": "0.1.0"
+ },
+ "openapi": "3.1.0",
+ "paths": {
+  "/captures/attempts": {
+   "post": {
+    "operationId": "attempt_captures_attempts_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CaptureAttempt"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Capture"
+        }
+       }
+      },
+      "description": "Reintento idempotente"
+     },
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Capture"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "409": {
+      "description": "Duplicado con datos diferentes"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Attempt"
+   }
+  },
+  "/captures/me": {
+   "get": {
+    "operationId": "collection_captures_me_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 100,
+       "maximum": 100,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "offset",
+      "required": false,
+      "schema": {
+       "default": 0,
+       "maximum": 100000,
+       "minimum": 0,
+       "title": "Offset",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Collection"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Collection"
+   }
+  },
+  "/captures/{capture_id}": {
+   "delete": {
+    "operationId": "delete_capture_captures__capture_id__delete",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "capture_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Capture Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Delete Capture"
+   },
+   "get": {
+    "operationId": "capture_captures__capture_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "capture_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Capture Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Capture"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Capture"
+   }
+  },
+  "/context/area": {
+   "post": {
+    "operationId": "area_context_context_area_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ContextAreaRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ContextResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Capas no configuradas o fuente inválida"
+     }
+    },
+    "security": [],
+    "summary": "Area Context"
+   }
+  },
+  "/context/point": {
+   "post": {
+    "operationId": "point_context_context_point_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ContextPointRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ContextResponse"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Capas no configuradas o fuente inválida"
+     }
+    },
+    "security": [],
+    "summary": "Point Context"
+   }
+  },
+  "/expeditions": {
+   "get": {
+    "operationId": "expeditions_expeditions_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/Expedition"
+         },
+         "title": "Response Expeditions Expeditions Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Expeditions"
+   }
+  },
+  "/expeditions/{expedition_id}": {
+   "get": {
+    "operationId": "expedition_expeditions__expedition_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "expedition_id",
+      "required": true,
+      "schema": {
+       "title": "Expedition Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Expedition"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Expedition"
+   }
+  },
+  "/forest/analyze": {
+   "post": {
+    "operationId": "forest_analyze_forest_analyze_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ForestRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CanopyStatistics"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [],
+    "summary": "Forest Analyze"
+   }
+  },
+  "/forest/analyze/weighted": {
+   "post": {
+    "operationId": "forest_weighted_forest_analyze_weighted_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/WeightedForestRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/WeightedStatistics"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "501": {
+      "description": "Raster no configurado"
+     },
+     "503": {
+      "description": "Raster no disponible o análisis ocupado"
+     }
+    },
+    "security": [],
+    "summary": "Forest Weighted"
+   }
+  },
+  "/forest/sources": {
+   "get": {
+    "operationId": "forest_sources_forest_sources_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/ForestSource"
+         },
+         "title": "Response Forest Sources Forest Sources Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Forest Sources"
+   }
+  },
+  "/guide/ask": {
+   "post": {
+    "description": "Audio WAV **o** texto → respuesta de Wilo con fuentes, entidades y mapa.\n\nEjecuta las mismas etapas que `/guide/transcribe` + `/guide/query`, con sus propias\nreservas. Sin memoria de sesión en el servidor: `session_id` solo se devuelve.",
+    "operationId": "ask_guide_ask_post",
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_ask_guide_ask_post"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/WiloAnswer"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "413": {
+      "description": "Audio supera 3 MiB"
+     },
+     "415": {
+      "description": "Formato no admitido; requiere WAV"
+     },
+     "422": {
+      "description": "Falta audio o pregunta, o permisos"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "502": {
+      "description": "stt_error, tool_error o llm_error; sanitizados"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Ask"
+   }
+  },
+  "/guide/query": {
+   "post": {
+    "operationId": "guide_guide_query_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/GuideQuery"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GuideAnswer"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "502": {
+      "description": "tool_error o llm_error; respuesta sanitizada"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Guide"
+   }
+  },
+  "/guide/transcribe": {
+   "post": {
+    "description": "WAV → texto. `language_hint`: auto (sin sesgo), es, en o mixed (español+inglés).",
+    "operationId": "transcribe_guide_transcribe_post",
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_transcribe_guide_transcribe_post"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Transcription"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "413": {
+      "description": "Audio supera 3 MiB"
+     },
+     "415": {
+      "description": "Formato no admitido; requiere WAV"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "502": {
+      "description": "stt_error; respuesta sanitizada"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Transcribe"
+   }
+  },
+  "/health": {
+   "get": {
+    "operationId": "health_health_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Health"
+   }
+  },
+  "/identifications/{identification_id}": {
+   "delete": {
+    "operationId": "delete_identification_identifications__identification_id__delete",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "identification_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Identification Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Delete Identification"
+   }
+  },
+  "/identify": {
+   "post": {
+    "operationId": "identify_identify_post",
+    "parameters": [
+     {
+      "in": "header",
+      "name": "authorization",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Authorization"
+      }
+     }
+    ],
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_identify_identify_post"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Identification"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "413": {
+      "description": "Límite de imagen/intento excedido"
+     },
+     "415": {
+      "description": "Formato de imagen no admitido"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "501": {
+      "description": "Proveedor no habilitado"
+     },
+     "502": {
+      "description": "Error de proveedor, nunca abstención simulada"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [],
+    "summary": "Identify"
+   }
+  },
+  "/knowledge/search": {
+   "get": {
+    "operationId": "knowledge_search_knowledge_search_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "q",
+      "required": true,
+      "schema": {
+       "maxLength": 200,
+       "minLength": 2,
+       "title": "Q",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "type",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "Park",
+          "ParkSector",
+          "Trail",
+          "MapResource",
+          "Taxon",
+          "ParkTaxonEvidence",
+          "ConservationAssessment",
+          "KnowledgeSource",
+          "DocumentPassage"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Type"
+      }
+     },
+     {
+      "in": "query",
+      "name": "park_id",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^[a-z-]{3,60}$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Park Id"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 8,
+       "maximum": 20,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/SearchHit"
+         },
+         "title": "Response Knowledge Search Knowledge Search Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Knowledge Search"
+   }
+  },
+  "/knowledge/status": {
+   "get": {
+    "operationId": "knowledge_status_knowledge_status_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/KnowledgeStatus"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Knowledge Status"
+   }
+  },
+  "/layers": {
+   "get": {
+    "operationId": "context_layers_layers_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/ContextLayer"
+         },
+         "title": "Response Context Layers Layers Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "PostGIS, migración o metadatos no disponibles"
+     }
+    },
+    "security": [],
+    "summary": "Context Layers"
+   }
+  },
+  "/media/{asset_id}": {
+   "get": {
+    "operationId": "media_asset_media__asset_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "asset_id",
+      "required": true,
+      "schema": {
+       "title": "Asset Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/MediaAsset"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Media Asset"
+   }
+  },
+  "/observations": {
+   "get": {
+    "operationId": "observations_observations_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 100,
+       "maximum": 100,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/Observation"
+         },
+         "title": "Response Observations Observations Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [],
+    "summary": "Observations"
+   },
+   "post": {
+    "operationId": "save_observation_observations_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ObservationCreate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Observation"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [],
+    "summary": "Save Observation"
+   }
+  },
+  "/observations/{observation_id}": {
+   "delete": {
+    "operationId": "delete_observation_observations__observation_id__delete",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "observation_id",
+      "required": true,
+      "schema": {
+       "format": "uuid",
+       "title": "Observation Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [],
+    "summary": "Delete Observation"
+   }
+  },
+  "/parks": {
+   "get": {
+    "description": "46 parques nacionales del índice CONAF; `region` usa slugs (`los-lagos`).",
+    "operationId": "parks_parks_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "region",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^[a-z-]{3,30}$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Region"
+      }
+     },
+     {
+      "in": "query",
+      "name": "q",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maxLength": 80,
+         "minLength": 2,
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Q"
+      }
+     },
+     {
+      "in": "query",
+      "name": "has_trails",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "boolean"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Has Trails"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 50,
+       "maximum": 100,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "offset",
+      "required": false,
+      "schema": {
+       "default": 0,
+       "maximum": 1000,
+       "minimum": 0,
+       "title": "Offset",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ParkPage"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Parks"
+   }
+  },
+  "/parks/{park_id}": {
+   "get": {
+    "operationId": "park_parks__park_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "park_id",
+      "required": true,
+      "schema": {
+       "title": "Park Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ParkOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "404": {
+      "description": "Parque no encontrado"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Park"
+   }
+  },
+  "/parks/{park_id}/biodiversity": {
+   "get": {
+    "operationId": "park_biodiversity_parks__park_id__biodiversity_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "park_id",
+      "required": true,
+      "schema": {
+       "title": "Park Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "kingdom",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "Plantae",
+          "Animalia",
+          "Fungi"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Kingdom"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ParkBiodiversity"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Park Biodiversity"
+   }
+  },
+  "/parks/{park_id}/map": {
+   "get": {
+    "description": "Encuadre y recursos cartográficos; `boundary_geometry` es null con motivo explícito.",
+    "operationId": "map__parks__park_id__map_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "park_id",
+      "required": true,
+      "schema": {
+       "title": "Park Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ParkMap"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Map "
+   }
+  },
+  "/parks/{park_id}/trails": {
+   "get": {
+    "description": "Senderos documentados. `opening_status=not_verified` no significa abierto.",
+    "operationId": "trails_parks__park_id__trails_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "park_id",
+      "required": true,
+      "schema": {
+       "title": "Park Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "sector",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "maxLength": 60,
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Sector"
+      }
+     },
+     {
+      "in": "query",
+      "name": "include_secondary",
+      "required": false,
+      "schema": {
+       "default": false,
+       "title": "Include Secondary",
+       "type": "boolean"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/TrailOut"
+         },
+         "title": "Response Trails Parks  Park Id  Trails Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Trails"
+   }
+  },
+  "/species": {
+   "get": {
+    "operationId": "species_species_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/Species"
+         },
+         "title": "Response Species Species Get",
+         "type": "array"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Species"
+   }
+  },
+  "/species/{species_id}": {
+   "get": {
+    "operationId": "species_detail_species__species_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "species_id",
+      "required": true,
+      "schema": {
+       "title": "Species Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Species"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Species Detail"
+   }
+  },
+  "/taxa": {
+   "get": {
+    "description": "Knowledge catalog. `puyehue_status` is park evidence, never regional range;\n`rce_category` matches the category of either park region (Los Ríos/Los Lagos).",
+    "operationId": "taxa_taxa_get",
+    "parameters": [
+     {
+      "in": "query",
+      "name": "kingdom",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "Plantae",
+          "Animalia",
+          "Fungi"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Kingdom"
+      }
+     },
+     {
+      "in": "query",
+      "name": "group",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "tree",
+          "bird",
+          "mammal",
+          "fungus"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Group"
+      }
+     },
+     {
+      "in": "query",
+      "name": "puyehue_status",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "documented_in_park",
+          "regional_candidate",
+          "not_assessed"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Puyehue Status"
+      }
+     },
+     {
+      "in": "query",
+      "name": "evidence_type",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "official_park_presence",
+          "scientific_georeferenced",
+          "citizen_validated",
+          "personal_pending_review",
+          "potential_habitat",
+          "documented_ecological_association",
+          "ai_identification_hypothesis"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Evidence Type"
+      }
+     },
+     {
+      "in": "query",
+      "name": "identification_status",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "educational_catalog",
+          "recognition_not_evaluated",
+          "recognition_experimental",
+          "recognition_candidate",
+          "recognition_enabled",
+          "recognition_restricted"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Identification Status"
+      }
+     },
+     {
+      "in": "query",
+      "name": "rce_category",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "pattern": "^[A-Z]{2}$",
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Rce Category"
+      }
+     },
+     {
+      "in": "query",
+      "name": "demo_only",
+      "required": false,
+      "schema": {
+       "default": false,
+       "title": "Demo Only",
+       "type": "boolean"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 50,
+       "maximum": 100,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "offset",
+      "required": false,
+      "schema": {
+       "default": 0,
+       "maximum": 10000,
+       "minimum": 0,
+       "title": "Offset",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TaxonPage"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Taxa"
+   }
+  },
+  "/taxa/{taxon_id}": {
+   "get": {
+    "operationId": "taxon_detail_taxa__taxon_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "taxon_id",
+      "required": true,
+      "schema": {
+       "title": "Taxon Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Taxon"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Taxon Detail"
+   }
+  },
+  "/taxa/{taxon_id}/conservation": {
+   "get": {
+    "description": "RCE category for a declared region. Coordinates are not resolved here.",
+    "operationId": "taxon_conservation_taxa__taxon_id__conservation_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "taxon_id",
+      "required": true,
+      "schema": {
+       "title": "Taxon Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "region",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "arica-parinacota",
+          "tarapaca",
+          "antofagasta",
+          "atacama",
+          "coquimbo",
+          "valparaiso",
+          "metropolitana",
+          "ohiggins",
+          "maule",
+          "nuble",
+          "biobio",
+          "araucania",
+          "los-rios",
+          "los-lagos",
+          "aysen",
+          "magallanes"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Region"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RegionalConservation"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Taxon Conservation"
+   }
+  },
+  "/taxa/{taxon_id}/eligibility": {
+   "get": {
+    "description": "Demo layer: `demo_ready` only when the minimum profile requirements hold.",
+    "operationId": "taxon_eligibility_taxa__taxon_id__eligibility_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "taxon_id",
+      "required": true,
+      "schema": {
+       "title": "Taxon Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/DemoEligibility"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Taxon Eligibility"
+   }
+  },
+  "/taxa/{taxon_id}/media": {
+   "get": {
+    "description": "Approved media for one taxon. Private research material is never listed here.",
+    "operationId": "taxon_media_taxa__taxon_id__media_get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "taxon_id",
+      "required": true,
+      "schema": {
+       "title": "Taxon Id",
+       "type": "string"
+      }
+     },
+     {
+      "in": "query",
+      "name": "media_type",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "image",
+          "video"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Media Type"
+      }
+     },
+     {
+      "in": "query",
+      "name": "visual_role",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "enum": [
+          "arbol_completo",
+          "copa",
+          "tronco",
+          "corteza",
+          "rama",
+          "hoja",
+          "enves",
+          "flor",
+          "fruto",
+          "helecho",
+          "arbusto",
+          "sotobosque",
+          "hongo",
+          "animal",
+          "habitat",
+          "paisaje",
+          "sin_organismo",
+          "no_evaluado"
+         ],
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Visual Role"
+      }
+     },
+     {
+      "in": "query",
+      "name": "limit",
+      "required": false,
+      "schema": {
+       "default": 50,
+       "maximum": 100,
+       "minimum": 1,
+       "title": "Limit",
+       "type": "integer"
+      }
+     },
+     {
+      "in": "query",
+      "name": "offset",
+      "required": false,
+      "schema": {
+       "default": 0,
+       "maximum": 10000,
+       "minimum": 0,
+       "title": "Offset",
+       "type": "integer"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/MediaPage"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Taxon Media"
+   }
+  },
+  "/trails/{trail_id}": {
+   "get": {
+    "operationId": "trail_trails__trail_id__get",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "trail_id",
+      "required": true,
+      "schema": {
+       "title": "Trail Id",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TrailOut"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "404": {
+      "description": "Sendero no encontrado"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     }
+    },
+    "summary": "Trail"
+   }
+  }
+ }
+}

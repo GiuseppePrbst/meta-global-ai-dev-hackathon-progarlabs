@@ -1,5 +1,21 @@
 # Guía botánico Push-to-Talk
 
+## Estado vigente (04-11-2026)
+
+El contrato canónico de voz es **[WILO_VOICE_API_HANDOFF.md](WILO_VOICE_API_HANDOFF.md)**, y la evaluación real está en [WILO_ASR_REAL_EVALUATION.md](WILO_ASR_REAL_EVALUATION.md). Las secciones siguientes describen la versión del 29-10, que quedó superada en varios puntos:
+
+| Aspecto | Versión del 29-10 | Vigente |
+| --- | --- | --- |
+| `languageBias` | `["spanish"]` siempre | `language_hint`: `auto` (sin sesgo), `es`, `en` o `mixed` |
+| Keywords | Lista fija de 10 | Hasta 100, generadas desde el Atlas, de 30 caracteres o menos |
+| Guía | Un turno, 1200 tokens | `wilo-guide-v3`: afirmaciones citadas, control de cifras, segunda ronda tras una búsqueda y 4096 tokens en el turno final |
+| Plazo | 30 s | `META_TIMEOUT_SECONDS=90` |
+| Tiempo real | No existía | `WS /guide/voice/stream`, probado con upstream simulado |
+
+---
+
+> **Registro histórico.** Lo que sigue documenta decisiones y estados anteriores, en orden cronológico. Si contradice el bloque «Estado vigente», manda el bloque.
+
 Implementación backend del 29-10-2026, sin cambios de interfaz. STT y guía son operaciones
 independientes: grabar → transcribir → revisar texto → consultar. No hay sesión persistente,
 WebSocket, TTS del servidor ni historial almacenado. José puede narrar `answer` con TTS del

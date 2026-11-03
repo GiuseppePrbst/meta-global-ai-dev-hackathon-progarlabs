@@ -1,0 +1,75 @@
+{
+ "body": {
+  "items": [
+   {
+    "collectible": true,
+    "common_names": [
+     "Coigüe"
+    ],
+    "demo_status": "demo_ready",
+    "evidence_types": [
+     "official_park_presence"
+    ],
+    "group": "tree",
+    "id": "nothofagus-dombeyi",
+    "identification_status": "recognition_experimental",
+    "kingdom": "Plantae",
+    "puyehue_status": "documented_in_park",
+    "rce_park_regions": {
+     "los-lagos": null,
+     "los-rios": null
+    },
+    "scientific_name": "Nothofagus dombeyi",
+    "sensitivity": "none"
+   },
+   {
+    "collectible": true,
+    "common_names": [
+     "Ulmo"
+    ],
+    "demo_status": "demo_ready",
+    "evidence_types": [
+     "official_park_presence"
+    ],
+    "group": "tree",
+    "id": "eucryphia-cordifolia",
+    "identification_status": "recognition_candidate",
+    "kingdom": "Plantae",
+    "puyehue_status": "documented_in_park",
+    "rce_park_regions": {
+     "los-lagos": null,
+     "los-rios": null
+    },
+    "scientific_name": "Eucryphia cordifolia",
+    "sensitivity": "none"
+   },
+   {
+    "collectible": true,
+    "common_names": [
+     "Olivillo"
+    ],
+    "demo_status": "demo_ready",
+    "evidence_types": [
+     "official_park_presence"
+    ],
+    "group": "tree",
+    "id": "aextoxicon-punctatum",
+    "identification_status": "recognition_candidate",
+    "kingdom": "Plantae",
+    "puyehue_status": "documented_in_park",
+    "rce_park_regions": {
+     "los-lagos": "LC",
+     "los-rios": "LC"
+    },
+    "scientific_name": "Aextoxicon punctatum",
+    "sensitivity": "none"
+   }
+  ],
+  "limit": 3,
+  "offset": 0,
+  "total": 13
+ },
+ "kind": "generated_mock_mode",
+ "request": "GET /taxa?demo_only=true&limit=3",
+ "status": 200
+}

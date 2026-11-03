@@ -1,0 +1,46 @@
+{
+ "body": {
+  "items": [
+   {
+    "area_ha": 39255.0,
+    "has_bbox": true,
+    "id": "alerce-andino",
+    "name": "Parque Nacional Alerce Andino",
+    "regions": [
+     "los-lagos"
+    ],
+    "trail_count": 0,
+    "trail_section_status": "not_listed"
+   },
+   {
+    "area_ha": 42567.0,
+    "has_bbox": true,
+    "id": "chiloe",
+    "name": "Parque Nacional Chiloé",
+    "regions": [
+     "los-lagos"
+    ],
+    "trail_count": 0,
+    "trail_section_status": "not_listed"
+   },
+   {
+    "area_ha": 400010.93,
+    "has_bbox": true,
+    "id": "corcovado",
+    "name": "Parque Nacional Corcovado",
+    "regions": [
+     "los-lagos"
+    ],
+    "trail_count": 0,
+    "trail_section_status": "not_listed"
+   }
+  ],
+  "knowledge_version": "sha256:4d03d6936730fd20685fb5d096548ecb6eb7bdec5deb97f9597830a766d08962",
+  "limit": 3,
+  "offset": 0,
+  "total": 7
+ },
+ "kind": "generated_mock_mode",
+ "request": "GET /parks?region=los-lagos&limit=3",
+ "status": 200
+}

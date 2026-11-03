@@ -1,0 +1,614 @@
+{
+ "body": {
+  "bbox": [
+   -71.89065,
+   -38.81194,
+   -71.49166,
+   -38.49524
+  ],
+  "bbox_source": {
+   "accessed_at": "2026-11-03",
+   "confidence": "government_reference",
+   "id": "atlas:conguillio--bbox-bcn",
+   "review_status": "computed_from_valid_geometry",
+   "title": "BCN Mapoteca, Snaspe.zip (Sistema Integrado de Información Territorial)",
+   "type": "official",
+   "url": "https://www.bcn.cl/obtienearchivo?id=repositorio%2F10221%2F10404%2F2%2FSnaspe.zip",
+   "version": "f3fa0c6f96d98bd4ab5039aaaa34b98486c309568d1b9891964cbed2b98f9d64"
+  },
+  "boundary_geometry": null,
+  "boundary_source": null,
+  "boundary_unavailable_reason": "No hay límite oficial con licencia de redistribución: la capa BCN SNASPE se usa solo como encuadre y sus polígonos no se publican.",
+  "crs": "EPSG:4326",
+  "geometry_status": "bbox_only",
+  "knowledge_version": "sha256:4d03d6936730fd20685fb5d096548ecb6eb7bdec5deb97f9597830a766d08962",
+  "limitations": [
+   "Sin geometría de senderos autorizada: no dibujar trazados ni ofrecer navegación.",
+   "El encuadre BCN es referencial; no decide si un punto está dentro del parque."
+  ],
+  "map_resources": [
+   {
+    "bbox": [
+     -71.89065,
+     -38.81194,
+     -71.49166,
+     -38.49524
+    ],
+    "crs": "EPSG:4326",
+    "id": "conguillio--bbox-bcn",
+    "kind": "bbox_reference",
+    "redistribution": "bbox_only",
+    "source": {
+     "accessed_at": "2026-11-03",
+     "confidence": "government_reference",
+     "id": "atlas:conguillio--bbox-bcn",
+     "review_status": "computed_from_valid_geometry",
+     "title": "BCN Mapoteca, Snaspe.zip (Sistema Integrado de Información Territorial)",
+     "type": "official",
+     "url": "https://www.bcn.cl/obtienearchivo?id=repositorio%2F10221%2F10404%2F2%2FSnaspe.zip",
+     "version": "f3fa0c6f96d98bd4ab5039aaaa34b98486c309568d1b9891964cbed2b98f9d64"
+    },
+    "url": null
+   },
+   {
+    "bbox": null,
+    "crs": null,
+    "id": "conguillio--official-profile",
+    "kind": "official_profile_page",
+    "redistribution": "link_only",
+    "source": {
+     "accessed_at": "2026-11-03",
+     "confidence": "official",
+     "id": "atlas:conguillio--official-profile",
+     "review_status": "link_checked",
+     "title": "CONAF, ficha Parque Nacional Conguillío",
+     "type": "official",
+     "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+     "version": null
+    },
+    "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/"
+   }
+  ],
+  "park_id": "conguillio",
+  "source_status": "official_profile_and_reference_bbox",
+  "trails": [
+   {
+    "conditions": [
+     "Con accesibilidad universal y paneles informativos"
+    ],
+    "difficulty": "media",
+    "distance_basis": null,
+    "distance_m": 507.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 30,
+    "duration_min_minutes": 30,
+    "duration_minutes": 30,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-coigue",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero Coigüe",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "eventuales encuentros con jabalíes y pumas",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-coigue",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "fácil"
+   },
+   {
+    "conditions": [],
+    "difficulty": "difícil",
+    "distance_basis": null,
+    "distance_m": 3800.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 240,
+    "duration_min_minutes": 240,
+    "duration_minutes": 240,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-el-contrabandista",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero El Contrabandista",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "aluviones (mayo-noviembre), eventuales encuentros con jabalíes y pumas",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-el-contrabandista",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "muy difícil"
+   },
+   {
+    "conditions": [],
+    "difficulty": "media",
+    "distance_basis": null,
+    "distance_m": 3200.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 90,
+    "duration_min_minutes": 90,
+    "duration_minutes": 90,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-la-playa",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero La Playa",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "eventuales encuentros con jabalíes y pumas",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-la-playa",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "fácil"
+   },
+   {
+    "conditions": [],
+    "difficulty": "media",
+    "distance_basis": null,
+    "distance_m": 497.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 30,
+    "duration_min_minutes": 30,
+    "duration_minutes": 30,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-laguna-arcoiris",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero Laguna Arcoíris",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "desprendimiento de rocas (julio-agosto), eventuales encuentros con jabalíes y pumas",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-laguna-arcoiris",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "fácil"
+   },
+   {
+    "conditions": [],
+    "difficulty": "media",
+    "distance_basis": null,
+    "distance_m": 883.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 30,
+    "duration_min_minutes": 30,
+    "duration_minutes": 30,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-laguna-verde",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero Laguna Verde",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "rayos, desprendimiento de rocas (enero-marzo), eventuales encuentros con jabalíes y pumas",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-laguna-verde",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "fácil"
+   },
+   {
+    "conditions": [],
+    "difficulty": "medio",
+    "distance_basis": null,
+    "distance_m": 923.4,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 60,
+    "duration_min_minutes": 60,
+    "duration_minutes": 60,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-las-araucarias",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero Las Araucarias",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "eventuales encuentros con jabalíes, pumas y avispas chaqueta amarilla",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-las-araucarias",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "fácil"
+   },
+   {
+    "conditions": [],
+    "difficulty": "media",
+    "distance_basis": null,
+    "distance_m": 927.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 60,
+    "duration_min_minutes": 60,
+    "duration_minutes": 60,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-las-vertientes",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero Las Vertientes",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "desprendimiento de rocas (julio-agosto), eventuales encuentros con jabalíes, avispas chaqueta amarilla y pumas",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-las-vertientes",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "fácil"
+   },
+   {
+    "conditions": [],
+    "difficulty": "difícil",
+    "distance_basis": null,
+    "distance_m": 7000.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 300,
+    "duration_min_minutes": 300,
+    "duration_minutes": 300,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-los-carpinteros",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero Los Carpinteros",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "caída de árboles por peso de nieve (junio-noviembre), eventuales encuentros con pumas y jabalíes",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-los-carpinteros",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "exigente"
+   },
+   {
+    "conditions": [],
+    "difficulty": "muy difícil",
+    "distance_basis": null,
+    "distance_m": 9100.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 360,
+    "duration_min_minutes": 360,
+    "duration_minutes": 360,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-pastos-blancos",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero Pastos Blancos",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "avalancha, rayos (mayo-noviembre), eventuales encuentros con jabalíes y pumas",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-pastos-blancos",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "extrema"
+   },
+   {
+    "conditions": [],
+    "difficulty": "difícil",
+    "distance_basis": null,
+    "distance_m": 5600.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 240,
+    "duration_min_minutes": 240,
+    "duration_minutes": 240,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-sierra-nevada",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero Sierra Nevada",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "avalanchas y caída de árboles (julio-agosto), eventuales encuentros con jabalíes, pumas y avispas chaqueta amarilla",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-sierra-nevada",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "muy difícil"
+   },
+   {
+    "conditions": [],
+    "difficulty": "extremo",
+    "distance_basis": null,
+    "distance_m": 9200.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 1440,
+    "duration_min_minutes": 1440,
+    "duration_minutes": 1440,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-travesia-malalcahuello",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero Travesía Malalcahuello",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "caída de árboles, avalanchas (mayo-noviembre), eventuales encuentros con jabalíes y pumas",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-travesia-malalcahuello",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "extrema"
+   },
+   {
+    "conditions": [],
+    "difficulty": "muy difícil",
+    "distance_basis": null,
+    "distance_m": 3740.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 480,
+    "duration_min_minutes": 480,
+    "duration_minutes": 480,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-travesia-rio-blanco",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero Travesía Río Blanco",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "rayos y desprendimientos de roca (mayo-noviembre), eventuales encuentros con jabalíes y avispas chaqueta amarilla",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-travesia-rio-blanco",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "muy difícil"
+   },
+   {
+    "conditions": [],
+    "difficulty": "medio",
+    "distance_basis": null,
+    "distance_m": 1300.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 60,
+    "duration_min_minutes": 60,
+    "duration_minutes": 60,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-truful-truful",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero Truful Truful",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "eventuales encuentros con jabalíes",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-truful-truful",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "fácil"
+   },
+   {
+    "conditions": [],
+    "difficulty": "muy difícil",
+    "distance_basis": null,
+    "distance_m": 16400.0,
+    "duration_basis": "one_way",
+    "duration_max_minutes": 480,
+    "duration_min_minutes": 480,
+    "duration_minutes": 480,
+    "geometry": null,
+    "geometry_available": false,
+    "id": "conguillio-sendero-de-chile",
+    "kind": "walking",
+    "limitations": [
+     "Sin geometría autorizada: no hay trazado ni navegación.",
+     "opening_status not_verified no significa abierto; consultar aviso CONAF vigente."
+    ],
+    "name": "Sendero de Chile",
+    "opening_status": "not_verified",
+    "park_id": "conguillio",
+    "published_closure": null,
+    "risks": "avalanchas y rayos (mayo-noviembre), eventuales encuentros con jabalíes y pumas",
+    "sector": null,
+    "source_status": "official_reviewed",
+    "sources": [
+     {
+      "accessed_at": "2026-11-03",
+      "confidence": "official",
+      "id": "atlas:conguillio-sendero-de-chile",
+      "review_status": "agent_reviewed_against_source",
+      "title": "CONAF, ficha del parque",
+      "type": "official",
+      "url": "https://www.conaf.cl/parque_nacionales/parque-nacional-conguillio/",
+      "version": null
+     }
+    ],
+    "winter_difficulty": "extrema"
+   }
+  ]
+ },
+ "kind": "generated_mock_mode",
+ "request": "GET /parks/conguillio/map",
+ "status": 200
+}

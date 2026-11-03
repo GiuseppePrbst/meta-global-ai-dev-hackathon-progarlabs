@@ -1,5 +1,19 @@
 # Integración API GIS/ML para José
 
+## Estado vigente (04-11-2026)
+
+**Para integrar hoy, usa [FRONTEND_HANDOFF.md](FRONTEND_HANDOFF.md).** Ese documento reúne los endpoints vigentes, los estados de la UI, la interpretación de mapas y el catálogo de la demo, con enlaces al [OpenAPI generado](api/openapi.json) y a ejemplos validados en CI. El contrato de voz y WebSocket está en [WILO_VOICE_API_HANDOFF.md](WILO_VOICE_API_HANDOFF.md).
+
+Cambios respecto de las secciones históricas de este archivo:
+
+- `get_park_context` y `get_verified_trail_information` fueron reemplazadas por las herramientas del Atlas.
+- Las «propuestas futuras» de parques y senderos ya están implementadas: `GET /parks`, `/parks/{id}`, `/trails` y `/map`.
+- `languageBias` ya no es fijo en español: se configura con `language_hint`.
+
+---
+
+> **Registro histórico.** Lo que sigue documenta decisiones y estados anteriores, en orden cronológico. Si contradice el bloque «Estado vigente», manda el bloque.
+
 Estado más reciente: [conjunto abierto, `verify` por defecto](#identificación-de-conjunto-abierto--contrato-para-josé-30-10-2026). Qué consumir hoy y qué depende de backend posterior: [propuesta futura, 31-10-2026](#propuesta-futura--gemelo-digital-y-catálogo-multirreino-31-10-2026).
 
 Fuente de verdad: `/openapi.json` y `/docs` del proceso FastAPI. Evolución aditiva, sin

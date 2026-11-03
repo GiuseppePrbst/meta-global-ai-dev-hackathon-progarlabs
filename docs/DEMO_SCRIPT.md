@@ -1,5 +1,25 @@
 # Guion de demo de tres minutos
 
+## Guion vigente (04-11-2026)
+
+Solo usa capacidades presentes en `main`. Wilo necesita el backend en modo Meta, con el ledger y un token de demo. Si se presenta en mock, decir que es mock: la respuesta trae `status: "mock"`.
+
+| Tiempo | Acción | Mensaje verificable |
+| --- | --- | --- |
+| 0:00–0:20 | Portada y Puyehue | Bosque Vivo reúne datos oficiales y científicos para explorar parques con IA responsable |
+| 0:20–0:50 | `GET /parks/puyehue` y sus senderos (`/docs` o la web) | 46 parques CONAF; Puyehue con 112.755 ha según CONAF, frente a las cifras secundarias en conflicto; senderos con `source_status` y sin trazados inventados |
+| 0:50–1:40 | Wilo por voz: «Hey Wilo, ¿qué senderos hay en Puyehue National Park? Please answer in English.» | Transcripción real, respuesta en inglés con fuentes CONAF y la advertencia de que no hay apertura verificada. Es la respuesta observada en [api/examples/observed](api/examples/observed/wilo-answer-34-mixed.json). **La respuesta tarda unos 20–30 s**: narrar mientras tanto |
+| 1:40–2:10 | Wilo: «¿Qué categoría de conservación tiene la güiña?» | VU en Los Ríos y NT en Los Lagos, sin una categoría nacional falsa ni ubicaciones de la especie |
+| 2:10–2:35 | Identificar una hoja (`/identificar`) | Muse Spark con verificación de conjunto abierto: acierta o se abstiene; no es una certificación botánica |
+| 2:35–2:55 | Video de SAM 3.1 (privado y autorizado) | Segmentación y seguimiento experimentales; SAM no identifica la especie |
+| 2:55–3:00 | Cierre | Limitaciones explícitas: sin despliegue público, sin geometrías de sendero y sin apertura en vivo |
+
+Respaldo sin red ni Meta: Atlas, taxones y mapas funcionan desde el snapshot; Wilo se muestra con la respuesta observada.
+
+---
+
+> **Registro histórico.** Guion del bootstrap.
+
 Este guion distingue una demo del **bootstrap** de la futura demo competitiva. No presentar mocks, fixtures ni metadatos como inferencias, observaciones o alturas reales. El video final de tres minutos es un requisito del encargo, pendiente de confirmar en el formulario oficial; ver [fuentes](SOURCES.md).
 
 | Tiempo | Acción | Mensaje verificable |

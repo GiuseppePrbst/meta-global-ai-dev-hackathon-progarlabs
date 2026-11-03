@@ -1,5 +1,20 @@
 # Roadmap
 
+## Estado vigente (04-11-2026)
+
+| Prioridad | Estado |
+| --- | --- |
+| P0 MVP (Puyehue, catálogo, identificación con abstención, capturas, Wilo con voz) | Backend completo en `main`. La UI de Wilo y la conexión de la app móvil a la API están pendientes (José) |
+| P1 territorial (parques, senderos, mapas) | Atlas nacional con 46 parques y 190 senderos revisados. **Sin geometrías con licencia**, que es el bloqueo para navegar |
+| P2 nacional / P3 avanzado | No implementados |
+| Infraestructura de workers (PR #30) | Bloqueada por sus propias garantías P0 pendientes; fuera de `main` |
+
+Detalle en [PROJECT_DELIVERY_STATUS.md](PROJECT_DELIVERY_STATUS.md).
+
+---
+
+> **Registro histórico.** Lo que sigue documenta decisiones y estados anteriores, en orden cronológico. Si contradice el bloque «Estado vigente», manda el bloque.
+
 ## Prioridades vigentes — 31-10-2026
 
 Jerarquía acordada con la [visión de ecosistema](PRODUCT_VISION_ECOSYSTEM.md). P2 y P3 **no**

@@ -1,0 +1,8 @@
+{
+ "body": {
+  "detail": "Identidad de demostración requerida"
+ },
+ "kind": "generated_mock_mode",
+ "request": "POST /guide/ask",
+ "status": 401
+}

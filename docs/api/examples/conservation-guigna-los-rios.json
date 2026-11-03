@@ -1,0 +1,64 @@
+{
+ "body": {
+  "applicable_category": "VU",
+  "applicable_scope": "XV-XIV",
+  "criteria": "VU A2c; C2a(i) (XIV al norte); - (X al sur)",
+  "decree": "DS 42/2011 MMA",
+  "notes": [
+   "Categoría oficial RCE (Chile); no es una categoría UICN global."
+  ],
+  "park_regions": {
+   "los-lagos": "NT",
+   "los-rios": "VU"
+  },
+  "process": 7,
+  "record_status": "found",
+  "region": "los-rios",
+  "regional_status": "determined",
+  "scopes": [
+   {
+    "category": "VU",
+    "regions": [
+     "arica-parinacota",
+     "tarapaca",
+     "antofagasta",
+     "atacama",
+     "coquimbo",
+     "valparaiso",
+     "metropolitana",
+     "ohiggins",
+     "maule",
+     "nuble",
+     "biobio",
+     "araucania",
+     "los-rios"
+    ],
+    "scope_text": "XV-XIV"
+   },
+   {
+    "category": "NT",
+    "regions": [
+     "los-lagos",
+     "aysen",
+     "magallanes"
+    ],
+    "scope_text": "X-XII"
+   }
+  ],
+  "source": {
+   "accessed_at": "2026-10-31",
+   "file_name": "NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+   "redistribution": "Sin licencia publicada: se versionan solo hechos seleccionados con atribución; el libro íntegro queda fuera de Git.",
+   "review_status": "imported_unreviewed",
+   "sha256": "1a1dadbaf554a53f39143c40a898fc252bc2e3354734b202fb31deba4fbe607d",
+   "title": "Nómina de especies según estado de conservación, RCE (MMA)",
+   "url": "https://clasificacionespecies.mma.gob.cl/wp-content/uploads/2026/10/NominaDeEspecies_SegunEstadoConservacion-Chile_actualizado_20mProcesoRCE_20octubre2026.xlsx",
+   "version_text": "ACTUALIZADO marzo 2026 (incluye hasta 20mo Proceso)"
+  },
+  "system": "RCE",
+  "taxon_id": "leopardus-guigna"
+ },
+ "kind": "generated_mock_mode",
+ "request": "GET /taxa/leopardus-guigna/conservation?region=los-rios",
+ "status": 200
+}
