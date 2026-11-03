@@ -50,7 +50,7 @@ async def test_spanish_transcription_wire_contract():
 
     def handle(request):
         assert request.url.path == "/v1/asr/transcribe"
-        assert b'"languageBias": ["spanish"]' in request.content
+        assert b'"languageBias": ["Spanish"]' in request.content
         assert b"muse-voice-transcribe-1.0" in request.content
         assert b"PUSH_TO_TALK" in request.content
         assert b"Laureliopsis philippiana" in request.content
@@ -102,6 +102,13 @@ async def test_guide_real_tool_cycle_and_consulted_citations():
                     "content": json.dumps(
                         {
                             "answer": "Nombre taxonómico de referencia.",
+                            "speech_text": "Nombre taxonómico de referencia.",
+                            "claims": [
+                                {
+                                    "text": "Nombre taxonómico de referencia.",
+                                    "source_ids": ["species:one"],
+                                }
+                            ],
                             "source_ids": ["species:one"],
                             "insufficient_evidence": False,
                         }
@@ -163,6 +170,12 @@ async def test_guide_no_sources_abstains_without_final_generation():
     [
         {"source_ids": ["invented"], "insufficient_evidence": False},
         {"source_ids": [], "insufficient_evidence": False},
+        {
+            "source_ids": ["species:one"],
+            "claims": [{"text": "x", "source_ids": ["invented"]}],
+            "insufficient_evidence": False,
+        },
+        {"source_ids": ["species:one"], "claims": [], "insufficient_evidence": False},
     ],
 )
 async def test_guide_never_accepts_unconsulted_references(reply):
@@ -174,7 +187,16 @@ async def test_guide_never_accepts_unconsulted_references(reply):
         message = (
             {"tool_calls": [tool()]}
             if count == 1
-            else {"content": json.dumps({"answer": "untrusted", **reply})}
+            else {
+                "content": json.dumps(
+                    {
+                        "answer": "untrusted",
+                        "speech_text": "",
+                        "claims": [{"text": "x", "source_ids": ["species:one"]}],
+                        **reply,
+                    }
+                )
+            }
         )
         return httpx.Response(
             200, json=completion(message, "tool_calls" if count == 1 else "stop")

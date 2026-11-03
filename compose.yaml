@@ -29,7 +29,7 @@ services:
       PGPASSWORD: ${POSTGRES_PASSWORD}
       AI_PROVIDER: mock
       CORS_ORIGINS: '["http://localhost:3000"]'
-      META_TIMEOUT_SECONDS: 30
+      META_TIMEOUT_SECONDS: 90
     ports:
       - "127.0.0.1:8000:8000"
     depends_on:
