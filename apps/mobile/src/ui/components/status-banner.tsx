@@ -4,13 +4,15 @@ import { InfoIcon } from '@/ui/components/icons';
 import { Text } from '@/ui/components/text';
 import { radius, space, useTheme } from '@/ui/tokens/theme';
 
-/** Aviso de estado no bloqueante (p. ej. modo demostración). */
-export function StatusBanner({ message }: { message: string }) {
+/** Aviso de estado no bloqueante (modo demostración, error parcial). Fondo violeta suave, distinto de lo activo. */
+export function StatusBanner({ message, on = 'light' }: { message: string; on?: 'light' | 'dark' }) {
   const { color } = useTheme();
+  const dark = on === 'dark';
   return (
-    <View style={[styles.banner, { backgroundColor: color.demo }]} accessibilityRole="summary">
-      <InfoIcon color={color.onDemo} size={20} />
-      <Text variant="bodyMedium" tone="onDemo" style={styles.text}>{message}</Text>
+    <View style={[styles.banner, { backgroundColor: dark ? color.darkScrim : color.demo, borderColor: dark ? color.darkOutline : color.demo }]}
+      accessibilityRole="summary">
+      <InfoIcon color={dark ? color.onDark : color.onDemo} size={18} />
+      <Text variant="bodySmall" tone={dark ? 'onDark' : 'onDemo'} style={styles.text}>{message}</Text>
     </View>
   );
 }
@@ -19,10 +21,11 @@ const styles = StyleSheet.create({
   banner: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    gap: space.md,
-    paddingHorizontal: space.lg,
-    paddingVertical: space.md,
-    borderRadius: radius.lg,
+    gap: space.sm,
+    paddingHorizontal: space.md,
+    paddingVertical: space.sm + 2,
+    borderRadius: radius.md,
+    borderWidth: 1,
   },
-  text: { flex: 1, fontWeight: '500' },
+  text: { flex: 1 },
 });

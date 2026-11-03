@@ -1,69 +1,58 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import Svg from 'react-native-svg';
 
-import { Paper } from '@/ui/art/paper';
-import { BAND_EDGE, seedOf, Wash } from '@/ui/art/watercolor';
 import { Button } from '@/ui/components/button';
+import type { IconComponent } from '@/ui/components/icons';
 import { ScreenHeader } from '@/ui/components/screen-header';
 import { Tag } from '@/ui/components/tag';
 import { Text } from '@/ui/components/text';
-import { useLayoutSize } from '@/ui/hooks/use-layout-size';
-import { space, useTheme } from '@/ui/tokens/theme';
+import { radius, space, useTheme } from '@/ui/tokens/theme';
 
 type PendingFeatureProps = {
   title: string;
-  subtitle: string;
   heading: string;
   body: string;
-  /** Texto de la cinta de estado (equivale a un 501): se dice, no se simula. */
+  /** Texto de la etiqueta de estado (equivale a un 501): se dice, no se simula. */
   tag: string;
+  /** Pasos de lo que la pestaña hará, en orden. */
+  steps: { icon: IconComponent; label: string }[];
   action: string;
   onAction: () => void;
-  /** Ilustración del pliego: lo que la pestaña hará, dibujado en tinta. */
-  art: React.ReactNode;
-  /** Ilustración decorativa de la barra superior. */
-  cover?: React.ReactNode;
 };
 
 /** Pestaña cuya capacidad aún no existe: lo dice con texto y ofrece un camino que sí funciona. */
-export function PendingFeature({ title, subtitle, heading, body, tag, action, onAction, art, cover }: PendingFeatureProps) {
+export function PendingFeature({ title, heading, body, tag, steps, action, onAction }: PendingFeatureProps) {
   const { color } = useTheme();
-  const artSize = useLayoutSize();
   return (
-    <Paper style={styles.screen}>
-      <ScreenHeader title={title} subtitle={subtitle} cover={cover} />
+    <View style={[styles.screen, { backgroundColor: color.background }]}>
+      <ScreenHeader title={title} />
       <ScrollView contentContainerStyle={styles.content}>
-        <View style={styles.sheet} accessible={false} importantForAccessibility="no-hide-descendants"
-          onLayout={artSize.onLayout}>
-          <Svg width={artSize.width} height={artSize.height} style={StyleSheet.absoluteFill}>
-            <Wash seed={seedOf(title)} cx={artSize.width / 2} cy={artSize.height / 2} rx={artSize.width * 0.38}
-              ry={artSize.height * 0.38} color={color.backdrop} opacity={0.45} wobble={0.16} grain={16} />
-          </Svg>
-          {art}
+        <View style={[styles.card, { backgroundColor: color.dark }]}>
+          <Text variant="headline" tone="onDark">{heading}</Text>
+          <Tag label={tag} tone="demo" />
+          <Text variant="bodyMedium" tone="onDarkVariant">{body}</Text>
+          <View style={styles.steps}>
+            {steps.map(({ icon: Icon, label }, i) => (
+              <View key={label} style={styles.step}>
+                <View style={[styles.stepIcon, { backgroundColor: color.darkSurfaceHigh }]}>
+                  <Icon color={color.lime} size={22} />
+                </View>
+                <Text variant="labelLarge" tone="onDark" style={styles.stepLabel}>{`${i + 1}. ${label}`}</Text>
+              </View>
+            ))}
+          </View>
         </View>
-        <Animated.View entering={FadeInDown.delay(240).duration(360)} style={styles.text}>
-          <Text variant="titleLarge" accessibilityRole="header">
-            {heading}
-          </Text>
-          <Tag label={tag} background="demo" ink="onDemo" mark="dash" tilt="right" />
-          <Text variant="bodyLarge" tone="onSurfaceVariant">{body}</Text>
-          <Button label={action} onPress={onAction} style={styles.button} />
-        </Animated.View>
+        <Button label={action} onPress={onAction} />
       </ScrollView>
-    </Paper>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   screen: { flex: 1 },
-  content: { padding: space.lg, paddingTop: BAND_EDGE + space.lg, paddingBottom: space.xxl, gap: space.xl },
-  sheet: {
-    aspectRatio: 1.4,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  text: { gap: space.md, alignItems: 'flex-start' },
-  button: { marginTop: space.sm },
+  content: { padding: space.lg, paddingTop: space.sm, gap: space.lg },
+  card: { borderRadius: radius.lg, padding: space.xl, gap: space.md },
+  steps: { gap: space.sm, marginTop: space.sm },
+  step: { flexDirection: 'row', alignItems: 'center', gap: space.md },
+  stepIcon: { width: 44, height: 44, borderRadius: radius.md, alignItems: 'center', justifyContent: 'center' },
+  stepLabel: { flex: 1 },
 });

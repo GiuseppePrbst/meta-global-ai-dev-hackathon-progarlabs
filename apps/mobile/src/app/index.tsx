@@ -1,6 +1,6 @@
 import { Redirect } from 'expo-router';
 
-// Hasta que existan las pestañas, la app abre en el catálogo.
+// La raíz abre en el catálogo de especies, la pestaña con contenido navegable sin conexión.
 export default function Index() {
   return <Redirect href="/species" />;
 }

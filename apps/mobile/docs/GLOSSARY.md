@@ -40,6 +40,26 @@ Registro persistido de que una persona vio algo, con especie opcional elegida po
 _Evitar_: Avistamiento, hallazgo, reporte
 _En código_: `Observation`
 
+**Guía de campo** (personal):
+Colección de especies que una persona ya identificó con una foto y eligió sumar. Guarda solo la especie y la fecha; no guarda la foto ni la ubicación. No es un borrador ni una observación. Mientras no se pueda sumar desde Identificar, la app muestra datos de prueba rotulados.
+_Evitar_: Colección de observaciones, álbum (como término de dominio), logros
+_En código_: `GuideEntry`
+
+**Diario**:
+Pestaña personal que reúne la guía de campo, los recorridos y las insignias. Es una vista, no un registro de datos propio.
+_Evitar_: Perfil, journal
+_En código_: `JournalScreen`
+
+**Recorrido**:
+Constancia de que una persona completó un sendero: qué sendero, cuándo y su largo. La app no sigue la ubicación; el largo es el del trazado, no una distancia caminada.
+_Evitar_: Ruta, track, actividad
+_En código_: `Walk`
+
+**Insignia**:
+Reconocimiento que se deriva de la guía de campo y los recorridos según una regla fija. No se guarda ni se otorga a mano.
+_Evitar_: Logro (como sinónimo de la guía), medalla, trofeo
+_En código_: `Badge`
+
 ## Territorio
 
 **Elevación del terreno**:
@@ -51,6 +71,11 @@ _En código_: `TerrainElevation`
 Altura estimada de la vegetación sobre el suelo, en metros, derivada de CHMv2. Es una estimación, no una medición directa ni una tasa de crecimiento.
 _Evitar_: Altura de árboles, altura medida, crecimiento
 _En código_: `CanopyHeight`
+
+**Sendero de demostración**:
+Trazado sintético que la app dibuja para mostrar cómo se vería un recorrido. No es un sendero real ni sirve para orientarse; se rotula como demostración donde aparece.
+_Evitar_: Ruta oficial, sendero del parque
+_En código_: `DemoTrail`
 
 ## Consentimiento
 

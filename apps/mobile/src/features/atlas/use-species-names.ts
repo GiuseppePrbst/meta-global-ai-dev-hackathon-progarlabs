@@ -8,6 +8,6 @@ import { t } from '@/i18n/es-CL';
 export function useSpeciesNames(speciesId: string | null) {
   const { data: species, isPending } = useSpecies(speciesId);
   if (species) return { common: species.commonName, scientific: species.scientificName };
-  if (!speciesId) return { common: t.atlas.noSpecies, scientific: undefined };
-  return { common: isPending ? t.atlas.speciesLoading : t.atlas.speciesUnavailable, scientific: undefined };
+  if (!speciesId) return { common: t.observation.noSpecies, scientific: undefined };
+  return { common: isPending ? t.observation.speciesLoading : t.observation.speciesUnavailable, scientific: undefined };
 }

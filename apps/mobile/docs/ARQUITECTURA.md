@@ -1,6 +1,6 @@
 # Arquitectura de la app móvil
 
-Versión 27-10-2026. Las versiones exactas de Expo SDK y librerías están **por verificar** al crear el proyecto y se fijarán en el lockfile; no se citan de memoria.
+Versión 27-10-2026, actualizada el 02-11-2026. Las versiones exactas de Expo SDK y librerías están **por verificar** al crear el proyecto y se fijarán en el lockfile; no se citan de memoria.
 
 ## Stack
 
@@ -17,37 +17,41 @@ Versión 27-10-2026. Las versiones exactas de Expo SDK y librerías están **por
 | Mapa | MapLibre GL JS en un Expo DOM component | Única forma de tener 2D y 3D con el mismo motor abierto ([ADR 0002](adr/0002-atlas-con-maplibre-gl-js-en-dom-component.md)). |
 | Contratos | `openapi-typescript` sobre el OpenAPI de FastAPI | Los contratos son una propuesta; un cambio se absorbe en `src/api/`. |
 | Textos | Catálogo i18n, solo `es-CL` | Strings externalizados desde el inicio. |
-| Pruebas | Jest (`jest-expo`) + React Native Testing Library; Maestro manual | Ver [pruebas](PRUEBAS.md). |
+| Pruebas | Jest (`jest-expo`) + React Native Testing Library (aún no instalada: hoy solo hay pruebas de lógica pura); Maestro manual | Ver [pruebas](PRUEBAS.md). |
 
 No se usa telemetría ni crash reporting de terceros en el MVP. Los logs existen solo en desarrollo y nunca incluyen imágenes, coordenadas, notas ni cuerpos de respuesta. Se reconsidera antes de un despliegue público.
 
-## Estructura propuesta
+## Estructura
+
+Árbol objetivo; lo marcado _(pendiente)_ todavía no existe.
 
 ```text
 apps/mobile/
 ├── src/
 │   ├── app/                  # rutas expo-router (nombres en inglés)
 │   │   ├── _layout.tsx
+│   │   ├── index.tsx         # redirige al catálogo
 │   │   ├── (tabs)/
 │   │   │   ├── _layout.tsx
 │   │   │   ├── identify.tsx
-│   │   │   ├── species/index.tsx
 │   │   │   ├── atlas.tsx
-│   │   │   └── observations.tsx
+│   │   │   ├── species.tsx
+│   │   │   └── journal.tsx
 │   │   ├── species/[id].tsx  # ficha de especie
-│   │   ├── about.tsx
-│   │   └── settings.tsx
-│   ├── api/                  # cliente HTTP, schema.gen.ts, mapeo a dominio, errores
-│   ├── domain/               # tipos del glosario: Species, Identification, Observation…
-│   ├── features/             # identification, catalog, observations, atlas; species-art compartido
-│   ├── storage/              # SQLite de borradores y preferencias
+│   │   ├── about.tsx         # (pendiente)
+│   │   └── settings.tsx      # (pendiente)
+│   ├── api/                  # (pendiente) cliente HTTP, schema.gen.ts, mapeo a dominio, errores
+│   ├── domain/               # tipos del glosario (Species, Observation, GuideEntry) y geo.ts, geometría WGS84 pura
+│   ├── features/             # atlas, catalog, guide, journal; species-art compartido;
+│   │                         # query-result.ts y memory-store.ts, comunes a los hooks de datos
+│   ├── storage/              # (pendiente) SQLite de borradores y preferencias
 │   ├── map/                  # DOM component MapLibre GL JS y su puente de props
-│   ├── ui/                   # librería de diseño: tokens/, art/, components/, hooks/ e index.ts
+│   ├── ui/                   # librería de diseño: tokens/, components/ e index.ts
 │   └── i18n/es-CL.ts
 ├── assets/
 ├── docs/
 ├── app.json                  # pasa a app.config.ts si se necesita configuración dinámica
-└── eas.json
+└── eas.json                 # (pendiente)
 ```
 
 ## Convenciones de nombres
@@ -87,17 +91,37 @@ apps/mobile/
 **Estado (28-10-2026, librería de diseño y estados de datos):**
 
 - `src/ui/` es la librería de diseño de la app, sin paquete aparte: `tokens/` (color, tipografía, espaciado, elevación, movimiento), `art/` (acuarela y tinta generadas en código), `components/` (primitivas accesibles) y `hooks/`. Pantallas y features importan desde `@/ui`; dentro de `ui/` se importa por ruta directa. `ui/` no importa `features/` ni `i18n`: los textos llegan por props. El DOM component del mapa importa solo `@/ui/art/brush`, porque el índice carga React Native.
-- Los patrones repetidos en las features pasaron a `ui/components/`: `ListItem`, `TextButton`, `Divider`, `Chip`, `SearchField` y `LoadingState`, más la variante tipográfica `overline` (versalitas).
-- `LeafPlate` y `speciesWash` viven en `src/features/species-art/` porque los usan el catálogo, el Atlas e Identificar; ninguna feature importa el interior de otra. Los hooks de datos de una feature (p. ej. `useSpecies` de `catalog/`) sí se usan desde otras: son su interfaz pública hasta que pasen a `src/api/`.
+- (Reemplazado el 02-11-2026: el rediseño eliminó `ListItem`, `Divider` y `overline`) Los patrones repetidos en las features pasaron a `ui/components/`: `ListItem`, `TextButton`, `Divider`, `Chip`, `SearchField` y `LoadingState`, más la variante tipográfica `overline` (versalitas).
+- (Reemplazado el 02-11-2026, ver abajo) `LeafPlate` y `speciesWash` vivían en `src/features/species-art/` porque los usaban el catálogo, el Atlas e Identificar; ninguna feature importa el interior de otra. Los hooks de datos de una feature (p. ej. `useSpecies` de `catalog/`) sí se usan desde otras: son su interfaz pública hasta que pasen a `src/api/`.
 - `QueryResult` incluye `refetch`, igual que TanStack Query. Las pantallas distinguen la carga y el error de una lista vacía: el catálogo, la lista del Atlas y la ficha muestran «Cargando…» o un error con «Reintentar»; el mapa no dice «0 observaciones» mientras cargan o si fallaron. Con los mocks actuales esos estados no se ven; quedan listos para la API.
 - ESLint (`eslint-config-expo`, `eslint.config.js`) y Jest (`jest-expo`) instalados con `expo install`; los resultados están en [pruebas](PRUEBAS.md).
+
+**Estado (02-11-2026, rediseño visual):** reemplaza parte de las dos entradas anteriores; lo que no se menciona sigue vigente.
+
+- Lenguaje visual nuevo según una referencia aportada por la persona responsable (ver [DESIGN.md](../DESIGN.md)): verde casi negro para mapa, navegación y cifras; fondo claro para leer; lima para lo activo; Figtree (`@expo-google-fonts/figtree`, OFL 1.1) en toda la app. Se eliminaron `ui/art/` (acuarela y tinta), `LeafPlate` y los componentes de cromo; `species-art/` conserva solo `SpeciesSilhouette`, la forma de la hoja en un color sólido. El DOM component del mapa ya no importa nada de `@/ui`.
+- Pestañas: Identificar · Mapa (`atlas`) · Especies · Diario (`journal`, antes `observations`). El Registro de borradores y observaciones vivirá en el Diario.
+- Mapa: teselas OSM oscurecidas con `raster-*` (lugar reservado para un satelital con licencia, pendiente). Sendero de demostración **sintético** (`features/atlas/demo-trail.ts`) dibujado como SVG sobre el mapa y reproyectado en cada movimiento, por la misma razón que los marcadores evitan GeoJSON; su largo y duración se calculan del trazado (3 km/h, estimación). Capas conmutables (especies, sendero, puntos de interés) y recorrido por paradas que mueve la cámara sin usar la ubicación. Las observaciones sintéticas se movieron junto al sendero.
+- Diario: cifras, guía, recorridos e insignias. Las insignias se derivan (`features/journal/badges.ts`); los recorridos parten de un mock y completar el sendero en el Mapa suma uno en memoria. Las especies guardadas del catálogo también viven en memoria (`features/catalog/saved.ts`) y se pierden al cerrar la app: no hay almacenamiento local todavía.
+
+**Estado (02-11-2026, limpieza de código):** sin cambios visibles salvo los marcados como corrección.
+
+- `src/domain/geo.ts` reúne `GeoPoint`, `GeoBounds`, `distanceKm`, `pathLengthKm` y `pathBounds`, antes repetidos en `demo-trail.ts`, `atlas-map.tsx` y la miniatura del sendero. Es TypeScript puro, sin React Native, para que también lo importe el DOM component del mapa. `demo-trail.ts` conserva solo el sendero sintético y `estimatedMinutes`.
+- `src/features/memory-store.ts` (`createMemoryStore`) es el estado en memoria compartido por varias pantallas, sobre `useSyncExternalStore`; lo usan `catalog/saved.ts` y `journal/use-walks.ts`. Al llegar el almacenamiento local, cada store persiste por dentro sin cambiar a sus consumidores.
+- Piezas compartidas nuevas: `openSpecies(id)` (`catalog/open-species.ts`) para abrir la ficha; `SpeciesTags` (`catalog/species-tags.tsx`); `Grid` en `ui/components/` (cuadros del Diario e insignias); `stopIcons` y `AtlasMapLayers` con una sola definición.
+- **Corrección:** las etiquetas «Provisional», la nota de estado taxonómico y «Validación: Pendiente» se derivan de `taxonomicStatus` y `provenance.status`; antes estaban fijas. Con el catálogo actual, todo provisional, se ven igual.
+- **Corrección (web):** cada cuadro del Diario usa un id de gradiente único (`useId`); con el id repetido, todos los cuadros tomaban el velo del primero.
+- Mapa: la cámara del recorrido sigue a `walkStep` desde un efecto, en lugar de moverse dentro de un updater de estado. `onSelect` debe seguir siendo estable: el mapa lo captura al crear los marcadores.
+- Las siluetas de `species-art/` se calculan una vez por especie y se reutilizan. `useTheme()` devuelve una referencia estable. Colores sueltos pasaron a la paleta (`mapTint`, `scrim`, `limeTint`); se eliminaron íconos, tokens y claves de i18n sin uso.
+- Verificado el 02-11-2026: `tsc --noEmit`, `expo lint` (0 avisos), `jest` (27 pruebas) y `expo export --platform web`. **No ejecutado:** prueba visual en dispositivo o navegador.
 
 ## Capas y reglas
 
 1. **`src/api/`** es el único lugar que conoce el JSON de la API. Expone funciones que devuelven tipos de `src/domain/` o un error tipado. La UI nunca importa `schema.gen.ts`.
 2. **`src/domain/`** usa el lenguaje del [glosario](GLOSSARY.md), con los nombres en inglés de su línea _En código_. Un Candidato nunca se convierte por sí solo en la especie de una Observación: la persona la elige.
-3. **`src/map/`** recibe datos ya resueltos como props serializables y devuelve eventos (p. ej. observación seleccionada). No hace peticiones HTTP propias, para evitar CORS dentro del WebView y no duplicar el cliente.
-4. **Credenciales**: la capa `api/` reserva un punto para inyectar credenciales cuando BV-09 defina la autenticación. Ninguna clave de Meta ni de proveedor privado existe en la app; las variables `EXPO_PUBLIC_*` son públicas.
+3. **`src/map/`** recibe datos ya resueltos como props serializables y devuelve eventos (p. ej. observación seleccionada). No hace peticiones HTTP propias, para evitar CORS dentro del WebView y no duplicar el cliente. Solo importa TypeScript puro (`@/domain/geo`) y tipos: nada que cargue React Native, ni `@/ui`.
+4. **`src/ui/`** no importa `features/` ni `i18n`: los textos llegan por props. Los colores se toman de la paleta (`useTheme().color`), no se escriben en los componentes.
+5. **Estado compartido en memoria** solo con `createMemoryStore`; los hooks de datos devuelven `QueryResult`, la misma forma que TanStack Query, para cambiar la fuente sin tocar las pantallas.
+6. **Credenciales**: la capa `api/` reserva un punto para inyectar credenciales cuando BV-09 defina la autenticación. Ninguna clave de Meta ni de proveedor privado existe en la app; las variables `EXPO_PUBLIC_*` son públicas.
 
 ## Estados visibles
 
@@ -147,4 +171,4 @@ La app **tolera desconexión**, no es offline-first:
 
 ## Diseño
 
-El diseño visual no está decidido. La implementación usa una capa de tokens (color, tipografía, espaciado, radios) con valores provisionales y primitivas propias (botón, campo, banner de estado, etiqueta de estado). [DESIGN_PRINCIPLES.md](../../../docs/product/DESIGN_PRINCIPLES.md) y [DESIGN_SYSTEM.md](../../../docs/product/DESIGN_SYSTEM.md) son insumo, no decisión. Requisitos de accesibilidad no negociables: etiquetas accesibles, objetivos táctiles amplios, contraste suficiente, texto escalable, anuncios de carga y error para lectores de pantalla, respeto de movimiento reducido y alternativa textual al mapa.
+El lenguaje visual vigente está en [DESIGN.md](../DESIGN.md) y se implementa con los tokens de `src/ui/tokens/` (color, tipografía, espaciado, radios, elevación, movimiento) y las primitivas de `src/ui/components/`. [DESIGN_PRINCIPLES.md](../../../docs/product/DESIGN_PRINCIPLES.md) y [DESIGN_SYSTEM.md](../../../docs/product/DESIGN_SYSTEM.md) son insumo, no decisión. Requisitos de accesibilidad no negociables: etiquetas accesibles, objetivos táctiles amplios, contraste suficiente, texto escalable, anuncios de carga y error para lectores de pantalla, respeto de movimiento reducido y alternativa textual al mapa.

@@ -1,353 +1,448 @@
 ---
 name: Bosque Vivo Chile
-description: Cuaderno de campo de acuarela para descubrir la flora del entorno de Puyehue con evidencia visible.
+description: Guía de naturaleza contemporánea de alto contraste para descubrir la flora del entorno de Puyehue sin confundir demostración con registro real.
 colors:
-  topBar: "#0B5A33"
-  topBarGlaze: "#1C8044"
-  topBarEdge: "#053B20"
-  onTopBar: "#FFFFFF"
-  onTopBarVariant: "#D2F09E"
-  primary: "#0B5A33"
-  onPrimary: "#FFFFFF"
-  lime: "#B9E24C"
-  navIndicator: "#C3E86A"
-  onNavIndicator: "#0F2418"
-  accent: "#C7361F"
-  onAccent: "#FFFFFF"
-  provisional: "#D6EE8C"
-  onProvisional: "#1F3308"
-  demo: "#D2EFE3"
-  onDemo: "#0A4430"
-  background: "#EFF5F3"
+  background: "#F6F7F2"
   surface: "#FFFFFF"
-  leafInk: "#0E3F25"
-  onSurface: "#0F2418"
-  onSurfaceVariant: "#3A5244"
-  outline: "#5E7A68"
-  outlineVariant: "#C9D8C6"
+  surface-muted: "#ECEFE6"
+  on-surface: "#121A14"
+  on-surface-variant: "#4C5A4F"
+  outline: "#7C887E"
+  outline-variant: "#E1E5DA"
+  dark: "#111A14"
+  dark-surface: "#1B2620"
+  dark-surface-high: "#26332B"
+  on-dark: "#F2F5EC"
+  on-dark-variant: "#A8B5A9"
+  dark-outline: "rgba(242, 245, 236, 0.14)"
+  dark-scrim: "rgba(17, 26, 20, 0.82)"
+  locked-tile: "#3B423C"
+  locked-ink: "#252B26"
+  lime: "#C9EA6A"
+  on-lime: "#1A2A0C"
+  lime-soft: "#E5F3B8"
+  on-lime-soft: "#3D5810"
+  provisional: "#FBE9C4"
+  on-provisional: "#734606"
+  demo: "#E8E3F7"
+  on-demo: "#4A3A8A"
+  error: "#B3261E"
 typography:
-  headlineLarge:
-    fontFamily: "Bricolage Grotesque, sans-serif"
-    fontSize: "36px"
-    fontWeight: 800
-    lineHeight: "42px"
-    letterSpacing: "-0.6px"
-  headlineMedium:
-    fontFamily: "Bricolage Grotesque, sans-serif"
+  display:
+    fontFamily: "Figtree"
     fontSize: "32px"
     fontWeight: 800
     lineHeight: "38px"
-    letterSpacing: "-0.5px"
-  titleLarge:
-    fontFamily: "Bricolage Grotesque, sans-serif"
-    fontSize: "22px"
+    letterSpacing: "-0.6px"
+  headline:
+    fontFamily: "Figtree"
+    fontSize: "24px"
+    fontWeight: 800
+    lineHeight: "30px"
+    letterSpacing: "-0.3px"
+  title-large:
+    fontFamily: "Figtree"
+    fontSize: "20px"
     fontWeight: 700
-    lineHeight: "28px"
-    letterSpacing: "-0.2px"
-  titleMedium:
-    fontFamily: "Bricolage Grotesque, sans-serif"
-    fontSize: "19px"
-    fontWeight: 600
-    lineHeight: "24px"
-  scientific:
-    fontFamily: "Literata, Georgia, serif"
-    fontSize: "15px"
-    fontWeight: 400
-    lineHeight: "20px"
-  scientificLarge:
-    fontFamily: "Literata, Georgia, serif"
-    fontSize: "19px"
-    fontWeight: 400
     lineHeight: "26px"
-  handBold:
-    fontFamily: "Kalam, cursive"
-    fontSize: "16px"
+    letterSpacing: "-0.2px"
+  title-medium:
+    fontFamily: "Figtree"
+    fontSize: "17px"
     fontWeight: 700
     lineHeight: "22px"
-  bodyLarge:
-    fontFamily: "Roboto, system-ui, sans-serif"
+    letterSpacing: "-0.1px"
+  title-small:
+    fontFamily: "Figtree"
+    fontSize: "15px"
+    fontWeight: 700
+    lineHeight: "20px"
+  body-large:
+    fontFamily: "Figtree"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: "24px"
-  bodyMedium:
-    fontFamily: "Roboto, system-ui, sans-serif"
+  body-medium:
+    fontFamily: "Figtree"
     fontSize: "14px"
     fontWeight: 400
     lineHeight: "20px"
-  labelLarge:
-    fontFamily: "Roboto, system-ui, sans-serif"
+  body-small:
+    fontFamily: "Figtree"
+    fontSize: "13px"
+    fontWeight: 400
+    lineHeight: "18px"
+  label-large:
+    fontFamily: "Figtree"
     fontSize: "14px"
     fontWeight: 600
     lineHeight: "20px"
-    letterSpacing: "0.1px"
-  labelMedium:
-    fontFamily: "Roboto, system-ui, sans-serif"
+  label-medium:
+    fontFamily: "Figtree"
     fontSize: "12px"
     fontWeight: 600
     lineHeight: "16px"
-    letterSpacing: "0.4px"
-  labelSmall:
-    fontFamily: "Roboto, system-ui, sans-serif"
+    letterSpacing: "0.1px"
+  label-small:
+    fontFamily: "Figtree"
     fontSize: "11px"
     fontWeight: 500
-    lineHeight: "16px"
-    letterSpacing: "0.4px"
+    lineHeight: "14px"
+    letterSpacing: "0.2px"
+  tag:
+    fontFamily: "Figtree"
+    fontSize: "10px"
+    fontWeight: 800
+    lineHeight: "14px"
+    letterSpacing: "0.6px"
+  button:
+    fontFamily: "Figtree"
+    fontSize: "15px"
+    fontWeight: 700
+    lineHeight: "20px"
+  number:
+    fontFamily: "Figtree"
+    fontSize: "24px"
+    fontWeight: 800
+    lineHeight: "28px"
+    letterSpacing: "-0.4px"
+    fontFeature: "tnum"
+  scientific:
+    fontFamily: "Figtree Italic"
+    fontSize: "13px"
+    fontWeight: 400
+    lineHeight: "18px"
+  scientific-large:
+    fontFamily: "Figtree Italic"
+    fontSize: "17px"
+    fontWeight: 400
+    lineHeight: "24px"
 rounded:
-  tape: "2px"
-  label: "4px"
   sm: "8px"
+  md: "14px"
   lg: "20px"
+  xl: "28px"
   full: "999px"
 spacing:
+  xxs: "2px"
   xs: "4px"
   sm: "8px"
   md: "12px"
   lg: "16px"
-  band-edge: "18px"
   xl: "24px"
   xxl: "32px"
 components:
   button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.onPrimary}"
-    typography: "{typography.labelLarge}"
+    backgroundColor: "{colors.lime}"
+    textColor: "{colors.on-lime}"
+    typography: "{typography.button}"
     rounded: "{rounded.full}"
     padding: "0 24px"
-    height: "48px"
-  search-field:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.onSurface}"
-    typography: "{typography.bodyLarge}"
+    height: "52px"
+  button-soft:
+    backgroundColor: "{colors.lime-soft}"
+    textColor: "{colors.on-lime-soft}"
+    typography: "{typography.button}"
     rounded: "{rounded.full}"
-    padding: "0 4px 0 16px"
-    height: "56px"
+    padding: "0 16px"
+    height: "40px"
+  button-dark:
+    backgroundColor: "{colors.dark}"
+    textColor: "{colors.on-dark}"
+    typography: "{typography.button}"
+    rounded: "{rounded.full}"
+    padding: "0 24px"
+    height: "52px"
+  button-ghost:
+    textColor: "{colors.on-dark}"
+    typography: "{typography.button}"
+    rounded: "{rounded.full}"
+    padding: "0 24px"
+    height: "52px"
+  chip-filter:
+    backgroundColor: "{colors.surface-muted}"
+    textColor: "{colors.on-surface}"
+    typography: "{typography.label-large}"
+    rounded: "{rounded.full}"
+    padding: "0 16px"
+    height: "36px"
+  chip-filter-on-dark:
+    backgroundColor: "{colors.dark-scrim}"
+    textColor: "{colors.on-dark}"
+    typography: "{typography.label-large}"
+    rounded: "{rounded.full}"
+    padding: "0 16px"
+    height: "36px"
+  chip-filter-selected:
+    backgroundColor: "{colors.lime}"
+    textColor: "{colors.on-lime}"
+    typography: "{typography.label-large}"
+    rounded: "{rounded.full}"
+    padding: "0 16px"
+    height: "36px"
+  pill-tab:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-surface}"
+    typography: "{typography.label-large}"
+    rounded: "{rounded.full}"
+    padding: "0 18px"
+    height: "44px"
+  pill-tab-selected:
+    backgroundColor: "{colors.lime}"
+    textColor: "{colors.on-lime}"
+    typography: "{typography.label-large}"
+    rounded: "{rounded.full}"
+    padding: "0 18px"
+    height: "44px"
+  tag-lime:
+    backgroundColor: "{colors.lime-soft}"
+    textColor: "{colors.on-lime-soft}"
+    typography: "{typography.tag}"
+    rounded: "6px"
+    padding: "2px 7px"
   tag-provisional:
     backgroundColor: "{colors.provisional}"
-    textColor: "{colors.onProvisional}"
-    typography: "{typography.labelMedium}"
-    rounded: "{rounded.tape}"
-    padding: "3px 10px"
-  tag-not-implemented:
+    textColor: "{colors.on-provisional}"
+    typography: "{typography.tag}"
+    rounded: "6px"
+    padding: "2px 7px"
+  tag-demo:
     backgroundColor: "{colors.demo}"
-    textColor: "{colors.onDemo}"
-    typography: "{typography.labelMedium}"
-    rounded: "{rounded.tape}"
-    padding: "3px 10px"
+    textColor: "{colors.on-demo}"
+    typography: "{typography.tag}"
+    rounded: "6px"
+    padding: "2px 7px"
+  tag-neutral:
+    backgroundColor: "{colors.surface-muted}"
+    textColor: "{colors.on-surface-variant}"
+    typography: "{typography.tag}"
+    rounded: "6px"
+    padding: "2px 7px"
+  tag-dark:
+    backgroundColor: "{colors.dark-surface-high}"
+    textColor: "{colors.on-dark}"
+    typography: "{typography.tag}"
+    rounded: "6px"
+    padding: "2px 7px"
   status-banner:
     backgroundColor: "{colors.demo}"
-    textColor: "{colors.onDemo}"
-    typography: "{typography.bodyMedium}"
-    rounded: "{rounded.lg}"
-    padding: "12px 16px"
-  provenance-label:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.onSurface}"
-    rounded: "{rounded.label}"
-    padding: "16px"
-  navigation-bar:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.onSurfaceVariant}"
-    typography: "{typography.labelMedium}"
-    height: "80px"
-  navigation-item-active:
-    backgroundColor: "{colors.navIndicator}"
-    textColor: "{colors.onSurface}"
-    width: "72px"
-    height: "40px"
-  segmented-switch-selected:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.primary}"
-    typography: "{typography.labelLarge}"
+    textColor: "{colors.on-demo}"
+    typography: "{typography.body-small}"
+    rounded: "{rounded.md}"
+    padding: "10px 12px"
+  search-field:
+    backgroundColor: "{colors.surface-muted}"
+    textColor: "{colors.on-surface}"
+    typography: "{typography.body-large}"
     rounded: "{rounded.full}"
+    padding: "0 2px 0 16px"
     height: "48px"
-  map-card:
+  icon-button:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.onSurface}"
+    textColor: "{colors.on-surface}"
+    rounded: "{rounded.full}"
+    size: "44px"
+  icon-button-on-map:
+    backgroundColor: "{colors.dark-scrim}"
+    textColor: "{colors.on-dark}"
+    rounded: "{rounded.full}"
+    size: "44px"
+  navigation-bar:
+    backgroundColor: "{colors.dark}"
+    textColor: "{colors.on-dark-variant}"
+    typography: "{typography.label-medium}"
+    height: "68px"
+  navigation-item-active:
+    backgroundColor: "{colors.dark-surface-high}"
+    textColor: "{colors.lime}"
+    typography: "{typography.label-medium}"
+    rounded: "16px"
+    width: "64px"
+    height: "32px"
+  card-light:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-surface}"
+    rounded: "{rounded.lg}"
+    padding: "8px"
+  card-dark:
+    backgroundColor: "{colors.dark}"
+    textColor: "{colors.on-dark}"
     rounded: "{rounded.lg}"
     padding: "16px"
-  species-row:
-    textColor: "{colors.onSurface}"
-    typography: "{typography.titleMedium}"
-    padding: "12px 16px"
-    height: "96px"
+  card-map:
+    backgroundColor: "{colors.dark-surface}"
+    textColor: "{colors.on-dark}"
+    rounded: "{rounded.xl}"
+    padding: "12px"
+  sheet:
+    backgroundColor: "{colors.dark-surface}"
+    textColor: "{colors.on-dark}"
+    typography: "{typography.title-large}"
+    rounded: "{rounded.xl}"
+    padding: "0 24px"
+  progress-bar:
+    backgroundColor: "{colors.surface-muted}"
+    textColor: "{colors.lime}"
+    rounded: "{rounded.full}"
+    height: "10px"
 ---
 
 # Design System: Bosque Vivo Chile
 
 ## Overview
 
-**Creative North Star: "Cuaderno de campo de acuarela"**
+**Creative North Star: "La guía de bosque nocturno"**
 
-La app se lee como un cuaderno pintado en terreno: papel de acuarela blanco frío con grano, bandas de aguada verde bosque cuyo filo mojado cae sobre el contenido, hojas entintadas a pulso con una aguada que no calza del todo con la tinta, y etiquetas pegadas con cinta. Este mundo reemplaza al herbario gris-verde de filetes finos que lo precedió; lo fijó la persona responsable el 28-10-2026 y el código actual lo materializa en `src/ui/tokens/theme.ts`, `src/ui/art/watercolor.tsx`, `src/ui/art/paper.tsx` y `src/features/species-art/leaf-plate.tsx`. Los componentes reutilizables están en `src/ui/components/` y se importan desde `@/ui`.
+Una guía de naturaleza contemporánea de alto contraste. El bosque casi negro es el fondo del mapa, de la barra de navegación y de las cifras; un fondo claro casi blanco sostiene la lectura en Especies, Diario y la ficha. Entre los dos, la lima es la única señal de lo activo: el chip encendido, el botón primario, el sendero, el check de lo descubierto y el avance. Reemplaza por completo al cuaderno de campo de acuarela anterior; no quedan bandas pintadas, cromos con canto ni grano de papel.
 
-La pintura es generada en código, no rasterizada: cada mancha (`Wash`) y cada banda (`PaintedBand`) es SVG determinista a partir de una semilla (`seedOf(id)` o `seedOf(title)`), así que la misma especie o pestaña muestra siempre la misma mancha. El único ráster es la tesela de grano de 192 px (`assets/images/paper-grain.png`, generada por `scripts/paper-grain.py`, semilla fija), que la app tiñe según el tema. Bajo la acuarela se conserva la estructura de Material 3: barra de navegación de 80 dp con indicador, botones en píldora de 48 dp, escala tipográfica headline/title/body/label y roles `on*`.
+La densidad es la de una app Android nativa con Material 3 como esqueleto: píldoras de 36 a 52 dp, áreas de toque de 48 dp, tarjetas de radio 20 con filete fino y una sola familia, Figtree, en todo. La personalidad viene de la tensión oscuro/claro y de la lima, no de ornamento. Las fotos de referencia y las siluetas de especies son la única imagen; los íconos son de trazo propio, 24 dp, trazo 1,8 con extremos redondeados.
 
-La densidad es de lectura en exterior: filas de 96 dp, áreas de toque de 48 dp, alto contraste sobre papel claro y verdes intensos con un solo acento cálido. La incertidumbre se muestra como estado con texto, nunca como adorno.
-
-Límite honesto: este sistema se verificó solo en Expo web (capturas a 412x892 en `.impeccable/review/`); todavía no se ha visto en un Android físico, donde el grano teselado, las veladuras SVG y el `android_ripple` deben confirmarse.
+La honestidad de los datos es parte visual del sistema: todo lo sintético, de demostración o no implementado lleva una etiqueta de texto en violeta suave donde aparece, y ningún estado se comunica solo con color.
 
 **Key Characteristics:**
-- Papel de acuarela frío con grano teñido por tema; sin tarjetas con foto.
-- Bandas de aguada verde con filo mojado en todas las barras superiores.
-- Tinta y aguada fuera de registro como firma de cada lámina de especie.
-- Un solo acento cálido (copihue) para marcas puntuales.
-- Estados con texto y forma (cinta, círculo abierto, guion, ícono), nunca solo color.
-- Estructura Material 3 intacta bajo la piel de acuarela; solo tema claro.
+- Un contraste claro/oscuro por pantalla: mapa, navegación y cifras oscuros; pantallas de lectura claras. Un solo tema de app, sin modo oscuro alterno.
+- Lima (`lime`) como única señal de lo activo, siempre con texto verde oscuro encima.
+- Cuatro tonos con significado fijo: lima (activo/descubierto), ámbar (provisional), violeta (demostración/sintético/no implementado), rojo (error).
+- Figtree en todo; 800 en títulos y cifras, cursiva para nombres científicos.
+- Formas en píldora y círculo para lo que se toca; radio 20 para tarjetas, 28 para lo que flota sobre el mapa.
 
 ## Colors
 
-Verdes intensos de bosque, musgo y lima sobre papel blanco frío, con un solo rojo copihue. Los valores del frontmatter son el tema claro, el único que usa la app: `useTheme` (`src/ui/tokens/theme.ts`) siempre lo devuelve, porque el cuaderno se lee sobre papel sin importar el tema del sistema. El sidecar `.impeccable/design.json` conserva valores de un tema oscuro que el código no aplica.
+Dos campos neutros verdes (bosque casi negro y blanco cálido) y una lima eléctrica como acento único, más tres tonos de estado que nunca hablan sin texto.
 
 ### Primary
-- **Verde bosque de aguada** (`topBar` / `primary`): base de las bandas superiores pintadas y relleno de los botones principales.
-- **Veladura de hoja** (`topBarGlaze`): veladuras más claras dentro de la banda; también tiñe el mapa.
-- **Filo seco** (`topBarEdge`): pigmento acumulado en el borde mojado de la banda (trazos de 9 px al 28 % y 3 px al 45 %).
-- **Lima brote** (`onTopBarVariant`): subtítulos y borde del interruptor segmentado sobre la banda.
+- **Lima de brote** (`lime`): chips y pestañas activas, botón primario, sendero sobre el mapa, marcador seleccionado, check de especie descubierta, relleno de la barra de progreso, ícono y texto del destino activo de la navegación, íconos de las cifras. Siempre lleva encima **Verde musgo profundo** (`on-lime`).
+- **Lima suave** (`lime-soft`) con **Verde helecho** (`on-lime-soft`): acción secundaria dentro de una tarjeta («Ver ficha»), etiqueta de grupo («Árbol») y fondo de íconos de rasgos en la ficha.
 
-### Secondary
-- **Lima de aguada** (`lime`): aguada detrás de las portadas pintadas (catálogo, atlas), cinta translúcida de la etiqueta de procedencia y marca de nota sin número en la ficha.
-- **Lima indicador** (`navIndicator`): mancha de acuarela del destino activo en la barra de navegación.
-
-### Tertiary
-- **Copihue** (`accent`): el único acento cálido. Número de lámina a mano («N.º 01»), insignia numerada de rasgo en la ficha, anillo de la lupa, puntos de observación sin verificar en el mapa y el visor ilustrado de Identificar.
+### Tertiary (tonos de estado)
+- **Ámbar de borrador** (`provisional` / `on-provisional`): etiqueta «Provisional» de los datos botánicos aún sin validar por especialista.
+- **Lavanda de demostración** (`demo` / `on-demo`): reservado para lo de demostración, sintético o no implementado: «Datos de demostración», «Sintética», la etiqueta de capacidad pendiente y el aviso `StatusBanner` sobre claro. Es un cuarto tono deliberado, distinto de la lima y del ámbar, para que los datos de demostración nunca se confundan con registros reales ni con lo activo o lo provisional.
+- **Rojo de error** (`error`): fallos.
 
 ### Neutral
-- **Papel frío** (`background`): suelo de todas las pantallas, siempre bajo el grano (`grain` al 35 %).
-- **Hoja blanca** (`surface`): etiqueta de procedencia, campo de búsqueda, barra de navegación, tarjetas y controles flotantes sobre el mapa.
-- **Tinta de hoja** (`leafInk`): trazo de las láminas, borde de la etiqueta de procedencia y cursor del campo de búsqueda.
-- **Texto** (`onSurface`, `onSurfaceVariant`): texto principal y secundario.
-- **Contornos** (`outline`, `outlineVariant`): ilustraciones de estado vacío; separadores y bordes finos.
-
-### Colores de estado
-- **Provisional** (`provisional` / `onProvisional`): cinta lima del estado taxonómico.
-- **Demostración o no implementado** (`demo` / `onDemo`): menta fría, distinta de la cinta lima, para el aviso de datos de demostración y la cinta «todavía no».
-
-### Aguadas por especie
-`leaf-plate.tsx` asigna a cada especie un verde propio para su aguada (`speciesWash`, de `#1E8A6A` a `#A4BF22`, con `#3E9B3A` por defecto). Ese color solo ayuda a distinguir láminas de un vistazo; no codifica ningún dato botánico.
+- **Bosque nocturno** (`dark`): fondo del mapa, barra de navegación, tarjeta de cifras del diario, insignias ganadas, hero de la ficha y la tarjeta de capacidad pendiente.
+- **Corteza oscura** (`dark-surface`) y **Corteza alta** (`dark-surface-high`): tarjetas y hojas sobre el mapa; miniaturas, indicador de la navegación y etiqueta oscura.
+- **Niebla clara** (`on-dark`) y **Liquen** (`on-dark-variant`): texto principal y secundario sobre oscuro.
+- **Filete nocturno** (`dark-outline`) y **Velo de bosque** (`dark-scrim`): bordes sobre oscuro y fondo translúcido de botones, chips y avisos que flotan sobre el mapa.
+- **Papel claro** (`background`), **Blanco** (`surface`) y **Gris salvia** (`surface-muted`): fondo de lectura, tarjetas, y chips sin elegir/búsqueda/riel de progreso.
+- **Tinta de bosque** (`on-surface`), **Musgo gris** (`on-surface-variant`), **Contorno** (`outline`) y **Filete claro** (`outline-variant`): texto, texto secundario, íconos apagados y bordes de tarjetas.
+- **Cuadro bloqueado** (`locked-tile`) y **Silueta bloqueada** (`locked-ink`): especie aún no descubierta en la grilla del diario.
 
 ### Named Rules
-**The Una Sola Voz Cálida Rule.** El copihue es el único color cálido y marca puntos concretos (número de lámina, marcador, anillo, observación sin verificar). Nunca rellena superficies, bandas ni botones.
+**The One Signal Rule.** La lima solo marca lo activo, lo primario o lo ya descubierto. No se usa como decoración ni como fondo de sección.
 
-**The Texto y Forma Rule.** Cada estado lleva texto y una forma propia: círculo abierto para provisional o sin verificar, guion para no implementado, ícono de información para demostración. El color refuerza; nunca es la única señal.
+**The Lavender Truth Rule.** Lo de demostración, sintético o no implementado lleva texto sobre `demo` / `on-demo` donde aparece. Ese tono no se reutiliza para otra cosa, y lo demostrativo no se pinta en lima ni en ámbar.
 
-**The Aguada No Es Dato Rule.** Los verdes por especie y las manchas decorativas no codifican información. Si un color tiene que significar algo, se rotula.
+**The Words First Rule.** Ningún estado depende solo del color: las etiquetas dicen su estado con texto, los chips alternables muestran un check al activarse, las especies descubiertas llevan check y las bloqueadas candado y «Por descubrir».
 
 ## Typography
 
-**Display Font:** Bricolage Grotesque (600, 700, 800)
-**Body Font:** Roboto (fuente del sistema en Android; system-ui en web)
-**Scientific Font:** Literata Italic 400
-**Hand Font:** Kalam Bold 700
+**Display Font:** Figtree (cargada con `@expo-google-fonts/figtree`, pesos 400, 400 cursiva, 500, 600, 700 y 800)
+**Body Font:** Figtree
+**Label/Mono Font:** Figtree (cifras con `tabular-nums`)
 
-**Character:** Una grotesca ancha y enérgica para títulos, cursiva de libro para los nombres científicos según la convención botánica, una letra a mano breve para las anotaciones del cuaderno, y Roboto para toda la interfaz funcional.
+**Character:** Una sans geométrica y amable usada en todo, con contraste fuerte de peso: 800 apretado en títulos y cifras, 400 abierto en el cuerpo. El peso va en el nombre de la familia, no en `fontWeight`.
 
 ### Hierarchy
-- **headlineLarge** (800, 36/42, -0.6): título de cada pestaña principal, en blanco sobre la banda.
-- **headlineMedium** (800, 32/38, -0.5): nombre común en la ficha de especie.
-- **titleLarge** (700, 22/28, -0.2): encabezados de sección (notas de terreno, lista del atlas, pestañas pendientes).
-- **titleMedium** (600, 19/24): nombre común en filas y tarjetas; título de la barra de la ficha.
-- **scientific / scientificLarge** (Literata cursiva 400, 15/20 y 19/26): solo nombres científicos.
-- **handBold** (Kalam 700, 16/22): número de lámina, fecha de la papeleta del mapa y sello al pie de la etiqueta de procedencia.
-- **Versalitas** (`labelMedium` en mayúsculas, espaciado 1,2): familia y rótulos de rasgos en la ficha, como en una guía impresa.
-- **bodyLarge / bodyMedium** (400, 16/24 y 14/20): texto corrido, avisos, subtítulos.
-- **labelLarge / labelMedium / labelSmall** (600/600/500; 14/20, 12/16, 11/16): botones, segmentos, cintas de estado, rótulos de navegación, atribución y pie de fuente.
+- **Display** (800, 32/38, −0,6): título de pestaña en `ScreenHeader` y nombre común en la ficha.
+- **Headline** (800, 24/30): título sobre el mapa y de tarjetas oscuras destacadas.
+- **Title** (700; 20/26, 17/22, 15/20): hojas y secciones; nombre común en tarjetas; filas e insignias.
+- **Body** (400; 16/24, 14/20, 13/18): campo de búsqueda, descripciones, notas y metadatos.
+- **Label** (600/500; 14/20, 12/16, 11/14): chips, pestañas, navegación, rótulos de tablas y leyendas de cifras.
+- **Tag** (800, 10/14, +0,6, mayúsculas): solo dentro de una `Tag` de estado o grupo.
+- **Number** (800, 24/28, tabular): las cuatro cifras del diario.
+- **Scientific** (400 cursiva, 13/18 y 17/24): nombre científico, siempre bajo el común.
 
 ### Named Rules
-**The Cuatro Voces Rule.** Bricolage solo titula, Literata cursiva solo nombra especies, Kalam solo anota y Roboto hace todo lo demás. Ninguna voz invade el rol de otra.
+**The Botanical Italic Rule.** El nombre científico va siempre en cursiva (`scientific` o `scientific-large`) y nunca en otro estilo; la cursiva no se usa para nada más.
 
-**The Mano Breve Rule.** Kalam se usa en anotaciones de una o pocas palabras; nunca en párrafos, botones ni datos de procedencia.
+**The One Family Rule.** Figtree en toda la app, incluidos el mapa y los avisos. No se agrega otra familia.
 
 ## Layout
 
-Pantallas de una columna con margen lateral de 16 dp (`space.lg`), escala de espaciado 4/8/12/16/24/32. Cada pestaña principal abre con `ScreenHeader`: la banda pintada ocupa el área segura superior, el título, el subtítulo y opcionalmente un control (búsqueda, interruptor Mapa/Lista); a la derecha, una portada ilustrada decorativa (hojas entintadas o curvas de nivel) que no recibe accesibilidad.
+Pantallas de una columna a todo el ancho, con margen lateral de 16 dp (`lg`) y separación entre bloques de 12 a 24 dp. La escala es 2/4/8/12/16/24/32. Las cabeceras de pestaña respetan la barra de estado (inset superior + 12 dp) y ponen el título grande a la izquierda con botones de ícono a la derecha; debajo cuelgan búsqueda, chips o pestañas en píldora con scroll horizontal.
 
-La banda termina en un filo mojado de 18 dp (`BAND_EDGE`) que se superpone al contenido: el encabezado usa `marginBottom: -18` y el contenido que sigue deja `paddingTop` de al menos 18 dp. Las filas de especie miden 96 dp con miniatura de 72 dp (lámina de 60 dp sobre mancha); las del atlas, 72 dp. Los separadores arrancan alineados con el texto, no con la miniatura. Áreas de toque mínimas de 48 dp; barra de navegación de 80 dp más el inset inferior.
+El mapa es a pantalla completa bajo la barra de estado, con título, botones redondos y chips de capas flotando arriba, y una tarjeta oscura anclada abajo sobre la navegación. Especies es una lista de tarjetas horizontales (foto cuadrada de 112 dp a la izquierda). El Diario apila pestañas, tarjeta de cifras, avance y una grilla de tres columnas (cuadros de proporción 0,86, separación 8 dp) que conserva el ancho en la última fila. La ficha abre con un hero oscuro y una hoja clara que lo monta con radio 28.
 
-La ficha de especie es una entrada de guía de campo, sin cajas: lámina cuadrada a ancho completo y su leyenda; nombre común, científico y familia en versalitas cerrados por un filete de tinta (`leafInk`, 1,5 px); estado; rasgos como lista impresa (rótulo en versalitas `labelMedium` en `leafInk` sobre el texto, entre filetes finos `outlineVariant`, con la insignia copihue «1» en el rasgo señalado en la lámina) y, al final, la etiqueta de procedencia al 92 % del ancho alineada a la derecha.
-
-### Named Rules
-**The Filo Mojado Rule.** Todo contenido bajo una banda pintada reserva `BAND_EDGE` (18 dp) arriba; nada importante queda bajo el filo.
+Todo lo tocable tiene al menos 48 dp de área (por tamaño o `hitSlop`).
 
 ## Elevation & Depth
 
-Sistema plano por capas de pigmento. La profundidad la dan las veladuras translúcidas que se oscurecen al cruzarse, el filo de la banda y el grano del papel, no las sombras. Las sombras existen solo en elementos que flotan sobre el mapa o sobre la lámina, como en Material 3.
+Sistema plano por defecto en lo claro: las tarjetas se separan del fondo por el blanco sobre `background` y un filete de 1 dp (`outline-variant`), sin sombra. La profundidad aparece solo en lo que flota sobre el mapa o una foto, con sombra verde oscura (`shadow`, rgba(17, 26, 20, 0.18)) y la elevación Android correspondiente. Sobre oscuro, la jerarquía es tonal: `dark` → `dark-surface` → `dark-surface-high`.
 
 ### Shadow Vocabulary
-- **Flotante sobre mapa, bajo** (`elevation: 2`, `shadowOffset 0/1`, `shadowRadius 3`, color `scrim`): chip de recuento y grupos de controles del mapa.
-- **Tarjeta sobre mapa** (`elevation: 3`, `shadowOffset 0/2`, `shadowRadius 6`, color `scrim`): papeleta de la observación seleccionada.
-- **Lupa** (`elevation: 8`, `shadowOffset 0/6`, `shadowRadius 12`, opacidad 0.25, color `onSurface`): lupa circular sobre la lámina de la ficha.
+- **card** (elevación 1; desplazamiento 0/1, radio 3): botones de ícono claros u oscuros que flotan sobre mapa o foto.
+- **floating** (elevación 6; desplazamiento 0/4, radio 12): piezas flotantes mayores.
+- **Marcador del mapa** (`box-shadow: 0 4px 12px rgba(0,0,0,0.45)`; seleccionado añade un halo lima de 6 px al 25 %): marcadores circulares sobre la teselas oscuras.
 
 ### Named Rules
-**The Papel Plano Rule.** Lo que está pintado o pegado sobre el papel (filas, etiqueta, cintas, avisos) no lleva sombra. La sombra queda reservada a lo que flota sobre un lienzo interactivo.
+**The Float-Only Shadow Rule.** Solo lleva sombra lo que flota sobre el mapa o una imagen. Las tarjetas sobre fondo claro usan filete, no sombra.
 
 ## Shapes
 
-Dos familias. La pintada es orgánica: manchas de contorno irregular (elipse deformada por armónicos 2, 3 y 5), bandas de borde ondulado y hojas con mitades desiguales y contorno repasado. La funcional es Material 3: píldoras (`full`) para botones, búsqueda, chips e interruptor; 20 dp (`lg`) para avisos, tarjetas y controles flotantes; 8 dp (`sm`) para la atribución del mapa. Las piezas pegadas casi no tienen radio: cinta de 2 dp con giro de -2° o 1,5°, etiqueta de procedencia de 4 dp con borde de 1,5 px en tinta y dos trozos de cinta lima a ±22-24°. Los marcadores de estado son círculos abiertos (9 a 14 px) o guiones.
+Lo que se toca es píldora o círculo: botones, chips, pestañas y búsqueda en radio completo; botones de ícono, marcadores y medallas en círculo. Las tarjetas usan radio 20 (`lg`), las fotos y cuadros dentro de ellas 14 (`md`), y lo que flota o sube desde abajo (tarjeta del mapa, hojas) 28 (`xl`). Las etiquetas de estado son rectángulos de radio 6, el único ángulo casi recto. Bordes de 1 dp o filete fino (`hairlineWidth`) para tablas y separadores. El sendero se dibuja con trazo redondeado de 4,5 px sobre un casing oscuro y un halo difuso.
 
 ## Components
 
 ### Buttons
-Píldora llena y directa: una acción clara por paso.
-- **Shape:** píldora (`full`), alto mínimo de 48 dp, 24 dp de padding horizontal.
-- **Primary:** `primary` con texto `onPrimary` en `labelLarge`; ripple con `ripple`.
-- **Text action** (`TextButton`): `labelLarge` en `primary`, chevron opcional, alto mínimo 48 dp (tarjeta del mapa, fuente de la foto de referencia).
-- **Icon button:** 48x48, ripple sin borde de radio 24.
+Píldoras macizas y directas.
+- **Shape:** píldora (radio completo), 52 dp de alto; 40 dp en tarjetas (`compact`, toque de 48).
+- **Primary:** lima con texto `on-lime`, la acción del paso («Iniciar sendero»). Puede llevar al final una burbuja circular `on-lime` con chevron.
+- **Soft:** lima suave con texto `on-lime-soft`, la acción de una tarjeta («Ver ficha» con chevron).
+- **Dark / Ghost:** bosque sobre claro como secundaria fuerte; contorno `dark-outline` sobre oscuro.
+- **Pressed:** ripple Android en primer plano y opacidad 0,88.
+- **Text button:** etiqueta subrayada sin relleno, 48 dp de alto, para enlaces.
+- **Icon button:** círculo de 44 dp (toque 48) en cuatro aspectos: solo ícono, blanco con filete, velo oscuro sobre el mapa, gris claro en cabecera. Siempre con etiqueta accesible.
 
 ### Chips
-- **Recuento sobre mapa** (`Chip`): superficie blanca en píldora de 36 dp, borde fino `outlineVariant`, círculo abierto copihue de 12 px y `labelLarge`.
+- **Style:** píldora de 36 dp, `label-large`; sin elegir en `surface-muted` sobre claro o `dark-scrim` con `dark-outline` sobre el mapa.
+- **State:** elegido en lima con texto `on-lime`. Los chips alternables (capas del mapa) muestran un check al activarse, no solo el cambio de color. Estado anunciado con `accessibilityState.selected`.
 
-### Status tags (cinta)
-Trozos de cinta adhesiva pegados a mano.
-- **Provisional:** cinta `provisional` con círculo abierto de 9 px y texto «Provisional» en `labelMedium` 800, girada -2°.
-- **No implementado:** cinta `demo` con guion de 9x2 y texto, girada 1,5°.
+### Pill Tabs
+Pestañas internas de pantalla (Diario): píldoras de 44 dp, blancas con filete `outline-variant`; la activa en lima.
 
-### Status banner
-- Aviso no bloqueante en `demo`, radio 20 dp, padding 12/16, ícono de información de 20 px y `bodyMedium` 500.
+### Tags
+Etiqueta corta de grupo o estado, `tag` en mayúsculas sobre radio 6: lima suave (grupo), ámbar (provisional), lavanda (demostración/sintética/pendiente), gris (neutra), oscura (sobre el mapa, p. ej. «Sin verificar»). Siempre con texto; el color solo acompaña.
+
+### Cards / Containers
+- **Corner Style:** 20 dp en tarjetas claras y oscuras; 28 dp en la tarjeta del mapa y las hojas.
+- **Background:** `surface` con filete `outline-variant` en lectura; `dark` para cifras, insignias ganadas y especie ya en la guía; `dark-surface` con `dark-outline` sobre el mapa.
+- **Shadow Strategy:** ver Elevation & Depth; solo la tarjeta del mapa flota.
+- **Internal Padding:** 8 dp en la tarjeta de especie, 12 dp en filas y tarjetas del mapa, 24 dp en la tarjeta de capacidad pendiente.
 
 ### Inputs / Fields
-- **Búsqueda** (`SearchField`): píldora blanca de 56 dp dentro de la banda; ícono de lupa, `bodyLarge`, cursor y selección en `leafInk`; botón de borrar de 48 dp cuando hay texto.
+- **Style:** búsqueda en píldora `surface-muted` de 48 dp, lupa a la izquierda, `body-large`, cursor `on-surface` y selección `on-lime-soft`.
+- **Clear:** botón de ícono con cruz cuando hay texto.
 
 ### Navigation
-- **Barra:** Material 3, `navBar` con borde superior fino, cuatro destinos de 80 dp, rótulos `labelMedium`.
-- **Indicador:** mancha de acuarela lima de 72x40 dp, distinta por destino (`seedOf(label)`), que se abre desde el centro en 260 ms con ease-out exponencial; sin animación si el sistema pide movimiento reducido. El destino activo engruesa el rótulo a 800 y rellena el ícono con `navIconFill`.
-- **Interruptor segmentado:** píldora con borde de 1,5 px `onTopBarVariant` sobre la banda; el pulgar blanco se desliza y el segmento elegido va en 800.
+Barra Material 3 en `dark`, respetando el inset inferior, con cuatro destinos (Identificar, Mapa, Especies, Diario). Ítems de 68 dp; el activo enciende ícono y rótulo en lima, rellena la forma del ícono con lima al 22 % y muestra un indicador en píldora `dark-surface-high` de 64 × 32 que entra en 240 ms con salida exponencial (escala horizontal de 0,5 a 1). Los inactivos en `on-dark-variant`. Con movimiento reducido el indicador cambia sin animar.
 
-### Banda pintada (signature)
-`PaintedBand`: base sólida, cuatro pasadas al 40 % con filos distintos para que el borde sangre, dos veladuras recortadas dentro de la banda y el filo marcado en `topBarEdge`. Bajo el filo se pinta primero el color del papel para que el contenido que pasa por debajo no se transparente. Se usa en todos los encabezados de pestaña y en la barra de la ficha.
+### Status Banner y Sheet
+- **Status banner:** aviso no bloqueante, radio 14, ícono de información; lavanda sobre claro, velo oscuro con filete sobre el mapa.
+- **Sheet:** hoja inferior `dark-surface` de radio 28, asa de 36 × 4, título `title-large` y botón de cierre; Atrás y tocar fuera la cierran.
 
-### Lámina de especie (signature)
-`LeafPlate`: hojas dibujadas en tinta `leafInk` (trazo de 0,8 o 1,6 en miniatura) con mitades desiguales, nervio curvo y una segunda pasada fina corrida; debajo, tres pasadas de aguada en el verde de la especie, corridas, giradas y algo más anchas que la tinta (opacidad según `washOpacity`). Al abrirse, la tinta se dibuja en 900 ms con ease-out exponencial, tallo primero; la lámina grande de la ficha se entinta despacio, en 2000 ms a ritmo de pluma (`easePen`, arranque y final suaves y avance parejo), y su línea guía con el «1» se traza al 85 % de ese tiempo, en 1100 ms; con movimiento reducido se dibuja estática. Siempre rotulada como ilustración conceptual, no fotografía.
+### Mapa oscuro (componente insignia)
+Teselas OSM oscurecidas por pintura raster (saturación −0,35, contraste 0,3, brillo invertido 0,72→0,08, tono rotado 180°) bajo una veladura verde al 22 %. El sendero lima se dibuja al cargar (halo de 14 px difuminado, casing oscuro de 8 px, línea de 4,5 px) y los marcadores son círculos de 40 dp (observaciones) o 44 dp (paradas) en velo oscuro con borde claro de 2 px; inicio y fin con borde lima; el seleccionado se llena de lima y crece a 1,14. Los marcadores entran con un pop de 420 ms. La tarjeta inferior del sendero indica «Trazado sintético: no es un sendero real ni sirve para orientarse», y el recorrido por paradas lleva «Recorrido de demostración · sin GPS». Con movimiento reducido, nada se anima.
 
-### Foto de referencia pegada
-`TapedPhoto`: en el mismo cuadrado que la lámina, una copia de papel fotográfico (borde `surface` de 7 dp, 14 dp abajo, filo fino `outlineVariant`, radio 1) girada entre -1,5° y -3,5° según la especie, sujeta con dos trozos de cinta lima a -38° y -34° en esquinas opuestas; sin sombra, porque está pegada. Al elegir «Foto» cae sobre la página (sube 28 dp girada 7° más y al 108 %, 560 ms ease-out exponencial) y después se aprietan las cintas (se estiran desde el 30 % de ancho, 260 ms, a los 380 y 480 ms). Con movimiento reducido, solo fundido. Las fotos son copias locales de desarrollo (`assets/images/reference/`), así que no hay estado de carga; cuando vengan del backend habrá que añadir carga y error. La leyenda cambia a «Foto de referencia, no tomada en Puyehue.», autor · licencia · Wikimedia Commons y el enlace «Ver fuente y licencia». La lámina sigue siendo la vista por defecto; al volver a ella se entinta de nuevo.
-
-**Interruptor Lámina / Foto:** segmentado discreto para no competir con la lámina: píldora de 32 dp con filo de 1 px `outlineVariant`, junto al número de lámina y con 16 dp de aire sobre él y 12 dp bajo él; dos segmentos iguales con ícono de 14 px (hoja, foto) y `labelMedium` en `onSurfaceVariant`. El pulgar `surfaceContainer` se desliza en 280 ms y el segmento elegido va en `onSurface` a 800. El área de toque se extiende a 48 dp con `hitSlop`. Solo aparece si la especie tiene foto.
-
-### Etiqueta de procedencia
-Hoja blanca con borde de tinta, nombre en `scientificLarge`, filas clave/valor (`labelMedium` / `bodyMedium`), sello a mano al pie tras un filete punteado y dos trozos de cinta lima. La fuente vive junto al dato.
-
-### Mapa
-MapLibre con estilo teñido. Escala con borde de tinta de 2 px y cifras tabulares.
-
-**Hoja de observación (signature):** SVG de 48 px (área de toque completa) generado en `leafSvg` con la geometría de `leafPath` en `src/ui/art/brush.ts`, sembrado por el id (forma, asimetría e inclinación de ±40°): papel bajo tres veladuras verde oscuro (`leafInk`) al 20 % con filo seco, y encima la hoja entintada en `leafInk` al 88 % con contorno de 2,6 px, pecíolo y nervio central y nervaduras en papel claro. Es un signo del cuaderno, no la hoja de la especie observada. Al cargar el mapa las hojas caen de oeste a este cuando la cámara se posa (900 ms + 110 ms por hoja): bajan meciéndose (820 ms), la aguada florece en 760 ms, el contorno se entinta encima y luego el nervio. La caída ocurre una sola vez, la primera vez que el mapa muestra observaciones; los marcadores que se rehacen después aparecen quietos. Seleccionada, la hoja cambia sin animación: la aguada se abre al 130 % y un segundo contorno la rodea. Con movimiento reducido tampoco hay caída.
-
-**Papeleta de observación:** hoja de libreta de campo dejada sobre el mapa: papel blanco con grano (`Paper` sobre `surface`), filo fino `outlineVariant`, radio de 2 dp, sombra de tarjeta sobre mapa y un trozo de cinta lima a -5°. Arriba, la lámina de la especie (52 dp) entintándose sobre su aguada (o el círculo abierto si no hay especie elegida), nombre común y científico; bajo ellos, la línea de cabecera de la libreta (1 px copihue al 45 %, de canto a canto). Debajo, renglones de 24 dp en `outlineVariant`: la cinta `SyntheticTag` y la fecha a mano (Kalam), la nota y, tras un renglón en blanco, la acción a la ficha, todo con alto de línea de 24 para escribir sobre las líneas. Entra subiendo 40 dp girada -4° hasta asentarse (420 ms, ease-out exponencial) y sale bajando 20 dp en 160 ms; con movimiento reducido, solo fundido. Si la hoja elegida queda bajo la papeleta, el mapa se desplaza para mostrarla.
+### Guía del diario
+Grilla de tres columnas: descubierta con foto, velo negro inferior, check lima y fecha; por descubrir con silueta en `locked-ink` sobre `locked-tile`, candado y «Por descubrir». Encima, la tarjeta oscura de cuatro cifras con filetes verticales y la etiqueta «Datos de demostración», y la barra de progreso (riel `surface-muted` de 10 dp, relleno lima, nunca pasa del máximo).
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** abrir cada pestaña principal con `ScreenHeader` y su banda pintada, y dejar `BAND_EDGE` (18 dp) libre bajo ella.
-- **Do** poner toda pantalla sobre `Paper` para que el grano y el color de papel sigan el tema.
-- **Do** sembrar cada mancha con `seedOf` de un identificador estable para que no cambie entre renders.
-- **Do** acompañar cada estado con texto y forma: círculo abierto, guion o ícono, más su rótulo.
-- **Do** reservar el copihue (`accent`) para marcas puntuales.
-- **Do** respetar el movimiento reducido en el entintado y en el indicador de navegación.
-- **Do** mantener la estructura de Material 3: áreas de toque de 48 dp, barra de navegación de 80 dp y botones en píldora.
+- **Do** dar a cada pantalla un solo contraste: mapa, navegación y cifras sobre `dark`; Especies, Diario y ficha sobre `background`.
+- **Do** poner siempre texto `on-lime` (o `on-lime-soft`) sobre lima.
+- **Do** etiquetar con texto en lavanda (`demo` / `on-demo`) todo dato sintético, de demostración o capacidad no implementada, justo donde aparece.
+- **Do** mostrar un check en los chips alternables activos y check/candado en la guía, además del color.
+- **Do** escribir el nombre científico en cursiva bajo el nombre común.
+- **Do** usar íconos de trazo propio de 24 dp, trazo 1,8 y extremos redondeados, con etiqueta accesible en los botones de ícono.
+- **Do** respetar el movimiento reducido: el sendero, los marcadores y el indicador de navegación aparecen sin animar (fundidos de 160/120 ms donde haga falta).
 
 ### Don't:
-- **Don't** usar el color como única señal de un estado (provisional, demostración, no implementado, sin verificar).
-- **Don't** rellenar superficies o botones con copihue ni añadir un segundo acento cálido.
-- **Don't** usar Kalam para párrafos, botones o datos de procedencia, ni Literata cursiva fuera de los nombres científicos.
-- **Don't** dar sombra a lo que está pintado o pegado sobre el papel; la sombra queda para lo que flota sobre el mapa y para la lupa.
-- **Don't** presentar una lámina o portada pintada como fotografía o como paisaje real de Puyehue.
-- **Don't** hacer que el verde de aguada de una especie signifique un dato botánico.
+- **Don't** usar la lima como decoración ni en más de un significado; si no está activo, primario o descubierto, no es lima.
+- **Don't** pintar lo de demostración en lima o ámbar, ni usar la lavanda para otra cosa.
+- **Don't** comunicar un estado solo con color.
+- **Don't** añadir un tema oscuro alterno ni mezclar fondos claro y oscuro como campo principal de una misma pantalla.
+- **Don't** introducir otra familia tipográfica ni la cursiva fuera de los nombres científicos.
+- **Don't** volver al mundo de acuarela: sin bandas pintadas, cromos con canto, papel con grano ni texturas.
+- **Don't** poner sombra a tarjetas sobre fondo claro; el filete basta.
