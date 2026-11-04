@@ -42,7 +42,8 @@ Variables: `VITE_API_URL` (ver `.env.example`). Puerto fijo 3001 en `vite.config
 
 ```bash
 npm test          # Vitest: WAV, bbox, contratos /guide e /identify sin puntajes
-npm run build     # tsc + vite build (hoy falla por 7 errores TS preexistentes en e2e/: deuda TD-01 en docs/BACKLOG.md)
+npm run typecheck # tsconfig.json (navegador: src, tests) + tsconfig.node.json (Node: e2e, configs)
+npm run build     # typecheck + vite build
 npm run test:e2e  # Playwright (chromium + mobile) con APIs simuladas a nivel HTTP
 ```
 

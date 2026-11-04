@@ -33,6 +33,36 @@ jobs:
       - run: node tools/meta_sam_api_lab/viewer.test.cjs
       - run: node tools/meta_sam_api_lab/showcase.test.cjs
 
+  # Experimental client, independent of the official web job (apps/web).
+  wilo-lab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: apps/experiments/wilo-lab
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: apps/experiments/wilo-lab/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build # typecheck (browser + Node configs) and vite build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e # desktop and mobile emulation, HTTP mocks, no Meta calls
+        env:
+          CI: 'true'
+      - if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: wilo-lab-playwright
+          path: |
+            apps/experiments/wilo-lab/test-results
+            apps/experiments/wilo-lab/playwright-report
+          retention-days: 7
+
   api:
     runs-on: ubuntu-latest
     timeout-minutes: 15

@@ -208,5 +208,5 @@ Origen: [visión](PRODUCT_VISION_ECOSYSTEM.md), [piloto](PILOT_PUYEHUE.md),
 
 | ID | Estado | Detalle |
 | --- | --- | --- |
-| TD-01 | Abierta | Wilo Lab: `npm run build` (`tsc --noEmit`) falla con **7 errores TypeScript preexistentes** en `e2e/*.spec.ts` y `playwright.config.ts` (`process` y `Buffer` sin `@types/node`). Ya estaban en `main` antes de PR #37. La CI principal no construye el laboratorio, así que no son fallas de la CI (repository, api y web aprobadas). Los tests unitarios (`vitest`) pasan |
+| TD-01 | Cerrada (04-11-2026) | Los 7 errores TypeScript de Wilo Lab (`process` y `Buffer` en `e2e/` y `playwright.config.ts`) se corrigieron separando la configuración: `tsconfig.json` para el navegador y `tsconfig.node.json` con `@types/node` 24.19.2 para Playwright y configs. `strict` sigue activo y no se excluyó ningún archivo. El job `wilo-lab` de la CI ejecuta `npm ci`, `vitest`, `typecheck` + build y Playwright (escritorio y móvil) |
 | TD-02 | Abierta | Los límites en memoria (peticiones por identidad y canjes fallidos por IP) asumen `max-instances=1`. Hay que moverlos a PostgreSQL antes de escalar |
