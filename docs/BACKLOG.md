@@ -209,4 +209,4 @@ Origen: [visión](PRODUCT_VISION_ECOSYSTEM.md), [piloto](PILOT_PUYEHUE.md),
 | ID | Estado | Detalle |
 | --- | --- | --- |
 | TD-01 | Cerrada (04-11-2026) | Los 7 errores TypeScript de Wilo Lab (`process` y `Buffer` en `e2e/` y `playwright.config.ts`) se corrigieron separando la configuración: `tsconfig.json` para el navegador y `tsconfig.node.json` con `@types/node` 24.19.2 para Playwright y configs. `strict` sigue activo y no se excluyó ningún archivo. El job `wilo-lab` de la CI ejecuta `npm ci`, `vitest`, `typecheck` + build y Playwright (escritorio y móvil) |
-| TD-02 | Abierta | Los límites en memoria (peticiones por identidad y canjes fallidos por IP) asumen `max-instances=1`. Hay que moverlos a PostgreSQL antes de escalar |
+| TD-02 | Cerrada en código (04-11-2026) | Los límites viven en PostgreSQL (migración 006, `rate_limit_hits`): ventana deslizante con bloqueo por bucket, compartidos entre instancias y persistentes. Verificado con tests de integración y con dos procesos `uvicorn` reales contra la misma base: 60 de 80 peticiones admitidas y el 11.º canje fallido bloqueado. En producción queda pendiente aplicar 006 y desplegar, después del merge |

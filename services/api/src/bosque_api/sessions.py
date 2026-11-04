@@ -16,8 +16,6 @@ replace /sessions/exchange and resolve to the same Principal; nothing else chang
 import hashlib
 import logging
 import secrets
-import time
-from collections import defaultdict, deque
 from datetime import datetime
 from typing import Annotated, Literal
 from uuid import UUID, uuid4
@@ -65,7 +63,42 @@ def connect(config: Settings):
     return psycopg.connect(config.database_url.get_secret_value(), connect_timeout=3)
 
 
+def rate_limit(conn, bucket: str, limit: int, seconds: int, record: bool = True) -> int:
+    """Sliding window in PostgreSQL (migration 006); returns Retry-After seconds, 0 if allowed.
+
+    One advisory lock per bucket (two-key form, a separate space from the ledger's single-key
+    lock) serializes only callers of the same identity or IP. Rejected calls are never stored,
+    so a bucket holds at most `limit` rows; its expired rows are deleted on each call.
+    """
+    conn.execute("SELECT pg_advisory_xact_lock(7802, hashtext(%s))", (bucket,))
+    conn.execute(
+        "DELETE FROM rate_limit_hits WHERE bucket=%s AND at <= now() - make_interval(secs => %s)",
+        (bucket, seconds),
+    )
+    count, wait = conn.execute(
+        "SELECT count(*), ceil(extract(epoch FROM min(at) + make_interval(secs => %s) - now())) "
+        "FROM rate_limit_hits WHERE bucket=%s",
+        (seconds, bucket),
+    ).fetchone()
+    if count >= limit:
+        return max(1, int(wait or 1))
+    if record:
+        conn.execute("INSERT INTO rate_limit_hits(bucket) VALUES (%s)", (bucket,))
+        if secrets.randbelow(200) == 0:
+            cleanup_rate_limits(conn)
+    return 0
+
+
+def cleanup_rate_limits(conn, older_than_hours: int = 24) -> int:
+    """Purges buckets that are never revisited (one-off IPs); every window is <= 15 min."""
+    return conn.execute(
+        "DELETE FROM rate_limit_hits WHERE at < now() - make_interval(hours => %s)",
+        (older_than_hours,),
+    ).rowcount
+
+
 def resolve_session(config: Settings, token: str) -> Principal:
+    """Resolve a session and count the request against its stable identity's limit."""
     try:
         with connect(config) as conn:
             row = conn.execute(
@@ -74,35 +107,23 @@ def resolve_session(config: Settings, token: str) -> Principal:
                 "AND expires_at > now()",
                 (digest(token),),
             ).fetchone()
+            wait = row and rate_limit(
+                conn, "identity:" + row[1], config.session_requests_per_minute, 60
+            )
     except psycopg.Error:
+        # Fail closed: without PostgreSQL neither the session nor its limit can be checked.
         raise HTTPException(503, "Servicio de sesiones no disponible") from None
     if row is None:
         raise HTTPException(401, "Sesión inválida, expirada o revocada")
+    if wait:
+        log.warning("auth event=identity_rate_limited who=%s", pseudonym(row[1]))
+        raise HTTPException(
+            429, "Límite de solicitudes de la identidad", headers={"Retry-After": str(wait)}
+        )
     principal = Principal(row[1])
     principal.session_id, principal.scopes = row[0], frozenset(row[2])
     principal.expires_at, principal.access_expires_at = row[3], row[4]
     return principal
-
-
-class Window:
-    """Sliding-window counter per key.
-
-    ponytail: in-process, exact because Cloud Run runs max 1 instance; with more
-    instances move it to PostgreSQL or a Cloudflare rule keyed by session.
-    """
-
-    def __init__(self, limit: int, seconds: float):
-        self.limit, self.seconds, self.hits = limit, seconds, defaultdict(deque)
-
-    def retry_after(self, key: str, count: bool = True) -> int:
-        now, hits = time.monotonic(), self.hits[key]
-        while hits and hits[0] <= now - self.seconds:
-            hits.popleft()
-        if len(hits) >= self.limit:
-            return int(hits[0] + self.seconds - now) + 1
-        if count:
-            hits.append(now)
-        return 0
 
 
 class Exchange(BaseModel):
@@ -156,14 +177,14 @@ class Revocation(BaseModel):
 
 
 def register_session_routes(app, config: Settings):
-    failures = Window(config.exchange_failures_per_ip, 900)
-
     def client_ip(request: Request) -> str:
-        # Cloudflare overwrites CF-Connecting-IP at the edge and the Worker forwards it;
-        # run.app without the origin header never reaches this code.
-        return request.headers.get("cf-connecting-ip") or (
-            request.client.host if request.client else "-"
-        )
+        # CF-Connecting-IP is trusted only when ORIGIN_AUTH_TOKEN is set: the middleware has
+        # then verified the Worker's secret header; Cloudflare overwrites the value at the edge
+        # and rejects clients that send it. Without the origin guard (local) it is spoofable.
+        forwarded = request.headers.get("cf-connecting-ip")
+        if forwarded and config.origin_auth_token.get_secret_value():
+            return forwarded
+        return request.client.host if request.client else "-"
 
     def issue(conn, identity, invitation_id, scopes, access_expires_at, event, actor=None):
         token = SESSION_PREFIX + secrets.token_urlsafe(32)
@@ -223,14 +244,16 @@ def register_session_routes(app, config: Settings):
     def exchange(item: Exchange, request: Request):
         """Canjea una invitación de un solo uso por una sesión de corta duración."""
         ip = client_ip(request)
-        wait = failures.retry_after(ip, count=False)
-        if wait:
-            log.warning("auth event=exchange_blocked ip=%s", pseudonym(ip))
-            raise HTTPException(
-                429, "Demasiados intentos; espera", headers={"Retry-After": str(wait)}
-            )
+        bucket = "exchange_failed:" + pseudonym(ip)  # the IP is never stored in clear
+        limit = config.exchange_failures_per_ip
         try:
             with connect(config) as conn:
+                wait = rate_limit(conn, bucket, limit, 900, record=False)
+                if wait:
+                    log.warning("auth event=exchange_blocked ip=%s", pseudonym(ip))
+                    raise HTTPException(
+                        429, "Demasiados intentos; espera", headers={"Retry-After": str(wait)}
+                    )
                 row = None
                 if item.invitation.startswith(INVITATION_PREFIX):
                     row = conn.execute(
@@ -241,7 +264,10 @@ def register_session_routes(app, config: Settings):
                         (digest(item.invitation),),
                     ).fetchone()
                 if row is None:
-                    failures.retry_after(ip)
+                    # ponytail: two concurrent failures at limit-1 may both count (overshoot of a
+                    # few); the next attempt is then blocked, which only adds strictness.
+                    rate_limit(conn, bucket, limit, 900)
+                    conn.commit()  # keep the failure although we raise
                     log.warning("auth event=exchange_failed ip=%s", pseudonym(ip))
                     raise HTTPException(401, "Invitación inválida, expirada, usada o revocada")
                 return issue(conn, row[1], row[0], row[2], row[3], "session_issued")

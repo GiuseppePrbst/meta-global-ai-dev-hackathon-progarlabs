@@ -298,6 +298,18 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
 - **Punto único de control:** `execution.identity()` resuelve tanto tokens de operador como sesiones, para HTTP y para el WebSocket. `ExecutionStore.reserve()` rechaza operaciones fuera de los permisos de la sesión, así que ninguna ruta gasta sin permiso.
 - **Ledger:** cada sesión resuelve la identidad estable de su invitación. Renovar o recibir otra invitación con el mismo seudónimo no reinicia las cuotas. `BUDGET_IDENTITY_UNITS` añade un tope acumulado por identidad.
 - **Límites:**
-  - Límite de peticiones por identidad estable (60/min, compartido entre sus sesiones; la variable se llama `SESSION_REQUESTS_PER_MINUTE`) y de canjes fallidos por IP (10 cada 15 min), en memoria y exactos con `max-instances=1`. Si se escala, hay que llevarlos a PostgreSQL.
+  - Límite de peticiones por identidad estable (60/min, compartido entre sus sesiones; la variable se llama `SESSION_REQUESTS_PER_MINUTE`) y de canjes fallidos por IP (10 cada 15 min). Desde el 04-11-2026 (migración 006) viven en PostgreSQL: ver la decisión siguiente.
   - Además, la regla de Cloudflare por IP.
 - **Compatibilidad futura:** un proveedor OIDC (Authorization Code + PKCE) reemplazaría solo `/sessions/exchange` y resolvería el mismo `Principal`.
+
+## Decisión 2026-11-04: límites HTTP persistentes en PostgreSQL (migración 006)
+
+- **Problema (TD-02):** los límites en memoria se reiniciaban con cada instancia nueva de Cloud Run y solo eran exactos con `max-instances=1`.
+- **Decisión:** la tabla `rate_limit_hits` implementa una ventana deslizante exacta. No se agregó Redis ni otro servicio:
+  - **Concurrencia:** un `pg_advisory_xact_lock(7802, hashtext(bucket))` por identidad o IP. Es granular, y la forma de dos claves no comparte espacio con el bloqueo único del ledger.
+  - **Crecimiento acotado:** solo se insertan peticiones admitidas o canjes fallidos, así que cada bucket guarda como máximo su límite. Las filas vencidas del bucket se borran en cada llamada, y los buckets abandonados se purgan tras 24 h (`cleanup_rate_limits`).
+  - **Sin conexión extra:** el límite por identidad se comprueba en la misma conexión que resuelve la sesión.
+- **IP del cliente:** se usa `CF-Connecting-IP` solo si `ORIGIN_AUTH_TOKEN` está configurado, es decir, cuando el middleware ya verificó que la petición viene del Worker. Cloudflare rechaza a clientes que envían ese encabezado. La IP se guarda como seudónimo SHA-256 truncado, nunca en claro.
+- **Fallo cerrado:** sin PostgreSQL, las rutas con sesión y el canje responden 503.
+- **Separación:** estos límites HTTP no tocan el ledger. Las reservas económicas siguen en `execution_reservations` con su propio bloqueo.
+- **Carrera conocida:** dos canjes fallidos simultáneos al borde del límite pueden contar ambos. El exceso es de unos pocos intentos y el siguiente queda bloqueado, lo que solo agrega rigor.
