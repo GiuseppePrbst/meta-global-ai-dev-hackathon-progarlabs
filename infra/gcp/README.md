@@ -178,3 +178,9 @@ Contrato para clientes: [docs/SESSION_AUTH_CONTRACT.md](../../docs/SESSION_AUTH_
   - `run.app` directo bloqueado, encabezado de origen falso sobrescrito por el Worker, y CORS.
 - **Seudónimo de IP:** el seudónimo registrado en los canjes fallidos coincide con el hash de la IP pública del cliente de prueba, así que el Worker reenvía `CF-Connecting-IP`.
 - **Gasto:** ledger con 0 reservas y sin llamadas a Meta. Las identidades de prueba (`ext-*`) quedaron revocadas.
+
+### Migración 007: estado `cancelled` en el ledger
+
+- **Contenido:** `007_ledger_cancelled.up.sql` solo amplía el CHECK de `execution_reservations.status`, sin tocar filas. Corrige el cierre de streams de voz cancelados (ver `docs/META_CLOUD_ACTIVATION.md`, sección 5).
+- **Cuándo aplicarla:** con un backup previo y **antes de habilitar Meta**. Con Meta apagado no hay reservas, así que el error no afecta a producción hoy.
+- **Rollback de esquema:** se niega si existen filas `cancelled`.
