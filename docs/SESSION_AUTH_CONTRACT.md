@@ -176,3 +176,19 @@ Todas las respuestas incluyen `X-Correlation-ID`. Inclúyelo en los reportes de 
 - El límite de 60 peticiones/min se cuenta **por identidad estable**, no por sesión: renovar el token o abrir otra sesión no lo reinicia. Desde la migración 006 se guarda en PostgreSQL: es compartido entre instancias y sobrevive a reinicios. El 429 del backend dice «Límite de solicitudes de la identidad» y trae `Retry-After`. En el WebSocket, el mismo límite responde `code: "rate_limited"`.
 - Ante ráfagas, la regla de Cloudflare (60 peticiones cada 10 s por IP) suele responder 429 antes que el backend. Se distinguen porque el 429 del backend trae `X-Correlation-ID`.
 - Meta sigue deshabilitado hasta que haya una autorización de gasto: ver [META_CLOUD_ACTIVATION.md](META_CLOUD_ACTIVATION.md).
+
+## 10. Consentimientos por petición
+
+| Campo | Cuándo | Efecto si falta |
+| --- | --- | --- |
+| `adult_confirmed: true` | Siempre en `/guide/*`, `/identify` y el WebSocket | 422 (`permissions` en el WebSocket) |
+| `rights_confirmed: true` | Con audio o fotografía | 422 |
+| `external_processing_confirmed: true` | Cuando el backend envía audio, texto o imagen a Meta | 422. La interfaz debe pedirlo de forma explícita, sin dejarlo marcado por defecto |
+
+## 11. Cuotas (beta cerrada)
+
+- **Límite HTTP:** 60 peticiones por minuto por identidad, más el límite por IP de Cloudflare.
+- **Cuotas económicas:** solo existen con Meta habilitado. La propuesta, aún sin autorizar, está en [META_CLOUD_ACTIVATION.md](META_CLOUD_ACTIVATION.md): 8 peticiones Meta por evaluador y día, USD 0,40 por evaluador en toda la beta y una llamada a la vez.
+- **Al agotarse:** el backend responde 429 y la cuota no se recupera al renovar la sesión.
+- **Mensaje en la interfaz:** mostrar «cupo agotado», sin reintentos automáticos.
+- **Operadores:** `GET /admin/identities/{identity}` (o `scripts/beta_invite.py --status`) muestra invitaciones, sesiones activas y consumo del ledger, sin tokens.

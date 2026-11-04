@@ -190,3 +190,9 @@ Contrato para clientes: [docs/SESSION_AUTH_CONTRACT.md](../../docs/SESSION_AUTH_
 
   El código nuevo responde 503 si la tabla no existe (fallo cerrado), por eso la migración va **antes** del tráfico.
 - **Rollback de aplicación:** volver a la revisión anterior. Esa revisión ignora la tabla, y no hace falta borrarla.
+
+### Migración 007: estado `cancelled` en el ledger
+
+- **Contenido:** `007_ledger_cancelled.up.sql` solo amplía el CHECK de `execution_reservations.status`, sin tocar filas. Corrige el cierre de streams de voz cancelados (ver `docs/META_CLOUD_ACTIVATION.md`, sección 5).
+- **Cuándo aplicarla:** con un backup previo y **antes de habilitar Meta**. Con Meta apagado no hay reservas, así que el error no afecta a producción hoy.
+- **Rollback de esquema:** se niega si existen filas `cancelled`.

@@ -312,3 +312,19 @@ Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe
 - **Documentación:** `SESSION_AUTH_CONTRACT.md` y `META_CLOUD_ACTIVATION.md`.
 - **Sin cambios** en `apps/web` ni `apps/mobile`. Sin dependencias nuevas. Sin llamadas pagadas a Meta.
 - **Asistencia:** agente Claude Code (Opus 5.5), bajo la supervisión de GiuseppePrbst.
+
+## Preparación final de beta: 04-11-2026 (PR #39, #40 y la rama `feat/beta-readiness-meta-controls`)
+
+- **Wilo Lab (PR #39):**
+  - configuración TypeScript para el navegador y para Node, con `@types/node`;
+  - pruebas e2e de sesiones;
+  - job de CI propio.
+- **Límites persistentes (PR #40):** en PostgreSQL, con la migración 006.
+- **Beta y Meta:**
+  - pruebas de control de gasto con Meta simulado;
+  - corrección del estado `cancelled` del ledger (migración 007);
+  - `GET /admin/identities/{identity}`;
+  - procedimiento de evaluadores;
+  - script de campaña en modo simulación.
+- **Sin llamadas pagadas a Meta.** Sin cambios en `apps/web` ni `apps/mobile`.
+- **Asistencia:** agente Claude Code (Opus 5.5), bajo la supervisión de GiuseppePrbst.

@@ -20,7 +20,7 @@ El presupuesto de GCP (CLP 90.000, en `infra/gcp/README.md`) es otro presupuesto
 | Variables de reserva | `META_`, `VOICE_` y `GUIDE_RESERVATION_UNITS` valen 0 (no configuradas). `BUDGET_UNITS`, `BUDGET_LIFETIME_UNITS` y `BUDGET_IDENTITY_UNITS` valen 0 |
 | Concurrencia | `BUDGET_CONCURRENCY=1`. Cloud Run tiene `max-instances=1` y concurrencia 4 |
 | Ruta de reserva | Una sola transacción con `pg_advisory_xact_lock`. Revisa, en orden: el tope acumulado, el tope por identidad, el conteo diario global y por identidad, el monto diario y la concurrencia. Si algún límite se supera, responde 429 sin insertar |
-| Cierre de reserva | `finish` marca `completed`, `provider_error`, `validation_error` o `cancelled`, con el uso reportado. **Las unidades nunca se devuelven**: una petición fallida sigue contando. Si `finish` falla, la reserva queda cobrada y solo expira el cupo de concurrencia |
+| Cierre de reserva | `finish` marca `completed`, `provider_error`, `validation_error` o `cancelled` (este último desde la migración 007), con el uso reportado. **Las unidades nunca se devuelven**: una petición fallida sigue contando. Si `finish` falla, la reserva queda cobrada y solo expira el cupo de concurrencia |
 | Identidad del consumo | La de la invitación, estable entre sesiones (ver [SESSION_AUTH_CONTRACT.md](SESSION_AUTH_CONTRACT.md)). Un token nuevo no reinicia las cuotas, según los tests `test_quota_follows_identity_across_sessions` y `test_global_budget_concurrent_workers_ownership_and_recovery` |
 | Permisos | `reserve()` rechaza con 403 cualquier operación fuera de los permisos de la sesión, antes de reservar |
 | Orden con Meta apagado | `/identify` devuelve 501, y Wilo y la voz 503. Ocurre **antes** de `reserve()`, así que no se crean reservas |
@@ -51,24 +51,33 @@ Con 12 evaluadores a USD 0,40 cada uno se reservan como máximo USD 4,80, dentro
 
 No se suben estos límites para facilitar las pruebas.
 
-## 3. Encender Meta (solo con autorización vigente)
+## 3. Activación progresiva (solo con autorización vigente)
 
-Requisitos previos:
+No se ejecuta mientras falte la autorización. Ningún paso cambia código; se mantiene `SERVICE_MODE=demo` y nunca se usa `local` en el servicio público.
 
-1. Autorización escrita del propietario, con el monto y el alcance de la campaña.
-2. Confirmación de que los créditos de Meta siguen vigentes ese día.
-3. La revisión actual con Meta apagado identificada para el rollback: `gcloud run revisions list --service=bosque-vivo-api`.
+1. **Autorización.** Debe ser escrita por el propietario e indicar campaña, monto máximo en USD y fecha. Se registra la referencia; no se copian correos ni datos personales.
+2. **Créditos.** Confirmar en la consola de Meta que los créditos siguen vigentes ese día.
+3. **Esquema.** Hace falta el 007 aplicado (`cancelled` en el ledger), después de un backup a demanda. Sin él, cancelar un stream de voz deja la reserva colgada 10 minutos.
+4. **Revisión con Meta, sin tráfico.** Desplegar con los límites acordados y la etiqueta `meta`:
 
-El comando no necesita cambios de código y crea una revisión nueva. Mantiene `SERVICE_MODE=demo`; nunca uses `local` en el servicio público.
+   ```bash
+   REGION=southamerica-west1
+   gcloud run services update bosque-vivo-api --region "$REGION" \
+     --account=<owner> --project=nice-carving-513619-t4 --billing-project=nice-carving-513619-t4 \
+     --no-traffic --tag meta \
+     '--update-env-vars=^@^META_ENABLED=true@GUIDE_RESERVATION_UNITS=40000@VOICE_RESERVATION_UNITS=5000@META_RESERVATION_UNITS=30000@BUDGET_IDENTITY_UNITS=400000@BUDGET_UNITS=1000000@BUDGET_LIFETIME_UNITS=5000000@BUDGET_REQUESTS=25@BUDGET_REQUESTS_PER_IDENTITY=8'
+   ```
 
-```bash
-REGION=southamerica-west1
-gcloud run services update bosque-vivo-api --region "$REGION" \
-  --account=<owner> --project=nice-carving-513619-t4 --billing-project=nice-carving-513619-t4 \
-  '--update-env-vars=^@^META_ENABLED=true@GUIDE_RESERVATION_UNITS=40000@VOICE_RESERVATION_UNITS=5000@META_RESERVATION_UNITS=30000@BUDGET_IDENTITY_UNITS=400000@BUDGET_UNITS=1000000@BUDGET_LIFETIME_UNITS=5000000@BUDGET_REQUESTS=25@BUDGET_REQUESTS_PER_IDENTITY=8'
-```
-
-Después, haz **una** llamada mínima por capacidad con una invitación de prueba, y registra modelo, latencia, `correlation_id`, ID de reserva y uso reportado.
+5. **Verificar los controles en la URL etiquetada**, sin gastar:
+   - sin token, 401;
+   - sesión sin permiso, 403;
+   - `/sessions/me` correcto;
+   - las variables efectivas de la revisión.
+6. **Mover el tráfico** a la revisión `meta` solo si el paso 5 pasó: `gcloud run services update-traffic` con `--to-tags=meta=100`.
+7. **Campaña mínima:** `scripts/meta_beta_campaign.py --execute --authorization "<referencia>" --max-usd <monto>`, con una sesión de evaluador sintética. Son cuatro llamadas (USD 0,145 reservados) más el registro del caso olivillo/ulmo.
+8. **Revisar ledger y uso:** `scripts/beta_invite.py --status <identidad>` muestra reservas por estado y unidades. La evidencia JSON queda fuera del repositorio.
+9. **Errores y latencias:** revisar los 502 y 429 del proveedor y las latencias contra las esperadas (Wilo 20–37 s; identificación 6–16 s).
+10. **Decidir** si el acceso sigue habilitado. Si hay cualquier duda, volver al instante a la revisión con Meta apagado (sección 4).
 
 ## 4. Apagado de emergencia
 
@@ -80,7 +89,26 @@ Elige la opción más rápida según el caso:
 
 El ledger nunca se deshabilita ni se borra para resolver errores.
 
-## 5. Pendiente o no verificado
+## 5. Pruebas sin gasto (04-11-2026)
+
+`services/api/tests/test_meta_controls.py` usa el presupuesto propuesto, el ledger y las sesiones reales en PostgreSQL, y un Meta simulado (`httpx.MockTransport`) que cuenta llamadas:
+
+| # | Control | Resultado |
+| --- | --- | --- |
+| 1 | Sin presupuesto (`BUDGET_UNITS=0`) | 503 en las tres capacidades, 0 llamadas y 0 reservas |
+| 2 | Sin autenticación | 401, 0 reservas |
+| 3 | Sin permiso | 403 en Wilo, transcripción e identificación, 0 reservas |
+| 4 | Cuota agotada | La 9.ª petición diaria de la identidad responde 429 (tope de 8) |
+| 5 | Concurrencia | Con una llamada en curso, la siguiente responde 429 sin llamar a Meta |
+| 6 | Reserva fallida | Sin ledger, 503 antes de llamar a Meta |
+| 7 | Renovación | Ni una sesión renovada ni una invitación nueva de la misma identidad suman cuota |
+| 8 | Error del proveedor | 502 sanitizado, reserva `provider_error` cobrada (40.000 unidades) |
+| 9 | Revocación | 401 y ninguna reserva nueva |
+| 10 | Apagado (`META_ENABLED=false`) | 503, 503 y 501, y la voz devuelve `unavailable`. 0 llamadas |
+
+Además, `test_cancelled_voice_stream_closes_its_reservation` reproduce un error real: el stream de voz cerraba sus reservas con `cancelled`, un estado que el CHECK de 003 no permitía. La reserva quedaba `reserved` durante 10 minutos, ocupando el único cupo de concurrencia. La migración 007 lo corrige, y la prueba falla sin ella.
+
+## 6. Pendiente o no verificado
 
 - Validez actual de `MODEL_API_KEY` y saldo de créditos Meta: requieren una llamada pagada.
 - Agotamiento de cuota con Meta real. Se probó en PostgreSQL con dobles de prueba, pero no contra Meta.
