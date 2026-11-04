@@ -30,6 +30,8 @@ class Settings(BaseSettings):
     meta_reservation_units: int = Field(default=0, ge=0)
     voice_reservation_units: int = Field(default=0, ge=0)
     guide_reservation_units: int = Field(default=0, ge=0)
+    # Lifetime microUSD cap per stable identity (0 = off). Sessions share their identity's cap.
+    budget_identity_units: int = Field(default=0, ge=0)
     budget_concurrency: int = Field(default=1, ge=1, le=8)
     # Only an explicit research campaign may disable the daily request counter;
     # monetary, lifetime, identity-cap and concurrency limits always apply.
@@ -40,3 +42,8 @@ class Settings(BaseSettings):
     # When set (cloud), every request except /health must carry X-Bosque-Origin with this
     # value. Only the Cloudflare Worker adds it, so the public run.app URL cannot bypass it.
     origin_auth_token: SecretStr = Field(default=SecretStr(""), repr=False)
+    # Closed beta (migration 005): DEMO_TOKENS names allowed to create invitations.
+    admin_identities: list[str] = Field(default_factory=list)
+    session_ttl_minutes: int = Field(default=60, ge=5, le=240)
+    session_requests_per_minute: int = Field(default=60, ge=1, le=1000)
+    exchange_failures_per_ip: int = Field(default=10, ge=1, le=100)
