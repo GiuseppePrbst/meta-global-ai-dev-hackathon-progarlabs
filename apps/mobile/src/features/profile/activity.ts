@@ -8,7 +8,7 @@ import type { Achievement } from '@/features/profile/mock-achievements';
 // insignia lleva la fecha del dato que completó su meta, reconstruida al repasar los hechos en orden.
 
 export type Activity =
-  | { kind: 'walk'; date: string; trailId: string; km: number }
+  | { kind: 'walk'; date: string; trailId: string; trailName: string; km: number }
   | { kind: 'species'; date: string; speciesIds: string[] }
   | { kind: 'badge'; date: string; badgeId: BadgeId }
   /** Logro de prueba (ver `mock-achievements.ts`): no se deriva del diario. */
@@ -58,7 +58,7 @@ export function buildActivity(inputs: Inputs & { achievements?: Achievement[] })
     byDay.set(entry.addedAt, [...(byDay.get(entry.addedAt) ?? []), entry.speciesId]);
   }
   const items: Activity[] = [
-    ...inputs.walks.map((walk): Activity => ({ kind: 'walk', date: walk.completedAt, trailId: walk.trailId, km: walk.km })),
+    ...inputs.walks.map((walk): Activity => ({ kind: 'walk', date: walk.completedAt, trailId: walk.trailId, trailName: walk.trailName, km: walk.km })),
     ...[...byDay].map(([date, speciesIds]): Activity => ({ kind: 'species', date, speciesIds })),
     ...[...badgeDates(inputs)].map(([badgeId, date]): Activity => ({ kind: 'badge', date, badgeId })),
     ...(inputs.achievements ?? []).map((achievement): Activity => ({ kind: 'achievement', date: achievement.date, achievement })),

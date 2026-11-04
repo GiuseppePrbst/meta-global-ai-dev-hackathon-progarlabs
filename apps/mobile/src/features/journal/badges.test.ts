@@ -36,7 +36,7 @@ describe('computeBadges', () => {
   });
 
   it('otorga las de recorridos según su número y la distancia total, sin pasar la meta', () => {
-    const walks = [4, 4, 4].map((km, i) => ({ trailId: 't', completedAt: `2026-10-2${i}`, km }));
+    const walks = [4, 4, 4].map((km, i) => ({ trailId: 't', trailName: 'T', completedAt: `2026-10-2${i}`, km }));
     const badges = byId(computeBadges({ catalog, entries: [], walks }));
     expect(badges['first-walk'].earned).toBe(true);
     expect(badges['ten-km']).toMatchObject({ earned: true, progress: 10, goal: 10 });
@@ -50,7 +50,7 @@ describe('computeBadges', () => {
 
 describe('totalKm', () => {
   it('suma la distancia de los recorridos', () => {
-    expect(totalKm([{ trailId: 't', completedAt: '2026-10-28', km: 1.5 }, { trailId: 't', completedAt: '2026-10-29', km: 2 }])).toBe(3.5);
+    expect(totalKm([{ trailId: 't', trailName: 'T', completedAt: '2026-10-28', km: 1.5 }, { trailId: 't', trailName: 'T', completedAt: '2026-10-29', km: 2 }])).toBe(3.5);
   });
 });
 
