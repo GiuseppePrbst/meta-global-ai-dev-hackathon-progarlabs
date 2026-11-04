@@ -43,6 +43,7 @@ export async function identifyPhoto(file: File, opts: { signal?: AbortSignal; to
   form.append("file", file);
   form.append("adult_confirmed", "true");
   form.append("rights_confirmed", "true");
+  form.append("external_processing_confirmed", "true"); // the UI asks for it before calling
   const response = await fetch(`${apiUrl}/identify`, {
     method: "POST", body: form, headers: bearer(opts.token ?? ""),
     signal: opts.signal ?? AbortSignal.timeout(95000),
