@@ -179,3 +179,19 @@ Apagado: `PUBLIC_DEMO_ENABLED=false`, luego `META_ENABLED=false`, y como último
 - **Con Meta, código anterior:** `bosque-vivo-api-00020-qay`. Tiene topes por cohorte e ignora la campaña compartida y la fecha en PostgreSQL. Su `/admin/cohorts` falla por la fila `public_demo`. Úsala solo como emergencia.
 - **Worker:** `npx wrangler rollback 6a070815-9162-4dfb-a5eb-845124ca8f60`. Sin el Worker nuevo, el modo público rechaza toda petición anónima.
 - **Base:** no se revierte 009 para volver atrás; las revisiones anteriores no la necesitan.
+
+## 9. Apertura pública (04-11-2026)
+
+- **Decisión:** el propietario ordenó abrir la demostración. La política de privacidad se publicó antes de promover (`progarlabs.com/privacidad`, PR #27 de `progarlabs`, versión de Worker `52ee19f4-2368-4407-97ca-b488af76269f`).
+- **Producción:** revisión `bosque-vivo-api-00026-wuy` al 100 %, promovida 10, 25 y 100 %. Imagen `api:d78b60b7d134`. `PUBLIC_DEMO_ENABLED=true` con las cuatro funciones.
+- **Comprobación sin credenciales por el dominio público:** `/demo/status` en `active`; `/guide/query`, `/guide/transcribe`, `/guide/ask` y `/identify` con 200; WebSocket anónimo con transcripción final; rutas privadas con 401; `run.app` con 403.
+- **El ledger no garantiza el techo de facturación externa.** Meta no ofrece un límite de gasto verificado, y el panel no muestra el vencimiento de los créditos. Si expiran, puede haber cargos a la tarjeta. Si aparece un cargo no autorizado, se pierden créditos o el saldo no alcanza, se apaga la inferencia de inmediato.
+- **Vigilar:** saldo y pagos en `dev.meta.ai`, y `GET /admin/cohorts`.
+
+**Apagado inmediato**, sin construir nada:
+
+1. Cerrar lo anónimo: `gcloud run services update-traffic` con `--to-tags` hacia `s6main` (revisión `00022-heb`, público apagado) al 100 %.
+2. Cerrar toda la IA: `--update-env-vars=META_ENABLED=false` o la etiqueta `s5main`.
+3. Cierre permanente: `POST /admin/campaign/close`.
+
+`infra/gcp/api.env.yaml` refleja el modo abierto. Una versión anterior de ese archivo lo apagaría al desplegar.

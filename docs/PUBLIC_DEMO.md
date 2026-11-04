@@ -4,7 +4,7 @@ Bosque Vivo puede atender a usuarios adultos de territorios permitidos, desde cu
 
 **Para usar la demostración no hace falta:** cuenta de Facebook, Firebase, invitación, clave de Meta, clave de ProGarLabs ni registro previo.
 
-**Estado actual: desplegada y apagada.** La infraestructura está lista, pero `PUBLIC_DEMO_ENABLED=false`: sin sesión, las rutas de IA responden 401.
+**Estado actual: abierta desde el 04-11-2026.** Referencias en vivo: [Swagger](https://api-bosquevivo.progarlabs.com/docs), [OpenAPI](https://api-bosquevivo.progarlabs.com/openapi.json), [estado](https://api-bosquevivo.progarlabs.com/demo/status) y [política de privacidad](https://progarlabs.com/privacidad#bosque-vivo).
 
 **Consulta siempre `GET /demo/status`.** Si `status` no es `active`, las rutas de IA no están abiertas.
 
@@ -110,6 +110,14 @@ Un stream cancelado no consume más que su reserva, que queda como `cancelled`.
 Estas declaraciones debe hacerlas la persona. La interfaz debe pedirlas de forma explícita, sin dejarlas marcadas por defecto.
 
 **No envíes datos personales ni confidenciales.** Mientras la campaña use créditos promocionales, Meta avisa que el contenido puede usarse para mejorar sus productos.
+
+## Requisitos para la interfaz
+
+- Pedir cada consentimiento de forma real, sin marcarlo por defecto.
+- Mostrar el aviso de `/demo/status` (`notice`) y enlazar la política de privacidad **antes** de enviar contenido.
+- Presentar la identificación como **sugerencia**, nunca como identificación confirmada, incluso con `acceptance: accepted`.
+
+**Limitación del modelo:** en la apertura, una foto de referencia de *Nothofagus dombeyi* fue aceptada como *N. betuloides* en 2 de 2 pruebas por la ruta pública. Son especies parecidas, y el 03-11 hubo otra confusión (olivillo y ulmo). La misma imagen a tamaño completo se aceptó correctamente con sesión el 04-11. Son casos sueltos: no miden precisión ni prueban que la causa sea la reducción de la foto.
 
 ## Límites
 
