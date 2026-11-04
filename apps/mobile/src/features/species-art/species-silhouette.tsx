@@ -1,7 +1,7 @@
 import Svg, { G, Path } from 'react-native-svg';
 
-// Silueta de la hoja de cada especie: un esquema de su forma, no una representación fiel ni una
-// fotografía. El Diario la muestra, en tono oscuro, para las especies que la persona aún no suma.
+// Silueta de cada especie: la hoja de los árboles o la seta de los hongos. Es un esquema de su forma,
+// no una representación fiel ni una fotografía. El Diario la muestra, en tono oscuro, para las especies que la persona aún no suma.
 // Vive fuera de `catalog/` porque la usan el catálogo y el Diario: ninguna feature depende del
 // interior de otra.
 
@@ -107,7 +107,23 @@ const plates: Record<string, Plate> = {
   },
 };
 
-type Drawing = { stem?: string; leaves: { transform: string; d: string }[] };
+const circle = (cx: number, cy: number, r: number) => `M${cx - r},${cy} a${r},${r} 0 1,0 ${r * 2},0 a${r},${r} 0 1,0 ${-r * 2},0 Z`;
+
+// Hongos: formas rellenas en el mismo lienzo de 100 × 100.
+const fungi: Record<string, string[]> = {
+  // Racimo de esferas colgando de una rama.
+  'cyttaria-espinosae': [
+    'M6 26 L94 14 L95 21 L7 33 Z',
+    circle(36, 46, 15), circle(63, 44, 13), circle(50, 72, 13),
+  ],
+  // Boleto: sombrero ancho y pie grueso.
+  'butyriboletus-loyo': [
+    'M10 50 C10 20, 90 20, 90 50 C90 57, 10 57, 10 50 Z',
+    'M37 58 C33 72, 33 84, 40 92 L60 92 C67 84, 67 72, 63 58 Z',
+  ],
+};
+
+type Drawing = { stem?: string; leaves: { transform: string; d: string }[]; shapes?: string[] };
 
 // Las láminas son estáticas: cada silueta se calcula una vez y se reutiliza en cada render.
 const drawings = new Map<string, Drawing>();
@@ -115,6 +131,12 @@ const drawings = new Map<string, Drawing>();
 function drawingFor(speciesId: string): Drawing | undefined {
   const cached = drawings.get(speciesId);
   if (cached) return cached;
+  const shapes = fungi[speciesId];
+  if (shapes) {
+    const drawing = { leaves: [], shapes };
+    drawings.set(speciesId, drawing);
+    return drawing;
+  }
   const plate = plates[speciesId];
   if (!plate) return undefined;
   const drawing = {
@@ -138,6 +160,7 @@ export function SpeciesSilhouette({ speciesId, size, color }: SpeciesSilhouetteP
   return (
     <Svg width={size ?? '100%'} height={size ?? '100%'} viewBox="0 0 100 100">
       {drawing.stem ? <Path d={drawing.stem} stroke={color} strokeWidth={2.4} strokeLinecap="round" fill="none" /> : null}
+      {drawing.shapes?.map((d, i) => <Path key={`s${i}`} d={d} fill={color} />)}
       {drawing.leaves.map(({ transform, d }, i) => (
         <G key={i} transform={transform}>
           <Path d={d} fill={color} />

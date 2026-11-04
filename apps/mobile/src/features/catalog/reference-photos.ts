@@ -76,6 +76,21 @@ const photos: Record<string, ReferencePhoto> = {
     license: 'CC BY-SA 4.0',
     sourceUrl: page('Nothofagus_pumilio,_leaves.jpg'),
   },
+  // Hongos: descargados el 02-11-2026, mismas reglas.
+  'cyttaria-espinosae': {
+    source: require('../../../assets/images/reference/cyttaria-espinosae.jpg'),
+    aspect: 960 / 768,
+    author: 'Robert Motecinos Holda',
+    license: 'CC0',
+    sourceUrl: page('Cyttaria_Espinosae_(Digüeñe).jpg'),
+  },
+  'butyriboletus-loyo': {
+    source: require('../../../assets/images/reference/butyriboletus-loyo.jpg'),
+    aspect: 960 / 1280,
+    author: 'Mycotheca',
+    license: 'CC0',
+    sourceUrl: page('Boletus_loyo_(MYCL000158).jpg'),
+  },
 };
 
 /** Foto de referencia de la especie; sin especie (p. ej. una observación sin elegir) no hay foto. */

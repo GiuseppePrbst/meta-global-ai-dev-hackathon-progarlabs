@@ -1,4 +1,7 @@
-import { Image, Linking, StyleSheet, View } from 'react-native';
+import { router } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { Linking, Pressable, StyleSheet, View } from 'react-native';
+import Animated, { interpolate, type SharedValue, useAnimatedStyle, useReducedMotion } from 'react-native-reanimated';
 
 import type { Species } from '@/domain/species';
 import { getReferencePhoto } from '@/features/catalog/reference-photos';
@@ -7,73 +10,150 @@ import { useGuideEntry } from '@/features/guide/use-guide';
 import { SpeciesSilhouette } from '@/features/species-art/species-silhouette';
 import { formatDate, t } from '@/i18n/es-CL';
 import {
-  BarkIcon, CheckIcon, DataRows, ExternalIcon, type IconComponent, InfoIcon, LeafIcon, LockIcon, PinIcon, radius, space,
-  SpeciesIcon, Tag, Text, TextButton, useTheme,
+  BarkIcon, CheckIcon, ChevronIcon, CubeIcon, CoverImage, DataRows, ExternalIcon, type IconComponent, InfoIcon, LayersIcon, LeafIcon, LockIcon, MushroomIcon, PinIcon, radius, space,
+  SpeciesIcon, Tag, Text, TextButton, type, useTheme, elevation,
 } from '@/ui';
 
-/** Foto de referencia a todo el ancho, con su crédito debajo. */
-export function SpeciesHero({ species }: { species: Species }) {
+/** Dónde queda el nombre dentro del scroll: la barra superior lo recibe cuando sale de la vista. */
+export type NameLayout = { top: number; height: number };
+
+/**
+ * Cabecera oscura de la ficha: foto de referencia y, bajo ella sobre bosque nocturno, la identidad
+ * de la especie y su lugar en la guía personal. Es el momento fuerte de la pantalla.
+ *
+ * El scroll la mueve de forma continua en el hilo de UI: la foto avanza a menos de la mitad de la
+ * velocidad (parallax) y se apaga bajo un velo de bosque; al tirar hacia abajo (rebote de iOS) se
+ * estira desde arriba; el nombre se encoge y se apaga justo cuando pasa bajo la barra superior,
+ * que lo recibe. Con movimiento reducido, nada de esto se mueve.
+ */
+export function SpeciesHero({ species, scrollY, barBottom, onNameLayout }: {
+  species: Species;
+  scrollY: SharedValue<number>;
+  /** Borde inferior de la barra superior en pantalla (inset + alto). */
+  barBottom: number;
+  onNameLayout: (layout: NameLayout) => void;
+}) {
   const { color } = useTheme();
   const photo = getReferencePhoto(species.id);
+  const entry = useGuideEntry(species.id);
+  const reducedMotion = useReducedMotion();
+  const [photoHeight, setPhotoHeight] = useState(0);
+  // Posición del nombre dentro de la identidad; sumada al alto de la foto da su lugar en el scroll.
+  const [nameBox, setNameBox] = useState({ y: 0, height: 0 });
+  // La identidad monta la foto con su radio superior, así que empieza `radius.xl` antes de su borde.
+  const nameTop = photoHeight - radius.xl + nameBox.y;
+  // El nombre se apaga mientras cruza el borde inferior de la barra.
+  const handoffStart = nameTop - barBottom;
+  const handoffEnd = handoffStart + nameBox.height;
+
+  useEffect(() => {
+    if (photoHeight > 0 && nameBox.height > 0) onNameLayout({ top: nameTop, height: nameBox.height });
+  }, [photoHeight, nameTop, nameBox.height, onNameLayout]);
+
+  const photoStyle = useAnimatedStyle(() => {
+    const y = scrollY.get();
+    if (reducedMotion || photoHeight === 0) return { transform: [] };
+    // Arriba de cero solo hay rebote: la foto se fija al borde y crece hasta cubrirlo.
+    if (y < 0) return { transform: [{ translateY: y }, { scale: (photoHeight - y) / photoHeight }] };
+    return { transform: [{ translateY: y * 0.45 }, { scale: 1 }] };
+  });
+
+  const veilStyle = useAnimatedStyle(() => ({
+    opacity: reducedMotion ? 0 : interpolate(scrollY.get(), [0, photoHeight || 1], [0, 0.7], 'clamp'),
+  }));
+
+  const nameStyle = useAnimatedStyle(() => {
+    if (reducedMotion) return { opacity: 1, transform: [] };
+    return {
+      opacity: interpolate(scrollY.get(), [handoffStart, handoffEnd], [1, 0], 'clamp'),
+      transform: [{ scale: interpolate(scrollY.get(), [handoffStart - 40, handoffEnd], [1, 0.86], 'clamp') }],
+    };
+  });
+
   return (
-    <View style={[styles.hero, { backgroundColor: color.dark }]}>
-      {photo ? (
-        <Image source={photo.source} style={StyleSheet.absoluteFill} resizeMode="cover" accessible
-          accessibilityLabel={t.detail.photoA11y(species.commonName)} accessibilityIgnoresInvertColors />
-      ) : (
-        <View style={styles.heroEmpty} accessible accessibilityLabel={t.detail.noPhoto}>
-          <View style={styles.heroSilhouette}><SpeciesSilhouette speciesId={species.id} color={color.darkSurfaceHigh} /></View>
+    <View style={{ backgroundColor: color.dark }}>
+      <View style={styles.hero} onLayout={(event) => setPhotoHeight(event.nativeEvent.layout.height)}>
+        <Animated.View style={[styles.photo, photoStyle]}>
+          {photo ? (
+            <CoverImage source={photo.source} accessible accessibilityLabel={t.detail.photoA11y(species.commonName)} />
+          ) : (
+            <View style={styles.heroEmpty} accessible accessibilityLabel={t.detail.noPhoto}>
+              <View style={styles.heroSilhouette}><SpeciesSilhouette speciesId={species.id} color={color.darkSurfaceHigh} /></View>
+            </View>
+          )}
+          <Animated.View pointerEvents="none" style={[styles.photo, { backgroundColor: color.dark }, veilStyle]} />
+        </Animated.View>
+
+        {/* Abre el visor 3D a pantalla completa; por ahora muestra un modelo de prueba y lo dice. */}
+        <Pressable accessibilityRole="button" accessibilityLabel={t.detail.model3dA11y(species.commonName)} hitSlop={6}
+          onPress={() => router.push({ pathname: '/model/[id]', params: { id: species.id } })}
+          android_ripple={{ color: color.onDarkRipple, foreground: true }}
+          style={({ pressed }) => [styles.model3d, elevation.card,
+            { backgroundColor: color.darkScrim, borderColor: color.darkOutline, shadowColor: color.shadow, opacity: pressed ? 0.85 : 1 }]}>
+          <CubeIcon color={color.onDark} size={18} />
+          <Text variant="labelLarge" tone="onDark">{t.detail.model3d}</Text>
+        </Pressable>
+      </View>
+
+      {/* Opaca: tapa la foto que baja más lenta que el contenido. */}
+      <View style={[styles.identity, { backgroundColor: color.dark }]}>
+        <Animated.View style={[styles.nameBox, nameStyle]} onLayout={(event) => {
+          const { y, height } = event.nativeEvent.layout;
+          setNameBox({ y, height });
+        }}>
+          <Text variant="display" tone="onDark" accessibilityRole="header" style={styles.name}>{species.commonName}</Text>
+        </Animated.View>
+        <Text variant="scientificLarge" tone="onDarkVariant">{species.scientificName}</Text>
+        <View style={styles.tags}>
+          <SpeciesTags species={species} />
         </View>
-      )}
+        <Text variant="labelMedium" tone="onDarkVariant">{t.detail.family(species.traits.family)}</Text>
+        {species.taxonomicStatus === 'provisional' ? (
+          <Text variant="bodySmall" tone="onDarkVariant">{t.status.provisionalNote}</Text>
+        ) : null}
+
+        {/* Su lugar en la guía personal: descubierta (check lima) o por descubrir (candado). */}
+        <View style={[styles.guide, { borderColor: color.darkOutline }]}
+          accessible accessibilityLabel={entry ? `${t.detail.inGuideTitle}. ${t.detail.inGuideBody(entry.addedAt)}` : `${t.detail.notInGuideTitle}. ${t.detail.notInGuideBody}`}>
+          <View style={[styles.guideIcon, { backgroundColor: entry ? color.lime : color.darkSurfaceHigh }]}>
+            {entry ? <CheckIcon color={color.onLime} size={26} /> : <LockIcon color={color.onDarkVariant} size={22} />}
+          </View>
+          <View style={styles.grow}>
+            <Text variant="titleMedium" tone="onDark">{entry ? t.detail.inGuideTitle : t.detail.notInGuideTitle}</Text>
+            <Text variant="bodySmall" tone="onDarkVariant">
+              {entry ? t.detail.inGuideBody(entry.addedAt) : t.detail.notInGuideBody}
+            </Text>
+          </View>
+          {entry ? null : <Tag label={t.pending.tag} tone="demo" />}
+        </View>
+      </View>
     </View>
   );
 }
 
-/** Cuerpo de la ficha: identidad, lugar en la guía, rasgos, crédito de la foto y procedencia. */
+/** Cuerpo de la ficha sobre la hoja clara: rasgos, crédito de la foto y procedencia. */
 export function SpeciesDetail({ species }: { species: Species }) {
   const { color } = useTheme();
   const { traits, provenance } = species;
   const photo = getReferencePhoto(species.id);
-  const entry = useGuideEntry(species.id);
+  const [showProvenance, setShowProvenance] = useState(false);
 
-  const notes: [string, string, IconComponent][] = [
-    [t.detail.leaf, traits.leaf, LeafIcon],
-    [t.detail.bark, traits.bark, BarkIcon],
+  const notes: [string, string, IconComponent][] = species.group === 'fungus' ? [
+    [t.detail.fruitingBody, species.traits.fruitingBody, MushroomIcon],
+    [t.detail.substrate, species.traits.substrate, LayersIcon],
+    [t.detail.season, traits.habit, InfoIcon],
+    [t.detail.whereToLook, traits.whereToLook, PinIcon],
+  ] : [
+    [t.detail.leaf, species.traits.leaf, LeafIcon],
+    [t.detail.bark, species.traits.bark, BarkIcon],
     [t.detail.habit, traits.habit, SpeciesIcon],
     [t.detail.whereToLook, traits.whereToLook, PinIcon],
   ];
 
   return (
     <View style={styles.body}>
-      <View style={styles.identity}>
-        <Text variant="display" accessibilityRole="header">{species.commonName}</Text>
-        <Text variant="scientificLarge" tone="onSurfaceVariant">{species.scientificName}</Text>
-        <View style={styles.tags}>
-          <SpeciesTags species={species} />
-        </View>
-        <Text variant="labelMedium" tone="onSurfaceVariant">{t.detail.family(traits.family)}</Text>
-        {species.taxonomicStatus === 'provisional' ? (
-          <Text variant="bodySmall" tone="onSurfaceVariant" style={styles.statusNote}>{t.status.provisionalNote}</Text>
-        ) : null}
-      </View>
-
-      {/* Su lugar en la guía personal: descubierta o por descubrir. */}
-      <View style={[styles.guide, { backgroundColor: entry ? color.dark : color.surface, borderColor: entry ? color.dark : color.outlineVariant }]}
-        accessible accessibilityLabel={entry ? `${t.detail.inGuideTitle}. ${t.detail.inGuideBody(entry.addedAt)}` : `${t.detail.notInGuideTitle}. ${t.detail.notInGuideBody}`}>
-        <View style={[styles.guideIcon, { backgroundColor: entry ? color.lime : color.surfaceMuted }]}>
-          {entry ? <CheckIcon color={color.onLime} size={22} /> : <LockIcon color={color.outline} size={20} />}
-        </View>
-        <View style={styles.guideText}>
-          <Text variant="titleSmall" tone={entry ? 'onDark' : 'onSurface'}>{entry ? t.detail.inGuideTitle : t.detail.notInGuideTitle}</Text>
-          <Text variant="bodySmall" tone={entry ? 'onDarkVariant' : 'onSurfaceVariant'}>
-            {entry ? t.detail.inGuideBody(entry.addedAt) : t.detail.notInGuideBody}
-          </Text>
-        </View>
-        {entry ? null : <Tag label={t.pending.tag} tone="demo" />}
-      </View>
-
       <View style={styles.section}>
-        <Text variant="titleLarge" accessibilityRole="header">{t.detail.traitsTitle}</Text>
+        <Text variant="headline" accessibilityRole="header">{t.detail.traitsTitle}</Text>
         <View style={styles.draft}>
           <InfoIcon color={color.onSurfaceVariant} size={16} />
           <Text variant="bodySmall" tone="onSurfaceVariant" style={styles.grow}>{t.detail.traitsDraft}</Text>
@@ -83,11 +163,11 @@ export function SpeciesDetail({ species }: { species: Species }) {
             <View key={label} accessible accessibilityLabel={`${label}. ${value}`}
               style={[styles.note, i > 0 && { borderTopWidth: StyleSheet.hairlineWidth, borderColor: color.outlineVariant }]}>
               <View style={[styles.noteIcon, { backgroundColor: color.limeSoft }]}>
-                <Icon color={color.onLimeSoft} size={16} />
+                <Icon color={color.onLimeSoft} size={22} />
               </View>
-              <View style={styles.grow}>
-                <Text variant="labelMedium" tone="onSurfaceVariant">{label}</Text>
-                <Text variant="bodyMedium">{value}</Text>
+              <View style={styles.noteText}>
+                <Text variant="titleSmall">{label}</Text>
+                <Text variant="bodyMedium" tone="onSurfaceVariant">{value}</Text>
               </View>
             </View>
           ))}
@@ -103,39 +183,64 @@ export function SpeciesDetail({ species }: { species: Species }) {
         </View>
       ) : null}
 
+      {/* Procedencia del dato: discreta, al final, se despliega a pedido. */}
       <View style={styles.section}>
-        <Text variant="titleLarge" accessibilityRole="header">{t.detail.provenanceTitle}</Text>
-        <View style={[styles.card, styles.cardPad, { backgroundColor: color.surface, borderColor: color.outlineVariant }]}>
-          <DataRows rows={[
-            [t.detail.source, provenance.sourceName],
-            [t.detail.version, provenance.version],
-            [t.detail.license, provenance.license],
-            [t.detail.accessed, formatDate(provenance.accessedAt)],
-            [t.detail.attribution, provenance.attribution],
-            [t.detail.validation, `${provenance.status === 'validated' ? t.detail.validated : t.detail.pendingValidation} · ${provenance.validationOwner}`],
-          ]} />
-        </View>
+        <TextButton label={showProvenance ? t.detail.hideProvenance : t.detail.showProvenance} tone="onSurfaceVariant"
+          expanded={showProvenance} onPress={() => setShowProvenance((v) => !v)}
+          trailing={<View style={{ transform: [{ rotate: showProvenance ? '-90deg' : '90deg' }] }}>
+            <ChevronIcon color={color.onSurfaceVariant} size={14} />
+          </View>} />
+        {showProvenance ? (
+          <View style={[styles.card, styles.cardPad, { backgroundColor: color.surface, borderColor: color.outlineVariant }]}>
+            <DataRows rows={[
+              [t.detail.source, provenance.sourceName],
+              [t.detail.version, provenance.version],
+              [t.detail.license, provenance.license],
+              [t.detail.accessed, formatDate(provenance.accessedAt)],
+              [t.detail.attribution, provenance.attribution],
+              [t.detail.validation, `${provenance.status === 'validated' ? t.detail.validated : t.detail.pendingValidation} · ${provenance.validationOwner}`],
+            ]} />
+          </View>
+        ) : null}
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  hero: { width: '100%', aspectRatio: 1 / 0.92, maxHeight: 520, overflow: 'hidden' },
+  // Sin recorte: al estirarse, la foto sube por encima de su caja; la identidad opaca tapa lo de abajo.
+  // Sin zIndex: el orden de dibujo (foto → identidad → hoja clara) ya apila bien, y un zIndex aquí
+  // sube la identidad sobre la hoja en Android y esconde sus esquinas redondeadas.
+  hero: { width: '100%', aspectRatio: 1 / 0.92, maxHeight: 520 },
+  photo: { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, transformOrigin: 'top' },
+  // Sobre la foto, por encima del borde redondeado de la identidad que la monta.
+  model3d: {
+    position: 'absolute', right: space.lg, bottom: radius.xl + space.md, flexDirection: 'row', alignItems: 'center',
+    gap: space.sm, height: 36, paddingHorizontal: space.md, borderRadius: radius.full, borderWidth: 1, overflow: 'hidden',
+  },
   heroEmpty: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   heroSilhouette: { width: '50%', aspectRatio: 1 },
-  body: { padding: space.lg, gap: space.xl },
-  identity: { gap: space.xs },
-  tags: { marginVertical: space.xs },
-  statusNote: { marginTop: space.xs },
-  guide: { flexDirection: 'row', alignItems: 'center', gap: space.md, padding: space.md, borderRadius: radius.lg, borderWidth: 1 },
-  guideIcon: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  guideText: { flex: 1, gap: 2 },
-  section: { gap: space.sm },
+  // Monta la foto con radio 28, como la hoja clara monta la identidad; abajo deja el radio de la hoja
+  // más el mismo aire que arriba (24).
+  identity: {
+    marginTop: -radius.xl, borderTopLeftRadius: radius.xl, borderTopRightRadius: radius.xl,
+    paddingHorizontal: space.lg, paddingTop: space.xl, paddingBottom: radius.xl + space.xl, gap: space.xs,
+  },
+  // Figtree 800 apretado: el peso de títulos y cifras del sistema, a escala de cabecera.
+  nameBox: { transformOrigin: 'left' },
+  name: { fontFamily: type.number.fontFamily, fontSize: 44, lineHeight: 46, letterSpacing: -1.2 },
+  tags: { marginTop: space.sm, marginBottom: space.xs },
+  guide: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginTop: space.lg, paddingTop: space.lg, borderTopWidth: StyleSheet.hairlineWidth },
+  guideIcon: { width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
+  // Más aire sobre el primer título que entre secciones: la curva de las esquinas se come parte del
+  // margen, y la hoja tiene que leerse como un comienzo, no como continuación del bloque oscuro.
+  body: { padding: space.lg, paddingTop: space.xxl + space.lg, gap: space.xxl },
+  section: { gap: space.md },
   draft: { flexDirection: 'row', gap: space.sm, alignItems: 'center' },
   grow: { flex: 1 },
   card: { borderRadius: radius.lg, borderWidth: 1, overflow: 'hidden' },
   cardPad: { paddingHorizontal: space.md, paddingVertical: space.xs },
-  note: { flexDirection: 'row', gap: space.md, padding: space.md, alignItems: 'flex-start' },
-  noteIcon: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center', marginTop: 2 },
+  note: { flexDirection: 'row', gap: space.lg, padding: space.lg, alignItems: 'flex-start' },
+  noteIcon: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  noteText: { flex: 1, gap: space.xxs, paddingTop: space.xxs },
 });

@@ -9,6 +9,9 @@ export type BadgeId = 'first-species' | 'half-guide' | 'full-guide' | 'all-notho
 
 export type Badge = { id: BadgeId; earned: boolean; /** Avance hacia la meta, para mostrar «3 de 4». */ progress: number; goal: number };
 
+/** Meta de la insignia de distancia, en km. */
+export const DISTANCE_GOAL_KM = 10;
+
 type Inputs = { catalog: Species[]; entries: GuideEntry[]; walks: Walk[] };
 
 /** Kilómetros de todos los recorridos. */
@@ -32,6 +35,19 @@ export function computeBadges({ catalog, entries, walks }: Inputs): Badge[] {
     badge('full-guide', collected, catalog.length),
     badge('all-nothofagus', nothofagusCollected, nothofagus.length),
     badge('first-walk', walks.length, 1),
-    badge('ten-km', Math.floor(totalKm(walks) * 10) / 10, 10),
+    badge('ten-km', Math.floor(totalKm(walks) * 10) / 10, DISTANCE_GOAL_KM),
   ];
+}
+
+/**
+ * La insignia sin ganar más cercana a completarse (mayor avance relativo); en empate, la primera
+ * del orden fijo. `undefined` si ya están todas o si ninguna tiene meta.
+ */
+export function nextBadge(badges: Badge[]): Badge | undefined {
+  let best: Badge | undefined;
+  for (const badge of badges) {
+    if (badge.earned || badge.goal <= 0) continue;
+    if (!best || badge.progress / badge.goal > best.progress / best.goal) best = badge;
+  }
+  return best;
 }

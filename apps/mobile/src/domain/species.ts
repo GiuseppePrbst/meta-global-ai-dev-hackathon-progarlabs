@@ -11,20 +11,34 @@ export type Provenance = {
   status: 'pending_validation' | 'validated';
 };
 
-/** Rasgos descriptivos de la ficha. En el mock son texto de demostración sin validar. */
-export type SpeciesTraits = {
+/** Grupo de la especie en el catálogo: decide qué rasgos tiene su ficha. */
+export type SpeciesGroup = 'tree' | 'fungus';
+
+/** Rasgos comunes de la ficha. En el mock son texto de demostración sin validar. */
+type BaseTraits = {
   family: string;
-  leaf: string;
-  bark: string;
+  /** Resumen corto: porte del árbol, o temporada y uso del hongo. Lo muestra la tarjeta del catálogo. */
   habit: string;
   whereToLook: string;
 };
 
-export type Species = {
+export type TreeTraits = BaseTraits & { leaf: string; bark: string };
+
+export type FungusTraits = BaseTraits & {
+  /** Seta o cuerpo fructífero: forma, color, superficie. */
+  fruitingBody: string;
+  /** Dónde y sobre qué crece: suelo, madera, ramas vivas, asociaciones. */
+  substrate: string;
+};
+
+type SpeciesBase = {
   id: string;
   scientificName: string;
   commonName: string;
   taxonomicStatus: TaxonomicStatus;
   provenance: Provenance;
-  traits: SpeciesTraits;
 };
+
+export type Species =
+  | (SpeciesBase & { group: 'tree'; traits: TreeTraits })
+  | (SpeciesBase & { group: 'fungus'; traits: FungusTraits });

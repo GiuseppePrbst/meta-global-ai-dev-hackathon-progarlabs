@@ -1,6 +1,6 @@
-import type { Provenance, Species, SpeciesTraits } from '@/domain/species';
+import type { FungusTraits, Provenance, Species, TreeTraits } from '@/domain/species';
 
-// Mock local: los nombres y la procedencia copian services/api/src/bosque_api/resources/species.json.
+// Mock local. Árboles: los nombres y la procedencia copian services/api/src/bosque_api/resources/species.json.
 // Los rasgos son texto de demostración sin validación botánica; se reemplazan cuando la API los entregue.
 const bootstrapProvenance: Provenance = {
   sourceName: 'ProGarLabs, lista candidata del prompt de inicialización',
@@ -13,7 +13,7 @@ const bootstrapProvenance: Provenance = {
   status: 'pending_validation',
 };
 
-const entries: [id: string, scientificName: string, commonName: string, traits: SpeciesTraits][] = [
+const trees: [id: string, scientificName: string, commonName: string, traits: TreeTraits][] = [
   [
     'nothofagus-dombeyi',
     'Nothofagus dombeyi',
@@ -112,11 +112,65 @@ const entries: [id: string, scientificName: string, commonName: string, traits: 
   ],
 ];
 
-export const mockSpecies: Species[] = entries.map(([id, scientificName, commonName, traits]) => ({
-  id,
-  scientificName,
-  commonName,
-  taxonomicStatus: 'provisional',
-  provenance: bootstrapProvenance,
-  traits,
-}));
+// Hongos: solo existen en este mock móvil, todavía no en la API (services/api). Nombres aceptados y
+// familia según GBIF Backbone Taxonomy; rasgos resumidos de Wikipedia en español. Sin validación micológica.
+const fungusProvenance = (gbifId: number): Provenance => ({
+  sourceName: 'GBIF Backbone Taxonomy (nombre y familia); Wikipedia en español (rasgos)',
+  sourceUrl: `https://www.gbif.org/species/${gbifId}`,
+  accessedAt: '2026-11-02',
+  version: 'mobile-fungi-1',
+  license: 'CC BY 4.0 (GBIF) · CC BY-SA 4.0 (Wikipedia)',
+  attribution: 'GBIF Secretariat, GBIF Backbone Taxonomy; colaboradores de Wikipedia',
+  validationOwner: 'Sin responsable asignado (validación micológica pendiente)',
+  status: 'pending_validation',
+});
+
+const fungi: [id: string, scientificName: string, commonName: string, gbifId: number, traits: FungusTraits][] = [
+  [
+    'cyttaria-espinosae',
+    'Cyttaria espinosae',
+    'Digüeñe',
+    2580236,
+    {
+      family: 'Cyttariaceae',
+      fruitingBody: 'Globoso, blanco a anaranjado y pegajoso; al madurar se abren hoyuelos anaranjados que le dan aspecto de panal.',
+      substrate: 'Parásito de ramas de Nothofagus, sobre todo del roble (N. obliqua): brota de las agallas que forma en ellas.',
+      habit: 'Hongo comestible; brota en primavera y a comienzos del verano.',
+      whereToLook: 'Bosques con roble del centro-sur de Chile; busca ramas con agallas.',
+    },
+  ],
+  [
+    'butyriboletus-loyo',
+    'Butyriboletus loyo',
+    'Loyo',
+    7919198,
+    {
+      family: 'Boletaceae',
+      fruitingBody: 'Sombrero rojo oscuro de 6 a 35 cm; debajo, poros amarillos que se vuelven azules al magullarse. Pie amarillo con la base rojiza.',
+      substrate: 'Crece en el suelo, solo o en grupos pequeños, asociado a las raíces de Nothofagus (micorriza).',
+      habit: 'Hongo comestible y escaso; fructifica desde fines del verano hasta el otoño.',
+      whereToLook: 'Suelo de bosques nativos del sur de Chile, entre la hojarasca.',
+    },
+  ],
+];
+
+export const mockSpecies: Species[] = [
+  ...trees.map(([id, scientificName, commonName, traits]): Species => ({
+    id,
+    scientificName,
+    commonName,
+    taxonomicStatus: 'provisional',
+    provenance: bootstrapProvenance,
+    group: 'tree',
+    traits,
+  })),
+  ...fungi.map(([id, scientificName, commonName, gbifId, traits]): Species => ({
+    id,
+    scientificName,
+    commonName,
+    taxonomicStatus: 'provisional',
+    provenance: fungusProvenance(gbifId),
+    group: 'fungus',
+    traits,
+  })),
+];

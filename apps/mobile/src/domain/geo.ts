@@ -37,3 +37,18 @@ export function pathBounds(points: GeoPoint[]): GeoBounds | null {
   }
   return [[west, south], [east, north]];
 }
+
+/** Si el punto cae dentro del anillo (regla par-impar, en grados: vale para áreas pequeñas). */
+export function pointInPolygon(point: GeoPoint, ring: GeoPoint[]): boolean {
+  const { longitude: x, latitude: y } = point;
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const a = ring[i];
+    const b = ring[j];
+    if ((a.latitude > y) !== (b.latitude > y)
+      && x < ((b.longitude - a.longitude) * (y - a.latitude)) / (b.latitude - a.latitude) + a.longitude) {
+      inside = !inside;
+    }
+  }
+  return inside;
+}

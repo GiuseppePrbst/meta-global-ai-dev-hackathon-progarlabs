@@ -6,11 +6,13 @@ import {
   Figtree_700Bold,
   Figtree_800ExtraBold,
 } from '@expo-google-fonts/figtree';
+import { useSyncExternalStore } from 'react';
 import type { TextStyle, ViewStyle } from 'react-native';
 
 // Guía de naturaleza contemporánea: bosque casi negro para el mapa, la navegación y las cifras;
 // fondo claro casi blanco para leer; lima como única señal de lo activo. Ver DESIGN.md.
-const palette = {
+/** Paleta clara; se exporta para lo que no sigue el tema, como el splash, que imita al nativo. */
+export const lightPalette = {
   // Claro: catálogo, diario y ficha.
   background: '#F6F7F2',
   surface: '#FFFFFF',
@@ -52,21 +54,95 @@ const palette = {
   demo: '#E8E3F7',
   onDemo: '#4A3A8A',
 
+  // Wilo, la mascota: su morado (muestreado del arte) solo en su marca, el splash y el nombre WiloQuest.
+  wilo: '#8E4EC0',
+  wiloDeep: '#61239C',
+
+  // Metales de los niveles del perfil: solo en sus medallas (degradado claro → profundo), siempre
+  // con el nombre del nivel escrito.
+  bronze: '#E2A36C',
+  bronzeDeep: '#9A5527',
+  silver: '#EEF1EE',
+  silverDeep: '#97A39B',
+  gold: '#F6D77C',
+  goldDeep: '#C08A1E',
+  onMetal: '#2A1C0C',
+  /** Fondo de la miniatura de un logro en el historial. */
+  goldSoft: '#FBEBC3',
+
   ripple: 'rgba(18, 26, 20, 0.10)',
   onDarkRipple: 'rgba(242, 245, 236, 0.16)',
   shadow: 'rgba(17, 26, 20, 0.18)',
 };
 
-export type Palette = typeof palette;
+export type Palette = typeof lightPalette;
 export type ColorToken = keyof Palette;
-export type Theme = { scheme: 'light' | 'dark'; color: Palette };
+export type ColorScheme = 'light' | 'dark';
+export type Theme = { scheme: ColorScheme; color: Palette };
 
-// La app tiene un solo tema: el contraste claro/oscuro es parte del diseño de cada pantalla. El hook
-// deja la puerta abierta a un tema dinámico sin tocar los componentes; devuelve una referencia estable.
-const theme: Theme = { scheme: 'light', color: palette };
+// Modo oscuro: las superficies de lectura pasan a bosque nocturno y los tokens `dark*` (mapa, barra de
+// navegación, cifras) se aclaran para destacar sobre él; el lima y los metales no cambian. Los pares
+// suaves (limeSoft, provisional, demo) se invierten: fondo profundo y texto claro, para que sigan
+// leyéndose también como texto suelto.
+const darkPalette: Palette = {
+  ...lightPalette,
+  background: '#0B120D',
+  surface: '#162019',
+  surfaceMuted: '#212C24',
+  onSurface: '#ECF0E6',
+  onSurfaceVariant: '#A8B5A9',
+  outline: '#7F8C81',
+  outlineVariant: '#2A362D',
 
+  // Las piezas oscuras (tarjeta de nivel, cifras, medallas) se elevan sobre el fondo nocturno; con
+  // sus tonos claros quedarían casi del mismo color que la pantalla.
+  dark: '#223127',
+  darkSurface: '#2B3B30',
+  darkSurfaceHigh: '#37493C',
+  darkOutline: 'rgba(242, 245, 236, 0.18)',
+  darkScrim: 'rgba(34, 49, 39, 0.86)',
+
+  limeSoft: '#2D3B14',
+  onLimeSoft: '#D2EC8A',
+
+  provisional: '#3A2C10',
+  onProvisional: '#F2C77A',
+  demo: '#29233F',
+  onDemo: '#CDC2F4',
+
+  goldSoft: '#3A3016',
+
+  ripple: 'rgba(236, 240, 230, 0.12)',
+  shadow: 'rgba(0, 0, 0, 0.55)',
+};
+
+const themes: Record<ColorScheme, Theme> = {
+  light: { scheme: 'light', color: lightPalette },
+  dark: { scheme: 'dark', color: darkPalette },
+};
+
+// Esquema activo como estado de módulo: los componentes leen el tema con `useTheme` y se re-renderizan al
+// cambiarlo. La preferencia de la persona (y su persistencia) vive fuera de `ui/`, que solo la aplica.
+let scheme: ColorScheme = 'light';
+const listeners = new Set<() => void>();
+const subscribe = (listener: () => void) => {
+  listeners.add(listener);
+  return () => {
+    listeners.delete(listener);
+  };
+};
+const getTheme = () => themes[scheme];
+
+/** Cambia el esquema de color de toda la app. */
+export function setColorScheme(next: ColorScheme) {
+  if (next === scheme) return;
+  scheme = next;
+  listeners.forEach((listener) => listener());
+}
+
+/** Tema activo; la referencia es estable mientras no cambie el esquema. */
 export function useTheme(): Theme {
-  return theme;
+  return useSyncExternalStore(subscribe, getTheme, getTheme);
 }
 
 export const fonts = {
@@ -87,9 +163,9 @@ const italic = 'Figtree_400Regular_Italic';
 
 // Escala tipográfica Material sobre Figtree; el peso va en la familia, no en fontWeight.
 export const type = {
-  display: { fontFamily: heavy, fontSize: 32, lineHeight: 38, letterSpacing: -0.6 },
-  headline: { fontFamily: heavy, fontSize: 24, lineHeight: 30, letterSpacing: -0.3 },
-  titleLarge: { fontFamily: bold, fontSize: 20, lineHeight: 26, letterSpacing: -0.2 },
+  display: { fontFamily: semibold, fontSize: 32, lineHeight: 38, letterSpacing: -0.6 },
+  headline: { fontFamily: semibold, fontSize: 24, lineHeight: 30, letterSpacing: -0.3 },
+  titleLarge: { fontFamily: medium, fontSize: 20, lineHeight: 26, letterSpacing: -0.2 },
   titleMedium: { fontFamily: bold, fontSize: 17, lineHeight: 22, letterSpacing: -0.1 },
   titleSmall: { fontFamily: bold, fontSize: 15, lineHeight: 20 },
   bodyLarge: { fontFamily: regular, fontSize: 16, lineHeight: 24 },

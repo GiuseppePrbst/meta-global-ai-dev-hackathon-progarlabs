@@ -40,7 +40,7 @@ Alineado con [el roadmap del proyecto](../../../docs/ROADMAP.md). Reservar el ú
 
 1. **API alcanzable desde el dispositivo** (BV-09): la demo no puede usar `localhost`. Exponerla exige autenticación, HTTPS, límites y política de ubicaciones ([SECURITY.md](../../../docs/SECURITY.md)).
 2. **Exposición de ubicaciones**: el Atlas muestra observaciones de todas las personas. La generalización de ubicaciones sensibles debe decidirse en el backend antes de exponer la API.
-3. **Fuentes de elevación e imagen satelital**: ninguna está registrada en [DATASET_LICENSES.md](../../../docs/DATASET_LICENSES.md). Antes de usarlas se requiere (a) registrar licencia, atribución y condiciones de caché, y (b) confirmación escrita de Giuseppe de que el *streaming* de teselas satelitales licenciadas no cae bajo la regla RESTRICTED de «imágenes aéreas de terceros» de AGENTS.md. Mientras tanto, mapa base vectorial OSM (proveedor también por registrar).
+3. **Fuentes de elevación e imagen satelital**: antes de usarlas se requiere (a) registrar licencia, atribución y condiciones de caché, y (b) confirmación escrita de Giuseppe de que el *streaming* de teselas satelitales licenciadas no cae bajo la regla RESTRICTED de «imágenes aéreas de terceros» de AGENTS.md. Imagen satelital: EOxCloudless 2025 registrada en [DATASET_LICENSES.md](../../../docs/DATASET_LICENSES.md) (a) e integrada en el Atlas como mapa base por defecto para la demo no comercial (02-11-2026); (b) **sigue pendiente**. Elevación: sin fuente registrada.
 4. **Capa de altura de copa**: depende del pipeline CHMv2 y de la propuesta de teselas DSM (P-01).
 5. **Uso real de Meta**: la app muestra lo que `/identify` devuelva; el mock nunca se presenta como inferencia.
 

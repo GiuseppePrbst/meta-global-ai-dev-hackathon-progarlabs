@@ -1,19 +1,25 @@
 import { router } from 'expo-router';
 import { useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
+import Animated, { useReducedMotion } from 'react-native-reanimated';
 
-import { demoTrail } from '@/features/atlas/demo-trail';
+import { getDemoTrail } from '@/features/atlas/demo-trail';
 import { applyFilter, familiesOf, type SpeciesFilter } from '@/features/catalog/catalog';
 import { useSpeciesCatalog } from '@/features/catalog/use-species';
 import { collectedCount } from '@/features/guide/guide';
 import { useGuide } from '@/features/guide/use-guide';
-import { computeBadges, totalKm } from '@/features/journal/badges';
-import { BadgeTile, GuideTile, StatsCard, WalkRow } from '@/features/journal/journal-parts';
+import { BadgeMedalTile, NextBadgeCard } from '@/features/journal/badge-medals';
+import { DiscoveryGoal, GuideProgress, subtleIn } from '@/features/journal/discoveries';
+import { computeBadges, nextBadge, totalKm } from '@/features/journal/badges';
+import { GuideTile, StatsCard } from '@/features/journal/journal-parts';
+import { TrailJourney, WalkStamp } from '@/features/journal/trail-stamps';
 import { useWalks } from '@/features/journal/use-walks';
+import { useFocusKey } from '@/features/focus-key';
 import { t } from '@/i18n/es-CL';
 import {
-  EmptyState, FilterChip, Grid, LoadingState, type PillTab, PillTabs, ProgressBar, ScreenHeader, space, StatusBanner, Text, TrailIcon,
+  EmptyState, FilterChip, Grid, LoadingState, type PillTab, PillTabs, ScreenHeader, space, StatusBanner, Text, TrailIcon,
   useTheme,
+  NAVIGATION_BAR_OVERLAP,
 } from '@/ui';
 
 type Section = 'discoveries' | 'trails' | 'badges';
@@ -24,13 +30,19 @@ const sections: PillTab<Section>[] = [
   { key: 'badges', label: t.journal.tabBadges },
 ];
 
-export default function JournalScreen() {
+/** Se remonta al volver a la pestaña, para repetir la entrada animada. */
+export default function JournalTab() {
+  return <JournalScreen key={useFocusKey()} />;
+}
+
+function JournalScreen() {
   const { color } = useTheme();
   const { data: catalog } = useSpeciesCatalog();
   const { data: entries } = useGuide();
   const { data: walks } = useWalks();
   const [section, setSection] = useState<Section>('discoveries');
   const [family, setFamily] = useState<string | null>(null);
+  const reducedMotion = useReducedMotion();
 
   const badges = useMemo(
     () => (catalog && entries && walks ? computeBadges({ catalog, entries, walks }) : []),
@@ -50,7 +62,6 @@ export default function JournalScreen() {
   const added = new Map(entries.map((entry) => [entry.speciesId, entry]));
   const filter: SpeciesFilter = family ? { kind: 'family', family } : { kind: 'all' };
   const shown = applyFilter(catalog, filter);
-  const share = catalog.length ? Math.round((collected / catalog.length) * 100) : 0;
 
   return (
     <View style={[styles.screen, { backgroundColor: color.background }]}>
@@ -65,15 +76,8 @@ export default function JournalScreen() {
         {section === 'discoveries' ? (
           <>
             <View style={[styles.padded, styles.block]}>
-              <View style={styles.progressHead}>
-                <Text variant="titleLarge" accessibilityRole="header">{t.journal.guideTitle}</Text>
-                <Text variant="labelMedium" tone="onSurfaceVariant">{t.journal.guideProgress(collected, catalog.length)}</Text>
-              </View>
-              <View style={styles.progressRow}>
-                <ProgressBar value={collected} max={catalog.length} label={t.journal.guideProgressA11y(collected, catalog.length)}
-                  style={styles.grow} />
-                <Text variant="labelLarge" accessibilityElementsHidden importantForAccessibility="no">{`${share}%`}</Text>
-              </View>
+              <GuideProgress collected={collected} total={catalog.length} />
+              <View style={styles.journey}><DiscoveryGoal badges={badges} /></View>
             </View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chips}
               accessibilityLabel={t.journal.filterLabel}>
@@ -85,7 +89,11 @@ export default function JournalScreen() {
             <View style={styles.padded}>
               {shown.length ? (
                 <Grid columns={3}>
-                  {shown.map((species) => <GuideTile key={species.id} species={species} entry={added.get(species.id)} />)}
+                  {shown.map((species, i) => (
+                    <Animated.View key={species.id} entering={reducedMotion ? undefined : subtleIn(i)}>
+                      <GuideTile species={species} entry={added.get(species.id)} />
+                    </Animated.View>
+                  ))}
                 </Grid>
               ) : (
                 <Text variant="bodyMedium" tone="onSurfaceVariant">{t.journal.emptyFilter}</Text>
@@ -100,7 +108,11 @@ export default function JournalScreen() {
             <Text variant="bodySmall" tone="onSurfaceVariant">{t.journal.trailsBody}</Text>
             {walks.length ? (
               <View style={styles.list}>
-                {walks.toReversed().map((walk, i) => <WalkRow key={`${walk.completedAt}-${i}`} walk={walk} name={demoTrail.name} />)}
+                <TrailJourney km={totalKm(walks)} />
+                {/* La más reciente primero; el número de salida sigue el orden en que se hicieron. */}
+                {walks.toReversed().map((walk, i) => (
+                  <WalkStamp key={`${walk.completedAt}-${i}`} walk={walk} trail={getDemoTrail(walk.trailId)} outing={walks.length - i} index={i} />
+                ))}
               </View>
             ) : (
               <EmptyState icon={TrailIcon} title={t.journal.trailsEmptyTitle} body={t.journal.trailsEmptyBody}
@@ -114,8 +126,9 @@ export default function JournalScreen() {
             <Text variant="titleLarge" accessibilityRole="header">{t.journal.badgesTitle}</Text>
             <Text variant="bodySmall" tone="onSurfaceVariant">{t.journal.badgesBody}</Text>
             <View style={styles.list}>
+              <NextBadgeCard next={nextBadge(badges)} />
               <Grid columns={2}>
-                {badges.map((badge) => <BadgeTile key={badge.id} badge={badge} />)}
+                {badges.map((badge, i) => <BadgeMedalTile key={badge.id} badge={badge} index={i} />)}
               </Grid>
             </View>
           </View>
@@ -131,12 +144,10 @@ export default function JournalScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1 },
-  content: { paddingBottom: space.xl, gap: space.lg },
+  content: { paddingBottom: space.xl + NAVIGATION_BAR_OVERLAP, gap: space.lg },
   padded: { paddingHorizontal: space.lg },
   block: { gap: space.sm },
-  progressHead: { flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between', gap: space.md },
-  progressRow: { flexDirection: 'row', alignItems: 'center', gap: space.md },
-  grow: { flex: 1 },
+  journey: { marginTop: space.sm },
   chips: { gap: space.sm, paddingHorizontal: space.lg },
   list: { gap: space.sm, marginTop: space.xs },
 });

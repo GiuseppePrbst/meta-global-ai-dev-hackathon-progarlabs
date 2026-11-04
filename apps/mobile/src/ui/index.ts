@@ -7,6 +7,7 @@ export * from '@/ui/tokens/motion';
 
 export * from '@/ui/components/button';
 export * from '@/ui/components/chip';
+export * from '@/ui/components/cover-image';
 export * from '@/ui/components/data-rows';
 export * from '@/ui/components/empty-state';
 export * from '@/ui/components/grid';

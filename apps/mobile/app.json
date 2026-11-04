@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Bosque Vivo",
+    "name": "WiloQuest",
     "slug": "bosque-vivo",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -28,9 +28,17 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "backgroundColor": "#F6F7F2",
+          "image": "./assets/images/splash-wilo.png",
+          "imageWidth": 200
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "WiloQuest usa la cámara para fotografiar hojas y corteza al identificar árboles.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
         }
       ]
     ],
