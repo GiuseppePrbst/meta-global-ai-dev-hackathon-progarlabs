@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 
-import { distanceKm, pathBounds, pathLengthKm } from '@/domain/geo';
+import { distanceKm, pathBounds, pathLengthKm, pointInPolygon } from '@/domain/geo';
 
 describe('distanceKm', () => {
   it('es cero entre un punto y sí mismo', () => {
@@ -37,5 +37,18 @@ describe('pathBounds', () => {
       { longitude: -72.3, latitude: -40.6 },
       { longitude: -72.2, latitude: -40.8 },
     ])).toEqual([[-72.3, -40.8], [-72.1, -40.6]]);
+  });
+});
+
+describe('pointInPolygon', () => {
+  const square = [
+    { longitude: -72, latitude: -40 }, { longitude: -71, latitude: -40 },
+    { longitude: -71, latitude: -41 }, { longitude: -72, latitude: -41 },
+  ];
+
+  it('distingue dentro de fuera', () => {
+    expect(pointInPolygon({ longitude: -71.5, latitude: -40.5 }, square)).toBe(true);
+    expect(pointInPolygon({ longitude: -70.5, latitude: -40.5 }, square)).toBe(false);
+    expect(pointInPolygon({ longitude: -71.5, latitude: -39.5 }, square)).toBe(false);
   });
 });

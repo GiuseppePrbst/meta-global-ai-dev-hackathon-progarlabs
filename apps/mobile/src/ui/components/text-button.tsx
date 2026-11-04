@@ -12,13 +12,16 @@ type TextButtonProps = {
   trailing?: React.ReactNode;
   tone?: ColorToken;
   style?: StyleProp<ViewStyle>;
+  /** Si controla un contenido desplegable, su estado para lectores de pantalla. */
+  expanded?: boolean;
 };
 
 /** Acción de texto subrayada, sin relleno, con área de toque de 48 dp. */
-export function TextButton({ label, onPress, role = 'button', trailing, tone = 'onSurface', style }: TextButtonProps) {
+export function TextButton({ label, onPress, role = 'button', trailing, tone = 'onSurface', style, expanded }: TextButtonProps) {
   const { color } = useTheme();
   return (
-    <Pressable onPress={onPress} accessibilityRole={role} android_ripple={{ color: color.ripple }}
+    <Pressable onPress={onPress} accessibilityRole={role}
+      accessibilityState={expanded === undefined ? undefined : { expanded }} android_ripple={{ color: color.ripple }}
       style={[styles.button, style]}>
       <Text variant="labelLarge" tone={tone} style={styles.label}>{label}</Text>
       {trailing}

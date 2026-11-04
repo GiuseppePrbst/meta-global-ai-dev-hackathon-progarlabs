@@ -92,11 +92,40 @@ export function SpeciesIcon({ fill = 'none', ...props }: IconProps) {
   );
 }
 
+/** Seta: sombrero y pie. */
+export function MushroomIcon({ fill = 'none', ...props }: IconProps) {
+  return (
+    <Icon {...props}>
+      <Path d="M3.5 12a8.5 8 0 0117 0H3.5z" fill={fill} />
+      <Path d="M9.5 12v6.5a2.5 2.5 0 005 0V12" />
+    </Icon>
+  );
+}
+
 export function JournalIcon({ fill = 'none', ...props }: IconProps) {
   return (
     <Icon {...props}>
       <Path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z" fill={fill} />
       <Path d="M12 6.5v13" />
+    </Icon>
+  );
+}
+
+export function ProfileIcon({ fill = 'none', ...props }: IconProps) {
+  return (
+    <Icon {...props}>
+      <Circle cx={12} cy={8} r={3.8} fill={fill} />
+      <Path d="M4.5 20c.8-3.8 3.8-6 7.5-6s6.7 2.2 7.5 6z" fill={fill} />
+    </Icon>
+  );
+}
+
+/** Ajustes: engranaje. */
+export function SettingsIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <Circle cx={12} cy={12} r={3} />
+      <Path d="M12 2.8l1.7 2.4 2.9-.6.6 2.9 2.4 1.7-1.3 2.8 1.3 2.8-2.4 1.7-.6 2.9-2.9-.6L12 21.2l-1.7-2.4-2.9.6-.6-2.9-2.4-1.7L5.7 12 4.4 9.2l2.4-1.7.6-2.9 2.9.6z" />
     </Icon>
   );
 }
@@ -110,6 +139,17 @@ export function ListIcon(props: IconProps) {
       <Circle cx={4.5} cy={6.5} r={0.6} />
       <Circle cx={4.5} cy={12} r={0.6} />
       <Circle cx={4.5} cy={17.5} r={0.6} />
+    </Icon>
+  );
+}
+
+/** Capas apiladas: alterna el mapa base. */
+export function LayersIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <Path d="M12 3.5L2.5 8.25 12 13l9.5-4.75L12 3.5z" />
+      <Path d="M2.5 12.25L12 17l9.5-4.75" />
+      <Path d="M2.5 16.25L12 21l9.5-4.75" />
     </Icon>
   );
 }
@@ -157,6 +197,15 @@ export function CameraIcon(props: IconProps) {
     <Icon {...props}>
       <Path d="M4 8.5A1.5 1.5 0 015.5 7h2l1.5-2.5h6L16.5 7h2A1.5 1.5 0 0120 8.5v9a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 014 17.5z" />
       <Circle cx={12} cy={13} r={3.5} />
+    </Icon>
+  );
+}
+
+export function FlipCameraIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <Path d="M4.5 11a7.5 7.5 0 0113.3-4.2M19.5 13a7.5 7.5 0 01-13.3 4.2" />
+      <Path d="M18.5 3.5v3.8h-3.8M5.5 20.5v-3.8h3.8" />
     </Icon>
   );
 }
@@ -232,10 +281,29 @@ export function CheckIcon(props: IconProps) {
   );
 }
 
+/** Modelo 3D: un cubo en perspectiva. */
+export function CubeIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <Path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" />
+      <Path d="M4 7.5l8 4.5 8-4.5M12 12v9" />
+    </Icon>
+  );
+}
+
 export function ExternalIcon(props: IconProps) {
   return (
     <Icon {...props}>
       <Path d="M14 4.5h5.5V10M19.5 4.5L11 13M17 14v4.5a1.5 1.5 0 01-1.5 1.5h-10A1.5 1.5 0 014 18.5v-10A1.5 1.5 0 015.5 7H10" />
+    </Icon>
+  );
+}
+
+export function MicIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <Rect x={9} y={3} width={6} height={11} rx={3} />
+      <Path d="M5.5 11a6.5 6.5 0 0013 0M12 17.5V21" />
     </Icon>
   );
 }

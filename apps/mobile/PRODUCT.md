@@ -34,7 +34,7 @@ Conecta individuo, bosque y territorio con procedencia visible. Frente a una eti
 ## Operating Context
 
 - Uso en exterior, con una mano, luz variable y red irregular. La app tolera desconexión (catálogo en caché con fecha, borradores locales con envío manual), pero no es offline-first; identificar exige red y lo dice antes de capturar.
-- Navegación principal de cuatro pestañas: **Identificar**, **Mapa** (el Atlas), **Especies**, **Diario** (guía de campo, recorridos e insignias; el Registro de borradores y observaciones vivirá aquí). «Acerca de» y Ajustes viven en un menú secundario.
+- Navegación principal de cinco pestañas: **Identificar**, **Mapa** (el Atlas), **Especies**, **Diario** (guía de campo, recorridos e insignias; el Registro de borradores y observaciones vivirá aquí) y **Perfil** (perfil local sin cuenta: nombre visible, avatar de iniciales, nivel e historial derivados del Diario). «Acerca de», privacidad y Ajustes viven en los ajustes del Perfil.
 - Confirmación de mayoría de edad una vez (revocable) y confirmación de derechos para cada fotografía ([privacidad](docs/PRIVACIDAD_Y_CONSENTIMIENTO.md)).
 - Piloto de referencia: Puyehue y su entorno, sin asociación oficial con el parque.
 - Distribución de la demo: APK *preview* con EAS en Android físico ([distribución](docs/DISTRIBUCION.md)).

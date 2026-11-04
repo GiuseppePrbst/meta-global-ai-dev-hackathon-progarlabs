@@ -1,4 +1,4 @@
-import { Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import type { Observation } from '@/domain/observation';
@@ -9,8 +9,9 @@ import { getReferencePhoto } from '@/features/catalog/reference-photos';
 import type { QueryResult } from '@/features/query-result';
 import { formatShortDate, t } from '@/i18n/es-CL';
 import {
-  BackIcon, ChevronIcon, EmptyState, IconButton, InfoIcon, LoadingState, MapIcon, radius, space, StatusBanner, Tag, Text,
+  BackIcon, ChevronIcon, CoverImage, EmptyState, IconButton, InfoIcon, LoadingState, MapIcon, radius, space, StatusBanner, Tag, Text,
   useTheme,
+  NAVIGATION_BAR_OVERLAP,
 } from '@/ui';
 
 type MapListProps = {
@@ -106,7 +107,7 @@ function ObservationRow({ observation, first, onPress }: { observation: Observat
   return (
     <Row first={first} onPress={located ? () => onPress(observation) : undefined}
       accessibilityLabel={t.observation.rowA11y(common, observation.createdAt, located)}
-      leading={photo ? <Image source={photo.source} style={styles.icon} /> : (
+      leading={photo ? <CoverImage source={photo.source} style={styles.icon} /> : (
         <View style={[styles.icon, { backgroundColor: color.darkSurfaceHigh }]}><InfoIcon color={color.onDarkVariant} size={22} /></View>
       )}>
       <Text variant="titleSmall" tone="onDark">{common}</Text>
@@ -123,7 +124,7 @@ function ObservationRow({ observation, first, onPress }: { observation: Observat
 const styles = StyleSheet.create({
   screen: { ...StyleSheet.absoluteFill },
   head: { flexDirection: 'row', alignItems: 'center', gap: space.md, paddingHorizontal: space.lg, paddingBottom: space.sm },
-  content: { padding: space.lg, paddingBottom: space.xxl, gap: space.xl },
+  content: { padding: space.lg, paddingBottom: space.xxl + NAVIGATION_BAR_OVERLAP, gap: space.xl },
   section: { gap: space.sm },
   group: { borderRadius: radius.lg, overflow: 'hidden', marginTop: space.xs },
   row: { flexDirection: 'row', alignItems: 'center', gap: space.md, paddingHorizontal: space.md, paddingVertical: space.md, minHeight: 64 },

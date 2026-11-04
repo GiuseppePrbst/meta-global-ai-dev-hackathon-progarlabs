@@ -1,17 +1,20 @@
-import { Image, type ImageSourcePropType, type LayoutChangeEvent, Linking, Pressable, ScrollView, StyleSheet, View } from 'react-native';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import {
+  type ImageSourcePropType, type LayoutChangeEvent, Pressable, ScrollView, StyleSheet, View,
+} from 'react-native';
+import { useEffect } from 'react';
+import Animated, {
+  Easing, FadeIn, FadeOut, type SharedValue, useAnimatedStyle, useReducedMotion, useSharedValue, withDelay, withRepeat, withTiming,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Svg, { Defs, LinearGradient, Path, Rect, Stop } from 'react-native-svg';
+import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 
-import { type GeoPoint, pathBounds } from '@/domain/geo';
-
-import { OSM_COPYRIGHT } from '@/features/atlas/basemap';
+import type { Basemap } from '@/features/atlas/basemap';
 import type { TrailStop, TrailStopKind } from '@/features/atlas/demo-trail';
 import { t } from '@/i18n/es-CL';
 import type { AtlasMapLayers } from '@/map/atlas-map';
 import {
-  BinocularsIcon, Button, CameraIcon, ChevronIcon, ChevronLeftIcon, CloseIcon, EmptyState, FilterChip, FlagIcon, IconButton,
-  type IconComponent, InfoIcon, LeafIcon, ListIcon, MapIcon, PinIcon, radius, space, StatusBanner, Tag,
+  BackIcon, BinocularsIcon, Button, CameraIcon, ChevronIcon, ChevronLeftIcon, CloseIcon, CoverImage, EmptyState, FilterChip, FlagIcon, IconButton,
+  type IconComponent, InfoIcon, LayersIcon, LeafIcon, MapIcon, PinIcon, radius, space, StatusBanner, Tag,
   Text, TrailIcon, useTheme,
 } from '@/ui';
 
@@ -27,15 +30,25 @@ const layerChips:{ key: keyof AtlasMapLayers; icon: IconComponent; label: string
 ];
 
 type MapHeaderProps = {
+  title: string;
+  /** Sube una etapa (sendero → senderos → parque → parques); sin él no hay botón. */
+  onBack?: () => void;
+  backA11y?: string;
+  /** Los chips de capas solo tienen sentido con un sendero en el mapa. */
+  showLayers: boolean;
   layers: AtlasMapLayers;
   onToggle: (layer: keyof AtlasMapLayers) => void;
-  onOpenList: () => void;
+  basemap: Basemap;
+  onToggleBasemap: () => void;
   onOpenInfo: () => void;
   onLayout: (event: LayoutChangeEvent) => void;
 };
 
 /** Título, acciones y chips de capas sobre un velo que oscurece el borde superior del mapa. */
-export function MapHeader({ layers, onToggle, onOpenList, onOpenInfo, onLayout }: MapHeaderProps) {
+export function MapHeader({
+  title, onBack, backA11y, showLayers, layers, onToggle, basemap, onToggleBasemap, onOpenInfo, onLayout,
+}: MapHeaderProps) {
+  const satellite = basemap === 'satellite';
   const { color } = useTheme();
   const insets = useSafeAreaInsets();
   return (
@@ -51,64 +64,59 @@ export function MapHeader({ layers, onToggle, onOpenList, onOpenInfo, onLayout }
         <Rect width="100%" height="100%" fill="url(#veil)" />
       </Svg>
       <View style={[styles.titleRow, { paddingTop: insets.top + space.sm }]} pointerEvents="box-none">
-        <Text variant="headline" tone="onDark" accessibilityRole="header" style={styles.title} numberOfLines={1}>
-          {t.map.title}
-        </Text>
-        <IconButton label={t.map.openList} onPress={onOpenList} look="dark">
-          <ListIcon color={color.onDark} size={22} />
+        {onBack ? (
+          <Animated.View entering={FadeIn.duration(220)} exiting={FadeOut.duration(120)} style={styles.back}>
+            <IconButton label={backA11y ?? t.parks.back} onPress={onBack} look="plain">
+              <ChevronLeftIcon color={color.onDark} size={24} />
+            </IconButton>
+          </Animated.View>
+        ) : null}
+        {/* El título cambia con la etapa: entra con un fundido corto. */}
+        <Animated.View key={title} entering={FadeIn.duration(260)} style={styles.title}>
+          <Text variant="headline" tone="onDark" accessibilityRole="header" numberOfLines={1}>{title}</Text>
+        </Animated.View>
+        {/* Alterna el mapa base: satelital u OpenStreetMap. */}
+        <IconButton label={t.map.basemapA11y(satellite)} onPress={onToggleBasemap} look="plain">
+          <LayersIcon color={color.onDark} size={22} />
         </IconButton>
-        <IconButton label={t.map.openInfo} onPress={onOpenInfo} look="dark">
+        <IconButton label={t.map.openInfo} onPress={onOpenInfo} look="plain">
           <InfoIcon color={color.onDark} size={22} />
         </IconButton>
       </View>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chips}
-        accessibilityLabel={t.map.layersLabel}>
-        {layerChips.map(({ key, label, icon }) => (
-          <FilterChip key={key} label={label} icon={icon} on="dark" toggle selected={layers[key]} onPress={() => onToggle(key)}
-            accessibilityLabel={t.map.layerA11y(label, layers[key])} />
-        ))}
-      </ScrollView>
-    </View>
-  );
-}
-
-/** Miniatura del trazado: la forma del sendero en lima sobre su tarjeta. */
-function TrailThumb({ path, size }: { path: GeoPoint[]; size: number }) {
-  const { color } = useTheme();
-  const bounds = pathBounds(path);
-  if (!bounds) return null;
-  const [[west, south], [east, north]] = bounds;
-  // Misma escala en ambos ejes (corregida por latitud), centrada en el cuadrado.
-  const kx = Math.cos(((south + north) / 2) * (Math.PI / 180));
-  const span = Math.max((east - west) * kx, north - south) || 1;
-  const pad = size * 0.18;
-  const scale = (size - pad * 2) / span;
-  const ox = (size - (east - west) * kx * scale) / 2;
-  const oy = (size - (north - south) * scale) / 2;
-  const d = path
-    .map(({ longitude, latitude }, i) => `${i ? 'L' : 'M'}${(ox + (longitude - west) * kx * scale).toFixed(1)},${(oy + (north - latitude) * scale).toFixed(1)}`)
-    .join(' ');
-  return (
-    <View style={[styles.thumb, { width: size, height: size, backgroundColor: color.darkSurfaceHigh }]}>
-      <Svg width={size} height={size}>
-        <Path d={d} stroke={color.lime} strokeOpacity={0.25} strokeWidth={8} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <Path d={d} stroke={color.lime} strokeWidth={3} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-      </Svg>
+      {showLayers ? (
+        <Animated.View entering={FadeIn.duration(260)} exiting={FadeOut.duration(140)}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.chips}
+            accessibilityLabel={t.map.layersLabel}>
+            {layerChips.map(({ key, label, icon }) => (
+              <FilterChip key={key} label={label} icon={icon} on="dark" selected={layers[key]} onPress={() => onToggle(key)}
+                accessibilityLabel={t.map.layerA11y(label, layers[key])} />
+            ))}
+          </ScrollView>
+        </Animated.View>
+      ) : null}
     </View>
   );
 }
 
 /** Contenedor oscuro de las tarjetas inferiores del mapa. */
-function MapCard({ children, onLayout }: { children: React.ReactNode; onLayout?: (event: LayoutChangeEvent) => void }) {
+type MapCardProps = {
+  children: React.ReactNode;
+  onLayout?: (event: LayoutChangeEvent) => void;
+  /** Acepta estilos animados: la tarjeta del parque anima su alto máximo. */
+  style?: React.ComponentProps<typeof Animated.View>['style'];
+};
+
+export function MapCard({ children, onLayout, style }: MapCardProps) {
   const { color } = useTheme();
   return (
-    <View onLayout={onLayout} style={[styles.card, { backgroundColor: color.darkSurface, borderColor: color.darkOutline, shadowColor: '#000' }]}>
+    <Animated.View onLayout={onLayout}
+      style={[styles.card, { backgroundColor: color.darkSurface, borderColor: color.darkOutline, shadowColor: '#000' }, style]}>
       {children}
-    </View>
+    </Animated.View>
   );
 }
 
-function ArrowBubble() {
+export function ArrowBubble() {
   const { color } = useTheme();
   return (
     <View style={[styles.arrow, { backgroundColor: color.onLime }]}>
@@ -119,29 +127,63 @@ function ArrowBubble() {
 
 type TrailCardProps = {
   name: string;
-  path: GeoPoint[];
+  photo: ImageSourcePropType;
+  photoA11y: string;
   meta: string;
   metaA11y: string;
   onStart: () => void;
+  onOtherTrails: () => void;
 };
 
-/** Tarjeta del sendero de demostración, con su acción principal. */
-export function TrailCard({ name, path, meta, metaA11y, onStart }: TrailCardProps) {
+/** Tarjeta del sendero de demostración: foto con margen y esquinas redondeadas a la izquierda (con la flecha a «otros senderos» en su esquina), datos e inicio a la derecha. */
+export function TrailCard({ name, photo, photoA11y, meta, metaA11y, onStart, onOtherTrails }: TrailCardProps) {
+  const { color } = useTheme();
   return (
-    <MapCard>
-      <View style={styles.cardRow}>
-        <TrailThumb path={path} size={64} />
+    <MapCard style={styles.trailCard}>
+      {/* La foto va en un marco absoluto para no aportar su alto intrínseco: el alto lo fija la columna derecha. */}
+      <View style={styles.trailPhotoFrame}>
+        <CoverImage source={photo} accessible accessibilityRole="image" accessibilityLabel={photoA11y} />
+      </View>
+      <IconButton label={t.trail.otherTrails} onPress={onOtherTrails} look="dark" hitSlop={4} style={styles.otherTrails}>
+        <BackIcon color={color.onDark} size={22} />
+      </IconButton>
+      <View style={styles.trailBody}>
         <View style={styles.cardText}>
           <Text variant="titleMedium" tone="onDark" numberOfLines={1}>{name}</Text>
-          <View style={styles.metaRow}>
-            <Tag label={t.trail.demoTag} tone="demo" />
-            <Text variant="bodySmall" tone="onDarkVariant" accessibilityLabel={metaA11y}>{meta}</Text>
-          </View>
+          {/* Sin etiqueta de demostración: la nota de abajo ya dice que el sendero es sintético. */}
+          <Text variant="titleSmall" tone="lime" accessibilityLabel={metaA11y}>{meta}</Text>
           <Text variant="labelSmall" tone="onDarkVariant" style={styles.note}>{t.trail.syntheticNote}</Text>
         </View>
+        <Button label={t.trail.start} accessibilityLabel={t.trail.startA11y} onPress={onStart} size="compact" />
       </View>
-      <Button label={t.trail.start} accessibilityLabel={t.trail.startA11y} onPress={onStart} trailing={<ArrowBubble />} />
     </MapCard>
+  );
+}
+
+type TrailOptionProps = {
+  name: string;
+  photo: ImageSourcePropType;
+  meta: string;
+  metaA11y: string;
+  onPress: () => void;
+};
+
+/** Fila de «Otros senderos»: miniatura, nombre y distancia; tocarla cambia el sendero del mapa. */
+export function TrailOption({ name, photo, meta, metaA11y, onPress }: TrailOptionProps) {
+  const { color } = useTheme();
+  return (
+    <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={`${name}, ${t.trail.demoTag}. ${metaA11y}`}
+      accessibilityHint={t.trail.chooseA11y} android_ripple={{ color: color.onDarkRipple }}
+      style={({ pressed }) => [styles.trailOption, { backgroundColor: color.darkSurfaceHigh, opacity: pressed ? 0.85 : 1 }]}>
+      <View style={styles.trailOptionPhoto}>
+        <CoverImage source={photo} />
+      </View>
+      <View style={styles.cardText}>
+        <Text variant="titleSmall" tone="onDark" numberOfLines={1}>{name}</Text>
+        <Text variant="titleSmall" tone="lime" numberOfLines={1}>{meta}</Text>
+      </View>
+      <ChevronIcon color={color.onDarkVariant} size={20} />
+    </Pressable>
   );
 }
 
@@ -207,45 +249,45 @@ type ObservationCardProps = {
   onClose: () => void;
 };
 
-/** Observación tocada en el mapa: foto de referencia de la especie, nombres y estado. */
+/**
+ * Observación tocada en el mapa: foto de referencia de la especie a todo el alto (con margen, como la
+ * del sendero), nombres y estado. Toda la tarjeta abre la ficha; el chevron lima lo indica.
+ */
 export function ObservationCard({ common, scientific, meta, photo, onOpen, onClose }: ObservationCardProps) {
   const { color } = useTheme();
   return (
-    <MapCard>
-      <View style={styles.cardRow}>
-        {photo ? (
-          <Image source={photo} style={styles.photo} accessibilityIgnoresInvertColors />
-        ) : (
-          <View style={[styles.photo, styles.photoEmpty, { backgroundColor: color.darkSurfaceHigh }]}>
-            <InfoIcon color={color.onDarkVariant} />
-          </View>
-        )}
-        <View style={styles.cardText}>
+    <MapCard style={styles.trailCard}>
+      <Pressable onPress={onOpen} disabled={!onOpen} accessibilityRole={onOpen ? 'link' : undefined}
+        accessibilityLabel={`${common}${scientific ? `, ${scientific}` : ''}. ${t.observation.unverified}. ${meta}`}
+        accessibilityHint={onOpen ? t.observation.openSpecies : undefined}
+        android_ripple={onOpen ? { color: color.onDarkRipple, foreground: true } : undefined}
+        style={({ pressed }) => [styles.observationRow, { opacity: pressed ? 0.85 : 1 }]}>
+        {/* Marco absoluto, como en el sendero: el alto lo fija la columna de texto. */}
+        <View style={[styles.trailPhotoFrame, styles.observationPhoto, !photo && { backgroundColor: color.darkSurfaceHigh }]}>
+          {photo ? <CoverImage source={photo} /> : (
+            <View style={styles.photoEmpty}>
+              <InfoIcon color={color.onDarkVariant} />
+            </View>
+          )}
+        </View>
+        <View style={styles.observationBody}>
           <Text variant="titleMedium" tone="onDark" numberOfLines={1}>{common}</Text>
-          {scientific ? <Text variant="scientific" tone="onDarkVariant">{scientific}</Text> : null}
+          {scientific ? <Text variant="scientific" tone="onDarkVariant" numberOfLines={1}>{scientific}</Text> : null}
           <View style={styles.tags}>
-            <Tag label={t.observation.syntheticTag} tone="demo" />
             <Tag label={t.observation.unverified} tone="dark" />
           </View>
           <Text variant="labelSmall" tone="onDarkVariant">{meta}</Text>
         </View>
-        <IconButton label={t.observation.close} onPress={onClose} style={styles.close}>
-          <CloseIcon color={color.onDarkVariant} size={22} />
-        </IconButton>
-      </View>
-      {onOpen ? <Button label={t.observation.openSpecies} onPress={onOpen} role="link" trailing={<ArrowBubble />} /> : null}
+        {onOpen ? (
+          <View style={styles.observationChevron}>
+            <ChevronIcon color={color.lime} size={28} />
+          </View>
+        ) : null}
+      </Pressable>
+      <IconButton label={t.observation.close} onPress={onClose} look="dark" hitSlop={4} style={styles.otherTrails}>
+        <CloseIcon color={color.onDark} size={20} />
+      </IconButton>
     </MapCard>
-  );
-}
-
-/** Atribución visible del mapa base, enlazada a la página de derechos de autor. */
-export function BasemapAttribution() {
-  const { color } = useTheme();
-  return (
-    <Pressable onPress={() => Linking.openURL(OSM_COPYRIGHT)} accessibilityRole="link" accessibilityLabel={t.map.attributionA11y}
-      hitSlop={{ top: 14, bottom: 14, left: 8, right: 8 }} style={[styles.attribution, { backgroundColor: color.darkScrim }]}>
-      <Text variant="labelSmall" tone="onDarkVariant">{t.map.attribution}</Text>
-    </Pressable>
   );
 }
 
@@ -263,13 +305,43 @@ export function MapNotices({ tileError, observationsError }: { tileError: boolea
 /** Telón mientras carga el mapa base; se retira con un fundido. */
 export function MapLoading() {
   const { color } = useTheme();
+  const reducedMotion = useReducedMotion();
+  const first = useSharedValue(0);
+  const second = useSharedValue(0);
+
+  // Dos ondas tipo sonar, desfasadas, salen del ícono mientras carga; con movimiento reducido el ícono queda quieto.
+  useEffect(() => {
+    if (reducedMotion) return;
+    const wave = () => withRepeat(withTiming(1, { duration: 1600, easing: Easing.out(Easing.quad) }), -1, false);
+    first.set(wave());
+    second.set(withDelay(800, wave()));
+  }, [first, second, reducedMotion]);
+
   return (
     <Animated.View exiting={FadeOut.duration(480)} style={[styles.curtain, { backgroundColor: color.dark }]}
-      accessibilityLiveRegion="polite">
-      <MapIcon color={color.lime} size={32} />
+      accessibilityLiveRegion="polite" accessible accessibilityLabel={t.map.loading}>
+      <View style={styles.loadingMark}>
+        {reducedMotion ? null : (
+          <>
+            <LoadingWave progress={first} color={color.lime} />
+            <LoadingWave progress={second} color={color.lime} />
+          </>
+        )}
+        <View style={[styles.loadingIcon, { backgroundColor: color.darkSurfaceHigh }]}>
+          <MapIcon color={color.lime} size={28} />
+        </View>
+      </View>
       <Text variant="bodyMedium" tone="onDarkVariant">{t.map.loading}</Text>
     </Animated.View>
   );
+}
+
+function LoadingWave({ progress, color }: { progress: SharedValue<number>; color: string }) {
+  const style = useAnimatedStyle(() => ({
+    opacity: 0.6 * (1 - progress.get()),
+    transform: [{ scale: 1 + 0.9 * progress.get() }],
+  }));
+  return <Animated.View style={[styles.loadingWave, { borderColor: color }, style]} />;
 }
 
 /** Telón cuando el mapa no puede funcionar en el dispositivo: remite a la lista. */
@@ -287,6 +359,7 @@ const styles = StyleSheet.create({
   header: { position: 'absolute', top: 0, left: 0, right: 0, paddingBottom: space.xl },
   titleRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, paddingHorizontal: space.lg },
   title: { flex: 1 },
+  back: { marginLeft: -space.md, marginRight: -space.xs },
   chips: { gap: space.sm, paddingHorizontal: space.lg, paddingTop: space.md },
   notices: { position: 'absolute', left: space.lg, right: space.lg, gap: space.sm },
   card: {
@@ -303,12 +376,20 @@ const styles = StyleSheet.create({
   cardRow: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   cardText: { flex: 1, gap: 3 },
   note: { marginTop: 1 },
-  metaRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
-  thumb: { borderRadius: radius.md, overflow: 'hidden' },
-  photo: { width: 72, height: 72, borderRadius: radius.md },
-  photoEmpty: { alignItems: 'center', justifyContent: 'center' },
+  // El alto de la tarjeta lo define la columna derecha; la foto se estira a ese alto con margen propio.
+  trailCard: { flexDirection: 'row', alignItems: 'stretch', padding: 0, paddingTop: 0, gap: 0 },
+  trailPhotoFrame: { width: 108, margin: space.sm, marginRight: 0, borderRadius: radius.lg, overflow: 'hidden' },
+  trailBody: { flex: 1, padding: space.md, gap: space.sm },
+  trailOption: { flexDirection: 'row', alignItems: 'center', gap: space.md, padding: space.sm, paddingRight: space.md, borderRadius: radius.lg, overflow: 'hidden' },
+  trailOptionPhoto: { width: 64, height: 64, borderRadius: radius.md, overflow: 'hidden' },
+  // Flecha discreta sobre la esquina superior izquierda de la foto; hitSlop completa el área de toque de 48 dp.
+  otherTrails: { position: 'absolute', top: space.sm + space.xs, left: space.sm + space.xs, zIndex: 1, width: 40, height: 40, borderRadius: 20 },
+  observationRow: { flex: 1, flexDirection: 'row', alignItems: 'stretch', borderRadius: radius.xl, overflow: 'hidden' },
+  observationPhoto: { width: 100 },
+  observationBody: { flex: 1, justifyContent: 'center', gap: 3, padding: space.md, paddingRight: 0, minHeight: 112 },
+  observationChevron: { justifyContent: 'center', paddingHorizontal: space.md },
+  photoEmpty: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   tags: { flexDirection: 'row', gap: space.xs, marginTop: 2 },
-  close: { alignSelf: 'flex-start', marginTop: -space.xs, marginRight: -space.xs },
   arrow: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   walkHead: { position: 'absolute', top: space.sm, right: space.sm, zIndex: 1 },
   exit: { paddingHorizontal: space.sm, paddingVertical: space.xs },
@@ -318,6 +399,8 @@ const styles = StyleSheet.create({
   walkActions: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   grow: { flex: 1 },
   disabled: { opacity: 0.4 },
-  attribution: { paddingHorizontal: space.sm, paddingVertical: 2, borderRadius: radius.sm },
+  loadingMark: { width: 112, height: 112, alignItems: 'center', justifyContent: 'center' },
+  loadingIcon: { width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },
+  loadingWave: { position: 'absolute', width: 56, height: 56, borderRadius: 28, borderWidth: 2 },
   curtain: { ...StyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center', gap: space.md, padding: space.xl },
 });

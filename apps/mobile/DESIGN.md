@@ -26,24 +26,26 @@ colors:
   on-provisional: "#734606"
   demo: "#E8E3F7"
   on-demo: "#4A3A8A"
+  wilo: "#8E4EC0"
+  wilo-deep: "#61239C"
   error: "#B3261E"
 typography:
   display:
     fontFamily: "Figtree"
     fontSize: "32px"
-    fontWeight: 800
+    fontWeight: 600
     lineHeight: "38px"
     letterSpacing: "-0.6px"
   headline:
     fontFamily: "Figtree"
     fontSize: "24px"
-    fontWeight: 800
+    fontWeight: 600
     lineHeight: "30px"
     letterSpacing: "-0.3px"
   title-large:
     fontFamily: "Figtree"
     fontSize: "20px"
-    fontWeight: 700
+    fontWeight: 500
     lineHeight: "26px"
     letterSpacing: "-0.2px"
   title-medium:
@@ -300,7 +302,7 @@ La densidad es la de una app Android nativa con Material 3 como esqueleto: píld
 La honestidad de los datos es parte visual del sistema: todo lo sintético, de demostración o no implementado lleva una etiqueta de texto en violeta suave donde aparece, y ningún estado se comunica solo con color.
 
 **Key Characteristics:**
-- Un contraste claro/oscuro por pantalla: mapa, navegación y cifras oscuros; pantallas de lectura claras. Un solo tema de app, sin modo oscuro alterno.
+- Un contraste claro/oscuro por pantalla: mapa, navegación y cifras oscuros; pantallas de lectura claras. Modo oscuro opcional (Ajustes → Apariencia, guardado en el dispositivo): las superficies de lectura pasan a bosque nocturno y los pares suaves (`limeSoft`, `provisional`, `demo`) se invierten; las piezas oscuras (mapa, navegación, cifras) se aclaran para destacar sobre el fondo; lima y metales no cambian. Por defecto, claro.
 - Lima (`lime`) como única señal de lo activo, siempre con texto verde oscuro encima.
 - Cuatro tonos con significado fijo: lima (activo/descubierto), ámbar (provisional), violeta (demostración/sintético/no implementado), rojo (error).
 - Figtree en todo; 800 en títulos y cifras, cursiva para nombres científicos.
@@ -321,7 +323,7 @@ Dos campos neutros verdes (bosque casi negro y blanco cálido) y una lima eléct
 
 ### Neutral
 - **Bosque nocturno** (`dark`): fondo del mapa, barra de navegación, tarjeta de cifras del diario, insignias ganadas, hero de la ficha y la tarjeta de capacidad pendiente.
-- **Corteza oscura** (`dark-surface`) y **Corteza alta** (`dark-surface-high`): tarjetas y hojas sobre el mapa; miniaturas, indicador de la navegación y etiqueta oscura.
+- **Corteza oscura** (`dark-surface`) y **Corteza alta** (`dark-surface-high`): tarjetas y hojas sobre el mapa; miniaturas y etiqueta oscura.
 - **Niebla clara** (`on-dark`) y **Liquen** (`on-dark-variant`): texto principal y secundario sobre oscuro.
 - **Filete nocturno** (`dark-outline`) y **Velo de bosque** (`dark-scrim`): bordes sobre oscuro y fondo translúcido de botones, chips y avisos que flotan sobre el mapa.
 - **Papel claro** (`background`), **Blanco** (`surface`) y **Gris salvia** (`surface-muted`): fondo de lectura, tarjetas, y chips sin elegir/búsqueda/riel de progreso.
@@ -333,7 +335,7 @@ Dos campos neutros verdes (bosque casi negro y blanco cálido) y una lima eléct
 
 **The Lavender Truth Rule.** Lo de demostración, sintético o no implementado lleva texto sobre `demo` / `on-demo` donde aparece. Ese tono no se reutiliza para otra cosa, y lo demostrativo no se pinta en lima ni en ámbar.
 
-**The Words First Rule.** Ningún estado depende solo del color: las etiquetas dicen su estado con texto, los chips alternables muestran un check al activarse, las especies descubiertas llevan check y las bloqueadas candado y «Por descubrir».
+**The Words First Rule.** Ningún estado depende solo del color: las etiquetas dicen su estado con texto, las especies descubiertas llevan check y las bloqueadas candado y «Por descubrir».
 
 ## Typography
 
@@ -344,9 +346,9 @@ Dos campos neutros verdes (bosque casi negro y blanco cálido) y una lima eléct
 **Character:** Una sans geométrica y amable usada en todo, con contraste fuerte de peso: 800 apretado en títulos y cifras, 400 abierto en el cuerpo. El peso va en el nombre de la familia, no en `fontWeight`.
 
 ### Hierarchy
-- **Display** (800, 32/38, −0,6): título de pestaña en `ScreenHeader` y nombre común en la ficha.
-- **Headline** (800, 24/30): título sobre el mapa y de tarjetas oscuras destacadas.
-- **Title** (700; 20/26, 17/22, 15/20): hojas y secciones; nombre común en tarjetas; filas e insignias.
+- **Display** (600, 32/38, −0,6): título de pestaña en `ScreenHeader` y nombre común en la ficha.
+- **Headline** (600, 24/30): título sobre el mapa y de tarjetas oscuras destacadas.
+- **Title** (500 en 20/26 para títulos de hojas y secciones; 700 en 17/22 y 15/20): hojas y secciones; nombre común en tarjetas; filas e insignias.
 - **Body** (400; 16/24, 14/20, 13/18): campo de búsqueda, descripciones, notas y metadatos.
 - **Label** (600/500; 14/20, 12/16, 11/14): chips, pestañas, navegación, rótulos de tablas y leyendas de cifras.
 - **Tag** (800, 10/14, +0,6, mayúsculas): solo dentro de una `Tag` de estado o grupo.
@@ -362,7 +364,7 @@ Dos campos neutros verdes (bosque casi negro y blanco cálido) y una lima eléct
 
 Pantallas de una columna a todo el ancho, con margen lateral de 16 dp (`lg`) y separación entre bloques de 12 a 24 dp. La escala es 2/4/8/12/16/24/32. Las cabeceras de pestaña respetan la barra de estado (inset superior + 12 dp) y ponen el título grande a la izquierda con botones de ícono a la derecha; debajo cuelgan búsqueda, chips o pestañas en píldora con scroll horizontal.
 
-El mapa es a pantalla completa bajo la barra de estado, con título, botones redondos y chips de capas flotando arriba, y una tarjeta oscura anclada abajo sobre la navegación. Especies es una lista de tarjetas horizontales (foto cuadrada de 112 dp a la izquierda). El Diario apila pestañas, tarjeta de cifras, avance y una grilla de tres columnas (cuadros de proporción 0,86, separación 8 dp) que conserva el ancho en la última fila. La ficha abre con un hero oscuro y una hoja clara que lo monta con radio 28.
+El mapa es a pantalla completa bajo la barra de estado, con título, botones redondos y chips de capas flotando arriba, y una tarjeta oscura anclada abajo sobre la navegación. Especies es una lista de tarjetas de espécimen separadas 16 dp: foto a sangre de 188 dp con el nombre encima y una franja inferior con silueta, familia y porte. El Diario apila pestañas, tarjeta de cifras, avance y una grilla de tres columnas (cuadros de proporción 0,86, separación 8 dp) que conserva el ancho en la última fila. La ficha abre con un hero oscuro y una hoja clara que lo monta con radio 28.
 
 Todo lo tocable tiene al menos 48 dp de área (por tamaño o `hitSlop`).
 
@@ -396,7 +398,7 @@ Píldoras macizas y directas.
 
 ### Chips
 - **Style:** píldora de 36 dp, `label-large`; sin elegir en `surface-muted` sobre claro o `dark-scrim` con `dark-outline` sobre el mapa.
-- **State:** elegido en lima con texto `on-lime`. Los chips alternables (capas del mapa) muestran un check al activarse, no solo el cambio de color. Estado anunciado con `accessibilityState.selected`.
+- **State:** elegido en lima con texto `on-lime`. Los chips de capas del mapa conservan siempre su ícono; el estado activo es el relleno lima sólido frente al contorno translúcido. Estado anunciado con `accessibilityState.selected`.
 
 ### Pill Tabs
 Pestañas internas de pantalla (Diario): píldoras de 44 dp, blancas con filete `outline-variant`; la activa en lima.
@@ -408,21 +410,27 @@ Etiqueta corta de grupo o estado, `tag` en mayúsculas sobre radio 6: lima suave
 - **Corner Style:** 20 dp en tarjetas claras y oscuras; 28 dp en la tarjeta del mapa y las hojas.
 - **Background:** `surface` con filete `outline-variant` en lectura; `dark` para cifras, insignias ganadas y especie ya en la guía; `dark-surface` con `dark-outline` sobre el mapa.
 - **Shadow Strategy:** ver Elevation & Depth; solo la tarjeta del mapa flota.
-- **Internal Padding:** 8 dp en la tarjeta de especie, 12 dp en filas y tarjetas del mapa, 24 dp en la tarjeta de capacidad pendiente.
+- **Internal Padding:** 12 dp en la franja de la tarjeta de especie, 12 dp en filas y tarjetas del mapa, 24 dp en la tarjeta de capacidad pendiente.
 
 ### Inputs / Fields
 - **Style:** búsqueda en píldora `surface-muted` de 48 dp, lupa a la izquierda, `body-large`, cursor `on-surface` y selección `on-lime-soft`.
 - **Clear:** botón de ícono con cruz cuando hay texto.
 
 ### Navigation
-Barra Material 3 en `dark`, respetando el inset inferior, con cuatro destinos (Identificar, Mapa, Especies, Diario). Ítems de 68 dp; el activo enciende ícono y rótulo en lima, rellena la forma del ícono con lima al 22 % y muestra un indicador en píldora `dark-surface-high` de 64 × 32 que entra en 240 ms con salida exponencial (escala horizontal de 0,5 a 1). Los inactivos en `on-dark-variant`. Con movimiento reducido el indicador cambia sin animar.
+Barra Material 3 en `dark`, respetando el inset inferior, con cinco destinos (Identificar, Mapa, Especies, Diario, Perfil). Ítems de 68 dp; el activo enciende ícono y rótulo en lima, rellena la forma del ícono con lima al 22 %, sin indicador de fondo. Los inactivos en `on-dark-variant`. Al presionar, una píldora `on-dark-ripple` de todo el alto de los ítems (sobresale 8 dp por lado, a 4 dp de los bordes de la barra) marca el destino; al deslizar sigue al dedo con un resorte suave y la pestaña cambia recién al soltar. Con movimiento reducido la píldora aparece y se mueve sin animar.
 
 ### Status Banner y Sheet
 - **Status banner:** aviso no bloqueante, radio 14, ícono de información; lavanda sobre claro, velo oscuro con filete sobre el mapa.
 - **Sheet:** hoja inferior `dark-surface` de radio 28, asa de 36 × 4, título `title-large` y botón de cierre; Atrás y tocar fuera la cierran.
 
 ### Mapa oscuro (componente insignia)
-Teselas OSM oscurecidas por pintura raster (saturación −0,35, contraste 0,3, brillo invertido 0,72→0,08, tono rotado 180°) bajo una veladura verde al 22 %. El sendero lima se dibuja al cargar (halo de 14 px difuminado, casing oscuro de 8 px, línea de 4,5 px) y los marcadores son círculos de 40 dp (observaciones) o 44 dp (paradas) en velo oscuro con borde claro de 2 px; inicio y fin con borde lima; el seleccionado se llena de lima y crece a 1,14. Los marcadores entran con un pop de 420 ms. La tarjeta inferior del sendero indica «Trazado sintético: no es un sendero real ni sirve para orientarse», y el recorrido por paradas lleva «Recorrido de demostración · sin GPS». Con movimiento reducido, nada se anima.
+Teselas OSM oscurecidas por pintura raster (saturación −0,35, contraste 0,3, brillo invertido 0,72→0,08, tono rotado 180°) bajo una veladura verde al 22 %. El sendero lima se dibuja al cargar (halo de 14 px difuminado, casing oscuro de 8 px, línea de 4,5 px) y los marcadores son círculos de 40 dp (observaciones) o 44 dp (paradas) en velo oscuro con borde claro de 2 px; inicio y fin con borde lima; el seleccionado se llena de lima y crece a 1,14. Los marcadores entran con un pop de 420 ms. La tarjeta inferior del sendero lleva a la izquierda, a todo su alto, una foto de referencia del entorno (no del trazado), indica «Trazado sintético: no es un sendero real ni sirve para orientarse» y ofrece «Iniciar sendero» y «Ver otros senderos» (hoja que declara el catálogo pendiente), y el recorrido por paradas lleva «Recorrido de demostración · sin GPS». Con movimiento reducido, nada se anima.
+
+### Tarjeta de espécimen (Especies)
+La foto de referencia ocupa todo el ancho (188 dp) bajo un degradado `dark` (35 % arriba, transparente al centro, 88 % abajo) para que el texto se lea sobre cualquier foto. Arriba a la izquierda, las etiquetas de grupo y estado y, si la especie ya está en la guía, el sello lima «En tu guía» con check. Arriba a la derecha flota el marcador: círculo de 44 dp en velo oscuro, lima con ícono `on-lime` si está guardada; salta al guardar y se encoge al quitar. Abajo, sobre la foto, el nombre común en `headline` `on-dark` y el científico en cursiva. La franja blanca inferior lleva la silueta de la especie en un círculo `lime-soft`, la familia (`label-medium`), el porte en dos líneas y un círculo `dark` con chevron lima. Toda la tarjeta es un solo enlace a la ficha; al presionarla se hunde un 1,5 % y la foto se acerca un 6 %. Las tarjetas entran en cascada (360 ms, 45 ms entre ellas, tope 12). Sin foto, la silueta grande en `dark-surface-high` sobre `dark`. Con movimiento reducido, nada se anima.
+
+### Visor 3D
+Pantalla completa sobre `dark` que entra desde abajo. El modelo se ilumina como bosque nocturno (cielo claro verdoso, luz principal cálida y un contorno lima detrás), apoyado sobre una sombra de contacto y un halo lima tenue que la niebla funde con el fondo. Al abrir, la cámara llega desde lejos y el modelo sube girando hasta asentarse (1,1 s, salida exponencial); luego gira solo, se detiene al tocarlo y retoma a los 3,5 s. Arrastrar gira, pellizcar acerca; sin desplazamiento lateral ni vista bajo el suelo. Arriba, botones de 44 dp en velo oscuro: cerrar a la izquierda y volver a la vista inicial a la derecha, con el nombre común y el científico al centro. Abajo, una nota en velo oscuro con la etiqueta lavanda «Modelo de prueba» que dice qué es el modelo, y la ayuda de gestos. Con movimiento reducido, nada gira ni entra animado. El botón «Modelo 3D» de la ficha lo abre.
 
 ### Guía del diario
 Grilla de tres columnas: descubierta con foto, velo negro inferior, check lima y fecha; por descubrir con silueta en `locked-ink` sobre `locked-tile`, candado y «Por descubrir». Encima, la tarjeta oscura de cuatro cifras con filetes verticales y la etiqueta «Datos de demostración», y la barra de progreso (riel `surface-muted` de 10 dp, relleno lima, nunca pasa del máximo).
@@ -433,16 +441,16 @@ Grilla de tres columnas: descubierta con foto, velo negro inferior, check lima y
 - **Do** dar a cada pantalla un solo contraste: mapa, navegación y cifras sobre `dark`; Especies, Diario y ficha sobre `background`.
 - **Do** poner siempre texto `on-lime` (o `on-lime-soft`) sobre lima.
 - **Do** etiquetar con texto en lavanda (`demo` / `on-demo`) todo dato sintético, de demostración o capacidad no implementada, justo donde aparece.
-- **Do** mostrar un check en los chips alternables activos y check/candado en la guía, además del color.
+- **Do** mostrar check/candado en la guía, además del color.
 - **Do** escribir el nombre científico en cursiva bajo el nombre común.
 - **Do** usar íconos de trazo propio de 24 dp, trazo 1,8 y extremos redondeados, con etiqueta accesible en los botones de ícono.
-- **Do** respetar el movimiento reducido: el sendero, los marcadores y el indicador de navegación aparecen sin animar (fundidos de 160/120 ms donde haga falta).
+- **Do** respetar el movimiento reducido: el sendero, los marcadores y el resaltado de presión de la navegación aparecen sin animar (fundidos de 160/120 ms donde haga falta).
 
 ### Don't:
 - **Don't** usar la lima como decoración ni en más de un significado; si no está activo, primario o descubierto, no es lima.
 - **Don't** pintar lo de demostración en lima o ámbar, ni usar la lavanda para otra cosa.
 - **Don't** comunicar un estado solo con color.
-- **Don't** añadir un tema oscuro alterno ni mezclar fondos claro y oscuro como campo principal de una misma pantalla.
+- **Don't** añadir otros temas además de claro y oscuro, ni colores fuera de `useTheme`, ni mezclar fondos claro y oscuro como campo principal de una misma pantalla.
 - **Don't** introducir otra familia tipográfica ni la cursiva fuera de los nombres científicos.
 - **Don't** volver al mundo de acuarela: sin bandas pintadas, cromos con canto, papel con grano ni texturas.
 - **Don't** poner sombra a tarjetas sobre fondo claro; el filete basta.

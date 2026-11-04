@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet } from 'react-native';
 
-import { CheckIcon, type IconComponent } from '@/ui/components/icons';
+import { type IconComponent } from '@/ui/components/icons';
 import { Text } from '@/ui/components/text';
 import { radius, space, useTheme } from '@/ui/tokens/theme';
 
@@ -9,16 +9,15 @@ type FilterChipProps = {
   selected: boolean;
   onPress: () => void;
   icon?: IconComponent;
+  /** Cuántos elementos deja ver el filtro; se muestra junto al rótulo. */
+  count?: number;
   /** Fondo sobre el que va: cambia el chip sin elegir. */
   on?: 'light' | 'dark';
   accessibilityLabel?: string;
-  /** Chip que se activa y desactiva (p. ej. una capa): activo muestra un check, no solo color. */
-  toggle?: boolean;
 };
 
 /** Chip de filtro o de capa: lima cuando está activo, y el estado también se anuncia. */
-export function FilterChip({ label, selected, onPress, icon, on = 'light', accessibilityLabel, toggle = false }: FilterChipProps) {
-  const Icon = toggle && selected ? CheckIcon : icon;
+export function FilterChip({ label, selected, onPress, icon: Icon, count, on = 'light', accessibilityLabel }: FilterChipProps) {
   const { color } = useTheme();
   const idle = on === 'dark'
     ? { backgroundColor: color.darkScrim, borderColor: color.darkOutline, ink: color.onDark }
@@ -35,6 +34,9 @@ export function FilterChip({ label, selected, onPress, icon, on = 'light', acces
       ]}>
       {Icon ? <Icon color={ink} size={18} /> : null}
       <Text variant="labelLarge" style={{ color: ink }} numberOfLines={1}>{label}</Text>
+      {count === undefined ? null : (
+        <Text variant="labelMedium" style={[styles.count, { color: ink }]}>{String(count)}</Text>
+      )}
     </Pressable>
   );
 }
@@ -51,4 +53,5 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   withIcon: { paddingLeft: space.md },
+  count: { opacity: 0.7, fontVariant: ['tabular-nums'] },
 });

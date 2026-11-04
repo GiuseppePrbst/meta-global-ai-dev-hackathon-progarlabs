@@ -4,7 +4,8 @@ import type { Species } from '@/domain/species';
 import { applyFilter, familiesOf, filterSpecies } from '@/features/catalog/catalog';
 
 // Especies SINTÉTICAS: los nombres son inventados y solo ejercitan la búsqueda.
-function synthetic(id: string, commonName: string, scientificName: string, family = 'Testaceae'): Species {
+function synthetic(id: string, commonName: string, scientificName: string, family = 'Testaceae', group: Species['group'] = 'tree'): Species {
+  const traits = { family, habit: '', whereToLook: '' };
   return {
     id,
     commonName,
@@ -20,7 +21,9 @@ function synthetic(id: string, commonName: string, scientificName: string, famil
       validationOwner: 'n/a',
       status: 'pending_validation',
     },
-    traits: { family, leaf: '', bark: '', habit: '', whereToLook: '' },
+    ...(group === 'tree'
+      ? { group, traits: { ...traits, leaf: '', bark: '' } }
+      : { group, traits: { ...traits, fruitingBody: '', substrate: '' } }),
   };
 }
 
@@ -28,6 +31,7 @@ const catalog = [
   synthetic('a', 'Árbol de prueba', 'Fictus primus'),
   synthetic('b', 'Arbusto ñandú', 'Fictus secundus'),
   synthetic('c', 'Helecho', 'Pseudofilix tertia', 'Fictaceae'),
+  synthetic('d', 'Seta de prueba', 'Mycena imaginaria', 'Fungaceae', 'fungus'),
 ];
 
 describe('filterSpecies', () => {
@@ -57,7 +61,7 @@ describe('filterSpecies', () => {
 
 describe('familiesOf', () => {
   it('lista cada familia una vez, en orden de aparición', () => {
-    expect(familiesOf(catalog)).toEqual(['Testaceae', 'Fictaceae']);
+    expect(familiesOf(catalog)).toEqual(['Testaceae', 'Fictaceae', 'Fungaceae']);
   });
 });
 
@@ -68,6 +72,11 @@ describe('applyFilter', () => {
 
   it('filtra por familia', () => {
     expect(applyFilter(catalog, { kind: 'family', family: 'Fictaceae' }).map((s) => s.id)).toEqual(['c']);
+  });
+
+  it('filtra por grupo: árboles u hongos', () => {
+    expect(applyFilter(catalog, { kind: 'group', group: 'fungus' }).map((s) => s.id)).toEqual(['d']);
+    expect(applyFilter(catalog, { kind: 'group', group: 'tree' }).map((s) => s.id)).toEqual(['a', 'b', 'c']);
   });
 
   it('filtra por guardadas, sin guardadas vacío', () => {

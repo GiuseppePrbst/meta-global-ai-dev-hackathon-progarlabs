@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
 
 import type { Species } from '@/domain/species';
-import { computeBadges, totalKm } from '@/features/journal/badges';
+import { type Badge, computeBadges, nextBadge, totalKm } from '@/features/journal/badges';
 
 // Especies SINTÉTICAS: solo importan el id y el género del nombre científico.
 const catalog = [
@@ -51,5 +51,22 @@ describe('computeBadges', () => {
 describe('totalKm', () => {
   it('suma la distancia de los recorridos', () => {
     expect(totalKm([{ trailId: 't', completedAt: '2026-10-28', km: 1.5 }, { trailId: 't', completedAt: '2026-10-29', km: 2 }])).toBe(3.5);
+  });
+});
+
+describe('nextBadge', () => {
+  const b = (id: Badge['id'], progress: number, goal: number): Badge => ({ id, progress, goal, earned: progress >= goal });
+
+  it('elige la insignia sin ganar con mayor avance relativo', () => {
+    expect(nextBadge([b('first-species', 1, 1), b('half-guide', 1, 4), b('ten-km', 7, 10)])?.id).toBe('ten-km');
+  });
+
+  it('en empate se queda con la primera del orden fijo', () => {
+    expect(nextBadge([b('half-guide', 1, 2), b('all-nothofagus', 2, 4)])?.id).toBe('half-guide');
+  });
+
+  it('no propone nada si ya están todas ganadas o no hay metas', () => {
+    expect(nextBadge([b('first-species', 1, 1)])).toBeUndefined();
+    expect(nextBadge([{ id: 'full-guide', progress: 0, goal: 0, earned: false }])).toBeUndefined();
   });
 });
