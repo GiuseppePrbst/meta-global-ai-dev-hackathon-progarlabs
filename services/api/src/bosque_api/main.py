@@ -40,7 +40,7 @@ from bosque_api.database import ObservationStore
 from bosque_api.execution import ExecutionStore, identity
 from bosque_api.images import IMAGE_TYPES, MAX_IMAGE_BYTES, prepare_image, segment_image
 from bosque_api.models import ForestRequest, Observation, ObservationCreate, Species
-from bosque_api.sessions import Window, authorize, pseudonym, register_session_routes
+from bosque_api.sessions import authorize, pseudonym, register_session_routes
 
 # Ledger, auth and provider events go to stdout (Cloud Logging); uvicorn only configures its own.
 _log = logging.getLogger("bosque_api")
@@ -82,7 +82,6 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         description="API botánica y forestal con procedencia, incertidumbre y modos local/demo.",
     )
 
-    session_rate = Window(config.session_requests_per_minute, 60)
     auth_log = logging.getLogger("bosque_api.auth")
 
     def refuse(request, status, detail, correlation, headers=None):
@@ -151,17 +150,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 if request.url.path in OPERATION_PATHS:
                     authorize(request.state.identity, OPERATION_PATHS[request.url.path])
             except HTTPException as exc:
-                return refuse(request, exc.status_code, exc.detail, correlation)
-            if request.state.identity.session_id is not None:
-                wait = session_rate.retry_after(request.state.identity)
-                if wait:
-                    return refuse(
-                        request,
-                        429,
-                        "Límite de solicitudes de la sesión",
-                        correlation,
-                        {"Retry-After": str(wait)},
-                    )
+                return refuse(request, exc.status_code, exc.detail, correlation, exc.headers)
         elif (
             request.url.path == "/identify"
             and config.ai_provider == "mock"

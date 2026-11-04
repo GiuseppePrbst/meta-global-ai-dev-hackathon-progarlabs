@@ -209,4 +209,4 @@ Origen: [visión](PRODUCT_VISION_ECOSYSTEM.md), [piloto](PILOT_PUYEHUE.md),
 | ID | Estado | Detalle |
 | --- | --- | --- |
 | TD-01 | Abierta | Wilo Lab: `npm run build` (`tsc --noEmit`) falla con **7 errores TypeScript preexistentes** en `e2e/*.spec.ts` y `playwright.config.ts` (`process` y `Buffer` sin `@types/node`). Ya estaban en `main` antes de PR #37. La CI principal no construye el laboratorio, así que no son fallas de la CI (repository, api y web aprobadas). Los tests unitarios (`vitest`) pasan |
-| TD-02 | Abierta | Los límites en memoria (peticiones por identidad y canjes fallidos por IP) asumen `max-instances=1`. Hay que moverlos a PostgreSQL antes de escalar |
+| TD-02 | Cerrada en código (04-11-2026) | Los límites viven en PostgreSQL (migración 006, `rate_limit_hits`): ventana deslizante con bloqueo por bucket, compartidos entre instancias y persistentes. Verificado con tests de integración y con dos procesos `uvicorn` reales contra la misma base: 60 de 80 peticiones admitidas y el 11.º canje fallido bloqueado. En producción queda pendiente aplicar 006 y desplegar, después del merge |
