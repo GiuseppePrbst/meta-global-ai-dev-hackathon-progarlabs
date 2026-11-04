@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import Animated, { useReducedMotion } from 'react-native-reanimated';
 
+import { apiErrorMessage } from '@/features/api-error-message';
 import { getDemoTrail } from '@/features/atlas/demo-trail';
 import { applyFilter, familiesOf, type SpeciesFilter } from '@/features/catalog/catalog';
 import { useSpeciesCatalog } from '@/features/catalog/use-species';
@@ -17,7 +18,7 @@ import { useWalks } from '@/features/journal/use-walks';
 import { useFocusKey } from '@/features/focus-key';
 import { t } from '@/i18n/es-CL';
 import {
-  EmptyState, FilterChip, Grid, LoadingState, type PillTab, PillTabs, ScreenHeader, space, StatusBanner, Text, TrailIcon,
+  EmptyState, FilterChip, Grid, InfoIcon, LoadingState, type PillTab, PillTabs, ScreenHeader, space, StatusBanner, Text, TrailIcon,
   useTheme,
   NAVIGATION_BAR_OVERLAP,
 } from '@/ui';
@@ -37,7 +38,7 @@ export default function JournalTab() {
 
 function JournalScreen() {
   const { color } = useTheme();
-  const { data: catalog } = useSpeciesCatalog();
+  const { data: catalog, error: catalogError, refetch: refetchCatalog } = useSpeciesCatalog();
   const { data: entries } = useGuide();
   const { data: walks } = useWalks();
   const [section, setSection] = useState<Section>('discoveries');
@@ -53,7 +54,13 @@ function JournalScreen() {
     return (
       <View style={[styles.screen, { backgroundColor: color.background }]}>
         <ScreenHeader title={t.journal.title} />
-        <LoadingState label={t.journal.loading} />
+        {/* El diario cuenta especies del catálogo de la API: si no llegó, se dice, no queda «cargando». */}
+        {catalogError && !catalog ? (
+          <EmptyState accessibilityLiveRegion="assertive" icon={InfoIcon} title={t.journal.errorTitle} body={apiErrorMessage(catalogError)}
+            action={{ label: t.common.retry, onPress: refetchCatalog }} />
+        ) : (
+          <LoadingState label={t.journal.loading} />
+        )}
       </View>
     );
   }

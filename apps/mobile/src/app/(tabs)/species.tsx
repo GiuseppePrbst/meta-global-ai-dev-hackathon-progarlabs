@@ -3,6 +3,7 @@ import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
 import Animated, { Easing, FadeIn, FadeInDown, FadeOut, useReducedMotion } from 'react-native-reanimated';
 
 import type { Species } from '@/domain/species';
+import { apiErrorMessage } from '@/features/api-error-message';
 import { applyFilter, familiesOf, filterSpecies, type SpeciesFilter } from '@/features/catalog/catalog';
 import { useSaved } from '@/features/catalog/saved';
 import { SpeciesCard } from '@/features/catalog/species-card';
@@ -10,8 +11,8 @@ import { useSpeciesCatalog } from '@/features/catalog/use-species';
 import { useGuide } from '@/features/guide/use-guide';
 import { formatDate, t } from '@/i18n/es-CL';
 import {
-  BookmarkIcon, CloseIcon, EmptyState, FilterChip, type IconComponent, IconButton, InfoIcon, LoadingState, MushroomIcon, ScreenHeader,
-  SearchField, SearchIcon, SpeciesIcon,
+  BookmarkIcon, CloseIcon, EmptyState, FilterChip, type IconComponent, IconButton, InfoIcon, LoadingState, ScreenHeader,
+  SearchField, SearchIcon,
   space, Text, useTheme,
   NAVIGATION_BAR_OVERLAP,
 } from '@/ui';
@@ -24,7 +25,6 @@ const cardIn = (index: number) => FadeInDown
   .duration(360).delay(Math.min(index, 12) * 45).easing(Easing.out(Easing.cubic));
 
 const sameFilter = (a: SpeciesFilter, b: SpeciesFilter) => {
-  if (a.kind === 'group') return b.kind === 'group' && a.group === b.group;
   if (a.kind === 'family') return b.kind === 'family' && a.family === b.family;
   return a.kind === b.kind;
 };
@@ -44,17 +44,15 @@ export default function SpeciesListScreen() {
     const list: { label: string; value: SpeciesFilter; icon?: IconComponent }[] = [
       { label: t.species.filterAll, value: { kind: 'all' } },
       { label: t.species.filterSaved, value: { kind: 'saved' }, icon: BookmarkIcon },
-      { label: t.species.filterTrees, value: { kind: 'group', group: 'tree' }, icon: SpeciesIcon },
-      { label: t.species.filterFungi, value: { kind: 'group', group: 'fungus' }, icon: MushroomIcon },
       ...familiesOf(catalog).map((family) => ({ label: family, value: { kind: 'family', family } as SpeciesFilter })),
     ];
-    // Cada chip dice cuántas especies deja ver; los grupos vacíos (p. ej. sin hongos) no se ofrecen.
+    // Cada chip dice cuántas especies deja ver; los filtros vacíos no se ofrecen.
     return list
       .map((item) => ({ ...item, count: applyFilter(catalog, item.value, saved).length }))
       .filter((item) => item.count > 0 || item.value.kind === 'all' || item.value.kind === 'saved');
   }, [catalog, saved]);
   // Al cambiar de filtro, la lista se remonta y las tarjetas vuelven a entrar en cascada.
-  const listKey = filter.kind === 'family' ? `family:${filter.family}` : filter.kind === 'group' ? `group:${filter.group}` : filter.kind;
+  const listKey = filter.kind === 'family' ? `family:${filter.family}` : filter.kind;
   const results = useMemo(() => filterSpecies(applyFilter(catalog, filter, saved), query), [catalog, filter, saved, query]);
   const provenance = catalog[0]?.provenance;
 
@@ -67,7 +65,7 @@ export default function SpeciesListScreen() {
   const empty = isPending ? (
     <LoadingState label={t.species.loading} />
   ) : error ? (
-    <EmptyState accessibilityLiveRegion="assertive" icon={InfoIcon} title={t.species.errorTitle} body={t.species.errorBody}
+    <EmptyState accessibilityLiveRegion="assertive" icon={InfoIcon} title={t.species.errorTitle} body={apiErrorMessage(error)}
       action={{ label: t.common.retry, onPress: refetch }} />
   ) : query.trim() ? (
     <EmptyState accessibilityLiveRegion="polite" icon={SearchIcon} title={t.species.emptyTitle(query.trim())} body={t.species.emptyHint}
@@ -131,7 +129,7 @@ export default function SpeciesListScreen() {
         ListFooterComponent={
           results.length && provenance ? (
             <Text variant="labelSmall" tone="onSurfaceVariant" style={styles.footer}>
-              {`${t.species.demoNote}\n${t.species.sourceFooter(provenance.version, formatDate(provenance.accessedAt))}\n${t.species.savedNote}`}
+              {`${t.species.catalogNote}\n${t.species.sourceFooter(provenance.version, formatDate(provenance.accessedAt))}\n${t.species.savedNote}`}
             </Text>
           ) : undefined
         }

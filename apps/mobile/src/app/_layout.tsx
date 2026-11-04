@@ -1,3 +1,4 @@
+import { QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -6,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+import { queryClient } from '@/api/query-client';
 import { Onboarding } from '@/features/onboarding/onboarding';
 import { useOnboardingSeen } from '@/features/onboarding/onboarding-seen';
 import { loadColorScheme } from '@/features/settings/color-scheme';
@@ -36,18 +38,20 @@ export default function RootLayout() {
   if (!ready) return null;
 
   return (
-    <GestureHandlerRootView style={{ flex: 1, backgroundColor: color.background }}>
-      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
-      {/* Bajo la presentación la app ya carga, pero queda fuera del lector de pantalla hasta cerrarla. */}
-      <View style={{ flex: 1 }} importantForAccessibility={onboardingSeen && splashDone ? 'auto' : 'no-hide-descendants'}>
-        <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: color.background } }} />
-      </View>
-      {!onboardingSeen && (
-        <View style={StyleSheet.absoluteFill} importantForAccessibility={splashDone ? 'auto' : 'no-hide-descendants'}>
-          <Onboarding />
+    <QueryClientProvider client={queryClient}>
+      <GestureHandlerRootView style={{ flex: 1, backgroundColor: color.background }}>
+        <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
+        {/* Bajo la presentación la app ya carga, pero queda fuera del lector de pantalla hasta cerrarla. */}
+        <View style={{ flex: 1 }} importantForAccessibility={onboardingSeen && splashDone ? 'auto' : 'no-hide-descendants'}>
+          <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: color.background } }} />
         </View>
-      )}
-      {splashDone ? null : <SplashOverlay onDone={() => setSplashDone(true)} />}
-    </GestureHandlerRootView>
+        {!onboardingSeen && (
+          <View style={StyleSheet.absoluteFill} importantForAccessibility={splashDone ? 'auto' : 'no-hide-descendants'}>
+            <Onboarding />
+          </View>
+        )}
+        {splashDone ? null : <SplashOverlay onDone={() => setSplashDone(true)} />}
+      </GestureHandlerRootView>
+    </QueryClientProvider>
   );
 }

@@ -19,8 +19,9 @@ import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 
 import type { Species } from '@/domain/species';
 import { getReferencePhoto } from '@/features/catalog/reference-photos';
-import { Wilo } from '@/features/onboarding/wilo';
+import { getDemoTraits } from '@/features/identify/demo-traits';
 import { questionsFor } from '@/features/identify/wilo-chat';
+import { Wilo } from '@/features/onboarding/wilo';
 import { t } from '@/i18n/es-CL';
 import { CameraIcon, easeOutExpo, IconButton, MicIcon, NAVIGATION_BAR_OVERLAP, radius, space, Text, useTheme } from '@/ui';
 
@@ -36,10 +37,11 @@ export function IdentifyResult({ species, onBack }: { species: Species; onBack: 
   const insets = useSafeAreaInsets();
   const reducedMotion = useReducedMotion();
   const photo = getReferencePhoto(species.id);
-  const questions = useMemo(() => questionsFor(species), [species]);
+  const demo = useMemo(() => getDemoTraits(species.id), [species.id]);
+  const questions = useMemo(() => questionsFor(demo), [demo]);
 
   const [messages, setMessages] = useState<Message[]>(() => [
-    { id: 0, from: 'wilo', text: t.identify.greeting(species.commonName, species.group === 'fungus') },
+    { id: 0, from: 'wilo', text: t.identify.greeting(species.commonName, demo?.group === 'fungus') },
   ]);
   const [typing, setTyping] = useState(false);
   const [listening, setListening] = useState(false);

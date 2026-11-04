@@ -9,13 +9,14 @@ import { scheduleOnRN } from 'react-native-worklets';
 
 import { toggleSaved, useSaved } from '@/features/catalog/saved';
 import { type NameLayout, SpeciesDetail, SpeciesHero } from '@/features/catalog/species-detail';
-import { useSpecies } from '@/features/catalog/use-species';
+import { apiErrorMessage } from '@/features/api-error-message';
+import { useSpeciesDetail } from '@/features/catalog/use-species';
 import { t } from '@/i18n/es-CL';
 import { BackIcon, BookmarkIcon, Button, IconButton, LoadingState, radius, space, Text, useTheme } from '@/ui';
 
 export default function SpeciesDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { data: species, isPending, error, refetch } = useSpecies(id);
+  const { data: species, isPending, error, refetch } = useSpeciesDetail(id);
   const { color, scheme } = useTheme();
   const insets = useSafeAreaInsets();
   const saved = useSaved();
@@ -81,7 +82,7 @@ export default function SpeciesDetailScreen() {
             // Un error de carga no es «no está en el catálogo»: se puede reintentar.
             <View style={styles.message} accessibilityLiveRegion="assertive">
               <Text variant="titleLarge">{t.detail.errorTitle}</Text>
-              <Text variant="bodyMedium" tone="onSurfaceVariant">{t.detail.errorBody}</Text>
+              <Text variant="bodyMedium" tone="onSurfaceVariant">{apiErrorMessage(error)}</Text>
               <Button label={t.common.retry} onPress={refetch} />
             </View>
           ) : (

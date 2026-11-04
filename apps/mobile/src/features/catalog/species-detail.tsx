@@ -10,8 +10,8 @@ import { useGuideEntry } from '@/features/guide/use-guide';
 import { SpeciesSilhouette } from '@/features/species-art/species-silhouette';
 import { formatDate, t } from '@/i18n/es-CL';
 import {
-  BarkIcon, CheckIcon, ChevronIcon, CubeIcon, CoverImage, DataRows, ExternalIcon, type IconComponent, InfoIcon, LayersIcon, LeafIcon, LockIcon, MushroomIcon, PinIcon, radius, space,
-  SpeciesIcon, Tag, Text, TextButton, type, useTheme, elevation,
+  CheckIcon, ChevronIcon, CubeIcon, CoverImage, DataRows, ExternalIcon, InfoIcon, LeafIcon, LockIcon, radius, space,
+  Tag, Text, TextButton, type, useTheme, elevation,
 } from '@/ui';
 
 /** Dónde queda el nombre dentro del scroll: la barra superior lo recibe cuando sale de la vista. */
@@ -107,7 +107,7 @@ export function SpeciesHero({ species, scrollY, barBottom, onNameLayout }: {
         <View style={styles.tags}>
           <SpeciesTags species={species} />
         </View>
-        <Text variant="labelMedium" tone="onDarkVariant">{t.detail.family(species.traits.family)}</Text>
+        {species.family ? <Text variant="labelMedium" tone="onDarkVariant">{t.detail.family(species.family)}</Text> : null}
         {species.taxonomicStatus === 'provisional' ? (
           <Text variant="bodySmall" tone="onDarkVariant">{t.status.provisionalNote}</Text>
         ) : null}
@@ -131,47 +131,78 @@ export function SpeciesHero({ species, scrollY, barBottom, onNameLayout }: {
   );
 }
 
-/** Cuerpo de la ficha sobre la hoja clara: rasgos, crédito de la foto y procedencia. */
+/** Dominio de una URL para rotular un enlace («florayfauna.udec.cl»). Sin `URL`: Hermes no la implementa completa. */
+const hostOf = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').split(/[/?#]/)[0];
+
+/** Cuerpo de la ficha sobre la hoja clara: rasgos y taxonomía de la API, crédito de la foto y procedencia. */
 export function SpeciesDetail({ species }: { species: Species }) {
   const { color } = useTheme();
-  const { traits, provenance } = species;
+  const { provenance, taxonomy } = species;
   const photo = getReferencePhoto(species.id);
   const [showProvenance, setShowProvenance] = useState(false);
+  const cardStyle = [styles.card, { backgroundColor: color.surface, borderColor: color.outlineVariant }];
 
-  const notes: [string, string, IconComponent][] = species.group === 'fungus' ? [
-    [t.detail.fruitingBody, species.traits.fruitingBody, MushroomIcon],
-    [t.detail.substrate, species.traits.substrate, LayersIcon],
-    [t.detail.season, traits.habit, InfoIcon],
-    [t.detail.whereToLook, traits.whereToLook, PinIcon],
-  ] : [
-    [t.detail.leaf, species.traits.leaf, LeafIcon],
-    [t.detail.bark, species.traits.bark, BarkIcon],
-    [t.detail.habit, traits.habit, SpeciesIcon],
-    [t.detail.whereToLook, traits.whereToLook, PinIcon],
-  ];
+  // Las filas sin dato no se muestran; origen y conservación sí, para decir que falta el dato.
+  const taxonomyRows = ([
+    [t.detail.acceptedName, species.acceptedName],
+    [t.detail.familyLabel, species.family],
+    [t.detail.genus, species.genus],
+    [t.detail.synonyms, species.synonyms.join('; ')],
+    [t.detail.gbifStatus, taxonomy && (taxonomy.status === 'ACCEPTED' ? t.detail.gbifAccepted : t.detail.gbifSynonym)],
+    [t.detail.origin, t.detail.originPending],
+    [t.detail.conservation, species.conservationStatus ?? t.detail.conservationUnknown],
+  ] as [string, string | null][]).filter((row): row is [string, string] => Boolean(row[1]));
 
   return (
     <View style={styles.body}>
       <View style={styles.section}>
         <Text variant="headline" accessibilityRole="header">{t.detail.traitsTitle}</Text>
-        <View style={styles.draft}>
-          <InfoIcon color={color.onSurfaceVariant} size={16} />
-          <Text variant="bodySmall" tone="onSurfaceVariant" style={styles.grow}>{t.detail.traitsDraft}</Text>
-        </View>
-        <View style={[styles.card, { backgroundColor: color.surface, borderColor: color.outlineVariant }]}>
-          {notes.map(([label, value, Icon], i) => (
-            <View key={label} accessible accessibilityLabel={`${label}. ${value}`}
-              style={[styles.note, i > 0 && { borderTopWidth: StyleSheet.hairlineWidth, borderColor: color.outlineVariant }]}>
-              <View style={[styles.noteIcon, { backgroundColor: color.limeSoft }]}>
-                <Icon color={color.onLimeSoft} size={22} />
-              </View>
-              <View style={styles.noteText}>
-                <Text variant="titleSmall">{label}</Text>
-                <Text variant="bodyMedium" tone="onSurfaceVariant">{value}</Text>
-              </View>
+        {species.morphology.length ? (
+          <>
+            <View style={styles.draft}>
+              <InfoIcon color={color.onSurfaceVariant} size={16} />
+              <Text variant="bodySmall" tone="onSurfaceVariant" style={styles.grow}>
+                {species.traitValidationStatus === 'source_checked' ? t.detail.traitsSourceChecked : t.detail.traitsPending}
+              </Text>
             </View>
-          ))}
+            <View style={cardStyle}>
+              {species.morphology.map((trait, i) => (
+                <View key={trait} accessible
+                  style={[styles.note, i > 0 && { borderTopWidth: StyleSheet.hairlineWidth, borderColor: color.outlineVariant }]}>
+                  <View style={[styles.noteIcon, { backgroundColor: color.limeSoft }]}>
+                    <LeafIcon color={color.onLimeSoft} size={22} />
+                  </View>
+                  <Text variant="bodyMedium" style={styles.noteText}>{trait}</Text>
+                </View>
+              ))}
+            </View>
+            {species.traitSources.map((url, i) => (
+              <TextButton key={url} label={`${t.detail.traitSource(i + 1)} · ${hostOf(url)}`} role="link"
+                onPress={() => Linking.openURL(url)} trailing={<ExternalIcon color={color.onSurface} size={16} />} />
+            ))}
+            {species.traitSourcesAccessedAt ? (
+              <Text variant="bodySmall" tone="onSurfaceVariant">{t.detail.traitSourcesAccessed(formatDate(species.traitSourcesAccessedAt))}</Text>
+            ) : null}
+          </>
+        ) : (
+          <Text variant="bodyMedium" tone="onSurfaceVariant">{t.detail.traitsEmpty}</Text>
+        )}
+      </View>
+
+      <View style={styles.section}>
+        <Text variant="headline" accessibilityRole="header">{t.detail.taxonomyTitle}</Text>
+        <View style={[cardStyle, styles.cardPad]}>
+          <DataRows rows={taxonomyRows} />
         </View>
+        {taxonomy ? (
+          <>
+            <Text variant="bodySmall" tone="onSurfaceVariant">{`${taxonomy.attribution} · ${taxonomy.license}`}</Text>
+            <TextButton label={t.detail.openGbif} role="link" onPress={() => Linking.openURL(`https://www.gbif.org/species/${taxonomy.gbifId}`)}
+              trailing={<ExternalIcon color={color.onSurface} size={16} />} />
+          </>
+        ) : (
+          <Text variant="bodySmall" tone="onSurfaceVariant">{t.detail.noTaxonomy}</Text>
+        )}
       </View>
 
       {photo ? (
@@ -198,6 +229,8 @@ export function SpeciesDetail({ species }: { species: Species }) {
               [t.detail.license, provenance.license],
               [t.detail.accessed, formatDate(provenance.accessedAt)],
               [t.detail.attribution, provenance.attribution],
+              [t.detail.redistribution, provenance.redistribution],
+              [t.detail.processing, provenance.processing],
               [t.detail.validation, `${provenance.status === 'validated' ? t.detail.validated : t.detail.pendingValidation} · ${provenance.validationOwner}`],
             ]} />
           </View>

@@ -20,7 +20,7 @@ const PHOTO_HEIGHT = 188;
 
 /**
  * Tarjeta de espécimen: la foto de referencia a sangre con el nombre encima, como la portada de una
- * lámina, y debajo una franja con la silueta de la especie, su familia y su porte. Toda la tarjeta
+ * lámina, y debajo una franja con la silueta de la especie, su familia y su primer rasgo. Toda la tarjeta
  * abre la ficha; el marcador flota aparte para seguir siendo su propio botón.
  */
 export function SpeciesCard({ species, saved, inGuide }: SpeciesCardProps) {
@@ -36,11 +36,14 @@ export function SpeciesCard({ species, saved, inGuide }: SpeciesCardProps) {
   const cardStyle = useAnimatedStyle(() => ({ transform: [{ scale: 1 - 0.015 * press.get() }] }));
   const photoStyle = useAnimatedStyle(() => ({ transform: [{ scale: 1 + 0.06 * press.get() }] }));
 
+  // Primer rasgo de la API como resumen; la lista completa está en la ficha.
+  const firstTrait = species.morphology[0];
   const label = [
     `${species.commonName}, ${species.scientificName}`,
     speciesTagLabels(species).join(', '),
     inGuide ? t.species.inGuideA11y : null,
-    species.traits.habit,
+    species.family,
+    firstTrait,
   ].filter(Boolean).join('. ');
 
   return (
@@ -81,8 +84,10 @@ export function SpeciesCard({ species, saved, inGuide }: SpeciesCardProps) {
             <SpeciesSilhouette speciesId={species.id} size={30} color={color.onLimeSoft} />
           </View>
           <View style={styles.footerText}>
-            <Text variant="labelMedium" tone="onSurfaceVariant" numberOfLines={1}>{species.traits.family}</Text>
-            <Text variant="bodySmall" numberOfLines={2}>{species.traits.habit}</Text>
+            {species.family ? (
+              <Text variant="labelMedium" tone="onSurfaceVariant" numberOfLines={1}>{species.family}</Text>
+            ) : null}
+            {firstTrait ? <Text variant="bodySmall" numberOfLines={2}>{firstTrait}</Text> : null}
           </View>
           <View style={[styles.go, { backgroundColor: color.dark }]}>
             <ChevronIcon color={color.lime} size={20} />
