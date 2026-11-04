@@ -1,0 +1,8 @@
+{
+  "//": "Node-side code: Playwright specs and tool configs. DOM stays for page.evaluate callbacks.",
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["e2e", "vite.config.ts", "vitest.config.ts", "playwright.config.ts"]
+}
