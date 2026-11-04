@@ -1,41 +1,50 @@
 import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { Linking, Pressable, StyleSheet, View } from 'react-native';
+import { type ReactNode, useEffect, useState } from 'react';
+import { type ImageSourcePropType, Linking, Pressable, StyleSheet, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle, useReducedMotion } from 'react-native-reanimated';
 
-import type { Species } from '@/domain/species';
+import type { SourceRef, Taxon } from '@/domain/taxon';
 import { getReferencePhoto } from '@/features/catalog/reference-photos';
-import { SpeciesTags } from '@/features/catalog/species-tags';
+import { conservationSummary } from '@/features/catalog/taxon';
+import { useTaxonConservation } from '@/features/catalog/use-taxon';
 import { useGuideEntry } from '@/features/guide/use-guide';
 import { SpeciesSilhouette } from '@/features/species-art/species-silhouette';
-import { formatDate, t } from '@/i18n/es-CL';
+import { formatDate, rceCategory, t } from '@/i18n/es-CL';
 import {
-  CheckIcon, ChevronIcon, CubeIcon, CoverImage, DataRows, ExternalIcon, InfoIcon, LeafIcon, LockIcon, radius, space,
+  CheckIcon, CoverImage, CubeIcon, DataRows, ExternalIcon, InfoIcon, LeafIcon, LoadingState, LockIcon, radius, space,
   Tag, Text, TextButton, type, useTheme, elevation,
 } from '@/ui';
+
+// Ficha completa de GET /taxa/{id} (ver src/api/taxa.ts) y su estado RCE. Cada bloque se omite si la
+// API no trae el dato, salvo Conservación, que dice explícitamente lo que falta.
 
 /** Dónde queda el nombre dentro del scroll: la barra superior lo recibe cuando sale de la vista. */
 export type NameLayout = { top: number; height: number };
 
 /**
- * Cabecera oscura de la ficha: foto de referencia y, bajo ella sobre bosque nocturno, la identidad
- * de la especie y su lugar en la guía personal. Es el momento fuerte de la pantalla.
+ * Cabecera oscura de la ficha: foto y, bajo ella sobre bosque nocturno, la identidad del taxón y su
+ * lugar en la guía personal. Es el momento fuerte de la pantalla.
  *
  * El scroll la mueve de forma continua en el hilo de UI: la foto avanza a menos de la mitad de la
  * velocidad (parallax) y se apaga bajo un velo de bosque; al tirar hacia abajo (rebote de iOS) se
  * estira desde arriba; el nombre se encoge y se apaga justo cuando pasa bajo la barra superior,
  * que lo recibe. Con movimiento reducido, nada de esto se mueve.
  */
-export function SpeciesHero({ species, scrollY, barBottom, onNameLayout }: {
-  species: Species;
+export function SpeciesHero({ taxon, scrollY, barBottom, onNameLayout }: {
+  taxon: Taxon;
   scrollY: SharedValue<number>;
   /** Borde inferior de la barra superior en pantalla (inset + alto). */
   barBottom: number;
   onNameLayout: (layout: NameLayout) => void;
 }) {
   const { color } = useTheme();
-  const photo = getReferencePhoto(species.id);
-  const entry = useGuideEntry(species.id);
+  // Foto: la primera de la API; si no hay o no carga, la local de referencia (solo hay de los árboles).
+  // Se guarda la URL que falló: si cambia la foto, se vuelve a intentar sin un efecto.
+  const [failedUrl, setFailedUrl] = useState<string | null>(null);
+  const remote = taxon.media[0];
+  const useRemote = Boolean(remote) && remote.url !== failedUrl;
+  const photo: ImageSourcePropType | undefined = useRemote ? { uri: remote.url } : getReferencePhoto(taxon.id)?.source;
+  const entry = useGuideEntry(taxon.id);
   const reducedMotion = useReducedMotion();
   const [photoHeight, setPhotoHeight] = useState(0);
   // Posición del nombre dentro de la identidad; sumada al alto de la foto da su lugar en el scroll.
@@ -75,18 +84,20 @@ export function SpeciesHero({ species, scrollY, barBottom, onNameLayout }: {
       <View style={styles.hero} onLayout={(event) => setPhotoHeight(event.nativeEvent.layout.height)}>
         <Animated.View style={[styles.photo, photoStyle]}>
           {photo ? (
-            <CoverImage source={photo.source} accessible accessibilityLabel={t.detail.photoA11y(species.commonName)} />
+            // Si la foto remota no carga (sin red, enlace caído), se pasa a la local.
+            <CoverImage source={photo} onError={useRemote ? () => setFailedUrl(remote.url) : undefined}
+              accessible accessibilityLabel={t.detail.photoA11y(taxon.commonName)} />
           ) : (
             <View style={styles.heroEmpty} accessible accessibilityLabel={t.detail.noPhoto}>
-              <View style={styles.heroSilhouette}><SpeciesSilhouette speciesId={species.id} color={color.darkSurfaceHigh} /></View>
+              <View style={styles.heroSilhouette}><SpeciesSilhouette speciesId={taxon.id} color={color.darkSurfaceHigh} /></View>
             </View>
           )}
           <Animated.View pointerEvents="none" style={[styles.photo, { backgroundColor: color.dark }, veilStyle]} />
         </Animated.View>
 
         {/* Abre el visor 3D a pantalla completa; por ahora muestra un modelo de prueba y lo dice. */}
-        <Pressable accessibilityRole="button" accessibilityLabel={t.detail.model3dA11y(species.commonName)} hitSlop={6}
-          onPress={() => router.push({ pathname: '/model/[id]', params: { id: species.id } })}
+        <Pressable accessibilityRole="button" accessibilityLabel={t.detail.model3dA11y(taxon.commonName)} hitSlop={6}
+          onPress={() => router.push({ pathname: '/model/[id]', params: { id: taxon.id } })}
           android_ripple={{ color: color.onDarkRipple, foreground: true }}
           style={({ pressed }) => [styles.model3d, elevation.card,
             { backgroundColor: color.darkScrim, borderColor: color.darkOutline, shadowColor: color.shadow, opacity: pressed ? 0.85 : 1 }]}>
@@ -101,15 +112,15 @@ export function SpeciesHero({ species, scrollY, barBottom, onNameLayout }: {
           const { y, height } = event.nativeEvent.layout;
           setNameBox({ y, height });
         }}>
-          <Text variant="display" tone="onDark" accessibilityRole="header" style={styles.name}>{species.commonName}</Text>
+          <Text variant="display" tone="onDark" accessibilityRole="header" style={styles.name}>{taxon.commonName}</Text>
         </Animated.View>
-        <Text variant="scientificLarge" tone="onDarkVariant">{species.scientificName}</Text>
-        <View style={styles.tags}>
-          <SpeciesTags species={species} />
+        <Text variant="scientificLarge" tone="onDarkVariant">{taxon.scientificName}</Text>
+        <View style={[styles.tags, styles.row]}>
+          <Tag label={t.detail.group[taxon.group]} tone="lime" />
+          {taxon.taxonomy.status !== 'source_checked' ? <Tag label={t.detail.taxonomyInReview} tone="provisional" /> : null}
         </View>
-        {species.family ? <Text variant="labelMedium" tone="onDarkVariant">{t.detail.family(species.family)}</Text> : null}
-        {species.taxonomicStatus === 'provisional' ? (
-          <Text variant="bodySmall" tone="onDarkVariant">{t.status.provisionalNote}</Text>
+        {taxon.classification.family ? (
+          <Text variant="labelMedium" tone="onDarkVariant">{t.detail.family(taxon.classification.family)}</Text>
         ) : null}
 
         {/* Su lugar en la guía personal: descubierta (check lima) o por descubrir (candado). */}
@@ -134,108 +145,208 @@ export function SpeciesHero({ species, scrollY, barBottom, onNameLayout }: {
 /** Dominio de una URL para rotular un enlace («florayfauna.udec.cl»). Sin `URL`: Hermes no la implementa completa. */
 const hostOf = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').split(/[/?#]/)[0];
 
-/** Cuerpo de la ficha sobre la hoja clara: rasgos y taxonomía de la API, crédito de la foto y procedencia. */
-export function SpeciesDetail({ species }: { species: Species }) {
+/** Cuerpo de la ficha sobre la hoja clara. */
+export function SpeciesDetail({ taxon }: { taxon: Taxon }) {
   const { color } = useTheme();
-  const { provenance, taxonomy } = species;
-  const photo = getReferencePhoto(species.id);
-  const [showProvenance, setShowProvenance] = useState(false);
+  const { profile, taxonomy, classification } = taxon;
   const cardStyle = [styles.card, { backgroundColor: color.surface, borderColor: color.outlineVariant }];
+  const local = getReferencePhoto(taxon.id);
 
-  // Las filas sin dato no se muestran; origen y conservación sí, para decir que falta el dato.
+  const aboutRows = ([
+    [t.detail.habitat, profile.habitat],
+    [t.detail.distribution, profile.distribution],
+    [t.detail.ecology, profile.ecology],
+  ] as [string, string | null][]).filter((row): row is [string, string] => Boolean(row[1]));
+
   const taxonomyRows = ([
-    [t.detail.acceptedName, species.acceptedName],
-    [t.detail.familyLabel, species.family],
-    [t.detail.genus, species.genus],
-    [t.detail.synonyms, species.synonyms.join('; ')],
-    [t.detail.gbifStatus, taxonomy && (taxonomy.status === 'ACCEPTED' ? t.detail.gbifAccepted : t.detail.gbifSynonym)],
-    [t.detail.origin, t.detail.originPending],
-    [t.detail.conservation, species.conservationStatus ?? t.detail.conservationUnknown],
+    [t.detail.acceptedName, taxonomy.authorship ? `${taxonomy.acceptedName} ${taxonomy.authorship}` : taxonomy.acceptedName],
+    [t.detail.familyLabel, classification.family],
+    [t.detail.genus, classification.genus],
+    [t.detail.order, classification.order],
+    [t.detail.taxonomyStatusLabel, t.detail.taxonomyStatus[taxonomy.status]],
+    [t.detail.checklist, taxonomy.checklist],
   ] as [string, string | null][]).filter((row): row is [string, string] => Boolean(row[1]));
 
   return (
     <View style={styles.body}>
-      <View style={styles.section}>
-        <Text variant="headline" accessibilityRole="header">{t.detail.traitsTitle}</Text>
-        {species.morphology.length ? (
-          <>
-            <View style={styles.draft}>
-              <InfoIcon color={color.onSurfaceVariant} size={16} />
-              <Text variant="bodySmall" tone="onSurfaceVariant" style={styles.grow}>
-                {species.traitValidationStatus === 'source_checked' ? t.detail.traitsSourceChecked : t.detail.traitsPending}
-              </Text>
-            </View>
-            <View style={cardStyle}>
-              {species.morphology.map((trait, i) => (
-                <View key={trait} accessible
-                  style={[styles.note, i > 0 && { borderTopWidth: StyleSheet.hairlineWidth, borderColor: color.outlineVariant }]}>
-                  <View style={[styles.noteIcon, { backgroundColor: color.limeSoft }]}>
-                    <LeafIcon color={color.onLimeSoft} size={22} />
-                  </View>
-                  <Text variant="bodyMedium" style={styles.noteText}>{trait}</Text>
+      {profile.description ? (
+        <Section title={t.detail.descriptionTitle}>
+          <Text variant="bodyLarge">{profile.description}</Text>
+        </Section>
+      ) : null}
+
+      {profile.traits.length ? (
+        <Section title={t.detail.traitsTitle}>
+          <Note text={t.detail.traitStatus[profile.traitValidationStatus]} />
+          <View style={cardStyle}>
+            {profile.traits.map((trait, i) => (
+              <View key={trait} accessible
+                style={[styles.note, i > 0 && { borderTopWidth: StyleSheet.hairlineWidth, borderColor: color.outlineVariant }]}>
+                <View style={[styles.noteIcon, { backgroundColor: color.limeSoft }]}>
+                  <LeafIcon color={color.onLimeSoft} size={22} />
                 </View>
-              ))}
-            </View>
-            {species.traitSources.map((url, i) => (
-              <TextButton key={url} label={`${t.detail.traitSource(i + 1)} · ${hostOf(url)}`} role="link"
-                onPress={() => Linking.openURL(url)} trailing={<ExternalIcon color={color.onSurface} size={16} />} />
+                <Text variant="bodyMedium" style={styles.noteText}>{trait}</Text>
+              </View>
             ))}
-            {species.traitSourcesAccessedAt ? (
-              <Text variant="bodySmall" tone="onSurfaceVariant">{t.detail.traitSourcesAccessed(formatDate(species.traitSourcesAccessedAt))}</Text>
-            ) : null}
-          </>
-        ) : (
-          <Text variant="bodyMedium" tone="onSurfaceVariant">{t.detail.traitsEmpty}</Text>
-        )}
-      </View>
+          </View>
+        </Section>
+      ) : null}
 
-      <View style={styles.section}>
-        <Text variant="headline" accessibilityRole="header">{t.detail.taxonomyTitle}</Text>
+      {aboutRows.length ? (
         <View style={[cardStyle, styles.cardPad]}>
-          <DataRows rows={taxonomyRows} />
-        </View>
-        {taxonomy ? (
-          <>
-            <Text variant="bodySmall" tone="onSurfaceVariant">{`${taxonomy.attribution} · ${taxonomy.license}`}</Text>
-            <TextButton label={t.detail.openGbif} role="link" onPress={() => Linking.openURL(`https://www.gbif.org/species/${taxonomy.gbifId}`)}
-              trailing={<ExternalIcon color={color.onSurface} size={16} />} />
-          </>
-        ) : (
-          <Text variant="bodySmall" tone="onSurfaceVariant">{t.detail.noTaxonomy}</Text>
-        )}
-      </View>
-
-      {photo ? (
-        <View style={styles.section}>
-          <Text variant="titleSmall">{t.detail.photoCaption}</Text>
-          <Text variant="bodySmall" tone="onSurfaceVariant">{t.detail.photoCredit(photo.author, photo.license)}</Text>
-          <TextButton label={t.detail.photoSource} role="link" onPress={() => Linking.openURL(photo.sourceUrl)}
-            trailing={<ExternalIcon color={color.onSurface} size={16} />} />
+          <DataRows rows={aboutRows} />
         </View>
       ) : null}
 
-      {/* Procedencia del dato: discreta, al final, se despliega a pedido. */}
-      <View style={styles.section}>
-        <TextButton label={showProvenance ? t.detail.hideProvenance : t.detail.showProvenance} tone="onSurfaceVariant"
-          expanded={showProvenance} onPress={() => setShowProvenance((v) => !v)}
-          trailing={<View style={{ transform: [{ rotate: showProvenance ? '-90deg' : '90deg' }] }}>
-            <ChevronIcon color={color.onSurfaceVariant} size={14} />
-          </View>} />
-        {showProvenance ? (
-          <View style={[styles.card, styles.cardPad, { backgroundColor: color.surface, borderColor: color.outlineVariant }]}>
-            <DataRows rows={[
-              [t.detail.source, provenance.sourceName],
-              [t.detail.version, provenance.version],
-              [t.detail.license, provenance.license],
-              [t.detail.accessed, formatDate(provenance.accessedAt)],
-              [t.detail.attribution, provenance.attribution],
-              [t.detail.redistribution, provenance.redistribution],
-              [t.detail.processing, provenance.processing],
-              [t.detail.validation, `${provenance.status === 'validated' ? t.detail.validated : t.detail.pendingValidation} · ${provenance.validationOwner}`],
-            ]} />
+      <Section title={t.detail.puyehueTitle}>
+        <Text variant="bodyMedium">{t.detail.puyehueStatus[taxon.puyehueStatus]}</Text>
+        {taxon.parkEvidence.map((evidence) => (
+          <View key={`${evidence.type}-${evidence.source.url}`} style={[cardStyle, styles.cardInner]}>
+            <View style={styles.row}>
+              <Text variant="titleSmall" style={styles.grow}>{t.detail.evidence[evidence.type]}</Text>
+              {evidence.reviewStatus === 'pending_review' ? <Tag label={t.detail.evidencePendingReview} tone="provisional" /> : null}
+            </View>
+            {/* `sensitivity: location_sensitive` nunca llega a mostrar ubicación: la evidencia no trae coordenadas. */}
+            <Text variant="bodySmall" tone="onSurfaceVariant">{t.detail.precision[evidence.precision]}</Text>
+            <SourceLink source={evidence.source} />
           </View>
+        ))}
+      </Section>
+
+      <ConservationSection taxonId={taxon.id} />
+
+      <Section title={t.detail.taxonomyTitle}>
+        <View style={[cardStyle, styles.cardPad]}>
+          <DataRows rows={taxonomyRows} />
+        </View>
+        {taxonomy.gbifId ? (
+          <TextButton label={t.detail.openGbif} role="link" onPress={() => Linking.openURL(`https://www.gbif.org/species/${taxonomy.gbifId}`)}
+            trailing={<ExternalIcon color={color.onSurface} size={16} />} />
         ) : null}
-      </View>
+      </Section>
+
+      {taxon.media.length ? (
+        <Section title={t.detail.photosTitle}>
+          {taxon.media.map((media) => (
+            <View key={media.id} style={[cardStyle, styles.photoCard]}>
+              <View style={styles.thumb}>
+                <CoverImage source={{ uri: media.url }} accessible accessibilityLabel={t.detail.photoA11y(taxon.commonName)} />
+              </View>
+              <View style={styles.photoText}>
+                <Text variant="bodySmall">{t.detail.photoCredit(media.author, media.license)}</Text>
+                <Text variant="bodySmall" tone="onSurfaceVariant">{t.detail.photoReview[media.reviewStatus]}</Text>
+                <TextButton label={t.detail.photoSource} role="link" onPress={() => Linking.openURL(media.sourceUrl)}
+                  trailing={<ExternalIcon color={color.onSurface} size={16} />} />
+              </View>
+            </View>
+          ))}
+        </Section>
+      ) : local ? (
+        // Sin fotos de la API, la cabecera usa la foto local: su crédito va aquí.
+        <Section title={t.detail.photosTitle}>
+          <Text variant="bodySmall" tone="onSurfaceVariant">{t.detail.localPhotoNote}</Text>
+          <Text variant="bodySmall">{t.detail.localPhotoCredit(local.author, local.license)}</Text>
+          <TextButton label={t.detail.photoSource} role="link" onPress={() => Linking.openURL(local.sourceUrl)}
+            trailing={<ExternalIcon color={color.onSurface} size={16} />} />
+        </Section>
+      ) : null}
+
+      {profile.sources.length || profile.limitations.length ? (
+        <Section title={t.detail.sourcesTitle}>
+          {profile.sources.map((source) => (
+            <View key={source.url} style={styles.sourceRow}>
+              <Tag label={t.detail.sourceKind[source.kind]} tone={source.kind === 'official' ? 'lime' : 'neutral'} />
+              <View style={styles.grow}><SourceLink source={source} /></View>
+            </View>
+          ))}
+          {profile.limitations.length ? (
+            <View style={styles.limitations}>
+              <Text variant="titleSmall">{t.detail.limitationsTitle}</Text>
+              {profile.limitations.map((limitation) => (
+                <Text key={limitation} variant="bodySmall" tone="onSurfaceVariant">{`• ${limitation}`}</Text>
+              ))}
+            </View>
+          ) : null}
+        </Section>
+      ) : null}
+
+      <Section title={t.detail.identificationTitle}>
+        <Text variant="bodyMedium">{t.detail.identificationStatus[taxon.identification.status]}</Text>
+      </Section>
+    </View>
+  );
+}
+
+/** Estado RCE en las regiones de Puyehue. Su propia consulta: si falla, solo esta sección lo dice. */
+function ConservationSection({ taxonId }: { taxonId: string }) {
+  const { color } = useTheme();
+  const { data, isPending, error, refetch } = useTaxonConservation(taxonId);
+  const cardStyle = [styles.card, { backgroundColor: color.surface, borderColor: color.outlineVariant }];
+
+  let body: ReactNode;
+  if (data) {
+    const summary = conservationSummary(data);
+    body = (
+      <>
+        {summary.kind === 'by_region' ? (
+          <>
+            <Text variant="bodyMedium">{t.detail.conservationByRegion}</Text>
+            <View style={[cardStyle, styles.cardPad]}>
+              <DataRows rows={summary.regions.map(({ region, category }) => [t.detail.region[region], category ? rceCategory(category) : t.detail.noCategory])} />
+            </View>
+          </>
+        ) : (
+          <Text variant="bodyMedium">
+            {summary.kind === 'same' ? t.detail.conservationSame(summary.category)
+              : summary.kind === 'no_record' ? t.detail.conservationNoRecord : t.detail.conservationNotForPark}
+          </Text>
+        )}
+        {data.notes.map((note) => <Note key={note} text={note} />)}
+        <Text variant="bodySmall" tone="onSurfaceVariant">
+          {t.detail.conservationSource(data.source.title, data.source.versionText, formatDate(data.source.accessedAt))}
+        </Text>
+      </>
+    );
+  } else if (isPending) {
+    body = <LoadingState label={t.detail.conservationLoading} />;
+  } else {
+    body = (
+      <>
+        <Text variant="bodyMedium" tone="onSurfaceVariant">{t.detail.conservationError}</Text>
+        {error ? <TextButton label={t.common.retry} onPress={refetch} /> : null}
+      </>
+    );
+  }
+  return <Section title={t.detail.conservationTitle}>{body}</Section>;
+}
+
+function Section({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <View style={styles.section}>
+      <Text variant="headline" accessibilityRole="header">{title}</Text>
+      {children}
+    </View>
+  );
+}
+
+/** Aviso discreto sobre el estado del dato (fuente, revisión). */
+function Note({ text }: { text: string }) {
+  const { color } = useTheme();
+  return (
+    <View style={styles.draft}>
+      <InfoIcon color={color.onSurfaceVariant} size={16} />
+      <Text variant="bodySmall" tone="onSurfaceVariant" style={styles.grow}>{text}</Text>
+    </View>
+  );
+}
+
+function SourceLink({ source }: { source: SourceRef }) {
+  const { color } = useTheme();
+  return (
+    <View>
+      <TextButton label={source.title} role="link" onPress={() => Linking.openURL(source.url)}
+        trailing={<ExternalIcon color={color.onSurface} size={16} />} />
+      <Text variant="bodySmall" tone="onSurfaceVariant">{`${hostOf(source.url)} · ${formatDate(source.accessedAt)}`}</Text>
     </View>
   );
 }
@@ -263,6 +374,7 @@ const styles = StyleSheet.create({
   nameBox: { transformOrigin: 'left' },
   name: { fontFamily: type.number.fontFamily, fontSize: 44, lineHeight: 46, letterSpacing: -1.2 },
   tags: { marginTop: space.sm, marginBottom: space.xs },
+  row: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: space.xs },
   guide: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginTop: space.lg, paddingTop: space.lg, borderTopWidth: StyleSheet.hairlineWidth },
   guideIcon: { width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
   // Más aire sobre el primer título que entre secciones: la curva de las esquinas se come parte del
@@ -273,7 +385,13 @@ const styles = StyleSheet.create({
   grow: { flex: 1 },
   card: { borderRadius: radius.lg, borderWidth: 1, overflow: 'hidden' },
   cardPad: { paddingHorizontal: space.md, paddingVertical: space.xs },
+  cardInner: { padding: space.md, gap: space.xs },
   note: { flexDirection: 'row', gap: space.lg, padding: space.lg, alignItems: 'flex-start' },
   noteIcon: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   noteText: { flex: 1, gap: space.xxs, paddingTop: space.xxs },
+  photoCard: { flexDirection: 'row', gap: space.md, padding: space.sm, alignItems: 'center' },
+  thumb: { width: 88, height: 88, borderRadius: radius.md, overflow: 'hidden' },
+  photoText: { flex: 1, gap: space.xxs },
+  sourceRow: { flexDirection: 'row', gap: space.sm, alignItems: 'flex-start' },
+  limitations: { gap: space.xs, paddingTop: space.sm },
 });

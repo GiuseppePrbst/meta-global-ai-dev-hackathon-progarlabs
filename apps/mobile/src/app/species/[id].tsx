@@ -10,13 +10,13 @@ import { scheduleOnRN } from 'react-native-worklets';
 import { toggleSaved, useSaved } from '@/features/catalog/saved';
 import { type NameLayout, SpeciesDetail, SpeciesHero } from '@/features/catalog/species-detail';
 import { apiErrorMessage } from '@/features/api-error-message';
-import { useSpeciesDetail } from '@/features/catalog/use-species';
+import { useTaxon } from '@/features/catalog/use-taxon';
 import { t } from '@/i18n/es-CL';
 import { BackIcon, BookmarkIcon, Button, IconButton, LoadingState, radius, space, Text, useTheme } from '@/ui';
 
 export default function SpeciesDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { data: species, isPending, error, refetch } = useSpeciesDetail(id);
+  const { data: taxon, isPending, error, refetch } = useTaxon(id);
   const { color, scheme } = useTheme();
   const insets = useSafeAreaInsets();
   const saved = useSaved();
@@ -56,22 +56,22 @@ export default function SpeciesDetailScreen() {
     };
   });
 
-  const isSaved = species ? saved.has(species.id) : false;
+  const isSaved = taxon ? saved.has(taxon.id) : false;
   // Botones oscuros con ícono claro sobre la foto; claros con ícono oscuro sobre la barra.
-  const onPhoto = Boolean(species) && overPhoto;
+  const onPhoto = Boolean(taxon) && overPhoto;
   const buttonLook = onPhoto ? 'dark' : 'light';
   const buttonInk = onPhoto ? color.onDark : color.onSurface;
 
   return (
     <View style={[styles.screen, { backgroundColor: color.background }]}>
       <StatusBar style={onPhoto || scheme === 'dark' ? 'light' : 'dark'} />
-      {species ? (
+      {taxon ? (
         <Animated.ScrollView onScroll={onScroll} scrollEventThrottle={16}
           contentContainerStyle={{ paddingBottom: insets.bottom + space.xl }}>
-          <SpeciesHero species={species} scrollY={scrollY} barBottom={barBottom} onNameLayout={onNameLayout} />
+          <SpeciesHero taxon={taxon} scrollY={scrollY} barBottom={barBottom} onNameLayout={onNameLayout} />
           {/* La hoja sube sobre la foto con sus esquinas redondeadas. */}
           <View style={[styles.sheet, { backgroundColor: color.background }]}>
-            <SpeciesDetail species={species} />
+            <SpeciesDetail taxon={taxon} />
           </View>
         </Animated.ScrollView>
       ) : (
@@ -95,7 +95,7 @@ export default function SpeciesDetailScreen() {
       )}
 
       {/* Velo de bosque sobre el borde superior de la foto: hace legibles la barra de estado y los botones. */}
-      {species ? (
+      {taxon ? (
         <Animated.View pointerEvents="none" style={[styles.veil, { height: insets.top + VEIL_HEIGHT }, veilStyle]}>
           <Svg style={StyleSheet.absoluteFill} width="100%" height="100%" preserveAspectRatio="none">
             <Defs>
@@ -109,10 +109,10 @@ export default function SpeciesDetailScreen() {
           </Svg>
         </Animated.View>
       ) : null}
-      <Animated.View pointerEvents="none" style={[styles.bar, { height: barBottom, backgroundColor: color.background, borderColor: color.outlineVariant }, species ? barStyle : null]}>
-        <Animated.View style={[{ marginTop: insets.top }, species ? barTitleStyle : null]}>
+      <Animated.View pointerEvents="none" style={[styles.bar, { height: barBottom, backgroundColor: color.background, borderColor: color.outlineVariant }, taxon ? barStyle : null]}>
+        <Animated.View style={[{ marginTop: insets.top }, taxon ? barTitleStyle : null]}>
           <Text variant="titleMedium" numberOfLines={1} style={styles.barTitle}>
-            {species?.commonName ?? t.detail.screenTitle}
+            {taxon?.commonName ?? t.detail.screenTitle}
           </Text>
         </Animated.View>
       </Animated.View>
@@ -120,9 +120,9 @@ export default function SpeciesDetailScreen() {
         <IconButton label={t.detail.back} onPress={back} look={buttonLook}>
           <BackIcon color={buttonInk} size={22} />
         </IconButton>
-        {species ? (
-          <IconButton label={isSaved ? t.species.unsave(species.commonName) : t.species.save(species.commonName)} look={buttonLook}
-            selected={isSaved} onPress={() => toggleSaved(species.id)}>
+        {taxon ? (
+          <IconButton label={isSaved ? t.species.unsave(taxon.commonName) : t.species.save(taxon.commonName)} look={buttonLook}
+            selected={isSaved} onPress={() => toggleSaved(taxon.id)}>
             <BookmarkIcon color={isSaved && buttonLook === 'dark' ? color.lime : buttonInk} fill={isSaved ? color.lime : 'none'} size={22} />
           </IconButton>
         ) : null}

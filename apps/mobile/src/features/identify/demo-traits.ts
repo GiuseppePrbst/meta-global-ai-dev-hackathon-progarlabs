@@ -18,7 +18,7 @@ export type FungusTraits = {
   fruitingBody: string;
   /** Dónde y sobre qué crece: suelo, madera, ramas vivas, asociaciones. */
   substrate: string;
-  /** Temporada y uso. */
+  /** Temporada. Sin consumo ni comestibilidad: Bosque Vivo nunca los ofrece (regla del backend). */
   habit: string;
   whereToLook: string;
 };
@@ -80,13 +80,13 @@ const fungi: Record<string, FungusTraits> = {
   'cyttaria-espinosae': {
     fruitingBody: 'Globoso, blanco a anaranjado y pegajoso; al madurar se abren hoyuelos anaranjados que le dan aspecto de panal.',
     substrate: 'Parásito de ramas de Nothofagus, sobre todo del roble (N. obliqua): brota de las agallas que forma en ellas.',
-    habit: 'Hongo comestible; brota en primavera y a comienzos del verano.',
+    habit: 'Brota en primavera y a comienzos del verano.',
     whereToLook: 'Bosques con roble del centro-sur de Chile; busca ramas con agallas.',
   },
   'butyriboletus-loyo': {
     fruitingBody: 'Sombrero rojo oscuro de 6 a 35 cm; debajo, poros amarillos que se vuelven azules al magullarse. Pie amarillo con la base rojiza.',
     substrate: 'Crece en el suelo, solo o en grupos pequeños, asociado a las raíces de Nothofagus (micorriza).',
-    habit: 'Hongo comestible y escaso; fructifica desde fines del verano hasta el otoño.',
+    habit: 'Escaso; fructifica desde fines del verano hasta el otoño.',
     whereToLook: 'Suelo de bosques nativos del sur de Chile, entre la hojarasca.',
   },
 };
