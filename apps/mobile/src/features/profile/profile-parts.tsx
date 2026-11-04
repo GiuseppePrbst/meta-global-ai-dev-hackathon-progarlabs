@@ -8,7 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Defs, LinearGradient, Path, Stop } from 'react-native-svg';
 
 import type { Species } from '@/domain/species';
-import { estimatedMinutes, getDemoTrail } from '@/features/atlas/demo-trail';
+import { estimatedMinutes } from '@/features/atlas/demo-trail';
 import { getTrailPhoto } from '@/features/atlas/trail-photos';
 import { useSpeciesCatalog } from '@/features/catalog/use-species';
 import { useGuide } from '@/features/guide/use-guide';
@@ -256,7 +256,7 @@ function describe(activity: Activity, catalog: Species[]): Described {
       const km = formatDecimal(activity.km);
       const duration = formatDuration(estimatedMinutes(activity.km));
       return {
-        title: getDemoTrail(activity.trailId).name,
+        title: activity.trailName,
         detail: t.profile.activityWalkDetail(km, duration),
         a11yDetail: t.profile.activityWalkA11y(km, duration),
       };

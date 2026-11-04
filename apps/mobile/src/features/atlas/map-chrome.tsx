@@ -15,7 +15,7 @@ import type { AtlasMapLayers } from '@/map/atlas-map';
 import {
   BackIcon, BinocularsIcon, Button, CameraIcon, ChevronIcon, ChevronLeftIcon, CloseIcon, CoverImage, EmptyState, FilterChip, FlagIcon, IconButton,
   type IconComponent, InfoIcon, LayersIcon, LeafIcon, MapIcon, PinIcon, radius, space, StatusBanner, Tag,
-  Text, TrailIcon, useTheme,
+  Text, TextButton, TrailIcon, useTheme,
 } from '@/ui';
 
 // Piezas que flotan sobre el mapa oscuro, o lo tapan mientras no puede mostrarse.
@@ -133,10 +133,11 @@ type TrailCardProps = {
   metaA11y: string;
   onStart: () => void;
   onOtherTrails: () => void;
+  onDetails: () => void;
 };
 
-/** Tarjeta del sendero de demostración: foto con margen y esquinas redondeadas a la izquierda (con la flecha a «otros senderos» en su esquina), datos e inicio a la derecha. */
-export function TrailCard({ name, photo, photoA11y, meta, metaA11y, onStart, onOtherTrails }: TrailCardProps) {
+/** Tarjeta del sendero, con su trazado de demostración en el mapa: foto con margen y esquinas redondeadas a la izquierda (con la flecha a «otros senderos» en su esquina), datos e inicio a la derecha. */
+export function TrailCard({ name, photo, photoA11y, meta, metaA11y, onStart, onOtherTrails, onDetails }: TrailCardProps) {
   const { color } = useTheme();
   return (
     <MapCard style={styles.trailCard}>
@@ -149,10 +150,11 @@ export function TrailCard({ name, photo, photoA11y, meta, metaA11y, onStart, onO
       </IconButton>
       <View style={styles.trailBody}>
         <View style={styles.cardText}>
-          <Text variant="titleMedium" tone="onDark" numberOfLines={1}>{name}</Text>
-          {/* Sin etiqueta de demostración: la nota de abajo ya dice que el sendero es sintético. */}
+          <Text variant="titleMedium" tone="onDark" numberOfLines={2}>{name}</Text>
+          {/* Sin etiqueta de demostración: la nota de abajo ya dice que el trazado es sintético. */}
           <Text variant="titleSmall" tone="lime" accessibilityLabel={metaA11y}>{meta}</Text>
           <Text variant="labelSmall" tone="onDarkVariant" style={styles.note}>{t.trail.syntheticNote}</Text>
+          <TextButton label={t.trail.details} onPress={onDetails} tone="onDark" />
         </View>
         <Button label={t.trail.start} accessibilityLabel={t.trail.startA11y} onPress={onStart} size="compact" />
       </View>
@@ -165,14 +167,16 @@ type TrailOptionProps = {
   photo: ImageSourcePropType;
   meta: string;
   metaA11y: string;
+  /** Línea secundaria: cierre publicado o tipo de fuente. */
+  note?: string;
   onPress: () => void;
 };
 
-/** Fila de «Otros senderos»: miniatura, nombre y distancia; tocarla cambia el sendero del mapa. */
-export function TrailOption({ name, photo, meta, metaA11y, onPress }: TrailOptionProps) {
+/** Fila de «Otros senderos»: miniatura, nombre y datos; tocarla cambia el sendero del mapa. */
+export function TrailOption({ name, photo, meta, metaA11y, note, onPress }: TrailOptionProps) {
   const { color } = useTheme();
   return (
-    <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={`${name}, ${t.trail.demoTag}. ${metaA11y}`}
+    <Pressable onPress={onPress} accessibilityRole="button" accessibilityLabel={[name, metaA11y, note].filter(Boolean).join('. ')}
       accessibilityHint={t.trail.chooseA11y} android_ripple={{ color: color.onDarkRipple }}
       style={({ pressed }) => [styles.trailOption, { backgroundColor: color.darkSurfaceHigh, opacity: pressed ? 0.85 : 1 }]}>
       <View style={styles.trailOptionPhoto}>
@@ -181,6 +185,7 @@ export function TrailOption({ name, photo, meta, metaA11y, onPress }: TrailOptio
       <View style={styles.cardText}>
         <Text variant="titleSmall" tone="onDark" numberOfLines={1}>{name}</Text>
         <Text variant="titleSmall" tone="lime" numberOfLines={1}>{meta}</Text>
+        {note ? <Text variant="labelSmall" tone="onDarkVariant" numberOfLines={2}>{note}</Text> : null}
       </View>
       <ChevronIcon color={color.onDarkVariant} size={20} />
     </Pressable>

@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
 
 import { pointInPolygon } from '@/domain/geo';
-import { demoTrails } from '@/features/atlas/demo-trail';
+import { DEMO_SHAPES } from '@/features/atlas/demo-trail';
 import { getPark, parks, puyehue } from '@/features/atlas/parks';
 
 describe('parques del mapa', () => {
@@ -23,9 +23,9 @@ describe('parques del mapa', () => {
     expect(pointInPolygon({ longitude: -73.13, latitude: -40.57 }, puyehue.boundary)).toBe(false);
   });
 
-  it('los senderos de demostración que lista el parque quedan dentro de su límite', () => {
-    for (const trail of demoTrails) {
-      for (const point of trail.path) expect(pointInPolygon(point, puyehue.boundary)).toBe(true);
+  it('los trazados de demostración de los senderos quedan dentro de su límite', () => {
+    for (const shape of DEMO_SHAPES) {
+      for (const point of shape.path) expect(pointInPolygon(point, puyehue.boundary)).toBe(true);
     }
   });
 

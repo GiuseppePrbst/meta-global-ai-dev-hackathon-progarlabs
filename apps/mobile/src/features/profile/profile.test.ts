@@ -16,7 +16,7 @@ const catalog = [
 ].map(([id, scientificName]) => ({ id, scientificName }) as Species);
 
 const entry = (speciesId: string, addedAt: string): GuideEntry => ({ speciesId, addedAt });
-const walk = (completedAt: string, km = 3): Walk => ({ trailId: 't', completedAt, km });
+const walk = (completedAt: string, km = 3): Walk => ({ trailId: 't', trailName: 'T', completedAt, km });
 
 describe('validateProfile', () => {
   it('limpia espacios y caracteres de control', () => {
@@ -113,7 +113,7 @@ describe('buildActivity', () => {
     });
     expect(activity).toEqual([
       { kind: 'badge', date: '2026-10-03', badgeId: 'first-walk' },
-      { kind: 'walk', date: '2026-10-03', trailId: 't', km: 3 },
+      { kind: 'walk', date: '2026-10-03', trailId: 't', trailName: 'T', km: 3 },
       { kind: 'badge', date: '2026-10-01', badgeId: 'first-species' },
       { kind: 'badge', date: '2026-10-01', badgeId: 'half-guide' },
       { kind: 'species', date: '2026-10-01', speciesIds: ['a', 'c'] },

@@ -15,8 +15,9 @@ import {
 } from '@/ui';
 
 type MapListProps = {
-  trail: DemoTrail;
-  trailMeta: string;
+  /** Sendero abierto en el mapa; sin él, la lista muestra solo las observaciones. */
+  trail?: DemoTrail;
+  trailMeta?: string;
   observations: QueryResult<Observation[]>;
   onClose: () => void;
   onShowStop: (stop: TrailStop) => void;
@@ -38,22 +39,24 @@ export function MapList({ trail, trailMeta, observations: { data, isPending, err
       <ScrollView contentContainerStyle={styles.content}>
         <StatusBanner on="dark" message={t.mapList.demoBanner} />
 
-        <View style={styles.section}>
-          <Text variant="titleLarge" tone="onDark" accessibilityRole="header">{t.mapList.trailHeading}</Text>
-          <Text variant="bodySmall" tone="onDarkVariant">{`${trailMeta} · ${t.trail.syntheticNote}`}</Text>
-          <View style={[styles.group, { backgroundColor: color.darkSurface }]}>
-            {trail.stops.map((stop, i) => {
-              const Icon = stopIcons[stop.kind];
-              return (
-                <Row key={stop.id} first={i === 0} onPress={() => onShowStop(stop)} accessibilityLabel={t.mapList.stopA11y(i + 1, stop.name)}
-                  leading={<View style={[styles.icon, { backgroundColor: color.darkSurfaceHigh }]}><Icon color={color.lime} size={22} /></View>}>
-                  <Text variant="labelMedium" tone="onDarkVariant">{t.trail.stopOf(i + 1, trail.stops.length)}</Text>
-                  <Text variant="titleSmall" tone="onDark">{stop.name}</Text>
-                </Row>
-              );
-            })}
+        {trail ? (
+          <View style={styles.section}>
+            <Text variant="titleLarge" tone="onDark" accessibilityRole="header">{trail.name}</Text>
+            <Text variant="bodySmall" tone="onDarkVariant">{`${trailMeta} · ${t.trail.syntheticNote}`}</Text>
+            <View style={[styles.group, { backgroundColor: color.darkSurface }]}>
+              {trail.stops.map((stop, i) => {
+                const Icon = stopIcons[stop.kind];
+                return (
+                  <Row key={stop.id} first={i === 0} onPress={() => onShowStop(stop)} accessibilityLabel={t.mapList.stopA11y(i + 1, stop.name)}
+                    leading={<View style={[styles.icon, { backgroundColor: color.darkSurfaceHigh }]}><Icon color={color.lime} size={22} /></View>}>
+                    <Text variant="labelMedium" tone="onDarkVariant">{t.trail.stopOf(i + 1, trail.stops.length)}</Text>
+                    <Text variant="titleSmall" tone="onDark">{stop.name}</Text>
+                  </Row>
+                );
+              })}
+            </View>
           </View>
-        </View>
+        ) : null}
 
         <View style={styles.section}>
           <Text variant="titleLarge" tone="onDark" accessibilityRole="header">{t.mapList.observationsHeading}</Text>

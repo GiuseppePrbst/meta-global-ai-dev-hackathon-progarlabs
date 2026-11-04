@@ -211,6 +211,7 @@ export default function AtlasMap({
   const trailPath = useRef<SVGPathElement[]>([]);
   const parkShapes = useRef<ParkShape[]>([]);
   const previewShapes = useRef<PreviewShape[]>([]);
+  const previewsGroup = useRef<SVGGElement | null>(null);
   // Los listeners de MapLibre se registran una vez: leen los datos vigentes desde aquí.
   const currentTrail = useRef(trail);
   currentTrail.current = trail;
@@ -459,16 +460,24 @@ export default function AtlasMap({
       group.setAttribute('data-id', id);
       return { id, paths: ['park-fill', 'park-glow', 'park-line'].map((name) => svgPath(name, group)) };
     });
-    const previewsGroup = svgGroup('previews', svg);
-    previewShapes.current = trailPreviews.map(({ id }, index) => {
-      const group = svgGroup('preview', previewsGroup);
-      group.setAttribute('style', `--i:${index}`);
-      return { id, paths: ['preview-casing', 'preview-line'].map((name) => svgPath(name, group)) };
-    });
+    previewsGroup.current = svgGroup('previews', svg);
+    mountPreviews();
     const trailGroup = svgGroup('trail', svg);
     trailPath.current = ['trail-glow', 'trail-casing', 'trail-line'].map((name) => svgPath(name, trailGroup));
     canvasContainer.insertBefore(svg, canvasContainer.firstChild?.nextSibling ?? null);
     drawOverlay(instance);
+  }
+
+  /** Una forma por sendero en vista previa. Se rehace cuando llegan los senderos, que vienen de la API. */
+  function mountPreviews() {
+    const parent = previewsGroup.current;
+    if (!parent) return;
+    parent.replaceChildren();
+    previewShapes.current = currentPreviews.current.map(({ id }, index) => {
+      const group = svgGroup('preview', parent);
+      group.setAttribute('style', `--i:${index}`);
+      return { id, paths: ['preview-casing', 'preview-line'].map((name) => svgPath(name, group)) };
+    });
   }
 
   function project(instance: MapLibreMap, points: GeoPoint[], close: boolean) {
@@ -491,7 +500,7 @@ export default function AtlasMap({
     // Las vistas previas solo se ven en la etapa de senderos: fuera de ella no se reproyectan.
     if (currentStage.current === 'trails') {
       previewShapes.current.forEach(({ id, paths }) => {
-        const preview = trailPreviews.find((candidate) => candidate.id === id);
+        const preview = currentPreviews.current.find((candidate) => candidate.id === id);
         if (!preview || preview.path.length < 2) return;
         const d = project(instance, preview.path, false);
         paths.forEach((path) => path.setAttribute('d', d));
@@ -527,7 +536,7 @@ export default function AtlasMap({
       }));
     }
     if (stage === 'trails') {
-      trailPreviews.forEach(({ id, path }, index) => path.length && wanted.set(`trailhead:${id}`, {
+      currentPreviews.current.forEach(({ id, path }, index) => path.length && wanted.set(`trailhead:${id}`, {
         className: 'trailhead',
         html: '',
         lngLat: [path[0].longitude, path[0].latitude],
@@ -577,6 +586,18 @@ export default function AtlasMap({
       order += 1;
     });
   }
+
+  // Llegaron (o cambiaron) los senderos del parque: se rehacen sus vistas previas y sus inicios.
+  const shownPreviews = useRef(trailPreviews);
+  useEffect(() => {
+    const instance = map.current;
+    if (shownPreviews.current === trailPreviews || !instance) return;
+    shownPreviews.current = trailPreviews;
+    mountPreviews();
+    if (styleReady.current) drawOverlay(instance);
+    syncMarkers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trailPreviews]);
 
   // Otro sendero: se redibuja. La cámara la mueve la pantalla al cambiar de etapa.
   const shownTrail = useRef(trail);

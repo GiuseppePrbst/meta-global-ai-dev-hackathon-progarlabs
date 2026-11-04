@@ -1,14 +1,16 @@
 import type { GeoPoint } from '@/domain/geo';
 
-// SENDEROS DE DEMOSTRACIÓN, trazados SINTÉTICOS: las coordenadas se generaron con curvas dentro del
-// límite OSM del parque (src/features/atlas/parks.ts) para mostrar cómo se vería un recorrido. Ninguno
-// es un sendero real, no siguen ninguna huella del terreno y no sirven para orientarse. La app los
-// rotula como demostración.
+// TRAZADOS DE DEMOSTRACIÓN, SINTÉTICOS: las coordenadas se generaron con curvas dentro del límite OSM
+// del parque (src/features/atlas/parks.ts) para mostrar cómo se vería un recorrido. La API de senderos
+// (GET /parks/{id}/trails) no entrega geometría (`geometry_available=false`), así que cada sendero real
+// se dibuja con uno de estos trazados, siempre el mismo. Ninguno sigue la huella del sendero que lleva
+// el nombre, ni sirve para orientarse. La app lo rotula como trazado de demostración.
 
 export type TrailStopKind = 'start' | 'viewpoint' | 'photo' | 'end';
 
 export type TrailStop = { id: string; kind: TrailStopKind; name: string; point: GeoPoint };
 
+/** Un sendero con su trazado de demostración. `id` y `name` son los del sendero; el trazado no. */
 export type DemoTrail = { id: string; name: string; path: GeoPoint[]; stops: TrailStop[] };
 
 const toPath = (coords: readonly (readonly [number, number])[]): GeoPoint[] =>
@@ -24,7 +26,8 @@ function stopsAlong(id: string, path: GeoPoint[], viewpoint: number, photo: numb
   ];
 }
 
-const path = toPath(
+// Ondulado, con un pequeño rizo al inicio.
+const wavePath = toPath(
   [
     [-72.152, -40.70007], [-72.14773, -40.69817], [-72.14431, -40.6967], [-72.1423, -40.69568],
     [-72.14179, -40.6951], [-72.14235, -40.69489], [-72.14319, -40.69491], [-72.14343, -40.695],
@@ -33,13 +36,6 @@ const path = toPath(
     [-72.12393, -40.68363], [-72.12465, -40.68195],
   ] as const,
 );
-
-export const demoTrail: DemoTrail = {
-  id: 'demo-trail',
-  name: 'Sendero de demostración',
-  path,
-  stops: stopsAlong('demo-trail', path, 5, 11),
-};
 
 // Circuito: vuelve a su inicio.
 const loopPath = toPath([
@@ -66,17 +62,102 @@ const arcPath = toPath([
   [-71.93, -40.55967], [-71.926, -40.5614], [-71.922, -40.5632],
 ] as const);
 
-/** Todos los senderos de demostración; el primero es el que el mapa muestra al abrir. */
-export const demoTrails: DemoTrail[] = [
-  demoTrail,
-  { id: 'demo-loop', name: 'Circuito de demostración', path: loopPath, stops: stopsAlong('demo-loop', loopPath, 5, 13) },
-  { id: 'demo-zigzag', name: 'Subida de demostración', path: zigzagPath, stops: stopsAlong('demo-zigzag', zigzagPath, 10, 15) },
-  { id: 'demo-arc', name: 'Travesía de demostración', path: arcPath, stops: stopsAlong('demo-arc', arcPath, 4, 12) },
+// Cresta ondulada de oeste a este.
+const ridgePath = toPath([
+  [-72.03, -40.63], [-72.02647, -40.62562], [-72.02294, -40.62281], [-72.01941, -40.62269], [-72.01588, -40.62555],
+  [-72.01235, -40.6308], [-72.00882, -40.63713], [-72.00529, -40.64291], [-72.00176, -40.64668], [-71.99824, -40.64756],
+  [-71.99471, -40.64556], [-71.99118, -40.64154], [-71.98765, -40.63698], [-71.98412, -40.63349], [-71.98059, -40.6324],
+  [-71.97706, -40.63428], [-71.97353, -40.63885], [-71.97, -40.645],
+] as const);
+
+// Ramal corto.
+const spurPath = toPath([
+  [-72.08, -40.66], [-72.07867, -40.66203], [-72.07733, -40.6639], [-72.076, -40.66546], [-72.07467, -40.66661],
+  [-72.07333, -40.66727], [-72.072, -40.66746], [-72.07067, -40.66724], [-72.06933, -40.6667], [-72.068, -40.666],
+] as const);
+
+// Curva en S al noroeste del parque.
+const sPath = toPath([
+  [-72.285, -40.48533], [-72.28147, -40.48103], [-72.27794, -40.47712], [-72.27441, -40.47394], [-72.27088, -40.47172],
+  [-72.26735, -40.47058], [-72.26382, -40.47048], [-72.26029, -40.47124], [-72.25676, -40.47257], [-72.25324, -40.4741],
+  [-72.24971, -40.47543], [-72.24618, -40.47619], [-72.24265, -40.47609], [-72.23912, -40.47495], [-72.23559, -40.47273],
+  [-72.23206, -40.46955], [-72.22853, -40.46564], [-72.225, -40.46133],
+] as const);
+
+// Gancho que se abre en espiral.
+const hookPath = toPath([
+  [-72.09773, -40.5375], [-72.09737, -40.53425], [-72.09818, -40.53087], [-72.10024, -40.52761], [-72.10349, -40.52475],
+  [-72.10781, -40.52256], [-72.11294, -40.52127], [-72.11857, -40.52105], [-72.12431, -40.522], [-72.12973, -40.52417],
+  [-72.1344, -40.52747], [-72.13791, -40.53174], [-72.13993, -40.53674], [-72.14019, -40.54216], [-72.13856, -40.54761],
+  [-72.13503, -40.55272], [-72.12975, -40.55708], [-72.12297, -40.56033],
+] as const);
+
+// Subida larga de sur a norte.
+const climbPath = toPath([
+  [-72.13833, -40.84333], [-72.13588, -40.83912], [-72.13446, -40.83491], [-72.13467, -40.8307], [-72.13643, -40.82649],
+  [-72.13899, -40.82228], [-72.14128, -40.81807], [-72.14232, -40.81386], [-72.14168, -40.80965], [-72.13963, -40.80544],
+  [-72.13703, -40.80123], [-72.13498, -40.79702], [-72.13435, -40.79281], [-72.13539, -40.7886], [-72.13767, -40.78439],
+  [-72.14024, -40.78018], [-72.142, -40.77596], [-72.14221, -40.77175], [-72.14079, -40.76754], [-72.13833, -40.76333],
+] as const);
+
+type DemoShape = { path: GeoPoint[]; viewpoint: number; photo: number };
+
+/** Trazados disponibles, con la posición de sus paradas de mirador y foto. El orden es estable: no reordenar. */
+export const DEMO_SHAPES: readonly DemoShape[] = [
+  { path: wavePath, viewpoint: 5, photo: 11 },
+  { path: loopPath, viewpoint: 5, photo: 13 },
+  { path: zigzagPath, viewpoint: 10, photo: 15 },
+  { path: arcPath, viewpoint: 4, photo: 12 },
+  { path: ridgePath, viewpoint: 5, photo: 12 },
+  { path: spurPath, viewpoint: 3, photo: 6 },
+  { path: sPath, viewpoint: 6, photo: 12 },
+  { path: hookPath, viewpoint: 5, photo: 11 },
+  { path: climbPath, viewpoint: 7, photo: 14 },
 ];
 
-/** Sendero de demostración por id; cae en el principal si el id no existe. */
-export function getDemoTrail(id: string): DemoTrail {
-  return demoTrails.find((trail) => trail.id === id) ?? demoTrail;
+/**
+ * Trazado fijo de cada sendero conocido de Puyehue (ids del Knowledge Atlas), uno distinto por sendero.
+ * La asignación es arbitraria: la forma no tiene relación con el sendero real.
+ */
+export const DEMO_SHAPE_BY_TRAIL: Readonly<Record<string, number>> = {
+  'puyehue-salto-del-pudu': 0,
+  'puyehue-anticura-catrue': 1,
+  'puyehue-crater-raihuen-casablanca': 2,
+  'puyehue-antillanca-ruta': 3,
+  'puyehue-el-indio': 4,
+  'puyehue-rio-anticura': 5,
+  'puyehue-la-princesa': 6,
+  'puyehue-repucura': 7,
+  'puyehue-volcan-puyehue': 8,
+};
+
+/** Hash FNV-1a de 32 bits: estable entre arranques y plataformas. */
+function hash(text: string): number {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < text.length; i++) {
+    h ^= text.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h;
+}
+
+/** Índice del trazado de un sendero: el de la tabla, o uno elegido por hash si el id no está en ella. */
+export function demoShapeIndex(trailId: string): number {
+  return DEMO_SHAPE_BY_TRAIL[trailId] ?? hash(trailId) % DEMO_SHAPES.length;
+}
+
+// Misma referencia para el mismo sendero: el mapa compara trazados y paradas por identidad.
+const cache = new Map<string, DemoTrail>();
+
+/** El sendero `trailId`, con su nombre real, dibujado con su trazado de demostración fijo. */
+export function demoTrailFor(trailId: string, name: string): DemoTrail {
+  const key = `${trailId}\u0000${name}`;
+  const cached = cache.get(key);
+  if (cached) return cached;
+  const shape = DEMO_SHAPES[demoShapeIndex(trailId)];
+  const trail = { id: trailId, name, path: shape.path, stops: stopsAlong(trailId, shape.path, shape.viewpoint, shape.photo) };
+  cache.set(key, trail);
+  return trail;
 }
 
 /** Ritmo de referencia para estimar duración: caminata tranquila, sin desnivel. Es una estimación. */

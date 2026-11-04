@@ -1,7 +1,9 @@
 import { describe, expect, it } from '@jest/globals';
 
 import { pathBounds } from '@/domain/geo';
-import { demoTrail, demoTrails, estimatedMinutes, getDemoTrail } from '@/features/atlas/demo-trail';
+import {
+  DEMO_SHAPE_BY_TRAIL, DEMO_SHAPES, demoShapeIndex, demoTrailFor, estimatedMinutes,
+} from '@/features/atlas/demo-trail';
 
 describe('estimatedMinutes', () => {
   it('estima a 3 km/h redondeando a 5 minutos', () => {
@@ -14,11 +16,13 @@ describe('estimatedMinutes', () => {
   });
 });
 
-describe('demoTrails', () => {
+describe('trazados de demostración', () => {
   // Encuadre CONAF de Puyehue (el mismo del mapa).
   const FRAME = { west: -(72 + 20 / 60), east: -(71 + 50 / 60), south: -(40 + 57 / 60), north: -(40 + 25 / 60) };
+  const knownIds = Object.keys(DEMO_SHAPE_BY_TRAIL);
+  const trails = knownIds.map((id) => demoTrailFor(id, `Sendero ${id}`));
 
-  it.each(demoTrails.map((trail) => [trail.id, trail] as const))(
+  it.each(trails.map((trail) => [trail.id, trail] as const))(
     '%s tiene sus paradas en orden sobre el trazado, de extremo a extremo',
     (_, { path, stops }) => {
       const positions = stops.map((stop) => path.indexOf(stop.point));
@@ -29,7 +33,7 @@ describe('demoTrails', () => {
     },
   );
 
-  it.each(demoTrails.map((trail) => [trail.id, trail] as const))('%s queda dentro del encuadre de Puyehue', (_, { path }) => {
+  it.each(DEMO_SHAPES.map((shape, i) => [i, shape] as const))('el trazado %i queda dentro del encuadre de Puyehue', (_, { path }) => {
     for (const { longitude, latitude } of path) {
       expect(longitude).toBeGreaterThan(FRAME.west);
       expect(longitude).toBeLessThan(FRAME.east);
@@ -38,25 +42,42 @@ describe('demoTrails', () => {
     }
   });
 
-  it('tienen ids y paradas únicos: el mapa identifica marcadores por id', () => {
-    const ids = demoTrails.map((trail) => trail.id);
-    const stopIds = demoTrails.flatMap((trail) => trail.stops.map((stop) => stop.id));
-    expect(new Set(ids).size).toBe(ids.length);
+  it('cada sendero conocido tiene un trazado distinto', () => {
+    const indices = knownIds.map(demoShapeIndex);
+    expect(new Set(indices).size).toBe(knownIds.length);
+    expect(new Set(trails.map((trail) => trail.path)).size).toBe(knownIds.length);
+    for (const index of indices) expect(DEMO_SHAPES[index]).toBeDefined();
+  });
+
+  it('un sendero desconocido recibe siempre el mismo trazado', () => {
+    const index = demoShapeIndex('parque-ficticio-sendero-x');
+    expect(index).toBeGreaterThanOrEqual(0);
+    expect(index).toBeLessThan(DEMO_SHAPES.length);
+    expect(demoShapeIndex('parque-ficticio-sendero-x')).toBe(index);
+    expect(demoTrailFor('parque-ficticio-sendero-x', 'X').path).toBe(DEMO_SHAPES[index].path);
+  });
+
+  it('usa el id y el nombre del sendero, y devuelve la misma referencia', () => {
+    const trail = demoTrailFor('puyehue-el-indio', 'El Indio');
+    expect(trail.id).toBe('puyehue-el-indio');
+    expect(trail.name).toBe('El Indio');
+    expect(demoTrailFor('puyehue-el-indio', 'El Indio')).toBe(trail);
+  });
+
+  it('las paradas tienen ids únicos entre senderos: el mapa identifica marcadores por id', () => {
+    const stopIds = trails.flatMap((trail) => trail.stops.map((stop) => stop.id));
     expect(new Set(stopIds).size).toBe(stopIds.length);
   });
 
-  it('busca por id y cae en el principal si no existe', () => {
-    expect(getDemoTrail('demo-loop').name).toBe('Circuito de demostración');
-    expect(getDemoTrail('inexistente')).toBe(demoTrail);
-  });
-
-  it('queda dentro de su propia caja', () => {
-    const [[west, south], [east, north]] = pathBounds(demoTrail.path)!;
-    for (const { longitude, latitude } of demoTrail.path) {
-      expect(longitude).toBeGreaterThanOrEqual(west);
-      expect(longitude).toBeLessThanOrEqual(east);
-      expect(latitude).toBeGreaterThanOrEqual(south);
-      expect(latitude).toBeLessThanOrEqual(north);
+  it('cada trazado queda dentro de su propia caja', () => {
+    for (const { path } of DEMO_SHAPES) {
+      const [[west, south], [east, north]] = pathBounds(path)!;
+      for (const { longitude, latitude } of path) {
+        expect(longitude).toBeGreaterThanOrEqual(west);
+        expect(longitude).toBeLessThanOrEqual(east);
+        expect(latitude).toBeGreaterThanOrEqual(south);
+        expect(latitude).toBeLessThanOrEqual(north);
+      }
     }
   });
 });

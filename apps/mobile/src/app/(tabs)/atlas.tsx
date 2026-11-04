@@ -4,26 +4,30 @@ import Animated, { FadeIn, FadeInDown, FadeOut, FadeOutDown, SlideInDown, useRed
 
 import { type GeoBounds, type GeoPoint, pathBounds, pathLengthKm } from '@/domain/geo';
 import type { Observation } from '@/domain/observation';
+import type { ParkTrail } from '@/domain/park';
 import {
   type Basemap, DEFAULT_BASEMAP, EOX_ACCESSED, EOX_LICENSE_URL, EOX_YEAR, OSM_ACCESSED, OSM_COPYRIGHT,
 } from '@/features/atlas/basemap';
-import { type DemoTrail, demoTrail, demoTrails, estimatedMinutes } from '@/features/atlas/demo-trail';
+import { type DemoTrail, demoTrailFor, type TrailStop } from '@/features/atlas/demo-trail';
 import {
   MapHeader, MapLoading, MapNotices, MapUnavailable, ObservationCard, TrailCard, WalkCard,
 } from '@/features/atlas/map-chrome';
 import { MapList } from '@/features/atlas/map-list';
-import { ParkCard, ParksHint, ParkTrailsCard } from '@/features/atlas/park-chrome';
-import { getParkContent } from '@/features/atlas/park-content';
+import { ParkCard, ParksHint, type TrailChoice, ParkTrailsCard } from '@/features/atlas/park-chrome';
+import { getParkPhotos } from '@/features/atlas/park-content';
+import { sourceLabel, trailMeta, trailNote, trailRows } from '@/features/atlas/park-facts';
 import { getPark, PARK_BOUNDARY_SOURCE, parks } from '@/features/atlas/parks';
 import { getTrailPhoto } from '@/features/atlas/trail-photos';
 import { useObservations } from '@/features/atlas/use-observations';
+import { usePark, useParkTrails } from '@/features/atlas/use-park';
 import { useSpeciesNames } from '@/features/atlas/use-species-names';
 import { openSpecies } from '@/features/catalog/open-species';
 import { getReferencePhoto } from '@/features/catalog/reference-photos';
 import { recordWalk } from '@/features/journal/use-walks';
-import { formatDate, formatDecimal, formatDuration, formatShortDate, t } from '@/i18n/es-CL';
+import type { QueryResult } from '@/features/query-result';
+import { formatDate, formatShortDate, t } from '@/i18n/es-CL';
 import AtlasMap, {
-  type AtlasMapHandle, type AtlasMapLayers, type AtlasMapStatus, type AtlasMapStop, type AtlasStage,
+  type AtlasMapHandle, type AtlasMapLayers, type AtlasMapStatus, type AtlasMapStop, type AtlasMapTrailPreview, type AtlasStage,
 } from '@/map/atlas-map';
 import { Button, DataRows, easeOutExpo, NAVIGATION_BAR_OVERLAP, FitIcon, IconButton, Sheet, space, Text, TextButton, useTheme } from '@/ui';
 
@@ -33,29 +37,32 @@ const NO_OBSERVATIONS: Observation[] = [];
 const noSubscription = () => () => {};
 const useIsClient = () => useSyncExternalStore(noSubscription, () => true, () => false);
 
-type TrailView = { trail: DemoTrail; km: number; meta: string; metaA11y: string; mapStops: AtlasMapStop[]; bounds: GeoBounds | null };
+// El sendero viene de la API (GET /parks/{id}/trails) sin geometría; en el mapa se dibuja con su trazado
+// de demostración fijo (demo-trail.ts). `info` es la ficha del sendero tal como llegó.
+type TrailView = {
+  trail: DemoTrail;
+  info: ParkTrail;
+  meta: string;
+  metaA11y: string;
+  note: string;
+  mapStops: AtlasMapStop[];
+  bounds: GeoBounds | null;
+};
 
-// Datos derivados de cada sendero, calculados una vez: el mapa recibe referencias estables.
-const trailViews = new Map<string, TrailView>(demoTrails.map((trail) => {
-  const km = pathLengthKm(trail.path);
-  const kmLabel = formatDecimal(km);
-  const duration = formatDuration(estimatedMinutes(km));
-  return [trail.id, {
-    trail, km,
-    meta: t.trail.meta(kmLabel, duration),
-    metaA11y: t.trail.metaA11y(kmLabel, duration),
+function toTrailView(info: ParkTrail): TrailView {
+  const trail = demoTrailFor(info.id, info.name);
+  return {
+    trail, info, ...trailMeta(info), note: trailNote(info),
     mapStops: trail.stops.map(({ id, kind, point }) => ({ id, kind, ...point })),
     bounds: pathBounds(trail.path),
-  }];
-}));
-const getTrailView = (id: string) => trailViews.get(id) ?? trailViews.get(demoTrail.id)!;
+  };
+}
 
-// Todos los senderos de demostración están dentro del límite de Puyehue (parks.test.ts): son los del parque.
-const trailPreviews = demoTrails.map(({ id, path }) => ({ id, path }));
-const trailChoices = demoTrails.map(({ id, name }) => {
-  const view = getTrailView(id);
-  return { id, name, photo: getTrailPhoto(id).source, meta: view.meta, metaA11y: view.metaA11y };
-});
+// Referencias estables para cuando no hay sendero abierto: el mapa compara por identidad.
+const NO_PATH: GeoPoint[] = [];
+const NO_STOPS: TrailStop[] = [];
+const NO_MAP_STOPS: AtlasMapStop[] = [];
+const NO_PREVIEWS: AtlasMapTrailPreview[] = [];
 
 // Etapa a la que vuelve «atrás» desde cada una.
 const parentStage: Record<AtlasStage, AtlasStage | null> = { parks: null, park: 'parks', trails: 'park', trail: 'trails' };
@@ -84,11 +91,32 @@ export default function MapScreen() {
   const [stage, setStage] = useState<AtlasStage>('parks');
   const [parkId, setParkId] = useState<string | null>(null);
   const park = parkId ? getPark(parkId) : undefined;
-  const parkContent = parkId ? getParkContent(parkId) : undefined;
-  const [trailId, setTrailId] = useState(demoTrail.id);
-  const { trail, km: trailKm, meta: trailMeta, metaA11y: trailMetaA11y, mapStops } = getTrailView(trailId);
-  const { stops } = trail;
-  const trailPhoto = getTrailPhoto(trailId);
+  const parkProfile = usePark(parkId);
+  // Se piden al abrir el parque, para que la lista esté lista al tocar «Visitar».
+  const parkTrails = useParkTrails(parkId);
+  // Por id, en el orden de la API. Se rehace solo si llegan datos nuevos: el mapa recibe referencias estables.
+  const trailViews = useMemo(
+    () => new Map((parkTrails.data ?? []).map((info) => [info.id, toTrailView(info)] as const)),
+    [parkTrails.data],
+  );
+  const trailPreviews = useMemo(
+    () => (trailViews.size ? [...trailViews.values()].map(({ trail: { id, path } }) => ({ id, path })) : NO_PREVIEWS),
+    [trailViews],
+  );
+  const trailChoices = useMemo((): QueryResult<TrailChoice[]> => ({
+    data: parkTrails.data && [...trailViews.values()].map(({ trail: { id, name }, meta, metaA11y, note }) => (
+      { id, name, photo: getTrailPhoto(id).source, meta, metaA11y, note })),
+    isPending: parkTrails.isPending,
+    error: parkTrails.error,
+    refetch: parkTrails.refetch,
+  }), [parkTrails.data, parkTrails.isPending, parkTrails.error, parkTrails.refetch, trailViews]);
+  const [trailId, setTrailId] = useState<string | null>(null);
+  const trailView = trailId ? trailViews.get(trailId) : undefined;
+  const trail = trailView?.trail;
+  const stops = trail?.stops ?? NO_STOPS;
+  const mapStops = trailView?.mapStops ?? NO_MAP_STOPS;
+  const trailPhoto = getTrailPhoto(trailId ?? '');
+  const [showTrailInfo, setShowTrailInfo] = useState(false);
   const [headerHeight, setHeaderHeight] = useState(150);
   const [screenHeight, setScreenHeight] = useState(0);
   const [cardHeight, setCardHeight] = useState(190);
@@ -121,7 +149,7 @@ export default function MapScreen() {
     if (stage !== 'park' || target !== null) setCardHeight(height);
     if (target === null) return;
     // La caja viaja con la orden: en nativo puede llegar al mapa antes que las props nuevas.
-    const bounds = target === 'trail' ? getTrailView(trailId).bounds : (getPark(parkId ?? '') ?? parks[0]).bounds;
+    const bounds = target === 'trail' ? (trailView?.bounds ?? null) : (getPark(parkId ?? '') ?? parks[0]).bounds;
     map.current?.frame(target, bottomInset(height), bounds);
     pendingFrame.current = null;
   };
@@ -201,7 +229,9 @@ export default function MapScreen() {
   };
 
   const completeWalk = () => {
-    recordWalk({ trailId: trail.id, km: trailKm });
+    if (!trail) return;
+    // La distancia del Diario es la del trazado de demostración recorrido, no la del sendero real.
+    recordWalk({ trailId: trail.id, trailName: trail.name, km: pathLengthKm(trail.path) });
     AccessibilityInfo.announceForAccessibility(t.trail.completed);
     exitWalk();
   };
@@ -237,7 +267,7 @@ export default function MapScreen() {
             parkId={parkId}
             trailPreviews={trailPreviews}
             points={mapPoints}
-            trail={trail.path}
+            trail={trail?.path ?? NO_PATH}
             stops={mapStops}
             layers={layers}
             basemap={basemap}
@@ -284,14 +314,15 @@ export default function MapScreen() {
                 <Animated.View key="parks" entering={FadeInDown.duration(420).delay(navigated ? 0 : 900).easing(easeOutExpo)}
                   exiting={FadeOutDown.duration(160)}>
                   <View onLayout={onStageCardLayout}>
-                    <ParksHint parks={parks} regionOf={(id) => getParkContent(id)?.region} onOpen={openPark} />
+                    <ParksHint parks={parks} onOpen={openPark} />
                   </View>
                 </Animated.View>
-              ) : stage === 'park' && park && parkContent ? (
+              ) : stage === 'park' && park ? (
                 <Animated.View key="park" entering={reducedMotion ? FadeIn.duration(200) : SlideInDown.duration(560).easing(easeOutExpo)}
                   exiting={FadeOutDown.duration(180)}>
                   <View onLayout={onStageCardLayout}>
-                    <ParkCard park={park} content={parkContent} onVisit={() => goTo('trails')} onClose={() => goTo('parks')}
+                    <ParkCard park={park} photos={getParkPhotos(park.id)} profile={parkProfile} onVisit={() => goTo('trails')}
+                      onClose={() => goTo('parks')}
                       grownMaxHeight={screenHeight - (headerHeight - space.xl) - space.md - NAVIGATION_BAR_OVERLAP - space.sm} />
                   </View>
                 </Animated.View>
@@ -302,7 +333,7 @@ export default function MapScreen() {
                     <ParkTrailsCard parkName={park.name} trails={trailChoices} onPick={pickTrail} />
                   </View>
                 </Animated.View>
-              ) : walking ? (
+              ) : !trailView ? null : walking ? (
                 <Animated.View key="walk" entering={FadeInDown.duration(260)} exiting={FadeOutDown.duration(140)}>
                   <WalkCard stop={stops[walkStep]} index={walkStep} total={stops.length}
                     onPrevious={() => walkStep > 0 && goToStop(walkStep - 1)}
@@ -317,9 +348,9 @@ export default function MapScreen() {
               ) : (
                 <Animated.View key="trail" entering={FadeInDown.duration(380).easing(easeOutExpo)} exiting={FadeOut.duration(120)}>
                   <View onLayout={onStageCardLayout}>
-                    <TrailCard name={trail.name} photo={trailPhoto.source} photoA11y={trailPhoto.a11y} meta={trailMeta}
-                      metaA11y={trailMetaA11y} onStart={() => goToStop(0)}
-                      onOtherTrails={() => goTo('trails')} />
+                    <TrailCard name={trailView.trail.name} photo={trailPhoto.source} photoA11y={trailPhoto.a11y} meta={trailView.meta}
+                      metaA11y={trailView.metaA11y} onStart={() => goToStop(0)}
+                      onOtherTrails={() => goTo('trails')} onDetails={() => setShowTrailInfo(true)} />
                   </View>
                 </Animated.View>
               )}
@@ -330,7 +361,7 @@ export default function MapScreen() {
 
       {showList ? (
         <Animated.View entering={FadeIn.duration(200)} exiting={FadeOut.duration(140)} style={StyleSheet.absoluteFill}>
-          <MapList trail={trail} trailMeta={`${t.trail.demoTag} · ${trailMeta}`} observations={observationsQuery}
+          <MapList trail={trail} trailMeta={trailView && `${t.trail.demoTag} · ${trailView.meta}`} observations={observationsQuery}
             onClose={() => setShowList(false)}
             onShowStop={(stop) => showOnMap(stop.id, stop.point)}
             onShowObservation={(observation) => observation.location && showOnMap(observation.id, observation.location)} />
@@ -348,20 +379,50 @@ export default function MapScreen() {
           [t.mapInfo.framing, t.mapInfo.framingValue],
           [t.mapInfo.accessed, `EOX ${formatDate(EOX_ACCESSED)} · OSM ${formatDate(OSM_ACCESSED)}`],
           [t.mapInfo.status, t.mapInfo.statusValue],
-          [t.mapInfo.trailPhoto, trailPhoto.credit],
+          ...(trailView ? [[t.mapInfo.trailPhoto, trailPhoto.credit] as [string, string]] : []),
         ]} />
         <TextButton label={t.mapInfo.satelliteCopyright} role="link" tone="onDark" onPress={() => Linking.openURL(EOX_LICENSE_URL)} />
         <TextButton label={t.mapInfo.copyright} role="link" tone="onDark" onPress={() => Linking.openURL(OSM_COPYRIGHT)} />
         <TextButton label={t.mapInfo.parkBoundarySource} role="link" tone="onDark"
           onPress={() => Linking.openURL(PARK_BOUNDARY_SOURCE.url)} />
-        <TextButton label={t.mapInfo.trailPhotoSource} role="link" tone="onDark" onPress={() => Linking.openURL(trailPhoto.url)} />
+        {trailView ? (
+          <TextButton label={t.mapInfo.trailPhotoSource} role="link" tone="onDark" onPress={() => Linking.openURL(trailPhoto.url)} />
+        ) : null}
         <Button label={t.mapInfo.showFrame} tone="ghost" onPress={() => {
           setShowInfo(false);
           map.current?.fitFrame();
         }} />
       </Sheet>
 
+      <Sheet visible={showTrailInfo && trailView !== undefined} title={trailView?.trail.name ?? t.trail.details} closeLabel={t.mapInfo.close}
+        onClose={() => setShowTrailInfo(false)}>
+        {trailView ? <TrailInfo info={trailView.info} /> : null}
+      </Sheet>
+
     </View>
+  );
+}
+
+/** Ficha del sendero con lo que trae la API: datos, limitaciones y fuente. */
+function TrailInfo({ info }: { info: ParkTrail }) {
+  const source = info.sources[0];
+  return (
+    <>
+      <Text variant="bodyMedium" tone="onDark">{t.trail.syntheticNote}</Text>
+      <DataRows on="dark" rows={trailRows(info)} />
+      {info.limitations.length ? (
+        <View style={styles.limitations}>
+          <Text variant="labelMedium" tone="onDarkVariant">{t.parks.limitations}</Text>
+          {info.limitations.map((limitation) => (
+            <Text key={limitation} variant="labelSmall" tone="onDarkVariant">{`· ${limitation}`}</Text>
+          ))}
+        </View>
+      ) : null}
+      {source?.url ? (
+        <TextButton label={`${t.trail.openSource}: ${sourceLabel(source)}`} role="link" tone="onDark"
+          onPress={() => Linking.openURL(source.url!)} />
+      ) : null}
+    </>
   );
 }
 
@@ -380,4 +441,5 @@ const styles = StyleSheet.create({
   noticesSlot: { position: 'absolute', left: 0, right: 0 },
   bottom: { position: 'absolute', left: space.md, right: space.md, bottom: space.md + NAVIGATION_BAR_OVERLAP, gap: space.sm },
   aboveCard: { flexDirection: 'row', justifyContent: 'flex-end' },
+  limitations: { gap: 2 },
 });

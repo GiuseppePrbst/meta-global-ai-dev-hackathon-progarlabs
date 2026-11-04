@@ -4,7 +4,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import Animated, { useReducedMotion } from 'react-native-reanimated';
 
 import { apiErrorMessage } from '@/features/api-error-message';
-import { getDemoTrail } from '@/features/atlas/demo-trail';
+import { demoTrailFor } from '@/features/atlas/demo-trail';
 import { applyFilter, familiesOf, type SpeciesFilter } from '@/features/catalog/catalog';
 import { useSpeciesCatalog } from '@/features/catalog/use-species';
 import { collectedCount } from '@/features/guide/guide';
@@ -118,7 +118,7 @@ function JournalScreen() {
                 <TrailJourney km={totalKm(walks)} />
                 {/* La más reciente primero; el número de salida sigue el orden en que se hicieron. */}
                 {walks.toReversed().map((walk, i) => (
-                  <WalkStamp key={`${walk.completedAt}-${i}`} walk={walk} trail={getDemoTrail(walk.trailId)} outing={walks.length - i} index={i} />
+                  <WalkStamp key={`${walk.completedAt}-${i}`} walk={walk} trail={demoTrailFor(walk.trailId, walk.trailName)} outing={walks.length - i} index={i} />
                 ))}
               </View>
             ) : (
