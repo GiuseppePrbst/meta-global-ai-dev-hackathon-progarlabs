@@ -144,3 +144,38 @@ Además, `test_cancelled_voice_stream_closes_its_reservation` reproduce un error
   - Stream de voz cerrado a mitad: reserva `cancelled`, gracias a 007.
 - **Facebook Login:** Identity Platform inicializado sin proveedores. La app de Meta no existe; su creación quedó detenida antes de aceptar las Condiciones de la plataforma. Firebase (`addFirebase`) respondió 403.
 - **Reconciliación pendiente:** el panel tarda hasta una hora en reflejar el uso.
+
+## 8. Estado tras el despliegue de la demostración pública (04-11-2026)
+
+- **Producción:** imagen `api:d78b60b7d134` (`sha256:836a9296ab60…`), revisión `bosque-vivo-api-00022-heb` al 100 %, promovida 10, 25 y 100 %.
+- **Worker:** versión `b5cdb960-bd89-48c9-b113-cd90d73e0115`. Anterior: `6a070815-9162-4dfb-a5eb-845124ca8f60`. El secreto `ORIGIN_AUTH_TOKEN` se conservó.
+- **Base:** migraciones 001 a 009, tras el backup `1793817961895`. 8 reservas y USD 0,40 sin cambios; fecha 2026-11-10T05:00:00Z; tope USD 90.
+- **Variables:** `PUBLIC_DEMO_ENABLED=false`, `META_ENABLED=true`, IA encendida solo en `team_developer`.
+- **Secreto:** `bosque-public-hmac-key`, versión 1, generado sin imprimirse, con acceso solo para `bosque-vivo-api`.
+- **Presupuesto:** USD 0,40 reservados; quedan USD 89,60. Crédito en el panel: `$123,31`, sin pagos y con saldo pendiente `$0`.
+
+### Abrir la demostración (aún no autorizado)
+
+Requisitos del propietario, por escrito:
+
+1. Aceptar o descartar el riesgo de cargos a la Visa: el panel no muestra vencimiento de créditos ni un tope de gasto.
+2. Revisar la política de privacidad y la advertencia de uso del contenido con créditos gratuitos.
+3. Decidir qué funciones abrir.
+
+Pasos técnicos, sin código nuevo:
+
+1. Backup a demanda.
+2. Revisión sin tráfico con `PUBLIC_DEMO_ENABLED=true`, y `PUBLIC_DEMO_FEATURES` si solo se abren algunas funciones. Ajustar `BUDGET_UNITS` y `BUDGET_REQUESTS` para no agotar los límites diarios antes de tiempo.
+3. Prueba mínima real sin credenciales: una llamada de Wilo con texto sintético, por la URL etiquetada. Esa revisión responde a `*` en CORS, así que solo se promueve después.
+4. Promover 10, 25 y 100 %.
+5. Desde un cliente externo sin credenciales: `GET /demo/status` con `status: active`, y una petición de cada función abierta.
+6. Revisar ledger, panel de Meta y logs.
+
+Apagado: `PUBLIC_DEMO_ENABLED=false`, luego `META_ENABLED=false`, y como último recurso `POST /admin/campaign/close`, que es **permanente**.
+
+### Rollback
+
+- **Sin Meta, en segundos:** `gcloud run services update-traffic bosque-vivo-api --to-revisions=bosque-vivo-api-00014-zux=100`.
+- **Con Meta, código anterior:** `bosque-vivo-api-00020-qay`. Tiene topes por cohorte e ignora la campaña compartida y la fecha en PostgreSQL. Su `/admin/cohorts` falla por la fila `public_demo`. Úsala solo como emergencia.
+- **Worker:** `npx wrangler rollback 6a070815-9162-4dfb-a5eb-845124ca8f60`. Sin el Worker nuevo, el modo público rechaza toda petición anónima.
+- **Base:** no se revierte 009 para volver atrás; las revisiones anteriores no la necesitan.

@@ -49,8 +49,8 @@ Por eso la protección la hace el propio backend (`ORIGIN_AUTH_TOKEN`), no el Wo
 | Base de datos y usuario | `bosque_vivo` / `bosque_api` |
 | Red | VPC `bosque-vivo-vpc`, subred `bosque-vivo-run` (10.10.0.0/26), rango PSA `bosque-vivo-psa` |
 | Artifact Registry | `southamerica-west1-docker.pkg.dev/nice-carving-513619-t4/bosque-vivo/api:<sha>` |
-| Cuentas de servicio | `bosque-vivo-api` (runtime: `cloudsql.client` y acceso a sus 4 secretos) y `bosque-vivo-build` (Cloud Build) |
-| Secretos | `bosque-model-api-key`, `bosque-database-url`, `bosque-demo-tokens`, `bosque-origin-auth-token`, todos con réplica solo en `southamerica-west1` |
+| Cuentas de servicio | `bosque-vivo-api` (runtime: `cloudsql.client` y acceso a sus 5 secretos) y `bosque-vivo-build` (Cloud Build) |
+| Secretos | `bosque-model-api-key`, `bosque-database-url`, `bosque-demo-tokens`, `bosque-origin-auth-token`, `bosque-public-hmac-key`, todos con réplica solo en `southamerica-west1` |
 | Presupuestos | `bosque-vivo-cloud-trial`: CLP 90.000 trimestral, con umbrales de 25 a 100 % más 90 % pronosticado. `bosque-vivo-trial-cumulative`: CLP 90.000, del 01-11-2026 al 02-02-2027 |
 | Cloudflare | Worker `bosque-vivo-api-proxy`, dominio personalizado y regla `http_ratelimit` limitada a este host |
 
