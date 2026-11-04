@@ -10,15 +10,15 @@
 
 | Tema | Valor |
 | --- | --- |
-| URL base local | `http://127.0.0.1:8000`. En la web se configura con `NEXT_PUBLIC_API_URL` en `apps/web/.env.local` |
-| Entornos | `SERVICE_MODE=local`: lectura pública y `/guide`/`/captures` con token. `SERVICE_MODE=demo`: casi todo con token. No hay despliegue público |
-| Autenticación | `Authorization: Bearer <token>`, con tokens individuales en `DEMO_TOKENS` del backend. Sin token, `401` |
+| URL base | Pública: `https://api-bosquevivo.progarlabs.com`. Local: `http://127.0.0.1:8000`. En la web se configura con `NEXT_PUBLIC_API_URL` en `apps/web/.env.local` |
+| Entornos | `SERVICE_MODE=local`: lectura pública y `/guide`/`/captures` con token. `SERVICE_MODE=demo`: casi todo con token. El despliegue público usa `demo` |
+| Autenticación | `Authorization: Bearer bvs_…`: sesión temporal de 60 min obtenida al canjear una invitación individual en `POST /sessions/exchange`. Flujo, errores, renovación y almacenamiento seguro en [SESSION_AUTH_CONTRACT.md](SESSION_AUTH_CONTRACT.md). Los `DEMO_TOKENS` son credenciales de operador y nunca van en la app. Sin token, `401` |
 | Rutas públicas | `/health`, `/species*`, `/taxa*`, `/parks*`, `/trails/*`, `/knowledge/*`, `/media/*`, `/forest/sources` y la documentación |
 | Headers de respuesta | `X-Correlation-ID` en todas las respuestas; conviene incluirlo en los reportes de error |
 | Identidad | El servidor la fija a partir del token. El cliente nunca envía un `user_id` |
 | Variables | Públicas: solo `NEXT_PUBLIC_API_URL`. Privadas, solo en el backend: `MODEL_API_KEY`, `DATABASE_URL`, `DEMO_TOKENS` y las unidades de presupuesto |
-| CORS | `CORS_ORIGINS`, por defecto `["http://localhost:3000"]` |
-| PostgreSQL/PostGIS | Lo necesitan capturas, observaciones, contexto y el ledger, con las migraciones `services/api/sql/001–004`. Atlas, taxones y Wilo en mock funcionan sin base de datos |
+| CORS | Cloud: `localhost:3000`, Wilo Lab (`localhost:3001`, `127.0.0.1:3001`) y Expo Web (`localhost:8081`). Las apps nativas no dependen de CORS. El origen de producción se agrega cuando se conozca |
+| PostgreSQL/PostGIS | Lo necesitan capturas, observaciones, contexto, sesiones y el ledger, con las migraciones `services/api/sql/001–005`. Atlas, taxones y Wilo en mock funcionan sin base de datos |
 | Tiempo de espera | `META_TIMEOUT_SECONDS=90`. Wilo tarda 20–37 s en responder |
 
 ## B. Endpoints
@@ -28,6 +28,7 @@ El estado de cada uno está en [PROJECT_DELIVERY_STATUS.md](PROJECT_DELIVERY_STA
 | Familia | Rutas exactas (OpenAPI) | Autenticación | Ejemplo validado |
 | --- | --- | --- | --- |
 | Salud | `GET /health` | No | — |
+| Sesiones | `POST /sessions/exchange`, `GET /sessions/me`, `POST /sessions/refresh`, `POST /sessions/logout` | Canje sin token; el resto con Bearer de sesión | [contrato](SESSION_AUTH_CONTRACT.md) |
 | Especies (8 árboles) | `GET /species`, `GET /species/{species_id}` | No | — |
 | Taxones | `GET /taxa`, `GET /taxa/{taxon_id}`, `/conservation`, `/eligibility`, `/media` | No | [taxon](api/examples/taxon-guigna.json), [demo_only](api/examples/taxa-demo-only.json), [eligibility](api/examples/eligibility-guigna.json), [conservation](api/examples/conservation-guigna-los-rios.json) |
 | Parques | `GET /parks`, `GET /parks/{park_id}`, `/trails`, `/map`, `/biodiversity` | No | [lista](api/examples/parks-los-lagos.json), [Puyehue](api/examples/park-puyehue.json), [senderos](api/examples/trails-puyehue.json), [mapa](api/examples/map-conguillio.json) |

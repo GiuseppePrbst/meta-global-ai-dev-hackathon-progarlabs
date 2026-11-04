@@ -6,6 +6,8 @@
 
 Cambios respecto de las secciones históricas de este archivo:
 
+- **Autenticación (04-11-2026):** la app usa sesiones temporales por invitación (`/sessions/*`), no tokens `DEMO_TOKENS`. Ver [SESSION_AUTH_CONTRACT.md](SESSION_AUTH_CONTRACT.md).
+
 - `get_park_context` y `get_verified_trail_information` fueron reemplazadas por las herramientas del Atlas.
 - Las «propuestas futuras» de parques y senderos ya están implementadas: `GET /parks`, `/parks/{id}`, `/trails` y `/map`.
 - `languageBias` ya no es fijo en español: se configura con `language_hint`.

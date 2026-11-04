@@ -207,3 +207,7 @@ límites en DATASET_LICENSES/DATA_GOVERNANCE; resultados agregados en META_SAM_A
 - Precios: Cloud Billing Catalog API (`cloudbilling.googleapis.com/v1/services/*/skus`, moneda CLP), con los SKU de Cloud SQL para PostgreSQL y de Cloud Run en `southamerica-west1` (Santiago).
 - Capacidades: tiers de Cloud SQL (`gcloud sql tiers list`) y políticas efectivas de la organización (`gcloud resource-manager org-policies describe --effective`).
 - Herramientas: Cloudflare Workers con dominios personalizados y reglas de límite de tasa (fase `http_ratelimit`, plan Free), desplegados con wrangler 4.146.0.
+
+## Sesiones de beta cerrada: consulta del 04-11-2026
+
+- [Cloudflare, HTTP headers: «CF-Connecting-IP in Worker subrequests»](https://developers.cloudflare.com/fundamentals/reference/http-headers/) (actualizado el 28-10-2026). En subpeticiones de un Worker a un origen fuera de Cloudflare, si se reenvían los encabezados originales sin cambios, `CF-Connecting-IP` conserva la IP del cliente. Lo usa el límite de canjes fallidos por IP; el Worker no se modificó.

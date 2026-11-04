@@ -288,3 +288,16 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
   - El backend exige `X-Bosque-Origin` (`ORIGIN_AUTH_TOKEN`) en todo salvo `/health`, también en el WebSocket.
 - **Meta:** queda deshabilitado (`META_ENABLED=false`, `BUDGET_UNITS=0`) hasta que haya autorización de gasto.
 - **Detalle y operación:** [infra/gcp/README.md](../infra/gcp/README.md).
+
+## Decisión 2026-11-04: sesiones temporales por invitación
+
+- **Problema:** `DEMO_TOKENS` son tokens estáticos y permanentes. Sirven a operadores, pero no se pueden distribuir en una app pública.
+- **Decisión:** el operador crea invitaciones de un solo uso, que se canjean por sesiones opacas `bvs_…` de 60 min con permisos por operación. Es la menor solución completa: el repositorio no tiene proveedor de identidad, y un OIDC externo requeriría registrar la app y otro servicio.
+  - Se guardan solo hashes SHA-256: los tokens tienen 256 bits aleatorios, así que no hace falta un hash lento.
+  - La migración `005` es aditiva: `access_invitations`, `access_sessions` y `auth_events`.
+- **Punto único de control:** `execution.identity()` resuelve tanto tokens de operador como sesiones, para HTTP y para el WebSocket. `ExecutionStore.reserve()` rechaza operaciones fuera de los permisos de la sesión, así que ninguna ruta gasta sin permiso.
+- **Ledger:** cada sesión resuelve la identidad estable de su invitación. Renovar o recibir otra invitación con el mismo seudónimo no reinicia las cuotas. `BUDGET_IDENTITY_UNITS` añade un tope acumulado por identidad.
+- **Límites:**
+  - Límite por sesión (60/min) y de canjes fallidos por IP (10 cada 15 min), en memoria y exactos con `max-instances=1`. Si se escala, hay que llevarlos a PostgreSQL.
+  - Además, la regla de Cloudflare por IP.
+- **Compatibilidad futura:** un proveedor OIDC (Authorization Code + PKCE) reemplazaría solo `/sessions/exchange` y resolvería el mismo `Principal`.
