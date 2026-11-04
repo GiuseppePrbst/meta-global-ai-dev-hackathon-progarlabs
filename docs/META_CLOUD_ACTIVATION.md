@@ -1,6 +1,6 @@
 # Meta en la API cloud: auditoría, presupuesto propuesto, encendido y apagado (04-11-2026)
 
-**Estado: deshabilitado.** La API cloud corre con `META_ENABLED=false`, `BUDGET_UNITS=0` y `BUDGET_LIFETIME_UNITS=0`.
+**Estado: deshabilitado.** La API cloud corre con `META_ENABLED=false`, `BUDGET_UNITS=0` y `BUDGET_LIFETIME_UNITS=0`. Hay una autorización de gasto de USD 100 del 04-11-2026 (sección 2); su uso se registra en la sección 7.
 
 - Que exista `MODEL_API_KEY` en Secret Manager **no autoriza** gastar.
 - Encender Meta requiere una autorización vigente del propietario para una campaña concreta, con un monto en USD.
@@ -26,30 +26,41 @@ El presupuesto de GCP (CLP 90.000, en `infra/gcp/README.md`) es otro presupuesto
 | Orden con Meta apagado | `/identify` devuelve 501, y Wilo y la voz 503. Ocurre **antes** de `reserve()`, así que no se crean reservas |
 | Claves en respuestas o logs | Los errores del proveedor se sanitizan. En Cloud Logging no hay tokens, claves ni `Bearer`: se revisó la revisión `00006`. Las identidades aparecen solo como seudónimo SHA-256 truncado |
 
-## 2. Presupuesto Meta propuesto para la beta (requiere autorización)
+## 2. Presupuesto autorizado (04-11-2026)
+
+**Autorización:**
+- el propietario aprobó hasta **USD 100 de gasto real acumulado** en Meta Model API para esta etapa;
+- de los unos USD 120 de crédito restante que informa, quedan USD 20 fuera de la campaña;
+- no autoriza agregar fondos, medios de pago ni cambios de facturación.
 
 Las unidades están en **microUSD**: 1.000.000 equivalen a USD 1.
 
-Las reservas por operación son las de la campaña real del 03-11 (4 llamadas):
-- reservado: USD 0,105;
-- costo estimado por tarifa: unos USD 0,039.
+| Bolsa (migración 008) | Tope | Por identidad | Peticiones por día e identidad |
+| --- | ---: | ---: | ---: |
+| `public_trial` | USD 60 | USD 0,30, una sola vez | 8 |
+| `team_developer` | USD 25 | USD 8 | 100 |
+| `internal_qa` | USD 5 | USD 5 | 60 |
+| Margen no asignado | USD 10 | — | — |
+| **Tope de reservas** (`BUDGET_LIFETIME_UNITS`) | **USD 90** | — | — |
 
-Por eso la reserva queda unas 2,5 veces por encima del costo estimado.
+El margen de USD 10 cubre las diferencias entre reserva y facturación. El tope humano sigue siendo de USD 100 de gasto real, y **un tope de reservas no garantiza la facturación**: Meta no expone una API de saldo, así que el uso reportado (`reported_usage`) se reconcilia a mano con el panel de Meta.
 
-| Variable | Valor propuesto | Equivale a |
-| --- | ---: | --- |
-| `GUIDE_RESERVATION_UNITS` | 40.000 | USD 0,04 por respuesta de Wilo |
-| `VOICE_RESERVATION_UNITS` | 5.000 | USD 0,005 por transcripción (hasta 60 s) |
-| `META_RESERVATION_UNITS` | 30.000 | USD 0,03 por identificación |
-| `BUDGET_IDENTITY_UNITS` | 400.000 | USD 0,40 por evaluador durante toda la beta: unas 10 respuestas de Wilo o 13 identificaciones |
-| `BUDGET_UNITS` | 1.000.000 | USD 1 por día UTC entre todos |
-| `BUDGET_LIFETIME_UNITS` | 5.000.000 | **USD 5 de tope total de la beta** |
-| `BUDGET_REQUESTS` y `BUDGET_REQUESTS_PER_IDENTITY` | 25 y 8 | Peticiones Meta por día: globales y por evaluador |
-| `BUDGET_CONCURRENCY` | 1 | Una llamada Meta a la vez. Un stream de voz ocupa el cupo hasta 60 s |
+### Reserva por operación (auditoría de costo máximo)
 
-Con 12 evaluadores a USD 0,40 cada uno se reservan como máximo USD 4,80, dentro del tope de USD 5. El gasto real debería quedar por debajo de lo reservado, pero Meta no expone una API de saldo: **no hay verificación independiente del gasto**.
+`services/api/tests/test_cost_bounds.py` calcula el peor caso con las tarifas Standard vigentes (Muse Spark 1.3: USD 1,25 y 4,25 por millón de tokens) y 3 caracteres por token, y exige un margen de al menos 20 %:
 
-No se suben estos límites para facilitar las pruebas.
+| Operación | Peor caso permitido | Reserva |
+| --- | --- | ---: |
+| Wilo (`guide`) | Hasta 3 llamadas: 2 de planificación con 1.200 tokens de salida y una respuesta con 4.096. Hasta 4 herramientas por turno, cada resultado de 15.000 caracteres o menos (`MAX_TRAILS` bajó de 30 a 12). Pregunta de 2.000 caracteres o menos. **USD 0,082** | **100.000 (USD 0,10)** |
+| Voz (`transcribe`) | Stream de 60 s o menos, a USD 0,18 por hora: USD 0,003 | 5.000 |
+| Identificación | Estrategia `verify`: 2 llamadas con 1.600 y 800 tokens de salida, más la imagen. Meta no documenta los tokens por imagen; se midieron unos 2.000 y se acotan empíricamente en 4.000. USD 0,020 | 30.000 |
+
+- **Sin reintentos automáticos:** los 429 y 5xx de Meta se devuelven al cliente.
+- **Sin búsqueda web:** no se usa grounding web.
+- **Modelos:** Standard, nunca las variantes Contributor.
+- **Riesgo residual:** el tamaño en tokens de una imagen de 16 MP no está documentado. Se vigila con `reported_usage`.
+
+Con USD 0,30 por persona alcanzan unas 3 respuestas de Wilo o 10 identificaciones. La bolsa pública de USD 60 cubre unas 200 personas.
 
 ## 3. Activación progresiva (solo con autorización vigente)
 
@@ -58,14 +69,14 @@ No se ejecuta mientras falte la autorización. Ningún paso cambia código; se m
 1. **Autorización.** Debe ser escrita por el propietario e indicar campaña, monto máximo en USD y fecha. Se registra la referencia; no se copian correos ni datos personales.
 2. **Créditos.** Confirmar en la consola de Meta que los créditos siguen vigentes ese día.
 3. **Esquema.** Hace falta el 007 aplicado (`cancelled` en el ledger), después de un backup a demanda. Sin él, cancelar un stream de voz deja la reserva colgada 10 minutos.
-4. **Revisión con Meta, sin tráfico.** Desplegar con los límites acordados y la etiqueta `meta`:
+4. **Revisión con Meta, sin tráfico.** Etapa QA, antes de 008: el tope global es la bolsa QA (USD 5) y solo existen identidades de invitación QA. Desplegar con la etiqueta `meta`:
 
    ```bash
    REGION=southamerica-west1
    gcloud run services update bosque-vivo-api --region "$REGION" \
      --account=<owner> --project=nice-carving-513619-t4 --billing-project=nice-carving-513619-t4 \
      --no-traffic --tag meta \
-     '--update-env-vars=^@^META_ENABLED=true@GUIDE_RESERVATION_UNITS=40000@VOICE_RESERVATION_UNITS=5000@META_RESERVATION_UNITS=30000@BUDGET_IDENTITY_UNITS=400000@BUDGET_UNITS=1000000@BUDGET_LIFETIME_UNITS=5000000@BUDGET_REQUESTS=25@BUDGET_REQUESTS_PER_IDENTITY=8'
+     '--update-env-vars=^@^META_ENABLED=true@GUIDE_RESERVATION_UNITS=100000@VOICE_RESERVATION_UNITS=5000@META_RESERVATION_UNITS=30000@BUDGET_IDENTITY_UNITS=5000000@BUDGET_UNITS=5000000@BUDGET_LIFETIME_UNITS=5000000@BUDGET_REQUESTS=60@BUDGET_REQUESTS_PER_IDENTITY=60'
    ```
 
 5. **Verificar los controles en la URL etiquetada**, sin gastar:

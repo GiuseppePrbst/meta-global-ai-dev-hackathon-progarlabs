@@ -14,7 +14,9 @@ from bosque_api.demo import eligibility
 
 TAXA = {item.id: item for item in get_taxa()}
 PARKS = sorted(e["id"] for e in get_atlas().by_type["Park"])
-MAX_TRAILS = 30
+# ponytail: 12 trails keep one tool result under ~12k characters; the worst-case Wilo cost
+# (tests/test_cost_bounds.py) must stay below GUIDE_RESERVATION_UNITS. `total` reports the rest.
+MAX_TRAILS = 12
 
 
 class Arguments(BaseModel):
