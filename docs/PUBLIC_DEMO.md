@@ -4,7 +4,9 @@ Bosque Vivo puede atender a usuarios adultos de territorios permitidos, desde cu
 
 **Para usar la demostración no hace falta:** cuenta de Facebook, Firebase, invitación, clave de Meta, clave de ProGarLabs ni registro previo.
 
-**Consulta siempre `GET /demo/status`.** Si `status` no es `active`, las rutas de IA no están abiertas. El modo público empieza apagado (`PUBLIC_DEMO_ENABLED=false`).
+**Estado actual: desplegada y apagada.** La infraestructura está lista, pero `PUBLIC_DEMO_ENABLED=false`: sin sesión, las rutas de IA responden 401.
+
+**Consulta siempre `GET /demo/status`.** Si `status` no es `active`, las rutas de IA no están abiertas.
 
 ## Caducidad
 
@@ -169,4 +171,7 @@ Los clientes nunca reciben `MODEL_API_KEY`, `ORIGIN_AUTH_TOKEN`, credenciales de
 | Pruebas del Worker (`infra/cloudflare/worker/src/index.test.mjs`, en la CI) | Valores del cliente eliminados y ausentes cuando Cloudflare no da datos |
 | Pruebas del backend (`test_public_demo.py`) | `CF-IPCountry` y `CF-Connecting-IP` se ignoran; país ausente, 403; sin el secreto del Worker, 403 en HTTP y WebSocket |
 
-**Pendiente:** el recorrido completo Worker → Cloud Run no se ha probado, porque el Worker nuevo no está desplegado. Tras desplegarlo, `GET /demo/status` debe devolver `territory_eligible: true`.
+**Recorrido real Worker → Cloud Run (04-11-2026, con la versión desplegada):**
+- `GET /demo/status` devolvió `territory_eligible: true` a través de Cloudflare, también con país falsificado `RU`, lo que prueba que el valor del cliente no llega al backend.
+- El seudónimo de IP registrado por Cloud Run (`exchange_failed`) coincidió con el de la IP pública de la prueba, también con `X-Bosque-Visitor-IP` falsificado.
+- `/demo/status` no muestra el código de país. `CL` se observó en el borde; en Cloud Run se confirmó que el país llega y es elegible.
