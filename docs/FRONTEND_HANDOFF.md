@@ -29,6 +29,7 @@ El estado de cada uno está en [PROJECT_DELIVERY_STATUS.md](PROJECT_DELIVERY_STA
 | --- | --- | --- | --- |
 | Salud | `GET /health` | No | — |
 | Sesiones | `POST /sessions/exchange`, `GET /sessions/me`, `POST /sessions/refresh`, `POST /sessions/logout` | Canje sin token; el resto con Bearer de sesión | [contrato](SESSION_AUTH_CONTRACT.md) |
+| Demostración pública | `GET /demo/status`; `/guide/*`, `/identify` y el WebSocket de voz sin token mientras `status` sea `active` | Hasta 2026-11-10T05:00:00Z; luego 410. Requiere pedir los consentimientos en la interfaz | [PUBLIC_DEMO.md](PUBLIC_DEMO.md) |
 | Facebook Login y cuota | `POST /sessions/federated/exchange`, `GET /me/quota`, `GET /me/permissions`, `DELETE /me` | Canje con ID token de Firebase; el resto con Bearer de sesión. Aún no activo en producción (501) | [FEDERATED_LOGIN.md](FEDERATED_LOGIN.md) |
 | Especies (8 árboles) | `GET /species`, `GET /species/{species_id}` | No | — |
 | Taxones | `GET /taxa`, `GET /taxa/{taxon_id}`, `/conservation`, `/eligibility`, `/media` | No | [taxon](api/examples/taxon-guigna.json), [demo_only](api/examples/taxa-demo-only.json), [eligibility](api/examples/eligibility-guigna.json), [conservation](api/examples/conservation-guigna-los-rios.json) |

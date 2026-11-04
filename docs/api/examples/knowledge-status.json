@@ -3,7 +3,7 @@
   "built_from_data_of": "2026-11-03",
   "counts": {
    "ConservationAssessment": 11,
-   "DocumentPassage": 111,
+   "DocumentPassage": 112,
    "KnowledgeSource": 4,
    "MapResource": 79,
    "Park": 46,
@@ -13,7 +13,7 @@
    "Trail": 199,
    "TrailGeometry": 0
   },
-  "knowledge_version": "sha256:55be2eb7ff2d8078967dd89a50f9d17abf607fdde8a1176c3e9f98599612a0ba",
+  "knowledge_version": "sha256:51ce4d6519c406682ec47838c65a05ea8d006fc46a76497f28a8ca1e4ed9e735",
   "limitations": [
    "Snapshot offline: no consulta páginas web al responder.",
    "No es un catálogo exhaustivo de senderos ni de biodiversidad de Chile."

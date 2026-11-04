@@ -41,6 +41,7 @@ class Principal(str):
     expires_at: datetime | None = None
     access_expires_at: datetime | None = None
     role: str | None = None  # identities.role (migration 008); None before 008 or for tokens
+    anonymous: bool = False  # public demo (public.py): no account, no private data, no admin
 
 
 def pseudonym(identity: str | None) -> str:

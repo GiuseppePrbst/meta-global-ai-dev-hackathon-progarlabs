@@ -247,3 +247,12 @@ límites en DATASET_LICENSES/DATA_GOVERNANCE; resultados agregados en META_SAM_A
 - Dependencias nuevas:
   - backend: `pyjwt[crypto]` 2.15.1 (28-09-2026), que trae `cryptography` 50.0.2;
   - Wilo Lab: `firebase` 13.1.0 (21-10-2026). `npm audit` informa `@grpc/grpc-js` dentro de `@firebase/firestore`; Wilo Lab solo importa `firebase/app` y `firebase/auth`, y Firestore no entra en el bundle.
+
+## Demostración pública: consulta del 04-11-2026
+
+- [Términos de Meta Model API](https://dev.meta.ai/legal/terms-of-service):
+  - 10.1(i): no revender ni dar acceso mediante agregadores, gateways o proxies sin autorización escrita;
+  - 10.1(v) y política geográfica;
+  - 13.3: los créditos promocionales pueden expirar en el plazo indicado en la cuenta;
+  - 17.2: la indemnización no cubre el uso mediante créditos promocionales.
+- [Política de uso geográfico](https://dev.meta.ai/legal/geographic-use-policy), actualizada el 12-10-2026. Sección 3: territorios restringidos. No publica una lista de países habilitados.

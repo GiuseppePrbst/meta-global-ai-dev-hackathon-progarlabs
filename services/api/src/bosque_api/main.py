@@ -39,8 +39,21 @@ from bosque_api.config import Settings
 from bosque_api.context_store import ContextStore
 from bosque_api.database import ObservationStore
 from bosque_api.execution import ExecutionStore, identity
-from bosque_api.images import IMAGE_TYPES, MAX_IMAGE_BYTES, prepare_image, segment_image
+from bosque_api.images import (
+    IMAGE_TYPES,
+    MAX_IMAGE_BYTES,
+    PUBLIC_IMAGE_SIDE,
+    prepare_image,
+    segment_image,
+)
 from bosque_api.models import ForestRequest, Observation, ObservationCreate, Species
+from bosque_api.public import (
+    EXPIRED_MESSAGE,
+    PUBLIC_PATHS,
+    admit_anonymous,
+    campaign_expired,
+    register_public_routes,
+)
 from bosque_api.sessions import authorize, pseudonym, register_session_routes
 
 # Ledger, auth and provider events go to stdout (Cloud Logging); uvicorn only configures its own.
@@ -128,8 +141,19 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             "/redoc",
             "/sessions/exchange",
             "/sessions/federated/exchange",
+            "/demo/status",
         }
-        if (
+        paid = request.method == "POST" and request.url.path in PUBLIC_PATHS
+        if paid and campaign_expired(config):
+            return refuse(request, 410, EXPIRED_MESSAGE, correlation)
+        if paid and config.public_demo_enabled and not request.headers.get("authorization"):
+            try:
+                request.state.identity = admit_anonymous(
+                    config, request.headers, PUBLIC_PATHS[request.url.path]
+                )
+            except HTTPException as exc:
+                return refuse(request, exc.status_code, exc.detail, correlation, exc.headers)
+        elif (
             (
                 config.service_mode == "demo"
                 or request.url.path == "/me"
@@ -173,7 +197,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             auth_log.info(
                 "request kind=%s who=%s method=%s path=%s status=%d latency_ms=%.0f "
                 "correlation_id=%s",
-                "-" if who is None else "session" if who.session_id else "operator",
+                "-"
+                if who is None
+                else "anonymous"
+                if who.anonymous
+                else "session"
+                if who.session_id
+                else "operator",
                 pseudonym(who),
                 request.method,
                 request.url.path,
@@ -185,7 +215,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=config.cors_origins,
+        # Bearer tokens, never cookies: "*" stays without credentials. CORS is not access
+        # control; admission happens in the ledger.
+        allow_origins=["*"] if config.public_demo_enabled else config.cors_origins,
         allow_methods=["GET", "POST", "DELETE"],
         allow_headers=["Content-Type", "Authorization"],
         expose_headers=["X-Correlation-ID", "Retry-After"],
@@ -198,7 +230,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     async def keep_identification(request, result):
         result.correlation_id = request.state.correlation_id
-        if request.state.identity:
+        # Anonymous results are returned, never stored as private evidence.
+        if request.state.identity and not request.state.identity.anonymous:
             if not config.database_url.get_secret_value():
                 raise HTTPException(503, "Evidencia privada requiere PostGIS y migración 004")
             try:
@@ -282,6 +315,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     raise HTTPException(401, "Se requiere autorización para usar Meta")
         if not adult_confirmed or not rights_confirmed:
             raise HTTPException(422, "Se requiere mayoría de edad y derechos de uso de la imagen")
+        anonymous = getattr(request.state.identity, "anonymous", False)
+        if anonymous and (additional_files or use_segmentation):
+            # One photo, no SAM: the reservation only bounds a single-image request.
+            raise HTTPException(422, "La demostración pública admite una sola fotografía")
         if use_segmentation is True and not config.sam_enabled:
             raise HTTPException(422, "Segmentación no habilitada por el operador")
         uploads = [file, *(additional_files or [])]
@@ -328,7 +365,12 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 else None
             )
             try:
-                image = await asyncio.to_thread(prepare_image, image, file.content_type)
+                image = await asyncio.to_thread(
+                    prepare_image,
+                    image,
+                    file.content_type,
+                    PUBLIC_IMAGE_SIDE if anonymous else None,
+                )
                 extra_images = [
                     (await asyncio.to_thread(prepare_image, data, mime), "image/jpeg")
                     for data, mime in extra_images
@@ -671,6 +713,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                         )
                         else []
                     )
+                    if path in PUBLIC_PATHS:
+                        operation["x-public-demo"] = True  # no Bearer while the demo is on
+                        if config.public_demo_enabled:
+                            operation["security"] = [{}, {"DemoBearer": []}]
+                        operation["responses"]["410"] = {
+                            "description": "Campaña terminada; no reintentar"
+                        }
                     for code, detail in {
                         401: "Identidad requerida",
                         429: "Límite de consumo",
@@ -687,6 +736,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     register_session_routes(app, config)
     register_account_routes(app, config)
+    register_public_routes(app, config)
     register_routes(app, config, landscape_context)
     register_biodiversity_routes(app)
     register_atlas_routes(app)

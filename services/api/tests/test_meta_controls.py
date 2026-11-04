@@ -12,6 +12,7 @@ import httpx
 import psycopg
 import pytest
 from bosque_ai.meta import MetaResponsesClient
+from conftest import OPEN_CAMPAIGN
 from fastapi.testclient import TestClient
 from PIL import Image
 from psycopg import sql
@@ -104,6 +105,7 @@ def database():
             for name in sorted(p.name for p in scripts.glob("00*.sql")):
                 if name == "001_init.sql" or name.endswith(".up.sql"):
                     conn.execute((scripts / name).read_text())
+            conn.execute(OPEN_CAMPAIGN)
         yield scoped
     finally:
         with psycopg.connect(url, autocommit=True) as conn:

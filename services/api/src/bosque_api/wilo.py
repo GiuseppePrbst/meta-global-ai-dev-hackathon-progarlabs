@@ -9,6 +9,7 @@ handshake frame, as the Meta realtime contract requires.
 import asyncio
 import json
 import secrets
+from datetime import UTC, datetime
 from functools import partial
 from time import perf_counter
 from typing import Annotated, Literal
@@ -30,6 +31,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from bosque_api.atlas import get_atlas, voice_keywords
 from bosque_api.execution import ExecutionStore, identity
 from bosque_api.guide_tools import TOOLS, execute_tool
+from bosque_api.public import EXPIRED_MESSAGE, admit_anonymous, campaign_expired
 from bosque_api.sessions import authorize
 
 REALTIME_URL = "wss://api.meta.ai/v1/asr/realtime"
@@ -74,7 +76,7 @@ LanguageHint = Literal["auto", "es", "en", "mixed"]
 class StreamStart(BaseModel):
     model_config = ConfigDict(extra="forbid")
     type: Literal["start"]
-    token: str = Field(min_length=1, max_length=400)
+    token: str | None = Field(default=None, min_length=1, max_length=400)
     adult_confirmed: bool
     rights_confirmed: bool
     external_processing_confirmed: bool = False
@@ -175,6 +177,9 @@ def register_wilo_routes(app, config, landscape_context, repository, meta_client
                 422, "Falta permiso para enviar consulta y contexto permitido a Meta"
             )
         client = meta_client()
+        anonymous = getattr(owner, "anonymous", False)
+        if anonymous and capture_id is not None:
+            raise HTTPException(403, "Las capturas requieren una sesión")
         if capture_id is not None:
             try:
                 await asyncio.to_thread(repository().get, owner, capture_id)
@@ -185,7 +190,7 @@ def register_wilo_routes(app, config, landscape_context, repository, meta_client
         started = perf_counter()
         status = "provider_error"
         failure = None
-        store = repository() if config.database_url.get_secret_value() else None
+        store = repository() if config.database_url.get_secret_value() and not anonymous else None
         executor = partial(
             execute_tool,
             owner=owner,
@@ -411,10 +416,17 @@ def register_wilo_routes(app, config, landscape_context, repository, meta_client
             start = StreamStart.model_validate_json(await asyncio.wait_for(ws.receive_text(), 10))
         except (TimeoutError, ValidationError, ValueError, KeyError):
             return await fail("bad_start", "Primer mensaje: {type:start, token, permisos}")
+        if campaign_expired(config):
+            return await fail("expired", EXPIRED_MESSAGE)
         try:
-            owner = await asyncio.to_thread(identity, config, "Bearer " + start.token)
+            if start.token is None and config.public_demo_enabled:
+                owner = admit_anonymous(config, ws.headers, "voice")
+            else:
+                owner = await asyncio.to_thread(identity, config, "Bearer " + (start.token or ""))
             authorize(owner, "transcribe")
         except HTTPException as exc:
+            if exc.status_code == 403 and start.token is None:
+                return await fail("forbidden", str(exc.detail))
             if exc.status_code == 403:
                 return await fail("forbidden", "La sesión no tiene permiso de voz")
             if exc.status_code == 429:
@@ -513,7 +525,17 @@ def register_wilo_routes(app, config, landscape_context, repository, meta_client
 
             sender = asyncio.create_task(client_to_upstream())
             receiver = asyncio.create_task(upstream_to_client())
-            done, _ = await asyncio.wait({sender, receiver}, return_when=asyncio.FIRST_COMPLETED)
+            # The deadline can arrive mid-stream: at most MAX_STREAM_SECONDS after it, never more.
+            remaining = (config.campaign_expires_at - datetime.now(UTC)).total_seconds()
+            done, _ = await asyncio.wait(
+                {sender, receiver},
+                timeout=max(0, remaining),
+                return_when=asyncio.FIRST_COMPLETED,
+            )
+            if not done:
+                sender.cancel()
+                receiver.cancel()
+                return await fail("expired", EXPIRED_MESSAGE, 1000)
             if sender in done and sender.result() == "cancel":
                 receiver.cancel()
                 await send("cancelled")
@@ -564,6 +586,8 @@ def register_wilo_routes(app, config, landscape_context, repository, meta_client
             status = "validation_error"
             await fail("bad_audio", "Frames PCM 16 bits mono, máximo 64 KiB, sin pausas largas")
         except HTTPException as exc:
+            if exc.status_code == 410:
+                return await fail("expired", EXPIRED_MESSAGE)
             await fail(
                 "unavailable" if exc.status_code != 429 else "rate_limited",
                 "Consumo o proveedor no disponible",

@@ -219,6 +219,22 @@
     "title": "Body_transcribe_guide_transcribe_post",
     "type": "object"
    },
+   "CampaignClose": {
+    "additionalProperties": false,
+    "properties": {
+     "reason": {
+      "maxLength": 200,
+      "minLength": 3,
+      "title": "Reason",
+      "type": "string"
+     }
+    },
+    "required": [
+     "reason"
+    ],
+    "title": "CampaignClose",
+    "type": "object"
+   },
    "Candidate": {
     "additionalProperties": false,
     "properties": {
@@ -675,7 +691,8 @@
       "enum": [
        "public_trial",
        "team_developer",
-       "internal_qa"
+       "internal_qa",
+       "public_demo"
       ],
       "title": "Cohort",
       "type": "string"
@@ -1278,6 +1295,77 @@
      "restrictions"
     ],
     "title": "DemoEligibility",
+    "type": "object"
+   },
+   "DemoStatus": {
+    "properties": {
+     "budget_status": {
+      "enum": [
+       "available",
+       "exhausted",
+       "unknown"
+      ],
+      "title": "Budget Status",
+      "type": "string"
+     },
+     "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+     },
+     "features": {
+      "items": {
+       "type": "string"
+      },
+      "title": "Features",
+      "type": "array"
+     },
+     "notice": {
+      "default": "Solo para mayores de 18 años. Tu texto, audio o foto se envían a Meta Model API. Mientras la campaña use créditos promocionales, Meta indica que el contenido puede usarse para mejorar sus productos: no envíes datos personales ni confidenciales.",
+      "title": "Notice",
+      "type": "string"
+     },
+     "public_demo_enabled": {
+      "title": "Public Demo Enabled",
+      "type": "boolean"
+     },
+     "seconds_remaining": {
+      "title": "Seconds Remaining",
+      "type": "integer"
+     },
+     "status": {
+      "enum": [
+       "active",
+       "expired",
+       "budget_exhausted",
+       "temporarily_disabled",
+       "provider_unavailable"
+      ],
+      "title": "Status",
+      "type": "string"
+     },
+     "territory_eligible": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Territory Eligible"
+     }
+    },
+    "required": [
+     "public_demo_enabled",
+     "status",
+     "expires_at",
+     "seconds_remaining",
+     "features",
+     "budget_status",
+     "territory_eligible"
+    ],
+    "title": "DemoStatus",
     "type": "object"
    },
    "Exchange": {
@@ -2113,7 +2201,8 @@
         "enum": [
          "public_trial",
          "team_developer",
-         "internal_qa"
+         "internal_qa",
+         "public_demo"
         ],
         "type": "string"
        },
@@ -3725,7 +3814,8 @@
        "trial_exhausted",
        "ai_disabled",
        "suspended",
-       "no_cohort"
+       "no_cohort",
+       "expired"
       ],
       "title": "Status",
       "type": "string"
@@ -5773,6 +5863,52 @@
  },
  "openapi": "3.1.0",
  "paths": {
+  "/admin/campaign/close": {
+   "post": {
+    "description": "Cierra la campaña para siempre; ninguna variable ni despliegue puede reabrirla.",
+    "operationId": "close_campaign_admin_campaign_close_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CampaignClose"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Close Campaign"
+   }
+  },
   "/admin/cohorts": {
    "get": {
     "description": "Consumo por cohorte, reservas atascadas y umbrales de alerta cruzados.",
@@ -5819,7 +5955,8 @@
        "enum": [
         "public_trial",
         "team_developer",
-        "internal_qa"
+        "internal_qa",
+        "public_demo"
        ],
        "title": "Cohort",
        "type": "string"
@@ -6432,6 +6569,25 @@
     "summary": "Point Context"
    }
   },
+  "/demo/status": {
+   "get": {
+    "description": "Estado público de la demostración; no requiere token ni revela montos.",
+    "operationId": "demo_status_demo_status_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/DemoStatus"
+        }
+       }
+      },
+      "description": "Successful Response"
+     }
+    },
+    "summary": "Demo Status"
+   }
+  },
   "/expeditions": {
    "get": {
     "operationId": "expeditions_expeditions_get",
@@ -6642,6 +6798,9 @@
      "401": {
       "description": "Identidad requerida"
      },
+     "410": {
+      "description": "Campaña terminada; no reintentar"
+     },
      "413": {
       "description": "Audio supera 3 MiB"
      },
@@ -6666,7 +6825,8 @@
       "DemoBearer": []
      }
     ],
-    "summary": "Ask"
+    "summary": "Ask",
+    "x-public-demo": true
    }
   },
   "/guide/query": {
@@ -6696,6 +6856,9 @@
      "401": {
       "description": "Identidad requerida"
      },
+     "410": {
+      "description": "Campaña terminada; no reintentar"
+     },
      "422": {
       "content": {
        "application/json": {
@@ -6721,7 +6884,8 @@
       "DemoBearer": []
      }
     ],
-    "summary": "Guide"
+    "summary": "Guide",
+    "x-public-demo": true
    }
   },
   "/guide/transcribe": {
@@ -6751,6 +6915,9 @@
      },
      "401": {
       "description": "Identidad requerida"
+     },
+     "410": {
+      "description": "Campaña terminada; no reintentar"
      },
      "413": {
       "description": "Audio supera 3 MiB"
@@ -6783,7 +6950,8 @@
       "DemoBearer": []
      }
     ],
-    "summary": "Transcribe"
+    "summary": "Transcribe",
+    "x-public-demo": true
    }
   },
   "/health": {
@@ -6894,6 +7062,9 @@
      "401": {
       "description": "Identidad requerida"
      },
+     "410": {
+      "description": "Campaña terminada; no reintentar"
+     },
      "413": {
       "description": "Límite de imagen/intento excedido"
      },
@@ -6924,7 +7095,8 @@
      }
     },
     "security": [],
-    "summary": "Identify"
+    "summary": "Identify",
+    "x-public-demo": true
    }
   },
   "/knowledge/search": {

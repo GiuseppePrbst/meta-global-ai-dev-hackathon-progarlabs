@@ -19,6 +19,7 @@ from psycopg.types.json import Jsonb
 from pydantic import BaseModel, ConfigDict, Field
 
 from bosque_api.config import Settings
+from bosque_api.public import CAMPAIGN_ID, EXPIRED_MESSAGE, campaign_expired
 from bosque_api.sessions import (
     IDENTITY_PATTERN,
     Operation,
@@ -33,7 +34,7 @@ JWKS_URL = (
     "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com"
 )
 Role = Literal["public_trial", "team_developer", "internal_qa", "administrator"]
-Cohort = Literal["public_trial", "team_developer", "internal_qa"]
+Cohort = Literal["public_trial", "team_developer", "internal_qa", "public_demo"]
 ROLE_SCOPES: dict[str, list[Operation]] = {
     role: ["guide", "identify", "raster", "transcribe"]
     for role in ("public_trial", "team_developer", "internal_qa", "administrator")
@@ -107,7 +108,13 @@ class Quota(BaseModel):
     identity: str
     plan: str | None
     status: Literal[
-        "available", "daily_limit", "trial_exhausted", "ai_disabled", "suspended", "no_cohort"
+        "available",
+        "daily_limit",
+        "trial_exhausted",
+        "ai_disabled",
+        "suspended",
+        "no_cohort",
+        "expired",
     ]
     reason: str | None = None
     features: list[Operation]
@@ -136,6 +143,11 @@ class CohortUpdate(BaseModel):
     identity_cap_units: int = Field(ge=0)
     daily_requests_per_identity: int = Field(ge=0, le=1000)
     ai_enabled: bool
+    reason: str = Field(min_length=3, max_length=200)
+
+
+class CampaignClose(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     reason: str = Field(min_length=3, max_length=200)
 
 
@@ -344,17 +356,15 @@ def register_account_routes(app, config: Settings):
                 "FROM execution_reservations WHERE identity_id=%s",
                 (str(owner),),
             ).fetchone()
-            pooled = (
-                row
-                and conn.execute(
-                    "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations "
-                    "WHERE cohort=%s",
-                    (row[1],),
-                ).fetchone()[0]
-            )
-            return row, reserved, today, pooled
+            # Cohorts share one campaign pool (migration 009).
+            pooled, cohort_cap = conn.execute(
+                "SELECT (SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations), "
+                "reservation_cap_units FROM campaign_state WHERE id=%s",
+                (CAMPAIGN_ID,),
+            ).fetchone()
+            return row, reserved, today, pooled, cohort_cap
 
-        row, reserved, today, pooled = guarded(run)
+        row, reserved, today, pooled, cohort_cap = guarded(run)
         features = (
             sorted(owner.scopes) if owner.scopes is not None else list(ROLE_SCOPES["administrator"])
         )
@@ -371,13 +381,15 @@ def register_account_routes(app, config: Settings):
                 daily_requests_limit=None,
                 daily_requests_used=today,
             )
-        role, cohort, suspended, cap, daily, cohort_on, cohort_cap = row
+        role, cohort, suspended, cap, daily, cohort_on, _ = row
         cap = min(cap, config.budget_identity_units or cap)
         available = max(0, min(cap - reserved, cohort_cap - pooled))
         costs = (config.guide_reservation_units, config.meta_reservation_units)
         cheapest = min((u for u in costs if u), default=1)
         status, reason = "available", None
-        if suspended:
+        if campaign_expired(config):
+            status, reason = "expired", EXPIRED_MESSAGE
+        elif suspended:
             status, reason = "suspended", "Cuenta suspendida"
         elif not (config.meta_enabled and cohort_on):
             status, reason = "ai_disabled", "IA temporalmente deshabilitada para este grupo"
@@ -556,6 +568,26 @@ def register_account_routes(app, config: Settings):
             alerts_crossed_usd=[usd for usd in ALERT_USD if total >= usd * 1_000_000],
             cohorts=cohorts,
         )
+
+    @app.post("/admin/campaign/close", status_code=204)
+    def close_campaign(item: CampaignClose, request: Request):
+        """Cierra la campaña para siempre; ninguna variable ni despliegue puede reabrirla."""
+        actor = operator(request)
+
+        def run(conn):
+            conn.execute("SELECT pg_advisory_xact_lock(78021931)")  # same lock as reserve()
+            conn.execute(
+                "UPDATE campaign_state SET closed_at=COALESCE(closed_at, clock_timestamp()), "
+                "closed_reason=COALESCE(closed_reason, %s) WHERE id=%s",
+                (item.reason, CAMPAIGN_ID),
+            )
+            conn.execute(
+                "INSERT INTO auth_events(event, actor, detail) VALUES ('campaign_closed',%s,%s)",
+                (str(actor), Jsonb({"reason": item.reason})),
+            )
+
+        guarded(run)
+        log.warning("auth event=campaign_closed")
 
     @app.get("/admin/cohorts", response_model=LedgerOverview)
     def list_cohorts(request: Request):

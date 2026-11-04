@@ -11,6 +11,7 @@ import httpx
 import psycopg
 import pytest
 from bosque_ai.meta import MetaResponsesClient
+from conftest import OPEN_CAMPAIGN
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
 from PIL import Image
@@ -202,6 +203,7 @@ def test_global_budget_concurrent_workers_ownership_and_recovery():
         with psycopg.connect(scoped) as conn:
             conn.execute((scripts / "001_init.sql").read_text())
             conn.execute((scripts / "003_execution.up.sql").read_text())
+            conn.execute(OPEN_CAMPAIGN)
         config = demo(
             database_url=scoped,
             budget_units=200,
@@ -315,6 +317,7 @@ def test_research_profile_skips_daily_counter_but_keeps_money_and_atomic_owner_c
         with psycopg.connect(scoped) as conn:
             conn.execute((scripts / "001_init.sql").read_text())
             conn.execute((scripts / "003_execution.up.sql").read_text())
+            conn.execute(OPEN_CAMPAIGN)
         common = dict(
             database_url=scoped,
             budget_units=10_000,

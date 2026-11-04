@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0.0",
- "knowledge_version": "sha256:55be2eb7ff2d8078967dd89a50f9d17abf607fdde8a1176c3e9f98599612a0ba",
+ "knowledge_version": "sha256:51ce4d6519c406682ec47838c65a05ea8d006fc46a76497f28a8ca1e4ed9e735",
  "snapshot": {
   "id": "knowledge-atlas",
   "type": "KnowledgeSnapshot",
@@ -12,7 +12,7 @@
   },
   "accessed_at": "2026-11-03",
   "updated_at": null,
-  "version": "sha256:55be2eb7ff2d8078967dd89a50f9d17abf607fdde8a1176c3e9f98599612a0ba",
+  "version": "sha256:51ce4d6519c406682ec47838c65a05ea8d006fc46a76497f28a8ca1e4ed9e735",
   "license": "Ver cada entidad",
   "review_status": "built_offline",
   "confidence": "mixed",
@@ -25,7 +25,7 @@
   "data": {
    "counts": {
     "ConservationAssessment": 11,
-    "DocumentPassage": 111,
+    "DocumentPassage": 112,
     "KnowledgeSource": 4,
     "MapResource": 79,
     "Park": 46,
@@ -55,7 +55,7 @@
     "valparaiso"
    ]
   },
-  "content_sha256": "sha256:1a7b014c632b95d7e73cf04f44d0ca633ba0f80b2e64d44e8e890a3798ef43ce"
+  "content_sha256": "sha256:03eccc8ba7f1eb61c6731a81a83be1901f2e912caeb37e6ff9d2341915fd119e"
  },
  "entities": [
   {
@@ -3650,6 +3650,35 @@
     "text": "- [Firebase: Facebook Login en web](http[omitido]):   - App ID y App Secret en el proveedor;   - redirección `PROYECTO.firebaseapp.com/__/auth/handler`;   - Facebook exige HTTPS; con `localhost`, la app de Meta debe estar en modo desarrollo y solo funcionan cuentas de prueba. - [Firebase: Limited Login en iOS](http[omitido]): credencial `OAuthProvider` `facebook.com` con `idToken` y `rawNonce`. - [Límites de Firebase Auth](http[omitido]):   - con Identity Platform en el plan sin costo (Spark), 3.000 usuarios activos diarios de Tier 1;   - 100 cuentas por hora por IP. - [Precios de Firebase](http[omitido]): Identity Platform sin costo hasta 50.000 usuarios activos mensuales y luego tarifas de"
    },
    "content_sha256": "sha256:83114f880be8df90b1cb88a8a41978bde2b617f0f9ada4e25632b778164deb54"
+  },
+  {
+   "id": "doc--sources--16",
+   "type": "DocumentPassage",
+   "name": "Fuentes, verificación y decisiones pendientes: Demostración pública: consulta del 04-11-2026",
+   "source": {
+    "title": "Fuentes, verificación y decisiones pendientes",
+    "url": "docs/SOURCES.md",
+    "kind": "repository"
+   },
+   "accessed_at": "2026-11-03",
+   "updated_at": null,
+   "version": null,
+   "license": "Documentación del repositorio",
+   "review_status": "repository_document",
+   "confidence": "repository_curated",
+   "coverage": {},
+   "limitations": [
+    "Extracto de documentación técnica; ver el documento completo."
+   ],
+   "search_terms": [
+    "Demostración pública: consulta del 04-11-2026"
+   ],
+   "data": {
+    "document": "docs/SOURCES.md",
+    "heading": "Demostración pública: consulta del 04-11-2026",
+    "text": "- [Términos de Meta Model API](http[omitido]):   - 10.1(i): no revender ni dar acceso mediante agregadores, gateways o proxies sin autorización escrita;   - 10.1(v) y política geográfica;   - 13.3: los créditos promocionales pueden expirar en el plazo indicado en la cuenta;   - 17.2: la indemnización no cubre el uso mediante créditos promocionales. - [Política de uso geográfico](http[omitido]), actualizada el 12-10-2026. Sección 3: territorios restringidos. No publica una lista de países habilitados."
+   },
+   "content_sha256": "sha256:c47437b5ea44ef623cf88f6f629e9cf9f3dd92a087a14be7958d5b54d141ee24"
   },
   {
    "id": "doc--sources--2",

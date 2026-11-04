@@ -8,7 +8,15 @@ import psycopg
 from fastapi import HTTPException
 
 from bosque_api.config import Settings
-from bosque_api.sessions import SESSION_PREFIX, Principal, authorize, pseudonym, resolve_session
+from bosque_api.public import CAMPAIGN_ID, EXPIRED_MESSAGE, campaign_expired
+from bosque_api.sessions import (
+    SESSION_PREFIX,
+    Principal,
+    authorize,
+    pseudonym,
+    rate_limit,
+    resolve_session,
+)
 
 log = logging.getLogger("bosque_api.ledger")
 # Alert lines (Cloud Logging) when cumulative reservations cross these USD amounts.
@@ -41,6 +49,9 @@ class ExecutionStore:
         """
         config = self.config
         authorize(owner, operation)  # a session never spends outside its scopes
+        anonymous = getattr(owner, "anonymous", False)
+        if operation != "raster" and campaign_expired(config):
+            raise HTTPException(410, EXPIRED_MESSAGE)
         if owner_cap_units is None and config.budget_identity_units:
             owner_cap_units = config.budget_identity_units
         if not config.database_url.get_secret_value():
@@ -59,15 +70,46 @@ class ExecutionStore:
                 conn.execute("SET LOCAL statement_timeout = '3000ms'")
                 # Serialize admissions across workers; limits are shared by this database.
                 conn.execute("SELECT pg_advisory_xact_lock(78021931)")
-                if config.budget_lifetime_units:
+                cap = config.budget_lifetime_units
+                if operation != "raster":
+                    # Same transaction and clock as the insert: the deadline and the shared cap
+                    # live in PostgreSQL, so no deploy or stale variable can reopen or raise them.
+                    campaign = conn.execute(
+                        "SELECT reservation_cap_units, closed_at IS NOT NULL, "
+                        "clock_timestamp() >= expires_at FROM campaign_state WHERE id=%s",
+                        (CAMPAIGN_ID,),
+                    ).fetchone()
+                    if campaign is None:
+                        raise HTTPException(503, "Estado de campaña no disponible")
+                    campaign_cap, closed, due = campaign
+                    if closed or due:
+                        if due and not closed:
+                            conn.execute(
+                                "UPDATE campaign_state SET closed_at=clock_timestamp(), "
+                                "closed_reason='expired' WHERE id=%s",
+                                (CAMPAIGN_ID,),
+                            )
+                            conn.commit()
+                        raise HTTPException(410, EXPIRED_MESSAGE)
+                    cap = min(cap or campaign_cap, campaign_cap)
+                if cap:
                     lifetime = conn.execute(
                         "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations"
                     ).fetchone()[0]
-                    if lifetime + units > config.budget_lifetime_units:
+                    if lifetime + units > cap:
                         raise HTTPException(429, "Límite acumulado de experimentación alcanzado")
                 cohort = None
                 per_identity_daily = config.budget_requests_per_identity
-                if config.budget_cohorts_enabled and operation != "raster":
+                if anonymous:
+                    cohort, per_identity_daily = "public_demo", config.public_requests_per_day
+                    wait = rate_limit(
+                        conn, "public:" + owner, config.public_requests_per_minute, 60
+                    )
+                    if wait:
+                        raise HTTPException(
+                            429, "Límite por minuto alcanzado", headers={"Retry-After": str(wait)}
+                        )
+                elif config.budget_cohorts_enabled and operation != "raster":
                     # The cohort comes from the backend's identity row, never from the client;
                     # a role change moves future reservations only, history keeps its cohort.
                     found = conn.execute(
@@ -78,18 +120,11 @@ class ExecutionStore:
                     ).fetchone()
                     if found is None:
                         raise HTTPException(403, "Identidad sin grupo presupuestario")
-                    cohort, suspended, cohort_cap, identity_cap, per_identity_daily, enabled = found
+                    cohort, suspended, _, identity_cap, per_identity_daily, enabled = found
                     if suspended:
                         raise HTTPException(403, "Cuenta suspendida")
                     if not enabled:
                         raise HTTPException(503, "IA no habilitada para este grupo")
-                    pooled = conn.execute(
-                        "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations "
-                        "WHERE cohort=%s",
-                        (cohort,),
-                    ).fetchone()[0]
-                    if pooled + units > cohort_cap:
-                        raise HTTPException(429, "Bolsa del grupo agotada")
                     owner_cap_units = min(identity_cap, owner_cap_units or identity_cap)
                 if owner_cap_units is not None:
                     owned = conn.execute(

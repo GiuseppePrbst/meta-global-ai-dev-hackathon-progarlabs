@@ -168,14 +168,19 @@ def test_public_quota_is_once_per_identity_and_cohorts_are_independent(client, m
     enable(client, "team_developer", 200_000, 8_000_000)
     assert client.post("/guide/query", json=QUESTION, headers=dev).status_code == 502
     assert client.post("/guide/query", json=QUESTION, headers=dev).status_code == 502
-    pool = client.post("/guide/query", json=QUESTION, headers=dev)
-    assert pool.status_code == 429 and pool.json()["detail"] == "Bolsa del grupo agotada"
+    # Cohorts share the campaign pool (migration 009): a cohort cap no longer stops the team.
+    assert client.post("/guide/query", json=QUESTION, headers=dev).status_code == 502
 
     overview = client.get("/admin/cohorts", headers=ADMIN).json()
     used = {c["cohort"]: c["reserved_units"] for c in overview["cohorts"]}
-    assert used == {"public_trial": 400_000, "team_developer": 200_000, "internal_qa": 0}
+    assert used == {
+        "public_trial": 400_000,
+        "team_developer": 300_000,
+        "internal_qa": 0,
+        "public_demo": 0,
+    }
     # The promoted developer's earlier public reservation stays in the public pool.
-    assert client.get("/me/quota", headers=dev).json()["units_reserved"] == 300_000
+    assert client.get("/me/quota", headers=dev).json()["units_reserved"] == 400_000
 
     # Budget moves are audited and bounded by the lifetime cap and by what is reserved.
     too_much = {"cap_units": 90_000_000, "identity_cap_units": 1, "daily_requests_per_identity": 1}
@@ -231,9 +236,7 @@ def test_suspension_unknown_identities_and_global_cap(client, database):  # noqa
 def test_cohort_caps_hold_under_concurrent_workers_and_processes(database):  # noqa: F811
     config = settings(database, **COHORTS)
     with psycopg.connect(database) as conn:
-        conn.execute(
-            "UPDATE budget_cohorts SET ai_enabled=true, cap_units=500000, identity_cap_units=300000"
-        )
+        conn.execute("UPDATE budget_cohorts SET ai_enabled=true, identity_cap_units=300000")
         for n in range(6):
             conn.execute(
                 "INSERT INTO identities VALUES (%s,'public_trial','public_trial')", (f"u-par-{n}",)
@@ -248,7 +251,9 @@ def test_cohort_caps_hold_under_concurrent_workers_and_processes(database):  # n
         except HTTPException:
             return 0
 
-    # One identity: exactly 3 of 12 (USD 0.30 cap); the pool (USD 0.50) admits 2 more in total.
+    with psycopg.connect(database) as conn:
+        conn.execute("UPDATE campaign_state SET reservation_cap_units=500000")
+    # One identity: exactly 3 of 12 (USD 0.30 cap); the campaign (USD 0.50) admits 2 more.
     with ThreadPoolExecutor(12) as pool:
         assert sum(pool.map(attempt, ["u-par-0"] * 12)) == 3
     code = (
