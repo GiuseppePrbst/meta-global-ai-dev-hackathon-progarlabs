@@ -155,6 +155,29 @@ class Revocation(BaseModel):
     invitations_revoked: int
 
 
+class InvitationState(BaseModel):
+    invitation_id: UUID
+    scopes: list[Operation]
+    created_at: datetime
+    expires_at: datetime
+    access_expires_at: datetime
+    redeemed_at: datetime | None
+    revoked_at: datetime | None
+    state: Literal["pending", "redeemed", "expired", "revoked"]
+
+
+class IdentityStatus(BaseModel):
+    """Operator view of one evaluator: no tokens, no hashes, only states and consumption."""
+
+    identity: str
+    invitations: list[InvitationState]
+    active_sessions: int
+    last_session_expires_at: datetime | None
+    reserved_units: int
+    reservations_by_status: dict[str, int]
+    identity_cap_units: int | None
+
+
 def register_session_routes(app, config: Settings):
     failures = Window(config.exchange_failures_per_ip, 900)
 
@@ -373,4 +396,61 @@ def register_session_routes(app, config: Settings):
         log.info("auth event=identity_revoked who=%s sessions=%d", pseudonym(identity), sessions)
         return Revocation(
             identity=identity, sessions_revoked=sessions, invitations_revoked=invitations
+        )
+
+    @app.get("/admin/identities/{identity}", response_model=IdentityStatus)
+    def identity_status(identity: Annotated[str, Path(pattern=IDENTITY_PATTERN)], request: Request):
+        """Estado de invitaciones, sesiones y consumo del ledger de un evaluador."""
+        operator(request)
+        try:
+            with connect(config) as conn:
+                invitations = conn.execute(
+                    "SELECT id, scopes, created_at, expires_at, access_expires_at, redeemed_at, "
+                    "revoked_at, CASE WHEN revoked_at IS NOT NULL THEN 'revoked' "
+                    "WHEN redeemed_at IS NOT NULL THEN 'redeemed' "
+                    "WHEN expires_at <= now() THEN 'expired' ELSE 'pending' END "
+                    "FROM access_invitations WHERE identity_id=%s ORDER BY created_at",
+                    (identity,),
+                ).fetchall()
+                active, last = conn.execute(
+                    "SELECT count(*) FILTER (WHERE revoked_at IS NULL AND expires_at > now()), "
+                    "max(expires_at) FROM access_sessions WHERE identity_id=%s",
+                    (identity,),
+                ).fetchone()
+                ledger = dict(
+                    conn.execute(
+                        "SELECT status, count(*) FROM execution_reservations "
+                        "WHERE identity_id=%s GROUP BY status",
+                        (identity,),
+                    ).fetchall()
+                )
+                units = conn.execute(
+                    "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations "
+                    "WHERE identity_id=%s",
+                    (identity,),
+                ).fetchone()[0]
+        except psycopg.Error:
+            raise HTTPException(503, "Servicio de sesiones no disponible") from None
+        if not invitations:
+            raise HTTPException(404, "Identidad sin invitaciones")
+        return IdentityStatus(
+            identity=identity,
+            invitations=[
+                InvitationState(
+                    invitation_id=r[0],
+                    scopes=r[1],
+                    created_at=r[2],
+                    expires_at=r[3],
+                    access_expires_at=r[4],
+                    redeemed_at=r[5],
+                    revoked_at=r[6],
+                    state=r[7],
+                )
+                for r in invitations
+            ],
+            active_sessions=active,
+            last_session_expires_at=last,
+            reserved_units=units,
+            reservations_by_status=ledger,
+            identity_cap_units=config.budget_identity_units or None,
         )

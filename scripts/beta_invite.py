@@ -1,6 +1,7 @@
-"""Create or revoke a closed-beta invitation. The operator token is read from stdin.
+"""Create, inspect or revoke a closed-beta invitation. The operator token is read from stdin.
 
     python scripts/beta_invite.py beta-07 guide,transcribe < operator-token-file
+    python scripts/beta_invite.py --status beta-07 < operator-token-file
     python scripts/beta_invite.py --revoke beta-07 < operator-token-file
 
 The invitation is printed once; only its hash is stored. Never pass tokens as arguments.
@@ -17,21 +18,26 @@ parser.add_argument(
     "identity", help="seudónimo estable, sin datos personales (p. ej. beta-07)"
 )
 parser.add_argument("scopes", nargs="?", default="guide,transcribe,identify")
-parser.add_argument("--revoke", action="store_true")
+action = parser.add_mutually_exclusive_group()
+action.add_argument("--revoke", action="store_true")
+action.add_argument(
+    "--status", action="store_true", help="invitaciones, sesiones y consumo"
+)
 parser.add_argument("--base", default="https://api-bosquevivo.progarlabs.com")
 args = parser.parse_args()
 token = sys.stdin.read().strip()
+method, body = "POST", {}
 if args.revoke:
-    path, body = f"/admin/identities/{args.identity}/revoke", {}
+    path = f"/admin/identities/{args.identity}/revoke"
+elif args.status:
+    path, method, body = f"/admin/identities/{args.identity}", "GET", None
 else:
-    path, body = (
-        "/admin/invitations",
-        {"identity": args.identity, "scopes": args.scopes.split(",")},
-    )
+    path = "/admin/invitations"
+    body = {"identity": args.identity, "scopes": args.scopes.split(",")}
 request = urllib.request.Request(
     args.base + path,
-    data=json.dumps(body).encode(),
-    method="POST",
+    data=None if body is None else json.dumps(body).encode(),
+    method=method,
     headers={
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
