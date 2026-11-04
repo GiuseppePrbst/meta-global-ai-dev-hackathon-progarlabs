@@ -203,3 +203,10 @@ Origen: [visión](PRODUCT_VISION_ECOSYSTEM.md), [piloto](PILOT_PUYEHUE.md),
 | BV-12.10 | Primera ronda | Conjuntos congelados por reino y campaña real ([informe](MULTIKINGDOM_AI_EVALUATION.md)) |
 | BV-13.1 | Nuevo P1 | Resolver la región desde coordenadas con límites regionales oficiales en PostGIS |
 | BV-13.2 | Nuevo P1 | Revisión de especialista de las etiquetas de los conjuntos congelados |
+
+## Deuda técnica registrada (04-11-2026)
+
+| ID | Estado | Detalle |
+| --- | --- | --- |
+| TD-01 | Abierta | Wilo Lab: `npm run build` (`tsc --noEmit`) falla con **7 errores TypeScript preexistentes** en `e2e/*.spec.ts` y `playwright.config.ts` (`process` y `Buffer` sin `@types/node`). Ya estaban en `main` antes de PR #37. La CI principal no construye el laboratorio, así que no son fallas de la CI (repository, api y web aprobadas). Los tests unitarios (`vitest`) pasan |
+| TD-02 | Abierta | Los límites en memoria (peticiones por identidad y canjes fallidos por IP) asumen `max-instances=1`. Hay que moverlos a PostgreSQL antes de escalar |

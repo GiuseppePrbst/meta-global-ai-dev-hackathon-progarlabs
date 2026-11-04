@@ -298,6 +298,6 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
 - **Punto único de control:** `execution.identity()` resuelve tanto tokens de operador como sesiones, para HTTP y para el WebSocket. `ExecutionStore.reserve()` rechaza operaciones fuera de los permisos de la sesión, así que ninguna ruta gasta sin permiso.
 - **Ledger:** cada sesión resuelve la identidad estable de su invitación. Renovar o recibir otra invitación con el mismo seudónimo no reinicia las cuotas. `BUDGET_IDENTITY_UNITS` añade un tope acumulado por identidad.
 - **Límites:**
-  - Límite por sesión (60/min) y de canjes fallidos por IP (10 cada 15 min), en memoria y exactos con `max-instances=1`. Si se escala, hay que llevarlos a PostgreSQL.
+  - Límite de peticiones por identidad estable (60/min, compartido entre sus sesiones; la variable se llama `SESSION_REQUESTS_PER_MINUTE`) y de canjes fallidos por IP (10 cada 15 min), en memoria y exactos con `max-instances=1`. Si se escala, hay que llevarlos a PostgreSQL.
   - Además, la regla de Cloudflare por IP.
 - **Compatibilidad futura:** un proveedor OIDC (Authorization Code + PKCE) reemplazaría solo `/sessions/exchange` y resolvería el mismo `Principal`.
