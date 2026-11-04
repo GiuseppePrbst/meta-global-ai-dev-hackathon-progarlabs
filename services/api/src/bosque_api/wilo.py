@@ -417,6 +417,8 @@ def register_wilo_routes(app, config, landscape_context, repository, meta_client
         except HTTPException as exc:
             if exc.status_code == 403:
                 return await fail("forbidden", "La sesión no tiene permiso de voz")
+            if exc.status_code == 429:
+                return await fail("rate_limited", "Límite de solicitudes; reintenta luego")
             if exc.status_code == 503:
                 return await fail("unavailable", "Servicio de sesiones no disponible", 1011)
             return await fail("unauthorized", "Sesión inválida, expirada o revocada")

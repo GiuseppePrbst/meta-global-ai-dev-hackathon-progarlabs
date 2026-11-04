@@ -173,7 +173,7 @@ Todas las respuestas incluyen `X-Correlation-ID`. Inclúyelo en los reportes de 
 ## 9. Lo que no cubre esta etapa
 
 - No hay registro abierto ni recuperación de cuenta: el acceso es solo por invitación.
-- El límite de 60 peticiones/min se cuenta **por identidad estable**, no por sesión: renovar el token o abrir otra sesión no lo reinicia. Vive en memoria y es exacto mientras Cloud Run use una sola instancia (`max-instances=1`).
+- El límite de 60 peticiones/min se cuenta **por identidad estable**, no por sesión: renovar el token o abrir otra sesión no lo reinicia. Desde la migración 006 se guarda en PostgreSQL: es compartido entre instancias y sobrevive a reinicios. El 429 del backend dice «Límite de solicitudes de la identidad» y trae `Retry-After`. En el WebSocket, el mismo límite responde `code: "rate_limited"`.
 - Ante ráfagas, la regla de Cloudflare (60 peticiones cada 10 s por IP) suele responder 429 antes que el backend. Se distinguen porque el 429 del backend trae `X-Correlation-ID`.
 - Meta sigue deshabilitado hasta que haya una autorización de gasto: ver [META_CLOUD_ACTIVATION.md](META_CLOUD_ACTIVATION.md).
 

@@ -163,7 +163,7 @@ Contrato para clientes: [docs/SESSION_AUTH_CONTRACT.md](../../docs/SESSION_AUTH_
   2. Probar la URL etiquetada con el encabezado de origen.
   3. Mover el tráfico: `gcloud run services update-traffic bosque-vivo-api --to-tags=sessions=100`.
 - **Rollback:** volver el 100 % del tráfico a la revisión `bosque-vivo-api-00004-d2l` con `gcloud run services update-traffic` y `--to-revisions`, como en «Operación». La revisión 00004 ignora las tablas nuevas, así que no hay que tocar el esquema.
-- **Límites en memoria:** el de peticiones por identidad estable (60/min, compartido por todas sus sesiones) y el de canjes fallidos por IP (10 cada 15 min) suponen `max-instances=1`. Si se escala, hay que moverlos a PostgreSQL.
+- **Límites HTTP:** el de peticiones por identidad estable (60/min, compartido por todas sus sesiones) y el de canjes fallidos por IP (10 cada 15 min) viven en PostgreSQL desde la migración 006. Son compartidos entre instancias y persisten entre reinicios. Mantener `max-instances=1` hasta desplegar 006 y repetir las pruebas.
 
 ### Promoción a producción (04-11-2026)
 
@@ -178,6 +178,18 @@ Contrato para clientes: [docs/SESSION_AUTH_CONTRACT.md](../../docs/SESSION_AUTH_
   - `run.app` directo bloqueado, encabezado de origen falso sobrescrito por el Worker, y CORS.
 - **Seudónimo de IP:** el seudónimo registrado en los canjes fallidos coincide con el hash de la IP pública del cliente de prueba, así que el Worker reenvía `CF-Connecting-IP`.
 - **Gasto:** ledger con 0 reservas y sin llamadas a Meta. Las identidades de prueba (`ext-*`) quedaron revocadas.
+
+### Migración 006: límites persistentes
+
+- **Contenido:** `services/api/sql/006_rate_limits.up.sql` es aditiva y solo crea `rate_limit_hits`, con contadores transitorios. No toca el ledger ni la auditoría.
+- **Orden obligatorio:**
+  1. Backup a demanda.
+  2. Aplicar 006 con el job `bosque-vivo-migrate`.
+  3. Desplegar la revisión nueva sin tráfico y probarla.
+  4. Promover.
+
+  El código nuevo responde 503 si la tabla no existe (fallo cerrado), por eso la migración va **antes** del tráfico.
+- **Rollback de aplicación:** volver a la revisión anterior. Esa revisión ignora la tabla, y no hace falta borrarla.
 
 ### Migración 007: estado `cancelled` en el ledger
 

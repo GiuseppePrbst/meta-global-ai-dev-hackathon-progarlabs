@@ -12,7 +12,7 @@ from psycopg.conninfo import make_conninfo
 from bosque_api.config import Settings
 from bosque_api.execution import ExecutionStore, identity
 from bosque_api.main import create_app
-from bosque_api.sessions import Principal, Window, authorize
+from bosque_api.sessions import Principal, authorize, cleanup_rate_limits
 
 ADMIN = {"Authorization": "Bearer test-operator"}
 
@@ -27,7 +27,7 @@ def settings(**kwargs):
     )
 
 
-def test_scopes_and_window_without_database():
+def test_scopes_without_database():
     authorize(Principal("operator"), "identify")  # static token: every operation
     limited = Principal("beta-01")
     limited.scopes = frozenset({"guide"})
@@ -35,9 +35,6 @@ def test_scopes_and_window_without_database():
     with pytest.raises(HTTPException) as denied:
         authorize(limited, "identify")
     assert denied.value.status_code == 403
-    window = Window(2, 60)
-    assert window.retry_after("k") == window.retry_after("k") == 0
-    assert window.retry_after("k") > 0
     # Without PostgreSQL a session token is never accepted.
     with pytest.raises(HTTPException) as missing:
         identity(settings(), "Bearer bvs_" + "x" * 43)
@@ -66,7 +63,13 @@ def database():
     scoped = make_conninfo(url, options=f"-csearch_path={schema},public")
     try:
         with psycopg.connect(scoped) as conn:
-            for name in ("001_init", "003_execution.up", "004_expeditions.up", "005_sessions.up"):
+            for name in (
+                "001_init",
+                "003_execution.up",
+                "004_expeditions.up",
+                "005_sessions.up",
+                "006_rate_limits.up",
+            ):
                 conn.execute((scripts / f"{name}.sql").read_text())
         yield scoped
     finally:
@@ -160,9 +163,12 @@ def test_invitation_session_lifecycle(database):
 @pytest.mark.integration
 def test_brute_force_and_session_rate_limits(database):
     config = settings(
-        database_url=database, exchange_failures_per_ip=3, session_requests_per_minute=3
+        database_url=database,
+        exchange_failures_per_ip=3,
+        session_requests_per_minute=3,
+        origin_auth_token="test-origin",  # CF-Connecting-IP is trusted only behind the guard
     )
-    client = TestClient(create_app(config))
+    client = TestClient(create_app(config), headers={"X-Bosque-Origin": "test-origin"})
     wrong = {"invitation": "bvi_" + "z" * 43}
     assert [client.post("/sessions/exchange", json=wrong).status_code for _ in range(3)] == [
         401
@@ -229,3 +235,86 @@ def test_websocket_accepts_sessions_and_rejects_others(database):
     with client.websocket_connect("/guide/voice/stream") as ws:
         ws.send_json({**start, "token": guide_only})
         assert ws.receive_json()["code"] == "forbidden"
+
+
+@pytest.mark.integration
+def test_rate_limits_are_shared_persistent_and_fail_closed(database):
+    from concurrent.futures import ThreadPoolExecutor
+
+    config = settings(
+        database_url=database,
+        session_requests_per_minute=3,
+        exchange_failures_per_ip=3,
+        origin_auth_token="test-origin",
+    )
+    guard = {"X-Bosque-Origin": "test-origin"}
+    # Two app instances = two independent in-memory states; only PostgreSQL is shared.
+    one, two = (TestClient(create_app(config), headers=guard) for _ in range(2))
+    first = one.post("/sessions/exchange", json={"invitation": invite(one, "beta-a")}).json()
+    second = two.post("/sessions/exchange", json={"invitation": invite(two, "beta-a")}).json()
+    assert one.get("/sessions/me", headers=bearer(first["access_token"])).status_code == 200
+    assert two.get("/sessions/me", headers=bearer(second["access_token"])).status_code == 200
+    renewed = one.post("/sessions/refresh", headers=bearer(first["access_token"]))
+    assert renewed.status_code == 201  # third request of beta-a in this minute
+    # Renewal, the other session and the other instance all share beta-a's counter.
+    blocked = two.get("/sessions/me", headers=bearer(renewed.json()["access_token"]))
+    assert blocked.status_code == 429 and 1 <= int(blocked.headers["Retry-After"]) <= 60
+    assert one.get("/sessions/me", headers=bearer(second["access_token"])).status_code == 429
+    # Another identity is independent.
+    other = one.post("/sessions/exchange", json={"invitation": invite(one, "beta-b")}).json()
+    assert two.get("/sessions/me", headers=bearer(other["access_token"])).status_code == 200
+    # A restarted backend (new app) does not reset the window early.
+    restarted = TestClient(create_app(config), headers=guard)
+    assert restarted.get("/sessions/me", headers=bearer(second["access_token"])).status_code == 429
+    # An expired window admits requests again.
+    with psycopg.connect(database) as conn:
+        conn.execute(
+            "UPDATE rate_limit_hits SET at = at - interval '61 seconds' "
+            "WHERE bucket = 'identity:beta-a'"
+        )
+    assert restarted.get("/sessions/me", headers=bearer(second["access_token"])).status_code == 200
+    # Concurrent bursts across instances never exceed the limit (per-bucket advisory lock).
+    burst = one.post("/sessions/exchange", json={"invitation": invite(one, "beta-c")}).json()
+    clients = [one, two, restarted]
+    with ThreadPoolExecutor(max_workers=12) as pool:
+        codes = list(
+            pool.map(
+                lambda i: (
+                    clients[i % 3]
+                    .get("/sessions/me", headers=bearer(burst["access_token"]))
+                    .status_code
+                ),
+                range(12),
+            )
+        )
+    assert sorted(codes) == [200] * 3 + [429] * 9
+    # Failed exchanges accumulate per IP across instances and restarts.
+    ip = {"CF-Connecting-IP": "198.51.100.23"}
+    wrong = {"invitation": "bvi_" + "f" * 43}
+    for client in (one, two, restarted):
+        assert client.post("/sessions/exchange", json=wrong, headers=ip).status_code == 401
+    late = TestClient(create_app(config), headers=guard)
+    stopped = late.post(
+        "/sessions/exchange", json={"invitation": invite(late, "beta-d")}, headers=ip
+    )
+    assert stopped.status_code == 429 and int(stopped.headers["Retry-After"]) > 800
+    # Old rows can be purged; only transient counters live in this table.
+    with psycopg.connect(database) as conn:
+        conn.execute(
+            "INSERT INTO rate_limit_hits(bucket, at) VALUES ('stale', now() - interval '25 hours')"
+        )
+        assert cleanup_rate_limits(conn) == 1
+        buckets = {row[0] for row in conn.execute("SELECT DISTINCT bucket FROM rate_limit_hits")}
+    assert "stale" not in buckets and "identity:beta-a" in buckets
+    assert all(not b.endswith("198.51.100.23") for b in buckets)  # IP stored only as pseudonym
+    # PostgreSQL down: protected routes fail closed (503), never open.
+    down = settings(
+        database_url="postgresql://x:y@127.0.0.1:1/none", origin_auth_token="test-origin"
+    )
+    broken = TestClient(create_app(down), headers=guard)
+    assert broken.get("/sessions/me", headers=bearer(burst["access_token"])).status_code == 503
+    assert (
+        broken.post("/guide/query", json={}, headers=bearer(burst["access_token"])).status_code
+        == 503
+    )
+    assert broken.post("/sessions/exchange", json=wrong).status_code == 503
