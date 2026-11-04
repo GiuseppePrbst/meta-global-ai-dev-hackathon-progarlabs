@@ -261,6 +261,22 @@ def test_rate_limits_by_verified_ip_shared_and_not_spoofable(database, meta):  #
     assert len(meta) == 4
 
 
+def test_ipv6_clients_are_limited_by_prefix_and_bad_addresses_refused(database):  # noqa: F811
+    config = settings(database, **PUBLIC)
+    one = admit_anonymous(
+        config, {"cf-connecting-ip": "2001:db8:1:2::a", "cf-ipcountry": "CL"}, "guide"
+    )
+    same = admit_anonymous(
+        config, {"cf-connecting-ip": "2001:db8:1:2:ffff::b", "cf-ipcountry": "CL"}, "guide"
+    )
+    other = admit_anonymous(
+        config, {"cf-connecting-ip": "2001:db8:1:3::a", "cf-ipcountry": "CL"}, "guide"
+    )
+    assert one == same != other
+    with pytest.raises(HTTPException):
+        admit_anonymous(config, {"cf-connecting-ip": "not-an-ip", "cf-ipcountry": "CL"}, "guide")
+
+
 def test_postgres_down_fails_closed_before_meta(database, meta):  # noqa: F811
     down = "postgresql://nobody:x@127.0.0.1:1/none?connect_timeout=1"
     client = public_client(database, database_url=down)

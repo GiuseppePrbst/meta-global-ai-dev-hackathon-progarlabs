@@ -154,6 +154,7 @@ Los clientes nunca reciben `MODEL_API_KEY`, `ORIGIN_AUTH_TOKEN`, credenciales de
 ## Seudónimo anónimo
 
 - Es `anon-` más 24 caracteres de un HMAC-SHA256 de la IP verificada, con una clave de Secret Manager.
+- En IPv6 se usa el prefijo /64, porque un solo cliente controla ese bloque completo.
 - La IP no se guarda en claro. El seudónimo sí queda en el ledger, junto al consumo.
 - Lo genera el servidor. Ningún identificador enviado por el cliente lo cambia.
 - No da acceso a rutas privadas ni permisos administrativos.

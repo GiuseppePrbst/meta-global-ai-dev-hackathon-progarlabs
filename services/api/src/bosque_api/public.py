@@ -7,6 +7,7 @@ still passes reserve(): same ledger, deadline and shared cap as sessions and ope
 
 import hashlib
 import hmac
+import ipaddress
 import logging
 from datetime import UTC, datetime
 from typing import Literal
@@ -63,12 +64,17 @@ def admit_anonymous(config: Settings, headers, feature: str) -> Principal:
         raise HTTPException(503, "Demostración pública no disponible")
     if feature not in config.public_demo_features:
         raise HTTPException(403, "Función no disponible en la demostración pública")
-    address = headers.get("cf-connecting-ip", "").strip()
-    if not address:
-        raise HTTPException(403, "No se pudo verificar el origen de la solicitud")
+    try:
+        address = ipaddress.ip_address(headers.get("cf-connecting-ip", "").strip())
+    except ValueError:
+        raise HTTPException(403, "No se pudo verificar el origen de la solicitud") from None
     if not is_eligible(headers.get("cf-ipcountry", "")):
         raise HTTPException(403, "Servicio no disponible en este territorio")
-    digest = hmac.new(key.encode(), address.encode(), hashlib.sha256).hexdigest()
+    # One IPv6 client controls a whole /64: limiting single addresses would be no limit at all.
+    client = (
+        ipaddress.ip_network(f"{address}/64", strict=False) if address.version == 6 else address
+    )
+    digest = hmac.new(key.encode(), str(client).encode(), hashlib.sha256).hexdigest()
     principal = Principal("anon-" + digest[:24])
     principal.anonymous = True
     principal.scopes = ANONYMOUS_SCOPES
