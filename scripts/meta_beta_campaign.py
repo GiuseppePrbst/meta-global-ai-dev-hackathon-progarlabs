@@ -6,7 +6,7 @@ Never run in CI. Evidence goes to --out, which must be outside the repository.
 
     python scripts/meta_beta_campaign.py --token-file <private> --audio q.wav \
         --positive olivillo.jpg --negative araucaria.jpg --out D:/data/bosque-vivo/campaign-01
-    # add: --execute --authorization "<owner, date, amount>" --max-usd 0.15
+    # add: --execute --authorization "<owner, date, amount>" --max-usd 0.30
 """
 
 import argparse
@@ -20,10 +20,10 @@ import uuid
 from datetime import UTC, datetime
 from pathlib import Path
 
-# Reservations from the beta proposal, in USD (units / 1e6). Reserved, not billed.
+# Reservations in USD (units / 1e6), META_CLOUD_ACTIVATION.md 04-11-2026. Reserved, not billed.
 PLAN = [
-    ("A", "Wilo texto: senderos de Puyehue con fuentes del Atlas", 0.04),
-    ("B", "Wilo voz: /guide/ask con WAV (transcripción + guía)", 0.005 + 0.04),
+    ("A", "Wilo texto: senderos de Puyehue con fuentes del Atlas", 0.10),
+    ("B", "Wilo voz: /guide/ask con WAV (transcripción + guía)", 0.005 + 0.10),
     ("C", "Identificación positiva (especie del catálogo)", 0.03),
     ("D", "Identificación negativa (fuera del catálogo; abstención esperada)", 0.03),
 ]
