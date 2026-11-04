@@ -7,12 +7,12 @@ URL pública: **https://api-bosquevivo.progarlabs.com**
 | Área | Estado |
 | --- | --- |
 | API en Cloud Run, `SERVICE_MODE=demo` | Implementado y verificado desde fuera de GCP |
-| PostgreSQL 16 + PostGIS 3.6.4 (Cloud SQL), migraciones 001–004 | Implementado y verificado. El ledger cloud empezó vacío |
+| PostgreSQL 16 + PostGIS 3.6.4 (Cloud SQL), migraciones 001–005 | Implementado y verificado. El ledger cloud empezó vacío |
 | Cloudflare Worker + dominio + límite de tasa | Implementado y verificado |
 | Protección del origen `run.app` | Implementada en el backend y verificada |
-| Sesiones de beta cerrada (migración 005) | Implementadas. Probadas en una revisión etiquetada sin tráfico; la promoción espera la revisión del PR |
+| Sesiones de beta cerrada (migración 005) | En producción desde el 04-11-2026 (revisión `00008-goc`, `main` `966daa3`) y verificadas desde el dominio público |
 | Inferencia Meta (identificación, voz y guía) | **Deshabilitada.** `/identify` responde 501, Wilo 503, sin reservas ni llamadas pagadas |
-| Origen web de la app de José en CORS | Pendiente: se desconoce su URL; hoy solo se permite `http://localhost:3000` |
+| Origen web de la app de José en CORS | Pendiente: se desconoce su URL de producción. Hoy se permiten `localhost:3000`, `localhost:3001`, `127.0.0.1:3001` y `localhost:8081` |
 
 Un `GET /health` correcto no demuestra que toda la aplicación funcione. Lo que se probó está en «Pruebas externas».
 
@@ -163,4 +163,18 @@ Contrato para clientes: [docs/SESSION_AUTH_CONTRACT.md](../../docs/SESSION_AUTH_
   2. Probar la URL etiquetada con el encabezado de origen.
   3. Mover el tráfico: `gcloud run services update-traffic bosque-vivo-api --to-tags=sessions=100`.
 - **Rollback:** volver el 100 % del tráfico a la revisión `bosque-vivo-api-00004-d2l` con `gcloud run services update-traffic` y `--to-revisions`, como en «Operación». La revisión 00004 ignora las tablas nuevas, así que no hay que tocar el esquema.
-- **Límites en memoria:** el de sesión (60/min) y el de canjes fallidos por IP (10 cada 15 min) suponen `max-instances=1`. Si se escala, hay que moverlos a PostgreSQL.
+- **Límites en memoria:** el de peticiones por identidad estable (60/min, compartido por todas sus sesiones) y el de canjes fallidos por IP (10 cada 15 min) suponen `max-instances=1`. Si se escala, hay que moverlos a PostgreSQL.
+
+### Promoción a producción (04-11-2026)
+
+- **Imagen:** `api:966daa38ef26`, digest `sha256:5706d502fb125638734d35470788f1aa3b2e4a629d35738d08fadf2f32c19a20`, construida desde `main` `966daa3` con CI aprobada.
+- **Despliegue:** revisión `bosque-vivo-api-00008-goc`, primero sin tráfico (etiqueta `main`). Luego 10 % y, sin errores, 100 %.
+- **Rollback:** `bosque-vivo-api-00004-d2l` (sin sesiones) y `00007-nak` (sesiones, PR #37) se conservan. Volver con `gcloud run services update-traffic` y `--to-revisions`. Las tablas de sesiones no se tocan.
+- **Verificado desde `https://api-bosquevivo.progarlabs.com`:**
+  - invitaciones (válida, reutilizada e inválida);
+  - renovación, cierre de sesión y revocación;
+  - permisos y WebSocket;
+  - límite por identidad (429 del backend en la petición 61) y límite de canjes fallidos por IP detrás de Cloudflare;
+  - `run.app` directo bloqueado, encabezado de origen falso sobrescrito por el Worker, y CORS.
+- **Seudónimo de IP:** el seudónimo registrado en los canjes fallidos coincide con el hash de la IP pública del cliente de prueba, así que el Worker reenvía `CF-Connecting-IP`.
+- **Gasto:** ledger con 0 reservas y sin llamadas a Meta. Las identidades de prueba (`ext-*`) quedaron revocadas.

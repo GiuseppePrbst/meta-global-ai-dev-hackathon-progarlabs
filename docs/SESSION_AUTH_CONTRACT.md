@@ -126,7 +126,7 @@ Todas las respuestas incluyen `X-Correlation-ID`. Inclúyelo en los reportes de 
 | 403 | La sesión no tiene el permiso de esa operación, o una ruta de operador. Acceso directo a `run.app` | Mostrar que la función no está habilitada para este evaluador |
 | 400 | `/sessions/refresh` o `/logout` con una credencial que no es una sesión | Error de integración |
 | 422 | Cuerpo inválido o faltan permisos de la petición (`adult_confirmed`, `rights_confirmed` o `external_processing_confirmed`) | Corregir la petición |
-| 429 | Límite de la sesión (60 peticiones/min), intentos de canje fallidos (10 cada 15 min por IP), límite de Cloudflare (60/10 s por IP) o cuota del ledger agotada | Respetar `Retry-After`. Si es cuota, avisar que se agotó el cupo |
+| 429 | Límite por identidad (60 peticiones/min, compartido por todas las sesiones del mismo evaluador; el mensaje dice «Límite de solicitudes de la sesión»), intentos de canje fallidos (10 cada 15 min por IP), límite de Cloudflare (60/10 s por IP) o cuota del ledger agotada | Respetar `Retry-After`. Si es cuota, avisar que se agotó el cupo |
 | 501 | `/identify` con Meta deshabilitado | Mostrar «reconocimiento no disponible» |
 | 502 | Error del proveedor Meta, con respuesta sanitizada | Un reintento manual. Nunca presentarlo como abstención |
 | 503 | Meta deshabilitado en Wilo (`Meta no habilitado/configurado`), base de datos no disponible, o presupuesto no configurado | Mostrar «no disponible» y ofrecer el Atlas |
@@ -173,5 +173,6 @@ Todas las respuestas incluyen `X-Correlation-ID`. Inclúyelo en los reportes de 
 ## 9. Lo que no cubre esta etapa
 
 - No hay registro abierto ni recuperación de cuenta: el acceso es solo por invitación.
-- El límite por sesión vive en memoria y es exacto mientras Cloud Run use una sola instancia (`max-instances=1`).
+- El límite de 60 peticiones/min se cuenta **por identidad estable**, no por sesión: renovar el token o abrir otra sesión no lo reinicia. Vive en memoria y es exacto mientras Cloud Run use una sola instancia (`max-instances=1`).
+- Ante ráfagas, la regla de Cloudflare (60 peticiones cada 10 s por IP) suele responder 429 antes que el backend. Se distinguen porque el 429 del backend trae `X-Correlation-ID`.
 - Meta sigue deshabilitado hasta que haya una autorización de gasto: ver [META_CLOUD_ACTIVATION.md](META_CLOUD_ACTIVATION.md).
