@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SessionPanel } from "./components/SessionPanel";
 import { SpeciesLab } from "./components/SpeciesLab";
 import { WiloChat } from "./components/WiloChat";
 
@@ -39,7 +40,8 @@ export default function App() {
               <h1>Dos capacidades reales, un solo laboratorio.</h1>
               <p>App independiente del frontend oficial: conversa con Wilo por voz o texto y prueba el reconocimiento
                 visual de especies contra las APIs reales. En modo mock todo se etiqueta como mock.</p>
-              <label className="token">Token demo del backend (nunca la clave Meta)
+              <SessionPanel token={token} onToken={(value) => saveToken(value, remember)} />
+              <label className="token">Token del backend: sesion temporal bvs_ (nunca la clave Meta)
                 <input type="password" autoComplete="off" value={token} onChange={(e) => saveToken(e.target.value, remember)}
                   placeholder="Requerido por /guide/* en la API" aria-label="Token demo del backend" />
               </label>

@@ -74,6 +74,9 @@ Las pruebas Playwright se ejecutan con `npm run test:e2e`, requieren Chromium (`
 
 La API demo está publicada en https://api-bosquevivo.progarlabs.com (Cloud Run + Cloud SQL + Cloudflare). Recursos, costos, operación, rollback y plan al 02-02-2027: [infra/gcp/README.md](../infra/gcp/README.md).
 
+- **Sesiones de beta cerrada (04-11-2026):** migración aditiva `005_sessions` (invitaciones, sesiones y auditoría). Se aplica con backup previo y no toca el ledger. Contrato: [SESSION_AUTH_CONTRACT.md](SESSION_AUTH_CONTRACT.md).
+- **Meta:** sigue apagado. Auditoría, presupuesto propuesto, encendido y apagado: [META_CLOUD_ACTIVATION.md](META_CLOUD_ACTIVATION.md).
+
 ## Antes de un despliegue público
 
 Elegir proveedor y presupuesto; añadir HTTPS, autenticación/autorización de observaciones, límites de petición, CORS exacto, gestión de secretos, consentimiento/retención/borrado y backups con prueba de restauración. Ver [SECURITY.md](SECURITY.md). Verificar licencias del mapa base y datasets y no publicar fixtures como terreno real.

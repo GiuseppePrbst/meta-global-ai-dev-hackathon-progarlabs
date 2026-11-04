@@ -5,7 +5,7 @@
   "claims": [],
   "entities": [],
   "insufficient_evidence": true,
-  "knowledge_version": "sha256:be3d94518ec8ef421ffbe639e6775e362e2a5e195a12b5d364155080d04bb4d4",
+  "knowledge_version": "sha256:02d5cfb976048959ccd9635ec8a5de69ed49d3b9bd327f54567aa981a85be7c5",
   "language_hint": "auto",
   "latency_ms": {
    "generation": null,

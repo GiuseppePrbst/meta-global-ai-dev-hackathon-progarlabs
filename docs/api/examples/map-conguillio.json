@@ -21,7 +21,7 @@
   "boundary_unavailable_reason": "No hay límite oficial con licencia de redistribución: la capa BCN SNASPE se usa solo como encuadre y sus polígonos no se publican.",
   "crs": "EPSG:4326",
   "geometry_status": "bbox_only",
-  "knowledge_version": "sha256:be3d94518ec8ef421ffbe639e6775e362e2a5e195a12b5d364155080d04bb4d4",
+  "knowledge_version": "sha256:02d5cfb976048959ccd9635ec8a5de69ed49d3b9bd327f54567aa981a85be7c5",
   "limitations": [
    "Sin geometría de senderos autorizada: no dibujar trazados ni ofrecer navegación.",
    "El encuadre BCN es referencial; no decide si un punto está dentro del parque."

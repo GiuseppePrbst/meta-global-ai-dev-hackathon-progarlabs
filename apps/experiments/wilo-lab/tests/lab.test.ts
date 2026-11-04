@@ -58,3 +58,20 @@ describe("Identificacion sin puntajes inventados", () => {
     expect((demoInit.headers as Record<string, string>).Authorization).toBe("Bearer demo");
   });
 });
+
+describe("Sesion temporal de evaluador", () => {
+  it("canjea la invitacion sin Authorization y usa el token bvs_ despues", async () => {
+    const { exchangeInvitation, logout } = await import("../src/lib/session");
+    const f = vi.fn(async () => json({ access_token: "bvs_x", expires_at: "", access_expires_at: "", identity: "beta-01", scopes: ["guide"] }, 201));
+    vi.stubGlobal("fetch", f);
+    const s = await exchangeInvitation("  bvi_abc  ");
+    const [url, init] = f.mock.calls[0] as unknown as [string, RequestInit];
+    expect(url).toContain("/sessions/exchange");
+    expect((init.headers as Record<string, string>).Authorization).toBeUndefined();
+    expect(JSON.parse(String(init.body))).toEqual({ invitation: "bvi_abc" });
+    f.mockImplementationOnce(async () => new Response(null, { status: 204 }));
+    await logout(s.access_token);
+    const [, out] = f.mock.calls[1] as unknown as [string, RequestInit];
+    expect((out.headers as Record<string, string>).Authorization).toBe("Bearer bvs_x");
+  });
+});

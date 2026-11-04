@@ -10,6 +10,7 @@ URL pública: **https://api-bosquevivo.progarlabs.com**
 | PostgreSQL 16 + PostGIS 3.6.4 (Cloud SQL), migraciones 001–004 | Implementado y verificado. El ledger cloud empezó vacío |
 | Cloudflare Worker + dominio + límite de tasa | Implementado y verificado |
 | Protección del origen `run.app` | Implementada en el backend y verificada |
+| Sesiones de beta cerrada (migración 005) | Implementadas. Probadas en una revisión etiquetada sin tráfico; la promoción espera la revisión del PR |
 | Inferencia Meta (identificación, voz y guía) | **Deshabilitada.** `/identify` responde 501, Wilo 503, sin reservas ni llamadas pagadas |
 | Origen web de la app de José en CORS | Pendiente: se desconoce su URL; hoy solo se permite `http://localhost:3000` |
 
@@ -140,3 +141,26 @@ No ejecutado:
 - **Imagen malformada en `/identify`:** con Meta apagado, el 501 ocurre antes de validar la imagen. Esa validación está cubierta por los tests unitarios.
 - **Timeout de 120 s:** probarlo exigiría una petición lenta real.
 - **Límites de presupuesto del ledger:** no hay reservas mientras Meta esté apagado.
+
+## Beta cerrada: invitaciones y sesiones (04-11-2026)
+
+Contrato para clientes: [docs/SESSION_AUTH_CONTRACT.md](../../docs/SESSION_AUTH_CONTRACT.md). Meta: [docs/META_CLOUD_ACTIVATION.md](../../docs/META_CLOUD_ACTIVATION.md).
+
+- **Migración 005:**
+  - Aplicada el 04-11 con el job `bosque-vivo-migrate`, después del backup a demanda `1793753850662`.
+  - Es aditiva: solo crea `access_invitations`, `access_sessions` y `auth_events`.
+  - El rollback de esquema (`005_sessions.down.sql`) se niega a borrar si hay auditoría.
+- **Crear una invitación:** solo con el token de operador `cloud-demo`, que se lee desde el archivo privado y nunca va como argumento. El script `scripts/beta_invite.py` imprime la invitación una sola vez:
+
+  ```bash
+  python scripts/beta_invite.py beta-07 guide,transcribe,identify < D:/restricted-data/bosque-vivo/cloud/demo-token-cloud-demo
+  ```
+
+  Entrega la invitación al evaluador por un canal privado. Vence en 72 h si no se canjea, y el acceso dura 14 días.
+- **Revocar a un evaluador:** `python scripts/beta_invite.py --revoke beta-07 < …/demo-token-cloud-demo`.
+- **Promover una versión con sesiones:**
+  1. Desplegar sin tráfico: `gcloud run services update bosque-vivo-api --image=…@sha256:<digest> --no-traffic --tag=sessions`, más las variables nuevas de `api.env.yaml`.
+  2. Probar la URL etiquetada con el encabezado de origen.
+  3. Mover el tráfico: `gcloud run services update-traffic bosque-vivo-api --to-tags=sessions=100`.
+- **Rollback:** volver el 100 % del tráfico a la revisión `bosque-vivo-api-00004-d2l` con `gcloud run services update-traffic` y `--to-revisions`, como en «Operación». La revisión 00004 ignora las tablas nuevas, así que no hay que tocar el esquema.
+- **Límites en memoria:** el de sesión (60/min) y el de canjes fallidos por IP (10 cada 15 min) suponen `max-instances=1`. Si se escala, hay que moverlos a PostgreSQL.

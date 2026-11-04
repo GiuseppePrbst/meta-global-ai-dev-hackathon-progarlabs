@@ -1148,6 +1148,22 @@
     "title": "DemoEligibility",
     "type": "object"
    },
+   "Exchange": {
+    "additionalProperties": false,
+    "properties": {
+     "invitation": {
+      "maxLength": 200,
+      "minLength": 20,
+      "title": "Invitation",
+      "type": "string"
+     }
+    },
+    "required": [
+     "invitation"
+    ],
+    "title": "Exchange",
+    "type": "object"
+   },
    "Expedition": {
     "properties": {
      "access_conditions": {
@@ -1872,6 +1888,101 @@
      "notes"
     ],
     "title": "IdentificationCapability",
+    "type": "object"
+   },
+   "Invitation": {
+    "properties": {
+     "access_expires_at": {
+      "format": "date-time",
+      "title": "Access Expires At",
+      "type": "string"
+     },
+     "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+     },
+     "identity": {
+      "title": "Identity",
+      "type": "string"
+     },
+     "invitation": {
+      "title": "Invitation",
+      "type": "string"
+     },
+     "invitation_id": {
+      "format": "uuid",
+      "title": "Invitation Id",
+      "type": "string"
+     },
+     "scopes": {
+      "items": {
+       "enum": [
+        "guide",
+        "transcribe",
+        "identify",
+        "raster"
+       ],
+       "type": "string"
+      },
+      "title": "Scopes",
+      "type": "array"
+     }
+    },
+    "required": [
+     "invitation",
+     "invitation_id",
+     "identity",
+     "scopes",
+     "expires_at",
+     "access_expires_at"
+    ],
+    "title": "Invitation",
+    "type": "object"
+   },
+   "InvitationCreate": {
+    "additionalProperties": false,
+    "properties": {
+     "access_days": {
+      "default": 14,
+      "maximum": 60.0,
+      "minimum": 1.0,
+      "title": "Access Days",
+      "type": "integer"
+     },
+     "identity": {
+      "description": "Seudónimo estable, sin datos personales",
+      "pattern": "^[a-z0-9][a-z0-9-]{2,40}$",
+      "title": "Identity",
+      "type": "string"
+     },
+     "invitation_hours": {
+      "default": 72,
+      "maximum": 168.0,
+      "minimum": 1.0,
+      "title": "Invitation Hours",
+      "type": "integer"
+     },
+     "scopes": {
+      "items": {
+       "enum": [
+        "guide",
+        "transcribe",
+        "identify",
+        "raster"
+       ],
+       "type": "string"
+      },
+      "minItems": 1,
+      "title": "Scopes",
+      "type": "array"
+     }
+    },
+    "required": [
+     "identity",
+     "scopes"
+    ],
+    "title": "InvitationCreate",
     "type": "object"
    },
    "KnowledgeStatus": {
@@ -3236,6 +3347,29 @@
     "title": "RegionalConservation",
     "type": "object"
    },
+   "Revocation": {
+    "properties": {
+     "identity": {
+      "title": "Identity",
+      "type": "string"
+     },
+     "invitations_revoked": {
+      "title": "Invitations Revoked",
+      "type": "integer"
+     },
+     "sessions_revoked": {
+      "title": "Sessions Revoked",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "identity",
+     "sessions_revoked",
+     "invitations_revoked"
+    ],
+    "title": "Revocation",
+    "type": "object"
+   },
    "SearchHit": {
     "properties": {
      "confidence": {
@@ -3278,6 +3412,146 @@
      "source"
     ],
     "title": "SearchHit",
+    "type": "object"
+   },
+   "SessionInfo": {
+    "properties": {
+     "access_expires_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Access Expires At"
+     },
+     "auth": {
+      "enum": [
+       "session",
+       "operator"
+      ],
+      "title": "Auth",
+      "type": "string"
+     },
+     "expires_at": {
+      "anyOf": [
+       {
+        "format": "date-time",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Expires At"
+     },
+     "identity": {
+      "title": "Identity",
+      "type": "string"
+     },
+     "scopes": {
+      "anyOf": [
+       {
+        "items": {
+         "enum": [
+          "guide",
+          "transcribe",
+          "identify",
+          "raster"
+         ],
+         "type": "string"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Scopes"
+     },
+     "session_id": {
+      "anyOf": [
+       {
+        "format": "uuid",
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Session Id"
+     }
+    },
+    "required": [
+     "identity",
+     "auth",
+     "scopes"
+    ],
+    "title": "SessionInfo",
+    "type": "object"
+   },
+   "SessionToken": {
+    "properties": {
+     "access_expires_at": {
+      "format": "date-time",
+      "title": "Access Expires At",
+      "type": "string"
+     },
+     "access_token": {
+      "title": "Access Token",
+      "type": "string"
+     },
+     "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+     },
+     "expires_in": {
+      "title": "Expires In",
+      "type": "integer"
+     },
+     "identity": {
+      "title": "Identity",
+      "type": "string"
+     },
+     "scopes": {
+      "items": {
+       "enum": [
+        "guide",
+        "transcribe",
+        "identify",
+        "raster"
+       ],
+       "type": "string"
+      },
+      "title": "Scopes",
+      "type": "array"
+     },
+     "session_id": {
+      "format": "uuid",
+      "title": "Session Id",
+      "type": "string"
+     },
+     "token_type": {
+      "const": "Bearer",
+      "default": "Bearer",
+      "title": "Token Type",
+      "type": "string"
+     }
+    },
+    "required": [
+     "access_token",
+     "expires_in",
+     "expires_at",
+     "access_expires_at",
+     "session_id",
+     "identity",
+     "scopes"
+    ],
+    "title": "SessionToken",
     "type": "object"
    },
    "SourceOut": {
@@ -4916,7 +5190,7 @@
   },
   "securitySchemes": {
    "DemoBearer": {
-    "description": "Credencial individual revocable de demo; no es login productivo. SERVICE_MODE=local permite desarrollo aislado sin esta credencial.",
+    "description": "Token de sesión temporal (`bvs_…`, 60 min) obtenido en POST /sessions/exchange con una invitación de un solo uso. Los tokens estáticos de operador (DEMO_TOKENS) nunca se entregan a clientes. SERVICE_MODE=local permite desarrollo aislado sin esta credencial.",
     "scheme": "bearer",
     "type": "http"
    }
@@ -4929,6 +5203,117 @@
  },
  "openapi": "3.1.0",
  "paths": {
+  "/admin/identities/{identity}/revoke": {
+   "post": {
+    "description": "Revoca todas las sesiones e invitaciones pendientes; el ledger se conserva.",
+    "operationId": "revoke_admin_identities__identity__revoke_post",
+    "parameters": [
+     {
+      "in": "path",
+      "name": "identity",
+      "required": true,
+      "schema": {
+       "pattern": "^[a-z0-9][a-z0-9-]{2,40}$",
+       "title": "Identity",
+       "type": "string"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Revocation"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Revoke"
+   }
+  },
+  "/admin/invitations": {
+   "post": {
+    "description": "La invitación se muestra una sola vez; se guarda solo su hash.",
+    "operationId": "invite_admin_invitations_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/InvitationCreate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Invitation"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "403": {
+      "description": "Solo operadores en ADMIN_IDENTITIES"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Invite"
+   }
+  },
   "/captures/attempts": {
    "post": {
     "operationId": "attempt_captures_attempts_post",
@@ -6404,6 +6789,144 @@
      }
     },
     "summary": "Trails"
+   }
+  },
+  "/sessions/exchange": {
+   "post": {
+    "description": "Canjea una invitación de un solo uso por una sesión de corta duración.",
+    "operationId": "exchange_sessions_exchange_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/Exchange"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionToken"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Invitación inválida, expirada, usada o revocada"
+     },
+     "422": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      },
+      "description": "Validation Error"
+     },
+     "429": {
+      "description": "Demasiados intentos fallidos desde esta IP"
+     },
+     "503": {
+      "description": "PostgreSQL o migración 005 no disponibles"
+     }
+    },
+    "summary": "Exchange"
+   }
+  },
+  "/sessions/logout": {
+   "post": {
+    "operationId": "logout_sessions_logout_post",
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Logout"
+   }
+  },
+  "/sessions/me": {
+   "get": {
+    "operationId": "me_sessions_me_get",
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionInfo"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Me"
+   }
+  },
+  "/sessions/refresh": {
+   "post": {
+    "description": "Reemplaza la sesión vigente por otra; nunca más allá de `access_expires_at`.",
+    "operationId": "refresh_sessions_refresh_post",
+    "responses": {
+     "201": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionToken"
+        }
+       }
+      },
+      "description": "Successful Response"
+     },
+     "401": {
+      "description": "Identidad requerida"
+     },
+     "429": {
+      "description": "Límite de consumo"
+     },
+     "503": {
+      "description": "Infraestructura no disponible"
+     }
+    },
+    "security": [
+     {
+      "DemoBearer": []
+     }
+    ],
+    "summary": "Refresh"
    }
   },
   "/species": {

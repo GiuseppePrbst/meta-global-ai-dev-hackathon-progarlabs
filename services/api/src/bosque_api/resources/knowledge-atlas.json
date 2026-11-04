@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0.0",
- "knowledge_version": "sha256:be3d94518ec8ef421ffbe639e6775e362e2a5e195a12b5d364155080d04bb4d4",
+ "knowledge_version": "sha256:02d5cfb976048959ccd9635ec8a5de69ed49d3b9bd327f54567aa981a85be7c5",
  "snapshot": {
   "id": "knowledge-atlas",
   "type": "KnowledgeSnapshot",
@@ -12,7 +12,7 @@
   },
   "accessed_at": "2026-11-03",
   "updated_at": null,
-  "version": "sha256:be3d94518ec8ef421ffbe639e6775e362e2a5e195a12b5d364155080d04bb4d4",
+  "version": "sha256:02d5cfb976048959ccd9635ec8a5de69ed49d3b9bd327f54567aa981a85be7c5",
   "license": "Ver cada entidad",
   "review_status": "built_offline",
   "confidence": "mixed",
@@ -25,7 +25,7 @@
   "data": {
    "counts": {
     "ConservationAssessment": 11,
-    "DocumentPassage": 109,
+    "DocumentPassage": 110,
     "KnowledgeSource": 4,
     "MapResource": 79,
     "Park": 46,
@@ -55,7 +55,7 @@
     "valparaiso"
    ]
   },
-  "content_sha256": "sha256:c146a2522a558a08bcfa414f7f9c93a72406dc925eacb8bc98b1dee6935e12f1"
+  "content_sha256": "sha256:3dceb41f308f355a8d9a0e3ab9c04d9f61cbfe251502101d66863537075307bb"
  },
  "entities": [
   {
@@ -3592,6 +3592,35 @@
     "text": "- Precios: Cloud Billing Catalog API (`cloudbilling.googleapis.com/v1/services/*/skus`, moneda CLP), con los SKU de Cloud SQL para PostgreSQL y de Cloud Run en `southamerica-west1` (Santiago). - Capacidades: tiers de Cloud SQL (`gcloud sql tiers list`) y políticas efectivas de la organización (`gcloud resource-manager org-policies describe --effective`). - Herramientas: Cloudflare Workers con dominios personalizados y reglas de límite de tasa (fase `http_ratelimit`, plan Free), desplegados con wrangler 4.146.0."
    },
    "content_sha256": "sha256:e1677c4a94c7c083b5124f832083287445a3a6d999588e088979cfda47f3e6e8"
+  },
+  {
+   "id": "doc--sources--14",
+   "type": "DocumentPassage",
+   "name": "Fuentes, verificación y decisiones pendientes: Sesiones de beta cerrada: consulta del 04-11-2026",
+   "source": {
+    "title": "Fuentes, verificación y decisiones pendientes",
+    "url": "docs/SOURCES.md",
+    "kind": "repository"
+   },
+   "accessed_at": "2026-11-03",
+   "updated_at": null,
+   "version": null,
+   "license": "Documentación del repositorio",
+   "review_status": "repository_document",
+   "confidence": "repository_curated",
+   "coverage": {},
+   "limitations": [
+    "Extracto de documentación técnica; ver el documento completo."
+   ],
+   "search_terms": [
+    "Sesiones de beta cerrada: consulta del 04-11-2026"
+   ],
+   "data": {
+    "document": "docs/SOURCES.md",
+    "heading": "Sesiones de beta cerrada: consulta del 04-11-2026",
+    "text": "- [Cloudflare, HTTP headers: «CF-Connecting-IP in Worker subrequests»](http[omitido]) (actualizado el 28-10-2026). En subpeticiones de un Worker a un origen fuera de Cloudflare, si se reenvían los encabezados originales sin cambios, `CF-Connecting-IP` conserva la IP del cliente. Lo usa el límite de canjes fallidos por IP; el Worker no se modificó."
+   },
+   "content_sha256": "sha256:ab12ff3f171fd057aca9fdbf6e7100a9723ce74b8bebc6b6e8076992d298a4eb"
   },
   {
    "id": "doc--sources--2",

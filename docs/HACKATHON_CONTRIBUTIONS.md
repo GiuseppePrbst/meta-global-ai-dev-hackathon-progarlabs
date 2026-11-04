@@ -300,3 +300,15 @@ Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe
 - **Cherry-picks de PR #35:** exposición de `Retry-After` en CORS y 422 ante PNG corrupto.
 - **Infraestructura creada** en el proyecto GCP `nice-carving-513619-t4`, con la cuenta de prueba gratuita: Cloud Run, Cloud SQL, VPC, secretos y presupuestos. En Cloudflare se agregaron solo el subdominio `api-bosquevivo` y una regla de límite de tasa para ese host.
 - **Asistencia:** agente Claude Code (Opus 5.5), bajo la supervisión de GiuseppePrbst. No se hicieron llamadas pagadas a Meta.
+
+## Sesiones de beta cerrada: 04-11-2026 (rama `feat/bosque-vivo-session-auth-meta-integration`)
+
+- **Código nuevo:**
+  - `sessions.py`, con invitaciones, sesiones, renovación, revocación, auditoría y límites;
+  - migración `005_sessions`;
+  - permisos por operación en el ledger y tope por identidad;
+  - 5 tests, 4 de integración con PostgreSQL;
+  - panel de sesión en Wilo Lab.
+- **Documentación:** `SESSION_AUTH_CONTRACT.md` y `META_CLOUD_ACTIVATION.md`.
+- **Sin cambios** en `apps/web` ni `apps/mobile`. Sin dependencias nuevas. Sin llamadas pagadas a Meta.
+- **Asistencia:** agente Claude Code (Opus 5.5), bajo la supervisión de GiuseppePrbst.

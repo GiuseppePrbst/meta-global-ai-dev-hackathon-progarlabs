@@ -30,6 +30,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from bosque_api.atlas import get_atlas, voice_keywords
 from bosque_api.execution import ExecutionStore, identity
 from bosque_api.guide_tools import TOOLS, execute_tool
+from bosque_api.sessions import authorize
 
 REALTIME_URL = "wss://api.meta.ai/v1/asr/realtime"
 MAX_STREAM_SECONDS = 60
@@ -411,9 +412,14 @@ def register_wilo_routes(app, config, landscape_context, repository, meta_client
         except (TimeoutError, ValidationError, ValueError, KeyError):
             return await fail("bad_start", "Primer mensaje: {type:start, token, permisos}")
         try:
-            owner = identity(config, "Bearer " + start.token)
-        except HTTPException:
-            return await fail("unauthorized", "Identidad de demostración requerida")
+            owner = await asyncio.to_thread(identity, config, "Bearer " + start.token)
+            authorize(owner, "transcribe")
+        except HTTPException as exc:
+            if exc.status_code == 403:
+                return await fail("forbidden", "La sesión no tiene permiso de voz")
+            if exc.status_code == 503:
+                return await fail("unavailable", "Servicio de sesiones no disponible", 1011)
+            return await fail("unauthorized", "Sesión inválida, expirada o revocada")
         if not (start.adult_confirmed and start.rights_confirmed):
             return await fail("permissions", "Audio requiere mayoría de edad y derechos de uso")
         session = start.session_id or session

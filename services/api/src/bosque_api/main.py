@@ -40,6 +40,25 @@ from bosque_api.database import ObservationStore
 from bosque_api.execution import ExecutionStore, identity
 from bosque_api.images import IMAGE_TYPES, MAX_IMAGE_BYTES, prepare_image, segment_image
 from bosque_api.models import ForestRequest, Observation, ObservationCreate, Species
+from bosque_api.sessions import Window, authorize, pseudonym, register_session_routes
+
+# Ledger, auth and provider events go to stdout (Cloud Logging); uvicorn only configures its own.
+_log = logging.getLogger("bosque_api")
+if not _log.handlers:
+    _handler = logging.StreamHandler()
+    _handler.setFormatter(logging.Formatter("%(levelname)s %(name)s %(message)s"))
+    _log.addHandler(_handler)
+    _log.setLevel(logging.INFO)
+    _log.propagate = False
+# Early 403 for a session without the operation; ExecutionStore.reserve enforces it again.
+OPERATION_PATHS = {
+    "/identify": "identify",
+    "/guide/transcribe": "transcribe",
+    "/guide/query": "guide",
+    "/guide/ask": "guide",
+    "/forest/analyze": "raster",
+    "/forest/analyze/weighted": "raster",
+}
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
@@ -63,9 +82,27 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         description="API botánica y forestal con procedencia, incertidumbre y modos local/demo.",
     )
 
+    session_rate = Window(config.session_requests_per_minute, 60)
+    auth_log = logging.getLogger("bosque_api.auth")
+
+    def refuse(request, status, detail, correlation, headers=None):
+        auth_log.warning(
+            "auth status=%d path=%s reason=%s correlation_id=%s",
+            status,
+            request.url.path,
+            detail,
+            correlation,
+        )
+        return JSONResponse(
+            status_code=status,
+            content={"detail": detail},
+            headers={"X-Correlation-ID": correlation, **(headers or {})},
+        )
+
     @app.middleware("http")
     async def demo_access(request: Request, call_next):
         correlation = str(uuid4())
+        started = perf_counter()
         request.state.identity = None
         origin_token = config.origin_auth_token.get_secret_value()
         if (
@@ -89,11 +126,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             "/openapi.json",
             "/docs",
             "/redoc",
+            "/sessions/exchange",
         }
         if (
             (
                 config.service_mode == "demo"
-                or request.url.path.startswith(("/captures", "/guide", "/identifications"))
+                or request.url.path.startswith(
+                    ("/captures", "/guide", "/identifications", "/sessions", "/admin")
+                )
             )
             and request.method != "OPTIONS"
             and (
@@ -105,13 +145,23 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             )
         ):
             try:
-                request.state.identity = identity(config, request.headers.get("authorization"))
-            except HTTPException as exc:
-                return JSONResponse(
-                    status_code=exc.status_code,
-                    content={"detail": exc.detail},
-                    headers={"X-Correlation-ID": correlation},
+                request.state.identity = await asyncio.to_thread(
+                    identity, config, request.headers.get("authorization")
                 )
+                if request.url.path in OPERATION_PATHS:
+                    authorize(request.state.identity, OPERATION_PATHS[request.url.path])
+            except HTTPException as exc:
+                return refuse(request, exc.status_code, exc.detail, correlation)
+            if request.state.identity.session_id is not None:
+                wait = session_rate.retry_after(request.state.identity)
+                if wait:
+                    return refuse(
+                        request,
+                        429,
+                        "Límite de solicitudes de la sesión",
+                        correlation,
+                        {"Retry-After": str(wait)},
+                    )
         elif (
             request.url.path == "/identify"
             and config.ai_provider == "mock"
@@ -125,6 +175,20 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         request.state.correlation_id = correlation
         response = await call_next(request)
         response.headers["X-Correlation-ID"] = correlation
+        if request.state.identity is not None or response.status_code in (401, 403, 429):
+            # One line per authenticated or refused request: no token, body or query string.
+            who = request.state.identity
+            auth_log.info(
+                "request kind=%s who=%s method=%s path=%s status=%d latency_ms=%.0f "
+                "correlation_id=%s",
+                "-" if who is None else "session" if who.session_id else "operator",
+                pseudonym(who),
+                request.method,
+                request.url.path,
+                response.status_code,
+                (perf_counter() - started) * 1000,
+                correlation,
+            )
         return response
 
     app.add_middleware(
@@ -582,11 +646,16 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         schema["components"].setdefault("securitySchemes", {})["DemoBearer"] = {
             "type": "http",
             "scheme": "bearer",
-            "description": "Credencial individual revocable de demo; no es login productivo. "
+            "description": "Token de sesión temporal (`bvs_…`, 60 min) obtenido en "
+            "POST /sessions/exchange con una invitación de un solo uso. Los tokens estáticos "
+            "de operador (DEMO_TOKENS) nunca se entregan a clientes. "
             "SERVICE_MODE=local permite desarrollo aislado sin esta credencial.",
         }
         for path, methods in schema["paths"].items():
-            if path.startswith(("/captures", "/guide", "/identifications")) or path in {
+            if path.startswith(("/captures", "/guide", "/identifications", "/admin")) or path in {
+                "/sessions/me",
+                "/sessions/refresh",
+                "/sessions/logout",
                 "/identify",
                 "/observations",
                 "/observations/{observation_id}",
@@ -600,7 +669,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                     operation["security"] = (
                         [{"DemoBearer": []}]
                         if config.service_mode == "demo"
-                        or path.startswith(("/captures", "/guide", "/identifications"))
+                        or path.startswith(
+                            ("/captures", "/guide", "/identifications", "/sessions", "/admin")
+                        )
                         else []
                     )
                     for code, detail in {
@@ -617,6 +688,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     from bosque_api.expedition_routes import register_routes
     from bosque_api.media import register_media_routes
 
+    register_session_routes(app, config)
     register_routes(app, config, landscape_context)
     register_biodiversity_routes(app)
     register_atlas_routes(app)
