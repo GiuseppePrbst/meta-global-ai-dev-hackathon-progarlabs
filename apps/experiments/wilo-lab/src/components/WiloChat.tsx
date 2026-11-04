@@ -216,7 +216,7 @@ export function WiloChat({ token }: { token: string }) {
           </div>
         )}
         {error && <p className="notice err" role="alert">{error}{retryAfter ? ` Reintenta en ${retryAfter} s, solo cuando tu lo pidas.` : ""}</p>}
-        {phase === "sin-acceso" && <p className="notice" role="status">Pide acceso a la demo: /guide/* exige token de DEMO_TOKENS.</p>}
+        {phase === "sin-acceso" && <p className="notice" role="status">Sesion invalida, vencida o revocada: canjea una invitacion de evaluador en Inicio.</p>}
         {history.length > 0 && (
           <section aria-label="Historial de la conversacion"><h3>Historial de esta sesion</h3>
             <ol className="history">{history.map((turn, i) => (

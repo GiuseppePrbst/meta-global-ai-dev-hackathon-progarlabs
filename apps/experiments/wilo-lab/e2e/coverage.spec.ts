@@ -139,7 +139,7 @@ test("autenticacion: sin token e invalido llevan a sin acceso; el token nunca va
     await page.getByLabel("Tu pregunta (texto siempre disponible)").fill("hola");
     await page.getByRole("button", { name: "Preguntar a Wilo" }).click();
     if (token === "token-valido") await expect(page.getByLabel("Respuesta de Wilo")).toBeVisible();
-    else await expect(page.getByText("Pide acceso a la demo")).toBeVisible();
+    else await expect(page.getByText("canjea una invitacion de evaluador")).toBeVisible();
   }
   expect(seen.map((s) => s.auth)).toEqual([undefined, "Bearer token-invalido", "Bearer token-valido"]);
   expect(seen.every((s) => !s.url.includes("token"))).toBe(true);
