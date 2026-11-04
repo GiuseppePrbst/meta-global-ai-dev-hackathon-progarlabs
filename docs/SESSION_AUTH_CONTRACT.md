@@ -192,3 +192,12 @@ Todas las respuestas incluyen `X-Correlation-ID`. Inclúyelo en los reportes de 
 - **Al agotarse:** el backend responde 429 y la cuota no se recupera al renovar la sesión.
 - **Mensaje en la interfaz:** mostrar «cupo agotado», sin reintentos automáticos.
 - **Operadores:** `GET /admin/identities/{identity}` (o `scripts/beta_invite.py --status`) muestra invitaciones, sesiones activas y consumo del ledger, sin tokens.
+
+## 12. Login federado, cuota visible y eliminación de cuenta
+
+- **Facebook Login vía Firebase:** `POST /sessions/federated/exchange` devuelve la misma sesión `bvs_`. Después aplican `/sessions/me`, `/refresh` y `/logout`.
+- **Cuota y permisos:** `GET /me/quota` y `GET /me/permissions`.
+- **Eliminación de cuenta:** `DELETE /me`.
+- **Roles y cohortes:** los asigna solo el backend (`PUT /admin/identities/{id}` y `/admin/cohorts`).
+
+Detalle, estados de cuota y ejemplos web y Expo en [FEDERATED_LOGIN.md](FEDERATED_LOGIN.md).

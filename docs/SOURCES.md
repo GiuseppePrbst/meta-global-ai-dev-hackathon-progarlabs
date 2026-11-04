@@ -211,3 +211,34 @@ límites en DATASET_LICENSES/DATA_GOVERNANCE; resultados agregados en META_SAM_A
 ## Sesiones de beta cerrada: consulta del 04-11-2026
 
 - [Cloudflare, HTTP headers: «CF-Connecting-IP in Worker subrequests»](https://developers.cloudflare.com/fundamentals/reference/http-headers/) (actualizado el 28-10-2026). En subpeticiones de un Worker a un origen fuera de Cloudflare, si se reenvían los encabezados originales sin cambios, `CF-Connecting-IP` conserva la IP del cliente. Lo usa el límite de canjes fallidos por IP; el Worker no se modificó.
+
+## Login federado y cuotas: consulta del 04-11-2026
+
+- [Firebase: Facebook Login en web](https://firebase.google.com/docs/auth/web/facebook-login):
+  - App ID y App Secret en el proveedor;
+  - redirección `PROYECTO.firebaseapp.com/__/auth/handler`;
+  - Facebook exige HTTPS; con `localhost`, la app de Meta debe estar en modo desarrollo y solo funcionan cuentas de prueba.
+- [Firebase: Limited Login en iOS](https://firebase.google.com/docs/auth/ios/facebook-login): credencial `OAuthProvider` `facebook.com` con `idToken` y `rawNonce`.
+- [Límites de Firebase Auth](https://firebase.google.com/docs/auth/limits):
+  - con Identity Platform en el plan sin costo (Spark), 3.000 usuarios activos diarios de Tier 1;
+  - 100 cuentas por hora por IP.
+- [Precios de Firebase](https://firebase.google.com/pricing): Identity Platform sin costo hasta 50.000 usuarios activos mensuales y luego tarifas de Google Cloud. Que la tarifa Tier 1 incluya Facebook lo indican guías de terceros, no Google.
+- [Facebook Login, visión general](https://developers.facebook.com/docs/facebook-login/overview): `public_profile` y `email` no requieren App Review, y se exigen instrucciones o *callback* de eliminación de datos.
+- [Niveles de acceso](https://developers.facebook.com/docs/graph-api/overview/access-levels):
+  - el acceso estándar solo vale para usuarios con rol en la app;
+  - el acceso avanzado sirve a cualquier usuario;
+  - una app de consumo debe estar en modo Live;
+  - el acceso avanzado puede exigir verificación del negocio.
+- [Callback de eliminación de datos](https://developers.facebook.com/docs/development/create-an-app/app-dashboard/data-deletion-callback): basta con una URL de instrucciones o un *callback*. El `signed_request` se verifica con HMAC-SHA256 del App Secret.
+- [Apple, App Review Guidelines 4.8](https://developer.apple.com/app-store/review/guidelines/): con login social, hace falta un login equivalente que limite los datos a nombre y correo, permita ocultar el correo y no rastree para publicidad sin consentimiento.
+- [FAQ de Facebook Login sobre cuentas administradas de Meta](https://developers.facebook.com/documentation/facebook-login/managed-accounts/faq): el flujo de tokens es el mismo. No encontramos documentación oficial de un OAuth de la «Cuenta de Meta» para terceros.
+- [Precios de Meta Model API](https://dev.meta.ai/docs/pricing-rate-limits), consultados el 04-11:
+  - Muse Spark 1.3 estándar: USD 1,25 por millón de tokens de entrada y 4,25 por millón de salida;
+  - Muse Voice Transcribe: USD 0,18 por hora;
+  - SAM 3.1: USD 2,50 por 1.000 imágenes;
+  - búsqueda web: USD 2,50 por 1.000.
+
+  La página no informa créditos, su vencimiento ni restricciones geográficas.
+- Dependencias nuevas:
+  - backend: `pyjwt[crypto]` 2.15.1 (28-09-2026), que trae `cryptography` 50.0.2;
+  - Wilo Lab: `firebase` 13.1.0 (21-10-2026). `npm audit` informa `@grpc/grpc-js` dentro de `@firebase/firestore`; Wilo Lab solo importa `firebase/app` y `firebase/auth`, y Firestore no entra en el bundle.

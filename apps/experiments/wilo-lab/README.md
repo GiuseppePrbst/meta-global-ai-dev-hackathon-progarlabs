@@ -36,7 +36,7 @@ Abrir **http://localhost:3001**. El backend debe permitir este origen: arráncal
 `/identify` se llama sin token, como el cliente oficial: en modo local, enviar el token demo haría que el
 backend intente guardar evidencia privada y exija PostGIS (migración 004); en modo demo sí requiere identidad + PostGIS.
 
-Variables: `VITE_API_URL` (ver `.env.example`). Puerto fijo 3001 en `vite.config.ts`, independiente del 3000 oficial.
+Variables: `VITE_API_URL` (ver `.env.example`). Opcionales para «Entrar con Facebook»: `VITE_FIREBASE_API_KEY`, `VITE_FIREBASE_AUTH_DOMAIN` y `VITE_FIREBASE_PROJECT_ID` (configuración web pública de Firebase, no secreta; ver `docs/FEDERATED_LOGIN.md`). Sin ellas el botón no aparece. Puerto fijo 3001 en `vite.config.ts`, independiente del 3000 oficial.
 
 ## Pruebas
 

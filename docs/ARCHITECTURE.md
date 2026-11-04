@@ -313,3 +313,32 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
 - **Fallo cerrado:** sin PostgreSQL, las rutas con sesión y el canje responden 503.
 - **Separación:** estos límites HTTP no tocan el ledger. Las reservas económicas siguen en `execution_reservations` con su propio bloqueo.
 - **Carrera conocida:** dos canjes fallidos simultáneos al borde del límite pueden contar ambos. El exceso es de unos pocos intentos y el siguiente queda bloqueado, lo que solo agrega rigor.
+
+## Decisión 2026-11-04: Facebook Login vía Firebase, roles y cohortes presupuestarias (migración 008)
+
+- **Problema:** abrir una prueba gratuita a cualquier cuenta de Facebook sin invitaciones manuales, y dar al equipo ProGarLabs una cuota de desarrollo mayor, sin perder el control del gasto en Meta.
+- **Decisión:** Facebook Login → Firebase Authentication → `POST /sessions/federated/exchange` → la misma sesión `bvs_`.
+  - El backend verifica el ID token (RS256, emisor `securetoken.google.com/<proyecto>`, audiencia, `exp`, `iat`, `auth_time` y proveedor admitido) con PyJWT 2.15.1 y las claves públicas de Google.
+  - No se adoptó el SDK de administración de Firebase ni un OAuth propio.
+  - La «Cuenta de Meta» unificada no documenta un OAuth para apps externas, así que no se usó.
+- **Identidad:** `u-` + SHA-256 de `"<proyecto>:<uid>"`.
+  - El UID, el correo y el perfil no se guardan.
+  - No se unen cuentas por correo.
+  - Una identidad de invitación puede vincular su cuenta federada (`/sessions/federated/link`), lo que evita una segunda cuota.
+- **Roles y cohortes en la base:**
+  - `identities(role, cohort, suspended_at)` y `budget_cohorts(cap_units, identity_cap_units, daily_requests_per_identity, ai_enabled)`.
+  - El cliente nunca elige rol ni bolsa.
+  - Los cambios quedan en `auth_events.detail`, con el estado anterior, el nuevo y el motivo.
+- **Ledger:** `reserve()` revisa, bajo el mismo `pg_advisory_xact_lock(78021931)` y en una sola transacción:
+  1. el tope global;
+  2. la cohorte (habilitada, con bolsa disponible);
+  3. el tope por identidad;
+  4. el límite diario de la cohorte;
+  5. la concurrencia.
+
+  Después inserta la reserva con su cohorte.
+  - Un cambio de rol mueve solo las reservas futuras, y el historial conserva su cohorte.
+  - Un tope de cohorte no puede bajar de lo reservado, y la suma de topes no supera `BUDGET_LIFETIME_UNITS`.
+  - `BUDGET_COHORTS_ENABLED=false` mantiene el ledger anterior a 008.
+- **Costo:** Identity Platform no cobra hasta 50.000 usuarios activos mensuales en proveedores sociales; el proyecto ya tiene facturación.
+- **Pruebas:** `services/api/tests/test_federated_cohorts.py`, con tokens firmados por una clave local, PostgreSQL real, Meta simulado, hilos concurrentes y dos procesos. Detalle en [FEDERATED_LOGIN.md](FEDERATED_LOGIN.md).

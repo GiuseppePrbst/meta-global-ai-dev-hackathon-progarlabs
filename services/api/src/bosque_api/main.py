@@ -32,6 +32,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 
+from bosque_api.accounts import register_account_routes
 from bosque_api.capture_store import CaptureStore
 from bosque_api.catalog import get_comparators, get_species
 from bosque_api.config import Settings
@@ -126,12 +127,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             "/docs",
             "/redoc",
             "/sessions/exchange",
+            "/sessions/federated/exchange",
         }
         if (
             (
                 config.service_mode == "demo"
+                or request.url.path == "/me"
                 or request.url.path.startswith(
-                    ("/captures", "/guide", "/identifications", "/sessions", "/admin")
+                    ("/captures", "/guide", "/identifications", "/sessions", "/admin", "/me/")
                 )
             )
             and request.method != "OPTIONS"
@@ -636,15 +639,20 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             "type": "http",
             "scheme": "bearer",
             "description": "Token de sesión temporal (`bvs_…`, 60 min) obtenido en "
-            "POST /sessions/exchange con una invitación de un solo uso. Los tokens estáticos "
+            "POST /sessions/exchange (invitación de un solo uso) o en POST "
+            "/sessions/federated/exchange (ID token de Firebase). Los tokens estáticos "
             "de operador (DEMO_TOKENS) nunca se entregan a clientes. "
             "SERVICE_MODE=local permite desarrollo aislado sin esta credencial.",
         }
         for path, methods in schema["paths"].items():
-            if path.startswith(("/captures", "/guide", "/identifications", "/admin")) or path in {
+            if path.startswith(
+                ("/captures", "/guide", "/identifications", "/admin", "/me/")
+            ) or path in {
                 "/sessions/me",
                 "/sessions/refresh",
                 "/sessions/logout",
+                "/sessions/federated/link",
+                "/me",
                 "/identify",
                 "/observations",
                 "/observations/{observation_id}",
@@ -678,6 +686,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     from bosque_api.media import register_media_routes
 
     register_session_routes(app, config)
+    register_account_routes(app, config)
     register_routes(app, config, landscape_context)
     register_biodiversity_routes(app)
     register_atlas_routes(app)
