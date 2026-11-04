@@ -1,3 +1,4 @@
+from datetime import UTC, datetime
 from typing import Literal
 
 from pydantic import Field, SecretStr
@@ -55,3 +56,17 @@ class Settings(BaseSettings):
     federated_providers: list[str] = ["facebook.com"]
     federated_access_days: int = Field(default=30, ge=1, le=90)
     federated_registrations_per_ip_hour: int = Field(default=5, ge=1, le=100)
+    # Public demo (migration 009). Off by default; never replaces operator or session auth.
+    # The deadline also binds every session and operator: reserve() checks campaign_state in
+    # PostgreSQL, which no environment variable can extend.
+    public_demo_enabled: bool = False
+    campaign_expires_at: datetime = datetime(2026, 11, 10, 5, 0, tzinfo=UTC)
+    public_demo_features: list[Literal["guide", "transcribe", "identify", "voice"]] = [
+        "guide",
+        "transcribe",
+        "identify",
+        "voice",
+    ]
+    public_ip_hmac_key: SecretStr = Field(default=SecretStr(""), repr=False)
+    public_requests_per_minute: int = Field(default=2, ge=1, le=60)
+    public_requests_per_day: int = Field(default=20, ge=1, le=1000)

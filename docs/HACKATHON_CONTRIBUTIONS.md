@@ -341,3 +341,9 @@ Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe
 - Dependencias preexistentes de terceros: PyJWT 2.15.1 y Firebase JS SDK 13.1.0.
 - Sin cambios en `apps/web` ni `apps/mobile`.
 - **Asistencia:** agente Claude Code (Opus 5.5), bajo la supervisión de GiuseppePrbst.
+
+## Demostración pública: 04-11-2026 (rama `feat/public-demo`)
+
+- Código nuevo: `public.py`, migración 009, campaña compartida en `execution.py`, WebSocket anónimo, `test_public_demo.py` y `docs/PUBLIC_DEMO.md`.
+- Sin cambios en `apps/web` ni `apps/mobile`.
+- **Asistencia:** agente Claude Code (Opus 5.5), bajo la supervisión de GiuseppePrbst.

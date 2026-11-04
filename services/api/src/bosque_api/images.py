@@ -8,10 +8,11 @@ from PIL import Image, ImageOps, UnidentifiedImageError
 
 MAX_IMAGE_BYTES = 10 * 1024 * 1024
 MAX_PIXELS = 16_000_000
+PUBLIC_IMAGE_SIDE = 1568  # anonymous photos are downscaled, which bounds their tokens
 IMAGE_TYPES = {"JPEG": "image/jpeg", "PNG": "image/png", "WEBP": "image/webp"}
 
 
-def prepare_image(content: bytes, mime: str) -> bytes:
+def prepare_image(content: bytes, mime: str, max_side: int | None = None) -> bytes:
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("error", Image.DecompressionBombWarning)
@@ -25,6 +26,8 @@ def prepare_image(content: bytes, mime: str) -> bytes:
                 image.verify()
             with Image.open(BytesIO(content)) as image:
                 normalized = ImageOps.exif_transpose(image).convert("RGB")
+                if max_side and max(normalized.size) > max_side:
+                    normalized = ImageOps.contain(normalized, (max_side, max_side))
                 clean = Image.new("RGB", normalized.size)
                 clean.paste(normalized)
                 output = BytesIO()

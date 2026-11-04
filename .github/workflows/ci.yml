@@ -49,6 +49,7 @@ jobs:
           cache-dependency-path: apps/experiments/wilo-lab/package-lock.json
       - run: npm ci
       - run: npm test
+      - run: node --test ../../../infra/cloudflare/worker/src/index.test.mjs # Worker proxy rules
       - run: npm run build # typecheck (browser + Node configs) and vite build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e # desktop and mobile emulation, HTTP mocks, no Meta calls

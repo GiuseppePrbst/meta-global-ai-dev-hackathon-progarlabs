@@ -342,3 +342,27 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
   - `BUDGET_COHORTS_ENABLED=false` mantiene el ledger anterior a 008.
 - **Costo:** Identity Platform no cobra hasta 50.000 usuarios activos mensuales en proveedores sociales; el proyecto ya tiene facturación.
 - **Pruebas:** `services/api/tests/test_federated_cohorts.py`, con tokens firmados por una clave local, PostgreSQL real, Meta simulado, hilos concurrentes y dos procesos. Detalle en [FEDERATED_LOGIN.md](FEDERATED_LOGIN.md).
+
+## Decisión 2026-11-04: demostración pública sin login y campaña compartida (migración 009)
+
+- **Cambio:** el propietario decidió permitir el uso sin cuenta. Facebook Login y las sesiones siguen disponibles, pero dejan de ser requisito para la IA de la demostración.
+- **Superficie:** una lista explícita (`public.py`) de cuatro rutas POST y el WebSocket de voz. No hay endpoint genérico de modelos: los términos de Meta (10.1) prohíben ofrecer el servicio como gateway o proxy.
+- **Principal anónimo:** `Principal` con `anonymous=True`, seudónimo `anon-<HMAC de la IP>`. Solo se crea detrás del encabezado secreto del Worker. Cloudflare retira `CF-IPCountry` hacia orígenes que no proxifica, como `run.app`, así que el Worker borra los valores del cliente y envía `X-Bosque-Visitor-Country` (desde `request.cf.country`) y `X-Bosque-Visitor-IP` (desde `CF-Connecting-IP`). Sin clave, IP o país verificable, se rechaza. No crea filas en `identities`.
+- **Ledger:** `reserve()` sigue siendo el único camino a Meta. Ahora revisa, bajo el mismo bloqueo y transacción que el `INSERT`, la fila `campaign_state`:
+  - fecha contra `clock_timestamp()`;
+  - cierre permanente;
+  - tope acumulado de USD 90.
+
+  El tope vale para todas las identidades, incluidos operadores. Las cohortes dejan de tener bolsa propia y conservan rol, tope individual, límite diario y `ai_enabled`.
+- **Caducidad en tres capas:**
+  1. constante en la configuración, comprobada en el middleware, en `reserve()` y en el WebSocket;
+  2. fila en PostgreSQL con `CHECK` (fecha máxima 2026-11-10T05:00:00Z, tope máximo USD 90);
+  3. trigger que impide reabrir o borrar la campaña cerrada.
+
+  No depende de una tarea programada. Una variable antigua no reabre nada, porque la base manda.
+- **Límites por IP:** en `rate_limit_hits` (por minuto) y en el conteo diario del ledger, dentro de la misma transacción: una reserva rechazada no consume cupo.
+- **Sin persistencia:** una identificación anónima no se guarda. Wilo anónimo no recibe el repositorio de capturas.
+- **Costo:** una foto anónima se reduce a 1.568 px y no admite vistas extra ni SAM, porque la reserva solo acota una imagen.
+- **Límite conocido:** el ledger no ve gasto hecho con la misma cuenta de Meta fuera de esta API, como las campañas de investigación locales. Durante la campaña no deben ejecutarse.
+
+Guía para clientes en [PUBLIC_DEMO.md](PUBLIC_DEMO.md).

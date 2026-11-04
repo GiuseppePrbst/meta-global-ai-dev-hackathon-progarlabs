@@ -13,6 +13,7 @@ import pytest
 from bosque_ai.contracts import Candidate, Identification
 from bosque_ai.guide import GuideToolError
 from bosque_ai.meta import MetaResponsesClient
+from conftest import OPEN_CAMPAIGN
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
 from PIL import Image
@@ -209,6 +210,7 @@ def database():
                 "004_expeditions.up.sql",
             ):
                 conn.execute((scripts / name).read_text())
+            conn.execute(OPEN_CAMPAIGN)
         yield scoped
     finally:
         with psycopg.connect(url, autocommit=True) as conn:

@@ -41,6 +41,7 @@ class Principal(str):
     expires_at: datetime | None = None
     access_expires_at: datetime | None = None
     role: str | None = None  # identities.role (migration 008); None before 008 or for tokens
+    anonymous: bool = False  # public demo (public.py): no account, no private data, no admin
 
 
 def pseudonym(identity: str | None) -> str:
@@ -213,10 +214,13 @@ class IdentityStatus(BaseModel):
 
 def register_session_routes(app, config: Settings):
     def client_ip(request: Request) -> str:
-        # CF-Connecting-IP is trusted only when ORIGIN_AUTH_TOKEN is set: the middleware has
+        # The Worker's visitor IP (CF-Connecting-IP until it is redeployed) is trusted only
+        # when ORIGIN_AUTH_TOKEN is set: the middleware has
         # then verified the Worker's secret header; Cloudflare overwrites the value at the edge
         # and rejects clients that send it. Without the origin guard (local) it is spoofable.
-        forwarded = request.headers.get("cf-connecting-ip")
+        forwarded = request.headers.get("x-bosque-visitor-ip") or request.headers.get(
+            "cf-connecting-ip"
+        )
         if forwarded and config.origin_auth_token.get_secret_value():
             return forwarded
         return request.client.host if request.client else "-"

@@ -214,3 +214,14 @@ Contrato para clientes: [docs/SESSION_AUTH_CONTRACT.md](../../docs/SESSION_AUTH_
 
   `FIREBASE_PROJECT_ID` se agrega cuando exista el proveedor Facebook.
 - **Rollback de aplicación:** la revisión anterior ignora las tablas nuevas, y la columna `cohort` es nullable. El rollback de esquema se niega si hay datos federados, reservas con cohorte o auditoría nueva.
+
+### Migración 009 y demostración pública
+
+- **Contenido:** crea `campaign_state` (fecha y tope), su trigger de protección y la cohorte técnica `public_demo`. Es aditiva y no toca reservas. `reserve()` responde 503 sin esta tabla, así que **debe aplicarse antes del tráfico**.
+- **Secreto:** `bosque-public-hmac-key`, mapeado a `PUBLIC_IP_HMAC_KEY`, con acceso solo para la cuenta `bosque-vivo-api`.
+- **Worker:** hay que redesplegar `infra/cloudflare/worker` antes de encender el modo público. Sin los encabezados `X-Bosque-Visitor-*`, toda petición anónima responde 403. Comprobar con `GET /demo/status`: `territory_eligible` debe ser `true`, no `null`.
+- **Encender:** `PUBLIC_DEMO_ENABLED=true`. `PUBLIC_DEMO_FEATURES` permite abrir solo algunas funciones (por ejemplo `'["guide"]'`).
+- **Apagar:**
+  1. `PUBLIC_DEMO_ENABLED=false`: cierra lo anónimo.
+  2. `META_ENABLED=false`: cierra toda la IA.
+  3. `POST /admin/campaign/close`: cierre **permanente**.

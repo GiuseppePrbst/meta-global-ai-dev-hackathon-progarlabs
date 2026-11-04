@@ -201,3 +201,11 @@ Todas las respuestas incluyen `X-Correlation-ID`. Inclúyelo en los reportes de 
 - **Roles y cohortes:** los asigna solo el backend (`PUT /admin/identities/{id}` y `/admin/cohorts`).
 
 Detalle, estados de cuota y ejemplos web y Expo en [FEDERATED_LOGIN.md](FEDERATED_LOGIN.md).
+
+## 13. Demostración pública
+
+Con la demostración activa, `/guide/query`, `/guide/ask`, `/guide/transcribe`, `/identify` y el WebSocket de voz funcionan sin `Authorization`. Enviar una sesión válida mantiene su identidad y su cuota. Todo lo demás de este contrato no cambia.
+
+**Fin de campaña:** desde 2026-11-10T05:00:00Z, toda operación de IA responde 410, con o sin sesión.
+
+Detalle en [PUBLIC_DEMO.md](PUBLIC_DEMO.md).

@@ -4,6 +4,7 @@ from uuid import uuid4
 
 import psycopg
 import pytest
+from conftest import OPEN_CAMPAIGN
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
 from psycopg import sql
@@ -71,6 +72,7 @@ def database():
                 "006_rate_limits.up",
             ):
                 conn.execute((scripts / f"{name}.sql").read_text())
+            conn.execute(OPEN_CAMPAIGN)
         yield scoped
     finally:
         with psycopg.connect(url, autocommit=True) as conn:
