@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0.0",
- "knowledge_version": "sha256:51ce4d6519c406682ec47838c65a05ea8d006fc46a76497f28a8ca1e4ed9e735",
+ "knowledge_version": "sha256:67bf3694126666e840f385e3ee549cdb337c15e39862d035646ef8d3c8d189e9",
  "snapshot": {
   "id": "knowledge-atlas",
   "type": "KnowledgeSnapshot",
@@ -12,7 +12,7 @@
   },
   "accessed_at": "2026-11-03",
   "updated_at": null,
-  "version": "sha256:51ce4d6519c406682ec47838c65a05ea8d006fc46a76497f28a8ca1e4ed9e735",
+  "version": "sha256:67bf3694126666e840f385e3ee549cdb337c15e39862d035646ef8d3c8d189e9",
   "license": "Ver cada entidad",
   "review_status": "built_offline",
   "confidence": "mixed",
@@ -55,7 +55,7 @@
     "valparaiso"
    ]
   },
-  "content_sha256": "sha256:03eccc8ba7f1eb61c6731a81a83be1901f2e912caeb37e6ff9d2341915fd119e"
+  "content_sha256": "sha256:f9ace0843f49e6dc753921a34f33fb87c9550f97e301e4b795d9efaf83c5b204"
  },
  "entities": [
   {
@@ -3676,9 +3676,9 @@
    "data": {
     "document": "docs/SOURCES.md",
     "heading": "Demostración pública: consulta del 04-11-2026",
-    "text": "- [Términos de Meta Model API](http[omitido]):   - 10.1(i): no revender ni dar acceso mediante agregadores, gateways o proxies sin autorización escrita;   - 10.1(v) y política geográfica;   - 13.3: los créditos promocionales pueden expirar en el plazo indicado en la cuenta;   - 17.2: la indemnización no cubre el uso mediante créditos promocionales. - [Política de uso geográfico](http[omitido]), actualizada el 12-10-2026. Sección 3: territorios restringidos. No publica una lista de países habilitados."
+    "text": "- [Cloudflare, HTTP headers](http[omitido]): `CF-IPCountry` se retira en subpeticiones de Workers a orígenes que Cloudflare no proxifica, como `run.app`. Por eso el Worker envía `X-Bosque-Visitor-Country` desde `request.cf.country`. - [Términos de Meta Model API](http[omitido]):   - 10.1(i): no revender ni dar acceso mediante agregadores, gateways o proxies sin autorización escrita;   - 10.1(v) y política geográfica;   - 13.3: los créditos promocionales pueden expirar en el plazo indicado en la cuenta;   - 17.2: la indemnización no cubre el uso mediante créditos promocionales. - [Política de uso geográfico](http[omitido]), actualizada el 12-10-2026. Sección 3: territorios restringidos. No pu"
    },
-   "content_sha256": "sha256:c47437b5ea44ef623cf88f6f629e9cf9f3dd92a087a14be7958d5b54d141ee24"
+   "content_sha256": "sha256:af2a201afe873f88dd0c60c811f0b75a298ac03dd54fa08f05e3ac93729410d0"
   },
   {
    "id": "doc--sources--2",

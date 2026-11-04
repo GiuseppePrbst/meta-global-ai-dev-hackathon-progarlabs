@@ -70,7 +70,8 @@ curl -s "$API/guide/transcribe" -F file=@pregunta.wav -F adult_confirmed=true \
 ### Foto
 
 ```bash
-curl -s "$API/identify" -F file=@hoja.jpg -F adult_confirmed=true -F rights_confirmed=true
+curl -s "$API/identify" -F file=@hoja.jpg -F adult_confirmed=true -F rights_confirmed=true \
+  -F external_processing_confirmed=true
 ```
 
 ### WebSocket de voz (TypeScript)
@@ -101,7 +102,7 @@ Un stream cancelado no consume más que su reserva, que queda como `cancelled`.
 | Campo | Cuándo | Si falta |
 | --- | --- | --- |
 | `adult_confirmed: true` | Siempre | 422 |
-| `external_processing_confirmed: true` | Wilo y audio (el texto, audio o la foto van a Meta) | 422 |
+| `external_processing_confirmed: true` | Wilo, audio y fotos sin sesión (el contenido va a Meta) | 422, antes de reservar |
 | `rights_confirmed: true` | Audio y fotos | 422 |
 
 Estas declaraciones debe hacerlas la persona. La interfaz debe pedirlas de forma explícita, sin dejarlas marcadas por defecto.
@@ -137,7 +138,7 @@ Estas declaraciones debe hacerlas la persona. La interfaz debe pedirlas de forma
 
 ## Territorios
 
-Se usa la política de uso geográfico de Meta (actualizada el 12-10-2026) con el país que informa Cloudflare.
+Se usa la política de uso geográfico de Meta (actualizada el 12-10-2026) con el país que informa Cloudflare en `request.cf.country`. El Worker lo envía en un encabezado interno, tras borrar cualquier valor del cliente, y el backend solo lo acepta junto con el secreto del Worker.
 
 - **Bloqueados:** los territorios restringidos de esa política y **Ucrania completa**, porque Cloudflare no distingue Crimea, Donetsk ni Luhansk.
 - **País desconocido o Tor:** se rechaza.
@@ -158,3 +159,14 @@ Los clientes nunca reciben `MODEL_API_KEY`, `ORIGIN_AUTH_TOKEN`, credenciales de
 - La IP no se guarda en claro. El seudónimo sí queda en el ledger, junto al consumo.
 - Lo genera el servidor. Ningún identificador enviado por el cliente lo cambia.
 - No da acceso a rutas privadas ni permisos administrativos.
+
+## Verificación de país e IP (04-11-2026)
+
+| Comprobación | Resultado |
+| --- | --- |
+| Worker real en el borde de Cloudflare (`wrangler dev --remote`, sin ruta, con origen simulado) | `request.cf.country` = `CL` y `X-Bosque-Visitor-Country: CL`. El SHA-256 de `X-Bosque-Visitor-IP` coincidió con el de la IP pública de la prueba; la dirección no se registró en claro |
+| Falsificación en ese mismo borde | Con `X-Bosque-Visitor-Country: RU`, `X-Bosque-Visitor-IP` y `CF-IPCountry` falsos, el Worker siguió enviando `CL` y la IP real |
+| Pruebas del Worker (`infra/cloudflare/worker/src/index.test.mjs`, en la CI) | Valores del cliente eliminados y ausentes cuando Cloudflare no da datos |
+| Pruebas del backend (`test_public_demo.py`) | `CF-IPCountry` y `CF-Connecting-IP` se ignoran; país ausente, 403; sin el secreto del Worker, 403 en HTTP y WebSocket |
+
+**Pendiente:** el recorrido completo Worker → Cloud Run no se ha probado, porque el Worker nuevo no está desplegado. Tras desplegarlo, `GET /demo/status` debe devolver `territory_eligible: true`.

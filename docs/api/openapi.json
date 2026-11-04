@@ -134,6 +134,12 @@
       "title": "Adult Confirmed",
       "type": "boolean"
      },
+     "external_processing_confirmed": {
+      "default": false,
+      "description": "Obligatorio sin sesión: la foto se envía a Meta Model API",
+      "title": "External Processing Confirmed",
+      "type": "boolean"
+     },
      "file": {
       "contentMediaType": "application/octet-stream",
       "description": "JPEG, PNG o WebP, máximo 10 MiB",

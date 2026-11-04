@@ -15,6 +15,7 @@ import psycopg
 import pytest
 from fastapi import HTTPException
 from fastapi.testclient import TestClient
+from starlette.websockets import WebSocketDisconnect
 from test_meta_controls import (  # noqa: F401
     ADMIN,
     SilentUpstream,
@@ -33,7 +34,7 @@ from bosque_api.public import admit_anonymous
 
 ORIGIN = {"X-Bosque-Origin": "test-origin"}
 ADMIN_ORIGIN = {**ADMIN, **ORIGIN}
-CLIENT = {**ORIGIN, "CF-Connecting-IP": "203.0.113.7", "CF-IPCountry": "CL"}
+CLIENT = {**ORIGIN, "X-Bosque-Visitor-IP": "203.0.113.7", "X-Bosque-Visitor-Country": "CL"}
 PUBLIC = dict(
     origin_auth_token="test-origin",
     public_demo_enabled=True,
@@ -73,7 +74,7 @@ def ask(client, headers=CLIENT):
     return client.post("/guide/query", json=QUESTION, headers=headers)
 
 
-def photo(client, headers=CLIENT, data=CONSENT, **files):
+def photo(client, headers=CLIENT, data=EXTERNAL, **files):
     return client.post(
         "/identify",
         headers=headers,
@@ -180,7 +181,7 @@ def test_cors_is_open_without_credentials_and_origin_guard_stays(database):  # n
         )
         assert response.headers["access-control-allow-origin"] == "*"
         assert "access-control-allow-credentials" not in response.headers
-    direct = {"CF-Connecting-IP": "203.0.113.7", "CF-IPCountry": "CL"}
+    direct = {"X-Bosque-Visitor-IP": "203.0.113.7", "X-Bosque-Visitor-Country": "CL"}
     assert client.post("/guide/query", json=QUESTION, headers=direct).status_code == 403
     assert client.get("/parks", headers=direct).status_code == 403
 
@@ -189,13 +190,16 @@ def test_cors_is_open_without_credentials_and_origin_guard_stays(database):  # n
     "country", ["RU", "CN", "HK", "IR", "KP", "UA", "VE", "XX", "T1", "", "ru"]
 )
 def test_restricted_or_unknown_territories_never_reach_meta(database, meta, country):  # noqa: F811
-    assert ask(public_client(database), {**CLIENT, "CF-IPCountry": country}).status_code == 403
+    assert (
+        ask(public_client(database), {**CLIENT, "X-Bosque-Visitor-Country": country}).status_code
+        == 403
+    )
     assert meta == [] and rows(database) == []
 
 
 def test_missing_verified_ip_or_key_fails_closed(database, meta):  # noqa: F811
     client = public_client(database)
-    assert ask(client, {**ORIGIN, "CF-IPCountry": "CL"}).status_code == 403
+    assert ask(client, {**ORIGIN, "X-Bosque-Visitor-Country": "CL"}).status_code == 403
     assert ask(public_client(database, public_ip_hmac_key="")).status_code == 503
     assert meta == []
     with pytest.raises(HTTPException):  # never without the origin guard, where headers are forged
@@ -251,7 +255,7 @@ def test_rate_limits_by_verified_ip_shared_and_not_spoofable(database, meta):  #
     spoofed = {**CLIENT, "X-Forwarded-For": "198.51.100.1", "X-Real-IP": "198.51.100.2"}
     assert ask(client, spoofed).status_code == 429
     assert ask(client, {**CLIENT, "X-User-Id": "someone-else"}).status_code == 429
-    other = {**CLIENT, "CF-Connecting-IP": "203.0.113.8"}
+    other = {**CLIENT, "X-Bosque-Visitor-IP": "203.0.113.8"}
     assert ask(client, other).status_code == 502
     assert len(meta) == 3
     run(database, "DELETE FROM rate_limit_hits")  # the minute passed: the daily count remains
@@ -264,17 +268,68 @@ def test_rate_limits_by_verified_ip_shared_and_not_spoofable(database, meta):  #
 def test_ipv6_clients_are_limited_by_prefix_and_bad_addresses_refused(database):  # noqa: F811
     config = settings(database, **PUBLIC)
     one = admit_anonymous(
-        config, {"cf-connecting-ip": "2001:db8:1:2::a", "cf-ipcountry": "CL"}, "guide"
+        config,
+        {"x-bosque-visitor-ip": "2001:db8:1:2::a", "x-bosque-visitor-country": "CL"},
+        "guide",
     )
     same = admit_anonymous(
-        config, {"cf-connecting-ip": "2001:db8:1:2:ffff::b", "cf-ipcountry": "CL"}, "guide"
+        config,
+        {"x-bosque-visitor-ip": "2001:db8:1:2:ffff::b", "x-bosque-visitor-country": "CL"},
+        "guide",
     )
     other = admit_anonymous(
-        config, {"cf-connecting-ip": "2001:db8:1:3::a", "cf-ipcountry": "CL"}, "guide"
+        config,
+        {"x-bosque-visitor-ip": "2001:db8:1:3::a", "x-bosque-visitor-country": "CL"},
+        "guide",
     )
     assert one == same != other
     with pytest.raises(HTTPException):
-        admit_anonymous(config, {"cf-connecting-ip": "not-an-ip", "cf-ipcountry": "CL"}, "guide")
+        admit_anonymous(
+            config, {"x-bosque-visitor-ip": "not-an-ip", "x-bosque-visitor-country": "CL"}, "guide"
+        )
+
+
+def test_photo_needs_every_consent_before_any_reservation(database, meta):  # noqa: F811
+    client = public_client(database)
+    for missing in ("adult_confirmed", "rights_confirmed", "external_processing_confirmed"):
+        data = {k: v for k, v in EXTERNAL.items() if k != missing}
+        assert photo(client, data=data).status_code == 422, missing
+        assert photo(client, data={**EXTERNAL, missing: "false"}).status_code == 422, missing
+    assert meta == [] and rows(database) == []
+    assert photo(client).status_code == 502  # all three given: reserved, then the provider
+    assert len(meta) == 1 and len(rows(database)) == 1
+
+
+def test_sessions_keep_the_previous_photo_contract(database, meta):  # noqa: F811
+    client = public_client(database)
+    enable_qa(client)
+    headers = {**session_headers(client), **ORIGIN}
+    assert photo(client, headers, data=CONSENT).status_code == 502
+    assert len(meta) == 1
+
+
+def test_only_the_workers_headers_count_and_only_behind_the_origin_guard(database, meta):  # noqa: F811
+    client = public_client(database)
+    forged = {"CF-IPCountry": "CL", "CF-Connecting-IP": "203.0.113.7", "X-Forwarded-For": "1.1.1.1"}
+    assert ask(client, {**ORIGIN, **forged}).status_code == 403  # no Worker headers: refused
+    assert (
+        ask(client, {**CLIENT, "CF-IPCountry": "CL", "X-Bosque-Visitor-Country": "RU"}).status_code
+        == 403
+    )
+    assert ask(client, {**CLIENT, "X-Bosque-Visitor-Country": ""}).status_code == 403
+    # Without the Worker's secret, visitor headers are worthless, valid or not.
+    no_origin = {k: v for k, v in CLIENT.items() if k not in ORIGIN}
+    for origin in ({}, {"X-Bosque-Origin": "guessed"}):
+        assert ask(client, {**no_origin, **origin}).status_code == 403
+        assert client.get("/demo/status", headers={**no_origin, **origin}).status_code == 403
+    with pytest.raises(WebSocketDisconnect):
+        with client.websocket_connect("/guide/voice/stream", headers=no_origin):
+            pass
+    assert meta == [] and rows(database) == []
+    # A public CF-Connecting-IP cannot move an anonymous client to another pseudonym.
+    moved = {**CLIENT, "CF-Connecting-IP": "198.51.100.9"}
+    assert ask(client, CLIENT).status_code == 502 and ask(client, moved).status_code == 502
+    assert len({r[0] for r in rows(database)}) == 1
 
 
 def test_postgres_down_fails_closed_before_meta(database, meta):  # noqa: F811
@@ -307,7 +362,9 @@ def test_budget_edge_and_concurrent_workers_across_identities(database, meta):  
 
     def attempt(n):
         principal = admit_anonymous(
-            config, {"cf-connecting-ip": f"198.51.100.{n}", "cf-ipcountry": "CL"}, "guide"
+            config,
+            {"x-bosque-visitor-ip": f"198.51.100.{n}", "x-bosque-visitor-country": "CL"},
+            "guide",
         )
         try:
             store.finish(store.reserve(principal, "guide"), "completed", {})
@@ -325,7 +382,8 @@ def test_budget_edge_and_concurrent_workers_across_identities(database, meta):  
         "s=ExecutionStore(c.model_copy(update={'budget_concurrency':100}))\n"
         "ok=0\n"
         "for n in sys.argv[2:]:\n"
-        "    p=admit_anonymous(c,{'cf-connecting-ip':'192.0.2.'+n,'cf-ipcountry':'CL'},'guide')\n"
+        "    h={'x-bosque-visitor-ip':'192.0.2.'+n,'x-bosque-visitor-country':'CL'}\n"
+        "    p=admit_anonymous(c,h,'guide')\n"
         "    try: s.finish(s.reserve(p,'guide'),'completed',{}); ok+=1\n"
         "    except HTTPException: pass\n"
         "print(ok)"
@@ -423,12 +481,14 @@ def test_no_retries_and_status_is_public_without_financial_data(database, meta):
     client = public_client(database)
     assert ask(client).status_code == 502
     assert len(meta) == 1  # a failed inference is never retried by the backend
-    status = client.get("/demo/status", headers={**ORIGIN, "CF-IPCountry": "CL"}).json()
+    status = client.get("/demo/status", headers={**ORIGIN, "X-Bosque-Visitor-Country": "CL"}).json()
     assert status["status"] == "active" and status["seconds_remaining"] > 0
     assert status["features"] == ["guide", "transcribe", "identify", "voice"]
     assert status["territory_eligible"] is True
     assert not {"reserved", "cap", "units", "spent"} & set(status)
-    blocked = client.get("/demo/status", headers={**ORIGIN, "CF-IPCountry": "RU"}).json()
+    blocked = client.get(
+        "/demo/status", headers={**ORIGIN, "X-Bosque-Visitor-Country": "RU"}
+    ).json()
     assert blocked["territory_eligible"] is False
 
 
@@ -469,7 +529,7 @@ def test_anonymous_voice_stream_cancel_and_old_token_format(database, meta, monk
         assert ws.receive_json()["code"] == "unauthorized"
 
     for headers, code in (
-        ({**CLIENT, "CF-IPCountry": "RU"}, "forbidden"),
+        ({**CLIENT, "X-Bosque-Visitor-Country": "RU"}, "forbidden"),
         (ORIGIN, "forbidden"),
     ):
         with client.websocket_connect("/guide/voice/stream", headers=headers) as ws:

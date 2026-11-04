@@ -347,7 +347,7 @@ sobre tres keyframes no es anotación de verdad. [Informe](META_SAM_API_RESEARCH
 
 - **Cambio:** el propietario decidió permitir el uso sin cuenta. Facebook Login y las sesiones siguen disponibles, pero dejan de ser requisito para la IA de la demostración.
 - **Superficie:** una lista explícita (`public.py`) de cuatro rutas POST y el WebSocket de voz. No hay endpoint genérico de modelos: los términos de Meta (10.1) prohíben ofrecer el servicio como gateway o proxy.
-- **Principal anónimo:** `Principal` con `anonymous=True`, seudónimo `anon-<HMAC de la IP>`. Solo se crea detrás del encabezado secreto del Worker, que prueba que `CF-Connecting-IP` y `CF-IPCountry` vienen de Cloudflare. Sin clave, IP o país verificable, se rechaza. No crea filas en `identities`.
+- **Principal anónimo:** `Principal` con `anonymous=True`, seudónimo `anon-<HMAC de la IP>`. Solo se crea detrás del encabezado secreto del Worker. Cloudflare retira `CF-IPCountry` hacia orígenes que no proxifica, como `run.app`, así que el Worker borra los valores del cliente y envía `X-Bosque-Visitor-Country` (desde `request.cf.country`) y `X-Bosque-Visitor-IP` (desde `CF-Connecting-IP`). Sin clave, IP o país verificable, se rechaza. No crea filas en `identities`.
 - **Ledger:** `reserve()` sigue siendo el único camino a Meta. Ahora revisa, bajo el mismo bloqueo y transacción que el `INSERT`, la fila `campaign_state`:
   - fecha contra `clock_timestamp()`;
   - cierre permanente;

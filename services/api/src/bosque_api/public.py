@@ -37,6 +37,10 @@ RESTRICTED = frozenset(
 )
 UNKNOWN_COUNTRY = frozenset({"", "XX", "T1"})  # no data, or Tor: location unverifiable
 ANONYMOUS_SCOPES = frozenset({"guide", "transcribe", "identify"})
+# Set by the Worker from request.cf and CF-Connecting-IP, after deleting client values. Cloudflare
+# strips CF-IPCountry towards origins it does not proxy, so that header is never read here.
+VISITOR_COUNTRY = "x-bosque-visitor-country"
+VISITOR_IP = "x-bosque-visitor-ip"
 EXPIRED_MESSAGE = (
     "La demostración terminó el 10-11-2026 a las 05:00 UTC y no se reabrirá; "
     "el Atlas sigue disponible."
@@ -55,9 +59,9 @@ def is_eligible(country: str) -> bool:
 def admit_anonymous(config: Settings, headers, feature: str) -> Principal:
     """Server-side pseudonym from the verified client IP; the client supplies no identity.
 
-    Only runs behind the origin guard: CF-Connecting-IP and CF-IPCountry are set by Cloudflare,
-    which overwrites client values, and the Worker's secret proves the request came through it.
-    Without any of that it refuses: an unverifiable caller never reaches Meta.
+    Only runs behind the origin guard: the Worker's secret proves the request came through it,
+    and only the Worker sets the visitor headers. Without any of that it refuses: an
+    unverifiable caller never reaches Meta.
     """
     key = config.public_ip_hmac_key.get_secret_value()
     if not (config.public_demo_enabled and key and config.origin_auth_token.get_secret_value()):
@@ -65,10 +69,10 @@ def admit_anonymous(config: Settings, headers, feature: str) -> Principal:
     if feature not in config.public_demo_features:
         raise HTTPException(403, "Función no disponible en la demostración pública")
     try:
-        address = ipaddress.ip_address(headers.get("cf-connecting-ip", "").strip())
+        address = ipaddress.ip_address(headers.get(VISITOR_IP, "").strip())
     except ValueError:
         raise HTTPException(403, "No se pudo verificar el origen de la solicitud") from None
-    if not is_eligible(headers.get("cf-ipcountry", "")):
+    if not is_eligible(headers.get(VISITOR_COUNTRY, "")):
         raise HTTPException(403, "Servicio no disponible en este territorio")
     # One IPv6 client controls a whole /64: limiting single addresses would be no limit at all.
     client = (
@@ -130,7 +134,7 @@ def register_public_routes(app, config: Settings):
                 status = "active"
         except (psycopg.Error, HTTPException, TypeError):
             log.warning("demo status unavailable")
-        country = request.headers.get("cf-ipcountry")
+        country = request.headers.get(VISITOR_COUNTRY)
         return DemoStatus(
             public_demo_enabled=status == "active",
             status=status,

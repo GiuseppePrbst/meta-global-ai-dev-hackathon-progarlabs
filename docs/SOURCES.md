@@ -250,6 +250,7 @@ límites en DATASET_LICENSES/DATA_GOVERNANCE; resultados agregados en META_SAM_A
 
 ## Demostración pública: consulta del 04-11-2026
 
+- [Cloudflare, HTTP headers](https://developers.cloudflare.com/fundamentals/reference/http-headers/): `CF-IPCountry` se retira en subpeticiones de Workers a orígenes que Cloudflare no proxifica, como `run.app`. Por eso el Worker envía `X-Bosque-Visitor-Country` desde `request.cf.country`.
 - [Términos de Meta Model API](https://dev.meta.ai/legal/terms-of-service):
   - 10.1(i): no revender ni dar acceso mediante agregadores, gateways o proxies sin autorización escrita;
   - 10.1(v) y política geográfica;

@@ -283,6 +283,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         file: Annotated[UploadFile, File(description="JPEG, PNG o WebP, máximo 10 MiB")],
         adult_confirmed: Annotated[bool, Form()],
         rights_confirmed: Annotated[bool, Form()],
+        external_processing_confirmed: Annotated[
+            bool,
+            Form(description="Obligatorio sin sesión: la foto se envía a Meta Model API"),
+        ] = False,
         authorization: Annotated[str | None, Header()] = None,
         additional_files: Annotated[
             list[UploadFile] | None,
@@ -316,6 +320,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         if not adult_confirmed or not rights_confirmed:
             raise HTTPException(422, "Se requiere mayoría de edad y derechos de uso de la imagen")
         anonymous = getattr(request.state.identity, "anonymous", False)
+        if anonymous and not external_processing_confirmed:
+            raise HTTPException(422, "Falta permiso de procesamiento externo de la imagen")
         if anonymous and (additional_files or use_segmentation):
             # One photo, no SAM: the reservation only bounds a single-image request.
             raise HTTPException(422, "La demostración pública admite una sola fotografía")
