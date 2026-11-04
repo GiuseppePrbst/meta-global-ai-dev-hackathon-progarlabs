@@ -103,8 +103,9 @@ def summarize(case, status, payload):
     if "candidates" in payload:
         out["candidates"] = [c.get("species_id") for c in payload["candidates"]]
     if case in ("A", "B") and "answer" in payload:
-        out["mentions_open_trail_claim"] = "abierto" in payload["answer"].lower() and (
-            "no verific" not in payload["answer"].lower()
+        answer = payload["answer"].lower()
+        out["mentions_open_trail_claim"] = "abierto" in answer and not any(
+            hedge in answer for hedge in ("no verific", "sin verificar")
         )
     if status >= 400:
         out["error"] = payload.get("detail")

@@ -1,6 +1,6 @@
 # Meta en la API cloud: auditoría, presupuesto propuesto, encendido y apagado (04-11-2026)
 
-**Estado: deshabilitado.** La API cloud corre con `META_ENABLED=false`, `BUDGET_UNITS=0` y `BUDGET_LIFETIME_UNITS=0`. Hay una autorización de gasto de USD 100 del 04-11-2026 (sección 2); su uso se registra en la sección 7.
+**Estado (04-11-2026): habilitado solo para `team_developer`.** `META_ENABLED=true`, y cada cohorte decide con `ai_enabled`: `internal_qa` en pausa tras su campaña y `public_trial` apagada. Registro en la sección 7.
 
 - Que exista `MODEL_API_KEY` en Secret Manager **no autoriza** gastar.
 - Encender Meta requiere una autorización vigente del propietario para una campaña concreta, con un monto en USD.
@@ -124,3 +124,23 @@ Además, `test_cancelled_voice_stream_closes_its_reservation` reproduce un error
 - Validez actual de `MODEL_API_KEY` y saldo de créditos Meta: requieren una llamada pagada.
 - Agotamiento de cuota con Meta real. Se probó en PostgreSQL con dobles de prueba, pero no contra Meta.
 - Timeout de 120 s del servidor con un proveedor lento real.
+
+## 7. Registro de activación (04-11-2026)
+
+- **Producción:** imagen `api:61de4fa4e05a` (`sha256:f40424e92a31…`), revisión `00020-qay` al 100 %. Migraciones 001 a 008 aplicadas tras el backup `1793811162597`. Rollback sin Meta: `00014-zux`.
+- **Billing de `dev.meta.ai`, leído a las 17:00 UTC aprox.:**
+  - créditos gratuitos en uso: `$123,39`, sin pagos registrados y con saldo pendiente `$0`;
+  - Visa en archivo. El panel indica que se paga al llegar a `$10.000` o el 01-12-2026;
+  - el panel no muestra vencimiento de los créditos. Los términos (13.3) dicen que pueden expirar;
+  - el gráfico de uso rotula CLP, y la moneda del saldo no aparece indicada. Se interpreta como USD porque coincide con el consumo previo: es una inferencia.
+- **Condición de los créditos:** el panel avisa que, mientras se usen créditos gratuitos, el contenido puede usarse para mejorar productos. Por eso no se envían datos personales, confidenciales ni Hepta, y **esto bloquea la apertura pública** hasta resolverlo. No se pulsó «Stop using free credits», porque el gasto iría a la tarjeta y eso no está autorizado.
+- **Campaña QA:** 8 reservas de `qa-s5-01`, 7 `completed` y 1 `cancelled`, USD 0,40 reservados. Uso reportado: 19.552 tokens de entrada, 7.468 de salida y 4,7 s de audio, unos USD 0,057 por tarifa. Sin reservas atascadas.
+  - Medios: dos fotos CC de `apps/mobile/assets/images/reference` y una voz sintética.
+  - Wilo texto: 200 en 18,7 s; declara sin verificar la apertura de senderos.
+  - Wilo voz: 200 en 29,4 s.
+  - Coigüe (*N. dombeyi*): aceptada en 15,5 s, correcta.
+  - Hongo fuera del catálogo: abstención en 11,1 s, correcta.
+  - Olivillo: abstención con esta foto. No anula la confusión con ulmo del 03-11: son casos sueltos y no estiman precisión.
+  - Stream de voz cerrado a mitad: reserva `cancelled`, gracias a 007.
+- **Facebook Login:** Identity Platform inicializado sin proveedores. La app de Meta no existe; su creación quedó detenida antes de aceptar las Condiciones de la plataforma. Firebase (`addFirebase`) respondió 403.
+- **Reconciliación pendiente:** el panel tarda hasta una hora en reflejar el uso.
