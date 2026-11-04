@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0.0",
- "knowledge_version": "sha256:119f45035755b6714c11a8e4b0dfb2f2ff413c271bceb56f8259929c0e06eb19",
+ "knowledge_version": "sha256:55be2eb7ff2d8078967dd89a50f9d17abf607fdde8a1176c3e9f98599612a0ba",
  "snapshot": {
   "id": "knowledge-atlas",
   "type": "KnowledgeSnapshot",
@@ -12,7 +12,7 @@
   },
   "accessed_at": "2026-11-03",
   "updated_at": null,
-  "version": "sha256:119f45035755b6714c11a8e4b0dfb2f2ff413c271bceb56f8259929c0e06eb19",
+  "version": "sha256:55be2eb7ff2d8078967dd89a50f9d17abf607fdde8a1176c3e9f98599612a0ba",
   "license": "Ver cada entidad",
   "review_status": "built_offline",
   "confidence": "mixed",
@@ -55,7 +55,7 @@
     "valparaiso"
    ]
   },
-  "content_sha256": "sha256:ce4b874970d61f5be68a7358e6e08e428dcf3b29956ea37bb3986f4433f15377"
+  "content_sha256": "sha256:1a7b014c632b95d7e73cf04f44d0ca633ba0f80b2e64d44e8e890a3798ef43ce"
  },
  "entities": [
   {
@@ -3879,9 +3879,9 @@
    "data": {
     "document": "docs/SOURCES.md",
     "heading": "Ecosistema y piloto Puyehue — consultado 31-10-2026",
-    "text": "| Fuente | Uso | Pendiente | | --- | --- | --- | | [CONAF, PN Puyehue](http[omitido]) | Superficie de 112.755 ha, sectores, ecosistemas, 8 árboles, fauna, reglas y horario | Senderos de Anticura no nombrados; reverificar antes de la demo | | [SIMBIO 971](http[omitido]) | Superficie de 102.521,7 ha (1994), ecosistemas, UICN II, administración CONAF | Conflicto de superficie con CONAF registrado | | [SBAP, 16-06-2026](http[omitido]) | Traspaso anunciado «a partir de marzo de 2027» | No concluido | | [Portal RCE](http[omitido]) y [DS 54/2025](http[omitido]) | Nómina, 20.º proceso, publicación en el DO el 05-03-2026 | Discrepancias de fecha registradas en [RCE](RCE_CONSERVATION_2026.md#versionad"
+    "text": "| Fuente | Uso | Pendiente | | --- | --- | --- | | [CONAF, PN Puyehue](http[omitido]) | Superficie de 112.755 ha, sectores, ecosistemas, 8 árboles, fauna, reglas y horario | Senderos de Anticura no nombrados; reverificar antes de la demo | | [CONAF, PN Puyehue](http[omitido]) (reconsulta 03-11-2026) | Tarjeta del parque en el Atlas móvil: 112.755 ha, creación 1941 y deslindes de 1981, tres sectores, más de 130 aves, árboles por altitud, horario 9:00-17:30 y acceso por la ruta 215-CH; hechos redactados con palabras propias, sin copiar la ficha | La superficie de SIMBIO difiere (abajo); la tarjeta cita CONAF | | [OSM, relación 4741077](http[omitido]) (v17, consulta 03-11-2026) | Límite aproxim"
    },
-   "content_sha256": "sha256:66a05a6a7de6424556bf710780e8590e2173912a9606c615689a00b394aa4a7b"
+   "content_sha256": "sha256:509dbd1f222fab727f09a9bc84f3c36940973ace0a2e223bf63a6f6243fef701"
   },
   {
    "id": "bcn-snaspe",
