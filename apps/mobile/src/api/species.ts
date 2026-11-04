@@ -2,12 +2,12 @@ import { ApiError, getJson } from '@/api/client';
 import type { components, operations } from '@/api/schema.gen';
 import type { Species } from '@/domain/species';
 
-// GET /species y GET /species/{species_id}: públicos, sin token, también en modo demo.
-// Contrato: docs/api/openapi.json (schema `Species`). Documentado en docs/api/migration/.
+// GET /species: público, sin token, también en modo demo. Alimenta la lista del catálogo; la ficha usa
+// GET /taxa/{id} (src/api/taxa.ts). Contrato: docs/api/openapi.json (schema `Species`). Documentado en
+// docs/api/migration/.
 
 type ApiSpecies = components['schemas']['Species'];
 type CatalogResponse = operations['species_species_get']['responses'][200]['content']['application/json'];
-type DetailResponse = operations['species_detail_species__species_id__get']['responses'][200]['content']['application/json'];
 
 /** Convierte una especie del JSON de la API al tipo de dominio. `synonym_review` no se usa en la app. */
 export function toSpecies(api: ApiSpecies): Species {
@@ -59,13 +59,4 @@ export async function fetchSpeciesCatalog(signal?: AbortSignal): Promise<Species
   const body = await getJson<CatalogResponse>('/species', signal);
   if (!Array.isArray(body)) throw new ApiError('invalid_response', 'GET /species no devolvió una lista');
   return body.map(toSpecies);
-}
-
-/** Una especie. Un 404 llega como `ApiError` con `status: 404` (no está en el catálogo). */
-export async function fetchSpecies(id: string, signal?: AbortSignal): Promise<Species> {
-  const body = await getJson<DetailResponse>(`/species/${encodeURIComponent(id)}`, signal);
-  if (!body || typeof body !== 'object' || typeof body.id !== 'string') {
-    throw new ApiError('invalid_response', 'GET /species/{id} no devolvió una especie');
-  }
-  return toSpecies(body);
 }
