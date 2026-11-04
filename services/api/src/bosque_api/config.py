@@ -47,3 +47,11 @@ class Settings(BaseSettings):
     session_ttl_minutes: int = Field(default=60, ge=5, le=240)
     session_requests_per_minute: int = Field(default=60, ge=1, le=1000)
     exchange_failures_per_ip: int = Field(default=10, ge=1, le=100)
+    # Cohort ledger (migration 008): every Meta reservation needs an identity row and is
+    # checked against its cohort's pool, identity cap and daily count. Off = pre-008 ledger.
+    budget_cohorts_enabled: bool = False
+    # Federated login (Firebase Authentication). Empty project = /sessions/federated/* off.
+    firebase_project_id: str = Field(default="", max_length=64, pattern=r"^[a-z0-9-]*$")
+    federated_providers: list[str] = ["facebook.com"]
+    federated_access_days: int = Field(default=30, ge=1, le=90)
+    federated_registrations_per_ip_hour: int = Field(default=5, ge=1, le=100)

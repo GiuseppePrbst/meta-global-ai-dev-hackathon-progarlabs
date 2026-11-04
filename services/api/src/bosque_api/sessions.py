@@ -9,8 +9,8 @@
 - Static DEMO_TOKENS keep working (scopes=None: every operation) for operators only.
   They are never handed to testers; only names in ADMIN_IDENTITIES may create invitations.
 
-The token is opaque on purpose: a future OIDC provider (Authorization Code + PKCE) would
-replace /sessions/exchange and resolve to the same Principal; nothing else changes.
+The token is opaque on purpose: /sessions/federated/exchange (accounts.py) turns a verified
+Firebase ID token into the same kind of session; nothing downstream changes.
 """
 
 import hashlib
@@ -40,6 +40,7 @@ class Principal(str):
     session_id: UUID | None = None
     expires_at: datetime | None = None
     access_expires_at: datetime | None = None
+    role: str | None = None  # identities.role (migration 008); None before 008 or for tokens
 
 
 def pseudonym(identity: str | None) -> str:
@@ -107,14 +108,24 @@ def resolve_session(config: Settings, token: str) -> Principal:
                 "AND expires_at > now()",
                 (digest(token),),
             ).fetchone()
-            wait = row and rate_limit(
-                conn, "identity:" + row[1], config.session_requests_per_minute, 60
+            role = suspended = None
+            if row and config.budget_cohorts_enabled:
+                found = conn.execute(
+                    "SELECT role, suspended_at FROM identities WHERE id=%s", (row[1],)
+                ).fetchone()
+                role, suspended = found or (None, None)
+            wait = (
+                row
+                and not suspended
+                and rate_limit(conn, "identity:" + row[1], config.session_requests_per_minute, 60)
             )
     except psycopg.Error:
         # Fail closed: without PostgreSQL neither the session nor its limit can be checked.
         raise HTTPException(503, "Servicio de sesiones no disponible") from None
     if row is None:
         raise HTTPException(401, "Sesión inválida, expirada o revocada")
+    if suspended:
+        raise HTTPException(403, "Cuenta suspendida")
     if wait:
         log.warning("auth event=identity_rate_limited who=%s", pseudonym(row[1]))
         raise HTTPException(
@@ -123,6 +134,7 @@ def resolve_session(config: Settings, token: str) -> Principal:
     principal = Principal(row[1])
     principal.session_id, principal.scopes = row[0], frozenset(row[2])
     principal.expires_at, principal.access_expires_at = row[3], row[4]
+    principal.role = role
     return principal
 
 
@@ -209,13 +221,17 @@ def register_session_routes(app, config: Settings):
             return forwarded
         return request.client.host if request.client else "-"
 
-    def issue(conn, identity, invitation_id, scopes, access_expires_at, event, actor=None):
+    def issue(conn, identity, invitation_id, scopes, access_expires_at, event, provider=None):
+        """A session from an invitation, or (invitation_id None) from a federated provider."""
         token = SESSION_PREFIX + secrets.token_urlsafe(32)
         session_id = uuid4()
         row = conn.execute(
             "INSERT INTO access_sessions(id, token_hash, identity_id, invitation_id, scopes, "
-            "expires_at, access_expires_at) VALUES (%s,%s,%s,%s,%s, "
-            "least(now() + make_interval(mins => %s), %s), %s) RETURNING expires_at",
+            "expires_at, access_expires_at"
+            + (", provider" if invitation_id is None else "")
+            + ") VALUES (%s,%s,%s,%s,%s, least(now() + make_interval(mins => %s), %s), %s"
+            + (", %s" if invitation_id is None else "")
+            + ") RETURNING expires_at",
             (
                 session_id,
                 digest(token),
@@ -225,11 +241,12 @@ def register_session_routes(app, config: Settings):
                 config.session_ttl_minutes,
                 access_expires_at,
                 access_expires_at,
+                *([provider] if invitation_id is None else []),
             ),
         ).fetchone()
         conn.execute(
             "INSERT INTO auth_events(event, identity_id, session_id, actor) VALUES (%s,%s,%s,%s)",
-            (event, identity, session_id, actor),
+            (event, identity, session_id, provider),
         )
         log.info("auth event=%s who=%s session=%s", event, pseudonym(identity), str(session_id)[:8])
         return SessionToken(
@@ -250,9 +267,12 @@ def register_session_routes(app, config: Settings):
 
     def operator(request: Request) -> Principal:
         owner = request.state.identity
-        if owner is None or owner.scopes is not None or owner not in config.admin_identities:
+        static = owner is not None and owner.scopes is None and owner in config.admin_identities
+        if not (static or getattr(owner, "role", None) == "administrator"):
             raise HTTPException(403, "Requiere credencial de operador autorizada")
         return owner
+
+    app.state.issue_session, app.state.operator, app.state.client_ip = issue, operator, client_ip
 
     @app.post(
         "/sessions/exchange",
@@ -311,7 +331,12 @@ def register_session_routes(app, config: Settings):
                 ).fetchone()
                 if row is None:
                     raise HTTPException(401, "Sesión expirada; canjea una invitación nueva")
-                return issue(conn, row[0], row[1], row[2], row[3], "session_refreshed")
+                provider = None
+                if row[1] is None:  # federated session (migration 008)
+                    provider = conn.execute(
+                        "SELECT provider FROM access_sessions WHERE id=%s", (current.session_id,)
+                    ).fetchone()[0]
+                return issue(conn, *row, "session_refreshed", provider)
         except psycopg.Error:
             raise HTTPException(503, "Servicio de sesiones no disponible") from None
 
@@ -384,6 +409,14 @@ def register_session_routes(app, config: Settings):
                     "('invitation_created',%s,%s)",
                     (item.identity, str(actor)),
                 )
+                if config.budget_cohorts_enabled:
+                    # An invited identity is a controlled QA identity unless an admin set
+                    # another role; an existing role (and its consumption) is never touched.
+                    conn.execute(
+                        "INSERT INTO identities(id, role, cohort) "
+                        "VALUES (%s,'internal_qa','internal_qa') ON CONFLICT (id) DO NOTHING",
+                        (item.identity,),
+                    )
         except psycopg.Error:
             raise HTTPException(503, "Servicio de sesiones no disponible") from None
         log.info("auth event=invitation_created who=%s", pseudonym(item.identity))

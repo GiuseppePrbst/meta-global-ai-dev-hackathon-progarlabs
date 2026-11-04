@@ -196,3 +196,21 @@ Contrato para clientes: [docs/SESSION_AUTH_CONTRACT.md](../../docs/SESSION_AUTH_
 - **Contenido:** `007_ledger_cancelled.up.sql` solo amplía el CHECK de `execution_reservations.status`, sin tocar filas. Corrige el cierre de streams de voz cancelados (ver `docs/META_CLOUD_ACTIVATION.md`, sección 5).
 - **Cuándo aplicarla:** con un backup previo y **antes de habilitar Meta**. Con Meta apagado no hay reservas, así que el error no afecta a producción hoy.
 - **Rollback de esquema:** se niega si existen filas `cancelled`.
+
+### Migración 008: identidades, roles y cohortes presupuestarias
+
+- **Contenido:**
+  - crea `budget_cohorts` (60, 25 y 5 USD; IA apagada), `identities` y `federated_subjects`;
+  - agrega `cohort` al ledger y `provider` a las sesiones, y deja nullable `invitation_id`;
+  - amplía los eventos de auditoría.
+
+  Es aditiva. Las identidades de invitación existentes quedan como `internal_qa`.
+- **Orden:**
+  1. Backup.
+  2. Aplicar 008.
+  3. Desplegar con `BUDGET_COHORTS_ENABLED=true` y `BUDGET_LIFETIME_UNITS=90000000`, sin tráfico.
+  4. Probar.
+  5. Promover.
+
+  `FIREBASE_PROJECT_ID` se agrega cuando exista el proveedor Facebook.
+- **Rollback de aplicación:** la revisión anterior ignora las tablas nuevas, y la columna `cohort` es nullable. El rollback de esquema se niega si hay datos federados, reservas con cohorte o auditoría nueva.

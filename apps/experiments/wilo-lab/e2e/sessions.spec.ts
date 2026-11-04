@@ -128,3 +128,17 @@ test("identificacion con Meta deshabilitado: 501 explicito, sin candidatos", asy
   await expect(page.getByRole("alert")).toContainText("Meta deshabilitado: requiere habilitación y controles de acceso (501)");
   await expect(page.getByLabel("Resultado del reconocimiento")).toHaveCount(0);
 });
+
+test("cuota visible tras el canje y boton de Facebook oculto sin configuracion de Firebase", async ({ page }) => {
+  await backend(page);
+  await page.route("**/me/quota", (route) => route.fulfill({ json: {
+    identity: "beta-sintetica", plan: "Prueba gratuita", status: "trial_exhausted",
+    reason: "Cuota acumulada agotada; no se renueva", features: ["guide"], units_limit: 300000,
+    units_reserved: 300000, units_available: 0, daily_requests_limit: 8, daily_requests_used: 3,
+  } }));
+  await page.goto("/");
+  await expect(page.getByRole("button", { name: "Entrar con Facebook" })).toHaveCount(0);
+  await redeem(page);
+  await expect(page.getByLabel("Cuota")).toContainText("Cuota de prueba agotada (no se renueva)");
+  await expect(page.getByLabel("Cuota")).toContainText("~USD 0.00 (estimado) · hoy 3/8");
+});

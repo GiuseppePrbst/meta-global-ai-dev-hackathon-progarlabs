@@ -1,6 +1,6 @@
 {
  "schema_version": "1.0.0",
- "knowledge_version": "sha256:02d5cfb976048959ccd9635ec8a5de69ed49d3b9bd327f54567aa981a85be7c5",
+ "knowledge_version": "sha256:119f45035755b6714c11a8e4b0dfb2f2ff413c271bceb56f8259929c0e06eb19",
  "snapshot": {
   "id": "knowledge-atlas",
   "type": "KnowledgeSnapshot",
@@ -12,7 +12,7 @@
   },
   "accessed_at": "2026-11-03",
   "updated_at": null,
-  "version": "sha256:02d5cfb976048959ccd9635ec8a5de69ed49d3b9bd327f54567aa981a85be7c5",
+  "version": "sha256:119f45035755b6714c11a8e4b0dfb2f2ff413c271bceb56f8259929c0e06eb19",
   "license": "Ver cada entidad",
   "review_status": "built_offline",
   "confidence": "mixed",
@@ -25,7 +25,7 @@
   "data": {
    "counts": {
     "ConservationAssessment": 11,
-    "DocumentPassage": 110,
+    "DocumentPassage": 111,
     "KnowledgeSource": 4,
     "MapResource": 79,
     "Park": 46,
@@ -55,7 +55,7 @@
     "valparaiso"
    ]
   },
-  "content_sha256": "sha256:3dceb41f308f355a8d9a0e3ab9c04d9f61cbfe251502101d66863537075307bb"
+  "content_sha256": "sha256:ce4b874970d61f5be68a7358e6e08e428dcf3b29956ea37bb3986f4433f15377"
  },
  "entities": [
   {
@@ -3621,6 +3621,35 @@
     "text": "- [Cloudflare, HTTP headers: «CF-Connecting-IP in Worker subrequests»](http[omitido]) (actualizado el 28-10-2026). En subpeticiones de un Worker a un origen fuera de Cloudflare, si se reenvían los encabezados originales sin cambios, `CF-Connecting-IP` conserva la IP del cliente. Lo usa el límite de canjes fallidos por IP; el Worker no se modificó."
    },
    "content_sha256": "sha256:ab12ff3f171fd057aca9fdbf6e7100a9723ce74b8bebc6b6e8076992d298a4eb"
+  },
+  {
+   "id": "doc--sources--15",
+   "type": "DocumentPassage",
+   "name": "Fuentes, verificación y decisiones pendientes: Login federado y cuotas: consulta del 04-11-2026",
+   "source": {
+    "title": "Fuentes, verificación y decisiones pendientes",
+    "url": "docs/SOURCES.md",
+    "kind": "repository"
+   },
+   "accessed_at": "2026-11-03",
+   "updated_at": null,
+   "version": null,
+   "license": "Documentación del repositorio",
+   "review_status": "repository_document",
+   "confidence": "repository_curated",
+   "coverage": {},
+   "limitations": [
+    "Extracto de documentación técnica; ver el documento completo."
+   ],
+   "search_terms": [
+    "Login federado y cuotas: consulta del 04-11-2026"
+   ],
+   "data": {
+    "document": "docs/SOURCES.md",
+    "heading": "Login federado y cuotas: consulta del 04-11-2026",
+    "text": "- [Firebase: Facebook Login en web](http[omitido]):   - App ID y App Secret en el proveedor;   - redirección `PROYECTO.firebaseapp.com/__/auth/handler`;   - Facebook exige HTTPS; con `localhost`, la app de Meta debe estar en modo desarrollo y solo funcionan cuentas de prueba. - [Firebase: Limited Login en iOS](http[omitido]): credencial `OAuthProvider` `facebook.com` con `idToken` y `rawNonce`. - [Límites de Firebase Auth](http[omitido]):   - con Identity Platform en el plan sin costo (Spark), 3.000 usuarios activos diarios de Tier 1;   - 100 cuentas por hora por IP. - [Precios de Firebase](http[omitido]): Identity Platform sin costo hasta 50.000 usuarios activos mensuales y luego tarifas de"
+   },
+   "content_sha256": "sha256:83114f880be8df90b1cb88a8a41978bde2b617f0f9ada4e25632b778164deb54"
   },
   {
    "id": "doc--sources--2",

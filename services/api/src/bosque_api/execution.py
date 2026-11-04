@@ -11,6 +11,8 @@ from bosque_api.config import Settings
 from bosque_api.sessions import SESSION_PREFIX, Principal, authorize, pseudonym, resolve_session
 
 log = logging.getLogger("bosque_api.ledger")
+# Alert lines (Cloud Logging) when cumulative reservations cross these USD amounts.
+ALERT_USD = (30, 50, 70, 80, 85, 90)
 
 
 def identity(config: Settings, authorization: str | None) -> Principal:
@@ -63,6 +65,32 @@ class ExecutionStore:
                     ).fetchone()[0]
                     if lifetime + units > config.budget_lifetime_units:
                         raise HTTPException(429, "Límite acumulado de experimentación alcanzado")
+                cohort = None
+                per_identity_daily = config.budget_requests_per_identity
+                if config.budget_cohorts_enabled and operation != "raster":
+                    # The cohort comes from the backend's identity row, never from the client;
+                    # a role change moves future reservations only, history keeps its cohort.
+                    found = conn.execute(
+                        "SELECT i.cohort, i.suspended_at, c.cap_units, c.identity_cap_units, "
+                        "c.daily_requests_per_identity, c.ai_enabled "
+                        "FROM identities i JOIN budget_cohorts c USING (cohort) WHERE i.id=%s",
+                        (owner,),
+                    ).fetchone()
+                    if found is None:
+                        raise HTTPException(403, "Identidad sin grupo presupuestario")
+                    cohort, suspended, cohort_cap, identity_cap, per_identity_daily, enabled = found
+                    if suspended:
+                        raise HTTPException(403, "Cuenta suspendida")
+                    if not enabled:
+                        raise HTTPException(503, "IA no habilitada para este grupo")
+                    pooled = conn.execute(
+                        "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations "
+                        "WHERE cohort=%s",
+                        (cohort,),
+                    ).fetchone()[0]
+                    if pooled + units > cohort_cap:
+                        raise HTTPException(429, "Bolsa del grupo agotada")
+                    owner_cap_units = min(identity_cap, owner_cap_units or identity_cap)
                 if owner_cap_units is not None:
                     owned = conn.execute(
                         "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations "
@@ -89,19 +117,29 @@ class ExecutionStore:
                 daily = config.budget_daily_requests_enabled
                 if (
                     daily
-                    and (
-                        count >= config.budget_requests
-                        or own >= config.budget_requests_per_identity
-                    )
+                    and (count >= config.budget_requests or own >= per_identity_daily)
                     or used + units > config.budget_units
                     or active >= config.budget_concurrency
                 ):
                     raise HTTPException(429, "Límite global o por identidad alcanzado")
-                conn.execute(
-                    "INSERT INTO execution_reservations(id,identity_id,operation,reserved_units) "
-                    "VALUES (%s,%s,%s,%s)",
-                    (identifier, owner, operation, units),
-                )
+                if cohort is None:
+                    conn.execute(
+                        "INSERT INTO execution_reservations(id,identity_id,operation,"
+                        "reserved_units) VALUES (%s,%s,%s,%s)",
+                        (identifier, owner, operation, units),
+                    )
+                else:
+                    conn.execute(
+                        "INSERT INTO execution_reservations(id,identity_id,operation,"
+                        "reserved_units,cohort) VALUES (%s,%s,%s,%s,%s)",
+                        (identifier, owner, operation, units, cohort),
+                    )
+                    total = conn.execute(
+                        "SELECT COALESCE(sum(reserved_units),0) FROM execution_reservations"
+                    ).fetchone()[0]
+                    for usd in ALERT_USD:
+                        if total - units < usd * 1_000_000 <= total:
+                            log.warning("ledger event=threshold_crossed usd=%d", usd)
         except psycopg.Error:
             raise HTTPException(503, "Control global de consumo no disponible") from None
         log.info(

@@ -328,3 +328,16 @@ Desarrollo con asistencia de Claude (Anthropic) en una sesión local de Giuseppe
   - script de campaña en modo simulación.
 - **Sin llamadas pagadas a Meta.** Sin cambios en `apps/web` ni `apps/mobile`.
 - **Asistencia:** agente Claude Code (Opus 5.5), bajo la supervisión de GiuseppePrbst.
+
+## Login federado y cuotas por cohorte: 04-11-2026 (rama `feat/federated-identity-cohorts`)
+
+- Código nuevo:
+  - `accounts.py`;
+  - migración 008;
+  - cohortes en `execution.py`;
+  - `test_federated_cohorts.py`;
+  - `FederatedLogin.tsx` y su lib en Wilo Lab;
+  - `docs/FEDERATED_LOGIN.md`.
+- Dependencias preexistentes de terceros: PyJWT 2.15.1 y Firebase JS SDK 13.1.0.
+- Sin cambios en `apps/web` ni `apps/mobile`.
+- **Asistencia:** agente Claude Code (Opus 5.5), bajo la supervisión de GiuseppePrbst.
