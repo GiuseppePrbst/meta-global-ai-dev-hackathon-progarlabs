@@ -4,7 +4,7 @@
 
 <h1 align="center">Bosque Vivo Chile</h1>
 
-<p align="center"><b>Explora la naturaleza. Descubre sus historias. Conecta con cada ecosistema.</b></p>
+<p align="center"><b>Explore Chile's national parks with grounded, multimodal Meta AI</b></p>
 
 <p align="center">
   <a href="https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs/actions/workflows/ci.yml/badge.svg?branch=main"></a>
@@ -13,6 +13,85 @@
   <img alt="SAM 3.1" src="https://img.shields.io/badge/SAM-3.1-8B5CF6">
   <img alt="Piloto Puyehue" src="https://img.shields.io/badge/piloto-PN%20Puyehue-295044">
 </p>
+
+Built during the **Meta Global AI Developer Hackathon 2026** by [ProGarLabs](https://progarlabs.com/), a technology startup from southern Chile. Startup Track, theme Build for Your World.
+
+> Explore nature with AI that knows what it knows, and what it cannot verify.
+
+**[Try the live API](https://api-bosquevivo.progarlabs.com/docs)** · **[Live status](https://api-bosquevivo.progarlabs.com/demo/status)** · **[Judge quickstart](docs/submission/JUDGE_QUICKSTART.md)** · **[Technical evidence](docs/submission/SUBMISSION_EVIDENCE.md)** · **[Versión en español](#por-qué-existe)**
+
+**Demo video:** linked in our hackathon submission; script in [docs/submission/VIDEO_SCRIPT_FINAL.md](docs/submission/VIDEO_SCRIPT_FINAL.md).
+
+## Try it
+
+No account or key. The public API uses real Meta models until 2026-11-10T05:00:00Z, for adults in permitted territories.
+
+```bash
+curl -s https://api-bosquevivo.progarlabs.com/guide/query -H "Content-Type: application/json" -d '{"question":"What trails are in Puyehue National Park? Are they open today?","adult_confirmed":true,"external_processing_confirmed":true}'
+```
+
+Examples for voice, photos and WebSocket are in [docs/PUBLIC_DEMO.md](docs/PUBLIC_DEMO.md). `/docs` is a technical API surface, not a consumer app.
+
+## What we built during the hackathon
+
+From 26-10-2026 to 04-11-2026 ([full record](docs/HACKATHON_CONTRIBUTIONS.md)):
+
+- **Knowledge Atlas:** 46 national parks, 190 reviewed trails and 20 sourced taxa, as a versioned snapshot ([#32](https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs/pull/32)).
+- **Wilo:** grounded conversation with restricted tools, plus real voice input ([#33](https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs/pull/33)).
+- **Identification:** photo suggestions with verification and abstention ([report](docs/OPEN_SET_IDENTIFICATION_REPORT.md)).
+- **Public API:** deployed behind Cloudflare with PostGIS, a spending ledger, consent, territory limits and a hard expiry ([#50](https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs/pull/50)).
+
+Meta's models, public datasets and open-source frameworks are pre-existing. ProGarLabs' business background is context, not hackathon work.
+
+## Meta models
+
+| Model | Role | Status |
+| --- | --- | --- |
+| Muse Spark 1.3 | Wilo's grounded answers with Atlas tools; photo comparison, verification and abstention | Deployed |
+| Muse Voice Transcribe 1.0 | Spanish, English and mixed voice input, with park and scientific name keywords | Deployed |
+| SAM 3.1 | Image and video segmentation research. It does not identify species | Experimental, outside the product |
+
+## Three core capabilities
+
+1. **Grounded conversation:** Wilo answers from the Atlas, shows sources and says what isn't verified, such as trail openings.
+2. **Photo suggestions:** a result is always a suggestion, even with `acceptance=accepted`. Outside the catalog, the system abstains.
+3. **Conservation-aware knowledge:** sensitive species keep evidence at park scale, with no coordinates of individuals.
+
+## Verifiable results
+
+| Area | Result | Note |
+| --- | --- | --- |
+| Atlas | 46 parks, 190 reviewed trails | 0 licensed trail geometries |
+| Voice | 79 real recordings, WER about 0.10 | One speaker |
+| Wilo end to end | 16 of 18 scenarios semantically correct | Answers about 20–37 s |
+| Identification | Wrongly accepted negatives: 25/37 to 3/37 | 56 fixed cases, weak labels. Not certified accuracy |
+| SAM 3.1 | Median mask IoU 0.79–0.83 | References made by the agent, not specialists |
+
+**Known error:** on the public route, a photo labelled *Nothofagus dombeyi* was accepted as *N. betuloides*.
+
+## Real, prototype or future
+
+| Status | What |
+| --- | --- |
+| Real and deployed | Public API, Atlas, Wilo text and voice, identification, ledger and controls |
+| Implemented, not the path shown | Official web app; Facebook Login code, with no provider configured |
+| UI prototype | Mobile identify screen: demonstration data, no model call |
+| Experimental | SAM 3.1 research; Wilo Lab test client |
+| Future work | Licensed trail geometry, specialist review, user validation |
+
+## Architecture
+
+User → interface → Cloudflare → FastAPI → Meta Model API, with knowledge tools and PostGIS → answer. Clients never receive a Meta key.
+
+## Team, licenses and next steps
+
+José Schwerter (frontend, UI/UX) and Giuseppe Proboste (GIS, ML, backend, integration), ProGarLabs SpA, Osorno, Chile. No code license has been defined yet, so a public repository doesn't mean open source. Not affiliated with CONAF. No users, partners or impact results yet.
+
+Installation is in [Quick start](#quick-start). Sources and licenses are in [Datos, licencias y fuentes](#datos-licencias-y-fuentes).
+
+---
+
+## Versión en español
 
 Bosque Vivo Chile transforma la exploración de los parques nacionales en una experiencia interactiva que conecta inteligencia artificial, biodiversidad, cartografía y aprendizaje ambiental. Lo desarrolla [ProGarLabs](https://progarlabs.com/), de Osorno, Chile, para la **Meta Global AI Developer Hackathon 2026**.
 
@@ -157,10 +236,10 @@ Para el stack completo con PostGIS, `docker compose up --build`. El modo Meta re
 - **Apertura de senderos:** no se verifica en tiempo real. Que no esté verificada no significa que esté abierto.
 - **Hongos:** las fichas son educativas. No hay identificación fiable entre especies de *Cyttaria* ni consejos de consumo.
 - **SAM:** segmenta organismos, pero no certifica la especie.
-- **Despliegue:** se ejecuta en local y en CI. **No hay un despliegue público.**
+- **Despliegue:** API pública en Cloud Run detrás de Cloudflare, con Meta real hasta 2026-11-10T05:00:00Z ([PUBLIC_DEMO](docs/PUBLIC_DEMO.md)). El frontend oficial aún no está publicado.
 - **Contenido científico:** depende de sus fuentes y aún no lo ha revisado un especialista.
 
-El guion de la demo está en [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md); el estado de la entrega, en [docs/RELEASE_READINESS_2026-11-04.md](docs/RELEASE_READINESS_2026-11-04.md).
+El estado final de la entrega está en [docs/submission/JUDGE_QUICKSTART.md](docs/submission/JUDGE_QUICKSTART.md).
 
 ## Equipo
 
