@@ -14,4 +14,4 @@ No secrets or private data. Each claim used in the README, video or form appears
 | SAM median mask IoU 0.79–0.83 | SAM 3.1 | [SAM31_EXTENDED_RESEARCH_REPORT](../SAM31_EXTENDED_RESEARCH_REPORT.md) | Report | Experimental | Agent-made references, not specialists. Don't extrapolate to nature in general |
 | Anonymous real inference works | Public API | [META_CLOUD_ACTIVATION](../META_CLOUD_ACTIVATION.md) section 9 | #50, #53 | Real calls through the public domain | Campaign closes 2026-11-10T05:00:00Z |
 | Spending and expiry controls | PostgreSQL ledger | `services/api/tests/test_public_demo.py` | #50 | Tests with real PostgreSQL and simulated provider, threads and processes | The ledger doesn't cap external billing |
-| Video results are authentic | Wilo Lab + public API | [VIDEO_SCRIPT_FINAL](VIDEO_SCRIPT_FINAL.md) | `feat/submission-package` | Recorded live 04-11-2026; shortened waits are labelled | Narration is a synthetic voice |
+| Video results are authentic | Wilo Lab + public API | [VIDEO_SCRIPT_FINAL](VIDEO_SCRIPT_FINAL.md) | `feat/submission-package` | Recorded live 04-11-2026; shortened waits are labelled | Input audio is a synthetic test voice |
