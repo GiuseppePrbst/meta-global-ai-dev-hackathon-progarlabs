@@ -1,3 +1,4 @@
+import { stripQuestionContext } from '@/api/wilo';
 import type { Species } from '@/domain/species';
 import type { DemoTraits } from '@/features/identify/demo-traits';
 import { t } from '@/i18n/es-CL';
@@ -54,5 +55,5 @@ export function questionsFor(species: Pick<Species, 'commonName' | 'scientificNa
 /** Respuesta de demostración solo para una pregunta sugerida exacta; el resto no tiene. */
 export function cannedAnswerFor(questions: readonly WiloQuestion[]): (question: string) => string | undefined {
   const byQuestion = new Map(questions.map((q) => [q.question, q.answer]));
-  return (question) => byQuestion.get(question.trim());
+  return (question) => byQuestion.get(stripQuestionContext(question).trim());
 }

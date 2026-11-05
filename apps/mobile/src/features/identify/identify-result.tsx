@@ -213,15 +213,9 @@ function WiloLine({ text, reply, first, happy }: { text: string; reply?: WiloRep
           {reply?.simulated ? <Tag label={t.identify.simulatedTag} tone="provisional" /> : null}
         </View>
         <Text variant="bodyMedium">{text}</Text>
-        {reply?.insufficientEvidence ? (
-          <Text variant="labelSmall" tone="onDemo">{t.identify.insufficientEvidence}</Text>
-        ) : null}
         {reply?.sources.length ? (
           <Text variant="labelSmall" tone="onDemo">{t.identify.sources(reply.sources.length)}</Text>
         ) : null}
-        {reply?.limitations.map((limit) => (
-          <Text key={limit} variant="labelSmall" tone="onSurfaceVariant">{limit}</Text>
-        ))}
       </View>
     </View>
   );

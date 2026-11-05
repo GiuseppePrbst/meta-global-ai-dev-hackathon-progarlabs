@@ -95,7 +95,8 @@ export const t = {
     transcriptSimulated: 'Transcripción simulada: revísala antes de enviar.',
     transcriptReview: 'Revisa la transcripción antes de enviar.',
     simulatedTag: 'Respuesta de prueba',
-    insufficientEvidence: 'Wilo no tiene evidencia suficiente para responder esto.',
+    queryContext: (common: string, scientific: string) =>
+      `la persona fotografió y pregunta por ${common} (${scientific}). Responde sobre esta especie.`,
     sources: (n: number) => plural(n, 'fuente', 'fuentes'),
     retry: 'Reintentar',
     unavailable: 'Wilo no está disponible ahora. Las fichas de especies siguen disponibles.',
