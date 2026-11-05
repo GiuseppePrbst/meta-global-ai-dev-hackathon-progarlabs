@@ -5,7 +5,7 @@ Status on 04-11-2026. Deadline: 21:00 EST, 23:00 Chile. Target: 22:45 Chile.
 | Item | Status | Owner | Next action | Evidence to close |
 | --- | --- | --- | --- | --- |
 | Public API working | Done | Giuseppe | None | `/demo/status` active |
-| Video recorded, 2:32 | Done | Team | None | `ffprobe`: 151.7 s, 1920×1080, H.264 |
+| Video recorded, 2:54.7 | Done | Team | None | `ffprobe`: 174.7 s, 1920×1080, 30 fps, H.264, AAC |
 | Video uploaded | Pending | Representative | Upload to YouTube as Unlisted | Plays in a logged-out window |
 | README and documents | Pending merge | Giuseppe | Review and merge the submission PR | README visible on GitHub |
 | Video link in README and form | Pending | Giuseppe | Add the link after upload | Link works logged out |

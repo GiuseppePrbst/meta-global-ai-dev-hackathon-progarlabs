@@ -1,18 +1,22 @@
 # Final video script
 
-Duration 2:32, 1920×1080, H.264 and AAC, English narration (synthetic Windows voice) and burned-in English subtitles. Recorded on 04-11-2026 with Playwright against the public API; José's web and Wilo Lab ran locally. No music.
+`bosque-vivo-hackathon-final.mp4`: 2:54.7, 1920×1080, 30 fps, H.264 and AAC, burned-in English subtitles. Real software footage is about 97 % of the running time; the only graphic is the 5-second end card.
 
-| Time | Narration | Screen and capture | Figures |
+Narration uses synthetic Windows voices, disclosed on the end card, because human recordings weren't available. Waits are cut and labelled "Real response · waiting time shortened". No music.
+
+| Start | Block | Narration | Footage |
 | --- | --- | --- | --- |
-| 0:00 | Chile has extraordinary biodiversity, but reliable information about parks and species is scattered across many sources. | Title card over a Puyehue photo (`card-problem`) | — |
-| 0:09 | Bosque Vivo brings national park knowledge, biodiversity and grounded AI into one field companion. This is our web atlas, connected to our public API. | Official web, home and Atlas (`web.webm`) | — |
-| 0:21 | Here is a real session on our public API, using a test client without login. A short notice and consent appear first. Wilo listens in Spanish, and Muse Voice Transcribe turns speech into editable text. | Wilo Lab status, consents, recording, transcript (`status.webm`, `wilo.webm`). Audio is a synthetic test voice fed as microphone input | — |
-| 0:36 | We refine the question, and ask about Puyehue trails and whether they are open today. Muse Spark calls restricted tools over our versioned Knowledge Atlas. It names the trails from the official park page, and says their opening is not verified. It does not guess. The wait here is shortened. | Real answer (`wilo.webm`); on-screen note that about 18 s were cut | — |
-| 0:57 | Every answer shows its sources and the knowledge version. The atlas lists documented trails, without pretending to offer official navigation. | Sources and Atlas panel (`wilo.webm`) | — |
-| 1:07 | Now a licensed photo. Muse Spark compares visible traits against eight eligible trees, then a verification step checks the evidence. Here it offers ulmo only as an exploratory candidate, says the evidence is insufficient, and asks for a photo of the leaf underside. | Ulmo photo, real result (`identify.webm`); note that about 13 s were cut | 8 trees |
-| 1:22 | A fungus is outside the catalog, so the system abstains. In our fixed test of fifty six cases, wrongly accepted negatives fell from twenty five of thirty seven to three of thirty seven. Mistakes still happen, so people verify. | Fungus photo, real result (`identify.webm`); note that about 9 s were cut | 56 cases, 25/37, 3/37: [report](../OPEN_SET_IDENTIFICATION_REPORT.md) |
-| 1:39 | Knowledge stays tied to its sources. This woodpecker is flagged as location sensitive. Its evidence is at park scale, and Wilo gives no coordinates of individuals. The same care applies to trail openings, which are never inferred. | Real `GET /taxa/campephilus-magellanicus` response, selected fields (`taxon.webm`) | — |
-| 1:51 | The experience reaches a FastAPI backend through Cloudflare. Meta models work with a grounded atlas and PostGIS, and no client ever receives a Meta key. Public access has spending limits and an automatic end date. The atlas covers forty six national parks and one hundred ninety reviewed trails, and sixteen of eighteen voice scenarios were semantically correct. | Architecture card (`card-arch`) | 46, 190, 16/18: [evidence](SUBMISSION_EVIDENCE.md) |
-| 2:22 | Built in southern Chile, Bosque Vivo makes environmental knowledge easier to discover, while keeping scientific uncertainty visible. | End card with credits (`card-end`) | — |
+| 0:00 | Intro | Hi, we're ProGarLabs from southern Chile, and this is Bosque Vivo. | Wilo Lab with live `/demo/status`, recorded 04-11-2026 |
+| 0:07 | Mobile | We built a new way to explore Chile's biodiversity. In Bosque Vivo, visitors discover national parks, explore species, and learn about the ecosystems around them. This is our mobile experience, with Wilo as your nature companion. | Real phone recording of WiloQuest, 04-11-2026, labelled "Mobile UI prototype". The identify screen is excluded |
+| 0:35 | Wilo | Let's ask Wilo a real question. Muse Voice Transcribe turns speech into text, and we refine it, asking about Puyehue National Park. Muse Spark then uses our Knowledge Atlas to find grounded information about the park. Here are the real results. Wilo names documented trails, shows the sources, and explains that today's opening conditions are not verified. Instead of guessing, it makes uncertainty visible. | Wilo Lab against the public API: status, consent, recording, transcript, edited question, Muse Spark answer, sources. Input audio is a synthetic test voice. About 14 s of waiting cut |
+| 1:13 | SAM 3.1 | We also explored Meta SAM 3.1 for visual segmentation. These are real results from our research lab: the model isolates organisms in images and tracks them across video frames. This is segmentation, not automatic species identification. Combined with other models, it opens new possibilities for studying biodiversity. | Originals, then saved results of earlier real runs, checked against `provenance.json`. Labelled as real results and experimental research. Not a live call |
+| 1:42 | Identification | With Muse Spark, Bosque Vivo can also analyze photographs and suggest possible tree species. But an AI suggestion is not a verified identification. When the evidence is insufficient, the system can abstain and ask for another photograph. Our goal is to help people observe nature more carefully, not to replace scientific expertise. | Wilo Lab `/identify` with licensed ulmo and *Cyttaria* photos. Real results: insufficient evidence, and probably outside the catalog. Waits shortened |
+| 2:15 | Atlas | Behind the experience, we've built a public API connecting Meta models with a versioned environmental atlas, geographic data and reliable sources. Our current atlas includes forty-six national parks and one hundred ninety reviewed trails. We also developed evaluations, privacy controls and safeguards for real-world use. | Wilo Lab Atlas panel, official web Atlas, real `GET /taxa` response |
+| 2:41 | Close | We believe exploring nature should be accessible, engaging and responsible. Built in southern Chile, this is Bosque Vivo. Technology rooted in nature. | Mobile app, then end card with credits |
 
-**Photos:** Wikimedia Commons. Puyehue forest by Natalia Reyes Escobar (CC BY-SA 4.0), ulmo by Lin linao (CC BY-SA 4.0), *Cyttaria* by Robert Motecinos Holda (CC0).
+**Figures:** see [SUBMISSION_EVIDENCE.md](SUBMISSION_EVIDENCE.md).
+
+**Media rights:**
+- Identify photos: Lin linao (CC BY-SA 4.0), Robert Motecinos Holda (CC0).
+- SAM media: credited in each clip footer; sources are CC BY, CC BY 2.0, CC BY 4.0, CC BY-SA 4.0 and CC0.
+- CC BY-SA sources mean the masks over them are derivatives under the same license terms.
