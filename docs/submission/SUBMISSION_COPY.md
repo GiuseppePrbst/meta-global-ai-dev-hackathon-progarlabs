@@ -15,7 +15,7 @@ The survey answers are the team's own opinions, so they aren't written here. Not
 | GitHub URL | <https://github.com/GiuseppePrbst/meta-global-ai-dev-hackathon-progarlabs> |
 | Demo URL | <https://api-bosquevivo.progarlabs.com/docs> (public API; state it isn't a consumer app) |
 | Status URL | <https://api-bosquevivo.progarlabs.com/demo/status> |
-| Video URL | Pending upload by the representative |
+| Video URL | https://youtu.be/sVu7jf1nGQI |
 | Team | José Schwerter (frontend, UI/UX), Giuseppe Proboste (GIS, ML, backend, integration). ProGarLabs SpA, Osorno, Chile |
 | Representative | To be confirmed by the team; must be the admitted, authorized person |
 
