@@ -1,6 +1,10 @@
 # Submission copy
 
-Ready to paste. **The portal requires a login, so its real fields have not been checked yet.** Match these texts to the fields that actually appear. Do not invent answers for any other field.
+Ready to paste, in English.
+
+**Fields verified in the real form on 04-11-2026:** team name, team members, track, problem statement, Most Viral X link (optional), project description (3,000 characters), public GitHub repository, 3-minute demo video, use of Meta products (3,000), why Meta's models matter (3,000), partner feedback (150, optional), how likely to build with Meta Model API, overall opinion, publicity consent checkbox, and optional survey questions.
+
+The survey answers are the team's own opinions, so they aren't written here. Nothing is posted on X.
 
 | Field | Value |
 | --- | --- |
@@ -36,6 +40,14 @@ Between 26-10-2026 and 04-11-2026 we built a versioned Knowledge Atlas covering 
 **Short:** Muse Spark 1.3 powers Wilo's grounded answers and photo verification. Muse Voice Transcribe 1.0 handles voice. SAM 3.1 is experimental research.
 
 **Long:** Muse Spark 1.3 interprets questions, calls restricted read-only tools over the Knowledge Atlas, and builds answers whose claims are checked against the sources consulted. It also compares photos against eight eligible tree species, followed by a verification step that can abstain. Muse Voice Transcribe 1.0 provides Spanish, English and mixed voice input, helped by Atlas keywords for place and scientific names. SAM 3.1 was evaluated for image and video segmentation as experimental research; it does not identify species and isn't part of the production flow. All calls go through our backend, so clients never receive a Meta key.
+
+## Why Meta's models matter
+
+Meta's models turn a static knowledge base into a companion people can talk to in their own language. Muse Spark's tool calling is central: instead of answering from memory, it decides which Atlas tools to call, so facts about parks and species come from versioned, sourced data. That is what lets Wilo name the trails on an official park page and still say that today's opening is not verified.
+
+Multimodal input matters in the field, where people ask out loud and point a camera at a tree. Muse Voice Transcribe handles Spanish, English and mixed questions, including Chilean place names. Muse Spark reads visible traits in a photo, and a verification step reduced wrongly accepted negatives from 25/37 to 3/37 in a fixed test of 56 cases with weak labels.
+
+Meta's models make the experience possible, and our system around them keeps it honest: tools, sources, abstention, consent and spending limits.
 
 ## Technical innovation
 

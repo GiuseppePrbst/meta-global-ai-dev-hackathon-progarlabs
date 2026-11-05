@@ -9,7 +9,8 @@ Status on 04-11-2026. Deadline: 21:00 EST, 23:00 Chile. Target: 22:45 Chile.
 | Video uploaded | Pending | Representative | Upload to YouTube as Unlisted | Plays in a logged-out window |
 | README and documents | Pending merge | Giuseppe | Review and merge the submission PR | README visible on GitHub |
 | Video link in README and form | Pending | Giuseppe | Add the link after upload | Link works logged out |
-| Form fields checked | Blocked | Representative | Sign in to Cerebral Valley | Fields compared with SUBMISSION_COPY |
+| Form text fields | Done | Agent | Filled in the signed-in form, not submitted | Team, track, theme, description, repository and Meta answers entered |
+| Survey, consent, members | Pending | Representative | Answer the required opinions, accept the consent, add José if admitted | Form validates |
 | Representative admitted | Pending | Team | Confirm in the portal | Name shown in the portal |
 | X post or other required links | Unknown | Representative | Check the form; nothing posted without authorization | Form reviewed |
 | Submission sent | Pending | Representative | Review and press submit | Portal confirmation saved |
