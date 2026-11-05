@@ -75,7 +75,7 @@ Meta's models, public datasets and open-source frameworks are pre-existing. ProG
 | --- | --- |
 | Real and deployed | Public API, Atlas, Wilo text and voice, identification, ledger and controls |
 | Implemented, not the path shown | Official web app; Facebook Login code, with no provider configured |
-| UI prototype | Mobile identify screen: demonstration data, no model call |
+| Mobile app | Prototype. Client code for the API, Wilo, identification and consent is merged (#56), but calls are simulated by default (`EXPO_PUBLIC_WILO_LIVE=false`, `EXPO_PUBLIC_IDENTIFY_LIVE=false`). No build has been verified against the public API |
 | Experimental | SAM 3.1 research; Wilo Lab test client |
 | Future work | Licensed trail geometry, specialist review, user validation |
 
