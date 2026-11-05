@@ -38,6 +38,7 @@ function isAbort(error: unknown): boolean {
 export function useWiloChat(species: Species) {
   const demo = useMemo(() => getDemoTraits(species.id), [species.id]);
   const questions = useMemo(() => questionsFor(species, demo), [species, demo]);
+  const speciesContext = t.identify.queryContext(species.commonName, species.scientificName);
   const send = useMemo(() => wiloTransport(cannedAnswerFor(questions)), [questions]);
   const consents = wiloConsentStore.useValue();
   const recorder = useVoiceRecorder();
@@ -60,7 +61,7 @@ export function useWiloChat(species: Species) {
 
   const query = useMutation({
     mutationFn: ({ question, given, signal }: { question: string; given: WiloConsents; signal: AbortSignal }) =>
-      postGuideQuery(send, question, given, signal),
+      postGuideQuery(send, question, given, signal, speciesContext),
   });
   const transcription = useMutation({
     mutationFn: ({ audio, given, signal }: { audio: RecordedAudio; given: WiloConsents; signal: AbortSignal }) =>

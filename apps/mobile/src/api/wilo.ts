@@ -36,10 +36,30 @@ export function wiloBaseUrl(): string {
   return WILO_LIVE ? apiBaseUrl() : 'https://wilo-mock.invalid';
 }
 
+const MAX_QUESTION = 2000;
+const QUESTION_MARKER = '\nPregunta: ';
+
+/**
+ * Antepone el contexto (de qué especie se habla) a la pregunta. `GuideQuery` no tiene un campo para
+ * eso (extra="forbid"), así que va en el texto; la burbuja de la persona muestra solo su pregunta.
+ * Se recorta la pregunta para no pasar del máximo de 2000 caracteres del backend.
+ */
+export function questionWithContext(question: string, context?: string): string {
+  if (!context) return question;
+  const prefix = `Contexto: ${context}${QUESTION_MARKER}`;
+  return prefix + question.slice(0, Math.max(0, MAX_QUESTION - prefix.length));
+}
+
+/** La pregunta de la persona sin el contexto antepuesto por `questionWithContext`. */
+export function stripQuestionContext(text: string): string {
+  const at = text.indexOf(QUESTION_MARKER);
+  return text.startsWith('Contexto: ') && at >= 0 ? text.slice(at + QUESTION_MARKER.length) : text;
+}
+
 /** Body exacto de POST /guide/query. Exportado para las pruebas. */
-export function guideQueryBody(question: string, consents: WiloConsents): GuideQuery {
+export function guideQueryBody(question: string, consents: WiloConsents, context?: string): GuideQuery {
   return {
-    question,
+    question: questionWithContext(question, context),
     adult_confirmed: consents.adult,
     external_processing_confirmed: consents.externalProcessing,
     capture_id: null,
@@ -51,10 +71,11 @@ export async function postGuideQuery(
   question: string,
   consents: WiloConsents,
   signal?: AbortSignal,
+  context?: string,
 ): Promise<WiloReply> {
   const answer = await requestJson<GuideAnswer>(wiloBaseUrl(), '/guide/query', {
     method: 'POST',
-    body: guideQueryBody(question, consents),
+    body: guideQueryBody(question, consents, context),
     signal,
     timeoutMs: AI_TIMEOUT_MS,
     fetchImpl: send,

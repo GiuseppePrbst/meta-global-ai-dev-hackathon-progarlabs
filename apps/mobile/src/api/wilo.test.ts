@@ -1,7 +1,9 @@
 import { describe, expect, it, jest } from '@jest/globals';
 
 import type { FetchLike } from '@/api/client';
-import { guideQueryBody, postGuideQuery, toWiloReply, transcribeForm, WILO_LIVE } from '@/api/wilo';
+import {
+  guideQueryBody, postGuideQuery, questionWithContext, stripQuestionContext, toWiloReply, transcribeForm, WILO_LIVE,
+} from '@/api/wilo';
 import type { WiloConsents } from '@/domain/wilo';
 
 // Datos SINTÉTICOS; el transporte es un espía, nada sale a la red.
@@ -21,6 +23,13 @@ describe('POST /guide/query', () => {
       external_processing_confirmed: true,
       capture_id: null,
     });
+  });
+
+  it('antepone el contexto de la especie sin pasar de 2000 caracteres', () => {
+    const body = guideQueryBody('¿Pregunta sintética?', given, 'Especie sintética');
+    expect(body.question).toBe('Contexto: Especie sintética\nPregunta: ¿Pregunta sintética?');
+    expect(stripQuestionContext(body.question)).toBe('¿Pregunta sintética?');
+    expect(questionWithContext('x'.repeat(2000), 'Especie sintética')).toHaveLength(2000);
   });
 
   it('hace POST a /guide/query por el transporte dado y convierte la respuesta', async () => {
