@@ -60,24 +60,46 @@ Esta es una respuesta real, generada el 03-11-2026 a partir de audio real. Aquí
 
 ## App móvil
 
-El cliente de la demo es una app Expo / React Native pensada para Android, sin cuenta. Tiene cinco pestañas: **Identificar**, **Mapa**, **Especies**, **Diario** y **Perfil**.
+El cliente de la demo es una app Expo / React Native pensada para Android, que también corre en iOS y en la web. No pide cuenta: el perfil y el diario viven en el teléfono. Al abrirla, Wilo presenta la app y luego quedan cinco pestañas.
 
 <table>
   <tr>
     <td align="center" width="25%"><img src="docs/assets/mobile/onboarding.jpg" width="180" alt="Bienvenida: Wilo, un huillín ilustrado, se presenta como guía"></td>
     <td align="center" width="25%"><img src="docs/assets/mobile/identify-wilo.jpg" width="180" alt="Identificar: sugerencia «Podría ser Coigüe» y chat con Wilo sobre la especie"></td>
     <td align="center" width="25%"><img src="docs/assets/mobile/atlas.jpg" width="180" alt="Mapa: ficha del Parque Nacional Puyehue con hectáreas, sectores y aviso de apertura no verificada"></td>
-    <td align="center" width="25%"><img src="docs/assets/mobile/journal.jpg" width="180" alt="Diario: guía de campo con especies descubiertas e insignias"></td>
+    <td align="center" width="25%"><img src="docs/assets/mobile/species.jpg" width="180" alt="Especies: catálogo con fotos de referencia, familia y rasgos, rotulado como provisional"></td>
   </tr>
   <tr>
     <td align="center"><sub><b>Wilo te recibe</b><br>presentación del guía</sub></td>
-    <td align="center"><sub><b>Identifica y pregunta</b><br>sugerencia, no veredicto; chat por voz o texto</sub></td>
-    <td align="center"><sub><b>Explora el parque</b><br>46 parques CONAF, avisos y fotos con licencia</sub></td>
-    <td align="center"><sub><b>Tu diario</b><br>guía de campo, senderos e insignias</sub></td>
+    <td align="center"><sub><b>Identifica y pregunta</b><br>sugerencia, no veredicto</sub></td>
+    <td align="center"><sub><b>Explora el parque</b><br>ficha, avisos y fotos con licencia</sub></td>
+    <td align="center"><sub><b>Consulta especies</b><br>catálogo con filtros y búsqueda</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/assets/mobile/journal.jpg" width="180" alt="Diario: estadísticas, avance de la guía de campo y especies descubiertas"></td>
+    <td align="center"><img src="docs/assets/mobile/trails.jpg" width="180" alt="Diario, Senderos: kilómetros acumulados y salidas al sendero de demostración"></td>
+    <td align="center"><img src="docs/assets/mobile/badges.jpg" width="180" alt="Diario, Insignias: próxima insignia y medallas ganadas"></td>
+    <td align="center"><img src="docs/assets/mobile/profile.jpg" width="180" alt="Perfil: nivel Bronce, próximos niveles y mensaje de Wilo"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub><b>Tu guía de campo</b><br>lo que ya descubriste</sub></td>
+    <td align="center"><sub><b>Tus recorridos</b><br>kilómetros y salidas</sub></td>
+    <td align="center"><sub><b>Insignias</b><br>metas de la guía y los senderos</sub></td>
+    <td align="center"><sub><b>Tu perfil</b><br>niveles e historial</sub></td>
   </tr>
 </table>
 
-<sub>Capturas del build web en modo demostración (sin llamadas a Meta), 04-11-2026. La foto del Coigüe es una referencia CC0 de Wikimedia Commons, no tomada en Puyehue; los datos del Diario son de demostración. Más detalle en [apps/mobile/docs](apps/mobile/docs/README.md).</sub>
+| Pestaña | Qué hace |
+| --- | --- |
+| **Identificar** | Fotografía hojas o corteza, o elige una foto de la galería. Antes del primer envío, la persona confirma que es mayor de 18 años, que acepta el procesamiento en Meta Model API y que tiene derechos sobre la foto. Muse Spark sugiere una especie del catálogo («Podría ser…») o se abstiene; nunca la presenta como identificación verificada. Después, **Wilo** conversa sobre esa especie por texto o por voz, con preguntas sugeridas, y avisa cuando no tiene evidencia suficiente. La app no guarda la foto. |
+| **Mapa** | Mapa de parques nacionales con imagen satelital u OpenStreetMap. El Parque Nacional Puyehue tiene ficha con superficie, sectores, avisos de visita y fotos con licencia, además de un sendero de demostración con especies y puntos de interés. Hay una lista textual equivalente al mapa. El límite del parque es aproximado, la apertura no está verificada y el trazado del sendero es sintético. |
+| **Especies** | Catálogo de ocho árboles nativos con nombre común y científico, familia, rasgos para distinguirlos, estado de conservación y fuentes. Permite buscar, filtrar por familia y guardar especies. Las fichas se rotulan como *provisionales* hasta que las revise un especialista. |
+| **Diario** | Tres vistas. **Descubrimientos**: la guía de campo, con el avance hacia completar el catálogo. **Senderos**: los recorridos y kilómetros acumulados. **Insignias**: las metas ganadas y la siguiente. |
+| **Perfil** | Perfil local sin cuenta: nombre visible, avatar, nivel (Brote, Bronce, Plata, Oro) e historial de actividad derivados del Diario. Desde los ajustes se cambian el tema claro u oscuro y se consulta la privacidad. |
+
+Wilo e Identificar llaman a la API pública solo con `EXPO_PUBLIC_WILO_LIVE=true` o `EXPO_PUBLIC_IDENTIFY_LIVE=true`. Sin esas variables, la app simula las respuestas en el teléfono y lo indica en pantalla.
+
+<sub>Capturas del build web en modo demostración (sin llamadas a Meta), 04-11-2026. La foto del Coigüe es una referencia CC0 de Wikimedia Commons, no tomada en Puyehue. El Diario y el Perfil todavía usan datos de demostración: aún no se alimentan desde Identificar. Arquitectura, privacidad y distribución del APK en [apps/mobile/docs](apps/mobile/docs/README.md).</sub>
 
 ## Arquitectura
 
