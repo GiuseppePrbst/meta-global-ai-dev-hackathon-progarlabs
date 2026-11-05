@@ -20,7 +20,7 @@ Built during the **Meta Global AI Developer Hackathon 2026** by [ProGarLabs](htt
 
 **[Try the live API](https://api-bosquevivo.progarlabs.com/docs)** · **[Live status](https://api-bosquevivo.progarlabs.com/demo/status)** · **[Judge quickstart](docs/submission/JUDGE_QUICKSTART.md)** · **[Technical evidence](docs/submission/SUBMISSION_EVIDENCE.md)** · **[Versión en español](#por-qué-existe)**
 
-**Demo video:** linked in our hackathon submission; script in [docs/submission/VIDEO_SCRIPT_FINAL.md](docs/submission/VIDEO_SCRIPT_FINAL.md).
+**[Watch the demo video](https://youtu.be/sVu7jf1nGQI)** (2:38). Script in [docs/submission/VIDEO_SCRIPT_FINAL.md](docs/submission/VIDEO_SCRIPT_FINAL.md).
 
 ## Try it
 
