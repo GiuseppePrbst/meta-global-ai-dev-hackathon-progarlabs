@@ -2,12 +2,17 @@ import type { Species } from '@/domain/species';
 import type { DemoTraits } from '@/features/identify/demo-traits';
 import { t } from '@/i18n/es-CL';
 
-// DEMO: no hay identificación real. Tras la foto se elige una especie del catálogo que tenga foto de
-// referencia y Wilo responde con rasgos de demostración (demo-traits.ts, sin validación botánica).
-// Al conectar la identificación, `pickDemoSpecies` se reemplaza por la respuesta del servicio y las
-// respuestas deben salir de fuentes registradas, no del mock.
+// DEMO: la identificación (POST /identify) y Wilo (POST /guide/query) están simulados por defecto.
+// `pickDemoSpecies` elige la «candidata» del mock de identificación (use-identify.ts) y las respuestas
+// de demostración de las preguntas (demo-traits.ts, sin validación botánica) solo las usa el mock de
+// Wilo. Con la API real, la especie y las respuestas vienen del servicio.
 
-export type WiloQuestion = { id: string; question: string; answer: string };
+/**
+ * Pregunta sugerida. `label` es el texto corto del chip; `question` es lo que se envía a
+ * POST /guide/query, con el nombre de la especie, porque la API no recibe contexto de la foto
+ * (`capture_id: null`). `answer` solo lo usa el mock (texto de demostración).
+ */
+export type WiloQuestion = { id: string; label: string; question: string; answer: string };
 
 /**
  * Especie a mostrar tras la captura: al azar entre las que tienen foto, sin repetir la anterior
@@ -26,19 +31,28 @@ export function pickDemoSpecies(
 }
 
 /** Tres preguntas sugeridas con su respuesta, según el grupo; sin rasgos de demostración, ninguna. */
-export function questionsFor(demo: DemoTraits | undefined): WiloQuestion[] {
+export function questionsFor(species: Pick<Species, 'commonName' | 'scientificName'>, demo: DemoTraits | undefined): WiloQuestion[] {
   const q = t.identify.questions;
   if (!demo) return [];
+  const name = { common: species.commonName, scientific: species.scientificName };
+  const make = (id: string, label: string, ask: (n: typeof name) => string, answer: string): WiloQuestion =>
+    ({ id, label, question: ask(name), answer });
   if (demo.group === 'tree') {
     return [
-      { id: 'leaf', question: q.leaf, answer: q.leafAnswer(demo.traits.leaf) },
-      { id: 'bark', question: q.bark, answer: q.barkAnswer(demo.traits.bark) },
-      { id: 'where', question: q.where, answer: q.whereAnswer(demo.traits.whereToLook) },
+      make('leaf', q.leaf, q.leafFull, q.leafAnswer(demo.traits.leaf)),
+      make('bark', q.bark, q.barkFull, q.barkAnswer(demo.traits.bark)),
+      make('where', q.where, q.whereFull, q.whereAnswer(demo.traits.whereToLook)),
     ];
   }
   return [
-    { id: 'body', question: q.body, answer: q.bodyAnswer(demo.traits.fruitingBody) },
-    { id: 'substrate', question: q.substrate, answer: q.substrateAnswer(demo.traits.substrate) },
-    { id: 'season', question: q.season, answer: q.seasonAnswer(demo.traits.habit) },
+    make('body', q.body, q.bodyFull, q.bodyAnswer(demo.traits.fruitingBody)),
+    make('substrate', q.substrate, q.substrateFull, q.substrateAnswer(demo.traits.substrate)),
+    make('season', q.season, q.seasonFull, q.seasonAnswer(demo.traits.habit)),
   ];
+}
+
+/** Respuesta de demostración solo para una pregunta sugerida exacta; el resto no tiene. */
+export function cannedAnswerFor(questions: readonly WiloQuestion[]): (question: string) => string | undefined {
+  const byQuestion = new Map(questions.map((q) => [q.question, q.answer]));
+  return (question) => byQuestion.get(question.trim());
 }

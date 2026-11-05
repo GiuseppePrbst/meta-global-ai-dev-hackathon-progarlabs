@@ -9,6 +9,8 @@ export type MemoryStore<T> = {
   set: (update: (current: T) => T) => void;
   /** Valor actual como hook de React. */
   useValue: () => T;
+  /** Valor actual fuera del render (p. ej. en un callback asíncrono). */
+  get: () => T;
 };
 
 export function createMemoryStore<T>(initial: T): MemoryStore<T> {
@@ -29,5 +31,6 @@ export function createMemoryStore<T>(initial: T): MemoryStore<T> {
       listeners.forEach((listener) => listener());
     },
     useValue: () => useSyncExternalStore(subscribe, get, get),
+    get,
   };
 }
