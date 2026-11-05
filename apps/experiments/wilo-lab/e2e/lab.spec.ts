@@ -50,7 +50,7 @@ test("inicio diferencia los dos modulos y Wilo responde en mock con historial", 
   await stubAtlas(page);
   await page.route("**/guide/query", (r) => r.fulfill({ json: mockAnswer }));
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "Dos capacidades reales, un solo laboratorio." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "knows what it cannot verify" })).toBeVisible();
   await expect(page.getByRole("button", { name: /MODULO A Habla con Wilo/ })).toBeVisible();
   await expect(page.getByRole("button", { name: /MODULO B Explora una especie/ })).toBeVisible();
   await page.getByRole("button", { name: "Habla con Wilo", exact: true }).click();
@@ -87,6 +87,7 @@ test("especies: el mock se abstiene y nunca inventa candidatos ni puntajes", asy
   });
   await page.getByLabel("Soy mayor de 18 anos.").check();
   await page.getByLabel(/Tengo derecho a usar esta imagen/).check();
+  await page.getByLabel(/envie esta imagen a Meta/).check();
   await analyze.click();
   await expect(page.getByLabel("Resultado del reconocimiento")).toContainText("sin inferencia");
   await expect(page.getByLabel("Resultado del reconocimiento")).toContainText("Modo mock: sin inferencia real");

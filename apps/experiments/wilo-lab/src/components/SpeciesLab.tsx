@@ -11,6 +11,7 @@ export function SpeciesLab({ token = "" }: { token?: string }) {
   const [preview, setPreview] = useState("");
   const [adult, setAdult] = useState(false);
   const [rights, setRights] = useState(false);
+  const [external, setExternal] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<Identification | null>(null);
@@ -29,7 +30,7 @@ export function SpeciesLab({ token = "" }: { token?: string }) {
 
   async function analyze(event: React.FormEvent) {
     event.preventDefault();
-    if (!file || !adult || !rights) return;
+    if (!file || !adult || !rights || !external) return;
     setBusy(true); setError(""); setResult(null);
     const c = new AbortController(); abortRef.current = c;
     try {
@@ -83,9 +84,10 @@ export function SpeciesLab({ token = "" }: { token?: string }) {
           <figcaption className="small">{file?.name} · {file ? (file.size / 1024 / 1024).toFixed(2) : "0"} MiB</figcaption></figure>}
         <label className="check"><input type="checkbox" checked={adult} onChange={(e) => setAdult(e.target.checked)} /> Soy mayor de 18 anos.</label>
         <label className="check"><input type="checkbox" checked={rights} onChange={(e) => setRights(e.target.checked)} /> Tengo derecho a usar esta imagen; sin personas ni datos restringidos.</label>
+        <label className="check"><input type="checkbox" checked={external} onChange={(e) => setExternal(e.target.checked)} /> Acepto que el backend envie esta imagen a Meta.</label>
         <label className="check"><input type="checkbox" checked={demoMode} disabled={!token.trim()} onChange={(e) => setDemoMode(e.target.checked)} /> Backend en SERVICE_MODE=demo: enviar mi token (la reserva queda en el ledger por identidad).</label>
         <div className="row">
-          <button className="btn" type="submit" disabled={!file || !adult || !rights || busy}>{busy ? "Analizando…" : "Analizar fotografia"}</button>
+          <button className="btn" type="submit" disabled={!file || !adult || !rights || !external || busy}>{busy ? "Analizando…" : "Analizar fotografia"}</button>
           <button className="btn alt" type="button" onClick={reset}>Probar con otra imagen</button>
           {busy && <button className="btn alt" type="button" onClick={() => abortRef.current?.abort()}>Cancelar analisis</button>}
         </div>
@@ -96,7 +98,7 @@ export function SpeciesLab({ token = "" }: { token?: string }) {
         <article aria-label="Resultado del reconocimiento">
           <p><span className="tag">{result.provider === "mock" ? "Modo mock: sin inferencia real" : `Meta · ${result.model ?? ""}`}</span>{" "}
             <span className="tag">{assessmentLabel(result.catalog_assessment)}</span>{" "}
-            <span className="tag">{result.acceptance === "accepted" ? `Aceptada para presentacion (no verificada): ${result.accepted_species_id}` : "Sin especie aceptada"}</span></p>
+            <span className="tag">{result.acceptance === "accepted" ? `Sugerencia, no verificada: ${result.accepted_species_id}` : "Sin especie aceptada"}</span></p>
           <p role="status">{result.message}</p>
           {candidateList(result.candidates, "Especies candidatas")}
           {candidateList(result.exploratory_candidates, "Candidatas exploratorias (no aceptadas)")}

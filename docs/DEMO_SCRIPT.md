@@ -1,5 +1,7 @@
 # Guion de demo de tres minutos
 
+> **Documento histórico.** Puede describir un estado anterior. El estado final está en [submission/JUDGE_QUICKSTART.md](submission/JUDGE_QUICKSTART.md).
+
 ## Guion vigente (04-11-2026)
 
 Solo usa capacidades presentes en `main`. Wilo necesita el backend en modo Meta, con el ledger y un token de demo. Si se presenta en mock, decir que es mock: la respuesta trae `status: "mock"`.

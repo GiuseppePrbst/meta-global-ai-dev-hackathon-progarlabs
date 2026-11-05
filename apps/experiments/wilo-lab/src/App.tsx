@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { DemoStatus } from "./components/DemoStatus";
 import { FederatedLogin } from "./components/FederatedLogin";
 import { SessionPanel } from "./components/SessionPanel";
 import { SpeciesLab } from "./components/SpeciesLab";
@@ -26,7 +27,7 @@ export default function App() {
   return (
     <div className="shell">
       <header className="topbar">
-        <div className="brand"><span className="mark">BV</span><span>Wilo Lab<small>LABORATORIO EXPERIMENTAL · NO ES EL FRONTEND OFICIAL</small></span></div>
+        <div className="brand"><span className="mark">BV</span><span>Bosque Vivo · Wilo Lab<small>EXPERIMENTAL DEMO CLIENT · REAL META AI · NOT THE OFFICIAL APP</small></span></div>
         <nav aria-label="Modulos del laboratorio">
           <button type="button" className={view === "inicio" ? "nav on" : "nav"} onClick={() => setView("inicio")}>Inicio</button>
           <button type="button" className={view === "wilo" ? "nav on" : "nav"} onClick={() => setView("wilo")}>Habla con Wilo</button>
@@ -38,14 +39,16 @@ export default function App() {
           <>
             <section className="hero">
               <p className="kicker">BOSQUE VIVO CHILE · LABORATORIO</p>
-              <h1>Dos capacidades reales, un solo laboratorio.</h1>
+              <h1>Explore Chile's parks with AI that knows what it cannot verify.</h1>
               <p>App independiente del frontend oficial: conversa con Wilo por voz o texto y prueba el reconocimiento
                 visual de especies contra las APIs reales. En modo mock todo se etiqueta como mock.</p>
+              <DemoStatus />
+              <p className="small">Sesion opcional, solo para evaluadores con invitacion:</p>
               <SessionPanel token={token} onToken={(value) => saveToken(value, remember)} />
               <FederatedLogin token={token} onToken={(value) => saveToken(value, remember)} />
               <label className="token">Token del backend: sesion temporal bvs_ (nunca la clave Meta)
                 <input type="password" autoComplete="off" value={token} onChange={(e) => saveToken(e.target.value, remember)}
-                  placeholder="Requerido por /guide/* en la API" aria-label="Token demo del backend" />
+                  placeholder="Opcional mientras la demo publica este activa" aria-label="Token demo del backend" />
               </label>
               <label className="check"><input type="checkbox" checked={remember} onChange={(e) => saveToken(token, e.target.checked)} /> Recordar solo en esta sesion</label>
             </section>

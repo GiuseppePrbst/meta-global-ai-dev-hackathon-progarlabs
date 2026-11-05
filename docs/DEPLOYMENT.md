@@ -1,5 +1,7 @@
 # Ejecución y despliegue
 
+> **Documento histórico.** Puede describir un estado anterior. El estado final está en [submission/JUDGE_QUICKSTART.md](submission/JUDGE_QUICKSTART.md).
+
 ## Estado vigente (04-11-2026)
 
 - **No hay despliegue público.** Funciona en desarrollo local, con Docker Compose en loopback y en CI.
