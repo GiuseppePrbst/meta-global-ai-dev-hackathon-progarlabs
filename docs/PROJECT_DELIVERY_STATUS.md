@@ -1,5 +1,7 @@
 # Estado de entrega del producto
 
+> **Documento histórico.** Puede describir un estado anterior. El estado final está en [submission/JUDGE_QUICKSTART.md](submission/JUDGE_QUICKSTART.md).
+
 Esta es la fuente consolidada del estado de Bosque Vivo, verificada sobre `main` el 04-11-2026. Cuando la tabla habla de estados, usa los siguientes con estos criterios:
 
 | Estado | Significado |

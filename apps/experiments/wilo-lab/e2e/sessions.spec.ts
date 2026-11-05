@@ -123,6 +123,7 @@ test("identificacion con Meta deshabilitado: 501 explicito, sin candidatos", asy
   });
   await page.getByLabel("Soy mayor de 18 anos.").check();
   await page.getByLabel(/Tengo derecho a usar esta imagen/).check();
+  await page.getByLabel(/envie esta imagen a Meta/).check();
   await page.getByLabel(/Backend en SERVICE_MODE=demo/).check();
   await page.getByRole("button", { name: "Analizar fotografia" }).click();
   await expect(page.getByRole("alert")).toContainText("Meta deshabilitado: requiere habilitación y controles de acceso (501)");

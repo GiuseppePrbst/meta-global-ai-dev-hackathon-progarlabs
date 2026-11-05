@@ -1,5 +1,7 @@
 # Preparación de la entrega: hackathon 2026
 
+> **Documento histórico.** Puede describir un estado anterior. El estado final está en [submission/JUDGE_QUICKSTART.md](submission/JUDGE_QUICKSTART.md).
+
 **Commit de entrega.** Es el merge del PR de consolidación en `main`, con la etiqueta **`hackathon-2026-submission`**. El SHA exacto está en la etiqueta (`git rev-parse hackathon-2026-submission`) y en el reporte final del PR. Validación: 03/04-11-2026.
 
 ## Integración
