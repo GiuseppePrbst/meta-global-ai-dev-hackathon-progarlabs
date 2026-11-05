@@ -4,6 +4,26 @@
  */
 
 export interface paths {
+    "/admin/campaign/close": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Close Campaign
+         * @description Cierra la campaña para siempre; ninguna variable ni despliegue puede reabrirla.
+         */
+        post: operations["close_campaign_admin_campaign_close_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/admin/cohorts": {
         parameters: {
             query?: never;
@@ -191,6 +211,26 @@ export interface paths {
         put?: never;
         /** Point Context */
         post: operations["point_context_context_point_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/demo/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Demo Status
+         * @description Estado público de la demostración; no requiere token ni revela montos.
+         */
+        get: operations["demo_status_demo_status_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -976,6 +1016,12 @@ export interface components {
             /** Adult Confirmed */
             adult_confirmed: boolean;
             /**
+             * External Processing Confirmed
+             * @description Obligatorio sin sesión: la foto se envía a Meta Model API
+             * @default false
+             */
+            external_processing_confirmed: boolean;
+            /**
              * File
              * @description JPEG, PNG o WebP, máximo 10 MiB
              */
@@ -1009,6 +1055,11 @@ export interface components {
             language_hint: "auto" | "es" | "en" | "mixed";
             /** Rights Confirmed */
             rights_confirmed: boolean;
+        };
+        /** CampaignClose */
+        CampaignClose: {
+            /** Reason */
+            reason: string;
         };
         /** Candidate */
         Candidate: {
@@ -1203,7 +1254,7 @@ export interface components {
              * Cohort
              * @enum {string}
              */
-            cohort: "public_trial" | "team_developer" | "internal_qa";
+            cohort: "public_trial" | "team_developer" | "internal_qa" | "public_demo";
             /** Daily Requests Per Identity */
             daily_requests_per_identity: number;
             /** Identities */
@@ -1434,6 +1485,37 @@ export interface components {
             status: "demo_ready" | "educational_only" | "needs_review" | "excluded_from_demo";
             /** Taxon Id */
             taxon_id: string;
+        };
+        /** DemoStatus */
+        DemoStatus: {
+            /**
+             * Budget Status
+             * @enum {string}
+             */
+            budget_status: "available" | "exhausted" | "unknown";
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            /** Features */
+            features: string[];
+            /**
+             * Notice
+             * @default Solo para mayores de 18 años. Tu texto, audio o foto se envían a Meta Model API. Mientras la campaña use créditos promocionales, Meta indica que el contenido puede usarse para mejorar sus productos: no envíes datos personales ni confidenciales.
+             */
+            notice: string;
+            /** Public Demo Enabled */
+            public_demo_enabled: boolean;
+            /** Seconds Remaining */
+            seconds_remaining: number;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "active" | "expired" | "budget_exhausted" | "temporarily_disabled" | "provider_unavailable";
+            /** Territory Eligible */
+            territory_eligible: boolean | null;
         };
         /** Exchange */
         Exchange: {
@@ -1776,7 +1858,7 @@ export interface components {
              * Cohort
              * @description Por defecto, la del rol
              */
-            cohort?: ("public_trial" | "team_developer" | "internal_qa") | null;
+            cohort?: ("public_trial" | "team_developer" | "internal_qa" | "public_demo") | null;
             /** Reason */
             reason: string;
             /**
@@ -2347,7 +2429,7 @@ export interface components {
              * Status
              * @enum {string}
              */
-            status: "available" | "daily_limit" | "trial_exhausted" | "ai_disabled" | "suspended" | "no_cohort";
+            status: "available" | "daily_limit" | "trial_exhausted" | "ai_disabled" | "suspended" | "no_cohort" | "expired";
             /** Units Available */
             units_available: number | null;
             /**
@@ -3043,6 +3125,58 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    close_campaign_admin_campaign_close_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CampaignClose"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Identidad requerida */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+            /** @description Límite de consumo */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Infraestructura no disponible */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     list_cohorts_admin_cohorts_get: {
         parameters: {
             query?: never;
@@ -3089,7 +3223,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                cohort: "public_trial" | "team_developer" | "internal_qa";
+                cohort: "public_trial" | "team_developer" | "internal_qa" | "public_demo";
             };
             cookie?: never;
         };
@@ -3694,6 +3828,26 @@ export interface operations {
             };
         };
     };
+    demo_status_demo_status_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DemoStatus"];
+                };
+            };
+        };
+    };
     expeditions_expeditions_get: {
         parameters: {
             query?: never;
@@ -3909,6 +4063,13 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Campaña terminada; no reintentar */
+            410: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
             /** @description Audio supera 3 MiB */
             413: {
                 headers: {
@@ -3982,6 +4143,13 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Campaña terminada; no reintentar */
+            410: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
             /** @description Validation Error */
             422: {
                 headers: {
@@ -4038,6 +4206,13 @@ export interface operations {
             };
             /** @description Identidad requerida */
             401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Campaña terminada; no reintentar */
+            410: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -4185,6 +4360,13 @@ export interface operations {
             };
             /** @description Identidad requerida */
             401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Campaña terminada; no reintentar */
+            410: {
                 headers: {
                     [name: string]: unknown;
                 };

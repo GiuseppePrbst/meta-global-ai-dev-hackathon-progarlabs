@@ -4,6 +4,7 @@
 
 export * from '@/ui/tokens/theme';
 export * from '@/ui/tokens/motion';
+export * from '@/ui/use-keyboard-lift';
 
 export * from '@/ui/components/button';
 export * from '@/ui/components/chip';
