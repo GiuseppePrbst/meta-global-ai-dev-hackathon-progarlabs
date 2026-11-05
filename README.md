@@ -58,6 +58,27 @@ Esta es una respuesta real, generada el 03-11-2026 a partir de audio real. Aquí
     mapa      park_id=puyehue · geometry_available=false
 ```
 
+## App móvil
+
+El cliente de la demo es una app Expo / React Native pensada para Android, sin cuenta. Tiene cinco pestañas: **Identificar**, **Mapa**, **Especies**, **Diario** y **Perfil**.
+
+<table>
+  <tr>
+    <td align="center" width="25%"><img src="docs/assets/mobile/onboarding.jpg" width="180" alt="Bienvenida: Wilo, un huillín ilustrado, se presenta como guía"></td>
+    <td align="center" width="25%"><img src="docs/assets/mobile/identify-wilo.jpg" width="180" alt="Identificar: sugerencia «Podría ser Coigüe» y chat con Wilo sobre la especie"></td>
+    <td align="center" width="25%"><img src="docs/assets/mobile/atlas.jpg" width="180" alt="Mapa: ficha del Parque Nacional Puyehue con hectáreas, sectores y aviso de apertura no verificada"></td>
+    <td align="center" width="25%"><img src="docs/assets/mobile/journal.jpg" width="180" alt="Diario: guía de campo con especies descubiertas e insignias"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub><b>Wilo te recibe</b><br>presentación del guía</sub></td>
+    <td align="center"><sub><b>Identifica y pregunta</b><br>sugerencia, no veredicto; chat por voz o texto</sub></td>
+    <td align="center"><sub><b>Explora el parque</b><br>46 parques CONAF, avisos y fotos con licencia</sub></td>
+    <td align="center"><sub><b>Tu diario</b><br>guía de campo, senderos e insignias</sub></td>
+  </tr>
+</table>
+
+<sub>Capturas del build web en modo demostración (sin llamadas a Meta), 04-11-2026. La foto del Coigüe es una referencia CC0 de Wikimedia Commons, no tomada en Puyehue; los datos del Diario son de demostración. Más detalle en [apps/mobile/docs](apps/mobile/docs/README.md).</sub>
+
 ## Arquitectura
 
 ```mermaid
@@ -140,6 +161,8 @@ Con todo en marcha:
 | Health | [localhost:8000/health](http://localhost:8000/health) |
 | Parques | [localhost:8000/parks](http://localhost:8000/parks) |
 
+Para la app móvil, copia `apps/mobile/.env.example` a `apps/mobile/.env.local` y ejecuta `npm ci && npm run android` (o `npm run web`) dentro de `apps/mobile`. Sin `EXPO_PUBLIC_*_LIVE=true`, Wilo e Identificar se simulan en el teléfono.
+
 Para el stack completo con PostGIS, `docker compose up --build`. El modo Meta real, el ledger y los tokens de demo se configuran según [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 ## API y contratos
@@ -157,7 +180,7 @@ Para el stack completo con PostGIS, `docker compose up --build`. El modo Meta re
 - **Apertura de senderos:** no se verifica en tiempo real. Que no esté verificada no significa que esté abierto.
 - **Hongos:** las fichas son educativas. No hay identificación fiable entre especies de *Cyttaria* ni consejos de consumo.
 - **SAM:** segmenta organismos, pero no certifica la especie.
-- **Despliegue:** se ejecuta en local y en CI. **No hay un despliegue público.**
+- **Despliegue:** la API pública atiende sin registro hasta el 10-11-2026 ([PUBLIC_DEMO](docs/PUBLIC_DEMO.md)). La web y la app se ejecutan en local o como APK *preview*.
 - **Contenido científico:** depende de sus fuentes y aún no lo ha revisado un especialista.
 
 El guion de la demo está en [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md); el estado de la entrega, en [docs/RELEASE_READINESS_2026-11-04.md](docs/RELEASE_READINESS_2026-11-04.md).
