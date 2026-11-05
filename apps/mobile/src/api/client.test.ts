@@ -86,6 +86,33 @@ describe('requestJson', () => {
   });
 });
 
+describe('requestJson con POST', () => {
+  it('serializa un objeto como JSON con su Content-Type', async () => {
+    fetchMock.mockResolvedValue(respond(200, { ok: true }));
+    await requestJson(BASE, '/guide/query', { method: 'POST', body: { question: 'q' } });
+    const init = fetchMock.mock.calls[0][1] as RequestInit;
+    expect(init.method).toBe('POST');
+    expect(init.body).toBe('{"question":"q"}');
+    expect((init.headers as Record<string, string>)['Content-Type']).toBe('application/json');
+  });
+
+  it('envía FormData sin fijar Content-Type (el boundary lo pone fetch)', async () => {
+    fetchMock.mockResolvedValue(respond(200, { ok: true }));
+    const form = new FormData();
+    form.append('a', '1');
+    await requestJson(BASE, '/guide/transcribe', { method: 'POST', body: form });
+    const init = fetchMock.mock.calls[0][1] as RequestInit;
+    expect(init.body).toBe(form);
+    expect((init.headers as Record<string, string>)['Content-Type']).toBeUndefined();
+  });
+
+  it('usa el fetch inyectado en vez del global', async () => {
+    const injected = jest.fn<(...args: unknown[]) => Promise<FakeResponse>>().mockResolvedValue(respond(200, { via: 'mock' }));
+    await expect(requestJson(BASE, '/x', { fetchImpl: injected as unknown as typeof fetch })).resolves.toEqual({ via: 'mock' });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+});
+
 describe('isTransient', () => {
   it('reintenta solo red, tiempo agotado y 5xx distintos de 501', () => {
     expect(isTransient(new ApiError('network', ''))).toBe(true);

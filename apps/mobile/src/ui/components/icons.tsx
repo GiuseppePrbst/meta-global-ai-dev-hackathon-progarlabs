@@ -307,3 +307,21 @@ export function MicIcon(props: IconProps) {
     </Icon>
   );
 }
+
+export function SendIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <Path d="M12 19V5M6 11l6-6 6 6" />
+    </Icon>
+  );
+}
+
+export function GalleryIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <Rect x={3.5} y={4.5} width={17} height={15} rx={2.5} />
+      <Circle cx={9} cy={10} r={1.6} />
+      <Path d="M20.5 16l-4.5-4.5L7 19.5" />
+    </Icon>
+  );
+}

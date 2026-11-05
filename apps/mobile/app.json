@@ -37,8 +37,24 @@
         "expo-camera",
         {
           "cameraPermission": "WiloQuest usa la cámara para fotografiar hojas y corteza al identificar árboles.",
-          "microphonePermission": false,
+          "microphonePermission": "WiloQuest usa el micrófono solo mientras mantienes activa la pregunta por voz a Wilo.",
           "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "WiloQuest usa el micrófono solo mientras mantienes activa la pregunta por voz a Wilo.",
+          "enableBackgroundPlayback": false,
+          "enableBackgroundRecording": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "WiloQuest abre tu galería solo cuando eliges una foto para identificar una especie.",
+          "cameraPermission": "WiloQuest usa la cámara para fotografiar hojas y corteza al identificar árboles.",
+          "microphonePermission": "WiloQuest usa el micrófono solo mientras mantienes activa la pregunta por voz a Wilo."
         }
       ]
     ],
